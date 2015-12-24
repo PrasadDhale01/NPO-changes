@@ -1372,6 +1372,7 @@ div.dashboardtile-min-height {
 	font-size:16px;
 	line-height:2;
 }
+
 .visible-reciept-md{
     display:none;
 }
@@ -1394,4 +1395,21 @@ div.dashboardtile-min-height {
     background-color: #f6f8f8;
     overflow: auto;
     padding-top: 20px;
+}
+.domain-metrics .nav-tabs > li > a{
+    background-color: #5fbed5;
+    color: #fff;
+    border: 1px solid #fff;
+    font-size: 14px !important;
+    font-weight: 600;
+}
+.domain-metrics .nav-tabs > li > a:hover, .domain-metrics .nav-tabs > li.active > a:hover {
+    background-color: #5fbed5;
+    color: #fff !important;
+    border: 1px solid #fff;
+}
+.domain-metrics .nav-tabs > li.active > a {
+    background-color: #A2B5D1;
+    color: #fff !important;
+    border: 1px solid #fff;
 }

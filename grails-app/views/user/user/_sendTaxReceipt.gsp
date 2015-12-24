@@ -1,15 +1,14 @@
-<table>
-	<thead>
-		<tr class="alert alert-title">
-			<th>Sr.No</th>
-			<th>Select</th>
-			<th>Contributor Name</th>
-			<th>Contributor Email</th>
-			<th>Campaign Name</th>
-			<th>Contributed Amount</th>
-			<th>Identity</th>
-			<th>Mode</th>
-			<th>Contributed Date & Time</th>
-		</tr>
-	</thead>
-</table>
+<div class="table table-responsive">
+	<table class="table table-bordered">
+		<thead>
+			<tr class="alert alert-title">
+				<th class="">Sr.No</th>
+				<th class="">Select</th>
+				<th class="col-sm-3 text-center">Name</th>
+				<th class="col-sm-3 text-center">Email</th>
+				<th class="">Amount</th>
+				<th class="">Date & Time</th>
+			</tr>
+		</thead>
+	</table>
+</div>

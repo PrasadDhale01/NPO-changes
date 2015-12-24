@@ -58,4 +58,15 @@ class HomeController {
         }
     }
 	
+    
+    def EbookEmail(){
+        def ebookEmail = params.loginEmail
+        User user = User.get(params.int('userId'))
+        if(ebookEmail && user){
+            new EbookContacts(email:ebookEmail, user:user).save(failOnError: true)
+            render 'https://s3.amazonaws.com/crowdera/assets/crowdera%20ebook-your%20go%20to%20guide%20for%20crowdfunding%20success.pdf'
+        }else{
+            redirect(view:'/error')
+        }
+    }
 }

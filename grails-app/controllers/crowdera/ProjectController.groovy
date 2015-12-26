@@ -461,11 +461,17 @@ class ProjectController {
 		def checkid= request.getParameter('checkID')
 		def proComment = projectService.getProjectCommentById(checkid)
 		def status = request.getParameter('status')
-		if(status=='false'){
-			proComment.status=false
-		}else{
-			proComment.status=true
-		}
+        def currentUser = userService.getCurrentUser()
+        def project = Project.findAllWhere(user:currentUser)
+        def projectUser = project.user.email.toString().replace('[','').replace(']','')
+        
+        if(projectUser.equals(currentUser.username)){
+            if(status=='false'){
+                proComment.status=false
+            }else{
+                proComment.status=true
+            }
+        }
 		render ""
 	}
     
@@ -1447,13 +1453,22 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def enableOrDisableTeam() {
+        def currentUser = userService.getCurrentUser()
 		def teamId= request.getParameter('teamId')
 		def team = projectService.getTeamById(teamId)
-		if(team.enable){
-			team.enable = false
-		}else{
-			team.enable = true
-		}
+        def project = Project.findAllWhere(user:currentUser)
+        def projectUser = project.user.email.toString().replace('[','').replace(']','')
+        
+        if(projectUser.equals(currentUser.username)){
+            if(!projectUser.equals(team.user.username)){
+                if(team.enable){
+                    team.enable = false
+                }else{
+                    team.enable = true
+                }
+            }
+        }
+        
 		render ""
 	}
 

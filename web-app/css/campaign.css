@@ -896,7 +896,154 @@ img.hm-height-width {
 .hm-toi {
     top: -5px;
 }
-
+.manage-container-page{
+	width: 1000px;
+}
+.mange-borders{
+    border-bottom: 2px solid #e3e3e3;
+    border-top: 2px solid #e3e3e3;
+    width: 969px;
+    margin-left: 15px;
+}
+.manage-bottom-top{
+    border-right-width: 0;
+    line-height: 2;
+    margin: 10px 0 10px -13px;
+}
+.mange-tabs-payu{
+    border-right-width: 0;
+    line-height: 2;
+    margin: 10px 0 10px -13px;
+}
+.manage-org-bottomMargin{
+    margin-bottom: 0px;
+}
+.manage-btn-width {
+    padding-bottom: 11px;
+    padding-top: 11px;
+    width: 91.5%;
+}
+.manage-deletebtn-width{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 14px;
+    width: 91.5%;	
+}
+.manage-edit-draft-left {
+    margin-left: 14px;
+}
+@-moz-document url-prefix() { 
+    .manage-btn-width {
+         padding-bottom: 9px;
+         padding-top: 8px;
+         width: 91.5%;
+    }
+    .manage-deletebtn-width{
+         padding-top: 9px;
+         padding-bottom: 11px;
+         margin-left: 14px;
+         width: 91.5%;   
+    }
+}
+.manage-btn-width-aft-validated{
+	height: 100%;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    width: 91.2%; 
+}
+.manage-edit-left{
+    margin-left: 15px;
+}
+.manage-tiletitile-top{
+    margin-top: 0 !important;
+}
+.manage-fb-color,
+.manage-fb-color:hover,
+.manage-fb-color:focus {
+    background-color: rgb(118, 134, 179);
+    color: #fff;
+}
+.mange-size-FBbtn {
+    height: 100%;
+    padding: 12px;
+    width: 100%;
+    font-weight: 900;
+}
+@-moz-document url-prefix() { 
+    .mange-size-FBbtn {
+        height: 100%;
+        padding: 9px;
+        width: 100%;
+        font-weight: 900;
+    }
+}
+.manage-social{
+    border-bottom: 2px solid #e3e3e3;
+    border-top: 2px solid #e3e3e3;
+    margin-left: 14px;
+    margin-top: 10px;
+    padding-bottom: 6px;
+    padding-left: 238px;
+    padding-top: 6px;
+    width: 97.1%;
+}
+.manage-btn-back-color,
+.manage-btn-back-color:hover,
+.manage-btn-back-color:focus {
+    background-color: #01bbd3;
+    color: #fff;
+    font-weight: bold;
+}
+.manage-tbs-right-borders{
+    border-right: 2px solid #6d6e6e;
+    padding-left: 8px;
+    padding-right: 10px;
+}
+.manage-comit-lft{
+    padding-left: 7px;
+}
+.show-submitapproval-in-check-box{
+    height: 52px !important;
+    margin-bottom: 0 !important;
+    padding-top: 11px;
+}
+.show-submit-margin {
+    margin-bottom: 8px;
+    margin-top: 7px;
+}
+.manage-check-box-ondraft{
+    margin-bottom: 8px;
+    margin-top: 7px;	
+}
+.manage-table-bottom {
+    margin-bottom: 25px !important;
+}
+.mange-comments-bottom {
+    margin-bottom: 25px;
+}
+.mange-team-bottem{
+    margin-bottom: 25px;
+}
+.mange-rewards-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre;
+    padding-bottom: 5px;
+    word-wrap: normal;
+}
+.manage-fb-padding {
+    font-size: 19px;
+    padding-right: 30px;
+}
+.mange-story-imgs img{
+    width: 100%;	
+}
+.mange-story-imgs iframe{
+    width: 100% !important;
+}
+.errormsg {
+    color: red;
+}
 .sharing-icons-padding-left{
     padding-left: 30%;
 }
@@ -906,4 +1053,15 @@ label.cr-spend-guide-text{
 	padding-left: 10px;
 	margin-bottom: 0px;
 	font-size: 14px;
+}
+.manage-org-height {
+    height: 139px;
+}
+.mange-campaigntitle-mobile a{
+    color: #000 !important;
+    font-size: 30px;
+    font-family: Verdana;
+    font-weight: 900;
+    font-variant: normal;
+    text-decoration: none;
 }

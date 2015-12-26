@@ -165,7 +165,7 @@
         </div>
     </div>
 </div>
-<div class="visible-xs show-panel-mobilesize ${alphabet}">
+<div class="visible-xs <g:if test="${isshow == 'true' || isshow == true}">show-panel-mobilesize</g:if><g:else>manage-panel-mobile-size</g:else> ${alphabet}">
     <div class ="col-xs-4 show-mobimg-panels">
         <g:if test="${!ismanagepage || !isAdminOrBeneficiary}">
             <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]">

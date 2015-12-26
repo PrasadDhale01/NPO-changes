@@ -5,9 +5,6 @@
 	.col-add-tax-files {
 	   width: 15%;
 	}
-	.showing-hashtags{
-	   left:44%;
-	}
 	.showing-hashtags-desktop{
 	   display:inline;
 	}
@@ -413,10 +410,10 @@
         padding-left: 8% !important;
         padding-right: 8% !important;
     }
-    .offline-contribution-pans.col-xs-12{
-        padding-left: 0px !important;
-        padding-right: 0px !important;
-    }
+/*     .offline-contribution-pans.col-xs-12{ */
+/*         padding-left: 0px !important; */
+/*         padding-right: 0px !important; */
+/*     } */
     .edit-delete-fund .close {
         margin-left: 2px !important;
     }
@@ -504,10 +501,10 @@
         padding-left: 5% !important;
         padding-right: 5% !important;
     }
-    .offline-contribution-pans.col-xs-12{
-        padding-left: 0px !important;
-        padding-right: 0px !important;
-    }
+/*     .offline-contribution-pans.col-xs-12{ */
+/*         padding-left: 0px !important; */
+/*         padding-right: 0px !important; */
+/*     } */
     .edit-delete-fund .close {
         margin-left: 2px !important;
     }

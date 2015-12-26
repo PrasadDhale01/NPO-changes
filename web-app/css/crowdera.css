@@ -5559,6 +5559,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.manage-teamgridTabs {
+        padding-left: 39px;
+    }
     div.mange-campaigntitle-mobile a{
         font-size: 15px;
         line-height: 0;
@@ -11009,6 +11012,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+    div.manage-teamgridTabs {
+        padding-left: 58px;
+    }
     li.manage-team-btn-tabsmargin{
         margin-left: 64px !important;   
     }
@@ -13927,6 +13933,9 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.manage-teamgridTabs {
+        padding-left: 39px;
+    }
     div.mange-campaigntitle-mobile a{
         font-size: 15px;
         line-height: 0;

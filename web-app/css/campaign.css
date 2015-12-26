@@ -1065,3 +1065,6 @@ label.cr-spend-guide-text{
     font-variant: normal;
     text-decoration: none;
 }
+img.home-img-large-size{
+    width: 100%;
+}

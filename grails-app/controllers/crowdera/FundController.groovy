@@ -199,8 +199,8 @@ class FundController {
 		def reward = contribution.reward
 		def user = contribution.user
 		def fundraiser = userService.getUserById(params.long('fr'))
-		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-		def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+        def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+        def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
         if (userService.getCurrentUser()){
             def vanityusername = userService.getVanityNameFromUsername(fundraiser.username, project.id)
             def shortUrl = projectService.getShortenUrl(project.id, vanityusername)
@@ -208,16 +208,11 @@ class FundController {
             mandrillService.sendThankYouMailToContributors(contribution, project, contribution.amount, fundraiser)
             render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser, projectTitle:params.projectTitle, twitterShareUrl:twitterShareUrl]
         } else {
-            def reqUrl = base_url+"/fund/sendEmail?cb=${params.cb}&fr=${params.fr}&projectTitle=${params.projectTitle}"
             def loginSignUpCookie = projectService.setLoginSignUpCookie()
             def campaignNameCookie = projectService.setCampaignNameCookie(project.title)
             def fundingAmountCookie = projectService.setFundingAmountCookie(contribution.amount)
 			def contributorNameCookie = projectService.setContributorName(contribution.contributorName)
-			def setRequestUrlCookie = projectService.setRequestUrlCookie(reqUrl)
 
-			if(setRequestUrlCookie){
-				response.addCookie(setRequestUrlCookie)
-			}
 			if (loginSignUpCookie) {
                response.addCookie(loginSignUpCookie)
             }
@@ -237,41 +232,48 @@ class FundController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def sendEmail () {
         Contribution contribution = contributionService.getContributionById(params.long('cb'))
-        def project = contribution.project
-        def fundraiser = userService.getUserById(params.long('fr'))
-        mandrillService.sendThankYouMailToContributors(contribution, project, contribution.amount, fundraiser)
 
-		def fundingAmountCookieValue = g.cookie(name: 'fundingAmountCookie')
-		def campaignNameCookieValue = g.cookie(name: 'campaignNameCookie')
-		def loginSignUpCookieValue = g.cookie(name: 'loginSignUpCookie')
-		def contributorNameCookieValue = g.cookie(name: 'contributorNameCookie')
-		def cookieValue = g.cookie(name: 'requestUrl')
-		def contributorEmailCookie = projectService.setContributorEmailCookie(contribution.contributorEmail)
+        if (contribution) {
+            if (!contribution.isAnonymous){
+                contribution.user = userService.getCurrentUser();
+                contribution.save();
+            }
 
-        if(cookieValue){
-            def cookie = projectService.setCookie(cookieValue)
-            response.addCookie(cookie)
+            def project = contribution.project
+            def fundraiser = userService.getUserById(params.long('fr'))
+            if (fundraiser){
+                mandrillService.sendThankYouMailToContributors(contribution, project, contribution.amount, fundraiser)
+            }
+
+            def fundingAmountCookieValue = g.cookie(name: 'fundingAmountCookie')
+            def campaignNameCookieValue = g.cookie(name: 'campaignNameCookie')
+            def loginSignUpCookieValue = g.cookie(name: 'loginSignUpCookie')
+            def contributorNameCookieValue = g.cookie(name: 'contributorNameCookie')
+            def contributorEmailCookie = projectService.setContributorEmailCookie(contribution.contributorEmail)
+
+            if (fundingAmountCookieValue){
+                def cookie = projectService.deleteFundingAmountCookie(fundingAmountCookieValue)
+                response.addCookie(cookie)
+            }
+            if (campaignNameCookieValue){
+                def cookie = projectService.deleteCampaignNameCookie(campaignNameCookieValue)
+                response.addCookie(cookie)
+            }
+            if(loginSignUpCookieValue){
+                def cookie = projectService.deleteLoginSignUpCookie()
+                response.addCookie(cookie)
+            }
+            if (contributorNameCookieValue){
+                def cookie = projectService.deleteContributorName(contributorNameCookieValue)
+                response.addCookie(cookie)
+            }
+            if(contributorEmailCookie){
+                response.addCookie(contributorEmailCookie)
+            }
+                redirect (controller:'home', action:'index')
+        } else {
+            render view:'404error'
         }
-		if (fundingAmountCookieValue){
-			def cookie = projectService.deleteFundingAmountCookie(fundingAmountCookieValue)
-			response.addCookie(cookie)
-		}
-		if (campaignNameCookieValue){
-			def cookie = projectService.deleteCampaignNameCookie(campaignNameCookieValue)
-			response.addCookie(cookie)
-		}
-		if(loginSignUpCookieValue){
-			def cookie = projectService.deleteLoginSignUpCookie()
-			response.addCookie(cookie)
-		}
-		if (contributorNameCookieValue){
-			def cookie = projectService.deleteContributorName(contributorNameCookieValue)
-			response.addCookie(cookie)
-		}
-		if(contributorEmailCookie){
-			response.addCookie(contributorEmailCookie)
-		}
-        redirect (controller:'home', action:'index')
     }
 
     def saveContributionComent(){
@@ -719,6 +721,10 @@ class FundController {
         if(request.xhr){
             render(template:"/user/admin/transactionGrid", model: [contribution: sortedList.contributions, totalContributions: sortedList.totalContributions]);
         }
+    }
+    
+    def sendEmailToContributors(){
+        projectService.makeContributorsUser()
     }
     
     @Secured(['ROLE_ADMIN'])

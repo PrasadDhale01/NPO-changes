@@ -8,6 +8,9 @@
    <div class="container footer-container">
        <div class="row row-transaction">
            <h1 class="col-md-8 col-sm-8 col-xs-12">Transaction List</h1>
+           <div class="generateCSV col-md-2 col-sm-2 col-xs-6">
+               <g:link action="sendEmailToContributors" controller="fund" class="btn btn-primary btn-sm btn-xs-width pull-right sendContributorEmail">Send Email</g:link>
+           </div>
            <g:if test="${!contribution.empty }">
            <div class="generateCSV col-md-2 col-sm-2 col-xs-6">
                <g:form controller="fund" action="generateCSV" Method="post" >

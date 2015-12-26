@@ -2788,7 +2788,7 @@ $(function() {
         $.ajax({
            type:'post',
            url:$("#b_url").val()+'/project/autoSaveCharitableIdAndOrganisationName',
-           data:'projectId='+projectId+'&charitableId='+charitableId+'&organizationname='+charityName,
+           data:'projectId='+projectId+'&charitableId='+uuid+'&organizationname='+charityName,
            success: function(data) {
                if (data != 'null'){
                    $('#taxRecieptId').val(data);

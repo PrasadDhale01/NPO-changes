@@ -1,4 +1,4 @@
-<div class="col-md-12 col-sm-12 col-xs-12"><br>
+<div class="col-md-12 col-sm-12 col-xs-12 mange-team-bottem"><br>
     <h2><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-validated.png" alt="Teams Validation"/>&nbsp;Teams Validation</h2>
     <br>
     <g:if test="${unValidatedTeam.size() > 0}">

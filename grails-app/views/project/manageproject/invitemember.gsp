@@ -23,7 +23,7 @@
                              <g:hiddenField name="ismanagepage" value="managepage" />
                              <div class="form-group">
                                  <label>Name</label>
-                                 <input type="text" class="form-control all-place" name="username" value="${username}" placeholder="Name"/>
+                                 <input type="text" class="form-control all-place" name="username" value="${username}" placeholder="Name">
                              </div>
                              <div class="form-group">
                                  <div><label>Add to contacts</label></div>
@@ -36,7 +36,7 @@
                                      <div class="row divSocialContacts">
                                          <input type="hidden" name="socialProvider" class="socialProvider" value="${provider}">
                                          <div class="col-md-4 socialContactDiv">
-                                             <input type="text" class="form-control all-place socialContact" name="socialContact" id="socialContact" placeholder="Email" value="${email}"/>
+                                             <input type="text" class="form-control all-place socialContact" name="socialContact" id="socialContact" placeholder="Email" value="${email}">
                                          </div>
                                          <div class="col-md-2">
                                              <button type="button" class="btn btn-default btn-info btn-sm center-block btnSocialContacts" id="btnSocialContactss">Import Contacts</button>
@@ -47,7 +47,7 @@
                                       <div class="row divSocialContact">
                                           <input type="hidden" name="socialProvider" class="socialProvider">
                                           <div class="col-md-4 socialContactDiv">
-                                              <input type="text" class="form-control all-place socialContact" name="socialcontact"  placeholder="Email" id="socialContacts"/>
+                                              <input type="text" class="form-control all-place socialContact" name="socialcontact"  placeholder="Email" id="socialContacts">
                                           </div>
                                           <div class="col-md-2">
                                               <button type="button" class="btn btn-default btn-info btn-sm center-block btnSocialContacts" id="btnSocialContacts">Import Contacts</button>

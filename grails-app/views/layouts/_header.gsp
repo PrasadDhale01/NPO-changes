@@ -376,7 +376,6 @@
                                     Log out
                                 </g:link></li>
                         </g:else>
-                    </li>
                 </sec:ifLoggedIn> 
           </ul>
          </div>

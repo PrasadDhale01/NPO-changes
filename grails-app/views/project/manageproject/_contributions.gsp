@@ -1,4 +1,4 @@
-<!-- Contributions -->
+<%-- Contributions --%>
 <g:set var="userService" bean="userService"/>
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="facebookService" bean="facebookService"/>
@@ -19,27 +19,27 @@
         </div>
     </g:if>
     <g:if test="${project.validated}">
-        <div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-md-12 col-sm-12 col-xs-12 manage-report-offline-lft">
             <g:if test="${project.payuStatus == false && !ended}">
-                <a href="#" class="btn btn-primary btn-sm pull-right managecontribution" data-toggle="modal" data-target="#offlineContributionModal" model="['project': project]">
+                <a href="#" class="btn btn-primary btn-sm pull-right managecontribution mange-contribution-mobile" data-toggle="modal" data-target="#offlineContributionModal">
                     Manage Offline Contribution
                 </a>
             </g:if>
             <g:elseif test="${ended}">
-                <a href="#" class="btn btn-primary btn-sm pull-right managecontribution" id="endedOfflineContribution">
+                <a href="#" class="btn btn-primary btn-sm pull-right managecontribution mange-contribution-mobile" id="endedOfflineContribution">
                     Manage Offline Contribution
                 </a>
             </g:elseif>
             <g:if test="${!totalContributions.empty}">
-                <a href="#"class="btn btn-primary btn-sm btn-circle pull-right mngReportCls" data-toggle="modal" data-target="#reportModal">
+                <a href="#" class="btn btn-primary btn-sm btn-circle pull-right mngReportCls mange-contributionreport-mobile" data-toggle="modal" data-target="#reportModal">
                     Report
                 </a>
             </g:if>
         </div>
     </g:if>
     <div class="clear"></div>
-    <!-- Modal -->
-    <div class="modal fade offlineContributionModal" id="offlineContributionModal" tabindex="-1" role="dialog" aria-labelledby="offlineContributionModal" aria-hidden="true">
+    <%-- Modal --%>
+    <div class="modal fade offlineContributionModal" id="offlineContributionModal" tabindex="-1" aria-hidden="true">
         <g:form action="saveOfflineContribution" controller="fund" id="${project.id}"  params="['fr':fundRaiser]" name="saveOfflineContribution-form">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -58,14 +58,14 @@
                         <g:hiddenField name="manageCampaign" value="${manageCampaign}"></g:hiddenField>
                         <div class="col-sm-8">
                             <div class="form-group">
-                                <label class="text" for="title">Display Name</label>
-                                <input type="text" class="form-control contributioninput" name="contributorName1"/>
+                                <label class="text">Display Name</label>
+                                <input type="text" class="form-control contributioninput" name="contributorName1">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="title" class="text">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
-                                <input type="text" class="form-control contributioninput" name="amount1" id="offlineAmount1"/>
+                                <label class="text">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+                                <input type="text" class="form-control contributioninput" name="amount1" id="offlineAmount1">
                             </div>
                             <div id="errormsg1"></div>
                         </div>
@@ -91,8 +91,8 @@
     <div class="alert alert-info">Campaign is yet to be validated.</div>
 </g:else>
 
-<!-- Modal -->
-<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
+<%-- Modal --%>
+<div class="modal fade" id="reportModal" tabindex="-1" aria-hidden="true">
    <g:form controller="project" action="generateCSV" name="generateCSV-form" id="generateCSV-form">
    <div class="modal-dialog">
       <div class="modal-content">
@@ -101,11 +101,11 @@
                data-dismiss="modal" aria-hidden="true">
                   &times;
             </button>
-            <h4 class="modal-title" id="reportModalLabel">
-               <span class="text-center"><h3><b>CONTRIBUTION REPORT</b></h3></span>
+            <h4 class="modal-title text-center" id="reportModalLabel">
+                <b>CONTRIBUTION REPORT</b>
             </h4>
          </div>
-         <g:hiddenField name="projectId" value="${project.id}"/>
+         <g:hiddenField name="projectId" value="${project.id}" id="projectId${project.id}"/>
          <div class="modal-body">
            <g:if test="${!totalContributions.empty}">
                 <dl class="dl">
@@ -201,10 +201,10 @@
             </g:else>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" class="btnGenerateCSV">Generate CSV
+            <button type="submit" class="btn btn-primary btnGenerateCSV" >Export CSV
             </button>
          </div>
-       </div> <!-- /.modal-dialog -->
-    </div><!-- /.modal-content -->
+      </div><%-- /.modal-dialog--%>
+    </div><%--  /.modal-content --%>
     </g:form>
-</div><!-- /.modal -->
+</div><%-- /.modal --%>

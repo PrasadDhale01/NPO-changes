@@ -1,4 +1,4 @@
-<!-- Contributions -->
+<%--Contributions --%>
 <g:set var="userService" bean="userService"/>
 <g:set var="facebookService" bean="facebookService"/>
 <g:set var="projectService" bean="projectService" />
@@ -143,15 +143,15 @@
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Generate CSV</button>
                         </div>
-                    </div> <!-- /.modal-dialog -->
-                </div><!-- /.modal-content -->
+                    </div> <%-- /.modal-dialog --%>
+                </div><%-- /.modal-content --%>
             </g:form>
-        </div><!-- /.modal -->
+        </div><%-- /.modal --%>
     </g:if>
     
     <div class="clear"></div>
     
-    <!-- Modal -->
+    <%-- Modal --%>
     <div class="modal fade offlineContributionModal" id="offlineContributionModal" tabindex="-1" role="dialog" aria-labelledby="offlineContributionModal" aria-hidden="true">
         <g:form controller="fund" action="saveOfflineContribution" id="${project.id}" params="['fr':fundRaiser]">
             <div class="modal-dialog">
@@ -170,13 +170,13 @@
                         <div class="col-sm-8">
                              <div class="form-group">
                                  <label class="text" for="title">Display Name</label>
-                                 <input type="text" class="form-control contributioninput" name="contributorName1"/>
+                                 <input type="text" class="form-control contributioninput" name="contributorName1">
                              </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="title" class="text">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
-                                <input type="text" class="form-control contributioninput" name="amount1" id="offlineAmount1"/>
+                                <input type="text" class="form-control contributioninput" name="amount1" id="offlineAmount1">
                             </div>
                             <div id="errormsg1"></div>
                         </div>

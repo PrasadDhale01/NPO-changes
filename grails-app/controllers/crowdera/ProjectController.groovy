@@ -462,17 +462,22 @@ class ProjectController {
           def proComment = projectService.getProjectCommentById(checkid)
           def status = request.getParameter('status')
           def currentUser = userService.getCurrentUser()
-          def project = Project.findAllWhere(user:currentUser)
-          def projectUser = project.user.email.toString().replace('[','').replace(']','')
-
-          if(projectUser.equals(currentUser.username)){
-              if(status=='false'){
-                  proComment.status=false
-              }else{
-                  proComment.status=true
+          def project = projectService.getProjectByComment(proComment)
+          def projectAdmin = userService.isCampaignBeneficiaryOrAdmin(project, currentUser)
+          
+          if(project){
+              def projectUser = project.user.email.toString().replace('[','').replace(']','')
+              if(projectUser.equals(currentUser.username) || projectAdmin){
+                  if(status=='false'){
+                      proComment.status=false
+                  }else{
+                      proComment.status=true
+                  }
               }
+              render ""
+          }else{
+           render ""
           }
-          render ""
 	}
     
     def createCampaign() {
@@ -1456,20 +1461,25 @@ class ProjectController {
           def currentUser = userService.getCurrentUser()
           def teamId= request.getParameter('teamId')
           def team = projectService.getTeamById(teamId)
-          def project = Project.findAllWhere(user:currentUser)
-          def projectUser = project.user.email.toString().replace('[','').replace(']','')
-
-          if(projectUser.equals(currentUser.username)){
-              if(!projectUser.equals(team.user.username)){
-                  if(team.enable){
-                      team.enable = false
-                  }else{
-                      team.enable = true
-                  }
-              }
+          def projectByTeam = projectService.getProjectByteam(team)
+          def projectAdmin = userService.isCampaignBeneficiaryOrAdmin(projectByTeam, currentUser)
+          def projectUser
+          
+          if(projectByTeam && team){
+             projectUser = projectByTeam.user.email.toString().replace('[','').replace(']','')
+             if(projectUser.equals(currentUser.username) || projectAdmin){
+                 if(!projectUser.equals(team.user.username)){
+                     if(team.enable){
+                         team.enable = false
+                     }else{
+                         team.enable = true
+                     }
+                 }
+             }
+             render ""
+          }else{
+             render ""
           }
-        
-          render ""
 	}
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])

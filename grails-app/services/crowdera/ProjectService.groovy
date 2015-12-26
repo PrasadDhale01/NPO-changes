@@ -1516,6 +1516,16 @@ class ProjectService {
 	return amount.round()
     }
     
+    def getProjectByteam(def team){
+        def project =Project.findById(team.projectId)
+        return project
+    }
+    
+    def getProjectByComment(def comment){
+        def project= Project.findById(comment.projectId)
+        return project
+    }
+    
     def getProjects(def projects, def projectAdmins, def fundRaisers) {
         def list = []
         projects.each {

@@ -805,4 +805,17 @@ class UserController {
         }
     }
     
+    def partners() {
+        List partners = userService.getPartners()
+        render (view:'/user/partner/show/index', model:[partners: partners])
+    }
+    
+    def partnerFaq() {
+        render (view:'/user/partner/show/partnerfaq')
+    }
+    
+    def partnerpage() {
+        render (view: '/user/partner/show/partnerpage')
+    }
+    
 }

@@ -1386,3 +1386,83 @@ div.dashboardtile-min-height {
     color: #fff !important;
     border: 1px solid #fff;
 }
+
+.partner-gallery h1{
+    font-size: 44px;
+    font-weight: 700;
+}
+.partner-gallery h3{
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+.partner-gallery .btn-default {
+    background-color: #01bbd2;
+    border-color: #01bbd2;
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 28px;
+    font-size: 16px;
+}
+.partner-gallery {
+    padding: 25px 0 40px 0;
+}
+.partners_list_container {
+    padding: 20px 20px;
+    background-color: #f6f8f8;
+    overflow-y: auto;
+}
+#partner-show-container {
+    padding: 0px 40px;
+}
+.partner-show-tile {
+    width: 260px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 8px 0 rgba(172, 169, 169, 0.25);
+}
+.partner-show-tile img {
+    width: 260px;
+    max-height: 165px;
+    min-height: 165px;
+}
+.partner-show-info {
+    padding: 5px 8px;
+}
+.partner-show-tile.thumbnail{
+    padding: 0px;
+}
+.partner-show-info .partner-org-name {
+    font-size: 16px;
+    padding-bottom: 10px;
+}
+.partner-show-info .partner-raised-amt {
+    font-size: 14px;
+    padding: 2px 0;
+}
+.partner-show-info .partner-campaigns {
+    font-size: 14px;
+    padding: 2px 0;
+}
+.create-partner-btn {
+    background-color: #01bbd2;
+    border-color: #01bbd2;
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 28px;
+    font-size: 16px;
+}
+.create-partner-btn:hover {
+    background-color: #01bbd2;
+    border-color: #01bbd2;
+    color: #fff;
+}
+.partner-faq {
+    padding: 10px 0;
+    background-color: #f6f8f8;
+}
+.partnerfaq-section {
+    padding: 10px;
+    background-color: #fff;
+    overflow-y: auto;
+}

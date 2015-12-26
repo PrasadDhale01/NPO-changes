@@ -109,7 +109,7 @@
     <div class="tab-pane tab-pane-active" id="drive">
         <div class="col-sm-12">
             <g:if test="${!isAdmin}">
-                <button type="button" class="btn btn-sm btn-primary pull-right" id="pick">Load File</button>
+                <button type="button" class="btn btn-sm btn-primary pull-right" id="pick">Import File</button>
                 
                 <div class="trash-drivefile-fixed-btn" id="trash-drivefile-fixed-btn">
                     <button class="btn btn-danger btn-round" type="button" id="remove-drive-file">

@@ -7593,6 +7593,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+	.partner-show-tile {
+        width: 230px;
+    }
+    .partner-show-tile img {
+        width: 230px;
+        max-height: 155px;
+        min-height: 155px;
+    }
     .partner-stats.col-sm-4, #vitalseperator.col-sm-12 {
         padding-left: 5px;
         padding-right: 5px;
@@ -10409,6 +10417,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	.partner-show-tile {
+        width: 220px;
+    }
+    .partner-show-tile img {
+        width: 220px;
+        max-height: 160px;
+        min-height: 160px;
+    }
 	label.cr-panel-qa{
 	   width:50%;
 	}
@@ -10785,6 +10801,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+    .partner-show-tile {
+        width: 230px;
+    }
+    .partner-show-tile img {
+        width: 230px;
+        max-height: 160px;
+        min-height: 160px;
+    }
 	#TW-usrPrfl-ul li.TW-usrPrfl-li > a {
 	   font-size: 14px !important;
 	   font-weight: bold;

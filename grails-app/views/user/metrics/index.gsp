@@ -13,13 +13,13 @@
         </div>
         <ul class="nav nav-tabs nav-justified">
             <li class="active"><a href="#domain" data-toggle="tab">
-                <span class="glyphicon glyphicon-leaf"></span><span class="tab-text"> Crowdera </span>
+                <span class="glyphicon glyphicon-leaf hidden-xs"></span><span class="tab-text"> Crowdera </span>
             </a></li>
             <li><a href="#users" data-toggle="tab">
-                <span class="fa fa-users"></span><span class="tab-text"> Users </span>
+                <span class="fa fa-users hidden-xs"></span><span class="tab-text"> Users </span>
             </a></li>
             <li><a href="#campaigns" data-toggle="tab">
-                <span class="glyphicon glyphicon-asterisk"></span><span class="tab-text"> Campaigns</span>
+                <span class="glyphicon glyphicon-asterisk hidden-xs"></span><span class="tab-text"> Campaigns</span>
             </a></li>
         </ul>
         

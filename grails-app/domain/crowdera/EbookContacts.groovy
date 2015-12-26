@@ -5,17 +5,10 @@ import groovy.transform.ToString
 
 @ToString(includeNames = true, includeFields = true)
 @EqualsAndHashCode
-
-class Document {
-
-    static belongsTo = Folder, Partner
-    
-    String docName
-    String docUrl
-    int numberOfDocs
-    
+class EbookContacts {
+    User user
+    String email
     static constraints = {
-        docName nullable: true
-        docUrl nullable: true
+        email nullable:true
     }
 }

@@ -526,7 +526,7 @@ footer {
 	color:#f04124;
 	width:140%;
 }
-input#subscriberEmail{
+input.subscriberEmail{
 	font-size:13px;
 	font-weight:normal;
 	height:30px;
@@ -7541,7 +7541,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 12px;
     }
     .domain-metrics .nav-tabs.nav-justified >li{
-        display: table-cell;
+        display: table-cell !important;
         width: 1% !important;
     }
     .userdashboard-tiles{
@@ -9405,7 +9405,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	text-align: center;
 	margin-left:-31px !important;
     }
-   input#subscriberEmail {
+   input.subscriberEmail {
 	font-size: 13px;
 	font-weight: normal;
 	height: 30px;
@@ -9932,7 +9932,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
-
+    div.domain-metrics .nav-tabs.nav-justified > li > a {
+        font-size: 12px !important;
+    }
     label.cr-spend-guide-text {
         height: 115px;
         border: 1px solid #DDD;
@@ -14016,6 +14018,9 @@ textarea.textarea-embed-video {
     }
     div.manage-container-page{
         width: 320px;
+    }
+    div.invitepartner .thumbnail {
+        padding-left: 5px;
     }
     .center-usrprfl-img {
         display: block;

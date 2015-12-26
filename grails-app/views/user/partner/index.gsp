@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta name="layout" content="main" />
-    <r:require module="partnerjs"/>
+    <r:require module="userjs"/>
 </head>
 <body>
 <div class="feducontent">
@@ -21,6 +21,16 @@
         <g:elseif test="${flash.invitesuccessmsg}">
             <div class="col-md-12 text-center">
                 <div class="alert alert-success">${flash.invitesuccessmsg}</div>
+            </div>
+        </g:elseif>
+        <g:elseif test="${flash.discardmsg}">
+            <div class="col-md-12 text-center">
+                <div class="alert alert-success">${flash.discardmsg}</div>
+            </div>
+        </g:elseif>
+        <g:elseif test="${flash.discardfailmsg}">
+            <div class="col-md-12 text-center">
+                <div class="alert alert-success">${flash.discardfailmsg}</div>
             </div>
         </g:elseif>
         <%

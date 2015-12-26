@@ -317,7 +317,8 @@ class UserController {
     @Secured(['ROLE_ADMIN'])
     def usersList() {
         def userObj = userService.getUsersList(params)
-        def model = [totalUsers: userObj.totalUsers, verifiedUsers: userObj.users]
+        def model = [totalUsers: userObj.totalUsers, verifiedUsers: userObj.users, offset: params.offset]
+        
         if (request.xhr) {
             render(template: "/user/metrics/users", model: model)
         }
@@ -511,14 +512,18 @@ class UserController {
     def managePartner() {
         if (flash.invitesuccessmsg) {
             flash.invitesuccessmsg = "Email Sent Successfully"
+        } else if(flash.discardmsg) {
+            flash.discardmsg = "Partner has been deleted successfully."
+        } else if(flash.discardfailmsg) {
+            flash.discardfailmsg = "Oh snap! Something went wrong while deleting partner. Please try again."
         }
-        List partners = Partner.list()
+        List partners = userService.getPartners()
         render view:'/user/partner/index', model:[partners: partners]
     }
     
     @Secured(['ROLE_ADMIN'])
     def addpartner() {
-        User user = userService.getUserByUsername(params.email)
+        User user = userService.findUserByEmail(params.email)
         def password
         if (user) {
             if (!userService.isPartner(user)) {
@@ -531,7 +536,7 @@ class UserController {
         }
         
         if (userService.getPartnerByUser(user)) {
-            List partners = Partner.list()
+            List partners = userService.getPartners()
             flash.alreadyExistMsg = "Partner with this email already exist."
             render view:'/user/partner/index', model:[partners: partners]
         } else {
@@ -781,6 +786,22 @@ class UserController {
             def folders = userService.getFolders(user)
             def model = [folders: folders]
             render template : '/user/partner/folders', model: model
+        }
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def deletePartner() {
+        Partner partner = userService.getPartnerById(params.int('partnerId'))
+        if (partner) {
+            boolean isPartnerDeleted = userService.deletePartner(params, partner)
+            if (isPartnerDeleted) {
+                flash.discardmsg = "Partner has been deleted successfully."
+            } else {
+                flash.discardfailmsg = "Oh snap! Something went wrong while deleting partner. Please try again."
+            }
+            redirect action:'managePartner'
+        } else {
+            render view: '/404error'
         }
     }
     

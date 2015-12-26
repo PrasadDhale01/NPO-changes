@@ -271,7 +271,7 @@ $(function() {
                 $('#test').html(data);
                 }
         }).error(function(){
-            alert('An error occured');
+            console.log('An error occured');
         });
     }
     
@@ -309,7 +309,7 @@ $(function() {
                  $('#test').html(data);
                  }
          }).error(function(){
-             alert('An error occured');
+             console.log('An error occured');
          });
      }
 

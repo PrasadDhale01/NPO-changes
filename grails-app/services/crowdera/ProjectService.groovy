@@ -4808,13 +4808,15 @@ class ProjectService {
                     contribution.save();
                 } else {
                     password = getAlphaNumbericRandomUrl()
-                    new User(
+                    user = new User(
                         firstName : contribution.contributorName,
                         username : contribution.contributorEmail,
                         email : contribution.contributorEmail,
                         password : password
-                    )
-                    mandrillService.sendEmailToContributors(password, contribution)
+                    ).save(failOnError:true)
+                    contribution.user = user
+                    contribution.save();
+                    mandrillService.sendEmailToContributors(contribution, password)
                 }
             }
         }

@@ -19,6 +19,13 @@
                </g:form>
             </div>
           </g:if>
+          <div class="clear">
+          <g:if test="${flash.contributorUsernameAndPwdmessage}">
+              <div class="alert alert-info text-center">
+                  ${flash.contributorUsernameAndPwdmessage}
+              </div>
+          </g:if>
+          <div class="clear">
           <div class="col-md-2 col-sm-2 col-xs-6 col-transaction">
               <g:hiddenField name="url" value="${url}" id="url"/>
               <g:hiddenField name="currency" value="${contribution.currency}" id="currency"/>

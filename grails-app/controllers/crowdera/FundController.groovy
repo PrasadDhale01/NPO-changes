@@ -194,11 +194,11 @@ class FundController {
     }
 
     def acknowledge() {
-		Contribution contribution = contributionService.getContributionById(params.long('cb'))
-		def project = contribution.project
-		def reward = contribution.reward
-		def user = contribution.user
-		def fundraiser = userService.getUserById(params.long('fr'))
+        Contribution contribution = contributionService.getContributionById(params.long('cb'))
+        def project = contribution.project
+        def reward = contribution.reward
+        def user = contribution.user
+        def fundraiser = userService.getUserById(params.long('fr'))
         def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
         if (userService.getCurrentUser()){
@@ -208,23 +208,28 @@ class FundController {
             mandrillService.sendThankYouMailToContributors(contribution, project, contribution.amount, fundraiser)
             render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser, projectTitle:params.projectTitle, twitterShareUrl:twitterShareUrl]
         } else {
+            def reqUrl = base_url+"/fund/sendEmail?cb=${params.cb}&fr=${params.fr}&projectTitle=${params.projectTitle}"
             def loginSignUpCookie = projectService.setLoginSignUpCookie()
             def campaignNameCookie = projectService.setCampaignNameCookie(project.title)
             def fundingAmountCookie = projectService.setFundingAmountCookie(contribution.amount)
-			def contributorNameCookie = projectService.setContributorName(contribution.contributorName)
+            def contributorNameCookie = projectService.setContributorName(contribution.contributorName)
+            def setRequestUrlCookie = projectService.setRequestUrlCookie(reqUrl)
 
-			if (loginSignUpCookie) {
-               response.addCookie(loginSignUpCookie)
+            if(setRequestUrlCookie){
+                response.addCookie(setRequestUrlCookie)
+            }
+            if (loginSignUpCookie) {
+                response.addCookie(loginSignUpCookie)
             }
             if (campaignNameCookie){
-               response.addCookie(campaignNameCookie)
+                response.addCookie(campaignNameCookie)
             }
             if (fundingAmountCookie){
-               response.addCookie(fundingAmountCookie)
+                response.addCookie(fundingAmountCookie)
             }
-			if (contributorNameCookie){
-				response.addCookie(contributorNameCookie)
-			}
+            if (contributorNameCookie){
+                response.addCookie(contributorNameCookie)
+            }
             redirect (action:'sendEmail', params:params)
         }
     }
@@ -725,6 +730,8 @@ class FundController {
     
     def sendEmailToContributors(){
         projectService.makeContributorsUser()
+        flash.contributorUsernameAndPwdmessage = "Email has been send to all contributors with their username and password"
+        redirect(action:'transaction')
     }
     
     @Secured(['ROLE_ADMIN'])

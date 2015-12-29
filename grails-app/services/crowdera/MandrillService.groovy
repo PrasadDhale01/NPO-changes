@@ -1320,7 +1320,7 @@ class MandrillService {
                 'content': contribution.project.title
             ], [
                 'name':'BENEFICIARYNAME',
-                'content': contribution.project.beneficiary.firstName + (contribution.project.beneficiary.lastName) ? ' ' + contribution.project.beneficiary.lastName : ''
+                'content': contribution.project.beneficiary.firstName + ((contribution.project.beneficiary.lastName) ? (' ' + contribution.project.beneficiary.lastName) : '')
             ]
         ]
 

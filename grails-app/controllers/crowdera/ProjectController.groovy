@@ -463,9 +463,9 @@ class ProjectController {
           def status = request.getParameter('status')
           def currentUser = userService.getCurrentUser()
           def project = projectService.getProjectByComment(proComment)
-          def projectAdmin = userService.isCampaignBeneficiaryOrAdmin(project, currentUser)
           
           if(project){
+              def projectAdmin = userService.isCampaignBeneficiaryOrAdmin(project, currentUser)
               def projectUser = project.user.email.toString().replace('[','').replace(']','')
               if(projectUser.equals(currentUser.username) || projectAdmin){
                   if(status=='false'){
@@ -1462,10 +1462,10 @@ class ProjectController {
           def teamId= request.getParameter('teamId')
           def team = projectService.getTeamById(teamId)
           def projectByTeam = projectService.getProjectByteam(team)
-          def projectAdmin = userService.isCampaignBeneficiaryOrAdmin(projectByTeam, currentUser)
+          def projectAdmin
           def projectUser
-          
           if(projectByTeam && team){
+             projectAdmin = userService.isCampaignBeneficiaryOrAdmin(projectByTeam, currentUser)
              projectUser = projectByTeam.user.email.toString().replace('[','').replace(']','')
              if(projectUser.equals(currentUser.username) || projectAdmin){
                  if(!projectUser.equals(team.user.username)){

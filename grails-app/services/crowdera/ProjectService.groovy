@@ -1517,12 +1517,18 @@ class ProjectService {
     }
     
     def getProjectByteam(def team){
-        def project =Project.findById(team.projectId)
+        def project
+        if(team){
+            project =Project.findById(team.projectId)
+        }
         return project
     }
     
     def getProjectByComment(def comment){
-        def project= Project.findById(comment.projectId)
+        def project
+        if(comment){
+           project= Project.findById(comment.projectId)
+        }
         return project
     }
     

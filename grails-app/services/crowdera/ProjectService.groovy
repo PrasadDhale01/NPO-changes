@@ -4795,8 +4795,7 @@ class ProjectService {
     }
 
     def makeContributorsUser(){
-        User user, newUser, anonymousUser
-        List newUserList = []
+        User user, anonymousUser
         def password
         anonymousUser = User.findByUsername('anonymous@example.com')
         List contributions = Contribution.findAllWhere(user:anonymousUser, isAnonymous:false);

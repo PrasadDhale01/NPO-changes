@@ -730,7 +730,7 @@ class FundController {
     
     def sendEmailToContributors(){
         projectService.makeContributorsUser()
-        flash.contributorUsernameAndPwdmessage = "Email has been send to all contributors with their username and password"
+        flash.contributorUsernameAndPwdmessage = "Email has been send to the non-registered contributors with their username and password and registered contributors are now able to watch their contribution on their dashboard."
         redirect(action:'transaction')
     }
     

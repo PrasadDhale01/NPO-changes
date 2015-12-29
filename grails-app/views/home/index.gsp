@@ -50,10 +50,10 @@
 <%--           <g:render template="jumbotron"></g:render>--%>
 <%--       </div>--%>
        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-           <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/slider-home-page-india-slider.jpg" alt="india-slide">
+           <img class="img-responsive home-img-large-size" src="//s3.amazonaws.com/crowdera/assets/slider-home-page-india-slider.jpg" alt="india-slide">
        </g:if>
        <g:else>
-           <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/slider-home-page-united-state-slider.jpg" alt="india-slide">
+           <img class="img-responsive home-img-large-size" src="//s3.amazonaws.com/crowdera/assets/slider-home-page-united-state-slider.jpg" alt="india-slide">
        </g:else>
     <div class="hidden-xs">
        <g:render template="banner"></g:render>

@@ -526,12 +526,13 @@ footer {
 	color:#f04124;
 	width:140%;
 }
-input.subscriberEmail{
-	font-size:13px;
-	font-weight:normal;
-	height:30px;
-	width:173px;
-	margin-left: 28px;
+
+footer input.subscriberEmail{
+    font-size:13px;
+    font-weight:normal;
+    height:30px;
+    width:173px;
+    margin-left: 28px;
 }
 hr.footer-hr{
     color: #666666;
@@ -9408,7 +9409,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	text-align: center;
 	margin-left:-31px !important;
     }
-   input.subscriberEmail {
+   footer input.subscriberEmail {
 	font-size: 13px;
 	font-weight: normal;
 	height: 30px;

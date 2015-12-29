@@ -1,4 +1,7 @@
 @media only screen and (min-width: 1281px){
+    .sendEmailToContributors{
+        left:75px;
+    }
 	.cr-tax-files{
         width:170px;
     }

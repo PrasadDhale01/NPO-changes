@@ -5,7 +5,7 @@
     <ul class="thumbnails list-unstyled sh-mobs-teams">
         <g:each in="${teams}" var="team">
             <li class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                <g:render template="/project/manageproject/teamtile" model="['team': team]"></g:render>
+                <g:render template="/project/manageproject/teamtile" model="['team': team, isshow:true]"></g:render>
             </li>
         </g:each>
     </ul>

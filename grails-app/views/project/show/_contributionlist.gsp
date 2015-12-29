@@ -1,4 +1,4 @@
-<!-- Contributions -->
+<%-- Contributions --%>
 <g:set var="userService" bean="userService"/>
 <g:set var="facebookService" bean="facebookService"/>
 <g:set var="projectService" bean="projectService" />
@@ -234,14 +234,14 @@
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="form-group">
-                                                <label class="text" for="title">Display Name</label>
-                                                <input type="text" class="form-control contributioninput" name="contributorName" value="${contribution.contributorName}"/>
+                                                <label class="text">Display Name</label>
+                                                <input type="text" class="form-control contributioninput" name="contributorName" value="${contribution.contributorName}">
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label for="title" class="text">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
-                                                <input type="text" class="form-control contributioninput offlineAmount" name="amount" value="${contribution.amount.round()}" id="offlineAmount"/>
+                                                <label class="text">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+                                                <input type="text" class="form-control contributioninput offlineAmount" name="amount" value="${contribution.amount.round()}" id="offlineAmount">
                                             </div>
                                             <div class="contributionerrormsg"></div>
                                         </div>

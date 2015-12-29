@@ -6,7 +6,7 @@
 			${flash.message}
 		</div>
 	</g:if>
-	<div class="table table-responsive">
+	<div class="table table-responsive manage-table-bottom">
 		<table class="table table-bordered">
 			<thead>
 				<tr class="alert alert-title ">

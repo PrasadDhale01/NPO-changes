@@ -1530,6 +1530,22 @@ class ProjectService {
 	return amount.round()
     }
     
+    def getProjectByteam(def team){
+        def project
+        if(team){
+            project =Project.findById(team.projectId)
+        }
+        return project
+    }
+    
+    def getProjectByComment(def comment){
+        def project
+        if(comment){
+           project= Project.findById(comment.projectId)
+        }
+        return project
+    }
+    
     def getProjects(def projects, def projectAdmins, def fundRaisers) {
         def list = []
         projects.each {
@@ -4793,7 +4809,34 @@ class ProjectService {
     def getReasonsToFundFromProject(Project project){
         return ReasonsToFund.findByProject(project)
     }
-    
+
+    def makeContributorsUser(){
+        User user, anonymousUser
+        def password
+        anonymousUser = User.findByUsername('anonymous@example.com')
+        List contributions = Contribution.findAllWhere(user:anonymousUser, isAnonymous:false);
+        contributions.each{ contribution->
+            if (contribution.contributorEmail && contribution.contributorName){
+                user = User.findByEmail(contribution.contributorEmail)
+                if (user) {
+                    contribution.user = user
+                    contribution.save();
+                } else {
+                    password = getAlphaNumbericRandomUrl()
+                    user = new User(
+                        firstName : contribution.contributorName,
+                        username : contribution.contributorEmail,
+                        email : contribution.contributorEmail,
+                        password : password
+                    ).save(failOnError:true)
+                    contribution.user = user
+                    contribution.save();
+                    mandrillService.sendEmailToContributors(contribution, password)
+                }
+            }
+        }
+    }
+
     @Transactional
     def bootstrap() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")

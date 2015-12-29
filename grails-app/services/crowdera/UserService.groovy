@@ -1345,7 +1345,6 @@ class UserService {
     }
     
     def sendReceipt(def params, CommonsMultipartFile document) {
-        User user = getCurrentUser();
         def docUrl = getDocumentUrl(document)
         mandrillService.sendReceipt(params, docUrl)
     }

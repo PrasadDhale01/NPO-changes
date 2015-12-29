@@ -375,7 +375,16 @@ $(function() {
     .focus(showPopover)
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
-    
+
+    $('.sendContributorEmail').popover({
+    	content:'This will make non-registered contributor user and will send them email with their username and password',
+    	trigger: 'manual',
+        placement: 'bottom'
+    })
+    .focus(showPopover)
+    .blur(hidePopover)
+    .hover(showPopover, hidePopover);
+
 });
 
 function showSortedTransaction(){

@@ -1,17 +1,16 @@
 <%
     projectId = project.id
 %>
-<div class="row">
-    <ul class="thumbnails list-unstyled">
-        <g:each in="${validatedTeam}" var="team">
-            <li class="col-md-3 col-sm-6 col-xs-12">
-                <g:render template="/project/manageproject/teamtile" model="['team': team]"></g:render>
-            </li>
-        </g:each>
-    </ul>
-</div>
 
-<div class="showmoreteams col-md-3 col-sm-6 col-xs-12 text-center">
+<ul class="thumbnails list-unstyled">
+    <g:each in="${validatedTeam}" var="team">
+        <li class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <g:render template="/project/manageproject/teamtile" model="['team': team]"></g:render>
+        </li>
+    </g:each>
+</ul>
+
+<div class="showmoreteams manage-teamgridTabs col-md-12 col-sm-12 col-xs-12">
     <g:if test="${totalteams.size() > teamOffset}">
         <g:link class="btn btn-primary btn-sm showteambtn" action="teamList" controller="project" params="['teamOffset': teamOffset, 'projectId':projectId]">Show more</g:link>
     </g:if>

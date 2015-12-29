@@ -12,7 +12,7 @@
     <div class="feducontent">
         <div class="container editUpdateForm campaignUpdateContainer">
             <g:uploadForm class="form-horizontal editForm" controller="project" action="updatesave" id="${project.id}" role="form">
-                <input type="hidden" id="baseUrl" value="${baseUrl}"/>
+                <input type="hidden" id="baseUrl" value="${baseUrl}">
                 <div class="row">
                     <div class="text-center">
                         <h1 class="hidden-xs"><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="Edit Campaign"/> Campaign Update</h1>
@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <label class="col-sm-1 control-label"><b>Title</b></label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="${FORMCONSTANTS.TITLE}" id="${FORMCONSTANTS.TITLE}" />
+                            <input class="form-control manage-mobile-title" name="${FORMCONSTANTS.TITLE}" id="${FORMCONSTANTS.TITLE}">
                         </div>
                     </div><br/>
                     <div class="form-group">
@@ -50,7 +50,7 @@
                             <label class="show-update-select" id="imgupdatemsg">Select image file.</label>
                             <label class="docfile-orglogo-css" id="updatefilesize"></label>
                         </div>
-                        <div class="col-md-offset-1 col-md-11 col-sm-11 col-sm-offset-1 col-xs-12" id="projectUpdateImageDiv">
+                        <div class="col-md-offset-1 col-md-11 col-sm-11 col-sm-offset-1 col-xs-10 mange-update-mobilepic" id="projectUpdateImageDiv">
                             <script>
                             function deleteProjectUpdateImage(current, imageUrl) {
                             	$(current).parents('#imgdiv').remove();
@@ -71,7 +71,7 @@
                         <g:hiddenField name="imageList" id="imageList"/>
                     </div>
    
-                <div class="col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4 col-xs-offset-2 col-xs-8 updatesubmitbtn">
+                <div class="col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4 col-xs-8 mange-update-btns updatesubmitbtn">
                     <button type="submit" class="btn btn-primary updatesubmitbutton hidden-xs" name="button" id="updatesubmitbutton"></button>
                     <button type="submit" class="btn btn-primary updatesubmitbuttonXS visible-xs" name="button" id="updatesubmitbuttonXS"></button>
                 </div>

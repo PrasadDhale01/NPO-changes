@@ -2422,14 +2422,11 @@ class ProjectController {
 		}
 	}
 
-	def getCountryVal(){
-		def country = projectService.getCountryValue(params.country);
-		def variable = request.getParameter("variable")
-		def varValue = request.getParameter("varValue")
-		def projectId = request.getParameter("projectId")
-		projectService.autoSaveProjectDetails(variable, varValue, projectId)
-		render country
-	}
+    def getCountryVal(){
+        def country = projectService.getCountryValue(params.country)
+        projectService.autoSaveCountryAndHashTags(params)
+        render country
+    }
 
     def keepCampaignOnHold(){
         Project project = projectService.getProjectById(params.id)

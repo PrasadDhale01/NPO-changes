@@ -56,7 +56,7 @@
                     <input name="approveChk[]" type="checkbox"/><label class="control-label"><b>Images</b></label>
                 </li>
                 <li>
-                    <input name="approveChk[]" type="checkbox"/><label class="control-label"><b>Video</b></label>
+                    <input name="approveChk" type="checkbox"/><label class="control-label"><b>Video</b></label>
                 </li>
                 <li>
                     <input name="approveChk[]" type="checkbox"/><label class="control-label"><b>Verified</b></label>

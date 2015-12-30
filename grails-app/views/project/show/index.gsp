@@ -145,7 +145,7 @@
                 <g:else>
                 <div class="col-md-12 green-heading campaignTitle text-center hidden-xs">
                     <h1><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': beneficiaryUserName]">
-                         ${projectTitle} isWhatsappInstalled : ${isWhatsappInstalled}
+                         ${projectTitle}
                     </g:link></h1>
                 </div>
                 </g:else>

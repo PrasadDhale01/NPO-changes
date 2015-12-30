@@ -175,7 +175,7 @@ $(function() {
         event.preventDefault();
         var redirectUrl = $(this).attr('href');
         var length = $('input[name="approveChk[]"]:checked').length;
-        if (length >= 12) {
+        if (length >= 11) {
             window.location.href = redirectUrl;
         } else {
         	$('#validateChecklistmsg').show();

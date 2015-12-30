@@ -530,13 +530,13 @@ class ProjectController {
     }
 
 
-	def create(String id) {
+	def create() {
         def currentEnv = Environment.current.getName()
         String partnerInviteCode = g.cookie(name: 'inviteCode')
         def inDays = projectService.getInDays()
 		render(view: 'create/index1', model: [FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv, partnerInviteCode: partnerInviteCode, inDays:inDays])
 	}
-    
+
     def saveCampaign() {
         def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
@@ -2428,11 +2428,24 @@ class ProjectController {
         render country
     }
 
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def keepCampaignOnHold(){
         Project project = projectService.getProjectById(params.id)
-        project.onHold = true
-        project.save()
-        redirect (action:'validateList')
+        if (project) {
+            if (userService.isAdmin()) {
+                project.onHold = true
+                project.save()
+                redirect (action:'validateList')
+            } else if (userService.isPartner()) {
+                project.onHold = true
+                project.save()
+                redirect (action:'partnerdashboard', controller:'user')
+            } else {
+                render view:'/401error'
+            }
+        } else {
+            render view:'/401error'
+        }
     }
 
 }

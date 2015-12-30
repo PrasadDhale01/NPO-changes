@@ -484,7 +484,7 @@
                       </a>
                   </div>
                </g:if>
-               <g:elseif test="${isWhatsappInstalled}">
+               <g:elseif test="${isDeviceMobileOrTab}">
                    <div class="whatsapp-mobile-icon visible-xs">
                        <a class="btn btn-whatsapp" href="whatsapp://send?text=${shareUrl}">
                            <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> 

@@ -2201,106 +2201,106 @@ class ProjectController {
         session['email'] = email
         session['socialProvider'] = provider
         session['refererPage'] = refererURI
-		def currentEnv = projectService.getCurrentEnvironment()
-		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-		def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-		switch(currentEnv){
-			case 'development':
-				if(provider.equals('google')){
-					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
-					def scope = grailsApplication.config.crowdera.gmail.SCOPE
-					def redirectUri=base_url+'/project/getSocialContactsCode'
-					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
-				}else if(provider.equals("constant")){
-					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
-					def redirectUri='http%3A%2F%2flocalhost%3A8080%2Fproject%2FgetSocialContactsCode'
-					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
-				}else if(provider.equals('mailchimp')){
-					def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
-					def redirectUri='http://127.0.0.1:8080/project/getSocialContactsCode'
-					render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
-				}
-				break;
-			case 'test':
-				if(provider.equals('google')){
-					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
-					def scope = grailsApplication.config.crowdera.gmail.SCOPE
-					def redirectUri=base_url+'/project/getSocialContactsCode'
-					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
-				}else if(provider.equals("constant")){
-					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
-					def redirectUri='http%3A%2F%2ftest%2Ecrowdera%2Eco%2Fproject%2FgetSocialContactsCode'
-					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
-				}else if(provider.equals('mailchimp')){
-					def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
-					def redirectUri=base_url+'/project/getSocialContactsCode'
-					render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
-				}
-				break;
-			case 'staging':
-				if(provider.equals('google')){
-					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
-					def scope = grailsApplication.config.crowdera.gmail.SCOPE
-					def redirectUri=base_url+'/project/getSocialContactsCode'
-					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
-				}else if(provider.equals("constant")){
-					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
-					def redirectUri='http%3A%2F%2fstaging%2Ecrowdera%2Eco%2Fproject%2FgetSocialContactsCode'
-					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
-				}else if(provider.equals('mailchimp')){
-					def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
-					def redirectUri=base_url+'/project/getSocialContactsCode'
-					render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
-				}
-				break;
-			case 'production':
-				if(provider.equals('google')){
-					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
-					def scope = grailsApplication.config.crowdera.gmail.SCOPE
-					def redirectUri=base_url+'/project/getSocialContactsCode'
-					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
-				}else if(provider.equals("constant")){
-					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
-					def redirectUri='http%3A%2F%2fcrowdera%2Eco%2Fproject%2FgetSocialContactsCode'
-					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
-				}else if(provider.equals('mailchimp')){
-					def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
-					def redirectUri=base_url+'/project/getSocialContactsCode'
-					render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
-				}
-				break;
-			case 'prodIndia':
-				if(provider.equals('google')){
-					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
-					def scope = grailsApplication.config.crowdera.gmail.SCOPE
-					def redirectUri=base_url+'/project/getSocialContactsCode'
-					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
-				}else if(provider.equals("constant")){
-					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
-					def redirectUri='http%3A%2F%2fcrowdrera%2Ein%2Fproject%2FgetSocialContactsCode'
-					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
-				}else if(provider.equals('mailchimp')){
-					def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
-					def redirectUri=base_url+'/project/getSocialContactsCode'
-					render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
-				}
-				break;
-		}
+        def currentEnv = projectService.getCurrentEnvironment()
+        def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+        def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+        switch(currentEnv){
+            case 'development':
+                if(provider.equals('google')){
+                    def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+                    def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+                    def scope = grailsApplication.config.crowdera.gmail.SCOPE
+                    def redirectUri=base_url+'/project/getSocialContactsCode'
+                    render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+                }else if(provider.equals("constant")){
+                    def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+                    def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+                    def redirectUri='http%3A%2F%2flocalhost%3A8080%2Fproject%2FgetSocialContactsCode'
+                    render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+                }else if(provider.equals('mailchimp')){
+                    def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
+                    def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+                    def redirectUri='http://127.0.0.1:8080/project/getSocialContactsCode'
+                    render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
+                }
+            break;
+            case 'test':
+                if(provider.equals('google')){
+                    def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+                    def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+                    def scope = grailsApplication.config.crowdera.gmail.SCOPE
+                    def redirectUri=base_url+'/project/getSocialContactsCode'
+                    render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+                }else if(provider.equals("constant")){
+                    def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+                    def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+                    def redirectUri='http%3A%2F%2ftest%2Ecrowdera%2Eco%2Fproject%2FgetSocialContactsCode'
+                    render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+                }else if(provider.equals('mailchimp')){
+                    def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
+                    def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+                    def redirectUri=base_url+'/project/getSocialContactsCode'
+                    render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
+                }
+            break;
+            case 'staging':
+                if(provider.equals('google')){
+                    def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+                    def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+                    def scope = grailsApplication.config.crowdera.gmail.SCOPE
+                    def redirectUri=base_url+'/project/getSocialContactsCode'
+                    render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+                }else if(provider.equals("constant")){
+                    def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+                    def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+                    def redirectUri='http%3A%2F%2fstaging%2Ecrowdera%2Eco%2Fproject%2FgetSocialContactsCode'
+                    render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+                }else if(provider.equals('mailchimp')){
+                    def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
+                    def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+                    def redirectUri=base_url+'/project/getSocialContactsCode'
+                    render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
+                }
+            break;
+            case 'production':
+               if(provider.equals('google')){
+                   def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+                   def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+                   def scope = grailsApplication.config.crowdera.gmail.SCOPE
+                   def redirectUri=base_url+'/project/getSocialContactsCode'
+                   render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+               }else if(provider.equals("constant")){
+                   def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+                   def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+                   def redirectUri='http%3A%2F%2fcrowdera%2Eco%2Fproject%2FgetSocialContactsCode'
+                   render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+               }else if(provider.equals('mailchimp')){
+                   def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
+                   def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+                   def redirectUri=base_url+'/project/getSocialContactsCode'
+                   render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
+               }
+           break;
+           case 'prodIndia':
+               if(provider.equals('google')){
+                   def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+                   def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+                   def scope = grailsApplication.config.crowdera.gmail.SCOPE
+                   def redirectUri=base_url+'/project/getSocialContactsCode'
+                   render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+               }else if(provider.equals("constant")){
+                   def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+                   def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+                   def redirectUri='http%3A%2F%2fcrowdrera%2Ein%2Fproject%2FgetSocialContactsCode'
+                   render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+               }else if(provider.equals('mailchimp')){
+                   def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
+                   def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+                   def redirectUri=base_url+'/project/getSocialContactsCode'
+                   render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
+               }
+           break;
+        }
 	}
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])

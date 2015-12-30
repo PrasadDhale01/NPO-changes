@@ -243,18 +243,35 @@ class ProjectController {
             def hasMoreTagsDesktop = projectService.getHashTags(project.hashtags)
             def hasMoreTagsTabs = projectService.getHashTagsTabs(project.hashtags)
             def reasons = projectService.getReasonsToFundFromProject(project)
+            def isDeviceMobileOrTab = isDeviceMobileOrTab();
             render (view: 'show/index',
-            model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
-                    totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, contributions: contributions, webUrl: webUrl, teamComments: teamComments, totalContributions:totalContributions,
-                    teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
-                    isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,currentEnv: currentEnv,
-                    isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url,
-                    multiplier: multiplier, spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
-                    hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, reasons:reasons])
+            model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, 
+                    isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
+                    totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, 
+                    contributions: contributions, webUrl: webUrl, teamComments: teamComments, totalContributions:totalContributions,
+                    teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, 
+                    CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
+                    isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, 
+                    isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,
+                    isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS, 
+                    isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier,
+                    spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList,
+                    hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
+                    hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, reasons:reasons,
+                    isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv])
 		} else {
 			render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
 	}
+
+    def isDeviceMobileOrTab(){
+        String userAgent = request.getHeader("User-Agent");
+        if (userAgent.contains('Mobile') || userAgent.contains('Android') || userAgent.contains('iPod')){
+            return true
+        } else {
+            return false
+        }
+    }
 
 	def showMoreteam() {
 		def vanityTitle = params.projectTitle
@@ -2413,5 +2430,12 @@ class ProjectController {
 		projectService.autoSaveProjectDetails(variable, varValue, projectId)
 		render country
 	}
+
+    def keepCampaignOnHold(){
+        Project project = projectService.getProjectById(params.id)
+        project.onHold = true
+        project.save()
+        redirect (action:'validateList')
+    }
 
 }

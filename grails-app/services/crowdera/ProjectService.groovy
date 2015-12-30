@@ -311,6 +311,8 @@ class ProjectService {
         project.created = new Date()
         if(!project.validated){
             project.validated = true
+            project.onHold = false
+            project.save()
             mandrillService.sendValidationEmailToOWnerAndAdmins(project)
         }
     }
@@ -4814,7 +4816,7 @@ class ProjectService {
         User user, anonymousUser
         def password
         anonymousUser = User.findByUsername('anonymous@example.com')
-        List contributions = Contribution.findAllWhere(user:anonymousUser, isAnonymous:false);
+        List contributions = Contribution.findAllWhere(user:anonymousUser);
         contributions.each{ contribution->
             if (contribution.contributorEmail && contribution.contributorName){
                 user = User.findByEmail(contribution.contributorEmail)

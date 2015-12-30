@@ -239,10 +239,8 @@ class FundController {
         Contribution contribution = contributionService.getContributionById(params.long('cb'))
 
         if (contribution) {
-            if (!contribution.isAnonymous){
-                contribution.user = userService.getCurrentUser();
-                contribution.save();
-            }
+            contribution.user = userService.getCurrentUser();
+            contribution.save();
 
             def project = contribution.project
             def fundraiser = userService.getUserById(params.long('fr'))

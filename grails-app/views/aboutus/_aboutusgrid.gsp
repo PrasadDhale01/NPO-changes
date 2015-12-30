@@ -411,7 +411,7 @@
 	        <hr>
 	    </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
-	        <a href="${resource(dir: '/careers')}" class="abt-text-deco">View Carrers&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></a>
+	        <a href="${resource(dir: '/careers')}" class="abt-text-deco">View Careers&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></a>
 	        <hr>
 	    </div>
 	</div>

@@ -179,7 +179,7 @@ $(function() {
             window.location.href = redirectUrl;
         } else {
         	$('#validateChecklistmsg').show();
-        	$('#validateChecklistmsg').fadeOut(3000);
+        	$('#validateChecklistmsg').fadeOut(30000);
         }
     });
     

@@ -145,7 +145,7 @@
                 <g:else>
                 <div class="col-md-12 green-heading campaignTitle text-center hidden-xs">
                     <h1><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': beneficiaryUserName]">
-                         ${projectTitle} 
+                         ${projectTitle} isWhatsappInstalled : ${isWhatsappInstalled}
                     </g:link></h1>
                 </div>
                 </g:else>
@@ -185,20 +185,19 @@
                                         </g:if>
                                         <div class="clear"></div>
                                         <div class="show-mobile-button">
-	                                        <button class="btn btn-block btn-lg sh-submitapproval  show-mob-mobile">
-	                                            <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-	                                        </button>
+                                            <button class="btn btn-block btn-lg sh-submitapproval  show-mob-mobile">
+                                                <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                            </button>
                                         </div>
                                     </g:form>
                                 </g:if>
                                 <g:else>
                                     <div class="show-mobile-button">
-	                                    <button class="btn btn-block btn-lg show-mob-mobile" id="submitForApprovalBtnMobile">
-	                                        <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-	                                    </button>
+                                        <button class="btn btn-block btn-lg show-mob-mobile" id="submitForApprovalBtnMobile">
+                                            <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                        </button>
                                     </div>
                                 </g:else>
-                            
                         </div>
                         
                         <div class="hidden-xs">
@@ -431,9 +430,8 @@
                        </div>
                   </div>
                </div>
-               <%-- Tabs code social ions facebook, whatsapp, twitter --%>
-               <%-- 
-               <div class="visible-sm hidden-md sh-tabs-social sh-shareicons-Fixedtophead">
+               <%--Tab code for whatsapp, facebook and twitter --%>
+               <div class="visible-sm sh-tabs-social sh-shareicons-Fixedtophead">
                    <div class="col-sm-4 col-md-4 show-tabs">
                        <g:if test="${isPreview}">
                            <a class="btn btn-block btn-social btn-facebook sh-head-fb-over show-Allsocialtabs-size hidden-xs">
@@ -446,20 +444,24 @@
                            </a>
                        </g:else>
                    </div>
-                      
                   <div class="col-sm-4 col-md-4 show-tabs">
                       <g:if test="${isPreview}">
-                          <a class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-whatsapp-color show-Allsocialtabs-size hidden-xs">
+                          <a href="whatsapp://send?text=${shareUrl}" data-action="share/whatsapp/share" class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-whatsapp-color show-Allsocialtabs-size hidden-xs">
                               <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> 
                           </a>
                       </g:if>
+                      <g:elseif test="${isDeviceMobileOrTab}">
+                          <a href="whatsapp://send?text=${shareUrl}" data-action="share/whatsapp/share" class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-whatsapp-color show-Allsocialtabs-size hidden-xs">
+                              <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> 
+                          </a>
+                      </g:elseif>
                       <g:else>
-                          <a class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-whatsapp-color show-Allsocialtabs-size hidden-xs" >
+                          <a href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-whatsapp-color show-Allsocialtabs-size hidden-xs" >
                               <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> 
                           </a>
                       </g:else>
                   </div>
-                      
+
                   <div class="col-sm-4 col-md-4 show-tabs">
                        <g:if test="${isPreview}">
                            <a class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-twitter-color show-Allsocialtabs-size hidden-xs">
@@ -472,7 +474,31 @@
                            </a>
                        </g:else>
                   </div>
-               </div>--%>
+               </div>
+               
+               <%--Mobile code for whatsapp--%>
+               <g:if test="${isPreview}">
+                  <div class="whatsapp-mobile-icon visible-xs">
+                      <a class="btn btn-whatsapp" href="whatsapp://send?text=${shareUrl}" data-action="share/whatsapp/share">
+                          <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> 
+                      </a>
+                  </div>
+               </g:if>
+               <g:elseif test="${isWhatsappInstalled}">
+                   <div class="whatsapp-mobile-icon visible-xs">
+                       <a class="btn btn-whatsapp" href="whatsapp://send?text=${shareUrl}">
+                           <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> 
+                       </a>
+                   </div>
+               </g:elseif>
+               <g:else>
+                   <div class="whatsapp-mobile-icon visible-xs">
+                       <a class="btn btn-whatsapp" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank">
+                           <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> 
+                       </a>
+                   </div>
+               </g:else>
+
                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 borders  hidden-xs">
                     <g:set var="screen" id="screen" value="false"></g:set>
                     <ul class="nav nav-pills">
@@ -705,11 +731,11 @@
                                           </button>
                                       </g:if>
                                       <g:else>
-	                                      <div class="clear"></div>
-	                                      <div class="show-A-fund"></div>
-	                                      <button class="btn btn-block btn-lg btn-primary sh-submitapproval hidden-xs">
-	                                          <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-	                                      </button>
+                                          <div class="clear"></div>
+                                          <div class="show-A-fund"></div>
+                                          <button class="btn btn-block btn-lg btn-primary sh-submitapproval hidden-xs">
+                                              <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                          </button>
                                       </g:else>
                                   </g:form>
                               </g:if>
@@ -833,3 +859,4 @@
 
 </body>
 </html>
+               

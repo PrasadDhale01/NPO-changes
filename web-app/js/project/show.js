@@ -724,19 +724,6 @@ $(function() {
         $('#socialContact').val('');
     });
     
-	$('.constantContact').hover(function(){
-	    $('.constantContact').attr('src', "https://s3.amazonaws.com/crowdera/assets/show-original-email-color.png");
-	}).mouseleave(function(){
-	    $('.constantContact').attr('src',"https://s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png");
-	});
-	
-	$('.gmailContact').hover(function(){
-	    $('.gmailContact').attr('src',"https://s3.amazonaws.com/crowdera/assets/show-original-google-color.png");
-	}).mouseleave(function(){
-	    $('.gmailContact').attr('src',"https://s3.amazonaws.com/crowdera/assets/show-google-gray.png");
-	});
-    
-    
     $('.gmailContact').click(function(){
         $('.socialProvider').val("google");
         $('.divSocialContact').show();

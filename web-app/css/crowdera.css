@@ -16955,17 +16955,6 @@ li.sh-button-fund-secandaryheader{
     height:33px;
     margin-left:3px;
     width:33px;
-    filter:grayscale(90%);
-    -webkit-filter:grayscale(90%);
-    -ms-filter: grayscale(90%)
-}
-.mailchimpContact:hover{
-    filter:grayscale(0%);
-    -webkit-filter:grayscale(0%);
-    -ms-filter: grayscale(0%);
-    height:33px;
-    margin-left:3px;
-    width:33px;
 }
 .socialContactsImg{
     display:inline-flex;
@@ -16974,12 +16963,9 @@ li.sh-button-fund-secandaryheader{
 .socialContactsImg a img{
     display:inline-block;
     margin-bottom:10px;
+    margin-right: 5px;
 }
-.gmailContact{
-    height: 33px;
-    width: 33px;
-}
-.constantContact{
+.gmailContact, .constantContact, .facebookContact, .csvContact{
     height: 33px;
     width: 33px;
 }

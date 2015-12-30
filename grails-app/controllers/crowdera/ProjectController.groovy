@@ -2195,10 +2195,12 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def importSocialContacts(){
+        def refererURI = new URI(request.getHeader("referer")).getPath()
 		String provider=params.socialProvider
 		String email =params.socialContact
 		session['email'] = email
 		session['socialProvider'] = provider
+        session['refererPage'] = refererURI
 		def currentEnv = projectService.getCurrentEnvironment()
 		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 		def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
@@ -2303,7 +2305,7 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def getSocialContactsCode(){
-		
+        def refererURI = session.getAttribute('refererPage')
 		def email =session.getAttribute("email")
 		def projectId =session.getAttribute("projectId")
 		def provider = session.getAttribute('socialProvider')
@@ -2332,7 +2334,11 @@ class ProjectController {
 				def mailchimpList
 				if(contactJson == null){
 					flash.contact_message="You might already login with different account."
-					chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:"", page:page])
+                    if(refererURI.equals('/partner/dashboard')){
+                        chain ( action:'partnerdashboard', controller:'user',  model:[ email:email,contactList:'', socialProvider:provider, page:'invite'])
+                     }else{
+                         chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:"", page:page])
+                     }
 				}else{
 					mailchimpList= contactJson.toString().replace('[', " ").replace(']',' ')
 					if(mailchimpList){
@@ -2342,7 +2348,11 @@ class ProjectController {
 						}else{
 							new SocialContacts(constantContact:null, gmail:null, mailchimp:mailchimpList ,user:user).save(failOnError: true)
 						}
-						chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:mailchimpList, socialProvider:provider, page:page])
+                        if(refererURI.equals('/partner/dashboard')){
+                            chain ( action:'partnerdashboard', controller:'user',  model:[ email:email,contactList:mailchimpList, socialProvider:provider, page:'invite'])
+                        }else{
+						   chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:mailchimpList, socialProvider:provider, page:page])
+                        }
 					}
 				}
 			break;
@@ -2360,18 +2370,32 @@ class ProjectController {
 				def constantContactList
 				if(jsonString.error){
 					flash.contact_message="You might already login with different account."
-					chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:constantContactList, page:page])
+                    if(refererURI.equals('/partner/dashboard')){
+                        chain ( action:'partnerdashboard', controller:'user',  model:[ email:email,contactList:'', socialProvider:provider, page:'invite'])
+                     }else{
+                         chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:'', page:page])
+                     }
 				}else{
-					constantContactList= jsonString.results.email_addresses.email_address.toString().replace('[', " ").replace(']',' ')
+					constantContactList= jsonString.results.email_addresses.email_address
+                    def filterList = constantContactList.findAll{it.findAll{
+                        it!=''
+                    }}
+                    
+                    def filterConstantContactList =filterList.toString().replace('[', " ").replace(']',' ')
+                    
 					if(constantContactList){
 						def socialContacts = SocialContacts.findByUser(user)
 						if(socialContacts){
-							socialAuthService.setSocailContactsByUser(socialContacts, constantContactList,  provider)
+							socialAuthService.setSocailContactsByUser(socialContacts, filterConstantContactList,  provider)
 						}else{
-							new SocialContacts(constantContact:constantContactList, gmail:null, mailchimp:null ,user:user).save(failOnError: true)
+							new SocialContacts(constantContact:filterConstantContactList, gmail:null, mailchimp:null ,user:user).save(failOnError: true)
 						}
 					}
-					chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:constantContactList, socialProvider:provider, page:page])
+                    if(refererURI.equals('/partner/dashboard')){
+                        chain ( action:'partnerdashboard', controller:'user',  model:[ email:email,contactList:filterConstantContactList, socialProvider:provider, page:'invite'])
+                    }else{
+                        chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:filterConstantContactList, socialProvider:provider, page:page])
+                    }
 				}
 			break;
 			case 'google':
@@ -2388,7 +2412,11 @@ class ProjectController {
 				def gmailList
 				if(jsonString.error){
 					flash.contact_message="You might already login with different account."
-					chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:"", page:page])
+                    if(refererURI.equals('/partner/dashboard')){
+                        chain ( action:'partnerdashboard', controller:'user',  model:[ email:email,contactList:'', page:'invite'])
+                     }else{
+                         chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:"", page:page])
+                     }
 				}else{
 					gmailList= jsonString.feed.entry.gd$email.address.toString().replace('[', " ").replace(']',' ')
 					if(gmailList){
@@ -2398,7 +2426,12 @@ class ProjectController {
 						}else{
 							new SocialContacts(constantContact:null, gmail:gmailList, mailchimp:null ,user:user).save(failOnError: true)
 						}
-						chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:gmailList, socialProvider:provider, page:page])
+                        
+                        if(refererURI.equals('/partner/dashboard')){
+                           chain ( action:'partnerdashboard', controller:'user',  model:[ email:email,contactList:gmailList, socialProvider:provider, page:'invite'])
+                        }else{
+                           chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:gmailList, socialProvider:provider, page:page])
+                        }
 					}
 				}
 			break;

@@ -485,4 +485,68 @@ $(function() {
         sticky_relocate();
     });
     
+    /***********************Social contacts******************************************/
+    $('.constantContact').click(function(){
+        $('.socialProvider').val("constant");
+        $('.divSocialContact').show();
+        $('#socialContact').val('');
+    });
+    
+    $('.gmailContact').click(function(){
+        $('.socialProvider').val("google");
+        $('.divSocialContact').show();
+        $('#socialContact').val('');
+    });
+    $('.mailchimpContact').click(function(){
+        $('.socialProvider').val("mailchimp");
+        $('.divSocialContact').show();
+        $('#socialContact').val('');
+    });
+    
+    $('.facebookContact').click(function(){
+        $('.socialProvider').val("facebook");
+        $('.divSocialContact').show();
+        $('#socialContact').val('');
+    });
+    
+    $('.csvContact').click(function(){
+        $('.socialProvider').val("csv");
+        $('.divSocialContact').show();
+        $('#socialContact').val('');
+    });
+    
+    $('.socialContact').change(function(){
+        var regex=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
+        var socialContact= $('.socialContact').val();
+        var status =(socialContact.match(regex)) ? true : false;
+        if(status==true){
+            $('.socialContactDiv').removeClass("has-error");
+        }else{
+            return false;
+        }
+    });
+    
+    $('.btnSocialContacts').click(function(){
+        var socialProvider=$('.socialProvider').val();
+        var socialContact= $('.socialContact').val();
+        if(socialContact==null || socialContact==""){
+            $('.socialContactDiv').addClass("has-error");
+            $('.socialContact').focus();
+        }
+        if($('.socialContactDiv').hasClass("has-error")){
+            return false;
+        }else{
+            $.ajax({
+                 type:'post',
+                 url:$("#b_url").val()+'/project/importSocialContacts',
+                 data:'socialProvider='+socialProvider+'&socialContact='+socialContact,
+                 success: function(data){
+	                 if(data){
+		                 $(location).attr("href",data);
+                     }
+                 }
+            });
+        }
+    });
+    
 });

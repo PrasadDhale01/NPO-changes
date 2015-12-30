@@ -28,9 +28,9 @@
                              <div class="form-group">
                                  <div><label>Add to contacts</label></div>
                                  <div class="socialContactsImg">
-                                     <a href="#"><img class="constantContact img-responsive" alt="Constantcontact" src="//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png"></a>&nbsp;
-                                     <a href="#"><img class="gmailContact img-responsive" alt="Gmail" src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png"></a>
-                                     <a href="#"><img class="mailchimpContact img-responsive" alt="Gmail" src="//s3.amazonaws.com/crowdera/assets/mailchimp.png"></a>
+                                     <a href="#"><img class="constantContact img-responsive" alt="Constantcontact" src="//s3.amazonaws.com/crowdera/assets/constantcontact-icon.png"></a>&nbsp;
+                                     <a href="#"><img class="gmailContact img-responsive" alt="Gmail" src="//s3.amazonaws.com/crowdera/assets/show-original-google-color.png"></a>
+                                     <a href="#"><img class="mailchimpContact img-responsive" alt="MailChimp" src="//s3.amazonaws.com/crowdera/assets/mailchimp.png"></a>
                                  </div>
                                  <g:if test="${email}">
                                      <div class="row divSocialContacts">

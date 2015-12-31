@@ -830,7 +830,7 @@ $(function() {
     .hover(showPopover, hidePopover);
     
     $('#endedOfflineContribution').popover({
-        content: 'Sine the campaign has been ended, you cannot contribute offline',
+        content: 'Since the campaign has been ended, you cannot contribute offline',
         trigger: 'manual',
         placement: 'bottom'
     })

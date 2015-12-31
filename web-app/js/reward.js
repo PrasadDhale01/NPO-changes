@@ -5,7 +5,8 @@ $(function() {
         rules: {
             title: {
             	required: true,
-                minlength: 2
+                minlength: 2,
+                maxlength: 55
             },
             numberAvailable: {
                 required: true,
@@ -169,12 +170,12 @@ $(function() {
       else{
           if(currentString < 249)
           currentString++;
-          $('#desclength').text(text+'/250');
+          $('.desclength').text(text+'/250');
       }
 
     } else {
           currentString--;
-          $('#desclength').text(text+'/250');
+          $('.desclength').text(text+'/250');
       }
   }).keyup(function(e) {
       
@@ -220,11 +221,11 @@ $(function() {
      
     var currentString = $('#rewarddescarea').val().length;
     if (currentString == 0) {
-      $('#desclength').text("0/250");
+      $('.desclength').text("0/250");
     } 
     else {
       currentString = currentString;
-      $('#desclength').text(currentString+'/250');
+      $('.desclength').text(currentString+'/250');
     }
   }
   

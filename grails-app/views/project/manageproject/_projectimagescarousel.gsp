@@ -28,7 +28,7 @@
         </g:each>
     </ol>
 
-    <!-- Wrapper for slides -->
+    <%-- Wrapper for slides --%>
     <div class="carousel-inner">
         <g:each in="${images}" var="img" status="count">
         	<g:if test="${count == 0}">
@@ -63,7 +63,7 @@
         	</g:else>
         </g:each>
     </div>
-    <!-- Controls -->
+    <%-- Controls --%>
     <div id="navigators" class="manage-carousel">
 	    <a class="left carousel-control fixCarousel" href="#carousel-example-generic" role="button" data-slide="prev">
 	        <span class="glyphicon glyphicon-chevron-left"></span>

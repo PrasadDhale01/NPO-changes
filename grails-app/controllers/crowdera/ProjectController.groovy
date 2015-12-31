@@ -481,15 +481,26 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def updatecomment(){
-		def checkid= request.getParameter('checkID')
-		def proComment = projectService.getProjectCommentById(checkid)
-		def status = request.getParameter('status')
-		if(status=='false'){
-			proComment.status=false
-		}else{
-			proComment.status=true
-		}
-		render ""
+          def checkid= request.getParameter('checkID')
+          def proComment = projectService.getProjectCommentById(checkid)
+          def status = request.getParameter('status')
+          def currentUser = userService.getCurrentUser()
+          def project = projectService.getProjectByComment(proComment)
+          
+          if(project){
+              def projectAdmin = userService.isCampaignBeneficiaryOrAdmin(project, currentUser)
+              def projectUser = project.user.email.toString().replace('[','').replace(']','')
+              if(projectUser.equals(currentUser.username) || projectAdmin){
+                  if(status=='false'){
+                      proComment.status=false
+                  }else{
+                      proComment.status=true
+                  }
+              }
+              render ""
+          }else{
+           render ""
+          }
 	}
     
     def createCampaign() {
@@ -1490,14 +1501,28 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def enableOrDisableTeam() {
-		def teamId= request.getParameter('teamId')
-		def team = projectService.getTeamById(teamId)
-		if(team.enable){
-			team.enable = false
-		}else{
-			team.enable = true
-		}
-		render ""
+          def currentUser = userService.getCurrentUser()
+          def teamId= request.getParameter('teamId')
+          def team = projectService.getTeamById(teamId)
+          def projectByTeam = projectService.getProjectByteam(team)
+          def projectAdmin
+          def projectUser
+          if(projectByTeam && team){
+             projectAdmin = userService.isCampaignBeneficiaryOrAdmin(projectByTeam, currentUser)
+             projectUser = projectByTeam.user.email.toString().replace('[','').replace(']','')
+             if(projectUser.equals(currentUser.username) || projectAdmin){
+                 if(!projectUser.equals(team.user.username)){
+                     if(team.enable){
+                         team.enable = false
+                     }else{
+                         team.enable = true
+                     }
+                 }
+             }
+             render ""
+          }else{
+             render ""
+          }
 	}
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])

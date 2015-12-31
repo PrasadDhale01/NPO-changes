@@ -30,7 +30,7 @@
 		    <g:if test="${!ended}">
 			    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show hidden-xs">
 			        <g:form controller="project" action="addTeam" id="${project.id}">
-					    <input type="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md manage-team all-place"/>
+					    <input type="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md manage-team all-place">
 					</g:form> 
 			    </li>
 		    </g:if>
@@ -92,7 +92,7 @@
                     <g:hiddenField name="amount" value="${project.amount}"/>
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control all-place" name="username" value="${userName}" placeholder="Name"/>
+                        <input type="text" class="form-control all-place" name="username" value="${userName}" placeholder="Name">
                     </div>
                     <div class="form-group">
                         <label>Email ID's (separated by comma)</label>
@@ -128,7 +128,7 @@
 
                     <div class="form-group">
                         <label>Goal</label>
-                        <input type="text" class="form-control all-place" name="amount" id="teamamount" placeholder="Goal" value="${currentTeam.amount.round()}"/>
+                        <input type="text" class="form-control all-place" name="amount" id="teamamount" placeholder="Goal" value="${currentTeam.amount.round()}">
                         <span id="errormsg"></span>
                     </div>
                     <div class="clear"></div>

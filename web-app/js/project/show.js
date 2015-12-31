@@ -271,13 +271,13 @@ $(function() {
                 $('#test').html(data);
                 }
         }).error(function(){
-            alert('An error occured');
+            console.log('An error occured');
         });
     }
     
     /***********************Enable or Disable a Team********************************/
     
-    $("#teamStatusButton input[type='checkbox']").click(function(){
+    $(".teamStatusButton input[type='checkbox']").click(function(){
         
         if($(this).prop("checked") == true){
              enableOrDisableTeam(this,true);
@@ -290,7 +290,7 @@ $(function() {
      });
     
      function changeTeamStatus() {
-         $('#teamStatusButton input[type="checkbox"]').each(function(index, value) {
+         $('.teamStatusButton input[type="checkbox"]').each(function(index, value) {
              if ($(this).prop("checked") == true) {
                  $('#checkteam'+(index+1)).text(' Enable');
              } else {
@@ -309,7 +309,7 @@ $(function() {
                  $('#test').html(data);
                  }
          }).error(function(){
-             alert('An error occured');
+             console.log('An error occured');
          });
      }
 
@@ -693,6 +693,17 @@ $(function() {
     	if ($(this).hasClass('comments')){
     		$('.comments').addClass('sh-selected');
     	}
+    	
+    	/****manage page*****/
+    	if ($(this).hasClass('rewards')){
+    		$('.rewards').addClass('sh-selected');
+    	}
+    	if ($(this).hasClass('payments')){
+    		$('.payments').addClass('sh-selected');
+    	}
+    	if ($(this).hasClass('manageTeams')){
+    		$('.manageTeams').addClass('sh-selected');
+    	}
     });
     
     $(".twitter-share").click(function(){
@@ -980,6 +991,14 @@ $(function() {
     	    	    }
     	        }
     		}
+    	});
+    	
+    	var activeClass
+    	$('.mange-pane-active').each(function(){
+    		if($(this).hasClass('active')){
+    			activeClass = $(this).attr('id');
+	    	    $('.'+activeClass).addClass('sh-selected');
+	        }
     	});
     	
      /*************************Edit video for team*************************/

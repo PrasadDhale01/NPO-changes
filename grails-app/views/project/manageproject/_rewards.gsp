@@ -3,9 +3,9 @@
 <div class="row">
     <div class="col-xs-12">
         
-        <!-- Button trigger modal -->
+        <%-- Button trigger modal --%>
         <g:if test="${!ended}">
-	        <a href="#" class="btn btn-primary btn-sm btn-circle pull-right" data-toggle="modal" data-target="#createRewardModal" model="['project': project]">
+	        <a href="#" class="btn btn-primary btn-sm btn-circle pull-right" data-toggle="modal" data-target="#createRewardModal">
 	            <i class="fa fa-plus-circle"></i> Create Perk
 	        </a>
         </g:if>
@@ -15,8 +15,8 @@
             </g:if>
         </g:else>
         
-        <!-- Modal -->
-        <div class="modal fade" id="createRewardModal" tabindex="-1" role="dialog" aria-labelledby="createRewardModal" aria-hidden="true">
+        <%-- Modal --%>
+        <div class="modal fade" id="createRewardModal" tabindex="-1" aria-hidden="true">
             <g:form action="customrewardsave" id="${project.id}" class="perkForm">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -30,22 +30,22 @@
                                 <g:hiddenField name="isINR" value="${project.payuStatus}" id="isINR"/>
                             </g:if>
                             <div class="form-group">
-                                <label for="title">Title</label>
-                                <input type="text" class="form-control all-place" name="title" placeholder="Title"/>
+                                <label>Title</label>
+                                <input type="text" class="form-control all-place" name="title" placeholder="Title">
                             </div>
                             <div class="form-group">
-                                <label for="title">Number available</label>
-                                <input type="text" class="form-control all-place" name="numberAvailable" placeholder="Number available"/>
+                                <label>Number available</label>
+                                <input type="text" class="form-control all-place" name="numberAvailable" placeholder="Number available">
                             </div>
                             <div class="form-group descriptionDiv createDescDiv">
-                                <label for="description">Description</label>
+                                <label>Description</label>
                                 <textarea class="form-control all-place" id="rewarddescarea" name="description" maxlength="250" rows="4" placeholder="Description"></textarea>
-                                <label class="pull-right " id="desclength"></label>
+                                <label class="pull-right desclength" id="desclength"></label>
                             </div>
                             <div class="clear"></div>
                             <div class="form-group">
-                                <label for="price">Price (<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
-                                <input type="text" class="form-control perkPrice all-place" name="price" id="perkPrice" placeholder="Price"/>
+                                <label>Price (<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+                                <input type="text" class="form-control perkPrice all-place" name="price" id="perkPrice" placeholder="Price">
                                 <span id="errormsg"></span>
                             </div>
                             <div class="form-group">
@@ -54,7 +54,7 @@
                                     <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 shipping-margin"><input type="checkbox" class="shippingInfo" name="address" value="true">Mailing address</label>
                                     <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 shipping-margin"><input type="checkbox" class="shippingInfo" name="email" value="true">Email address</label>
                                     <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 shipping-margin"><input type="checkbox" class="shippingInfo" name="twitter" value="true">Twitter handle</label>
-                                    <input type="text" class="form-control shippingInfo cutom-perks-border col-lg-3 col-xs-6 col-md-3 col-sm-4" name="custom" placeholder="Custom"/>
+                                    <input type="text" class="form-control shippingInfo cutom-perks-border col-lg-3 col-xs-6 col-md-3 col-sm-4" name="custom" placeholder="Custom">
                                 </div>
                                 <div class="shippingError"></div>
                             </div>

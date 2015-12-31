@@ -12,7 +12,7 @@
 		    	<div class="alert alert-info">No updates yet.</div>
 		    </g:if>
 		</g:if>
-        <g:uploadForm class="form-horizontal" controller="project" action="projectupdate" params="['projectTitle':vanityTitle]" role="form">
+        <g:uploadForm class="form-horizontal" controller="project" action="projectupdate" params="['projectTitle':vanityTitle]">
             <button type="submit" class="btn btn-sm btn-primary pull-right" name="button" value="draft"><i class="fa fa-plus-circle"></i> Create Update</button>
         </g:uploadForm>
 	    <div class="clear"></div>

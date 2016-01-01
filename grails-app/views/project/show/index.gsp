@@ -347,9 +347,9 @@
                             </g:form>
                         </g:if>
                         <g:else>
-							<button class="btn btn-block btn-lg btn-primary sh-submitaproval-2header sh-aproval-btn hidden-xs" id="submitForApprovalBtnright">
-							    <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-							</button>
+                            <button class="btn btn-block btn-lg btn-primary sh-submitaproval-2header sh-aproval-btn hidden-xs" id="submitForApprovalBtnright">
+                                <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                            </button>
                         </g:else>
                     </div>
                 </li>

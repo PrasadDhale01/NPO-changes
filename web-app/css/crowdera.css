@@ -16869,29 +16869,29 @@ img.home-pg-icons{
     }
     
     .sh-primery-header-padding {
-        position: fixed;
-	    z-index: 1000;
-	    background-color: white;
-	    left: 0px;
-	    top: 0;
-	    display: none;
-	    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.25);
-	    display: block;
-	    height: 49px;
-	    padding-top: 10px;
-	    margin:0px;
-	    width: 100%;
+		position: fixed;
+		z-index: 1000;
+		background-color: white;
+		left: 0px;
+		top: 0;
+		display: none;
+		box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.25);
+		display: block;
+		height: 49px;
+		padding-top: 10px;
+		margin:0px;
+		width: 100%;
     }
     ::i-block-chrome, .sh-primery-header-padding{
-        height: 51px;
-        padding-top: 6px;
+		height: 51px;
+		padding-top: 6px;
     }
     ::i-block-chrome, .show-tabsDesktop-headers {
         top: 7px;
     }
     ::i-block-chrome, .sh-fund-2header {
-margin-top: -9px;
-}
+        margin-top: -9px;
+    }
     .sh-shareicons-Fixedtophead {
         background-color: white;
         left: 0;

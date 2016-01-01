@@ -9943,6 +9943,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	.img-size-xs{
+        width:12%;
+	}
     div.domain-metrics .nav-tabs.nav-justified > li > a {
         font-size: 12px !important;
     }
@@ -12908,6 +12911,11 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (min-width: 481px) and (max-width:600px){
+	.offlineContributionModal .modal-content{
+		width: 445px;
+		margin-left: auto;
+		margin-right: auto;
+    }
     header.cr-tabs-link {
         font-size: 24px;
         padding-left: 38px !important;
@@ -12943,6 +12951,11 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (min-width: 601px) and (max-width:767px){
+	.offlineContributionModal .modal-content{
+		width: 445px;
+		margin-left: auto;
+		margin-right: auto;
+	}
 	li.perks-grid {
         width: 50%;
     }

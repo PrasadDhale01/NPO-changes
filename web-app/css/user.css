@@ -1413,3 +1413,8 @@ div.dashboardtile-min-height {
     color: #fff !important;
     border: 1px solid #fff;
 }
+
+.blacknwhite img.img-size{
+    width:174px;
+    height:123px;
+}

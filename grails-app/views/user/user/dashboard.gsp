@@ -178,10 +178,10 @@
                    <div>
                        <g:link controller="user" action="userActivity1" id="${user.id}" class="dashboardtabheading btn btn-primary btn-md btn-block">User Profile</g:link>
                    </div>
-                   <g:if test="${activeTab != 'sendtaxReciept'}">
+                   <g:if test="${activeTab != 'sendtaxReciept' && isUserProjectHavingContribution && (environment == 'development' || environment == 'test' || environment == 'testIndia')}">
                        <g:link controller="user" action="sendTaxReceipt" class="dashboardtaxReceipttabheading btn btn-primary btn-md btn-block">Send <br class="visible-reciept-md"> Tax Receipt</g:link>
                    </g:if>
-                   <g:if test="${activeTab != 'exporttaxReciept'}">
+                   <g:if test="${activeTab != 'exporttaxReciept' && (environment == 'development' || environment == 'test' || environment == 'testIndia')}">
                        <g:link controller="user" action="exportTaxReceipt" class="dashboardtaxReceipttabheading btn btn-primary btn-md btn-block">Export <br class="visible-reciept-md"> Tax Receipt</g:link>
                    </g:if>
 
@@ -269,10 +269,15 @@
                     </div>
                 </g:elseif>
 				<g:elseif test="${activeTab == 'sendtaxReciept'}">
-					<div class="col-lg-12">
-                        <g:render template="user/sendTaxReceipt" model="['userprofile': 'userprofile', 'projects':projects]"/>
-					</div>
+                    <div class="col-lg-12 send-tax-receipt-to-contributors">
+                        <g:render template="user/sendTaxReceipt" model="['userprofile': 'userprofile', 'contributors':contributorListForProject]"/>
+                    </div>
 				</g:elseif>
+                <g:elseif test="${activeTab == 'taxReceiptTile'}">
+                    <div class="col-lg-12">
+                        <g:render template="user/userCampaignTile" model="['userprofile': 'userprofile', 'projects':projects]"/>
+                    </div>
+                </g:elseif>
 				<g:elseif test="${activeTab == 'exporttaxReciept'}">
 					<div class="col-lg-12">
                         <g:render template="user/exportTaxReceipt" model="['userprofile': 'userprofile', 'contributions':contributions]"/>

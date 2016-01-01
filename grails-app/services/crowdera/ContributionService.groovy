@@ -547,4 +547,26 @@ class ContributionService {
         return ['highestContributionDay':highestContributionDay , 'highestContributionHour': highestContributionHour]
     }
     
+    def getContributorsForProject(def id){
+        Project project = Project.get(id)
+        def totalContributors =  Contribution.findAllWhere(project:project)
+        List contributors
+        if (!totalContributors.empty){
+        def offset = params.offset ? params.int('offset') : 0
+        def max = 6
+        def count = totalContributors.size()
+        def maxrange
+
+        if(offset + max <= count) {
+            maxrange = offset + max
+        } else {
+            maxrange = offset + (count - offset)
+        }
+        contributors = totalContributors.reverse().subList(offset, maxrange)
+        }
+        
+        return [totalContributors:totalContributors, contributors:contributors]
+            
+    }
+
 }

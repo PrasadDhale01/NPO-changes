@@ -589,13 +589,14 @@ class ProjectService {
                  } else {
                      currency = 'USD'
                  }
-		 if (amount && contributorName) {
+		 if (amount && contributorName && params.contributorEmail1) {
 			 Contribution contribution = new Contribution(
 				 date: new Date(),
 				 user: user,
 				 reward: reward,
 				 amount: amount,
 				 contributorName: contributorName,
+                 contributorEmail: params.contributorEmail1,
 				 isContributionOffline: true,
 				 fundRaiser: username,
                                  currency:currency
@@ -638,6 +639,8 @@ class ProjectService {
 		def contribution = Contribution.get(params.long('id'))
 		contribution.contributorName = params.contributorName
 		contribution.amount = Double.parseDouble(params.amount)
+        contribution.contributorEmail = params.contributorEmail
+        contribution.save()
 	}
 
     def getNumberOfProjects() {
@@ -4835,6 +4838,46 @@ class ProjectService {
                 }
             }
         }
+    }
+    
+    def getAllProjectByUserHavingContribution(User user){
+        List activeProjects=[]
+        List draftProjects=[]
+        List pendingProjects=[]
+        List endedProjects=[]
+        List sortedProjects = []
+        List draftIndiaProjects = []
+        List draftUsProjects = []
+        List pendingIndiaProjects = []
+        List pendingUsProjects = []
+        List endedIndiaProjects = []
+        List endedUsProjects = []
+        List sortedIndiaProjects = []
+        List sortedUsProjects = []
+        List activeIndiaProjects = []
+        List activeUsProjects = []
+        def finalList
+        
+        def projects= Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false)
+        projects.each { project->
+            if (project.contributions){
+                boolean ended = isProjectDeadlineCrossed(project)
+                if(project.draft==true){
+                    (project.payuStatus) ? draftIndiaProjects.add(project) : draftUsProjects.add(project)
+                } else if(project.inactive==false && project.validated==false && project.draft==false){
+                    (project.payuStatus) ? pendingIndiaProjects.add(project) : pendingUsProjects.add(project)
+                } else if (ended) {
+                    (project.payuStatus) ? endedIndiaProjects.add(project) : endedUsProjects.add(project)
+                } else if(project.validated==true && project.inactive==false){
+                    (project.payuStatus) ? activeIndiaProjects.add(project) : activeUsProjects.add(project)
+                }
+            }
+        }
+
+        sortedIndiaProjects = activeIndiaProjects.sort{contributionService.getPercentageContributionForProject(it)}
+        sortedUsProjects = activeUsProjects.sort{contributionService.getPercentageContributionForProject(it)}
+        finalList = draftIndiaProjects.reverse() + draftUsProjects.reverse() + pendingIndiaProjects.reverse() + pendingUsProjects.reverse() + sortedIndiaProjects.reverse() + sortedUsProjects.reverse() + endedIndiaProjects.reverse() + endedUsProjects.reverse()
+        return finalList
     }
 
     @Transactional

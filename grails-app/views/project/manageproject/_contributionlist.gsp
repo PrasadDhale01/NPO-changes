@@ -129,19 +129,32 @@
                                    <div class="modal-body">
                                        <div class="col-sm-12 margin">
                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                           <h4 class="heading crowderasupport"><img src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="Edit offline contribution"/>&nbsp;&nbsp;EDIT OFFLINE CONTRIBUTION</h4>
+                                           <h4 class="heading crowderasupport hidden-xs"><img src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="Edit offline contribution"/>&nbsp;&nbsp;EDIT OFFLINE CONTRIBUTION</h4>
+                                           <span class="visible-xs"><img src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" class="img-size-xs" alt="Edit offline contribution"/>&nbsp;&nbsp;<b>EDIT OFFLINE CONTRIBUTION</b></span>
                                        </div>
                                        <g:hiddenField name="manageCampaign" value="${manageCampaign}" id="editContribution${contribution.id}"></g:hiddenField>
-                                       <div class="col-md-8">
+                                       <div class="col-sm-12">
                                            <div class="form-group">
-                                               <label class="text">Display Name</label>
-                                               <input type="text" class="form-control contributioninput" name="contributorName" value="${contribution.contributorName}">
+                                               <label class="text col-sm-3">Display Name</label>
+                                               <div class="col-sm-9"> 
+                                               <input type="text" class="form-control contributioninput" name="contributorName" value="${contribution.contributorName}"><br>
+                                               </div>
                                            </div>
                                        </div>
-                                       <div class="col-md-4">
+                                       <div class="col-sm-12">
                                            <div class="form-group">
-                                               <label class="text">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+                                               <label class="text col-sm-3">Email</label>
+                                               <div class="col-sm-9"> 
+                                                   <input type="email" class="form-control contributioninput" name="contributorEmail" value="${contribution.contributorEmail}" required><br>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <div class="col-sm-12">
+                                           <div class="form-group">
+                                               <label class="text col-sm-3">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+                                               <div class="col-sm-9"> 
                                                <input type="text" class="form-control contributioninput offlineAmount" name="amount" value="${contribution.amount.round()}">
+                                               </div>
                                            </div>
                                            <div class="contributionerrormsg"></div>
                                        </div>

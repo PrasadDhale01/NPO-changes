@@ -117,10 +117,14 @@ class UserController {
             }
             def multiplier = projectService.getCurrencyConverter();
             def countryOpts = [India: 'INDIA', USA: 'USA']
-            
-            render view: userViews, model: [user: user, projects: project, totalCampaings: totalCampaings,country: country, fundRaised: fundRaised, state: state,
-                                            activeTab:activeTab, environment: environment, contributedAmount: contributedAmount, multiplier: multiplier, countryOpts: countryOpts,
-                                            contributions: contribution.contributions, totalContributions : contribution.totalContributions, sortByOptions: sortByOptions]
+
+            def isUserProjectHavingContribution = userService.isUserProjectHavingContribution(user)
+
+            render view: userViews, 
+            model: [user: user, projects: project, totalCampaings: totalCampaings,country: country, fundRaised: fundRaised, state: state,
+                    activeTab:activeTab, environment: environment, contributedAmount: contributedAmount, multiplier: multiplier, countryOpts: countryOpts,
+                    contributions: contribution.contributions, totalContributions : contribution.totalContributions, sortByOptions: sortByOptions,
+                    isUserProjectHavingContribution:isUserProjectHavingContribution]
         }
     }
     
@@ -394,14 +398,45 @@ class UserController {
     def sendTaxReceipt() {
         User user = (User)userService.getCurrentUser()
         def environment = projectService.getCurrentEnvironment()
-        def projects = projectService.getAllProjectByUser(user, environment)
+        List projects = projectService.getAllProjectByUserHavingContribution(user)
         def contributions = projectService.getContibutionByUser(user, environment)
         def contributedAmount = projectService.getContributedAmount(contributions)
         def fundRaised = projectService.getTotalFundRaisedByUser(projects)
-
+        def isUserProjectHavingContribution = userService.isUserProjectHavingContribution(user)
+        def contributorListForProject
+        def activeTab
+        if (projects.size() == 1) {
+            contributorListForProject = contributionService.getContributorsForProject(projects[0].id)
+            activeTab = 'sendtaxReciept'
+        } else {
+            contributorListForProject = null
+            activeTab = 'taxReceiptTile'
+        }
         render view: 'user/dashboard',
         model: [user: user, fundRaised: fundRaised, environment: environment, contributedAmount: contributedAmount,
-                contributions: contributions, projects:projects, activeTab:'sendtaxReciept']
+                contributions: contributions, projects:projects, activeTab:activeTab,
+                contributorListForProject:contributorListForProject, 
+                isUserProjectHavingContribution:isUserProjectHavingContribution]
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def showContributor(){
+        def projectId = projectService.getProjectIdFromVanityTitle(params.vanityTitle)
+        def contributorListForProject = contributionService.getContributorsForProject(projectId)
+        User user = (User)userService.getCurrentUser()
+        def environment = projectService.getCurrentEnvironment()
+        List projects = projectService.getAllProjectByUser(user, environment)
+        def contributions = projectService.getContibutionByUser(user, environment)
+        def contributedAmount = projectService.getContributedAmount(contributions)
+        def fundRaised = projectService.getTotalFundRaisedByUser(projects)
+        def isUserProjectHavingContribution = userService.isUserProjectHavingContribution(user)
+
+        println "contributorListForProject : "+contributorListForProject
+        render view: 'user/dashboard',
+        model: [user: user, fundRaised: fundRaised, environment: environment, contributedAmount: contributedAmount,
+                contributions: contributions, projects:projects, activeTab:'sendtaxReciept',
+                contributorListForProject:contributorListForProject, 
+                isUserProjectHavingContribution:isUserProjectHavingContribution]
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -412,10 +447,12 @@ class UserController {
         def contributions = projectService.getContibutionByUser(user, environment)
         def contributedAmount = projectService.getContributedAmount(contributions)
         def fundRaised = projectService.getTotalFundRaisedByUser(projects)
+        def isUserProjectHavingContribution = userService.isUserProjectHavingContribution(user)
 
         render view: 'user/dashboard',
         model: [user: user, fundRaised: fundRaised, environment: environment, contributedAmount: contributedAmount,
-                contributions: contributions, projects:projects, activeTab:'exporttaxReciept']
+                contributions: contributions, projects:projects, activeTab:'exporttaxReciept',
+                isUserProjectHavingContribution:isUserProjectHavingContribution]
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])

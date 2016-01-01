@@ -1397,7 +1397,18 @@ class UserService {
         }
         return isDeleted
     }
-    
+
+    def isUserProjectHavingContribution(User user){
+        List projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false)
+        Boolean doProjectHaveAnyContribution = false
+        projects.each{
+            if (it.contributions){
+                doProjectHaveAnyContribution = true
+            }
+        }
+        return doProjectHaveAnyContribution
+    }
+
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')

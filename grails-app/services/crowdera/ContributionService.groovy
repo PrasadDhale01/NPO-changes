@@ -547,14 +547,14 @@ class ContributionService {
         return ['highestContributionDay':highestContributionDay , 'highestContributionHour': highestContributionHour]
     }
     
-    def getContributorsForProject(def id){
+    def getContributorsForProject(def id, def params){
         Project project = Project.get(id)
-        def totalContributors =  Contribution.findAllWhere(project:project)
-        List contributors
-        if (!totalContributors.empty){
+        def totalContributions =  Contribution.findAllWhere(project:project)
+        List contributions
+        if (!totalContributions.empty){
         def offset = params.offset ? params.int('offset') : 0
-        def max = 6
-        def count = totalContributors.size()
+        def max = 5
+        def count = totalContributions.size()
         def maxrange
 
         if(offset + max <= count) {
@@ -562,11 +562,36 @@ class ContributionService {
         } else {
             maxrange = offset + (count - offset)
         }
-        contributors = totalContributors.reverse().subList(offset, maxrange)
+        contributions = totalContributions.reverse().subList(offset, maxrange)
         }
-        
-        return [totalContributors:totalContributors, contributors:contributors]
-            
+
+        return [totalContributions:totalContributions, contributions:contributions]
+    }
+    
+    def contributorsSortUs(){
+        def sort = [
+            'All':'All',
+            'Anonymous':'Anonymous',
+            'Non-Anonymous':'Non-Anonymous',
+            'Online':'Online',
+            'Offline':'Offline',
+            'Receipt Sent':'Receipt Sent',
+            'Receipt Not Sent':'Receipt Not Sent',
+            'Perk Selected':'Perk Selected',
+            'No Perk Selected':'No Perk Selected',
+        ]
+    }
+
+    def contributorsSortInd(){
+        def sort = [
+            'All':'All',
+            'Anonymous':'Anonymous',
+            'Non-Anonymous':'Non-Anonymous',
+            'Receipt Sent':'Receipt Sent',
+            'Receipt Not Sent':'Receipt Not Sent',
+            'Perk Selected':'Perk Selected',
+            'No Perk Selected':'No Perk Selected',
+        ]
     }
 
 }

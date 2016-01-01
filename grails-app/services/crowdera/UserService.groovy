@@ -1398,12 +1398,21 @@ class UserService {
         return isDeleted
     }
 
-    def isUserProjectHavingContribution(User user){
-        List projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false)
+    def isUserProjectHavingContribution(User user, def environment){
         Boolean doProjectHaveAnyContribution = false
-        projects.each{
-            if (it.contributions){
-                doProjectHaveAnyContribution = true
+        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
+            List projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:true)
+            projects.each{
+                if (it.contributions){
+                    doProjectHaveAnyContribution = true
+                }
+            }
+        } else {
+            List projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:false)
+            projects.each{
+                if (it.contributions){
+                    doProjectHaveAnyContribution = true
+                }
             }
         }
         return doProjectHaveAnyContribution

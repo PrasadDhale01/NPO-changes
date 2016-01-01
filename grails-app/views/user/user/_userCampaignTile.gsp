@@ -163,23 +163,23 @@
     </div>
     
 </g:each>
-<%--<div class="clear"></div>--%>
-<%--<div class="partnercampaignpaginate">--%>
-<%--    <g:paginate controller="user" max="6" action="partnercampaigns" total="${totalUserCampaigns.size()}" params="['partnerId':partnerId]"/>--%>
-<%--</div>--%>
-<%--<script>--%>
-<%--    $("#partnercampaignpaginate").find('.partnercampaignpaginate a').click(function(event) {--%>
-<%--        event.preventDefault();--%>
-<%--        var url = $(this).attr('href');--%>
-<%--        var grid = $(this).parents('#partnercampaignpaginate');--%>
-<%----%>
-<%--        $.ajax({--%>
-<%--            type: 'GET',--%>
-<%--            url: url,--%>
-<%--            success: function(data) {--%>
-<%--                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});--%>
-<%--            }--%>
-<%--        });--%>
-<%--    });--%>
-<%--</script>--%>
+<div class="clear"></div>
+<div class="pull-right campaignpaginate filespaginate">
+    <g:paginate controller="user" max="6" action="loadCampaignTile" total="${totalProjects.size()}"/>
+</div>
+<script>
+    $(".campaignTilePaginate").find('.campaignpaginate a').click(function(event) {
+        event.preventDefault();
+        var url = $(this).attr('href');
+        var grid = $(this).parents('.campaignTilePaginate');
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function(data) {
+                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+            }
+        });
+    });
+</script>
 </g:if>

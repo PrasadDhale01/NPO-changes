@@ -1,9 +1,10 @@
 <%
-	def count = contributors.size()
+	def count = contributionList.size()
 	def index = 0
-	def indexcount = offset ? Integer.parseInt(offset) : 0
+	def indexcount = offset ? offset : 0
 %>
-<g:if test="${contributors}">
+
+<g:if test="${contributionList}">
 <div class="table table-responsive">
 	<table class="table table-bordered">
 		<thead>
@@ -18,15 +19,15 @@
 		</thead>
 		<tbody>
 			<% while(index < count) { %>
-			 <g:render template="/user/admin/transactionList" model="['contribution': contribution.get(index++), index: ++indexcount]"></g:render>
+			 <g:render template="user/contributorsList" model="['contribution': contributionList.get(index++), index: ++indexcount]"></g:render>
 			<% } %>
 		</tbody>
 	</table>
 </div>
 </g:if>
 
-<div class="pull-right sendTaxReceiptPaginate">
-    <g:paginate controller="user" max="10" maxsteps="5" action="sendTaxReceipt" total="${totalContributions.size()}"/>
+<div class="pull-right sendTaxReceiptPaginate filespaginate">
+    <g:paginate controller="user" max="5" maxsteps="5" action="loadContributors" params="['vanityTitle':vanityTitle]" total="${totalContributions.size()}"/>
 </div>
 <script>
     $(".send-tax-receipt-to-contributors").find('.sendTaxReceiptPaginate a').click(function(event) {

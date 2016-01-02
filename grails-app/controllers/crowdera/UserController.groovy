@@ -708,14 +708,32 @@ class UserController {
             } else if(flash.receipt_sent_msg) {
                 flash.receipt_sent_msg = "Receipt Sent Successfully."
             }
-            
-            render view:'/user/partner/dashboard', model:[user: user, campaigns: projectObj.projects, totalCampaigns: projectObj.totalprojects, baseUrl: baseUrl, currentEnv: currentEnv,
-                                                         fundRaised: fundRaised, numberOfInvites: numberOfInvites, userCampaigns: userCampaign.projects, totalUserCampaigns: userCampaign.totalprojects,
-                                                         country: country, state: state, partner: partner, isAdmin: isAdmin, conversionMultiplier: conversionMultiplier, folders: folders,
-                                                         files: files]
+
+            def projectList = projectService.getAllProjectByUserHavingContribution(user, currentEnv, params)
+            def isUserProjectHavingContribution = userService.isUserProjectHavingContribution(user, currentEnv)
+            def userHasContributedToNonProfitOrNgo = userService.userHasContributedToNonProfitOrNgo(user)
+            def contributorListForProject, totalContributions, contributionList
+            if (projectList.totalProjects.size() == 1) {
+                contributorListForProject = contributionService.getContributorsForProject(projectList.totalProjects[0].id, params)
+                totalContributions = contributorListForProject.totalContributions
+                contributionList = contributorListForProject.contributions
+            } else {
+                contributorListForProject = null
+                totalContributions = null
+                contributionList= null
+            }
+
+            render view:'/user/partner/dashboard', 
+            model:[user: user, campaigns: projectObj.projects, totalCampaigns: projectObj.totalprojects, baseUrl: baseUrl,
+                   fundRaised: fundRaised, numberOfInvites: numberOfInvites, userCampaigns: userCampaign.projects, folders: folders,
+                   country: country, state: state, partner: partner, isAdmin: isAdmin, conversionMultiplier: conversionMultiplier,
+                   files: files, isUserProjectHavingContribution:isUserProjectHavingContribution, totalProjects:projectList.totalProjects, 
+                   projects:projectList.projects, totalUserCampaigns: userCampaign.totalprojects, currentEnv: currentEnv,
+                   contributorListForProject:contributorListForProject, totalContributions:totalContributions, contributionList:contributionList,
+                   userHasContributedToNonProfitOrNgo:userHasContributedToNonProfitOrNgo]
         }
     }
-    
+
     def partnercampaigns() {
         Partner partner = userService.getPartnerById(params.int('partnerId'))
         if (partner) {

@@ -115,9 +115,6 @@
         <g:elseif test="${activeTab == 'exporttaxReciept'}">
             <div class="my-campaign-heading text-center hidden-xs"><h1><b>Export Tax Receipt</b></h1></div>
         </g:elseif>
-        <g:elseif test="${activeTab == 'sendtaxReciept'}">
-            <div class="my-campaign-heading text-center hidden-xs"><h1><b>Send Tax Receipt</b></h1></div>
-        </g:elseif>
 
         <div class="container newUserdashboard dashboard-container">
             <div class="influencediv col-md-2 col-lg-2 col-sm-2 col-xs-6">

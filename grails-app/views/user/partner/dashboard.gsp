@@ -113,6 +113,11 @@
                     <li>
                         <a href="#docs" data-toggle="tab">Manage Docs</a>
                     </li>
+                    <g:if test="${isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'developement')}">
+                        <li>
+                            <a href="#taxReceipt" data-toggle="tab">Tax Receipt</a>
+                        </li>
+                    </g:if>
                     <li>
                         <a href="#promote" data-toggle="tab">Promote</a>
                     </li>
@@ -246,6 +251,11 @@
                     <div class="tab-pane tab-pane-active" id="docs">
                         <div class="col-sm-12">
                             <g:render template="/user/partner/docs"/>
+                        </div>
+                    </div>
+                    <div class="tab-pane tab-pane-active" id="taxReceipt">
+                        <div class="col-sm-12">
+                            <g:render template="/user/partner/receiptBoard"/>
                         </div>
                     </div>
                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'development' || currentEnv == 'test'}">

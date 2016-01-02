@@ -1401,14 +1401,14 @@ class UserService {
     def isUserProjectHavingContribution(User user, def environment){
         Boolean doProjectHaveAnyContribution = false
         if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
-            List projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:true)
+            List projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:true, offeringTaxReciept:true)
             projects.each{
                 if (it.contributions){
                     doProjectHaveAnyContribution = true
                 }
             }
         } else {
-            List projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:false)
+            List projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:false, offeringTaxReciept:true)
             projects.each{
                 if (it.contributions){
                     doProjectHaveAnyContribution = true
@@ -1416,6 +1416,17 @@ class UserService {
             }
         }
         return doProjectHaveAnyContribution
+    }
+    
+    def userHasContributedToNonProfitOrNgo(User user){
+        Boolean result = false
+        def contributions = Contribution.findAllWhere(user:user)
+        contributions.projects.each{
+            if (it.offeringTaxReciept){
+                result = true;
+            }
+        }
+        return result
     }
 
     @Transactional

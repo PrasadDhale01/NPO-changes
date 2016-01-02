@@ -503,7 +503,7 @@
                         </li>
                         <g:if test="${!project.projectUpdates.isEmpty() }">
                             <li><span class="show-tbs-right-borders hidden-xs">
-                                    <a href="#projectupdates" data-toggle="tab" name="updated"  class="show-tabs-text projectupdates">
+                                    <a href="#projectupdates" data-toggle="tab" class="show-tabs-text projectupdates">
                                         <span class="tab-text hidden-xs"> UPDATES</span> 
                                     </a>
                                     <span class="show-tabs-count hidden-xs">

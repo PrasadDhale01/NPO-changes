@@ -65,6 +65,7 @@ class Project {
     boolean rejected = false
     boolean touAccepted = false
     boolean offeringTaxReciept = false
+    boolean onHold = false
     
     static mapping = {
         id(generator: "uuid")

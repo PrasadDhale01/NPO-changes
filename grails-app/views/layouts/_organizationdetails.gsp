@@ -57,6 +57,9 @@
 	        <g:elseif test="${project.rejected}">
 	            <img src="//s3.amazonaws.com/crowdera/assets/Rejected-tag.png" alt="rejected"/>
 	        </g:elseif>
+            <g:elseif test="${project.onHold}">
+                <img src="//s3.amazonaws.com/crowdera/assets/on-hold.png" alt="On Hold">
+            </g:elseif>
             <g:elseif test="${!project.validated}">
 	            <img src="//s3.amazonaws.com/crowdera/assets/Pending-tag.png" alt="validated"/>
 	        </g:elseif>

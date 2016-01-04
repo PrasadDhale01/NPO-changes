@@ -10,7 +10,7 @@ class SocialContacts {
      String gmail
      String constantContact
      String mailchimp
-	 String csvContact
+     String csvContact
      String facebook
      
      static belongsTo =  [user: User]

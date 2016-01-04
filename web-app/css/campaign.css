@@ -1065,6 +1065,23 @@ label.cr-spend-guide-text{
     font-variant: normal;
     text-decoration: none;
 }
+
 img.home-img-large-size{
     width: 100%;
 }
+
+.whatsapp-mobile-icon {
+     position: fixed;
+     bottom: 70px;
+     right: 3%;
+     z-index: 100;
+ }
+ 
+ .whatsapp-mobile-icon .btn-whatsapp{
+     width: 60px;
+     height: 60px;
+     border-radius: 50%;
+     outline: 0px;
+     background-color: #29a628;
+     padding: 14px;
+ }

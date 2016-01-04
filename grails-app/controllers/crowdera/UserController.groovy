@@ -623,7 +623,7 @@ class UserController {
                 render view:'/user/partner/dashboard', model:[user: user, campaigns: projectObj.projects, totalCampaigns: projectObj.totalprojects, baseUrl: baseUrl, currentEnv: currentEnv,
                     fundRaised: fundRaised, numberOfInvites: numberOfInvites, userCampaigns: userCampaign.projects, totalUserCampaigns: userCampaign.totalprojects,
                     country: country, state: state, partner: partner, isAdmin: isAdmin, conversionMultiplier: conversionMultiplier, folders: folders,
-                    files: files, isInviteTrue: isInviteTrue, contactList:chainModel.contactList, email:chainModel.email, socialProvider:chainModel.socialProvider]
+                    files: files, isInviteTrue: isInviteTrue, contactList:chainModel.contactList, email:chainModel.email, provider:chainModel.socialProvider]
             }else{
                 
                render view:'/user/partner/dashboard', model:[user: user, campaigns: projectObj.projects, totalCampaigns: projectObj.totalprojects, baseUrl: baseUrl, currentEnv: currentEnv,

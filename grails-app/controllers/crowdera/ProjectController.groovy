@@ -1423,6 +1423,7 @@ class ProjectController {
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def inviteMember(){
+        def user=userService.getCurrentUser()
 		def page = params.page?params.page : chainModel.page
 		Project project = Project.get(params.projectId)
 		session.setAttribute('projectId', project.id)
@@ -1430,16 +1431,16 @@ class ProjectController {
 		if (page =="manage"){
 			if(chainModel){
 				def provider = session.getAttribute('socialProvider')
-				render (view:"/project/manageproject/invitemember", model:[project:project, email:chainModel.email, contactList:chainModel.contactList,  provider:provider])
+				render (view:"/project/manageproject/invitemember", model:[project:project, email:chainModel.email, contactList:chainModel.contactList,  provider:provider, user:user])
 			}else{
-				render (view:"/project/manageproject/invitemember", model:[project:project])
+				render (view:"/project/manageproject/invitemember", model:[project:project, user:user])
 			}
 		}else{
 			if(chainModel){
 				def provider = session.getAttribute('socialProvider')
-				render (view:"/project/show/invitemember", model:[project:project, email:chainModel.email, contactList:chainModel.contactList, provider:provider])
+				render (view:"/project/show/invitemember", model:[project:project, email:chainModel.email, contactList:chainModel.contactList, provider:provider, user:user])
 			}else{
-				render (view:"/project/show/invitemember", model:[project:project])
+				render (view:"/project/show/invitemember", model:[project:project, user:user])
 			}
 		}
 	}
@@ -2346,7 +2347,7 @@ class ProjectController {
                          if(socialContacts){
                               socialAuthService.setSocailContactsByUser(socialContacts ,mailchimpList, provider)
                          }else{
-                              new SocialContacts(constantContact:null, gmail:null, mailchimp:mailchimpList ,user:user).save(failOnError: true)
+                              new SocialContacts(constantContact:null, gmail:null, mailchimp:mailchimpList, facebook:null, csvContact:null,user:user).save(failOnError: true)
                          }
                          if(refererURI.equals('/partner/dashboard')){
                               chain ( action:'partnerdashboard', controller:'user',  model:[ email:email,contactList:mailchimpList, socialProvider:provider, page:'invite'])
@@ -2388,7 +2389,7 @@ class ProjectController {
                         if(socialContacts){
                             socialAuthService.setSocailContactsByUser(socialContacts, filterConstantContactList,  provider)
                         }else{
-                            new SocialContacts(constantContact:filterConstantContactList, gmail:null, mailchimp:null ,user:user).save(failOnError: true)
+                            new SocialContacts(constantContact:filterConstantContactList, gmail:null, mailchimp:null, facebook:null, csvContact:null, user:user).save(failOnError: true)
                         }
                     }
                     if(refererURI.equals('/partner/dashboard')){
@@ -2413,9 +2414,9 @@ class ProjectController {
                 if(jsonString.error){
                      flash.contact_message="You might already login with different account."
                      if(refererURI.equals('/partner/dashboard')){
-                         chain ( action:'partnerdashboard', controller:'user',  model:[ email:email,contactList:'', page:'invite'])
+                         chain ( action:'partnerdashboard', controller:'user',  model:[ email:email,contactList:'', page:'invite', socialProvider:provider])
                      }else{
-                         chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:"", page:page])
+                         chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:"", page:page, socialProvider:provider])
                      }
                 }else{
                      gmailList= jsonString.feed.entry.gd$email.address.toString().replace('[', " ").replace(']',' ')
@@ -2424,7 +2425,7 @@ class ProjectController {
                          if(socialContacts){
                              socialAuthService.setSocailContactsByUser(socialContacts ,gmailList, provider)
                         }else{
-                             new SocialContacts(constantContact:null, gmail:gmailList, mailchimp:null ,user:user).save(failOnError: true)
+                             new SocialContacts(constantContact:null, gmail:gmailList, mailchimp:null, facebook:null, csvContact:null, user:user).save(failOnError: true)
                         }
 
                         if(refererURI.equals('/partner/dashboard')){
@@ -2446,5 +2447,18 @@ class ProjectController {
 		projectService.autoSaveProjectDetails(variable, varValue, projectId)
 		render country
 	}
-
+    
+    @Secured('IS_AUTHENTICATED_FULLY')
+    def importDataFromCSV(){
+        def user =userService.getCurrentUser()
+        def contacts
+        if(params.filecsv in String){
+            render ''
+        }else{
+            contacts =projectService.getDataFromImportedCSV(params.filecsv, user)
+            render(contentType: 'text/json') {['contacts': contacts]}
+        }  
+        render ''
+    }
+    
 }

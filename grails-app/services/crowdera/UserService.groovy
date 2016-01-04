@@ -1428,6 +1428,63 @@ class UserService {
         }
         return result
     }
+    
+    def getSortedContributors(def params){
+        def project = projectService.getProjectFromVanityTitle(params.vanityTitle)
+        def contributions, contributionList
+        switch (params.sort){
+            case 'Anonymous':
+            contributions = Contribution.findAllWhere(project:project, isAnonymous:true)
+            break;
+
+            case 'Non-Anonymous':
+            contributions = Contribution.findAllWhere(project:project, isAnonymous:false)
+            break;
+
+            case 'Receipt Sent':
+            contributions = Contribution.findAllWhere(project:project, receiptSent:true)
+            break;
+
+            case 'Receipt Not Sent':
+            contributions = Contribution.findAllWhere(project:project, receiptSent:false)
+            break;
+
+            case 'Perk Selected':
+            contributionList = Contribution.findAllWhere(project:project)
+            contributionList.each{
+                if (it.reward.id != 1){
+                    contributions.add(it)
+                }
+            }
+            break;
+
+            case 'No Perk Selected':
+            contributionList = Contribution.findAllWhere(project:project)
+            contributionList.each{
+                if (it.reward.id == 1){
+                    contributions.add(it)
+                }
+            }
+            break;
+
+            default:
+            contributions = Contribution.findAllWhere(project:project)
+        }
+        if (!contributions.empty){
+            def offset = params.offset ? params.int('offset') : 0
+            def max = 5
+            def count = contributions.size()
+            def maxrange
+
+            if(offset + max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            contributionList = contributions.reverse().subList(offset, maxrange)
+        }
+        return [totalContributions:contributions, contributions:contributionList]
+    }
 
     @Transactional
     def bootstrap() {

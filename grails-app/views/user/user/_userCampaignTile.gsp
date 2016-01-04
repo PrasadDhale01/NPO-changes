@@ -3,6 +3,7 @@
 <g:set var="userService" bean="userService"/>
 <g:if test="${projects.size() > 0}">
 <g:each in="${projects}" var="campaign">
+<br>
     <% 
         def isFundingOpen = projectService.isFundingOpen(campaign)
         def contribution = contributionService.getTotalContributionForProject(campaign)

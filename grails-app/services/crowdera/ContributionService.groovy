@@ -552,17 +552,17 @@ class ContributionService {
         def totalContributions =  Contribution.findAllWhere(project:project)
         List contributions
         if (!totalContributions.empty){
-        def offset = params.offset ? params.int('offset') : 0
-        def max = 5
-        def count = totalContributions.size()
-        def maxrange
-
-        if(offset + max <= count) {
-            maxrange = offset + max
-        } else {
-            maxrange = offset + (count - offset)
-        }
-        contributions = totalContributions.reverse().subList(offset, maxrange)
+            def offset = params.offset ? params.int('offset') : 0
+            def max = 5
+            def count = totalContributions.size()
+            def maxrange
+    
+            if(offset + max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            contributions = totalContributions.reverse().subList(offset, maxrange)
         }
 
         return [totalContributions:totalContributions, contributions:contributions]
@@ -593,5 +593,5 @@ class ContributionService {
             'No Perk Selected':'No Perk Selected',
         ]
     }
-
+    
 }

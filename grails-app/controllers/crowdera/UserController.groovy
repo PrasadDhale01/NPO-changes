@@ -460,10 +460,10 @@ class UserController {
         def offset = params.int('offset') ?: 0
 
         if (request.xhr) {
-            render template: 'user/sendTaxReceipt',
+            render template: '/user/user/sendTaxReceipt',
             model: [vanityTitle: params.vanityTitle, offset: offset,
             totalContributions:contributorListForProject.totalContributions, 
-            contributionList:contributorListForProject.contributions]
+            contributionList:contributorListForProject.contributions, sort:params.sort]
         }
     }
 
@@ -713,14 +713,18 @@ class UserController {
             def isUserProjectHavingContribution = userService.isUserProjectHavingContribution(user, currentEnv)
             def userHasContributedToNonProfitOrNgo = userService.userHasContributedToNonProfitOrNgo(user)
             def contributorListForProject, totalContributions, contributionList
+            def sortList = (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') ? contributionService.contributorsSortInd() : contributionService.contributorsSortUs();
+            def vanityTitle
             if (projectList.totalProjects.size() == 1) {
                 contributorListForProject = contributionService.getContributorsForProject(projectList.totalProjects[0].id, params)
                 totalContributions = contributorListForProject.totalContributions
                 contributionList = contributorListForProject.contributions
+                vanityTitle = projectService.getVanityTitleFromId(projectList.totalProjects[0].id)
             } else {
                 contributorListForProject = null
                 totalContributions = null
                 contributionList= null
+                vanityTitle = null
             }
 
             render view:'/user/partner/dashboard', 
@@ -729,8 +733,9 @@ class UserController {
                    country: country, state: state, partner: partner, isAdmin: isAdmin, conversionMultiplier: conversionMultiplier,
                    files: files, isUserProjectHavingContribution:isUserProjectHavingContribution, totalProjects:projectList.totalProjects, 
                    projects:projectList.projects, totalUserCampaigns: userCampaign.totalprojects, currentEnv: currentEnv,
-                   contributorListForProject:contributorListForProject, totalContributions:totalContributions, contributionList:contributionList,
-                   userHasContributedToNonProfitOrNgo:userHasContributedToNonProfitOrNgo]
+                   contributorListForProject:contributorListForProject, totalContributions:totalContributions, sortList:sortList,
+                   userHasContributedToNonProfitOrNgo:userHasContributedToNonProfitOrNgo, vanityTitle:vanityTitle,
+                   contributionList:contributionList]
         }
     }
 
@@ -920,6 +925,20 @@ class UserController {
         } else {
             render view: '/404error'
         }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def sortContributorsList(){
+        def contributorListForProject = userService.getSortedContributors(params)
+        def offset = params.int('offset') ?: 0
+
+        if (request.xhr) {
+            render template: '/user/user/sendTaxReceipt',
+            model: [vanityTitle: params.vanityTitle, offset: offset,
+            totalContributions:contributorListForProject.totalContributions,
+            contributionList:contributorListForProject.contributions, sort:params.sort]
+        }
+
     }
 
 }

@@ -3,8 +3,9 @@
 	def index = 0
 	def indexcount = offset ? offset : 0
 %>
-
+<g:hiddenField name="vanityTitle" class="vanityTitle" value="${vanityTitle}"/>
 <g:if test="${contributionList}">
+<br>
 <div class="table table-responsive">
 	<table class="table table-bordered">
 		<thead>
@@ -19,7 +20,7 @@
 		</thead>
 		<tbody>
 			<% while(index < count) { %>
-			 <g:render template="user/contributorsList" model="['contribution': contributionList.get(index++), index: ++indexcount]"></g:render>
+			 <g:render template="/user/user/contributorsList" model="['contribution': contributionList.get(index++), index: ++indexcount]"></g:render>
 			<% } %>
 		</tbody>
 	</table>
@@ -27,7 +28,7 @@
 </g:if>
 
 <div class="pull-right sendTaxReceiptPaginate filespaginate">
-    <g:paginate controller="user" max="5" maxsteps="5" action="loadContributors" params="['vanityTitle':vanityTitle]" total="${totalContributions.size()}"/>
+    <g:paginate controller="user" max="5" maxsteps="5" action="loadContributors" params="['vanityTitle':vanityTitle, sort:sort]" total="${totalContributions.size()}"/>
 </div>
 <script>
     $(".send-tax-receipt-to-contributors").find('.sendTaxReceiptPaginate a').click(function(event) {

@@ -331,7 +331,6 @@ $(function() {
     $("#remove-folder").click(function(event) {
         if (confirm('Are you sure you want to discard this folder?')) {
             var folderId = $(this).val();
-            var baseUrl = $('#baseUrl').val();
             var partnerId = $('#partnerId').val();
             var grid = $('#docFolders');
             
@@ -485,4 +484,17 @@ $(function() {
         sticky_relocate();
     });
     
+    $('.contributorsSort').change(function (){
+    	var vanityTitle = $('.vanityTitle').val();
+    	var grid = $(this).parents(".send-tax-receipt-to-contributors");
+    	$.ajax({
+            type: 'GET',
+            url:baseUrl+'/user/sortContributorsList',
+            data:'vanityTitle='+vanityTitle+'&sort='$(this).val(),
+            success: function(data) {
+                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+            }
+        });
+    });
+
 });

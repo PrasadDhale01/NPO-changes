@@ -1418,3 +1418,18 @@ div.dashboardtile-min-height {
     width:174px;
     height:123px;
 }
+
+#sendReceipt .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),
+.sendTaxReceiptBoard .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
+    width:140px;	
+}
+
+.contributorsSort .dropdown-menu{
+	height : 200px;
+	padding-left:0px;
+}
+
+.contributorsSort button.selectpicker{
+    background-color: #333333 !important;
+    color:white !important;
+}

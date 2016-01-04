@@ -113,11 +113,21 @@
                     <li>
                         <a href="#docs" data-toggle="tab">Manage Docs</a>
                     </li>
-                    <g:if test="${isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'developement')}">
+                    <g:if test="${(isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
                         <li>
                             <a href="#taxReceipt" data-toggle="tab">Tax Receipt</a>
                         </li>
                     </g:if>
+                    <g:elseif test="${isUserProjectHavingContribution && !userHasContributedToNonProfitOrNgo && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                        <li>
+                            <a href="#sendtaxReceipt" data-toggle="tab">Send Tax Receipt</a>
+                        </li>
+                    </g:elseif>
+                    <g:elseif test="${!isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+						<li>
+                            <a href="#exporttaxReceipt" data-toggle="tab">Export Tax Receipt</a>
+						</li>
+                    </g:elseif>
                     <li>
                         <a href="#promote" data-toggle="tab">Promote</a>
                     </li>
@@ -258,6 +268,27 @@
                             <g:render template="/user/partner/receiptBoard"/>
                         </div>
                     </div>
+                    <div class="tab-pane tab-pane-active" id="sendtaxReceipt">
+                        <div class="col-sm-12 sendTaxReceiptBoard">
+							<g:if test="${contributorListForProject}">
+								<br><g:select class="selectpicker contributorsSort pull-right" name="contributorsSort" from="${sortList}" optionKey="key" optionValue="value"/>
+								<div class="send-tax-receipt-to-contributors">
+								    <g:render template="/user/user/sendTaxReceipt" model="[sort:'All']"/>
+								</div>
+							</g:if>
+							<g:else>
+								<div class="campaignTilePaginate">
+								    <g:render template="/user/user/userCampaignTile"/>
+								</div>
+							</g:else>
+                        </div>
+                    </div>
+                    <div class="tab-pane tab-pane-active" id="exporttaxReceipt">
+                        <div class="col-sm-12">
+                            <br><g:render template="/user/user/exportTaxReceipt"/>
+                        </div>
+                    </div>
+
                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'development' || currentEnv == 'test'}">
                         <div class="tab-pane tab-pane-active" id="upgrade">
                             <div class="col-sm-12">

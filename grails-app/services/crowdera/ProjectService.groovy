@@ -4862,6 +4862,19 @@ class ProjectService {
         }
         return filterList
     }
+    
+    def getFilterGmailContacts(def filterList, def email){
+        List gmailContacts = []
+
+        filterList.each {
+           it.each{
+              if(it != email){
+                  gmailContacts.add(it)
+              }      
+            }
+         }
+         return gmailContacts.toString().replace('[','').replace(']','')
+    }
 
     @Transactional
     def bootstrap() {

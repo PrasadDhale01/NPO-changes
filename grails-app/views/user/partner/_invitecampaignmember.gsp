@@ -79,7 +79,7 @@
       <g:if test="${contactList}">
          <div class="form-group">
              <label>Email ID's (separated by comma)</label>
-             <textarea class="form-control all-place contactlist" name="emailIds" rows="4" placeholder="Email ID's" id="contactlist">${contactList}</textarea>
+             <textarea class="form-control all-place contactlist" name="emails" rows="4" placeholder="Email ID's" id="contactlist">${contactList}</textarea>
          </div>
      </g:if>
      <g:else>

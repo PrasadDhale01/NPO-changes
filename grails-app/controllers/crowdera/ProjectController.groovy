@@ -2436,7 +2436,8 @@ class ProjectController {
                          chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:"", page:page, socialProvider:provider])
                      }
                 }else{
-                     gmailList= jsonString.feed.entry.gd$email.address.toString().replace('[', " ").replace(']',' ')
+                     def filterList= jsonString.feed.entry.gd$email.address
+                     gmailList = projectService.getFilterGmailContacts(filterList, email)
                      if(gmailList){
                          def socialContacts = SocialContacts.findByUser(user)
                          if(socialContacts){
@@ -2466,7 +2467,6 @@ class ProjectController {
             contacts =projectService.getDataFromImportedCSV(params.filecsv, user)
             render(contentType: 'text/json') {['contacts': contacts]}
         }  
-        render ''
     }
     
     def getCountryVal(){

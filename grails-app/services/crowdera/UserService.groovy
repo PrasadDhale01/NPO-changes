@@ -1421,17 +1421,20 @@ class UserService {
     def userHasContributedToNonProfitOrNgo(User user){
         Boolean result = false
         def contributions = Contribution.findAllWhere(user:user)
-        contributions.projects.each{
-            if (it.offeringTaxReciept){
-                result = true;
+        if (contributions){
+            contributions.each{
+                if (it.project.offeringTaxReciept){
+                    result = true;
+                }
             }
         }
         return result
     }
-    
-    def getSortedContributors(def params){
+
+    def getSortedContributorsForProject(def params){
         def project = projectService.getProjectFromVanityTitle(params.vanityTitle)
-        def contributions, contributionList
+        List contributions = []
+        def contributionsOffset
         switch (params.sort){
             case 'Anonymous':
             contributions = Contribution.findAllWhere(project:project, isAnonymous:true)
@@ -1450,7 +1453,7 @@ class UserService {
             break;
 
             case 'Perk Selected':
-            contributionList = Contribution.findAllWhere(project:project)
+            def contributionList = Contribution.findAllWhere(project:project)
             contributionList.each{
                 if (it.reward.id != 1){
                     contributions.add(it)
@@ -1459,7 +1462,7 @@ class UserService {
             break;
 
             case 'No Perk Selected':
-            contributionList = Contribution.findAllWhere(project:project)
+            def contributionList = Contribution.findAllWhere(project:project)
             contributionList.each{
                 if (it.reward.id == 1){
                     contributions.add(it)
@@ -1467,12 +1470,20 @@ class UserService {
             }
             break;
 
+            case 'Online':
+            contributions = Contribution.findAllWhere(project:project, isContributionOffline:false)
+            break;
+
+            case 'Offline':
+            contributions = Contribution.findAllWhere(project:project, isContributionOffline:true)
+            break;
+
             default:
             contributions = Contribution.findAllWhere(project:project)
         }
-        if (!contributions.empty){
+        if (contributions && !contributions.empty){
             def offset = params.offset ? params.int('offset') : 0
-            def max = 5
+            def max = 10
             def count = contributions.size()
             def maxrange
 
@@ -1481,9 +1492,39 @@ class UserService {
             } else {
                 maxrange = offset + (count - offset)
             }
-            contributionList = contributions.reverse().subList(offset, maxrange)
+            contributionsOffset = contributions.reverse().subList(offset, maxrange)
         }
-        return [totalContributions:contributions, contributions:contributionList]
+        return ['totalContributions':contributions, 'contributions':contributionsOffset]
+    }
+    
+    def getContributorsListSearchedByName(def params){
+        def project = projectService.getProjectFromVanityTitle(params.vanityTitle)
+        List contributionList = Contribution.findAllWhere(project:project)
+        List contributions = []
+        def contributionsOffset
+        if (params.query && params.query != " "){
+            contributionList.each{
+                if (it.contributorName.contains(params.query)){
+                    contributions.add(it)
+                }
+            }
+        } else {
+            contributions = contributionList
+        }
+        if (contributions && !contributions.empty){
+            def offset = params.offset ? params.int('offset') : 0
+            def max = 10
+            def count = contributions.size()
+            def maxrange
+
+            if(offset + max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            contributionsOffset = contributions.reverse().subList(offset, maxrange)
+        }
+        return ['totalContributions':contributions, 'contributions':contributionsOffset]
     }
 
     @Transactional

@@ -3,7 +3,6 @@
 <g:set var="userService" bean="userService"/>
 <g:if test="${projects.size() > 0}">
 <g:each in="${projects}" var="campaign">
-<br>
     <% 
         def isFundingOpen = projectService.isFundingOpen(campaign)
         def contribution = contributionService.getTotalContributionForProject(campaign)
@@ -117,15 +116,15 @@
                         <span>${projectService.getRemainingDay(campaign)}</span>
                     </g:else>
                 </div>
-                <g:link controller="user" action="showContributor" params="['vanityTitle':vanityTitle]" title="${campaign.title}">
+                <div title="${campaign.title}" data-vanitytitle="${vanityTitle}" class="campaignTileClick">
                     <img alt="${campaign.title}" class="campaign-img img-size" src="${projectService.getProjectImageLink(campaign)}">
-                </g:link>
+                </div>
             </div>
             <div class="campaign-tile-content">
                 <div class="campaign-title-padding">
-                    <g:link controller="user" action="showContributor" params="['vanityTitle':vanityTitle]" title="${campaign.title}">
+                    <div title="${campaign.title}" data-vanityTitle="${vanityTitle}" class="campaignTileClick">
                         ${campaign.title.toUpperCase()}
-                    </g:link>
+                    </div>
                 </div>
                 <g:if test="${isFundingOpen}">
                     <div class="progress progress-striped active">
@@ -169,6 +168,9 @@
     <g:paginate controller="user" max="6" action="loadCampaignTile" total="${totalProjects.size()}"/>
 </div>
 <script>
+    var baseUrl = $('#baseUrl').val();
+
+    /*Pagination logic*/
     $(".campaignTilePaginate").find('.campaignpaginate a').click(function(event) {
         event.preventDefault();
         var url = $(this).attr('href');
@@ -182,5 +184,22 @@
             }
         });
     });
+
+    /*Renders contributor list on campaign tile click*/
+    $('.campaignTileClick').click(function (){
+        var vanityTitle = $(this).data('vanitytitle');
+        var grid = $(".campaignTilePaginate");
+        $.ajax({
+            type: 'post',
+            url:baseUrl+'/user/loadContributors',
+            data:'vanityTitle='+vanityTitle+'&sort=All',
+            success: function(data) {
+                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+            }
+        }).error(function(e){
+           console.log('Error occured while showing contributor list of '+vanityTitle);
+        });
+    });
+
 </script>
 </g:if>

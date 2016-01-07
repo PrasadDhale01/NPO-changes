@@ -269,15 +269,14 @@
                         </div>
                     </div>
                     <div class="tab-pane tab-pane-active" id="sendtaxReceipt">
-                        <div class="col-sm-12 sendTaxReceiptBoard">
-							<g:if test="${contributorListForProject}">
-								<br><g:select class="selectpicker contributorsSort pull-right" name="contributorsSort" from="${sortList}" optionKey="key" optionValue="value"/>
-								<div class="send-tax-receipt-to-contributors">
-								    <g:render template="/user/user/sendTaxReceipt" model="[sort:'All']"/>
-								</div>
+                        <div class="col-sm-12 sendTaxReceiptBoard"><br>
+							<g:if test="${contributionList}">
+							    <div class="send-tax-receipt-to-contributors">
+							        <g:render template="/user/user/sendTaxReceipt" model="[sort:'All']"/>
+							    </div>
 							</g:if>
 							<g:else>
-								<div class="campaignTilePaginate">
+								<div class="campaignTilePaginate send-tax-receipt-to-contributors">
 								    <g:render template="/user/user/userCampaignTile"/>
 								</div>
 							</g:else>
@@ -305,6 +304,9 @@
     </div>
     <div class="loadinggif text-center" id="loading-gif">
         <img src="//s3.amazonaws.com/crowdera/documents/loading.gif" alt="'loadingImage'" id="loading-gif-img">
+    </div>
+    <div class="loadingfilegif text-center" id="loadingfilegif">
+        <img src="//s3.amazonaws.com/crowdera/assets/loading.gif" alt="'loadingImage'" id="loading-file-gif-img">
     </div>
     <script src="/js/filepicker.js" ></script>
     <script>

@@ -4850,9 +4850,9 @@ class ProjectService {
         boolean ended
 
         if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
-            def projects= Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:true)
+            def projects= Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:true, offeringTaxReciept:true)
             projects.each { project->
-                if (project.contributions){
+                if (project.contributions && project.offeringTaxReciept){
                     ended = isProjectDeadlineCrossed(project)
                     if (ended) {
                         endedProjects.add(project)
@@ -4862,9 +4862,9 @@ class ProjectService {
                 }
             }
         } else {
-            def projects= Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:false)
+            def projects= Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:false, offeringTaxReciept:true)
             projects.each { project->
-                if (project.contributions){
+                if (project.contributions && project.offeringTaxReciept){
                     ended = isProjectDeadlineCrossed(project)
                     if (ended) {
                         endedProjects.add(project)
@@ -4895,6 +4895,15 @@ class ProjectService {
         return ['totalProjects' : finalList, 'projects' : projects]
     }
 
+    def doProjectHaveContribution(def vanityTitle){
+        Project project = getProjectFromVanityTitle(vanityTitle)
+        if (project.contributions){
+            return true
+        } else {
+            return false
+        }
+    }
+    
     @Transactional
     def bootstrap() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")

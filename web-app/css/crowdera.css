@@ -5499,6 +5499,29 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /**********************Start of Media CSS*******************************/
 
 @media only screen and (min-width: 768px){
+	.col-contributor {
+		width: 375px;
+		float: right;
+	}
+
+	#sendReceipt .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),
+	.sendTaxReceiptBoard .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
+	   width:140px;    
+	}
+
+	input.search-contributors {
+		height: 33px;
+		margin-top: 2px;
+		padding-left: 38px;
+		width:185px;
+	}
+
+	span.glyphicon-contributor-search {
+		position: absolute;
+		top: 11px;
+		left: 27px;
+	}
+	
     #chart-container #graph{
         margin-left: -100px;
     }
@@ -9943,6 +9966,33 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+
+	#sendReceipt .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),
+	.sendTaxReceiptBoard .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
+	   width:105px;    
+	}
+
+	.col-contributor{
+        left:-15px;
+	}
+
+	input.search-contributors{
+		height: 33px;
+		margin-top: 2px;
+		padding-left: 31px;
+		width: 172px;
+	}
+	
+	span.glyphicon-contributor-search {
+		position: absolute;
+		top: 11px;
+		left: 7px;
+	}
+	
+	.col-contributor, .contributor-search-box{
+	    padding-left:0px;
+	}
+
 	.img-size-xs{
         width:12%;
 	}
@@ -10957,6 +11007,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1200px) and (max-width: 1280px){
+/* 	.backToTiles{ */
+/*         width:56%; */
+/* 	} */
     li.sh-button-fund-secandaryheader{
         left: 19.8% !important;
     }
@@ -16911,7 +16964,7 @@ li.sh-button-fund-secandaryheader{
 #footer-top-height {
     display: none;
 }
-#loading-gif {
+#loading-gif , #loadingfilegif {
     background-color: #f6f8f8;
     opacity: 0.7;
     filter: alpha(opacity=60);
@@ -16925,7 +16978,7 @@ li.sh-button-fund-secandaryheader{
     z-index: 9999;
     display: none;
 }
-#loading-gif-img {
+#loading-gif-img, #loading-file-gif-img {
     position: fixed;
     top: 48%;
     left: 48%;

@@ -553,10 +553,10 @@ class ContributionService {
         List contributions
         if (!totalContributions.empty){
             def offset = params.offset ? params.int('offset') : 0
-            def max = 5
+            def max = 10
             def count = totalContributions.size()
             def maxrange
-    
+
             if(offset + max <= count) {
                 maxrange = offset + max
             } else {

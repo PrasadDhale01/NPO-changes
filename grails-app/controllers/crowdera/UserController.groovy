@@ -407,22 +407,25 @@ class UserController {
         def activeTab
         def totalContributions
         def contributionList
+        def sortList
         if (projectList.totalProjects.size() == 1) {
             contributorListForProject = contributionService.getContributorsForProject(projectList.totalProjects[0].id, params)
             activeTab = 'sendtaxReciept'
             totalContributions = contributorListForProject.totalContributions
             contributionList = contributorListForProject.contributions
+            sortList = (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') ? contributionService.contributorsSortInd() : contributionService.contributorsSortUs();
         } else {
             contributorListForProject = null
             activeTab = 'taxReceiptTile'
             totalContributions = null
             contributionList= null
+            sortList = null
         }
         render view: 'user/dashboard',
         model: [user: user, fundRaised: fundRaised, environment: environment, contributedAmount: contributedAmount,
                 contributions: contributions, projects:projectList.projects, totalProjects:projectList.totalProjects,
                 totalContributions:totalContributions, contributionList:contributionList,activeTab:activeTab,
-                isUserProjectHavingContribution:isUserProjectHavingContribution]
+                isUserProjectHavingContribution:isUserProjectHavingContribution, sortList:sortList]
     }
 
     def loadCampaignTile(){
@@ -430,38 +433,19 @@ class UserController {
         def environment = projectService.getCurrentEnvironment()
         def projectList = projectService.getAllProjectByUserHavingContribution(user, environment, params)
         if (request.xhr) {
-            render template:'user/userCampaignTile',
+            render template:'/user/user/userCampaignTile',
             model : [projects:projectList.projects, totalProjects:projectList.totalProjects, user:user]
         }
     }
 
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def showContributor(){
-        def projectId = projectService.getProjectIdFromVanityTitle(params.vanityTitle)
-        User user = (User)userService.getCurrentUser()
-        def environment = projectService.getCurrentEnvironment()
-        def contributorListForProject = contributionService.getContributorsForProject(projectId, params)
-        List projects = projectService.getAllProjectByUser(user, environment)
-        def contributions = projectService.getContibutionByUser(user, environment)
-        def contributedAmount = projectService.getContributedAmount(contributions)
-        def fundRaised = projectService.getTotalFundRaisedByUser(projects)
-        def isUserProjectHavingContribution = userService.isUserProjectHavingContribution(user, environment)
-
-        render view: 'user/dashboard',
-        model: [user: user, fundRaised: fundRaised, environment: environment, contributedAmount: contributedAmount,
-                contributions: contributions, projects:projects, contributionList:contributorListForProject.contributions, 
-                totalContributions:contributorListForProject.totalContributions, activeTab:'sendtaxReciept',
-                vanityTitle: params.vanityTitle, isUserProjectHavingContribution:isUserProjectHavingContribution]
-    }
-
     def loadContributors() {
-        def projectId = projectService.getProjectIdFromVanityTitle(params.vanityTitle)
-        def contributorListForProject = contributionService.getContributorsForProject(projectId, params)
+        def contributorListForProject = userService.getSortedContributorsForProject(params)
+        def environment = projectService.getCurrentEnvironment()
         def offset = params.int('offset') ?: 0
-
+        def sortList = (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') ? contributionService.contributorsSortInd() : contributionService.contributorsSortUs();
         if (request.xhr) {
             render template: '/user/user/sendTaxReceipt',
-            model: [vanityTitle: params.vanityTitle, offset: offset,
+            model: [vanityTitle: params.vanityTitle, offset: offset, sortList:sortList,
             totalContributions:contributorListForProject.totalContributions, 
             contributionList:contributorListForProject.contributions, sort:params.sort]
         }
@@ -926,17 +910,52 @@ class UserController {
             render view: '/404error'
         }
     }
-    
+
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def sortContributorsList(){
-        def contributorListForProject = userService.getSortedContributors(params)
+        def contributorListForProject = userService.getSortedContributorsForProject(params)
+        def environment = projectService.getCurrentEnvironment()
+        def sortList = (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') ? contributionService.contributorsSortInd() : contributionService.contributorsSortUs();
         def offset = params.int('offset') ?: 0
-
-        if (request.xhr) {
-            render template: '/user/user/sendTaxReceipt',
-            model: [vanityTitle: params.vanityTitle, offset: offset,
-            totalContributions:contributorListForProject.totalContributions,
-            contributionList:contributorListForProject.contributions, sort:params.sort]
+        if (contributorListForProject.isEmpty()){
+            if (request.xhr) {
+                render template: '/user/user/sendTaxReceipt',sortList:sortList,
+                model: [vanityTitle: params.vanityTitle, offset: offset,
+                totalContributions:null, contributionList:null, sort:params.sort, 
+                doProjectHaveContribution:false]
+            }
+        } else {
+            if (request.xhr) {
+                render template: '/user/user/sendTaxReceipt',
+                model: [vanityTitle: params.vanityTitle, offset: offset,sortList:sortList,
+                totalContributions:contributorListForProject.totalContributions,
+                contributionList:contributorListForProject.contributions, sort:params.sort,
+                doProjectHaveContribution:true]
+            }
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def searchByName(){
+        def contributorListForProject = userService.getContributorsListSearchedByName(params)
+        def environment = projectService.getCurrentEnvironment()
+        def sortList = (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') ? contributionService.contributorsSortInd() : contributionService.contributorsSortUs();
+        def offset = params.int('offset') ?: 0
+        if (contributorListForProject.isEmpty()){
+            if (request.xhr) {
+                render template: '/user/user/sendTaxReceipt',sortList:sortList,
+                model: [vanityTitle: params.vanityTitle, offset: offset,
+                totalContributions:null, contributionList:null, sort:params.sort,
+                doProjectHaveContribution:false]
+            }
+        } else {
+            if (request.xhr) {
+                render template: '/user/user/sendTaxReceipt',
+                model: [vanityTitle: params.vanityTitle, offset: offset,sortList:sortList,
+                totalContributions:contributorListForProject.totalContributions,
+                contributionList:contributorListForProject.contributions, sort:params.sort,
+                doProjectHaveContribution:true]
+            }
         }
 
     }

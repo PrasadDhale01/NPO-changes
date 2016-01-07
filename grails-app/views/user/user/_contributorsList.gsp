@@ -5,7 +5,14 @@
  %>
 <tr>
 	<td class="text-center">${index}</td>
-	<td class="text-center"><input type="checkbox" name="select"></td>
+	<td class="text-center">
+	    <g:if test="${contribution.contributorEmail}">
+            <input type="checkbox" name="select" class="contributor-checkbox-select" id="${contribution.id}">
+	    </g:if>
+	    <g:else>
+            <input type="checkbox" name="select" id="${contribution.id}" disabled>
+	    </g:else>
+	</td>
 	<td class="text-center col-sm-3">${contribution.contributorName}</td>
 	<td class="text-center col-sm-3">${contribution.contributorEmail}</td>
 	<td class="text-center">

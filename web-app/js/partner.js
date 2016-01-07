@@ -1,5 +1,5 @@
 $(function() {
-	
+
     var baseUrl = $('#baseUrl').val();
 	
     function getSelectedCampaignUrl() {
@@ -484,17 +484,4 @@ $(function() {
         sticky_relocate();
     });
     
-    $('.contributorsSort').change(function (){
-    	var vanityTitle = $('.vanityTitle').val();
-    	var grid = $(this).parents(".send-tax-receipt-to-contributors");
-    	$.ajax({
-            type: 'GET',
-            url:baseUrl+'/user/sortContributorsList',
-            data:'vanityTitle='+vanityTitle+'&sort='$(this).val(),
-            success: function(data) {
-                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
-            }
-        });
-    });
-
 });

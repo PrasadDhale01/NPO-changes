@@ -1415,13 +1415,8 @@ div.dashboardtile-min-height {
 }
 
 .blacknwhite img.img-size{
-    width:174px;
+    width:219px;
     height:123px;
-}
-
-#sendReceipt .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),
-.sendTaxReceiptBoard .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
-    width:140px;	
 }
 
 .contributorsSort .dropdown-menu{
@@ -1432,4 +1427,20 @@ div.dashboardtile-min-height {
 .contributorsSort button.selectpicker{
     background-color: #333333 !important;
     color:white !important;
+}
+
+.backToTiles ,.campaignTilePaginate .campaignTileClick{
+	cursor:pointer;
+}
+
+.backToTiles:hover, .backToTiles:visited, .backToTiles:active, .backToTiles:focus{
+	color:#008CBA;;
+}
+
+div.search-sort-back div.search-sort{
+	padding-right: 0;
+}
+
+.col-send-email {
+    margin-left: 20px;
 }

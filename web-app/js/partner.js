@@ -628,10 +628,34 @@ $(function() {
             success: function(data){
                 if(data){
                 	var list =jQuery.parseJSON(JSON.stringify(data));
-                	$('.contactlist').val(list.contacts);
+                	if(list.contacts == ''){
+                	    $('.csv-empty-emails').addClass("csv-empty-emails-error");
+                	    $('.upload').addClass('has-error');
+                	    $('.contactlist').val('');
+                	}else{
+                		$('.csv-empty-emails').removeClass("csv-empty-emails-error");
+                		$('.upload').removeClass('has-error');
+                	    $('.contactlist').val(list.contacts);
+                	}
                 }
             }
        });
+    });
+    
+    $('#btnSendinvitation').click(function(){
+        var form =$('#invite-campaign-owner').find('form');
+        var  error =form.find('div').hasClass('has-error');
+        if(error){
+	        return false;
+        }
+    });
+
+    $('#mobBtnSendinvitation').click(function(){
+        var form =$('#invite-campaign-owner').find('form');
+        var  error =form.find('div').hasClass('has-error');
+        if(error){
+	        return false;
+        }
     });
     
 });

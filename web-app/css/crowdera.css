@@ -17000,3 +17000,10 @@ input[readonly] {
   background-color: white !important;
   cursor: text !important;
 }
+.csv-empty-emails {
+    display: none;
+}
+.csv-empty-emails-error{
+	display:block;
+	color: #f04124;
+}

@@ -830,14 +830,36 @@ $(function() {
             success: function(data){
                 if(data){
                 	var list =jQuery.parseJSON(JSON.stringify(data));
-                	$('.contactlist').val('');
-                	$('.contactlist').val(list.contacts);
+                	if(list.contacts == ''){
+                	    $('.csv-empty-emails').addClass("csv-empty-emails-error");
+                	    $('.upload').addClass('has-error');
+                	    $('.contactlist').val('');
+                	    return false;
+                	}else{
+                		$('.csv-empty-emails').removeClass("csv-empty-emails-error");
+                		$('.upload').removeClass('has-error');
+                	    $('.contactlist').val(list.contacts);
+                	}
                 }
             }
        });
     });
     
-    
+    $('#btnSendInvitation').click(function(){
+        var form =$('#inviteTeamMember').find('form');
+        var validation = form.valid();
+        var win = window.opener;
+        var error =form.find('div').hasClass('has-error');
+        if(error){
+            return false;
+        }
+        if(form.valid()){
+            $(window).unload(function(){
+                window.close();
+                setTimeout(win.location.reload(), 10000);
+            });
+        }
+    });
     
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {

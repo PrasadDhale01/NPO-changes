@@ -62,6 +62,7 @@
                                               <input type="button" value="Import" class="btn btn-default btn-info btn-sm pull-right csvbtn" />
                                           </div>
                                       </div>
+                                      <div class="csv-empty-emails col-sm-12">Email(s) not found</div>
                                   </div>
                               </g:if>
                               <g:else>
@@ -88,6 +89,7 @@
                                               <input type="button" value="Import" class="btn btn-default btn-info btn-sm pull-right  csvbtn" />
                                           </div>
                                       </div>
+                                      <div class="csv-empty-emails col-sm-12">Email(s) not found</div>
                                   </div>
                               </g:else>
                           </div>

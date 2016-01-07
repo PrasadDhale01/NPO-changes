@@ -2530,7 +2530,7 @@ a.footerlink {
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    width:230px;
+    width:220px;
 }
 .user-tiles-widths img{
 	width: 100px;
@@ -5555,6 +5555,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .col-sm-input-group{
         float:left !important;
     }
+    
+    input.partnercustomUrl {
+        height: 45px;
+        padding-left: 168px;
+        width: 100% !important;
+    }
+    .col-partner-page {
+        padding-right: 2px;
+    }
 
 }
 /* Screen resolution 641 x 767*/
@@ -8043,6 +8052,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.org-info-guide {
+        padding: 5px;
+    }
+    .partner-org-info .col-md-4 {
+        width: 40%;
+    }
+    .partner-org-info .col-md-8 {
+        width: 60%;
+    }
     div.manage-organization-details h4 {
         font-size: 14px;
         margin-bottom: 0;
@@ -9943,6 +9961,44 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	#partner-sec-header .user-dashboard-header {
+        width: 320px !important;
+        height: 75px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #partner-sec-header .user-dashboard-header .span-space {
+        color: white;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+	.col-xs-12.rowseperator {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .partnersavebtn.btn-default {
+	    font-size: 20px;
+	    padding: 5px 100px;
+	}
+	#partner-create-page h1.mainheading {
+	    font-size: 24px;
+	    font-weight: 500;
+	    margin-bottom: 30px;
+	}
+	.partner-margin-bottom {
+	    margin-bottom: 15px;
+	}
+	.col-partner-page {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+    .partnercreatepage .orgName-padding {
+        padding-right: 0;
+    }
+    input.partnercustomUrl {
+        height: 45px;
+        width: 100% !important;
+    }
     div.domain-metrics .nav-tabs.nav-justified > li > a {
         font-size: 12px !important;
     }
@@ -10186,20 +10242,20 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     #partner-third-header .navbar-header .span-space{
         color: #6D6E6E;
-        padding-left: 8px;
-        padding-right: 8px;
+        padding-left: 5px;
+        padding-right: 5px;
         font-size: 14px;
         font-weight: 600;
     }
     #partner-third-header .header-text{
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 500;
     }
     #partner-third-header .navbar-header {
-        width: 320px;
+        width: 450px;
     }
     #partner-third-header .navbar-header { 
-        margin-top: 16px;
+        margin-top: 18px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -11968,6 +12024,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 
 @media only screen and (max-width: 991px){
+	.userdashboardstatstile.col-sm-4, .userdashboardstatstile.col-xs-12 {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
     #hiddensearch {
         display: none;
         width: 250px !important;
@@ -13820,6 +13880,9 @@ textarea.textarea-embed-video {
         font-size: 12px;
         font-weight: 600;
     }
+    #partner-sec-header .user-dashboard-header .span-space { 
+        font-size: 14px;
+    }
 	h1.headingtext {
         color: #015f85;
         font-size: 24px !important;
@@ -13847,6 +13910,12 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){
+    div.partner-gallery h3 {
+        font-size: 16px;
+    }
+    div.partner-gallery h1 {
+        font-size: 30px;
+    }
     div.manage-editdel-width{
         width: 23px;
     }
@@ -13860,12 +13929,15 @@ textarea.textarea-embed-video {
         width: 320px;
         height: 75px;
     }
-	    #partner-sec-header.navbar-default {
+    #partner-sec-header.navbar-default {
         height: 60px;
         line-height: 1.8;
     }
     #partner-sec-header .navbar-header {
         margin-top: 6px;
+    }
+    #partner-sec-header .user-dashboard-header.navbar-header {
+        margin-top: 16px;
     }
     #partner-sec-header .navbar-header .span-space {
         color: white;
@@ -13894,21 +13966,21 @@ textarea.textarea-embed-video {
          margin-top: 14px;
     }
 
-.col-xs-button{
-    width:100%;
-}
-.col-xs-textbox{
-    width:99% !important;
-}
-.btn-center{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
+    .col-xs-button{
+        width:100%;
+    }
+    .col-xs-textbox{
+        width:99% !important;
+    }
+    .btn-center{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-.dashboard-container {
-     padding-left: 5px;
-}
+    .dashboard-container {
+        padding-left: 5px;
+    }
 
 	ul.show-new-tabs-alignments {
         line-height: 1;

@@ -4794,6 +4794,18 @@ class ProjectService {
         return ReasonsToFund.findByProject(project)
     }
     
+    def getFundRaisedByPartner(User user) {
+        def environment = getCurrentEnvironment();
+        List projects = []
+        def campaigns = getAllProjectByUser(user, environment)
+        def projectAdmins = getProjectAdminEmail(user)
+        def teams = getTeamByUserAndEnable(user, true)
+        def totalprojects = getProjects(campaigns, projectAdmins, teams, environment)
+        
+        def raised = getTotalFundRaisedByUser(campaigns)
+        return [totalprojects: totalprojects, raised: raised]
+    }
+    
     @Transactional
     def bootstrap() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")

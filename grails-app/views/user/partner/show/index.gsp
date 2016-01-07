@@ -1,3 +1,4 @@
+<g:set var="projectService" bean="projectService"/>
 <html>
 <head>
     <meta name="layout" content="main" />
@@ -15,6 +16,9 @@
 <div class="partners_list_container">
     <ul class="thumbnails list-unstyled">
         <g:each in="${partners}" var="partner">
+            <%
+                 def partnerObj = projectService.getFundRaisedByPartner(partner.user)
+            %>
             <li class="col-md-3 col-lg-3 col-sm-4 col-xs-12">
                 <div class="partner-show-tile thumbnail">
                     <g:if test="${partner.user.userImageUrl}">
@@ -26,8 +30,8 @@
 
                     <div class="partner-show-info">
                         <div class="partner-org-name"><b>${partner.user.firstName}</b></div>
-                        <div class="partner-raised-amt"><b>$43675476</b> Raised</div>
-                        <div class="partner-campaigns"><b>344</b> Campaigns</div>
+                        <div class="partner-raised-amt"><b><g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${partnerObj.raised.round()}</b> Raised</div>
+                        <div class="partner-campaigns"><b>${partnerObj.totalprojects.size()}</b><g:if test="${partnerObj.totalprojects.size() > 1}"> Campaigns</g:if><g:else> Campaign</g:else></div>
                     </div>
                 </div>
             </li>

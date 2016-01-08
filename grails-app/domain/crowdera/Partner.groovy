@@ -26,7 +26,7 @@ class Partner {
     String addressLine1
     String addressLine2
     String city
-    String state
+    String pstate
     String zipCode
     String telePhone
     
@@ -54,7 +54,7 @@ class Partner {
         addressLine1 nullable: true
         addressLine2 nullable: true
         city nullable: true
-        state nullable: true
+        pstate nullable: true
         zipCode nullable: true
         telePhone nullable: true
     }

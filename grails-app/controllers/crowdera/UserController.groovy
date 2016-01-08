@@ -938,6 +938,7 @@ class UserController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def partnersave() {
         Partner partner = userService.getPartnerById(params.int('partnerId'))
+        User user = userService.getCurrentUser()
         boolean saved = true
         if (partner){
             if (partner.user == user) {

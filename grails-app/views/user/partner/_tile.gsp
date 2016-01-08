@@ -84,6 +84,11 @@
                         <img src="//s3.amazonaws.com/crowdera/assets/Rejected-tag.png" alt="rejected">
                     </div>
                 </g:elseif>
+                <g:elseif test="${campaign.onHold}">
+                    <div class="over user-tile">
+                        <img src="//s3.amazonaws.com/crowdera/assets/on-hold.png" alt="On Hold">
+                    </div>
+                </g:elseif>
                 <g:elseif test="${!campaign.validated}">
                     <div class="over user-tile">
                         <img src="//s3.amazonaws.com/crowdera/assets/Pending-tag.png" alt="Pending">

@@ -176,7 +176,7 @@
                             </div>
                             <div class="col-sm-4 contact-info-bottom">
                                 <div class="form-group">
-                                    <input type="text" id="state" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="state" value="${partner.state}" placeholder="State">
+                                    <input type="text" id="state" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="state" value="${partner.pstate}" placeholder="State">
                                 </div>
                             </div>
                             <div class="col-sm-4 contact-info-bottom">

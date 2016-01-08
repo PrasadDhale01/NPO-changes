@@ -1494,18 +1494,13 @@ class UserService {
                 isValueChanged = true;
                 break;
                 
-            case 'state':
-                partner.state = varValue;
-                isValueChanged = true;
-                break;
-                
             case 'telephone':
                 partner.telePhone = varValue;
                 isValueChanged = true;
                 break;
                 
             case 'state':
-                partner.state = varValue;
+                partner.pstate = varValue;
                 isValueChanged = true;
                 break;
                 
@@ -1535,7 +1530,6 @@ class UserService {
                 }
             }
         }
-        println isUnique
         return isUnique
         
     }

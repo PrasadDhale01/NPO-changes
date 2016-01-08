@@ -72,7 +72,9 @@
 		                        <li><a href="#">Environment</a></li>
 		                        <li><a href="#">Film</a></li>
 		                        <li><a href="#">Health</a></li>
-		                        <li><a href="#">Non Profits</a></li>
+		                        <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'}">
+		                            <li><a href="#">Non Profits</a></li>
+		                        </g:if>
 		                        <li><a href="#">Social Innovation</a></li>
 		                        <li><a href="#">Religion</a></li>
 		                        <li><a href="#">Other</a></li>
@@ -81,15 +83,6 @@
 	                </div>
 	            </div>
 	            
-<%--	            <div class="col-sm-6">--%>
-<%--	                <div class="col-sm-12 col-xs-12 col-xs-zero-padding">--%>
-<%--	                    <label class="text-color orgName-padding">Do you want to approve your campaign before they go live?</label>--%>
-<%--	                    <div class="form-group">--%>
-<%--	                        <p class="partnerRadioBtn"><input type="radio" name="answer" class="ans1" value="yes">&nbsp;YES&nbsp;&nbsp;&nbsp;--%>
-<%--	                        <input type="radio" name="answer" class="ans1" value="no">&nbsp;NO</p>--%>
-<%--	                    </div>--%>
-<%--	                </div>--%>
-<%--	            </div>--%>
 	            <div class="clear"></div>
 	            <div class="col-sm-12 partner-contact-info">
 	                <div class="partner-contact-info-label">
@@ -105,17 +98,17 @@
                                     <input type="text" id="facebookUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="facebookUrl" value="${partner.facebook}" placeholder="Facebook Url">
                                 </div>
                             </div>
-		                    <div class="col-sm-4 contact-info-bottom">
-		                        <div class="form-group">
-		                            <input type="text" id="twitterUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="twitterUrl" value="${partner.twitter}" placeholder="Twitter Url">
-		                        </div>
-		                    </div>
-		
-		                    <div class="col-sm-4 contact-info-bottom">
-		                        <div class="form-group">
-	                                <input type="text" id="linkedinUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="linkedinUrl" value="${partner.linkedin}" placeholder="Linkedin Url">
-		                        </div>
-		                    </div>
+                            <div class="col-sm-4 contact-info-bottom">
+                                <div class="form-group">
+                                    <input type="text" id="twitterUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="twitterUrl" value="${partner.twitter}" placeholder="Twitter Url">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 contact-info-bottom">
+                                <div class="form-group">
+                                    <input type="text" id="linkedinUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="linkedinUrl" value="${partner.linkedin}" placeholder="Linkedin Url">
+                                </div>
+                            </div>
 	                    </div>
 	                    <div class="col-sm-12 col-xs-12 rowseperator">
 	                        <div class="col-sm-4 contact-info-bottom">
@@ -158,39 +151,39 @@
 	                        </div>
 	                    </div>
 	                    <div class="col-sm-12 col-xs-12 rowseperator">
-		                    <div class="col-sm-4 contact-info-bottom">
-		                        <div class="form-group" id="partner-country">
-		                            <g:select class="selectpicker" id="country" name="country" from="${country}" value="${partner.country}" optionKey="key" optionValue="value"/>
-		                        </div>
-		                    </div>
-		                    <div class="col-sm-4 contact-info-bottom">
-		                        <div class="form-group">
-	                                <input type="text" id="addressLine1" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="addressLine1" value="${partner.addressLine1}" placeholder="Address Line1">
-		                        </div>
-		                    </div>
-		
-		                    <div class="col-sm-4 contact-info-bottom">
-		                        <div class="form-group">
-	                                <input type="text" id="addressLine2" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="addressLine2" value="${partner.addressLine2}" placeholder="Address Line2">
-		                        </div>
-		                    </div>
-		                </div>
+                            <div class="col-sm-4 contact-info-bottom">
+                                <div class="form-group" id="partner-country">
+                                    <g:select class="selectpicker" id="country" name="country" from="${country}" value="${partner.country}" optionKey="key" optionValue="value"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 contact-info-bottom">
+                                <div class="form-group">
+                                    <input type="text" id="addressLine1" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="addressLine1" value="${partner.addressLine1}" placeholder="Address Line1">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 contact-info-bottom">
+                                <div class="form-group">
+                                    <input type="text" id="addressLine2" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="addressLine2" value="${partner.addressLine2}" placeholder="Address Line2">
+                                </div>
+                            </div>
+                        </div>
 	                    <div class="col-sm-12 col-xs-12 rowseperator">
-		                    <div class="col-sm-4 contact-info-bottom">
-		                        <div class="form-group">
-	                                <input type="text" id="city" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="city" value="${partner.city}" placeholder="City">
-		                        </div>
-		                    </div>
-		                    <div class="col-sm-4 contact-info-bottom">
-		                        <div class="form-group">
-	                                <input type="text" id="state" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="state" value="${partner.state}" placeholder="State">
-		                        </div>
-		                    </div>
-		                    <div class="col-sm-4 contact-info-bottom">
-		                        <div class="form-group">
-	                                <input type="text" id="zipCode" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="zipCode" value="${partner.zipCode}" placeholder="ZIP Code">
-		                        </div>
-		                    </div>
+                            <div class="col-sm-4 contact-info-bottom">
+                                <div class="form-group">
+                                    <input type="text" id="city" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="city" value="${partner.city}" placeholder="City">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 contact-info-bottom">
+                                <div class="form-group">
+                                    <input type="text" id="state" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="state" value="${partner.state}" placeholder="State">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 contact-info-bottom">
+                                <div class="form-group">
+                                    <input type="text" id="zipCode" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="zipCode" value="${partner.zipCode}" placeholder="ZIP Code">
+                                </div>
+                            </div>
 	                    </div>
 	                </div>
 	            </div>

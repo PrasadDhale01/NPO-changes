@@ -1,8 +1,8 @@
 $(function() {
 	
-	var partnerId = $('#partnerId').val();
+    var partnerId = $('#partnerId').val();
 	
-	$('.redactorEditor').redactor({
+    $('.redactorEditor').redactor({
         imageUpload:'/project/getRedactorImage',
         autosave: '/user/savedescription/?partnerId='+partnerId,
         imageResizable: true,
@@ -10,84 +10,84 @@ $(function() {
         buttonsHide: ['indent', 'outdent', 'horizontalrule', 'deleted','formatting']
     });
 	
-	$('.selectpicker').selectpicker({
+    $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
     });
 	
-	var validator = $('#partner-create-page').find('form').validate({
-		rules: {
-			orgName : {
-    			required: true,
-    			minlength: 3
-    		},
-    		answer : {
-    			required: true,
-    		},
-    		facebookUrl: {
-    		    required: true,
-    		    isFacebookUrl: true
-    		},
-    		website: {
-    			isWebUrl:true
-    		},
-    		partnerEmail: {
-    		    required: true
-    		},
-    		checkBox: {
-    		    required: true
-    		},
-    		city: {
-    		    required: true,
-    		    minlength: 3
-    		},
-    		state: {
-    		    required: true,
-    		    minlength: 3
-    		},
-    		zipCode: {
-    		    required: true
-    		},
-    		name: {
-    			required: true,
-    			minlength: 2
-    		},
-    		email: {
-    			required: true
-    		},
-    		telephone: {
-    			number: true
-    		},
-    		addressLine1: {
-    			required: true,
-    			minlength: 5
-    		},
-    		youtubeUrl: {
-    			isYoutubeVideo: true
-    		},
-    		twitterUrl: {
-            	isTwitterUrl: true
+    var validator = $('#partner-create-page').find('form').validate({
+        rules: {
+            orgName : {
+                required: true,
+                minlength: 3
+            },
+            answer : {
+                required: true,
+            },
+            facebookUrl: {
+                required: true,
+                isFacebookUrl: true
+            },
+            website: {
+                isWebUrl:true
+            },
+            partnerEmail: {
+                required: true
+            },
+            checkBox: {
+                required: true
+            },
+            city: {
+                required: true,
+                minlength: 3
+            },
+            state: {
+                required: true,
+                minlength: 3
+            },
+            zipCode: {
+                required: true
+            },
+            name: {
+                required: true,
+                minlength: 2
+            },
+            email: {
+                required: true
+            },
+            telephone: {
+                number: true
+            },
+            addressLine1: {
+                required: true,
+                minlength: 5
+            },
+            youtubeUrl: {
+                isYoutubeVideo: true
+            },
+            twitterUrl: {
+                isTwitterUrl: true
             },
             linkedinUrl: {
-            	isLinkedInUrl: true
+                isLinkedInUrl: true
             },
             customUrl: {
-            	maxlength: 55,
-            	minlength: 5,
-            	isCustomUrlUnique:true
+                maxlength: 55,
+                minlength: 5,
+                isCustomUrlUnique:true
             }
-    	},
-		errorPlacement: function(error, element) {
-			if ( element.is(":radio") ) {
-				error.appendTo(element.parent().parent());
-			} else if(element.is(":checkbox")) {
-				error.appendTo(element.parent());
-			} else if($(element).prop("id") == "customUrl") {
-				error.appendTo(element.parent());
-			} else{
-			    error.insertAfter(element);
-			}
-		}
-	});
+        },
+        errorPlacement: function(error, element) {
+            if ( element.is(":radio") ) {
+                error.appendTo(element.parent().parent());
+            } else if(element.is(":checkbox")) {
+                error.appendTo(element.parent());
+            } else if($(element).prop("id") == "customUrl") {
+                error.appendTo(element.parent());
+            } else{
+                error.insertAfter(element);
+            }
+        }
+    });
 	
 	$.validator.addMethod('isYoutubeVideo', function (value, element) {
         if(value && value.length !=0){
@@ -157,34 +157,34 @@ $(function() {
         return true;
     }, "Please enter valid Facebook url");
 	
-	$('#orgName').blur(function(){
-		if (validator.element("#orgName")) {
-    	    var orgName = $(this).val();
-    	    autoSave('orgName', orgName);
-		}
+    $('#orgName').blur(function(){
+        if (validator.element("#orgName")) {
+            var orgName = $(this).val();
+            autoSave('orgName', orgName);
+        }
     });
 	
-	$('#customUrl').blur(function() {
-		var customUrlStatus = $('#customUrlStatus').val();
-		if(validator.element("#customUrl") && customUrlStatus == 'true') {
-    	    var customUrl = $(this).val();
-    	    var delay = 50;
-    	    setTimeout(function() {
+    $('#customUrl').blur(function() {
+        var customUrlStatus = $('#customUrlStatus').val();
+        if(validator.element("#customUrl") && customUrlStatus == 'true') {
+            var customUrl = $(this).val();
+            var delay = 50;
+            setTimeout(function() {
                 autoSave('customUrl', customUrl.trim());
             }, delay);
-    	    
-	    }
+        
+        }
     });
 	
-	$('#customUrl').bind("paste",function(e) {
+    $('#customUrl').bind("paste",function(e) {
         e.preventDefault();
     });
 	
-	$('#youtubeUrl').blur(function(){
-		if (validator.element("#youtubeUrl")) {
-    	    var youtubeUrl = $(this).val();
-    	    autoSave('youtubeUrl', youtubeUrl);
-		}
+    $('#youtubeUrl').blur(function(){
+        if (validator.element("#youtubeUrl")) {
+            var youtubeUrl = $(this).val();
+            autoSave('youtubeUrl', youtubeUrl);
+        }
     });
 	
 	$('#linkedinUrl').blur(function(){

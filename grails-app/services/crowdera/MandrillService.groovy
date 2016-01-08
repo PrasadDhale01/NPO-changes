@@ -1295,4 +1295,37 @@ class MandrillService {
 
         inviteToShare(user.email, 'partner-discard', globalMergeVars, tags)
     }
+    
+    def sendEmailToContributors(Contribution contribution, def password){
+        def globalMergeVars = [[
+                'name': 'NAME',
+                'content': contribution.contributorName
+            ], [
+                'name': 'USERNAME',
+                'content': contribution.contributorEmail
+            ], [
+                'name':'PASSWORD',
+                'content' : password
+            ], [
+                'name': 'AMOUNT',
+                'content': contribution.amount
+            ],[
+                'name':'CURRENCY',
+                'content':(contribution.currency == 'USD') ? '$' : 'Rs. '
+            ],[
+                'name' : 'DATE',
+                'content':contribution.date.format("dd MMMM, YYYY")
+            ],[ 
+                'name': 'CAMPAIGNTITLE',
+                'content': contribution.project.title
+            ], [
+                'name':'BENEFICIARYNAME',
+                'content': contribution.project.beneficiary.firstName + ((contribution.project.beneficiary.lastName) ? (' ' + contribution.project.beneficiary.lastName) : '')
+            ]
+        ]
+
+        def tags = ['sendContributorUsernameAndPassword']
+
+        inviteToShare(contribution.contributorEmail, 'sendContributorUsernameAndPassword', globalMergeVars, tags)
+    }
 }

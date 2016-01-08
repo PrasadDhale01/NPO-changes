@@ -56,7 +56,7 @@
                     <input name="approveChk[]" type="checkbox"/><label class="control-label"><b>Images</b></label>
                 </li>
                 <li>
-                    <input name="approveChk[]" type="checkbox"/><label class="control-label"><b>Video</b></label>
+                    <input name="approveChk" type="checkbox"/><label class="control-label"><b>Video</b></label>
                 </li>
                 <li>
                     <input name="approveChk[]" type="checkbox"/><label class="control-label"><b>Verified</b></label>
@@ -98,7 +98,7 @@
                             </div>
                             <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
                         </div>
-                        <a class="btn btn-sm btn-block btn-default validatebutton TW-text-decoration visible-xs">ON HOLD</a>
+                        <g:link action="keepCampaignOnHold" controller="project" id="${project.id}" class="btn btn-sm btn-block btn-default validatebutton TW-text-decoration visible-xs">ON HOLD</g:link>
                         <g:link controller="project" action="updateValidation" id="${project.id}" class="btn btn-sm btn-block btn-primary validatebutton TW-text-decoration hidden-sm approvebtn-md" role="button">
                             <i class="glyphicon glyphicon-check validateshow-validate"></i>&nbsp;APPROVE
                         </g:link>
@@ -108,7 +108,7 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <g:render template="/layouts/personaldetails"/>
-                        <a class="btn btn-sm btn-block btn-default validatebutton TW-text-decoration hidden-xs">ON HOLD</a>
+                        <g:link action="keepCampaignOnHold" controller="project" id="${project.id}" class="btn btn-sm btn-block btn-default validatebutton TW-text-decoration hidden-xs">ON HOLD</g:link>
                         <g:link controller="project" action="updateValidation" id="${project.id}" class="visible-sm btn btn-sm btn-block btn-primary validatebutton TW-text-decoration approvebtn-sm" role="button">
                             <i class="glyphicon glyphicon-check validateshow-validate"></i>&nbsp;APPROVE
                         </g:link>
@@ -266,7 +266,7 @@
                             <label class="control-label"><b>Images</b></label><input name="approveChk[]" type="checkbox"/>
                         </div>
                         <div class="form-group">
-                            <label class="control-label"><b>Video</b></label><input name="approveChk[]" type="checkbox"/>
+                            <label class="control-label"><b>Video</b></label><input name="approveChk" type="checkbox"/>
                         </div>
                         <div class="form-group">
                             <label class="control-label"><b>Verified</b></label><input name="approveChk[]" type="checkbox"/>

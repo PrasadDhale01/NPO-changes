@@ -526,12 +526,13 @@ footer {
 	color:#f04124;
 	width:140%;
 }
-input.subscriberEmail{
-	font-size:13px;
-	font-weight:normal;
-	height:30px;
-	width:173px;
-	margin-left: 28px;
+
+footer input.subscriberEmail{
+    font-size:13px;
+    font-weight:normal;
+    height:30px;
+    width:173px;
+    margin-left: 28px;
 }
 hr.footer-hr{
     color: #666666;
@@ -9434,7 +9435,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	text-align: center;
 	margin-left:-31px !important;
     }
-   input.subscriberEmail {
+   footer input.subscriberEmail {
 	font-size: 13px;
 	font-weight: normal;
 	height: 30px;
@@ -9566,6 +9567,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+    .sendEmailToContributors{
+        left:75px;
+    }
     .cr-tax-files{
         width:170px;
     }
@@ -9977,18 +9981,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-right: 0px;
     }
     .partnersavebtn.btn-default {
-	    font-size: 20px;
-	    padding: 5px 100px;
-	}
-	#partner-create-page h1.mainheading {
-	    font-size: 24px;
-	    font-weight: 500;
-	    margin-bottom: 30px;
-	}
-	.partner-margin-bottom {
-	    margin-bottom: 15px;
-	}
-	.col-partner-page {
+        font-size: 20px;
+        padding: 5px 100px;
+    }
+    #partner-create-page h1.mainheading {
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 30px;
+    }
+    .partner-margin-bottom {
+        margin-bottom: 15px;
+    }
+    .col-partner-page {
         padding-right: 0px;
         padding-left: 0px;
     }
@@ -12024,7 +12028,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 
 @media only screen and (max-width: 991px){
-	.userdashboardstatstile.col-sm-4, .userdashboardstatstile.col-xs-12 {
+    .userdashboardstatstile.col-sm-4, .userdashboardstatstile.col-xs-12 {
         padding-left: 5px;
         padding-right: 5px;
     }

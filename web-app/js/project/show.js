@@ -175,11 +175,11 @@ $(function() {
         event.preventDefault();
         var redirectUrl = $(this).attr('href');
         var length = $('input[name="approveChk[]"]:checked').length;
-        if (length >= 12) {
+        if (length >= 11) {
             window.location.href = redirectUrl;
         } else {
         	$('#validateChecklistmsg').show();
-        	$('#validateChecklistmsg').fadeOut(3000);
+        	$('#validateChecklistmsg').fadeOut(30000);
         }
     });
     
@@ -271,7 +271,7 @@ $(function() {
                 $('#test').html(data);
                 }
         }).error(function(){
-            alert('An error occured');
+            console.log('An error occured');
         });
     }
     
@@ -309,7 +309,7 @@ $(function() {
                  $('#test').html(data);
                  }
          }).error(function(){
-             alert('An error occured');
+             console.log('An error occured');
          });
      }
 
@@ -830,7 +830,7 @@ $(function() {
     .hover(showPopover, hidePopover);
     
     $('#endedOfflineContribution').popover({
-        content: 'Sine the campaign has been ended, you cannot contribute offline',
+        content: 'Since the campaign has been ended, you cannot contribute offline',
         trigger: 'manual',
         placement: 'bottom'
     })

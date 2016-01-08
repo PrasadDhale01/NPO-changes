@@ -7,21 +7,30 @@
 <div class="feducontent">
    <div class="container footer-container">
        <div class="row row-transaction">
-           <h1 class="col-md-8 col-sm-8 col-xs-12">Transaction List</h1>
+           <h1 class="col-sm-6 col-xs-12">Transaction List</h1>
+           <div class="sendEmailToContributors col-sm-2 col-xs-6">
+               <g:link action="sendEmailToContributors" controller="fund" class="btn btn-primary btn-sm btn-xs-width sendContributorEmail">Send Email</g:link>
+           </div>
            <g:if test="${!contribution.empty }">
-           <div class="generateCSV col-md-2 col-sm-2 col-xs-6">
+           <div class="generateCSV col-sm-2 col-xs-6">
                <g:form controller="fund" action="generateCSV" Method="post" >
                    <g:hiddenField name="currency" value="${currency}"/>
                    <button type="submit" class="btn btn-primary btn-sm btn-xs-width pull-right" >Generate CSV</button>
                </g:form>
             </div>
           </g:if>
-          <div class="col-md-2 col-sm-2 col-xs-6 col-transaction">
+          <div class="col-sm-2 col-xs-6 col-transaction">
               <g:hiddenField name="url" value="${url}" id="url"/>
               <g:hiddenField name="currency" value="${contribution.currency}" id="currency"/>
               <g:select class="selectpicker text-center" name="transactionSort" id="transactionSort" from="${transactionSort}" optionKey="value" optionValue="value" onchange="showSortedTransaction()"/>
           </div>
        </div>
+       <div class="clear"></div>
+       <g:if test="${flash.contributorUsernameAndPwdmessage}">
+           <div class="alert alert-info text-center">
+               ${flash.contributorUsernameAndPwdmessage}
+           </div>
+       </g:if>
        <div class="currencyconvertor" id="currencyconvertor">
            <g:form action="currency" controller="user">
                <div class="currencydiv col-md-4 col-xs-8">

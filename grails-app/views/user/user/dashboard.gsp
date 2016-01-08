@@ -225,43 +225,43 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 userdashboardstatstile">
-		  	    	    <div class="panel panel-success">
-				            <div class="panel-heading">
-				                <div class="row">
-				                    <div class="col-xs-2 col-md-2 hidden-sm">
-				                        <i class="fa fa-leaf fa-3x"></i>
-    				                </div>
-	    			                <div class="col-xs-10 col-sm-12 col-md-10 text-right">
-		    		                    <p class="announcement-heading">
-			    	                        <span class="amountSection-Font"><g:if test="${environment == 'prodIndia' || environment == 'stagingIndia' || environment == 'testIndia'}"><span class="fa fa-inr"></span>${contributedAmount.round() * multiplier}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
-				                        </p>
-				                    </div>
-				                </div>
-				            </div>
-				            <div class="panel-footer announcement-bottom">
-				                Contributed
-				            </div>
-				        </div>
-				    </div>
-				
-				    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 userdashboardstatstile">
-				        <div class="panel panel-warning">
-				            <div class="panel-heading">
-    				            <div class="row">
-	    			                <div class="col-xs-2 col-md-2 hidden-sm">
-		    		                    <i class="fa fa-leaf fa-3x"></i>
-			    	                </div>
-				                    <div class="col-xs-10 col-sm-12 col-md-10 text-right">
-				                        <p class="announcement-heading">${projects.size()}</p>
-				                    </div>
-				                </div>
-				            </div>
-				            <div class="panel-footer announcement-bottom">
-				                Campaigns
-				            </div>
-				        </div>
-				    </div>
-			    </div>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-2 col-md-2 hidden-sm">
+                                        <i class="fa fa-leaf fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-10 col-sm-12 col-md-10 text-right">
+                                        <p class="announcement-heading">
+                                            <span class="amountSection-Font"><g:if test="${environment == 'prodIndia' || environment == 'stagingIndia' || environment == 'testIndia'}"><span class="fa fa-inr"></span>${contributedAmount.round() * multiplier}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer announcement-bottom">
+                                Contributed
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 userdashboardstatstile">
+                        <div class="panel panel-warning">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-2 col-md-2 hidden-sm">
+                                        <i class="fa fa-leaf fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-10 col-sm-12 col-md-10 text-right">
+                                        <p class="announcement-heading">${projects.size()}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer announcement-bottom">
+                                Campaigns
+                            </div>
+                        </div>
+                    </div>
+                </div>
 				
                 <div class="col-md-12 col-sm-12 col-lg-12" id="vitalseperator">
                     <hr>

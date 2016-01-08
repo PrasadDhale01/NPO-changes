@@ -1,6 +1,6 @@
 <div class="container how-it-work-container">
    <div class="row">
-    <h1 class="text-center headingtext1">Multiple Reason to Fundraise on Crowdera</h1>
+    <h1 class="text-center headingtext1">Multiple Reasons to Fundraise on Crowdera</h1>
    </div> 
 </div>
 <div class="container whycrowderatemplate how-it-work-container">

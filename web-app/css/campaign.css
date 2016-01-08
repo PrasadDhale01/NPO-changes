@@ -1065,11 +1065,29 @@ label.cr-spend-guide-text{
     font-variant: normal;
     text-decoration: none;
 }
-
 img.home-img-large-size{
     width: 100%;
 }
-
+.show-header-height {
+    height: 100% !important;
+    margin-left: -38px;
+}
+.show-header-navtabs .navbar-collapse.collapse{
+    height: 70% !important;
+}
+.show-paddingsbtn {
+    padding-left: 180px;
+}
+.show-paddingsbtn-submitapprov{
+    padding-left: 180px;
+}
+.show-tabsDesktop-headers {
+    top: 5px;
+    left: 18px;
+}
+.show1-Primary{
+    display: none;
+}
 .whatsapp-mobile-icon {
      position: fixed;
      bottom: 70px;

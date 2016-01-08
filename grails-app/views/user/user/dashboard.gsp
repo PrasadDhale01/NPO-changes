@@ -106,7 +106,7 @@
     </div>
 </g:if>
 <g:else>
-    <div class="partner-dashboard" id="wrapper">
+    <div class="partner-dashboard user-dashboard" id="wrapper">
         <g:hiddenField name='currentEnv' value='${environment}' id='currentEnv'/>
         
         <div class="navbar navbar-default navbar-fixed-top visible-xs" id="partner-sec-header">

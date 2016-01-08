@@ -7,7 +7,7 @@
     <div class="feducontent partnercreatepage">
         <div class="container footer-container" id="partner-create-page">
             <h1 class="mainheading">Create your Partner Page</h1>
-            <g:uploadForm action="" controller="user">
+            <g:uploadForm action="partnersave" controller="user">
                 <g:hiddenField name="partnerId" value="${partner.id}"/>
                 <g:hiddenField name="customUrlStatus" id="customUrlStatus" value="true"/>
                 

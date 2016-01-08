@@ -13937,7 +13937,13 @@ textarea.textarea-embed-video {
         margin-top: 6px;
     }
     #partner-sec-header .user-dashboard-header.navbar-header {
-        margin-top: 16px;
+        margin-top: 13px;
+    }
+    .user-dashboard #partner-sec-header{
+        height: 50px;
+    }
+    .user-dashboard #partner-third-header {
+        top: 94px;
     }
     #partner-sec-header .navbar-header .span-space {
         color: white;

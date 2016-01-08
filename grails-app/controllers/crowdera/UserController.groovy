@@ -827,10 +827,25 @@ class UserController {
     }
     
     def newpartner() {
-        def loginSignUpCookie = projectService.setLoginSignUpCookie()
-        if (loginSignUpCookie) {
-            response.addCookie(loginSignUpCookie)
+        def user = userService.getCurrentUser()
+        
+        if (!user) {
+            def loginSignUpCookie = projectService.setLoginSignUpCookie()
+            if (loginSignUpCookie) {
+                response.addCookie(loginSignUpCookie)
+            }
+            
+            def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+            def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+            
+            def reqUrl = base_url+"/user/createpartner"
+            
+            Cookie cookie = new Cookie("requestUrl", reqUrl)
+            cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
+            cookie.maxAge= 3600  //Cookie expire time in seconds
+            response.addCookie(cookie)
         }
+        
         redirect action:'createpartner'
     }
     

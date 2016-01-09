@@ -467,24 +467,24 @@ $(function() {
     $( document ).ready(function() {
     	
     	$(document).on('change', '.btn-file :file', function() {
-    		  var filename =this.files[0].name;
-    		  var input = $(this),
-    		      fileExt = filename.substr(filename.lastIndexOf('.') + 1),
-    		      label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-    		      input.trigger('fileselect', [fileExt, label]);
-    		});
+            var filename =this.files[0].name;
+            var input = $(this),
+                        fileExt = filename.substr(filename.lastIndexOf('.') + 1),
+                        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                        input.trigger('fileselect', [fileExt, label]);
+        });
 
         
-    	$('.btn-file :file').on('fileselect', function(event, fileExt, label) {
-            
+        $('.btn-file :file').on('fileselect', function(event, fileExt, label) {
+
             var input = $(this).parents('.input-group').find(':text'),
-                log = (fileExt != 'csv') ? 'Select csv file' : label;
-            if(fileExt=='csv'){
-	        	  $('.upload').removeClass('has-error');
-	          }else{
-	        	  $('.upload').addClass('has-error');
-	        }
-            
+                        log = (fileExt != 'csv') ? 'Select csv file' : label;
+            if(fileExt=='csv'){ 
+                $('.upload').removeClass('has-error');
+            }else{
+                $('.upload').addClass('has-error');
+            }
+   
             if( input.length ) {
                 input.val(log);
             }
@@ -633,9 +633,9 @@ $(function() {
                 	    $('.upload').addClass('has-error');
                 	    $('.contactlist').val('');
                 	}else{
-                		$('.csv-empty-emails').removeClass("csv-empty-emails-error");
-                		$('.upload').removeClass('has-error');
-                	    $('.contactlist').val(list.contacts);
+                        $('.csv-empty-emails').removeClass("csv-empty-emails-error");
+                        $('.upload').removeClass('has-error');
+                        $('.contactlist').val(list.contacts);
                 	}
                 }
             }

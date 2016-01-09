@@ -19,7 +19,9 @@
             </g:if>
         </div>
         <br><br>
-        <h4><b class="TW-org-title-font-size">${project.organizationName}</b></h4>
+        <g:if test="${project.organizationName}">
+            <h4><b class="TW-org-title-font-size">${project.organizationName}</b></h4>
+        </g:if>
         <div class="tilesanstitletag">
             <g:if test="${project.draft}">
                 <img src="//s3.amazonaws.com/crowdera/assets/Draft-tag.png" alt="draft">

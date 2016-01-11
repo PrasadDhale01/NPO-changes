@@ -2179,6 +2179,7 @@ class ProjectController {
         Project project = projectService.getProjectById(params.projectId)
         project.organizationName = params.organizationname
         project.charitableId = params.charitableId
+        project.paypalEmail = null;
         project.save()
         render''
     }

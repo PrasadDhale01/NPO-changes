@@ -453,9 +453,11 @@ $(function() {
               $(this).rules("add", {
                   required: true,
                   minlength: 3,
+                  maxlength:55,
                   messages: {
                   	required: 'Required',
-                  	minlength: 'min 3 characters'
+                  	minlength: 'min 3 characters',
+                    maxlength: 'max 55 characters'
                   }
               });
           });
@@ -763,9 +765,11 @@ $(function() {
 			$(this).rules("add", {
 				required: true,
 				minlength: 3,
+				maxlength: 55,
 				messages: {
 					required: 'Required',
-					minlength: 'min 3 characters'
+					minlength: 'min 3 characters',
+					maxlength: 'max 55 characters'
 				}
 			});
 		});
@@ -1779,7 +1783,7 @@ $(function() {
         var file = this.files[0];
         if(validateExtension(file.name) == false) {
             $('.pr-thumbnail-div').hide();
-            $('.imgmsg').show();
+            $('.imgmsg').css("display","block");
             $('.imgmsg').html("Add only PNG or JPG extension images");
             $('.campaignfilesize').hide();
             this.value=null;
@@ -2288,9 +2292,11 @@ $(function() {
                   $(this).rules("add", {
                       required: true,
                       minlength:3,
+                      maxlength:55,
                       messages: {
                       	required: 'Required',
-                      	minlength: 'min 3 characters'
+                      	minlength: 'min 3 characters',
+                      	maxlength: 'max 55 characters'
                       }
                   });
               });

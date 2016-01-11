@@ -186,7 +186,7 @@
                             <div class="col-md-12">
                                 <div id="uploadingCampaignImage">Uploading Image......</div>
                                 <div class="imageNumValidation">You cannot upload more than 5 images</div>
-                                <label class="docfile-orglogo-css imgmsg">Please select image file.</label>
+                                <label class="docfile-orglogo-css imgmsg"></label>
                                 <label class="docfile-orglogo-css campaignfilesize" id="campaignFilesizeID"></label>
                             </div>
                         </div>
@@ -208,7 +208,7 @@
                     </div>
                     <div class="clear"></div>
                     <div class="col-sm-12 col-error-placement" id="col-error-placement">
-                        <label class="docfile-orglogo-css imgmsg">Please select image file.</label>
+                        <label class="docfile-orglogo-css imgmsg"></label>
                         <label class="docfile-orglogo-css campaignfilesize" id="campaignFilesizeID1"></label>
                     </div>
                 </div>

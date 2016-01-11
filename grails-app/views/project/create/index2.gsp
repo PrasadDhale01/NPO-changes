@@ -262,6 +262,7 @@
                                         <div class="col-sm-5 col-xs-7 col-input-for form-group">
                                             <input type="text" class="form-control form-control-input-for spendCause" id="spendCause${spend.numberAvailable}" name="spendCause${spend.numberAvailable}" value="${spend.cause}">
                                         </div>&nbsp;&nbsp;
+                                        <div class="clear visible-xs"></div>
                                         <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
                                             <g:hiddenField name="spendFieldSave" value="${spend.numberAvailable}" class="spendFieldSave" id="spendFieldSave${spend.numberAvailable}"/>
                                             <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>
@@ -299,6 +300,7 @@
                                 <div class="col-sm-5 col-xs-7 col-input-for form-group">
                                 <input type="text" class="form-control form-control-input-for spendCause" id="spendCause1" name="spendCause1">
                                 </div>&nbsp;&nbsp;
+                                <div class="clear visible-xs"></div>
                                 <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
                                     <g:hiddenField name="spendFieldSave" value="1" class="spendFieldSave" id="spendFieldSave1"/>
                                     <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>

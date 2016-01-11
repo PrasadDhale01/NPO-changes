@@ -2225,6 +2225,7 @@ $(function() {
 						'<div class="form-group col-sm-5 col-xs-7 col-input-for">'+
 						'	<input type="text" class="form-control form-control-input-for spendCause" id="spendCause'+nextCount+'" name="spendCause'+nextCount+'">'+
 						'</div>'+
+						'<div class="clear visible-xs"></div>'+
 						'<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">'+
 							'<input type="hidden" name="spendFieldSave" value="'+nextCount+'" class="spendFieldSave" id="spendFieldSave'+nextCount+'">'+
 							'<i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>'+

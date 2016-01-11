@@ -95,6 +95,7 @@
                                 <g:if test="${project.webAddress}">
                                     <br><label>Web: <a href="${webUrl}" target="${webUrl}">${project.webAddress}</a></label>
                                 </g:if>
+                                <br><label>Email: <a href="mailto:${beneficiary.email}">${beneficiary.email}</a></label>
                             </div>
                             <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
                         </div>
@@ -133,15 +134,6 @@
                                 <label><b>Payment mode : </b>Paypal</label><br>
                                 <label><b>Paypal Email : </b>${project.paypalEmail}</label><br>
                             </g:else>
-                            <label><b>Purpose : </b>${project.usedFor}</label><br>
-                            <label><b>Category : </b>${project.category}</label><br>
-                            <g:if test="${project.rewards.size() > 1}">
-                                <label><b>Rewards : </b>${project.rewards.size()}</label><br>
-                            </g:if>
-                            <g:else>
-                                <label><b>Rewards : </b> No Rewards</label><br>
-                            </g:else>
-                            <label><b>Teams : </b>${project.teams.size()}</label>
                         </div>
                         <g:form action="delete" controller="project" id="${project.id}" method="post">
                             <button class="validatebtn btn btn-sm btn-danger btn-block hidden-sm hidden-xs validateshow-discard" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to reject this campaign?&#39;);"><i class="fa fa-trash-o"></i>&nbsp;REJECT</button>

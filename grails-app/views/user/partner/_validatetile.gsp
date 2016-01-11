@@ -10,7 +10,12 @@
         def amount = campaign.amount.round()
     %>
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 campaign-tile-seperator">
-        <div class="list-group-item campaign-tile-width">
+        <div class="thumbnail campaign-tile-width">
+            <g:if test="${campaign.onHold}">
+                <div class="over user-tile">
+                    <img src="//s3.amazonaws.com/crowdera/assets/on-hold.png" alt="On Hold">
+                </div>
+            </g:if>
             <div class="blacknwhite">
                 <g:link controller="project" action="validateShowCampaign" id="${campaign.id}" title="${campaign.title}">
                     <div class="userprofile-days">

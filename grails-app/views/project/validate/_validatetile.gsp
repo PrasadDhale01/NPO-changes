@@ -29,7 +29,12 @@
 %>
 
 <g:if test="${!projectValidate}">
-    <div class="fedu thumbnail grow validate-paddings">
+    <div class="fedu thumbnail grow validate-paddings user-tiles-style">
+        <g:if test="${project.onHold}">
+            <div class="over user-tile">
+                <img src="//s3.amazonaws.com/crowdera/assets/on-hold.png" alt="On Hold">
+            </div>
+        </g:if>
         <div class="blacknwhite">
             <g:link controller="project" action="validateShowCampaign" id="${project.id}" title="${project.title}">
                 <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>

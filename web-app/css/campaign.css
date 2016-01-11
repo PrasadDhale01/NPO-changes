@@ -1068,3 +1068,38 @@ label.cr-spend-guide-text{
 img.home-img-large-size{
     width: 100%;
 }
+.show-header-height {
+    height: 100% !important;
+    margin-left: -38px;
+}
+.show-header-navtabs .navbar-collapse.collapse{
+    height: 70% !important;
+}
+.show-paddingsbtn {
+    padding-left: 180px;
+}
+.show-paddingsbtn-submitapprov{
+    padding-left: 180px;
+}
+.show-tabsDesktop-headers {
+    top: 5px;
+    left: 18px;
+}
+.show1-Primary{
+    display: none;
+}
+.whatsapp-mobile-icon {
+     position: fixed;
+     bottom: 70px;
+     right: 3%;
+     z-index: 100;
+ }
+ 
+ .whatsapp-mobile-icon .btn-whatsapp{
+     width: 60px;
+     height: 60px;
+     border-radius: 50%;
+     outline: 0px;
+     background-color: #29a628;
+     padding: 14px;
+ }

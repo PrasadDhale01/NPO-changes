@@ -175,11 +175,11 @@ $(function() {
         event.preventDefault();
         var redirectUrl = $(this).attr('href');
         var length = $('input[name="approveChk[]"]:checked').length;
-        if (length >= 12) {
+        if (length >= 11) {
             window.location.href = redirectUrl;
         } else {
         	$('#validateChecklistmsg').show();
-        	$('#validateChecklistmsg').fadeOut(3000);
+        	$('#validateChecklistmsg').fadeOut(30000);
         }
     });
     
@@ -830,7 +830,7 @@ $(function() {
     .hover(showPopover, hidePopover);
     
     $('#endedOfflineContribution').popover({
-        content: 'Sine the campaign has been ended, you cannot contribute offline',
+        content: 'Since the campaign has been ended, you cannot contribute offline',
         trigger: 'manual',
         placement: 'bottom'
     })
@@ -894,6 +894,7 @@ $(function() {
     	 window.scrollTo(toptabs,toptabs);
     });
     
+    $('.show1-Primary').hide();
     $( document ).ready(function() {
         function sticky_relocate() {
             var window_top = $(window).scrollTop();
@@ -915,10 +916,12 @@ $(function() {
 //		    Top header code
             if (window_top > div_top) {
                 $('.show1-Primary').addClass('sh-primery-header-padding');
+                $('.show1-Primary').show();
                 $('.main-header-gsp').hide();
 		        
             } else if(window_top < div_top ){
                 $('.show1-Primary').removeClass('sh-primery-header-padding');
+                $('.show1-Primary').hide();
                 $('.main-header-gsp').show();
             }
             if( window_top > top_fund) {

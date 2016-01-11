@@ -1417,18 +1417,48 @@ class UserService {
         }
         return doProjectHaveAnyContribution
     }
-    
+
     def userHasContributedToNonProfitOrNgo(User user){
         Boolean result = false
         def contributions = Contribution.findAllWhere(user:user)
         if (contributions){
             contributions.each{
-                if (it.project.offeringTaxReciept){
+                if (it.receiptSent){
                     result = true;
                 }
             }
         }
         return result
+    }
+
+    def getContributionsForWhichTaxReceiptreceived(User user, def params){
+        def contributions = Contribution.findAllWhere(user:user)
+        List contributionList = []
+        def contributionsOffset
+        if (contributions){
+            contributions.each{
+                if (it.receiptSent){
+                    contributionList.add(it);
+                }
+            }
+        }
+        
+        if (contributionList && !contributionList.empty){
+            def offset = params.offset ? params.int('offset') : 0
+            def max = 10
+            def count = contributionList.size()
+            def maxrange
+
+            if(offset + max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            contributionsOffset = contributionList.reverse().subList(offset, maxrange)
+        }
+        
+        return [totalTaxReceiptContributions:contributionList, taxReceiptList:contributionsOffset]
+
     }
 
     def getSortedContributorsForProject(def params){

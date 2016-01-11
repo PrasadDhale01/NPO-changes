@@ -1384,6 +1384,19 @@ div.dashboardtile-min-height {
 	box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
 	text-align: center;
 	vertical-align: center;
+	width:145px;
+}
+.tax-reciept-project-title{
+	text-overflow: ellipsis;
+	word-wrap: normal;
+	overflow: hidden;
+	color: #6D6E6E;
+	white-space: nowrap;
+	text-align: center;
+	padding: 5px;
+	cursor: pointer;
+	width: 146px;
+	margin-left: 24px;
 }
 
 .tax-receipt-thumbnail-container:hover .tax-reciept-project-title{
@@ -1443,4 +1456,13 @@ div.search-sort-back div.search-sort{
 
 .col-send-email {
     margin-left: 20px;
+}
+
+#selectedLength {
+    padding-right: 20px;
+    padding-top: 7px;
+}
+
+#email-send-confirmation{
+	display:none;
 }

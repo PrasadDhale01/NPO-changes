@@ -1,6 +1,6 @@
 <div class="tax-receipt-background">
-<g:each in="${contributions}" var="contribution">
-	<div class="col-sm-4 col-md-3 col-lg-3 col-xs-6 text-center file-thumbnail-div" data-toggle="modal" data-target="#tax-receipt">
+<g:each in="${taxReceiptContribution}" var="contribution">
+	<div class="col-sm-4 col-md-3 col-lg-3 col-xs-6 text-center file-thumbnail-div" data-contribution="${contribution.id}" data-toggle="modal" data-target="#tax-receipt">
 		<div class="tax-receipt-thumbnail-container file-thumbnail-container ">
 			<div class="tax-receipt-thumbnail">
                 <span class="glyphicon glyphicon-file"></span>
@@ -12,6 +12,28 @@
 	</div>
 </g:each>
 </div>
+
+<div class="clear"></div>
+<div class="pull-right exportpaginate filespaginate">
+    <g:paginate controller="user" max="6" action="loadExportThumbnail" total="${totalProjects.size()}"/>
+</div>
+
+<script>
+    /*Pagination logic*/
+    $(".exportTaxReceiptThumbnail").find('.exportpaginate a').click(function(event) {
+        event.preventDefault();
+        var url = $(this).attr('href');
+        var grid = $(this).parents('.exportTaxReceiptThumbnail');
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function(data) {
+                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+            }
+        });
+    });
+</script>
 
 <div class="modal fade" id="tax-receipt" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">

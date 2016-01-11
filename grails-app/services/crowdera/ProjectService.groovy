@@ -576,7 +576,7 @@ class ProjectService {
 		 
 		 return result
 	 }
-	 
+
 	 def getOfflineDetails(def params){
 		 def project = Project.get(params.id)
 		 def user = User.findByUsername('anonymous@example.com')
@@ -601,7 +601,7 @@ class ProjectService {
                  contributorEmail: params.contributorEmail1,
 				 isContributionOffline: true,
 				 fundRaiser: username,
-                                 currency:currency
+                 currency:currency
 			 )
 			 project.addToContributions(contribution).save(failOnError: true)
  
@@ -4902,6 +4902,13 @@ class ProjectService {
         } else {
             return false
         }
+    }
+    
+    def sendTaxReceiptToContributors(def params){
+        def list = [];
+        def idList = params.list.split(",");
+        idList = idList.collect { it.trim() }
+        mandrillService.sendTaxReceiptToContributors(idList);
     }
     
     @Transactional

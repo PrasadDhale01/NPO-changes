@@ -450,6 +450,17 @@ class UserController {
             contributionList:contributorListForProject.contributions, sort:params.sort]
         }
     }
+    
+    def loadExportThumbnail(){
+        def user = userService.getCurrentUser();
+        def taxReceiptRecievedList = userService.getContributionsForWhichTaxReceiptreceived(user, params)
+        
+        if (request.xhr) {
+            def model = [totalTaxReceiptContributions:taxReceiptRecievedList.totalTaxReceiptContributions, taxReceiptContribution:taxReceiptRecievedList.taxReceiptList]
+            
+            render template: '/user/user/exportTaxReceipt', model : model
+        }
+    }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
         def exportTaxReceipt() {
@@ -699,6 +710,7 @@ class UserController {
             def contributorListForProject, totalContributions, contributionList
             def sortList = (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') ? contributionService.contributorsSortInd() : contributionService.contributorsSortUs();
             def vanityTitle
+            def taxReceiptRecievedList = userService.getContributionsForWhichTaxReceiptreceived(user, params)
             if (projectList.totalProjects.size() == 1) {
                 contributorListForProject = contributionService.getContributorsForProject(projectList.totalProjects[0].id, params)
                 totalContributions = contributorListForProject.totalContributions
@@ -719,7 +731,8 @@ class UserController {
                    projects:projectList.projects, totalUserCampaigns: userCampaign.totalprojects, currentEnv: currentEnv,
                    contributorListForProject:contributorListForProject, totalContributions:totalContributions, sortList:sortList,
                    userHasContributedToNonProfitOrNgo:userHasContributedToNonProfitOrNgo, vanityTitle:vanityTitle,
-                   contributionList:contributionList]
+                   contributionList:contributionList, totalTaxReceiptContributions:taxReceiptRecievedList.totalTaxReceiptContributions,
+                   taxReceiptContribution:taxReceiptRecievedList.taxReceiptList]
         }
     }
 
@@ -887,17 +900,18 @@ class UserController {
             render template : '/user/partner/folders', model: model
         }
     }
-    
-    def exportTaxReceiptpdf() {
-        response.setContentType("application/pdf")
-        response.setHeader("Content-Disposition", "attachment; filename=taxreceipt.pdf")
-        renderPdf(template:"/user/user/taxReceipt", model:[pdfRendering:true])
-    }
 
+    def exportTaxReceiptpdf() {
+        def contribution = Contribution.get(params.id)
+        def title = contribution.project.organizationName
+        response.setContentType("application/pdf")
+        response.setHeader("Content-Disposition", "attachment; filename=taxreceipt-"+title+".pdf")
+        renderPdf(template:"/user/user/taxReceipt", model:[pdfRendering:true, contribution:contribution])
+    }
 
     @Secured(['ROLE_ADMIN'])
     def deletePartner() {
-        Partner partner = userService.getPartnerById(params.int('partnerId'))
+        Partner partner = userServicoe.getPartnerById(params.int('partnerId'))
         if (partner) {
             boolean isPartnerDeleted = userService.deletePartner(params, partner)
             if (isPartnerDeleted) {
@@ -958,6 +972,12 @@ class UserController {
             }
         }
 
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def sendTaxReceiptToContributors(){
+       projectService.sendTaxReceiptToContributors(params);
+       render ''
     }
 
 }

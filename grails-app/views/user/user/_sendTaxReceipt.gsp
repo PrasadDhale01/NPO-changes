@@ -48,12 +48,15 @@
 
 <div class="clear"></div>
 <div class="pull-right col-send-email">
-    <button class="btn btn-primary btn-sm">Send Email</button>
+    <button class="btn btn-primary btn-sm sendEmailToContributors">Send Email</button>
 </div>
 
 <div class="pull-right">
-    <button class="btn btn-primary btn-sm" class="selectAllCheckbox">Select All</button>
+    <input type="button" value="Select all" class="btn btn-primary btn-sm selectAllCheckbox">
 </div>
+
+<span class="pull-right" id="selectedLength"></span>
+<div id="email-send-confirmation">Email has been send to the contributors</div>
 </g:if>
 <g:else>
     <div class="col-sm-12">
@@ -118,7 +121,7 @@
         });
     });
 
-	/*Search by contributo name*/
+	/*Search by contributor name*/
 	$('.search-contributors').keypress(function (e) {
 		var key = e.which;
 		if(key == 13){ // the enter key code
@@ -136,4 +139,45 @@
 			});
 		}
 	});
+
+    $('.contributor-checkbox-select').click(function(){
+    	var length = $('.contributor-checkbox-select:checked').length;
+    	document.getElementById("selectedLength").innerHTML= length + " selected";
+    });
+
+	$('.selectAllCheckbox').click(function (){
+		if ($(this).hasClass('deSelectAllCheckbox')) {
+			$('.contributor-checkbox-select').prop('checked', false);
+	        document.getElementById("selectedLength").innerHTML= " ";
+	        this.value = 'Select all';
+	        $(this).removeClass('deSelectAllCheckbox');
+		} else {
+	        var length = $('.contributor-checkbox-select').length;
+			$('.contributor-checkbox-select').prop('checked', true);
+	        document.getElementById("selectedLength").innerHTML= length + " selected";
+	        this.value = 'Deselect all';
+	        $(this).addClass('deSelectAllCheckbox');
+		}
+	});
+
+	$('.sendEmailToContributors').click(function(){
+		var list =[];
+		var vanityTitle = $('.vanityTitle').val();
+		$('.contributor-checkbox-select:checked').each(function (){
+			list.push(this.id);
+		});
+
+		$.ajax({
+            type: 'post',
+            url:baseUrl+'/user/sendTaxReceiptToContributors',
+            data:'vanityTitle='+vanityTitle+'&list='+list,
+            success: function(data) {
+                $('#email-send-confirmation').show().fadeOut(9000);
+            }
+        }).error(function(e){
+            console.log('Error occured while sending email to contributors');
+        });
+
+	});
+
 </script>

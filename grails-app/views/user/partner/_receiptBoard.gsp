@@ -17,12 +17,11 @@
     </ul>
 </div>
 
-<div class="clear"></div>
+<div class="clear"></div><br>
 <div class="tab-content">
 	<div class="active tab-pane tab-pane-active" id="sendReceipt">
 		<g:if test="${isUserProjectHavingContribution}">
 			<g:if test="${contributorListForProject}">
-                <br><g:select class="selectpicker contributorsSort pull-right" name="contributorsSort" from="${sortList}" optionKey="key" optionValue="value"/>
                 <div class="send-tax-receipt-to-contributors">
                     <g:render template="/user/user/sendTaxReceipt" model="[sort:'All']"/>
 			    </div>
@@ -45,7 +44,7 @@
 			</div>
 		</g:else>
 	</div>
-	<div class="tab-pane tab-pane-active" id="exportReceipt">
+	<div class="tab-pane tab-pane-active exportTaxReceiptThumbnail" id="exportReceipt">
 		<g:if test="${userHasContributedToNonProfitOrNgo}">
 			<br><g:render template="/user/user/exportTaxReceipt"/>
 		</g:if>

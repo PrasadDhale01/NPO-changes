@@ -15,7 +15,12 @@ class UserRole implements Serializable {
 	User user
 	Role role
 
-	boolean equals(other) {
+	@Override
+    public String toString() {
+        return "UserRole [user=" + user + ", role=" + role + "]";
+    }
+
+    boolean equals(other) {
 		if (!(other instanceof UserRole)) {
 			return false
 		}

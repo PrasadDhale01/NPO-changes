@@ -131,7 +131,7 @@
                             <label class="pull-right " id="titleLength"></label>
 	                    </div>
 	               </div>
-	               <div class="col-lg-6 col-md-6 col-sm-6">
+	               <div class="col-lg-6 col-md-6 col-sm-6 campaignCustomVanityUrl">
 	                   <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 hidden-xs cr1-tabs-padding">My campaign web address</label>
                        <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 visible-xs">
                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
@@ -152,8 +152,8 @@
 		                   </div>
 	                       <input class="form-control form-control-no-border cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd cr1-vanitypadding-in-co cr1-paddings-lft" name="customVanityUrl" id="customVanityUrl" placeholder="Your-Campaign-Web-Url">
 	                   </div>
-	                   <div class="clear"></div>
-	                   <label class="pull-right " id="vanityUrlLength"></label>
+	                   <div class="clear" id="vanityUrlClear"></div>
+	                   <label class="pull-right" id="vanityUrlLength"></label>
 	               </div>
                 <div class="clear"></div><br>
 

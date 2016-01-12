@@ -9971,6 +9971,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	.campaignCustomVanityUrl label#vanityUrlLength {
+        margin-right: 0px;
+    }
+    .campaignCustomVanityUrl .help-block, .editCustomVanityUrl .help-block {
+        padding-left: 0px;
+    }
 	#partner-sec-header .user-dashboard-header {
         width: 320px !important;
         height: 75px;
@@ -12623,6 +12629,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /*Screen resolution 644 x 767 */
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.editCustomVanityUrl label#vanityUrlLength {
+        margin-right: 8px;
+    }
     .form-group.col-sm-6.rewardPriceClass{
         padding-left:16px;
         width:102% !important;
@@ -12905,10 +12914,11 @@ textarea.textarea-embed-video {
 	}
 }
 @media only screen and (max-width: 640px){
-    .shippingreward > .btn-primary
-    {
+	.editCustomVanityUrl label#vanityUrlLength {
+        margin-right: 17px;
+    }
+    .shippingreward > .btn-primary {
        margin-left: 0px !important;
-/*        margin-right: 31px !important; */
        margin-top: 8px !important;
        width: 116px !important;
        padding-left: 16px !important;

@@ -133,5 +133,6 @@ class UrlMappings {
         "/partners"(controller:'user', action:'partners')
         "/partnering-with-crowdera"(controller:'user', action:'partnerFaq')
         "/partner/new"(controller:'user', action:'createpartner')
+        "/partner/edit"(controller:'user', action:'editpartner')
     }
 }

@@ -252,6 +252,8 @@ $(function() {
                 error.appendTo(document.getElementById("col-error-placement"));
             }else if($(element).prop("id") == "editiconfile") {
                 error.appendTo(element.parent().parent());
+            }else if($(element).prop("id") == "customVanityUrl") {
+                error.appendTo(element.parent().parent());
             }else{
                 error.insertAfter(element);
             }
@@ -1702,7 +1704,8 @@ $(function() {
         } else {
         if(file.size < 1024 * 1024 * 3) {
             isvalidFilesize =  true;
-            $('.uploadingFile').show();
+//            $('.uploadingFile').show();
+            $('#loading-gif').show();
 
             var formData = !!window.FormData ? new FormData() : null;
             var name = 'file';
@@ -1714,7 +1717,7 @@ $(function() {
             var xhr = new XMLHttpRequest();
             xhr.open('POST', $("#b_url").val()+'/project/uploadTaxRecieptFiles');
             xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-         
+            
             // complete
             xhr.onreadystatechange = $.proxy(function() {
                 if (xhr.readyState == 4) {
@@ -1734,7 +1737,8 @@ $(function() {
                     div.innerHTML = "<div class=\"cr-tax-files\"><div class=\"col-file-name\">"+file.name +"</div><div class=\"deleteicon\"><button type=\"button\" class=\"close\" onClick=\"deleteTaxRecieptFiles(this,'"+json.fileId+"','"+taxRecieptId+"');\">&times;</button></div></div>";
 
                     output.insertBefore(div, null);
-                    $('.uploadingFile').hide();
+//                    $('.uploadingFile').hide();
+                    $('#loading-gif').show();
                 }
             }, this);
             xhr.send(formData);
@@ -1769,6 +1773,84 @@ $(function() {
         } else {
 	        currentstring = currentstring;
             $('#titleLength').text(currentstring+'/55');
+        }
+    }
+    
+    var counter = 1;
+    $('#customVanityUrl').on('keydown', function(event) {
+    
+        event.altKey==true;
+        var currentstring = $('#customVanityUrl').val().length;
+
+        if(currentstring <=55) {
+        	if (currentstring == 55) {
+        		var text = currentstring ;
+        	} else {
+        		var text = currentstring + 1;
+        	}
+        }
+        if (event.keyCode > 31) {
+            if(event.altKey==true){
+    	         setTitleText();
+            }
+            else{
+  	             if(currentstring <54)
+  		             currentstring++;
+                 $('#vanityUrlLength').text(text+'/55');
+            }
+
+        } else {
+	        currentstring--;
+            $('#vanityUrlLength').text(text+'/55');
+        }
+    }).keyup(function(e) {
+    
+        if(e.altKey==true){
+	        setTitleText();
+            return false;
+        }
+
+        switch (e.keyCode) {
+ 
+            case 13:      //Enter
+            case 8:       //backspace
+            case 46:      //delete
+            case 17:      
+            case 27:      //escape
+            case 10:      //new line
+            case 20:      
+            case 9:       //horizontal TAB
+            case 11:      //vertical tab
+            case 33:      //page up  
+            case 34:      //page  down
+            case 35:      //End 
+            case 36:      //Home
+            case 37:      //Left arrow
+            case 38:      //up arrow
+            case 39:      //Right arrow
+            case 40:      //Down arrow
+            case 45:      //Insert
+            case 12:      //vertical tab
+    	        setTitleText();
+                break;
+            case 16:      //shift
+    	        setTitleText();
+                break;
+        }
+    }).focus(function(){
+	    setTitleText();
+    }).focusout(function(){
+	    setTitleText();
+    });
+    
+    function setTitleText() {
+        
+        var currentstring = $('#customVanityUrl').val().length;
+        if (currentstring == 0) {
+            $('#vanityUrlLength').text("0/55");
+        } else {
+	        currentstring = currentstring;
+            $('#vanityUrlLength').text(currentstring+'/55');
         }
     }
 

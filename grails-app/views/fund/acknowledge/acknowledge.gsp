@@ -165,7 +165,12 @@
                             <div class="form-group">
                                 <textarea class="form-control" name="comment" rows="4" required><g:if test="${commentVal}">${commentVal}</g:if></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
+                            <g:if test="${commentVal}">
+                                <button type="submit" class="btn btn-primary btn-sm pull-right">Update Comment</button>
+                            </g:if>
+                            <g:else>
+                                <button type="submit" class="btn btn-primary btn-sm pull-right">Post Comment</button>
+                            </g:else>
                             <div class="clear"></div>
                         </g:form>
                     </div>

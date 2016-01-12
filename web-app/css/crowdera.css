@@ -9451,7 +9451,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
    .text-primary {
 	color: #008cba;
-	margin-left: -24px !important;
+	margin-left: -40px !important;
    }
    .payment-card-icons{
 	height:20px;
@@ -9467,8 +9467,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
    	margin-left:14px;
    }
    a.footerlink {
-    	color: #cccccc;
-    	font-size: 11px !important;
+    	color: #666666;
+    	font-size: 10px !important;
     	font-weight: 500;
     	text-decoration: none;
     }
@@ -12619,7 +12619,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 /*Screen resolution 644 x 767 */
-@media only screen and (min-width: 644px) and (max-width: 767px){
+@media only screen and (min-width: 641px) and (max-width: 767px){
     .form-group.col-sm-6.rewardPriceClass{
         padding-left:16px;
         width:102% !important;
@@ -12711,10 +12711,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 @media only screen and (max-width: 767px){
 
-.ansText {
-    width: 87%;
-    height: 100px;
-}
+	div.footer-newsletter {
+        margin-bottom: 20px;
+        overflow: auto;
+	}
+    .ansText {
+        width: 87%;
+        height: 100px;
+    }
 
 #embedTilemodal .modal-dialog.modal-tile{
     margin-left: auto;

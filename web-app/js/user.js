@@ -110,6 +110,23 @@ $(function() {
    	    window.scrollTo(toptabs,toptabs - 170);
     });
     
+    $('#partnersOpts').change(function(){
+        var opts = $(this).val();
+        if (opts == 'Verified') {
+            $('#partners-list').find('.tab-pane').removeClass('active');
+            $('#verified').addClass('active');
+        } else if(opts == 'Non-Verified') {
+            $('#partners-list').find('.tab-pane').removeClass('active');
+            $('#nonVerified').addClass('active');
+        } else if(opts == 'Pending') {
+            $('#partners-list').find('.tab-pane').removeClass('active');
+            $('#pending').addClass('active');
+        } else if(opts == 'Draft') {
+            $('#partners-list').find('.tab-pane').removeClass('active');
+            $('#draft').addClass('active');
+        }
+    });
+    
     var currentEnvironment = $('#currentEnv').val();
     
     $(".amountsectionfbicon").click(function(){

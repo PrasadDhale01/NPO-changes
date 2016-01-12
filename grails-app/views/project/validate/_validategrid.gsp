@@ -28,7 +28,7 @@
 <div class="row">
     <ul class="thumbnails list-unstyled">
         <g:each in="${projects}" var="project">
-            <li class="col-md-6 col-lg-4 col-sm-6 col-xs-12">
+            <li class="col-md-6 col-lg-4 col-sm-6 col-xs-12 text-center">
                 <g:render template="validate/validatetile" model="['project': project]"></g:render>
             </li>
         </g:each>

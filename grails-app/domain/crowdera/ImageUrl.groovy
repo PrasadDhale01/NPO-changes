@@ -8,6 +8,7 @@ import groovy.transform.ToString
 
 class ImageUrl {
 	String url
+    int numberOfUrls
 
 	static belongsTo = Project, ProjectUpdate, CustomerService, TaxReciept
 

@@ -257,6 +257,7 @@
                                 </g:else>
                             </div>
                             <input class="form-control form-control-no-border editsweb-margin-mobile  cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd customVanityUrl" name="customVanityUrl" value="${project.customVanityUrl}" id="customVanityUrl" placeholder="Your-Campaign-web-url" <g:if test="${project.validated && project.customVanityUrl}">readonly</g:if>>
+                            <label class="pull-right " id="vanityUrlLength"></label>
                         </div>
                     </div>
                 </div>

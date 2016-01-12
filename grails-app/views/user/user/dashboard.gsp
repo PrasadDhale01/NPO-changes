@@ -179,11 +179,21 @@
                         </div>
                     </div>
                 </g:if>
-              
+                <%
+                    boolean ispartnerdraft
+                    if (partner) {
+                        ispartnerdraft = partner.draft
+                    }
+                %>
                 <ul id="side-menu">
                     <li>
                         <a href="${resource(dir: '/campaign/create')}" class="active">Create Campaign</a>
                     </li>
+                    <g:if test="${ispartnerdraft}">
+                        <li>
+                            <a href="${resource(dir: '/partner/edit')}" class="active">Edit Partner Page</a>
+                        </li>
+                    </g:if>
                     <li>
                         <g:link controller="user" action="userActivity1" id="${user.id}" class="active">User Profile</g:link>
                     </li>

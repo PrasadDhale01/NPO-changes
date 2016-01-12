@@ -1095,11 +1095,23 @@ img.home-img-large-size{
      z-index: 100;
  }
  
- .whatsapp-mobile-icon .btn-whatsapp{
-     width: 60px;
-     height: 60px;
-     border-radius: 50%;
-     outline: 0px;
-     background-color: #29a628;
-     padding: 14px;
- }
+.whatsapp-mobile-icon .btn-whatsapp{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    outline: 0px;
+    background-color: #29a628;
+    padding: 14px;
+}
+
+label#vanityUrlLength {
+    margin-right: -12px;
+    margin-top: -14px;
+}
+.help-block {
+    display: block;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    color: #626262;
+    padding-left: 15px;
+}

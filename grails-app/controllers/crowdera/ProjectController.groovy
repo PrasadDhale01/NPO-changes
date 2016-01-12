@@ -381,18 +381,27 @@ class ProjectController {
         }
 	}
 
-	@Secured(['ROLE_ADMIN'])
-	def delete() {
-		def project = projectService.getProjectById(params.id)
-		if (project) {
-			project.rejected = true
-			flash.prj_validate_message= "Campaign discarded successfully"
-			redirect (action:'validateList')
-		} else {
-			flash.prj_validate_err_message = 'Campaign Not Found'
-			render (view: 'validate/validateerror', model: [project: project])
-		}
-	}
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def delete() {
+        def project = projectService.getProjectById(params.id)
+        User user = userService.getCurrentUser()
+        if (project) {
+            if (userService.isAdmin()) {
+                project.rejected = true
+                flash.prj_validate_message= "Campaign discarded successfully"
+                redirect (action:'validateList')
+            } else if (userService.isPartner() && userService.isPartnerValidated(user)) {
+                project.rejected = true
+                flash.prj_validate_message= "Campaign discarded successfully"
+                redirect (action:'partnerdashboard', controller:'user')
+            } else {
+                render view:'/401error'
+            }
+        } else {
+            flash.prj_validate_err_message = 'Campaign Not Found'
+            render (view: 'validate/validateerror', model: [project: project])
+        }
+    }
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def deleteProjectImage(){
@@ -1200,14 +1209,27 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def projectdelete() {
-		def project = projectService.getProjectById(params.id)
+		Project project = projectService.getProjectById(params.id)
 		def currentUser= userService.getCurrentUser()
+        
 		if (project) {
-			project.inactive = true
-			List emailList= projectService.getProjectAdminEmailList(project)
-			mandrillService.sendCampaignDeleteEmailsToOwner(emailList, project, currentUser)
-			flash.user_message= "Campaign Discarded Successfully"
-			redirect (action:'mycampaigns' , controller:'user')
+            def isAdminOrBeneficiary = userService.isCampaignBeneficiaryOrAdmin(project, currentUser)
+            if (isAdminOrBeneficiary) {
+                
+                project.inactive = true
+                List emailList= projectService.getProjectAdminEmailList(project)
+                mandrillService.sendCampaignDeleteEmailsToOwner(emailList, project, currentUser)
+                flash.prj_validate_message= "Campaign Discarded Successfully"
+                
+                if (userService.isPartner()) {
+                    redirect (action:'partnerdashboard', controller:'user')
+                } else {
+                    redirect (action:'mycampaigns' , controller:'user')
+                }
+			    
+            } else {
+                render view:'/401error'
+            }
 		} else {
 			flash.prj_mngprj_message = 'Campaign Not Found'
 			render (view: 'manageproject/error', model: [project: project])

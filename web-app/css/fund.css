@@ -92,3 +92,9 @@ button.btnChargeContinue-md{
 .col-transaction .bootstrap-select.btn-group .btn .filter-option{
     text-align:center !important;
 }
+
+div#checkoutgsp button.btn-default:focus{
+	color: white;
+    background-color: #333333;
+    border-color: #333333;
+}

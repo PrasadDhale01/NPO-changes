@@ -905,7 +905,6 @@ class ProjectController {
 		if (projectSpreadsheet.isEmpty()) {
 			flash.prj_import_message = "Please choose a file and try again."
 			redirect(action: 'importprojects')
-			return
 		}
 
 		List projectParamsList
@@ -915,7 +914,6 @@ class ProjectController {
 		} catch (Exception e) {
 			flash.prj_import_message = "Error while importing file: " + e.getMessage()
 			redirect(action: 'importprojects')
-			return
 		}
 
 		/* Collect all the successfully created projects. */
@@ -940,7 +938,6 @@ class ProjectController {
 					'error': "Error mapping project: " + project.errors.toString()
 				]
 				redirect(action: 'importprojects')
-				return
 			}
 
 			Beneficiary beneficiary = userService.getBeneficiaryByParams(projectParams)
@@ -950,7 +947,6 @@ class ProjectController {
 					'error': "Error mapping beneficiary: " + beneficiary.errors.toString()
 				]
 				redirect(action: 'importprojects')
-				return
 			}
 
 			project.beneficiary = beneficiary
@@ -964,9 +960,7 @@ class ProjectController {
 					'error': "Error with createdDate: " + e.getMessage()
 				]
 				redirect(action: 'importprojects')
-				return
 			}
-
 
 			if (project.validate()) {
 				projects.add(project)
@@ -976,7 +970,6 @@ class ProjectController {
 					'error': "Error validating project: " + project.errors.toString()
 				]
 				redirect(action: 'importprojects')
-				return
 			}
 		}
 
@@ -989,17 +982,14 @@ class ProjectController {
 						'note': "None of the Campaigns after this one would be imported."
 					]
 					redirect(action: 'importprojects')
-					return
 				}
 			}
 
 			flash.prj_import_message = "All Campaigns successfully imported"
 			redirect(action: 'importprojects')
-			return
 		} else {
 			flash.projecterror = "Nothing to import. Please make sure the file contains some valid rows."
 			render (view: 'import/importerror')
-			return
 		}
 	}
 
@@ -2218,6 +2208,7 @@ class ProjectController {
         Project project = projectService.getProjectById(params.projectId)
         project.organizationName = params.organizationname
         project.charitableId = params.charitableId
+        project.paypalEmail = null;
         project.save()
         render''
     }

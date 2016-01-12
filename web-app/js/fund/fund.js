@@ -195,7 +195,6 @@ $(function() {
     			url:$('#url').val()+'/fund/getOnlyTwitterHandlerRewards',
     			data:'projectId='+projectId,
     			success: function(data){
-    				$('#userId').val(3);
     				var list = data.split("[");
     				var list1 = list[1].split("]");
     				var list2 = list1[0].split(",");

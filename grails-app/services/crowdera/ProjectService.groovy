@@ -3189,12 +3189,6 @@ class ProjectService {
                 isValueChanged = true;
                 break;
 
-            case 'charitableId':
-                project.charitableId = varValue;
-                isValueChanged = true;
-                project.paypalEmail = null;
-                break;
-	
             case 'story':
                 project.story = varValue;
                 isValueChanged = true;

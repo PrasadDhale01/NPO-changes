@@ -455,9 +455,11 @@ $(function() {
               $(this).rules("add", {
                   required: true,
                   minlength: 3,
+                  maxlength:55,
                   messages: {
                   	required: 'Required',
-                  	minlength: 'min 3 characters'
+                  	minlength: 'min 3 characters',
+                    maxlength: 'max 55 characters'
                   }
               });
           });
@@ -765,9 +767,11 @@ $(function() {
 			$(this).rules("add", {
 				required: true,
 				minlength: 3,
+				maxlength: 55,
 				messages: {
 					required: 'Required',
-					minlength: 'min 3 characters'
+					minlength: 'min 3 characters',
+					maxlength: 'max 55 characters'
 				}
 			});
 		});
@@ -1861,7 +1865,7 @@ $(function() {
         var file = this.files[0];
         if(validateExtension(file.name) == false) {
             $('.pr-thumbnail-div').hide();
-            $('.imgmsg').show();
+            $('.imgmsg').css("display","block");
             $('.imgmsg').html("Add only PNG or JPG extension images");
             $('.campaignfilesize').hide();
             this.value=null;
@@ -2303,6 +2307,7 @@ $(function() {
 						'<div class="form-group col-sm-5 col-xs-7 col-input-for">'+
 						'	<input type="text" class="form-control form-control-input-for spendCause" id="spendCause'+nextCount+'" name="spendCause'+nextCount+'">'+
 						'</div>'+
+						'<div class="clear visible-xs"></div>'+
 						'<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">'+
 							'<input type="hidden" name="spendFieldSave" value="'+nextCount+'" class="spendFieldSave" id="spendFieldSave'+nextCount+'">'+
 							'<i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>'+
@@ -2370,9 +2375,11 @@ $(function() {
                   $(this).rules("add", {
                       required: true,
                       minlength:3,
+                      maxlength:55,
                       messages: {
                       	required: 'Required',
-                      	minlength: 'min 3 characters'
+                      	minlength: 'min 3 characters',
+                      	maxlength: 'max 55 characters'
                       }
                   });
               });
@@ -2921,6 +2928,7 @@ $(function() {
     $('#paypalEmailId').blur(function(){
     	var paypalEmail = $('#paypalEmailId').val();
     	$('#charitable').find('input').val('');
+    	$('#fgSearchForm').find('#fgNameStart').val('');
         autoSave('paypalEmailId', paypalEmail);
     });
 

@@ -92,16 +92,16 @@
         </div>
     </g:if>
     <div class="blacknwhite teamtile-style">
-		<g:if test="${isPreview || isvalidateShow}">
-			<g:if test="${userImageUrl != null}">
-               <img alt="${userName}" class="project-img" src="${userImageUrl}">
-			</g:if>
-			<g:else>
-				<div class="under">
-				    <img src="//s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="project-img" alt="Upload Photo">
-				</div>
-			</g:else>
+	<g:if test="${isPreview || isvalidateShow}">
+		<g:if test="${userImageUrl != null}">
+    		<img alt="${userName}" class="project-img" src="${userImageUrl}">
 		</g:if>
+		<g:else>
+			<div class="under">
+    			<img src="//s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="project-img" alt="Upload Photo">
+			</div>
+		</g:else>
+	</g:if>
         <g:elseif test="${!ismanagepage || !isAdminOrBeneficiary}">
             <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]">
                 <g:if test="${userImageUrl != null}">
@@ -177,16 +177,16 @@
 </div>
 <div class="visible-xs <g:if test="${isshow == 'true' || isshow == true}">show-panel-mobilesize</g:if><g:else>manage-panel-mobile-size</g:else> ${alphabet}">
     <div class ="col-xs-4 show-mobimg-panels">
-		<g:if test="${isPreview || isvalidateShow}">
-			<g:if test="${userImageUrl}">
-	            <img alt="${userName}" class=" user-img-header" src="${userImageUrl}">
-			</g:if>
-			<g:else>
-				<div class="under show-mobimg-panels">
-	                <img src="//s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="user-img-header" alt="Upload Photo">
-	            </div>
-			</g:else>
-		</g:if>
+        <g:if test="${isPreview || isvalidateShow}">
+            <g:if test="${userImageUrl}">
+                 <img alt="${userName}" class=" user-img-header" src="${userImageUrl}">
+            </g:if>
+            <g:else>
+                 <div class="under show-mobimg-panels">
+                     <img src="//s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="user-img-header" alt="Upload Photo">
+                 </div>
+            </g:else>
+        </g:if>
         <g:elseif test="${!ismanagepage || !isAdminOrBeneficiary}">
             <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]">
                 <g:if test="${userImageUrl}">

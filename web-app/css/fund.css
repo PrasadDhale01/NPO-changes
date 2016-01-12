@@ -95,6 +95,6 @@ button.btnChargeContinue-md{
 
 div#checkoutgsp button.btn-default:focus{
 	color: white;
-    background-color: #333333;
-    border-color: #333333;
+	background-color: #333333;
+	border-color: #333333;
 }

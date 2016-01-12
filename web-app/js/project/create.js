@@ -2846,6 +2846,7 @@ $(function() {
     $('#paypalEmailId').blur(function(){
     	var paypalEmail = $('#paypalEmailId').val();
     	$('#charitable').find('input').val('');
+    	$('#fgSearchForm').find('#fgNameStart').val('');
         autoSave('paypalEmailId', paypalEmail);
     });
 

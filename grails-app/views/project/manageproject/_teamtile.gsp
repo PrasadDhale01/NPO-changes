@@ -93,14 +93,14 @@
     </g:if>
     <div class="blacknwhite teamtile-style">
 	<g:if test="${isPreview || isvalidateShow}">
-		<g:if test="${userImageUrl != null}">
+	    <g:if test="${userImageUrl != null}">
     		<img alt="${userName}" class="project-img" src="${userImageUrl}">
-		</g:if>
-		<g:else>
-			<div class="under">
-    			<img src="//s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="project-img" alt="Upload Photo">
-			</div>
-		</g:else>
+	    </g:if>
+	    <g:else>
+		<div class="under">
+    	            <img src="//s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="project-img" alt="Upload Photo">
+		</div>
+	    </g:else>
 	</g:if>
         <g:elseif test="${!ismanagepage || !isAdminOrBeneficiary}">
             <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]">

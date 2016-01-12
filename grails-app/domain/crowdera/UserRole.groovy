@@ -15,19 +15,19 @@ class UserRole implements Serializable {
 	User user
 	Role role
 
-	@Override
+    @Override
     public String toString() {
         return "UserRole [user=" + user + ", role=" + role + "]";
     }
 
     boolean equals(other) {
-		if (!(other instanceof UserRole)) {
-			return false
-		}
+        if (!(other instanceof UserRole)) {
+            return false
+        }
 
-		other.user?.id == user?.id &&
-			other.role?.id == role?.id
-	}
+        other.user?.id == user?.id &&
+        other.role?.id == role?.id
+    }
 
 	int hashCode() {
 		def builder = new HashCodeBuilder()

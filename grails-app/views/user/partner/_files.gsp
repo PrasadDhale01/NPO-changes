@@ -48,6 +48,7 @@
         $('.folderlist').find('.folder').removeClass('active');
         $('#remove-folder').val('');
         $('.trash-docs-fixed-btn').hide();
+        $('.trash-file-fixed-btn').hide();
     });
 
     $("#doc-files-list, #folder-file-list").find('.doc-file-trash a').click(function(event) {
@@ -73,8 +74,10 @@
             });
         }
     });
-
-    $('.file-thumbnail-container').dblclick(function(event){
+</script>
+<g:if test="${folderName}">
+    <script>
+    $('#viewfolder').find('.file-thumbnail-container').dblclick(function(event){
     	var url = $(this).find('.fileName-text').data('url');
     	$('.file-thumbnail-container').removeClass('active');
     	$('#remove-file').val('');
@@ -82,15 +85,51 @@
     	window.open(url, '_blank');
     });
 
-    $('.file-thumbnail-container').click(function(event){
+    $('#viewfolder').find('.file-thumbnail-container').click(function(event){
         var trashUrl = $(this).data('trashurl');
+        if ($(this).hasClass("active")) {
+            $('#remove-file').val('');
+            $('.trash-file-fixed-btn').hide();
+            $(this).removeClass('active');
+        } else {
+            $('.file-thumbnail-container').removeClass('active');
+            $('.folderlist').find('.folder').removeClass('active');
+            $('#remove-folder').val('');
+            $('.trash-docs-fixed-btn').hide();
         
-        $('.file-thumbnail-container').removeClass('active');
-        $('.folderlist').find('.folder').removeClass('active');
-        $('#remove-folder').val('');
-        $('.trash-docs-fixed-btn').hide();
-        $('#remove-file').val(trashUrl);
-        $('.trash-file-fixed-btn').show();
-        $(this).addClass('active');
+            $('#remove-file').val(trashUrl);
+            $('.trash-file-fixed-btn').show();
+            $(this).addClass('active');
+        }
     });
-</script>
+    </script>
+</g:if>
+<g:else>
+    <script>
+    $('#docFiles').find('.file-thumbnail-container').dblclick(function(event){
+        var url = $(this).find('.fileName-text').data('url');
+        $('.file-thumbnail-container').removeClass('active');
+        $('#remove-file').val('');
+        $('.trash-file-fixed-btn').show();
+        window.open(url, '_blank');
+    });
+
+    $('#docFiles').find('.file-thumbnail-container').click(function(event){
+        var trashUrl = $(this).data('trashurl');
+        if ($(this).hasClass("active")) {
+        	$('#remove-file').val('');
+            $('.trash-file-fixed-btn').hide();
+            $(this).removeClass('active');
+        } else {
+            $('.file-thumbnail-container').removeClass('active');
+            $('.folderlist').find('.folder').removeClass('active');
+            $('#remove-folder').val('');
+            $('.trash-docs-fixed-btn').hide();
+        
+            $('#remove-file').val(trashUrl);
+            $('.trash-file-fixed-btn').show();
+            $(this).addClass('active');
+        }
+    });
+    </script>
+</g:else>

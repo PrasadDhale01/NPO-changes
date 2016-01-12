@@ -1356,7 +1356,7 @@ footer .footerbottomsection {
     color: #ffffff !important;
     background-color: #01bbd3 !important;
     border-color: #01bbd3 !important;
-    margin-top: -21px;
+    margin-top: -14px;
     font-size: 24px;
     font-weight: bold;
     font-family: Ubuntu Condensed;
@@ -2348,7 +2348,7 @@ a.footerlink {
 	color:  #006400;
 }
 .docfile-orglogo-css{
-	color: red;
+	color: #f04124;
 	display:block;
 }
 .orgicon-css-styles img{
@@ -2531,7 +2531,7 @@ a.footerlink {
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    width:230px;
+    width:220px;
 }
 .user-tiles-widths img{
 	width: 100px;
@@ -5579,6 +5579,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .col-sm-input-group{
         float:left !important;
     }
+    
+    input.partnercustomUrl {
+        height: 45px;
+        padding-left: 168px;
+        width: 100% !important;
+    }
+    .col-partner-page {
+        padding-right: 2px;
+    }
 
 }
 /* Screen resolution 641 x 767*/
@@ -7720,10 +7729,33 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
-
 	br.visible-reciept-md{
         display:block;
 	}
+	.partner-show-tile {
+        width: 230px;
+    }
+    .partner-show-tile img {
+        width: 230px;
+        max-height: 155px;
+        min-height: 155px;
+    }
+    ul.show-paddingsbtn-submitapprov {
+        margin-right: -111px !important;
+        padding-left: 73px;
+    }
+    button.sh-submitaproval-2header {
+        font-size: 16px;
+        height: 42px;
+        margin-left: -23px;
+        padding: 6px;
+        width: 181px;
+    }
+    ul.show-paddingsbtn {
+        left: 139px;
+        padding-left: 42px;
+        top: -27px;
+    }
     span.manage-btn-width-aft-validated {
         width: 88.1%;
         padding-bottom: 15px;
@@ -8012,10 +8044,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 }
 @media only screen and (min-width:768px) and (max-width: 830px) {
-    div.show-submit-tabs button {
-        font-size: 14px;
-        margin-left: -30px;
-    }
     li.sh-button-fund-secandaryheader {
         left: 21.2% !important;
         position: absolute;
@@ -8028,10 +8056,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 }
 @media only screen and (min-width:831px) and (max-width: 900px){
-    div.show-submit-tabs button {
-        font-size: 14px;
-        margin-left: -30px;
-    }
     li.sh-button-fund-secandaryheader {
         left: 20.5% !important;
         position: absolute;
@@ -8043,17 +8067,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-right: 76px !important;
     }
 }
-@media only screen and (min-width:901px) and (max-width: 991px){
-    div.show-submit-tabs button {
-        font-size: 14px;
-        margin-left: -8px;
-    }
-    li.sh-button-fund-secandaryheader {
-        left: 19.5% !important;
-        position: absolute;
-        top: 8px !important;
-    }
-}
+
 @media only screen and (min-width:901px) and (max-width: 1024px){
 	header.cr-tabs-link {
         font-size: 17px !important;
@@ -8063,6 +8077,20 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.org-info-guide {
+        padding: 5px;
+    }
+    .partner-org-info .col-md-4 {
+        width: 40%;
+    }
+    .partner-org-info .col-md-8 {
+        width: 60%;
+    }
+    div.show-header-tabsmanage {
+        padding-left: 0;
+        top: 3px;
+        left: -4px;
+    }
     div.manage-organization-details h4 {
         font-size: 14px;
         margin-bottom: 0;
@@ -8246,11 +8274,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.header-scrolled {
         display: none !important;
     }
-    button.sh-submitaproval-2header {
-/*         margin-left: -42px; */
-        margin-top: -1px;
-    }
     div.header-default-height{
+        height: auto;
+    }
+    div.show-header-heights{
         height: auto;
     }
     div.show-tabs {
@@ -8299,7 +8326,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     button.sh-fund-2header {
         font-size: 20px;
-        margin-top: 2px !important;
+        margin-top: -14px !important;
     }
     span.sh-tabs-font{
         font-size: 13px;	
@@ -9568,6 +9595,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+    ul.show-paddingsbtn {
+        margin-right: -142px !important;
+        padding-left: 40px;
+    }
     .sendEmailToContributors{
         left:75px;
     }
@@ -9966,7 +9997,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
-
 	#sendReceipt .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),
 	.sendTaxReceiptBoard .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
 	   width:105px;    
@@ -9996,6 +10026,44 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.img-size-xs{
         width:12%;
 	}
+	#partner-sec-header .user-dashboard-header {
+        width: 320px !important;
+        height: 75px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #partner-sec-header .user-dashboard-header .span-space {
+        color: white;
+        padding-left: 7px !important;
+        padding-right: 7px !important;
+    }
+	.col-xs-12.rowseperator {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .partnersavebtn.btn-default {
+        font-size: 20px;
+        padding: 5px 100px;
+    }
+    #partner-create-page h1.mainheading {
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 30px;
+    }
+    .partner-margin-bottom {
+        margin-bottom: 15px;
+    }
+    .col-partner-page {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+    .partnercreatepage .orgName-padding {
+        padding-right: 0;
+    }
+    input.partnercustomUrl {
+        height: 45px;
+        width: 100% !important;
+    }
     div.domain-metrics .nav-tabs.nav-justified > li > a {
         font-size: 12px !important;
     }
@@ -10239,20 +10307,20 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     #partner-third-header .navbar-header .span-space{
         color: #6D6E6E;
-        padding-left: 8px;
-        padding-right: 8px;
+        padding-left: 5px;
+        padding-right: 5px;
         font-size: 14px;
         font-weight: 600;
     }
     #partner-third-header .header-text{
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 500;
     }
     #partner-third-header .navbar-header {
-        width: 320px;
+        width: 450px;
     }
     #partner-third-header .navbar-header { 
-        margin-top: 16px;
+        margin-top: 18px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -10662,6 +10730,33 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	.partner-show-tile {
+        width: 220px;
+    }
+    .partner-show-tile img {
+        width: 220px;
+        max-height: 160px;
+        min-height: 160px;
+    }
+    ul.show-paddingsbtn-submitapprov {
+        margin-right: -66px !important;
+        padding-left: 73px;
+    }
+    button.sh-submitaproval-2header {
+        font-size: 16px;
+        height: 42px;
+        margin-top: -15px;
+        padding: 6px;
+        width: 221px;
+    }
+    ul.show-paddingsbtn {
+        left: 97px;
+        padding-left: 42px;
+        top: -27px;
+    }
+    button.sh-fund-2header {
+        width: 220px;
+    }
 	span.manage-btn-width-aft-validated {
 /*         margin-left: 15px; */
         width: 88.1%;
@@ -11056,6 +11151,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1050px){
+    ul.show-paddingsbtn-submitapprov {
+        margin-right: -72px !important;
+        padding-left: 109px;
+    }
     li.sh-button-fund-secandaryheader {
         left: 19.6% !important;
         position: absolute;
@@ -11076,6 +11175,17 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+    .partner-show-tile {
+        width: 230px;
+    }
+    .partner-show-tile img {
+        width: 230px;
+        max-height: 160px;
+        min-height: 160px;
+    }
+    div.show-tabsDesktop-headers {
+        padding-left: 6px;
+    }
     div.manage-teamgridTabs {
         padding-left: 58px;
     }
@@ -11576,6 +11686,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
+	.col-input-for {
+	    width: 57%;
+	}
     .cr-tax-files{
         width:170px;
     }
@@ -12008,6 +12121,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 
 @media only screen and (max-width: 991px){
+    .userdashboardstatstile.col-sm-4, .userdashboardstatstile.col-xs-12 {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
     #hiddensearch {
         display: none;
         width: 250px !important;
@@ -13870,6 +13987,9 @@ textarea.textarea-embed-video {
         font-size: 12px;
         font-weight: 600;
     }
+    #partner-sec-header .user-dashboard-header .span-space { 
+        font-size: 14px;
+    }
 	h1.headingtext {
         color: #015f85;
         font-size: 24px !important;
@@ -13897,6 +14017,12 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){
+    div.partner-gallery h3 {
+        font-size: 16px;
+    }
+    div.partner-gallery h1 {
+        font-size: 30px;
+    }
     div.manage-editdel-width{
         width: 23px;
     }
@@ -13910,12 +14036,21 @@ textarea.textarea-embed-video {
         width: 320px;
         height: 75px;
     }
-	    #partner-sec-header.navbar-default {
+    #partner-sec-header.navbar-default {
         height: 60px;
         line-height: 1.8;
     }
     #partner-sec-header .navbar-header {
         margin-top: 6px;
+    }
+    #partner-sec-header .user-dashboard-header.navbar-header {
+        margin-top: 13px;
+    }
+    .user-dashboard #partner-sec-header{
+        height: 50px;
+    }
+    .user-dashboard #partner-third-header {
+        top: 94px;
     }
     #partner-sec-header .navbar-header .span-space {
         color: white;
@@ -13944,21 +14079,21 @@ textarea.textarea-embed-video {
          margin-top: 14px;
     }
 
-.col-xs-button{
-    width:100%;
-}
-.col-xs-textbox{
-    width:99% !important;
-}
-.btn-center{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
+    .col-xs-button{
+        width:100%;
+    }
+    .col-xs-textbox{
+        width:99% !important;
+    }
+    .btn-center{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-.dashboard-container {
-     padding-left: 5px;
-}
+    .dashboard-container {
+        padding-left: 5px;
+    }
 
 	ul.show-new-tabs-alignments {
         line-height: 1;
@@ -16852,7 +16987,7 @@ img.home-pg-icons{
     height: 49px;
     padding-top: 10px;
     margin:0px;
-    width: 352%;
+    width: 100%;
 }
 .sh-secandary-header-showpage{
     margin-left: 38px;
@@ -16873,6 +17008,46 @@ img.home-pg-icons{
     ::i-block-chrome, img.sh-safari2header-padding{
        padding-right: 22px;
     }
+    
+    .sh-primery-header-padding {
+        position: fixed;
+        z-index: 1000;
+        background-color: white;
+        left: 0px;
+        top: 0;
+        display: none;
+        box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.25);
+        display: block;
+        height: 49px;
+        padding-top: 10px;
+        margin:0px;
+        width: 100%;
+    }
+    ::i-block-chrome, .sh-primery-header-padding{
+		height: 51px;
+		padding-top: 6px;
+    }
+    ::i-block-chrome, .show-tabsDesktop-headers {
+        top: 7px;
+    }
+    ::i-block-chrome, .sh-fund-2header {
+        margin-top: -9px;
+    }
+    .sh-shareicons-Fixedtophead {
+        background-color: white;
+        left: 0;
+        position: fixed;
+        top: 48px;
+        width: 100%;
+        z-index: 999;
+        display: none;
+    }
+    ::i-block-chrome, .sh-shareicons-Fixedtophead {
+        top: 51px !important;
+    }
+    ::i-block-chrome, button.sh-submitaproval-2header {
+        margin-top: -10px;
+    }
 }
 /*********IE10+ specifice code***************/
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
@@ -16890,15 +17065,17 @@ li.sh-button-fund-secandaryheader{
     top: 39px;
 }
 .sh-fund-2header{
-    margin-top: -32px;
+/*     margin-top: 0px; */
     padding: 0;
-    width: 179px;
+    width: 303px;
+    height: 41px;
 }
 .sh-submitaproval-2header {
     font-size: 16px;
-    margin-top: -32px;
+    margin-top: -15px;
     padding: 6px;
-    width: 179px;
+    width: 303px;
+    height: 42px;
 }
 .sh-logo-color{
     height:44px;
@@ -16919,12 +17096,12 @@ li.sh-button-fund-secandaryheader{
 }
 .show-2ndhead-btnFB {
     font-size: 14px;
-    width: 181px;
-    padding: 5px 10px;
+    width: 303px;
+    padding: 7px 5px;
 }
 .show-share-FB {
-    padding-left: 238px;
-    padding-top: 7px;
+    padding-left: 181px;
+    padding-top: 5px;
     float: right;
 }
 .sh-iconsfb-header {

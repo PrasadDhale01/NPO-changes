@@ -66,7 +66,7 @@ class UserController {
         def environment = Environment.current.getName()
         if (userService.isAdmin()) {
             redirect action: 'admindashboard'
-        } else if(userService.isPartner()) {
+        } else if(userService.isPartner() && userService.isPartnerValidated(user)) {
             redirect action: 'partnerdashboard'
         } else {
             def projects
@@ -89,22 +89,11 @@ class UserController {
             }
             
             List totalCampaings = []
-            if (activeTab == 'campaigns') {
-                def max = Math.min(params.int('max') ?: 4, 100)
-                totalCampaings = projectService.getUsersPaginatedCampaigns(project, params, max)
-            } else {
-                def max = Math.min(params.int('max') ?: 2, 100)
-                totalCampaings = projectService.getUsersPaginatedCampaigns(project, params, max)
-            }
+            def max = Math.min(params.int('max') ?: 6, 100)
+            totalCampaings = projectService.getUsersPaginatedCampaigns(project, params, max)
             
             def contribution
-            if (activeTab == 'contributions') {
-                def max = Math.min(params.int('max') ?: 4, 100)
-                contribution = projectService.getPaginatedContibutionByUser(user, environment,params, max)
-            } else {
-                def max = Math.min(params.int('max') ?: 2, 100)
-                contribution = projectService.getPaginatedContibutionByUser(user, environment,params, max)
-            }
+            contribution = projectService.getPaginatedContibutionByUser(user, environment,params, max)
             
             def contributedAmount = projectService.getContributedAmount(contribution.contributions)
             def fundRaised = projectService.getTotalFundRaisedByUser(projects)
@@ -335,27 +324,31 @@ class UserController {
         def projectAdmins = projectService.getProjectAdminEmail(user)
         def teams = projectService.getTeamByUserAndEnable(user, true)
         List project = projectService.getProjects(projects, projectAdmins, teams, environment)
-        def max = Math.min(params.int('max') ?: 4, 100)
+        def max = Math.min(params.int('max') ?: 6, 100)
         List totalCampaings = projectService.getUsersPaginatedCampaigns(project, params, max)
         def multiplier = projectService.getCurrencyConverter();
         
-        def model = [totalCampaings: totalCampaings, projects: project, dashboard: 'dashboard', activeTab: 'campaigns', multiplier: multiplier]
+        def model = [user: user, totalCampaings: totalCampaings, projects: project, dashboard: 'dashboard', activeTab: 'campaigns', multiplier: multiplier]
         if (request.xhr) {
-            render(template: "user/myprojects", model: model)
+            render(template: "user/campaigntile", model: model)
         }
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def contributionspagination() {
-        User user = userService.getCurrentUser()
-        def environment = Environment.current.getName()
-        def max = Math.min(params.int('max') ?: 4, 100)
-        def contribution = projectService.getPaginatedContibutionByUser(user, environment, params, max)
-        def multiplier = projectService.getCurrencyConverter();
-
-        def model = [contributions: contribution.contributions, totalContributions : contribution.totalContributions, activeTab: 'contributions', multiplier: multiplier]
-        if (request.xhr) {
-            render(template: "/user/user/dashboardcontributiontile", model: model)
+        User user = userService.getUserById(params.int('userId'))
+        if (user) {
+            def environment = Environment.current.getName()
+            def max = Math.min(params.int('max') ?: 6, 100)
+            def contribution = projectService.getPaginatedContibutionByUser(user, environment, params, max)
+            def multiplier = projectService.getCurrencyConverter();
+    
+            def model = [contributions: contribution.contributions, totalContributions : contribution.totalContributions, activeTab: 'contributions', multiplier: multiplier, user: user]
+            if (request.xhr) {
+                render(template: "user/campaignssupported", model: model)
+            }
+        } else {
+            render view:'/404error'
         }
     }
     
@@ -480,14 +473,23 @@ class UserController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def update() {
-        User user = (User)userService.getCurrentUser()
-        userService.setUserInfo(params,user)
-
-        if (user.save()) {
-            flash.user_message = "Profile updated successfully!"
-            redirect (controller: 'user', action: 'dashboard')
+        User currentUser = userService.getCurrentUser()
+        User user = userService.getUserById(params.int('id'))
+        
+        if (currentUser == user || userService.isAdmin() ){
+            if (user) {
+                userService.setUserInfo(params,user)
+                if (user.save()) {
+                    flash.user_message = "Profile updated successfully!"
+                    redirect (controller: 'user', action: 'dashboard')
+                } else {
+                    render(view: 'error', model: [message: "Error while updating user. Please try again later."])
+                }
+            } else {
+                render(view: '/404error')
+            }
         } else {
-           render(view: 'error', model: [message: "Error while updating user. Please try again later."])
+            render(view: '/401error')
         }
     }
     
@@ -693,6 +695,11 @@ class UserController {
             def folders = userService.getFolders(user)
             def files = partner.documents
             
+            def contribution
+            contribution = projectService.getPaginatedContibutionByUser(user, currentEnv,params, 6)
+            
+            def contributedAmount = projectService.getContributedAmount(contribution.contributions)
+            
             def requestUrl=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
             def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
             
@@ -703,7 +710,6 @@ class UserController {
             } else if(flash.receipt_sent_msg) {
                 flash.receipt_sent_msg = "Receipt Sent Successfully."
             }
-
             def projectList = projectService.getAllProjectByUserHavingContribution(user, currentEnv, params)
             def isUserProjectHavingContribution = userService.isUserProjectHavingContribution(user, currentEnv)
             def userHasContributedToNonProfitOrNgo = userService.userHasContributedToNonProfitOrNgo(user)
@@ -733,7 +739,8 @@ class UserController {
                    userHasContributedToNonProfitOrNgo:userHasContributedToNonProfitOrNgo, vanityTitle:vanityTitle,
                    contributionList:contributionList, totalTaxReceiptContributions:taxReceiptRecievedList.totalTaxReceiptContributions,
                    taxReceiptContribution:taxReceiptRecievedList.taxReceiptList]
-        }
+
+       }
     }
 
     def partnercampaigns() {
@@ -949,6 +956,7 @@ class UserController {
         }
     }
     
+
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def searchByName(){
         def contributorListForProject = userService.getContributorsListSearchedByName(params)
@@ -980,4 +988,140 @@ class UserController {
        render ''
     }
 
+    def partners() {
+        List partners = userService.getPartners()
+        def currentEnv = projectService.getCurrentEnvironment()
+        render (view:'/user/partner/show/index', model:[partners: partners, currentEnv: currentEnv])
+    }
+    
+    def partnerFaq() {
+        render (view:'/user/partner/show/partnerfaq')
+    }
+    
+    def partnerpage() {
+        render (view: '/user/partner/show/partnerpage')
+    }
+    
+    def newpartner() {
+        def user = userService.getCurrentUser()
+        
+        if (!user) {
+            def loginSignUpCookie = projectService.setLoginSignUpCookie()
+            if (loginSignUpCookie) {
+                response.addCookie(loginSignUpCookie)
+            }
+            
+            def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+            def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+            
+            def reqUrl = base_url+"/user/createpartner"
+            
+            Cookie cookie = new Cookie("requestUrl", reqUrl)
+            cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
+            cookie.maxAge= 3600  //Cookie expire time in seconds
+            response.addCookie(cookie)
+        }
+        
+        redirect action:'createpartner'
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def createpartner() {
+        String loginSignUpCookie = g.cookie(name: 'loginSignUpCookie')
+        if (loginSignUpCookie) {
+            def cookie = projectService.deleteLoginSignUpCookie()
+            response.addCookie(cookie)
+        }
+        def user = userService.getCurrentUser()
+        def partner = userService.getPartnerByUser(user)
+        
+        if (partner) {
+            boolean alreadyExist = true
+            render (view: '/user/partner/create/justcreated', model:[partner: partner, alreadyExist: alreadyExist])
+        } else {
+            partner = userService.setPartner(user)
+            if (partner) {
+                def country = projectService.getCountry()
+                def currentEnv = projectService.getCurrentEnvironment()
+                render (view: '/user/partner/create/index', model:[currentEnv: currentEnv, country: country, partner: partner, user: user])
+            } else {
+                render view: '/404error'
+            }
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def partnerautosave() {
+        def user = userService.getCurrentUser()
+        Partner partner = userService.getPartnerById(params.int('partnerId'))
+        if (request.xhr) {
+            if (partner) {
+                if (partner.user == user) {
+                    userService.updatePartnerInfo(partner, params)
+                    render ''
+                } else {
+                    render 'Sorry you are not authorized to make changes.'
+                }
+            } else {
+                render 'Sorry you are not authorized to make changes.'
+            }
+        } else {
+            render view: '/404error'
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def savedescription() {
+        def user = userService.getCurrentUser()
+        Partner partner = userService.getPartnerById(params.int('partnerId'))
+        if (request.xhr) {
+            if (partner) {
+                if (partner.user == user) {
+                    partner.description = params.description
+                    render ''
+                } else {
+                    render 'Sorry you are not authorized to make changes.'
+                }
+            } else {
+                render 'Sorry you are not authorized to make changes.'
+            }
+        } else {
+            render view: '/404error'
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def isCustomUrlUnique() {
+        def user = userService.getCurrentUser()
+        Partner partner = userService.getPartnerById(params.int('partnerId'))
+        if (request.xhr) {
+            if (partner) {
+                if (partner.user == user) {
+                    def partnerId = params.partnerId
+                    def status = userService.isCustomUrlUnique(params, partner)
+                    render status
+                } else {
+                    render 'Sorry you are not authorized to make changes.'
+                }
+            } else {
+                render 'Sorry you are not authorized to make changes.'
+            }
+        } else {
+            render view: '/404error'
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def partnersave() {
+        Partner partner = userService.getPartnerById(params.int('partnerId'))
+        User user = userService.getCurrentUser()
+        boolean saved = true
+        if (partner){
+            if (partner.user == user) {
+                partner.draft = false
+                render (view: '/user/partner/create/justcreated', model:[partner: partner, saved: saved])
+            }
+        }
+
+    }
 }

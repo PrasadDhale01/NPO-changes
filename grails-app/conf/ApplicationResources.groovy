@@ -134,9 +134,22 @@ modules = {
 		resource url: 'js/ebook/ebook.js'
 	}
     
-    partnerjs {
+    showpartnerjs {
         dependsOn 'crowderajs'
-        resource url: 'js/partner.js'
+        resource url: 'js/partner/partner.js'
+    }
+    
+    createpartnerjs {
+        dependsOn 'redactorjs'
+        resource url: 'js/partner/create.js'
+    }
+    
+    redactorjs {
+        resource url: 'js/redactor/redactor.js'
+        resource url: 'js/redactor/plugins/video.js'
+        resource url: 'js/redactor/plugins/fontsize.js'
+        resource url: 'js/redactor/plugins/fontfamily.js'
+        resource url: 'js/redactor/plugins/fontcolor.js'
     }
 
     /* CSS */

@@ -120,7 +120,8 @@ $(function() {
         rules: {
             contributorName1: {
                 required: true,
-                minlength: 3
+                minlength: 3,
+                maxlength: 50
             },
             amount1: {
                 required: true,
@@ -136,7 +137,8 @@ $(function() {
         	rules: {
         		contributorName: {
                     required: true,
-                    minlength: 3
+                    minlength: 3,
+                    maxlength: 50
                 },
                 amount: {
                     required: true,

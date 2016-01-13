@@ -61,7 +61,7 @@ $(function() {
             $("#dashboard_otherstate").hide();
         }
     });
-	
+    
     var currentEnv = $('#currentEnv').val();
 
     $('#invite-campaign-owner').find('form').validate({
@@ -121,7 +121,8 @@ $(function() {
     	rules: {
     		title : {
     			required: true,
-    			minlength: 3
+    			minlength: 3,
+    			maxlength: 20
     		}
     	}
     });
@@ -411,7 +412,7 @@ $(function() {
     $("#newDocFile").change(function(event) {
         var file =this.files[0];
         if(validateExtension(file.name) == false){
-        	
+        	alert("Please upload valid type of documents only.")
         } else if (file.size > 0) {
             var file = this.files[0];
             var fileName = file.name;

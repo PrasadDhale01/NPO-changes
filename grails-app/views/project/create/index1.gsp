@@ -124,35 +124,37 @@
                         </div> 
                     </div>
                 </div>
-	               <div class="createTitleDiv col-lg-6 col-md-6 col-sm-6 cr1-indx1-mobileTpadding">
-	                    <label class="col-sm-12 text-color cr-padding-index1 cr1-myplane-padding">My plan is...</label>
-	                    <div class="col-sm-12 cr-padding-index1 cr1-width-inputs form-group">
-	                        <input class="form-control form-control-no-border cr-myplan-indx1 text-color campaignTitle" name="${FORMCONSTANTS.TITLE}" placeholder="Create an impactful and actionable title. Helps donors find campaign." id="campaignTitle" maxlength="55">
-	                        <label class="pull-right " id="titleLength"></label>
-	                    </div>
-	               </div>
-	               <div class="col-lg-6 col-md-6 col-sm-6">
-	                    <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 hidden-xs cr1-tabs-padding">My campaign web address</label>
-                     <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 visible-xs">
-                         <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                             crowdera.in/campaigns/
-                         </g:if>
-                         <g:else>
-                             crowdera.co/campaigns/
-                         </g:else>
-                     </label>
-		                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 cr1-mobile-indx1 form-group">
-		                        <div class="cr1-vanityUrl-indx1 cr1-url-lft hidden-xs">
-		                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-		                                crowdera.in/campaigns/
-		                            </g:if>
-		                            <g:else>
-		                                crowdera.co/campaigns/
-		                            </g:else>
-		                        </div>
-	                            <input class="form-control form-control-no-border cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd cr1-vanitypadding-in-co cr1-paddings-lft" name="customVanityUrl" id="customVanityUrl" placeholder="Your-Campaign-Web-Url">
-	                        </div>
-	               </div>
+	            <div class="createTitleDiv col-lg-6 col-md-6 col-sm-6 cr1-indx1-mobileTpadding">
+	                <label class="col-sm-12 text-color cr-padding-index1 cr1-myplane-padding">My plan is...</label>
+	                <div class="col-sm-12 cr-padding-index1 cr1-width-inputs form-group">
+	                    <input class="form-control form-control-no-border cr-myplan-indx1 text-color campaignTitle" name="${FORMCONSTANTS.TITLE}" placeholder="Create an impactful and actionable title. Helps donors find campaign." id="campaignTitle" maxlength="55">
+                        <label class="pull-right " id="titleLength"></label>
+	                </div>
+	           </div>
+               <div class="col-lg-6 col-md-6 col-sm-6 campaignCustomVanityUrl">
+                   <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 hidden-xs cr1-tabs-padding">My campaign web address</label>
+                   <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 visible-xs">
+                       <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                            crowdera.in/campaigns/
+                       </g:if>
+                       <g:else>
+                            crowdera.co/campaigns/
+                       </g:else>
+                   </label>
+                   <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 cr1-mobile-indx1 form-group">
+                       <div class="cr1-vanityUrl-indx1 cr1-url-lft hidden-xs">
+                           <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                               crowdera.in/campaigns/
+                           </g:if>
+                           <g:else>
+                               crowdera.co/campaigns/
+                           </g:else>
+                       </div>
+                       <input class="form-control form-control-no-border cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd cr1-vanitypadding-in-co cr1-paddings-lft" name="customVanityUrl" id="customVanityUrl" maxlength="55" placeholder="Your-Campaign-Web-Url">
+                   </div>
+                   <div class="clear" id="vanityUrlClear"></div>
+                   <label class="pull-right" id="vanityUrlLength"></label>
+                </div>
                 <div class="clear"></div><br>
 
                 <div class="form-group createDescDiv">

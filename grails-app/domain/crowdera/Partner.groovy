@@ -29,6 +29,7 @@ class Partner {
     String pstate
     String zipCode
     String telePhone
+    Date created
     
     List documents
     
@@ -57,5 +58,6 @@ class Partner {
         pstate nullable: true
         zipCode nullable: true
         telePhone nullable: true
+        created nullable: true
     }
 }

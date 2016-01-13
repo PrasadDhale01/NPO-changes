@@ -65,6 +65,11 @@ class UserController {
     def userprofile(String userViews, String activeTab){
         User user = (User)userService.getCurrentUser()
         def environment = Environment.current.getName()
+        
+        if (flash.prj_validate_message) {
+            flash.prj_validate_message= "Campaign Discarded Successfully"
+        }
+        
         if (userService.isAdmin()) {
             redirect action: 'admindashboard'
         } else if(userService.isPartner() && userService.isPartnerValidated(user)) {
@@ -85,7 +90,7 @@ class UserController {
             } else {
                 projects = projectService.getAllProjectByUser(user, environment)
                 projectAdmins = projectService.getProjectAdminEmail(user)
-                teams = projectService.getTeamByUserAndEnable(user, true)
+                teams = projectService.getEnabledAndValidatedTeam(user)
                 project = projectService.getProjects(projects, projectAdmins, teams, environment)
             }
             
@@ -108,9 +113,12 @@ class UserController {
             def multiplier = projectService.getCurrencyConverter();
             def countryOpts = [India: 'INDIA', USA: 'USA']
             
+            def partner = userService.getPartnerByUser(user)
+            
             render view: userViews, model: [user: user, projects: project, totalCampaings: totalCampaings,country: country, fundRaised: fundRaised, state: state,
                                             activeTab:activeTab, environment: environment, contributedAmount: contributedAmount, multiplier: multiplier, countryOpts: countryOpts,
-                                            contributions: contribution.contributions, totalContributions : contribution.totalContributions, sortByOptions: sortByOptions]
+                                            contributions: contribution.contributions, totalContributions : contribution.totalContributions, sortByOptions: sortByOptions,
+                                            partner: partner]
         }
     }
     
@@ -122,6 +130,11 @@ class UserController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def mycontribution() {
         userprofile('user/mycontribution',null)
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def renderdashboard() {
+        userprofile('user/dashboard', null)
     }
 
     def VALID_IMG_TYPES = ['image/png', 'image/jpeg']
@@ -319,7 +332,7 @@ class UserController {
         def environment = Environment.current.getName()
         def projects = projectService.getAllProjectByUser(user, environment)
         def projectAdmins = projectService.getProjectAdminEmail(user)
-        def teams = projectService.getTeamByUserAndEnable(user, true)
+        def teams = projectService.getEnabledAndValidatedTeam(user)
         List project = projectService.getProjects(projects, projectAdmins, teams, environment)
         def max = Math.min(params.int('max') ?: 6, 100)
         List totalCampaings = projectService.getUsersPaginatedCampaigns(project, params, max)
@@ -478,7 +491,7 @@ class UserController {
               def comments = userService.getUserCommnet(user)
               def projects = projectService.getAllProjectByUser(user, environment)
               def projectAdmins = projectService.getProjectAdminEmail(user)
-              def teams = projectService.getTeamByUserAndEnable(user, true)
+              def teams = projectService.getEnabledAndValidatedTeam(user)
               def project = projectService.getProjects(projects, projectAdmins, teams, environment)
               def contributions =projectService.getContibutionByUser(user, environment)
               def recentActivity = userService.getUserRecentActivity(project, contributions,comments, user, teams)
@@ -518,20 +531,25 @@ class UserController {
             flash.discardmsg = "Partner has been deleted successfully."
         } else if(flash.discardfailmsg) {
             flash.discardfailmsg = "Oh snap! Something went wrong while deleting partner. Please try again."
+        } else if (flash.validationSuccessMsg) {
+            flash.validationSuccessMsg = "Partner is validated successfully!"
         }
+        
         List partners = userService.getPartners()
-        render view:'/user/partner/index', model:[partners: partners]
+        List nonVerified = userService.getNonVerifiedPartners()
+        List pendingList = userService.getPendingPartners()
+        List draftList = userService.getDraftPartners()
+        def currentEnv = projectService.getCurrentEnvironment()
+        
+        render view:'/user/partner/index', model:[partners: partners, nonVerified: nonVerified, pendingList: pendingList,
+                                                        draftList: draftList, currentEnv: currentEnv]
     }
     
     @Secured(['ROLE_ADMIN'])
     def addpartner() {
         User user = userService.findUserByEmail(params.email)
         def password
-        if (user) {
-            if (!userService.isPartner(user)) {
-                userService.createPartnerRole(user, roleService)
-            }
-        } else {
+        if (!user) {
             def userObj = userService.setUserObject(params)
             user = userObj.user
             password = userObj.password
@@ -544,6 +562,7 @@ class UserController {
         } else {
             Partner partner = new Partner()
             partner.user = user
+            partner.created = new Date()
             
             partner.confirmCode = UUID.randomUUID().toString()
             if (partner.save()) {
@@ -566,7 +585,21 @@ class UserController {
             } else {
                 partner.enabled = true
                 if (partner.save()) {
-                    render(view: '/success', model: [sucess_message: 'Your account is successfully activated for Partner.'])
+                    def user = userService.getCurrentUser()
+                    
+                    if (!user) {
+                        def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+                        def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+                        
+                        def reqUrl = base_url+"/user/joinPartners"
+                        
+                        Cookie cookie = new Cookie("requestUrl", reqUrl)
+                        cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
+                        cookie.maxAge= 3600  //Cookie expire time in seconds
+                        response.addCookie(cookie)
+                    }
+                    
+                    redirect action:'joinPartners'
                 } else {
                     flash.user_err_message = 'Problem activating account. Please contact the administrator.'
                     render(view: '/usererror')
@@ -617,11 +650,11 @@ class UserController {
             def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
             
             if (flash.prj_validate_message) {
-                flash.prj_validate_message = "Campaign validated successfully."
+                flash.prj_validate_message = flash.prj_validate_message
             } else if (flash.invite_message) {
-                flash.invite_message = "Email Sent Successfully."
+                flash.invite_message = flash.invite_message
             } else if(flash.receipt_sent_msg) {
-                flash.receipt_sent_msg = "Receipt Sent Successfully."
+                flash.receipt_sent_msg = flash.receipt_sent_msg
             }
             
             render view:'/user/partner/dashboard', model:[user: user, campaigns: projectObj.projects, totalCampaigns: projectObj.totalprojects, baseUrl: baseUrl, currentEnv: currentEnv,
@@ -815,6 +848,7 @@ class UserController {
     def partners() {
         List partners = userService.getPartners()
         def currentEnv = projectService.getCurrentEnvironment()
+        
         render (view:'/user/partner/show/index', model:[partners: partners, currentEnv: currentEnv])
     }
     
@@ -830,11 +864,6 @@ class UserController {
         def user = userService.getCurrentUser()
         
         if (!user) {
-            def loginSignUpCookie = projectService.setLoginSignUpCookie()
-            if (loginSignUpCookie) {
-                response.addCookie(loginSignUpCookie)
-            }
-            
             def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
             def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
             
@@ -851,11 +880,6 @@ class UserController {
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def createpartner() {
-        String loginSignUpCookie = g.cookie(name: 'loginSignUpCookie')
-        if (loginSignUpCookie) {
-            def cookie = projectService.deleteLoginSignUpCookie()
-            response.addCookie(cookie)
-        }
         def user = userService.getCurrentUser()
         def partner = userService.getPartnerByUser(user)
         
@@ -871,6 +895,21 @@ class UserController {
             } else {
                 render view: '/404error'
             }
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def joinPartners() {
+        def user = userService.getCurrentUser()
+        def partner = userService.getPartnerByUser(user)
+        
+        if (partner) {
+            def country = projectService.getCountry()
+            def currentEnv = projectService.getCurrentEnvironment()
+            flash.success_msg = 'Your account is successfully confirmed for partner page.'
+            render (view: '/user/partner/create/index', model:[currentEnv: currentEnv, country: country, partner: partner, user: user])
+        } else {
+            render view: '/404error'
         }
     }
     
@@ -947,5 +986,39 @@ class UserController {
             }
         }
     }
-
+    
+    @Secured(['ROLE_ADMIN'])
+    def verifypartner() {
+        Partner partner = userService.getPartnerById(params.int('id'))
+        if (partner) {
+            if (!userService.isPartner()) {
+                userService.createPartnerRole(partner.user, roleService)
+            }
+            
+            partner.validated = true
+            partner.save()
+            flash.validationSuccessMsg = "Partner is validated successfully!"
+            redirect action:'managePartner'
+        } else {
+            render view:'/404error'
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def editpartner() {
+        Partner partner = userService.getPartnerById(params.int('partnerId'))
+        User currentUser = userService.getCurrentUser()
+        if (partner) {
+            if(partner.user == currentUser) {
+                def country = projectService.getCountry()
+                def currentEnv = projectService.getCurrentEnvironment()
+                render (view: '/user/partner/create/index', model:[currentEnv: currentEnv, country: country, partner: partner, user: currentUser])
+            } else {
+                 render view:'/401error'
+            }
+        } else {
+            render view:'/404error'
+        }
+    }
+    
 }

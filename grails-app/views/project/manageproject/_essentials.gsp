@@ -92,24 +92,12 @@
     <g:hiddenField name="embedTileUrl" id="embedTileUrl" value="${embedTileUrl}"/>
     <g:if test="${project.validated}">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 manage-social hidden-xs">
-<%--        <div class="shared pull-left mng-sharing-icon-alignment">--%>
-<%--            <span><label>SHARE:</label></span>--%>
-<%--        </div>--%>
-<%--        <a target="_blank" class="fb-like pull-left social fbShareForLargeDevices" id="fbshare">--%>
-<%--            <img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">--%>
-<%--        </a>--%>
-<%--        <a target="_blank" class="fb-like pull-left social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">--%>
-<%--            <img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">--%>
-<%--        </a>--%>
         <a class="share-mail pull-left social" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
             <img src="//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png" class="show-email" alt="Email Share">
         </a>
         <a class="twitter-share pull-left social" id="twitterShare" target="_blank">
             <img src="//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png" class="show-twitter" alt="Twitter Share">
         </a>
-<%--       	<a class="social like-share pull-left" id="likeShare" data-url="${base_url}/campaigns/${vanityTitle}/${vanityUsername}" target="_blank">--%>
-<%--            		<img src="//s3.amazonaws.com/crowdera/assets/like-share-icon.png" alt="Like Share"/>--%>
-<%--        </a>--%>
         <a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${shareUrl}"  id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
             <img src="//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png" class="show-linkedin" alt="LinkedIn Share">
         </a>

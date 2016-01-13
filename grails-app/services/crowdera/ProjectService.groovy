@@ -326,7 +326,7 @@ class ProjectService {
                  project: project,
                  date: new Date()).save(failOnError: true)
          }
-     } 
+     }
 
      def getUpdateCommentDetails(def request){
          def checkid= request.getParrmeter('checkID')
@@ -1885,8 +1885,11 @@ class ProjectService {
 
         def tempImageUrl
         def imageUrl = new ImageUrl()
+        def imageUrls = project.imageUrl
+        def imageCount = 0;
+        
         if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
-            try{
+            try {
                 def file= new File("${imageFile.getOriginalFilename()}")
                 def key = "${Folder}/${imageFile.getOriginalFilename()}"
                 key = key.toLowerCase()
@@ -1897,10 +1900,16 @@ class ProjectService {
                 tempImageUrl = "//s3.amazonaws.com/crowdera/${key}"
                 s3Service.putObject(s3Bucket, object)
                 imageUrl.url = tempImageUrl
+                
+                imageUrls.each {
+                    imageCount = (it.url.equalsIgnoreCase(tempImageUrl)) ? imageCount + 1 : imageCount ;
+                }
+                imageUrl.numberOfUrls = imageCount
                 imageUrl.save()
                 project.addToImageUrl(imageUrl)
                 file.delete()
-            }catch(Exception e) {
+                
+            } catch(Exception e) {
                 log.error("Error: " + e);
             }
         }
@@ -1956,6 +1965,9 @@ class ProjectService {
         def Folder = "project-images"
 
         def tempImageUrl
+        def imageUrls = team.imageUrl
+        def imageCount = 0
+        
         def imageUrl = new ImageUrl()
         if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
             try{
@@ -1969,6 +1981,11 @@ class ProjectService {
                 tempImageUrl = "//s3.amazonaws.com/crowdera/${key}"
                 s3Service.putObject(s3Bucket, object)
                 imageUrl.url = tempImageUrl
+                
+                imageUrls.each {
+                    imageCount = (it.url.equalsIgnoreCase(tempImageUrl)) ? imageCount + 1 : imageCount ;
+                }
+                imageUrl.numberOfUrls = imageCount
                 imageUrl.save()
 
                 team.addToImageUrl(imageUrl)
@@ -2587,6 +2604,11 @@ class ProjectService {
     def getTeamByUserAndEnable(User user, def enable){
       def teams=Team.findAllWhere(user:user, enable: enable)
       return teams
+    }
+    
+    def getEnabledAndValidatedTeam(User user) {
+        def teams=Team.findAllWhere(user:user, enable: true, validated: true)
+        return teams
     }
     
     def getAddress(def params){
@@ -4468,7 +4490,7 @@ class ProjectService {
         List projects = []
         def campaigns = getAllProjectByUser(user, environment)
         def projectAdmins = getProjectAdminEmail(user)
-        def teams = getTeamByUserAndEnable(user, true)
+        def teams = getEnabledAndValidatedTeam(user)
         def totalprojects = getProjects(campaigns, projectAdmins, teams, environment)
         
         def max = Math.min(params.int('max') ?: 6, 100)
@@ -4812,7 +4834,7 @@ class ProjectService {
         List projects = []
         def campaigns = getAllProjectByUser(user, environment)
         def projectAdmins = getProjectAdminEmail(user)
-        def teams = getTeamByUserAndEnable(user, true)
+        def teams = getEnabledAndValidatedTeam(user)
         def totalprojects = getProjects(campaigns, projectAdmins, teams, environment)
         
         def raised = getTotalFundRaisedByUser(campaigns)

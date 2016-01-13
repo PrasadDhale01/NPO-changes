@@ -73,7 +73,7 @@
             </div>
         </g:else>
     </g:if>
-    <g:if test="${!ismanagepage || !isAdminOrBeneficiary}">
+    <g:elseif test="${!ismanagepage || !isAdminOrBeneficiary}">
         <div class="over teamtile-banner">
             <g:if test="${!team.enable}">
                 <img src="//s3.amazonaws.com/crowdera/assets/Disabled-tag.png" alt="diabledTeam">
@@ -90,7 +90,7 @@
                 </g:else>
             </g:else>
         </div>
-    </g:if>
+    </g:elseif>
     <div class="blacknwhite teamtile-style">
 	<g:if test="${isPreview || isvalidateShow}">
 	    <g:if test="${userImageUrl != null}">

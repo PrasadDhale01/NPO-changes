@@ -99,3 +99,5 @@
         </div>
     </g:form>
 </div>
+<div class="clear"></div>
+<div class="userprofilebottom visible-xs"></div>

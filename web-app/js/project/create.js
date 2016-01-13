@@ -192,7 +192,7 @@ $(function() {
             	isLinkedInUrl: true
             },
             customVanityUrl:{
-            	maxlength:40,
+            	maxlength:55,
             	isVanityUrlUnique:true
             },
             amount: {

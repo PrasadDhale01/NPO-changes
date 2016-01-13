@@ -85,27 +85,24 @@
                 	<div class="alert alert-success">Receipt has been sent over email to ${contribution.contributorEmail}</div><br>
                 </g:else>
                 <div class="row">
-					<div class="col-sm-6 shared contributionShare">
-						<div class="shared ack-socialicon pull-left">
-							<span><label>SHARE:</label></span>
-						</div>
-						<a target="_self" class="fb-like pull-left social fbShareForLargeDevices" href="#" id="fbshare">
-							<img src="//s3.amazonaws.com/crowdera/assets/contribution-fb-share.png" alt="Facebook Share">
-						</a>
-						<a target="_blank" class="fb-like pull-left social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${fbShareUrl}">
-							<img src="//s3.amazonaws.com/crowdera/assets/contribution-fb-share.png" alt="Facebook Share">
-						</a>
-      <a class="share-mail pull-left social glyphicon glyphicon-envelope glyphicon-design-acknowledge glyphicon-envelope-color" href="#" data-toggle="modal" data-target="#sendmailmodal"></a>
-						<a class="twitter-share pull-left social" id="twitterShare" target="_blank">
-							<img src="//s3.amazonaws.com/crowdera/assets/contribution-twitter-share.png" alt="Twitter Share">
-						</a>
-						<a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${twitterShareUrl}"  id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-							<img src="//s3.amazonaws.com/crowdera/assets/contribution-linked-in-share.png" alt="LinkedIn Share">
-						</a>
-						<a class="social google-plus-share pull-left" id="googlePlusShare" href="https://plus.google.com/share?url=${twitterShareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-							<img src="//s3.amazonaws.com/crowdera/assets/contribution-google-plus-share.png" alt="Google+ Share">
-						</a> 
-					</div>
+                    <div class="col-sm-6 shared contributionShare">
+                        <div class="shared ack-socialicon pull-left">
+                            <span><label>SHARE:</label></span>
+                        </div>
+                        <a target="_self" class="fb-like pull-left social fbShareForLargeDevices" href="#" id="fbshare">
+                            <img src="//s3.amazonaws.com/crowdera/assets/contribution-fb-share.png" alt="Facebook Share">
+                        </a>
+                        <a class="share-mail pull-left social glyphicon glyphicon-envelope glyphicon-design-acknowledge glyphicon-envelope-color" href="#" data-toggle="modal" data-target="#sendmailmodal"></a>
+                        <a class="twitter-share pull-left social" id="twitterShare" target="_blank">
+                            <img src="//s3.amazonaws.com/crowdera/assets/contribution-twitter-share.png" alt="Twitter Share">
+                        </a>
+                        <a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${twitterShareUrl}"  id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                            <img src="//s3.amazonaws.com/crowdera/assets/contribution-linked-in-share.png" alt="LinkedIn Share">
+                        </a>
+                        <a class="social google-plus-share pull-left" id="googlePlusShare" href="https://plus.google.com/share?url=${twitterShareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                            <img src="//s3.amazonaws.com/crowdera/assets/contribution-google-plus-share.png" alt="Google+ Share">
+                        </a> 
+                    </div>
                     <!-- Modal -->
                     <div class="modal fade sendmailmodal" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
                         <g:form action="sendemail" controller="fund" id="${project.id}">

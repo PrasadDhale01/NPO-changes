@@ -150,7 +150,7 @@
 		                           crowdera.co/campaigns/
 		                       </g:else>
 		                   </div>
-	                       <input class="form-control form-control-no-border cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd cr1-vanitypadding-in-co cr1-paddings-lft" name="customVanityUrl" id="customVanityUrl" placeholder="Your-Campaign-Web-Url">
+	                       <input class="form-control form-control-no-border cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd cr1-vanitypadding-in-co cr1-paddings-lft" name="customVanityUrl" id="customVanityUrl" maxlength="55" placeholder="Your-Campaign-Web-Url">
 	                   </div>
 	                   <div class="clear" id="vanityUrlClear"></div>
 	                   <label class="pull-right" id="vanityUrlLength"></label>

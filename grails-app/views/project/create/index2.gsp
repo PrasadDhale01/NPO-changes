@@ -459,14 +459,14 @@
                     <div class="tab-pane panel-body active row" id="organization">
                         <div class="col-sm-4">
                             <div class="form-group" id="organizationName">
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 cr-mobiledisplyorg ">
                                     <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.ORGANIZATIONNAME}" value="${project.organizationName}" id="organizationname" placeholder="Individual / Organization Name">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 cr-mobiledisplyorg">
                                     <g:if test="${project.webAddress}">
                                         <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook" value="${project.webAddress}">
                                     </g:if>
@@ -478,7 +478,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group createOrgIconDiv">
-                                <div class="col-sm-6">
+                                <div class="col-lg-6 col-sm-8 col-md-8 col-xs-7 cr-mobiledisplyorg">
                                     <div class="fileUpload btn btn-info btn-sm cr-btn-color cr-marg-mobile">
                                         Display Picture
                                         <input type="file" class="upload" id="iconfile" name="iconfile" accept="image/jpeg, image/png">
@@ -712,7 +712,7 @@
                     <div class="rewardsTemplate" id="rewardTemplate1" value="1">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 col-xs-12">
                                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                                         <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
                                         <input type="text" placeholder="Amount" name="rewardPrice1" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice1">

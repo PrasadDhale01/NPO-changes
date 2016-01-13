@@ -795,7 +795,7 @@ img.hm-img-bottompadding {
 hr.hm-line-color{
     border-color: #666666;
     margin-top: 0;
-    margin-bottom: 52px;
+/*     margin-bottom: 52px; */
 }
 
 .show-headered-without-update {
@@ -1094,6 +1094,15 @@ img.home-img-large-size{
     right: 3%;
     z-index: 100;
 }
+ 
+ .whatsapp-mobile-icon .btn-whatsapp{
+     width: 60px;
+     height: 60px;
+     border-radius: 50%;
+     outline: 0px;
+     background-color: #29a628;
+     padding: 14px;
+ }
  
 .whatsapp-mobile-icon .btn-whatsapp{
     width: 60px;

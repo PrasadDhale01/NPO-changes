@@ -31,7 +31,7 @@
 			   <img alt="Twitter Share" src="//s3.amazonaws.com/crowdera/assets/contribution-twitter-share.png">
 		        </a>
 			<a onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" id="share-linkedin" target="_blank" href="https://www.linkedin.com/cws/share?url=${ebookUrl}" class="share-linkedin pull-left">
-			    <img alt="LinkedIn Share" src="///s3.amazonaws.com/crowdera/assets/contribution-linked-in-share.png">
+			    <img alt="LinkedIn Share" src="//s3.amazonaws.com/crowdera/assets/contribution-linked-in-share.png">
 			</a>
 			<a onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" href="https://plus.google.com/share?url=${ebookUrl}" id="googlePlusShare" class="google-plus-share pull-left">
 			    <img alt="Google+ Share" src="//s3.amazonaws.com/crowdera/assets/contribution-google-plus-share.png">

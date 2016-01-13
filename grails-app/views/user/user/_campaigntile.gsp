@@ -1,11 +1,9 @@
 <g:set var="projectService" bean="projectService" />
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="userService" bean="userService"/>
-<% 
-    def partnerId = partner.id
-%>
-<g:if test="${userCampaigns.size() > 0}">
-<g:each in="${userCampaigns}" var="campaign">
+
+<g:if test="${totalCampaings.size() > 0}">
+<g:each in="${totalCampaings}" var="campaign">
     <% 
         def isFundingOpen = projectService.isFundingOpen(campaign)
         def contribution = contributionService.getTotalContributionForProject(campaign)
@@ -190,24 +188,28 @@
     
 </g:each>
 <div class="clear"></div>
-<div class="partnercampaignpaginate">
-    <g:paginate controller="user" max="6" action="partnercampaigns" total="${totalUserCampaigns.size()}" params="['partnerId':partnerId]"/>
-</div>
-<script>
-    $("#partnercampaignpaginate").find('.partnercampaignpaginate a').click(function(event) {
-        event.preventDefault();
-        var url = $(this).attr('href');
-        var grid = $(this).parents('#partnercampaignpaginate');
+    <div class="usersCampaignsPagination text-center" id="userCampaignsPagination">
+        <g:paginate controller="user" max="6" maxsteps= "5" action="campaignpagination"  total="${projects.size()}"/>
+    </div>
 
-        $.ajax({
-            type: 'GET',
-            url: url,
-            success: function(data) {
-                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
-            }
+    <script>
+        $('#usercampaignpaginate').find('#userCampaignsPagination a').click(function(event) {
+            event.preventDefault();
+            var url = $(this).attr('href');
+            var grid = $(this).parents('#usercampaignpaginate');
+            ajaxCall(url, grid);
         });
-    });
-</script>
+    
+        function ajaxCall(url, grid) {
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function(data) {
+                    $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+                }
+            });
+        }
+    </script>
 </g:if>
 <g:else>
     <div class="col-sm-12">

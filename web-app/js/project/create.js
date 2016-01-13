@@ -192,7 +192,7 @@ $(function() {
             	isLinkedInUrl: true
             },
             customVanityUrl:{
-            	maxlength:40,
+            	maxlength:55,
             	isVanityUrlUnique:true
             },
             amount: {
@@ -251,6 +251,8 @@ $(function() {
             }else if($(element).prop("id") == "projectEditImageFile") {
                 error.appendTo(document.getElementById("col-error-placement"));
             }else if($(element).prop("id") == "editiconfile") {
+                error.appendTo(element.parent().parent());
+            }else if($(element).prop("id") == "customVanityUrl") {
                 error.appendTo(element.parent().parent());
             }else{
                 error.insertAfter(element);
@@ -453,9 +455,11 @@ $(function() {
               $(this).rules("add", {
                   required: true,
                   minlength: 3,
+                  maxlength:55,
                   messages: {
                   	required: 'Required',
-                  	minlength: 'min 3 characters'
+                  	minlength: 'min 3 characters',
+                    maxlength: 'max 55 characters'
                   }
               });
           });
@@ -763,9 +767,11 @@ $(function() {
 			$(this).rules("add", {
 				required: true,
 				minlength: 3,
+				maxlength: 55,
 				messages: {
 					required: 'Required',
-					minlength: 'min 3 characters'
+					minlength: 'min 3 characters',
+					maxlength: 'max 55 characters'
 				}
 			});
 		});
@@ -1702,7 +1708,8 @@ $(function() {
         } else {
         if(file.size < 1024 * 1024 * 3) {
             isvalidFilesize =  true;
-            $('.uploadingFile').show();
+//            $('.uploadingFile').show();
+            $('#loading-gif').show();
 
             var formData = !!window.FormData ? new FormData() : null;
             var name = 'file';
@@ -1714,7 +1721,7 @@ $(function() {
             var xhr = new XMLHttpRequest();
             xhr.open('POST', $("#b_url").val()+'/project/uploadTaxRecieptFiles');
             xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-         
+            
             // complete
             xhr.onreadystatechange = $.proxy(function() {
                 if (xhr.readyState == 4) {
@@ -1734,7 +1741,8 @@ $(function() {
                     div.innerHTML = "<div class=\"cr-tax-files\"><div class=\"col-file-name\">"+file.name +"</div><div class=\"deleteicon\"><button type=\"button\" class=\"close\" onClick=\"deleteTaxRecieptFiles(this,'"+json.fileId+"','"+taxRecieptId+"');\">&times;</button></div></div>";
 
                     output.insertBefore(div, null);
-                    $('.uploadingFile').hide();
+//                    $('.uploadingFile').hide();
+                    $('#loading-gif').show();
                 }
             }, this);
             xhr.send(formData);
@@ -1771,6 +1779,84 @@ $(function() {
             $('#titleLength').text(currentstring+'/55');
         }
     }
+    
+    var counter = 1;
+    $('#customVanityUrl').on('keydown', function(event) {
+    
+        event.altKey==true;
+        var currentstring = $('#customVanityUrl').val().length;
+
+        if(currentstring <=55) {
+            if (currentstring == 55) {
+                var text = currentstring ;
+            } else {
+                var text = currentstring + 1;
+            }
+        }
+        if (event.keyCode > 31) {
+            if(event.altKey==true){
+                setTitleText();
+            }
+            else{
+                if(currentstring <54)
+                    currentstring++;
+                $('#vanityUrlLength').text(text+'/55');
+            }
+
+        } else {
+            currentstring--;
+            $('#vanityUrlLength').text(text+'/55');
+        }
+    }).keyup(function(e) {
+    
+        if(e.altKey==true){
+            setTitleText();
+            return false;
+        }
+
+        switch (e.keyCode) {
+ 
+            case 13:      //Enter
+            case 8:       //backspace
+            case 46:      //delete
+            case 17:      
+            case 27:      //escape
+            case 10:      //new line
+            case 20:      
+            case 9:       //horizontal TAB
+            case 11:      //vertical tab
+            case 33:      //page up  
+            case 34:      //page  down
+            case 35:      //End 
+            case 36:      //Home
+            case 37:      //Left arrow
+            case 38:      //up arrow
+            case 39:      //Right arrow
+            case 40:      //Down arrow
+            case 45:      //Insert
+            case 12:      //vertical tab
+    	        setTitleText();
+                break;
+            case 16:      //shift
+    	        setTitleText();
+                break;
+        }
+    }).focus(function(){
+	    setTitleText();
+    }).focusout(function(){
+	    setTitleText();
+    });
+    
+    function setTitleText() {
+        
+        var currentstring = $('#customVanityUrl').val().length;
+        if (currentstring == 0) {
+            $('#vanityUrlLength').text("0/55");
+        } else {
+	        currentstring = currentstring;
+            $('#vanityUrlLength').text(currentstring+'/55');
+        }
+    }
 
     /***************************Multiple Image Selection*************** */
     var isvalidsize =  false;
@@ -1779,7 +1865,7 @@ $(function() {
         var file = this.files[0];
         if(validateExtension(file.name) == false) {
             $('.pr-thumbnail-div').hide();
-            $('.imgmsg').show();
+            $('.imgmsg').css("display","block");
             $('.imgmsg').html("Add only PNG or JPG extension images");
             $('.campaignfilesize').hide();
             this.value=null;
@@ -2221,6 +2307,7 @@ $(function() {
 						'<div class="form-group col-sm-5 col-xs-7 col-input-for">'+
 						'	<input type="text" class="form-control form-control-input-for spendCause" id="spendCause'+nextCount+'" name="spendCause'+nextCount+'">'+
 						'</div>'+
+						'<div class="clear visible-xs"></div>'+
 						'<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">'+
 							'<input type="hidden" name="spendFieldSave" value="'+nextCount+'" class="spendFieldSave" id="spendFieldSave'+nextCount+'">'+
 							'<i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>'+
@@ -2288,9 +2375,11 @@ $(function() {
                   $(this).rules("add", {
                       required: true,
                       minlength:3,
+                      maxlength:55,
                       messages: {
                       	required: 'Required',
-                      	minlength: 'min 3 characters'
+                      	minlength: 'min 3 characters',
+                      	maxlength: 'max 55 characters'
                       }
                   });
               });
@@ -2839,6 +2928,7 @@ $(function() {
     $('#paypalEmailId').blur(function(){
     	var paypalEmail = $('#paypalEmailId').val();
     	$('#charitable').find('input').val('');
+    	$('#fgSearchForm').find('#fgNameStart').val('');
         autoSave('paypalEmailId', paypalEmail);
     });
 

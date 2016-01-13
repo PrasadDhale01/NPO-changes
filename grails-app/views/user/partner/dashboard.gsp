@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="layout" content="main" />
-    <r:require module="partnerjs"/>
+    <r:require module="showpartnerjs"/>
 </head>
 <body>
     <div class="partner-dashboard" id="wrapper">
@@ -33,7 +33,7 @@
         <div class="navbar navbar-default navbar-fixed-top visible-xs" id="partner-third-header">
             <div class="navbar-header">
                 <span class="span-space"><span class="header-text">Raised</span> <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${fundRaised.round()}</span>
-                <span class="span-space"><span class="header-text">Invites</span> ${numberOfInvites}</span>
+                <span class="span-space"><span class="header-text">Contributed</span> <g:if test="${environment == 'prodIndia' || environment == 'stagingIndia' || environment == 'testIndia'}"><span class="fa fa-inr"></span>${contributedAmount.round() * multiplier}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
                 <span class="span-space"><span class="header-text">Campaigns</span> ${totalUserCampaigns.size()}</span>
             </div>
         </div>
@@ -86,12 +86,15 @@
                 <div class="partnerprofilediv automargin">
                     <div class="partner-information-bio text-center">
                         <b>${user.firstName}</b>
-                        <g:if test="${user.biography}"> 
-                            <div class="user-biography hidden-xs">${user.biography}</div>
-                        </g:if>
                     </div>
                 </div>
-                
+                <g:if test="${user.biography}">
+                    <div class="partnerprofilediv automargin">
+                        <div class="partner-information-bio text-center"> 
+                            <div class="user-biography hidden-xs">${user.biography}</div>
+                        </div>
+                    </div>
+                </g:if>
                 <ul id="side-menu">
                     <g:if test="${!isAdmin}">
                         <li>
@@ -102,13 +105,16 @@
                         <a href="#userInfo" data-toggle="tab">Manage Profile</a>
                     </li>
                     <li class="active">
-                        <a href="#myCampaigns" data-toggle="tab"> My Campaigns</a>
+                        <a href="#myCampaigns" data-toggle="tab">My Campaigns</a>
                     </li>
                     <li>
-                        <a href="#validate" data-toggle="tab"> Validate Campaigns</a>
+                        <a href="#mycontributions" data-toggle="tab">Campaigns Supported</a>
                     </li>
                     <li>
-                        <a href="#invite" data-toggle="tab"> Invite Campaign Owner</a>
+                        <a href="#validate" data-toggle="tab">Validate Campaigns</a>
+                    </li>
+                    <li>
+                        <a href="#invite" data-toggle="tab">Invite Campaign Owner</a>
                     </li>
                     <li>
                         <a href="#docs" data-toggle="tab">Manage Docs</a>
@@ -140,26 +146,67 @@
 
         <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 pd-container-width">
             <div class="pd-container">
-                <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs partner-stats">
-                    <div class="panel panel-info">
-                        <div class="panel-footer announcement-bottom text-center">
-                            Raised <b><g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${fundRaised.round()}</b>
+                <div class="col-xs-12 userdashboardstats hidden-xs">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 userdashboardstatstile">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-2 col-md-2 hidden-sm">
+                                        <i class="fa fa-leaf fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-10 col-sm-12 col-md-10 text-right">
+                                        <p class="announcement-heading">
+                                            <span class="amountSection-Font"><g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${fundRaised.round()}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer announcement-bottom">
+                                Raised
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs partner-stats">
-                    <div class="panel panel-info">
-                        <div class="panel-footer announcement-bottom text-center">
-                            Campaigns <b>${totalUserCampaigns.size()}</b>
+                    
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 userdashboardstatstile">
+                        <div class="panel panel-warning">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-2 col-md-2 hidden-sm">
+                                        <i class="fa fa-leaf fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-10 col-sm-12 col-md-10 text-right">
+                                        <p class="announcement-heading">
+                                            <span class="amountSection-Font"><g:if test="${environment == 'prodIndia' || environment == 'stagingIndia' || environment == 'testIndia'}"><span class="fa fa-inr"></span>${contributedAmount.round() * multiplier}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer announcement-bottom">
+                                Contributed
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs partner-stats">
-                    <div class="panel panel-info">
-                        <div class="panel-footer announcement-bottom text-center">
-                            Invites <b>${numberOfInvites}</b>
+                    
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 userdashboardstatstile">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-2 col-md-2 hidden-sm">
+                                        <i class="fa fa-leaf fa-3x"></i>
+                                    </div>
+                                    <div class="col-xs-10 col-sm-12 col-md-10 text-right">
+                                        <p class="announcement-heading">
+                                            <span class="amountSection-Font">${totalUserCampaigns.size()}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer announcement-bottom">
+                                Campaigns
+                            </div>
                         </div>
                     </div>
+                    
                 </div>
                 <div class="clear"></div>
                 <g:if test="${flash.prj_validate_message}">
@@ -190,6 +237,7 @@
                         </div>
                     </div>
                 </g:elseif>
+                
                 <div class="col-md-12 col-sm-12 col-lg-12" id="vitalseperator">
                     <hr>
                 </div>
@@ -224,6 +272,12 @@
                                     <button type="submit" class="btn btn-block btn-sm btn-primary visible-xs" id="mobBtnSendinvitation">Invite</button>
                                 </g:if>
                             </g:form>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane tab-pane-active" id="mycontributions">
+                        <div id="usercontributionpaginate">
+                            <g:render template="/user/user/campaignssupported"/>
                         </div>
                     </div>
                     

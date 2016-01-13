@@ -108,15 +108,13 @@
     </div>
     <div class="tab-pane tab-pane-active" id="drive">
         <div class="col-sm-12">
-            <g:if test="${!isAdmin}">
-                <button type="button" class="btn btn-sm btn-primary pull-right" id="pick">Load File</button>
-                
-                <div class="trash-drivefile-fixed-btn" id="trash-drivefile-fixed-btn">
-                    <button class="btn btn-danger btn-round" type="button" id="remove-drive-file">
-                        <span class="fa fa-trash"></span>
-                    </button>
-                </div>
-            </g:if>
+            <button type="button" class="btn btn-sm btn-primary pull-right" id="pick">Import File</button>
+            
+            <div class="trash-drivefile-fixed-btn" id="trash-drivefile-fixed-btn">
+                <button class="btn btn-danger btn-round" type="button" id="remove-drive-file">
+                    <span class="fa fa-trash"></span>
+                </button>
+            </div>
             <div class="clear"></div>
             <div id="driveFiles">
             </div>
@@ -129,22 +127,21 @@
         
     </div>
 </div>
-<g:if test="${!isAdmin}">
-    <div class="dropup add-docs-fixed-btn" id="add-docs-fixed-btn">
-        <button class="btn btn-primary btn-round dropdown-toggle" type="button" data-toggle="dropdown" id="dropupbtn">
-            <span class="glyphicon glyphicon-plus"></span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-right">
-            <li class="dropdown-doc-padding" id="first"><span class="fileUpload">
-                <span class="uploaddocfile" id="uploaddocfile">Upload File</span>
-            </span></li>
-            <li class="divider"></li>
-            <li class="dropdown-doc-padding" id="third" data-toggle="modal" data-target="#createNewFolder">New Folder</li>
-        </ul>
-    </div>
-    <div class="trash-file-fixed-btn" id="trash-file-fixed-btn">
-        <button class="btn btn-danger btn-round" type="button" id="remove-file">
-            <span class="fa fa-trash"></span>
-        </button>
-    </div>
-</g:if>
+
+<div class="dropup add-docs-fixed-btn" id="add-docs-fixed-btn">
+    <button class="btn btn-primary btn-round dropdown-toggle" type="button" data-toggle="dropdown" id="dropupbtn">
+        <span class="glyphicon glyphicon-plus"></span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-right">
+        <li class="dropdown-doc-padding" id="first"><span class="fileUpload">
+            <span class="uploaddocfile" id="uploaddocfile">Upload File</span>
+        </span></li>
+        <li class="divider"></li>
+        <li class="dropdown-doc-padding" id="third" data-toggle="modal" data-target="#createNewFolder">New Folder</li>
+    </ul>
+</div>
+<div class="trash-file-fixed-btn" id="trash-file-fixed-btn">
+    <button class="btn btn-danger btn-round" type="button" id="remove-file">
+        <span class="fa fa-trash"></span>
+    </button>
+</div>

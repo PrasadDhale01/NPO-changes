@@ -243,18 +243,35 @@ class ProjectController {
             def hasMoreTagsDesktop = projectService.getHashTags(project.hashtags)
             def hasMoreTagsTabs = projectService.getHashTagsTabs(project.hashtags)
             def reasons = projectService.getReasonsToFundFromProject(project)
+            def isDeviceMobileOrTab = isDeviceMobileOrTab();
             render (view: 'show/index',
-            model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
-                    totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, contributions: contributions, webUrl: webUrl, teamComments: teamComments, totalContributions:totalContributions,
-                    teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
-                    isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,currentEnv: currentEnv,
-                    isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url,
-                    multiplier: multiplier, spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
-                    hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, reasons:reasons])
+            model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, 
+                    isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
+                    totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, 
+                    contributions: contributions, webUrl: webUrl, teamComments: teamComments, totalContributions:totalContributions,
+                    teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, 
+                    CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
+                    isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, 
+                    isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,
+                    isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS, 
+                    isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier,
+                    spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList,
+                    hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
+                    hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, reasons:reasons,
+                    isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv])
 		} else {
 			render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
 	}
+
+    def isDeviceMobileOrTab(){
+        String userAgent = request.getHeader("User-Agent");
+        if (userAgent.contains('Mobile') || userAgent.contains('Android') || userAgent.contains('iPod')){
+            return true
+        } else {
+            return false
+        }
+    }
 
 	def showMoreteam() {
 		def vanityTitle = params.projectTitle
@@ -364,18 +381,27 @@ class ProjectController {
         }
 	}
 
-	@Secured(['ROLE_ADMIN'])
-	def delete() {
-		def project = projectService.getProjectById(params.id)
-		if (project) {
-			project.rejected = true
-			flash.prj_validate_message= "Campaign discarded successfully"
-			redirect (action:'validateList')
-		} else {
-			flash.prj_validate_err_message = 'Campaign Not Found'
-			render (view: 'validate/validateerror', model: [project: project])
-		}
-	}
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def delete() {
+        def project = projectService.getProjectById(params.id)
+        User user = userService.getCurrentUser()
+        if (project) {
+            if (userService.isAdmin()) {
+                project.rejected = true
+                flash.prj_validate_message= "Campaign discarded successfully!"
+                redirect (action:'validateList')
+            } else if (userService.isPartner() && userService.isPartnerValidated(user)) {
+                project.rejected = true
+                flash.prj_validate_message= "Campaign discarded successfully!"
+                redirect (action:'partnerdashboard', controller:'user')
+            } else {
+                render view:'/401error'
+            }
+        } else {
+            flash.prj_validate_err_message = 'Campaign Not Found'
+            render (view: 'validate/validateerror', model: [project: project])
+        }
+    }
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def deleteProjectImage(){
@@ -513,13 +539,13 @@ class ProjectController {
     }
 
 
-	def create(String id) {
+	def create() {
         def currentEnv = Environment.current.getName()
         String partnerInviteCode = g.cookie(name: 'inviteCode')
         def inDays = projectService.getInDays()
 		render(view: 'create/index1', model: [FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv, partnerInviteCode: partnerInviteCode, inDays:inDays])
 	}
-    
+
     def saveCampaign() {
         def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
@@ -879,7 +905,6 @@ class ProjectController {
 		if (projectSpreadsheet.isEmpty()) {
 			flash.prj_import_message = "Please choose a file and try again."
 			redirect(action: 'importprojects')
-			return
 		}
 
 		List projectParamsList
@@ -889,7 +914,6 @@ class ProjectController {
 		} catch (Exception e) {
 			flash.prj_import_message = "Error while importing file: " + e.getMessage()
 			redirect(action: 'importprojects')
-			return
 		}
 
 		/* Collect all the successfully created projects. */
@@ -914,7 +938,6 @@ class ProjectController {
 					'error': "Error mapping project: " + project.errors.toString()
 				]
 				redirect(action: 'importprojects')
-				return
 			}
 
 			Beneficiary beneficiary = userService.getBeneficiaryByParams(projectParams)
@@ -924,7 +947,6 @@ class ProjectController {
 					'error': "Error mapping beneficiary: " + beneficiary.errors.toString()
 				]
 				redirect(action: 'importprojects')
-				return
 			}
 
 			project.beneficiary = beneficiary
@@ -938,9 +960,7 @@ class ProjectController {
 					'error': "Error with createdDate: " + e.getMessage()
 				]
 				redirect(action: 'importprojects')
-				return
 			}
-
 
 			if (project.validate()) {
 				projects.add(project)
@@ -950,7 +970,6 @@ class ProjectController {
 					'error': "Error validating project: " + project.errors.toString()
 				]
 				redirect(action: 'importprojects')
-				return
 			}
 		}
 
@@ -963,17 +982,14 @@ class ProjectController {
 						'note': "None of the Campaigns after this one would be imported."
 					]
 					redirect(action: 'importprojects')
-					return
 				}
 			}
 
 			flash.prj_import_message = "All Campaigns successfully imported"
 			redirect(action: 'importprojects')
-			return
 		} else {
 			flash.projecterror = "Nothing to import. Please make sure the file contains some valid rows."
 			render (view: 'import/importerror')
-			return
 		}
 	}
 
@@ -1183,14 +1199,27 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def projectdelete() {
-		def project = projectService.getProjectById(params.id)
+		Project project = projectService.getProjectById(params.id)
 		def currentUser= userService.getCurrentUser()
+        
 		if (project) {
-			project.inactive = true
-			List emailList= projectService.getProjectAdminEmailList(project)
-			mandrillService.sendCampaignDeleteEmailsToOwner(emailList, project, currentUser)
-			flash.user_message= "Campaign Discarded Successfully"
-			redirect (action:'mycampaigns' , controller:'user')
+            def isAdminOrBeneficiary = userService.isCampaignBeneficiaryOrAdmin(project, currentUser)
+            if (isAdminOrBeneficiary) {
+                
+                project.inactive = true
+                List emailList= projectService.getProjectAdminEmailList(project)
+                mandrillService.sendCampaignDeleteEmailsToOwner(emailList, project, currentUser)
+                flash.prj_validate_message= "Campaign Discarded Successfully!"
+                
+                if (userService.isPartner()) {
+                    redirect (action:'partnerdashboard', controller:'user')
+                } else {
+                    redirect (action:'renderdashboard' , controller:'user')
+                }
+			    
+            } else {
+                render view:'/401error'
+            }
 		} else {
 			flash.prj_mngprj_message = 'Campaign Not Found'
 			render (view: 'manageproject/error', model: [project: project])
@@ -1228,22 +1257,23 @@ class ProjectController {
 		}
 	}
 
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def projectupdate() {
-		def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
-		def project = projectService.getProjectById(projectId)
-		def currentUser =userService.getCurrentUser()
-		def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
-		if(project) {
-			if(!isCampaignOwnerOrAdmin){
-				render view:"manageproject/error", model: [project: project]
-			}else{
-				render (view: 'update/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
-			}
-		} else {
-			render (view: 'manageproject/error', model: [project: project])
-		}
-	}
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def projectupdate() {
+        def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+        def project = projectService.getProjectById(projectId)
+        def currentUser =userService.getCurrentUser()
+        def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
+	
+        if(project) {
+            if(!isCampaignOwnerOrAdmin){
+                render view:"manageproject/error", model: [project: project]
+            }else{
+                render (view: 'update/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
+            }
+        } else {
+            render (view: 'manageproject/error', model: [project: project])
+        }
+    }
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def editCampaignUpdate(){
@@ -2179,6 +2209,7 @@ class ProjectController {
         Project project = projectService.getProjectById(params.projectId)
         project.organizationName = params.organizationname
         project.charitableId = params.charitableId
+        project.paypalEmail = null;
         project.save()
         render''
     }
@@ -2405,13 +2436,30 @@ class ProjectController {
 		}
 	}
 
-	def getCountryVal(){
-		def country = projectService.getCountryValue(params.country);
-		def variable = request.getParameter("variable")
-		def varValue = request.getParameter("varValue")
-		def projectId = request.getParameter("projectId")
-		projectService.autoSaveProjectDetails(variable, varValue, projectId)
-		render country
-	}
+    def getCountryVal(){
+        def country = projectService.getCountryValue(params.country)
+        projectService.autoSaveCountryAndHashTags(params)
+        render country
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def keepCampaignOnHold(){
+        Project project = projectService.getProjectById(params.id)
+        if (project) {
+            if (userService.isAdmin()) {
+                project.onHold = true
+                project.save()
+                redirect (action:'validateList')
+            } else if (userService.isPartner()) {
+                project.onHold = true
+                project.save()
+                redirect (action:'partnerdashboard', controller:'user')
+            } else {
+                render view:'/401error'
+            }
+        } else {
+            render view:'/401error'
+        }
+    }
 
 }

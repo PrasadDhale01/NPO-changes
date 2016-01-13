@@ -81,8 +81,8 @@
                </a>
            </div>
         </div>
-        <div class="row text-center explorebtn">
-            <a href="${resource(dir: '/campaigns')}" class="btn btn-default hm-explorecampaign">Explore Campaign</a>
+        <div class="text-center explorebtn">
+            <a href="${resource(dir: '/campaigns')}" class="btn btn-default hm-explorecampaign">Explore Campaigns</a>
         </div>
     </div>
 </div>

@@ -237,7 +237,7 @@
                             <label class="pull-right " id="titleLength"></label>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="col-lg-6 col-md-6 col-sm-6 editCustomVanityUrl">
                         <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 hidden-xs">My campaign web address</label>
                         <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 visible-xs">
                             <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
@@ -256,8 +256,10 @@
                                     crowdera.co/campaigns/
                                 </g:else>
                             </div>
-                            <input class="form-control form-control-no-border editsweb-margin-mobile  cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd customVanityUrl" name="customVanityUrl" value="${project.customVanityUrl}" id="customVanityUrl" placeholder="Your-Campaign-web-url" <g:if test="${project.validated && project.customVanityUrl}">readonly</g:if>>
+                            <input class="form-control form-control-no-border editsweb-margin-mobile  cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd customVanityUrl" name="customVanityUrl" maxlength="55" value="${project.customVanityUrl}" id="customVanityUrl" placeholder="Your-Campaign-web-url" <g:if test="${project.validated && project.customVanityUrl}">readonly</g:if>>
                         </div>
+                        <div class="clear" id="vanityUrlClear"></div>
+                        <label class="pull-right" id="vanityUrlLength"></label>
                     </div>
                 </div>
 
@@ -410,6 +412,7 @@
                                                 <div class="col-sm-5 col-xs-7 col-input-for form-group">
                                                     <input type="text" class="form-control form-control-input-for spendCause" id="spendCause${spend.numberAvailable}" name="spendCause${spend.numberAvailable}" value="${spend.cause}">
                                                 </div>&nbsp;&nbsp;
+                                                <div class="clear visible-xs"></div>
                                                 <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
                                                     <g:hiddenField name="spendFieldSave" value="${spend.numberAvailable}" class="spendFieldSave" id="spendFieldSave${spend.numberAvailable}"/>
                                                     <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>
@@ -447,6 +450,7 @@
                                             <div class="col-sm-5 col-xs-7 col-input-for form-group">
                                                 <input type="text" class="form-control form-control-input-for spendCause" id="spendCause1" name="spendCause1">
                                             </div>&nbsp;&nbsp;
+                                            <div class="clear visible-xs"></div>
                                             <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
                                                 <g:hiddenField name="spendFieldSave" value="1" class="spendFieldSave" id="spendFieldSave1"/>
                                                 <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>
@@ -605,7 +609,7 @@
                         <div class="tab-pane panel-body active row" id="organization">
                             <div class="col-sm-4">
                                 <div class="form-group" id="organizationName">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-12 cr-mobiledisplyorg">
                                         <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.ORGANIZATIONNAME}" value="${project.organizationName}" id="organizationname" placeholder="Individual / Organization Name">
                                     </div>
                                 </div>
@@ -613,7 +617,7 @@
                  
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-12 cr-mobiledisplyorg">
                                         <g:if test="${project.webAddress}">
                                             <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook" value="${project.webAddress}">
                                         </g:if>
@@ -626,7 +630,7 @@
 
                             <div class="col-sm-4">
                                 <div class="form-group projectImageFilediv">
-                                    <div class="col-sm-6">
+                                    <div class="col-lg-6 col-sm-8 col-md-8 col-xs-7 cr-mobiledisplyorg">
                                         <div class="fileUpload btn btn-info btn-sm cr-btn-color cr-marg-mobile">
                                             Display Picture
                                             <input type="file" class="upload" id="iconfile" name="iconfile" accept="image/jpeg, image/png">

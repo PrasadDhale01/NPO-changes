@@ -11,10 +11,15 @@ $(function() {
     }
     
     $('#promote-campaigns').find('.list-group-item').click(function() {
-        $('#promote-campaigns').find('div.list-group-item').removeClass('active');
-        $(this).addClass('active');
-        $('#campaign-select-msg').show();
-		$('#campaign-select-msg').fadeOut(3500);
+    	if ($(this).hasClass("active")) {
+            $(this).removeClass('active');
+            $('#campaign-select-msg').hide();
+    	} else {
+            $('#promote-campaigns').find('div.list-group-item').removeClass('active');
+            $(this).addClass('active');
+            $('#campaign-select-msg').show();
+		    $('#campaign-select-msg').fadeOut(10000);
+    	}
     });
 	
     $('#side-menu').find('.li').click(function() {
@@ -56,7 +61,7 @@ $(function() {
             $("#dashboard_otherstate").hide();
         }
     });
-	
+    
     var currentEnv = $('#currentEnv').val();
 
     $('#invite-campaign-owner').find('form').validate({
@@ -116,7 +121,8 @@ $(function() {
     	rules: {
     		title : {
     			required: true,
-    			minlength: 3
+    			minlength: 3,
+    			maxlength: 20
     		}
     	}
     });
@@ -323,6 +329,7 @@ $(function() {
     	            $('#files').addClass('active');
     	            $('#folderName').val('');
     	            $('#folderId').val('');
+    	            $('#viewfolder').hide();
     	        }
     	    });
         }
@@ -404,7 +411,9 @@ $(function() {
     
     $("#newDocFile").change(function(event) {
         var file =this.files[0];
-        if (file.size > 0) {
+        if(validateExtension(file.name) == false){
+        	alert("Please upload valid type of documents only.")
+        } else if (file.size > 0) {
             var file = this.files[0];
             var fileName = file.name;
             var formData = !!window.FormData ? new FormData() : null;
@@ -484,5 +493,17 @@ $(function() {
         $(window).scroll(sticky_relocate);
         sticky_relocate();
     });
+    
+    function validateExtension(imgExt){
+        var allowedExtensions = new Array("jpg","JPG","png","PNG","pdf","doc","docx","xlsx","ppt","pptx","csv");
+        for(var imgExtImg=0;imgExtImg<allowedExtensions.length;imgExtImg++)
+        {
+            imageFile = imgExt.lastIndexOf(allowedExtensions[imgExtImg]);
+            if(imageFile != -1){
+          	  return true;
+            }
+        }
+        return false;
+    }
     
 });

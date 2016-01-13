@@ -186,7 +186,7 @@
                             <div class="col-md-12">
                                 <div id="uploadingCampaignImage">Uploading Image......</div>
                                 <div class="imageNumValidation">You cannot upload more than 5 images</div>
-                                <label class="docfile-orglogo-css imgmsg">Please select image file.</label>
+                                <label class="docfile-orglogo-css imgmsg"></label>
                                 <label class="docfile-orglogo-css campaignfilesize" id="campaignFilesizeID"></label>
                             </div>
                         </div>
@@ -208,7 +208,7 @@
                     </div>
                     <div class="clear"></div>
                     <div class="col-sm-12 col-error-placement" id="col-error-placement">
-                        <label class="docfile-orglogo-css imgmsg">Please select image file.</label>
+                        <label class="docfile-orglogo-css imgmsg"></label>
                         <label class="docfile-orglogo-css campaignfilesize" id="campaignFilesizeID1"></label>
                     </div>
                 </div>
@@ -262,6 +262,7 @@
                                         <div class="col-sm-5 col-xs-7 col-input-for form-group">
                                             <input type="text" class="form-control form-control-input-for spendCause" id="spendCause${spend.numberAvailable}" name="spendCause${spend.numberAvailable}" value="${spend.cause}">
                                         </div>&nbsp;&nbsp;
+                                        <div class="clear visible-xs"></div>
                                         <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
                                             <g:hiddenField name="spendFieldSave" value="${spend.numberAvailable}" class="spendFieldSave" id="spendFieldSave${spend.numberAvailable}"/>
                                             <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>
@@ -299,6 +300,7 @@
                                 <div class="col-sm-5 col-xs-7 col-input-for form-group">
                                 <input type="text" class="form-control form-control-input-for spendCause" id="spendCause1" name="spendCause1">
                                 </div>&nbsp;&nbsp;
+                                <div class="clear visible-xs"></div>
                                 <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
                                     <g:hiddenField name="spendFieldSave" value="1" class="spendFieldSave" id="spendFieldSave1"/>
                                     <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>
@@ -457,14 +459,14 @@
                     <div class="tab-pane panel-body active row" id="organization">
                         <div class="col-sm-4">
                             <div class="form-group" id="organizationName">
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 cr-mobiledisplyorg ">
                                     <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.ORGANIZATIONNAME}" value="${project.organizationName}" id="organizationname" placeholder="Individual / Organization Name">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 cr-mobiledisplyorg">
                                     <g:if test="${project.webAddress}">
                                         <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook" value="${project.webAddress}">
                                     </g:if>
@@ -476,7 +478,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group createOrgIconDiv">
-                                <div class="col-sm-6">
+                                <div class="col-lg-6 col-sm-8 col-md-8 col-xs-7 cr-mobiledisplyorg">
                                     <div class="fileUpload btn btn-info btn-sm cr-btn-color cr-marg-mobile">
                                         Display Picture
                                         <input type="file" class="upload" id="iconfile" name="iconfile" accept="image/jpeg, image/png">
@@ -710,7 +712,7 @@
                     <div class="rewardsTemplate" id="rewardTemplate1" value="1">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 col-xs-12">
                                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                                         <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
                                         <input type="text" placeholder="Amount" name="rewardPrice1" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice1">

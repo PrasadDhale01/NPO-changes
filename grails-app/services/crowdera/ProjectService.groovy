@@ -4509,7 +4509,7 @@ class ProjectService {
         def taxrecieptId = (taxreciept) ? taxreciept.id : null;
         return taxrecieptId
     }
-
+    
     def getDeductibleStatusList(){
         def deductibleStatus = [
             PC : 'PC (50%)',
@@ -4526,6 +4526,11 @@ class ProjectService {
             SOUNK : 'SOUNK (50%)'
         ]
         return deductibleStatus
+    }
+
+    def getDeductibleStatus(def deductibleStatus){
+        def deductibleStatusList = getDeductibleStatusList();
+        return deductibleStatusList.getAt(deductibleStatus);
     }
 
     def getCategoryAndHashTagsSaved(Project project, def currentEnv, def selectedCategory){

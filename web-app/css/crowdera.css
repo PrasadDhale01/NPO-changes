@@ -7729,6 +7729,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+	.validate-show-div .organization-panel.org-panel-2.panel {
+	   height: 270px;
+	}
 	br.visible-reciept-md{
         display:block;
 	}
@@ -8025,12 +8028,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .validate-show-div .amount-centering {
         width: 250px !important;
     }
-    .validate-show-div .organization-panel.org-panel-2.panel {
-        height: 225px;
+]    .validate-show-div .organization-panel.org-panel-2.panel {
+        height: 270px;
         margin-bottom: 20px;
     }
     .validate-show-div .organization-panel.org-panel-3.panel, .validate-show-div .organization-panel.org-panel-4.panel {
-        height: 230px;
+        height: 270px;
     }
     #page-content-wrapper {
         padding: 15px 0 15px 0;
@@ -8040,7 +8043,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-right: 0px;
     }
     .validate-show-div .organization-panel.org-panel-1.panel {
-        height: 360px;
+        height: 406px;
     }
 }
 @media only screen and (min-width:768px) and (max-width: 830px) {

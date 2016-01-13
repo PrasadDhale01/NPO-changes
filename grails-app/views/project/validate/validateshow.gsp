@@ -121,7 +121,7 @@
                     <div class="clear visible-sm"></div>
                     <div class="col-lg-offset-0 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <div class="panel panel-default organization-panel org-panel-3 org-padding">
-                            <h6 class="text-center"><b>Details</b></h6>
+                            <h6 class="text-center"><b>Payment Details</b></h6>
                             <g:if test='${project.charitableId}'>
                                 <label><b>Payment mode : </b>FirstGiving</label><br>
                                 <label><b>Charitable ID: </b>${project.charitableId }</label><br>
@@ -134,16 +134,20 @@
                                 <label><b>Payment mode : </b>Paypal</label><br>
                                 <label><b>Paypal Email : </b>${project.paypalEmail}</label><br>
                             </g:else>
-                        </div>
-                        <g:form action="delete" controller="project" id="${project.id}" method="post">
-                            <button class="validatebtn btn btn-sm btn-danger btn-block hidden-sm hidden-xs validateshow-discard" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to reject this campaign?&#39;);"><i class="fa fa-trash-o"></i>&nbsp;REJECT</button>
-                        </g:form>
-                    </div>
-                    <div class="col-lg-offset-0 col-lg-4 col-md-4 col-sm-6 col-xs-12 visible-sm">
-                        <div class="panel panel-default organization-panel org-panel-4 org-padding">
+                            <div class="visible-md visible-lg visible-xs">
+                            <g:if test="${taxReceipt}">
+	                            <h6 class="text-center "><b>Tax Receipt Details</b></h6>
+	                            <label><b>EIN : </b></label> ${taxReceipt.ein}<br>
+	                            <label><b>Name : </b></label> ${taxReceipt.name}<br>
+	                            <label><b>Deductible Status : </b></label> ${deductibleStatus}<br>
+	                            <label><b>Address : </b></label> ${taxReceipt.city}, ${taxReceipt.taxRecieptHolderState}, ${taxReceipt.country}<br>
+                            </g:if>
+                            </div>
+                            <div class="visible-sm">
+                            <g:if test="${taxReceipt}">
                             <g:if test="${project.projectAdmins.email.size() > 1}">
                                 <div class="coCreator">
-                                    <h6 class="text-center"><b>Campaign Co-Creator</b></h6><hr class="hrClasses"/>
+                                    <h6 class="text-center"><b>Campaign Co-Creator</b></h6>
                                     <g:each in="${project.projectAdmins.email}" var="admin">
                                        <g:if test="${admin != "campaignadmin@crowdera.co"}">
                                            <label>${admin}</label><br>
@@ -153,6 +157,35 @@
                             </g:if>
                             <g:else>
                                 <h6 class="text-center"><b>No Campaign Admins</b></h6>
+                            </g:else>
+                            </g:if>
+                            </div>
+
+                        </div>
+                        <g:form action="delete" controller="project" id="${project.id}" method="post">
+                            <button class="validatebtn btn btn-sm btn-danger btn-block hidden-sm hidden-xs validateshow-discard" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to reject this campaign?&#39;);"><i class="fa fa-trash-o"></i>&nbsp;REJECT</button>
+                        </g:form>
+                    </div>
+                    <div class="col-lg-offset-0 col-lg-4 col-md-4 col-sm-6 col-xs-12 visible-sm">
+                        <div class="panel panel-default organization-panel org-panel-4 org-padding">
+                            <g:if test="${taxReceipt}">
+                                <h6 class="text-center "><b>Tax Receipt Details</b></h6>
+                                <label><b>EIN : </b></label> ${taxReceipt.ein}<br>
+                                <label><b>Name : </b></label> ${taxReceipt.name}<br>
+                                <label><b>Deductible Status : </b></label> ${deductibleStatus}<br>
+                                <label><b>Address : </b></label> ${taxReceipt.city}, ${taxReceipt.taxRecieptHolderState}, ${taxReceipt.country}<br>
+                            </g:if>
+                            <g:else>
+								<g:if test="${project.projectAdmins.email.size() > 1}">
+									<div class="coCreator">
+										<h6 class="text-center"><b>Campaign Co-Creator</b></h6>
+										<g:each in="${project.projectAdmins.email}" var="admin">
+											<g:if test="${admin != "campaignadmin@crowdera.co"}">
+    											<label>${admin}</label><br>
+											</g:if>
+										</g:each>
+									</div>
+								</g:if>
                             </g:else>
                         </div>
                     </div>

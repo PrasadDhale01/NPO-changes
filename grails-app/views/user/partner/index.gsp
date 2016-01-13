@@ -49,19 +49,47 @@
         
         <div class="tab-content" id="partners-list">
             <div class="active tab-pane tab-pane-active" id="verified">
-                <g:render template="/user/partner/verifiedlist"/>
+                <g:if test="${partners.size > 0}">
+                    <g:render template="/user/partner/verifiedlist"/>
+                </g:if>
+                <g:else>
+		            <div class="alert alert-info">
+		                No such partner yet.
+		            </div>
+		        </g:else>
             </div>
             
 	        <div class="tab-pane tab-pane-active" id="nonVerified">
-                <g:render template="/user/partner/nonverifiedlist"/>
+	            <g:if test="${nonVerified.size() > 0}">
+                    <g:render template="/user/partner/nonverifiedlist"/>
+                </g:if>
+                <g:else>
+                    <div class="alert alert-info">
+                        No such partner yet.
+                    </div>
+                </g:else>
 	        </div>
 	        
 	        <div class="tab-pane tab-pane-active" id="pending">
-	            <g:render template="/user/partner/pendinglist"/>
+	            <g:if test="${pendingList.size() > 0}">
+                    <g:render template="/user/partner/pendinglist"/>
+                </g:if>
+                <g:else>
+                    <div class="alert alert-info">
+                        No such partner yet.
+                    </div>
+                </g:else>
 	        </div>
 	        
 	        <div class="tab-pane tab-pane-active" id="draft">
-                <g:render template="/user/partner/draftlist"/>
+	            <g:if test="${draftList.size() > 0}">
+                    <g:render template="/user/partner/draftlist"/>
+                </g:if>
+                <g:else>
+                    <div class="alert alert-info">
+                        No such partner yet.
+                    </div>
+                </g:else>
             </div>
 	    </div>
         

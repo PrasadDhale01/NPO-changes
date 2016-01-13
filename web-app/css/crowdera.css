@@ -14088,6 +14088,11 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	div .validatetile .show-tile-text-size {
+        margin-top: 6px;
+        padding-left: 19px;
+        padding-right: 19px;
+    }
     div.manage-teamgridTabs {
         padding-left: 39px;
     }

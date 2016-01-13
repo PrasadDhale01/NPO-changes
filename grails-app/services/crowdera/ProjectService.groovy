@@ -2606,6 +2606,11 @@ class ProjectService {
       return teams
     }
     
+    def getEnabledAndValidatedTeam(User user) {
+        def teams=Team.findAllWhere(user:user, enable: true, validated: true)
+        return teams
+    }
+    
     def getAddress(def params){
         def address 
         def state
@@ -4485,7 +4490,7 @@ class ProjectService {
         List projects = []
         def campaigns = getAllProjectByUser(user, environment)
         def projectAdmins = getProjectAdminEmail(user)
-        def teams = getTeamByUserAndEnable(user, true)
+        def teams = getEnabledAndValidatedTeam(user)
         def totalprojects = getProjects(campaigns, projectAdmins, teams, environment)
         
         def max = Math.min(params.int('max') ?: 6, 100)
@@ -4829,7 +4834,7 @@ class ProjectService {
         List projects = []
         def campaigns = getAllProjectByUser(user, environment)
         def projectAdmins = getProjectAdminEmail(user)
-        def teams = getTeamByUserAndEnable(user, true)
+        def teams = getEnabledAndValidatedTeam(user)
         def totalprojects = getProjects(campaigns, projectAdmins, teams, environment)
         
         def raised = getTotalFundRaisedByUser(campaigns)

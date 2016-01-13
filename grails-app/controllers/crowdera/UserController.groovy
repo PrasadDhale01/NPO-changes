@@ -65,6 +65,11 @@ class UserController {
     def userprofile(String userViews, String activeTab){
         User user = (User)userService.getCurrentUser()
         def environment = Environment.current.getName()
+        
+        if (flash.prj_validate_message) {
+            flash.prj_validate_message= "Campaign Discarded Successfully"
+        }
+        
         if (userService.isAdmin()) {
             redirect action: 'admindashboard'
         } else if(userService.isPartner() && userService.isPartnerValidated(user)) {
@@ -85,7 +90,7 @@ class UserController {
             } else {
                 projects = projectService.getAllProjectByUser(user, environment)
                 projectAdmins = projectService.getProjectAdminEmail(user)
-                teams = projectService.getTeamByUserAndEnable(user, true)
+                teams = projectService.getEnabledAndValidatedTeam(user)
                 project = projectService.getProjects(projects, projectAdmins, teams, environment)
             }
             
@@ -125,6 +130,11 @@ class UserController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def mycontribution() {
         userprofile('user/mycontribution',null)
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def renderdashboard() {
+        userprofile('user/dashboard', null)
     }
 
     def VALID_IMG_TYPES = ['image/png', 'image/jpeg']
@@ -322,7 +332,7 @@ class UserController {
         def environment = Environment.current.getName()
         def projects = projectService.getAllProjectByUser(user, environment)
         def projectAdmins = projectService.getProjectAdminEmail(user)
-        def teams = projectService.getTeamByUserAndEnable(user, true)
+        def teams = projectService.getEnabledAndValidatedTeam(user)
         List project = projectService.getProjects(projects, projectAdmins, teams, environment)
         def max = Math.min(params.int('max') ?: 6, 100)
         List totalCampaings = projectService.getUsersPaginatedCampaigns(project, params, max)
@@ -481,7 +491,7 @@ class UserController {
               def comments = userService.getUserCommnet(user)
               def projects = projectService.getAllProjectByUser(user, environment)
               def projectAdmins = projectService.getProjectAdminEmail(user)
-              def teams = projectService.getTeamByUserAndEnable(user, true)
+              def teams = projectService.getEnabledAndValidatedTeam(user)
               def project = projectService.getProjects(projects, projectAdmins, teams, environment)
               def contributions =projectService.getContibutionByUser(user, environment)
               def recentActivity = userService.getUserRecentActivity(project, contributions,comments, user, teams)
@@ -640,11 +650,11 @@ class UserController {
             def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
             
             if (flash.prj_validate_message) {
-                flash.prj_validate_message = "Campaign validated successfully."
+                flash.prj_validate_message = flash.prj_validate_message
             } else if (flash.invite_message) {
-                flash.invite_message = "Email Sent Successfully."
+                flash.invite_message = flash.invite_message
             } else if(flash.receipt_sent_msg) {
-                flash.receipt_sent_msg = "Receipt Sent Successfully."
+                flash.receipt_sent_msg = flash.receipt_sent_msg
             }
             
             render view:'/user/partner/dashboard', model:[user: user, campaigns: projectObj.projects, totalCampaigns: projectObj.totalprojects, baseUrl: baseUrl, currentEnv: currentEnv,

@@ -388,11 +388,11 @@ class ProjectController {
         if (project) {
             if (userService.isAdmin()) {
                 project.rejected = true
-                flash.prj_validate_message= "Campaign discarded successfully"
+                flash.prj_validate_message= "Campaign discarded successfully!"
                 redirect (action:'validateList')
             } else if (userService.isPartner() && userService.isPartnerValidated(user)) {
                 project.rejected = true
-                flash.prj_validate_message= "Campaign discarded successfully"
+                flash.prj_validate_message= "Campaign discarded successfully!"
                 redirect (action:'partnerdashboard', controller:'user')
             } else {
                 render view:'/401error'
@@ -1209,12 +1209,12 @@ class ProjectController {
                 project.inactive = true
                 List emailList= projectService.getProjectAdminEmailList(project)
                 mandrillService.sendCampaignDeleteEmailsToOwner(emailList, project, currentUser)
-                flash.prj_validate_message= "Campaign Discarded Successfully"
+                flash.prj_validate_message= "Campaign Discarded Successfully!"
                 
                 if (userService.isPartner()) {
                     redirect (action:'partnerdashboard', controller:'user')
                 } else {
-                    redirect (action:'mycampaigns' , controller:'user')
+                    redirect (action:'renderdashboard' , controller:'user')
                 }
 			    
             } else {
@@ -1263,7 +1263,8 @@ class ProjectController {
 		def project = projectService.getProjectById(projectId)
 		def currentUser =userService.getCurrentUser()
 		def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
-		if(project) {
+		
+        if(project) {
 			if(!isCampaignOwnerOrAdmin){
 				render view:"manageproject/error", model: [project: project]
 			}else{

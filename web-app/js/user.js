@@ -10,6 +10,8 @@ $(function() {
         style: 'btn btn-sm btn-default'
     });
     
+    $('.success-message').fadeOut(10000);
+    
     $('#state').change(function(event) {
         var option = $(this).val();
         if(option == 'other') {

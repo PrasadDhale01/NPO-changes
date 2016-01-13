@@ -272,6 +272,15 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="clear"></div>
+                <g:if test="${flash.prj_validate_message}">
+                    <div class="col-sm-12 text-center success-message">
+                        <div class="alert alert-success">
+                            ${flash.prj_validate_message}
+                        </div>
+                    </div>
+                </g:if>
 				
                 <div class="col-md-12 col-sm-12 col-lg-12" id="vitalseperator">
                     <hr>

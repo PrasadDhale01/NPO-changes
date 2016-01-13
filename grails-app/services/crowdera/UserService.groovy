@@ -1161,7 +1161,7 @@ class UserService {
     }
     
     def getPartners() {
-        return Partner.findAllWhere(discarded: false)
+        return Partner.findAllWhere(discarded: false, validated: true)
     }
     
     def isPartner() {
@@ -1175,6 +1175,15 @@ class UserService {
     def isPartner(User user) {
         if (UserRole.findByUserAndRole(user, roleService.partnerRole())) {
             return true
+        } else {
+            return false
+        }
+    }
+    
+    def isPartnerValidated(User user) {
+        Partner partner = Partner.findByUser(user);
+        if(partner) {
+            return partner.validated
         } else {
             return false
         }
@@ -1396,6 +1405,133 @@ class UserService {
             mandrillService.sendEmailToPartner(partner.user)
         }
         return isDeleted
+    }
+    
+    def setPartner(User user) {
+        Partner partner = new Partner()
+        partner.user = user
+        partner.confirmCode = UUID.randomUUID().toString()
+        partner.enabled = true
+        if (partner.save(failOnError: true)) {
+            return partner
+        } else {
+            return null
+        }
+    }
+    
+    def updatePartnerInfo(Partner partner, def params) {
+        def varValue = params.varValue
+        def isValueChanged = false;
+        
+        switch (params.variable) {
+            case 'orgName':
+                partner.orgName = varValue;
+                isValueChanged = true;
+                break;
+
+            case 'customUrl':
+                partner.customUrl = varValue;
+                isValueChanged = true;
+                break;
+                
+            case 'description':
+                partner.description = varValue;
+                isValueChanged = true;
+                break;
+
+            case 'youtubeUrl':
+                partner.youTube = varValue;
+                isValueChanged = true;
+                break;
+                
+            case 'category':
+                partner.category = varValue;
+                isValueChanged = true;
+                break;
+
+            case 'twitterUrl':
+                partner.twitter = varValue;
+                isValueChanged = true;
+                break;
+                
+            case 'linkedinUrl':
+                partner.linkedin = varValue;
+                isValueChanged = true;
+                break;
+
+            case 'facebookUrl':
+                partner.facebook = varValue;
+                isValueChanged = true;
+                break;
+            
+            case 'website':
+                partner.website = varValue;
+                isValueChanged = true;
+                break;
+
+            case 'email':
+                partner.email = varValue;
+                isValueChanged = true;
+                break;
+                
+            case 'country':
+                partner.country = varValue;
+                isValueChanged = true;
+                break;
+
+            case 'addressLine1':
+                partner.addressLine1 = varValue;
+                isValueChanged = true;
+                break;
+                
+            case 'addressLine2':
+                partner.addressLine2 = varValue;
+                isValueChanged = true;
+                break;
+
+            case 'city':
+                partner.city = varValue;
+                isValueChanged = true;
+                break;
+                
+            case 'telephone':
+                partner.telePhone = varValue;
+                isValueChanged = true;
+                break;
+                
+            case 'state':
+                partner.pstate = varValue;
+                isValueChanged = true;
+                break;
+                
+            case 'zipCode':
+                partner.zipCode = varValue;
+                isValueChanged = true;
+                break;
+
+            default :
+                isValueChanged = false;
+        }
+        
+        if (isValueChanged) {
+            partner.save()
+        }
+    }
+    
+    def isCustomUrlUnique(def params, Partner partner) {
+        def customUrl = params.customUrl
+        boolean isUnique = true
+        
+        def partners = Partner.list()
+        partners.each {
+            if (it.customUrl == customUrl) {
+                if (partner != it) {
+                    isUnique = false
+                }
+            }
+        }
+        return isUnique
+        
     }
     
     @Transactional

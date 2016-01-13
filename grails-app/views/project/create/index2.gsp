@@ -186,7 +186,7 @@
                             <div class="col-md-12">
                                 <div id="uploadingCampaignImage">Uploading Image......</div>
                                 <div class="imageNumValidation">You cannot upload more than 5 images</div>
-                                <label class="docfile-orglogo-css imgmsg">Please select image file.</label>
+                                <label class="docfile-orglogo-css imgmsg"></label>
                                 <label class="docfile-orglogo-css campaignfilesize" id="campaignFilesizeID"></label>
                             </div>
                         </div>
@@ -208,7 +208,7 @@
                     </div>
                     <div class="clear"></div>
                     <div class="col-sm-12 col-error-placement" id="col-error-placement">
-                        <label class="docfile-orglogo-css imgmsg">Please select image file.</label>
+                        <label class="docfile-orglogo-css imgmsg"></label>
                         <label class="docfile-orglogo-css campaignfilesize" id="campaignFilesizeID1"></label>
                     </div>
                 </div>
@@ -262,6 +262,7 @@
                                         <div class="col-sm-5 col-xs-7 col-input-for form-group">
                                             <input type="text" class="form-control form-control-input-for spendCause" id="spendCause${spend.numberAvailable}" name="spendCause${spend.numberAvailable}" value="${spend.cause}">
                                         </div>&nbsp;&nbsp;
+                                        <div class="clear visible-xs"></div>
                                         <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
                                             <g:hiddenField name="spendFieldSave" value="${spend.numberAvailable}" class="spendFieldSave" id="spendFieldSave${spend.numberAvailable}"/>
                                             <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>
@@ -299,6 +300,7 @@
                                 <div class="col-sm-5 col-xs-7 col-input-for form-group">
                                 <input type="text" class="form-control form-control-input-for spendCause" id="spendCause1" name="spendCause1">
                                 </div>&nbsp;&nbsp;
+                                <div class="clear visible-xs"></div>
                                 <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
                                     <g:hiddenField name="spendFieldSave" value="1" class="spendFieldSave" id="spendFieldSave1"/>
                                     <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>

@@ -10,7 +10,7 @@
         This file has been already selected.
     </div>
 </g:if>
-<div class="folderlist">
+<div class="folderlist" id="googleDriveFiles">
     <g:each in="${files}" var="file">
         <%
             def trashUrl = baseUrl+'/user/trashdrivefile?id='+file.id+'&userId='+user.id
@@ -62,7 +62,7 @@
         }
     });
 
-    $('.file-thumbnail-container').dblclick(function(event){
+    $('#googleDriveFiles').find('.file-thumbnail-container').dblclick(function(event){
         var url = $(this).find('.fileName-text').data('url');
         $('.file-thumbnail-container').removeClass('active');
         $('#remove-drive-file').val('');
@@ -70,18 +70,25 @@
         window.open(url, '_blank');
     });
 
-    $('.file-thumbnail-container').click(function(event){
-        var trashUrl = $(this).data('trashurl');
+    $('#googleDriveFiles').find('.file-thumbnail-container').click(function(event){
+
+    	if ($(this).hasClass("active")) {
+            $(this).removeClass('active');
+            $('.trash-drivefile-fixed-btn').hide();
+            $('#remove-drive-file').val('');
+        } else {
+            var trashUrl = $(this).data('trashurl');
         
-        $('.file-thumbnail-container').removeClass('active');
-        $('.trash-docs-fixed-btn').hide();
+            $('.file-thumbnail-container').removeClass('active');
+            $('.trash-docs-fixed-btn').hide();
         
-        $('.trash-drivefile-fixed-btn').show();
-        $('#remove-drive-file').val(trashUrl);
-        $(this).addClass('active');
+            $('.trash-drivefile-fixed-btn').show();
+            $('#remove-drive-file').val(trashUrl);
+            $(this).addClass('active');
+        }
     });
 
-    $('#drive-file-already-selected').fadeOut(5000);
+    $('#drive-file-already-selected').fadeOut(10000);
 </script>
 </g:if>
 <g:else>

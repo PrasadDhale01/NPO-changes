@@ -27,7 +27,7 @@
         <div class="my-campaign-heading text-center hidden-xs"><h1><img src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="' '"> <b>Edit User</b></h1></div>
         <div class="my-campaign-heading text-center visible-xs"><h3><img src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="' '"> <b>Edit User</b></h3></div>
     </g:if>
-    <g:form controller="user" action="update">
+    <g:form controller="user" action="update" id="${user.id}">
         <div class="col-sm-6 col-md-6 col-xs-12">
             <g:if test="${fbUser && !isAccountMerged}">
                 <div class="form-group">
@@ -94,10 +94,8 @@
             </div>
         </div>
         <div class="clear"></div>
-        <g:if test="${!isAdmin}">
-            <div class="col-md-12 userInfoUpdateBtn">
-                <button class="btn btn-primary btn-md pull-right" type="submit" id="userInfoUpdateBtn">Update</button>
-            </div>
-        </g:if>
+        <div class="col-md-12 userInfoUpdateBtn">
+            <button class="btn btn-primary btn-md pull-right" type="submit" id="userInfoUpdateBtn">Update</button>
+        </div>
     </g:form>
 </div>

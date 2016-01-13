@@ -9,6 +9,11 @@
     } else {
         mailChimpUrl = "//crowdera.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&amp;id=e37aea1b78"
     }
+    boolean isTestEnv = false
+    if (currentEnv == 'development' || currentEnv == 'testIndia' || currentEnv == 'test') {
+        isTestEnv = true
+    }
+    
 %>
 <input type="hidden" id="b_url" value="<%=base_url%>" />
 <!-- Footer -->
@@ -39,6 +44,9 @@
                                         <li><g:link controller="project" action="create">Start Your Campaign</g:link></li>
                                         <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
                                         <li><a href="${resource(dir: '/crowdfunding-ebook')}">Crowdfunding Ebook</a></li>
+                                        <g:if test="${isTestEnv}">
+                                            <li><g:link controller="user" action="partners">Partner Pages</g:link></li>
+                                        </g:if>
                                         <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
                                     </ul>
                                 </div>
@@ -135,6 +143,9 @@
                 <li><g:link controller="project" action="create">Start Your Campaign</g:link></li>
                 <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
                 <li><a href="${resource(dir: '/crowdfunding-ebook')}">Crowdfunding Ebook</a></li>
+                <g:if test="${isTestEnv}">
+                    <li><g:link controller="user" action="partners">Partner Pages</g:link></li>
+                </g:if>
                 <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
             </ul>
             </div>
@@ -250,6 +261,9 @@
                 <li><g:link controller="project" action="create">Start Your Campaign</g:link></li>
                 <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
                 <li><a href="${resource(dir: '/crowdfunding-ebook')}">Crowdfunding Ebook</a></li>
+                <g:if test="${isTestEnv}">
+                    <li><g:link controller="user" action="partners">Partner Pages</g:link></li>
+                </g:if>
                 <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
             </ul>
         

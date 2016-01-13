@@ -6,12 +6,20 @@
 <body>
 <div class="feducontent">
     <div class="container dashboard-container" id="partner-container">
+        <%
+            def partnersOpts = ['Verified':'Verified', 'Non-Verified': 'Non-Verified', 'Pending':'Pending', 'Draft': 'Draft']
+        %>
         <h1 class="text-center green-heading"><span class="fa fa-users"></span>&nbsp;&nbsp;<b>Partners</b></h1>
 
-        <div class="col-sm-12 invitepartner">
-            <a href="#" class="btn btn-primary btn-sm pull-right managecontribution hidden-xs" data-toggle="modal" data-target="#invitePartnerModal">Invite Partner</a>
-            <a href="#" class="btn btn-primary btn-sm btn-block managecontribution visible-xs" data-toggle="modal" data-target="#invitePartnerModal">Invite Partner</a>
+        <div class="col-xs-12 invitepartner">
+            <div class="partner-verification pull-right">
+	            <a href="#" class="btn btn-primary btn-sm pull-right managecontribution" data-toggle="modal" data-target="#invitePartnerModal">Invite Partner</a>
+	            <div class="partnerOpts pull-right">
+	                <g:select class="selectpicker text-center" name="partnersOpts" id="partnersOpts" from="${partnersOpts}" optionKey="value" optionValue="value"/>
+	            </div>
+	        </div>
         </div>
+        
         <div class="clear"></div>
         <g:if test="${flash.alreadyExistMsg}">
             <div class="col-md-12 text-center">

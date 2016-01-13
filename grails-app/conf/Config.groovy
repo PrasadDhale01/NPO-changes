@@ -103,8 +103,8 @@ grails.plugin.springsecurity.facebook.filter.redirect.successHandler='facebookRe
 
 environments {
     development {
-        crowdera.facebook.appId = '863349917018657'
-        crowdera.facebook.secret = '821d52781c6ff719df996c2540fe2f5e'
+        crowdera.facebook.appId = '333909376820194'
+        crowdera.facebook.secret = '0965e3232aafa265ff319903efa4c6a5'
 
         grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
         grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'

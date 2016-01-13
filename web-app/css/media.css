@@ -322,6 +322,9 @@
 }
 
 @media only screen and (min-width: 480px) and (max-width: 567px){
+    #partner-third-header .navbar-header {
+        width: 450px !important;
+    }
 	.picker.modal-dialog {
         max-width: 420px !important;
     }
@@ -349,6 +352,9 @@
 }
 
 @media only screen and (min-width: 468px) and (max-width: 479px){
+    #partner-third-header .navbar-header {
+        width: 400px !important;
+    }
 	.picker.modal-dialog {
         max-width: 400px !important;
     }
@@ -385,6 +391,9 @@
     }
 }
 @media only screen and (min-width: 385px) and (max-width: 467px){
+    #partner-third-header .navbar-header {
+        width: 350px !important;
+    }
 	.picker.modal-dialog {
         max-width: 320px !important;
     }
@@ -477,6 +486,9 @@
 }
 
 @media only screen and (min-width: 320px) and (max-width: 384px){
+    #partner-third-header .navbar-header {
+        width: 320px !important;
+    }
 	.picker.modal-dialog {
         max-width: 280px !important;
     }

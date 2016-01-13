@@ -1298,6 +1298,7 @@ class ProjectService {
 		]
 		return categoryOptions
 	}
+    
    def getCategory(){
 	   def categoryOptions = [
 		   ALL: "All Categories",
@@ -3171,12 +3172,6 @@ class ProjectService {
                 isValueChanged = true;
                 break;
 
-            case 'charitableId':
-                project.charitableId = varValue;
-                isValueChanged = true;
-                project.paypalEmail = null;
-                break;
-	
             case 'story':
                 project.story = varValue;
                 isValueChanged = true;
@@ -4811,7 +4806,19 @@ class ProjectService {
     def getReasonsToFundFromProject(Project project){
         return ReasonsToFund.findByProject(project)
     }
-
+    
+    def getFundRaisedByPartner(User user) {
+        def environment = getCurrentEnvironment();
+        List projects = []
+        def campaigns = getAllProjectByUser(user, environment)
+        def projectAdmins = getProjectAdminEmail(user)
+        def teams = getTeamByUserAndEnable(user, true)
+        def totalprojects = getProjects(campaigns, projectAdmins, teams, environment)
+        
+        def raised = getTotalFundRaisedByUser(campaigns)
+        return [totalprojects: totalprojects, raised: raised]
+    }
+    
     def makeContributorsUser(){
         User user, anonymousUser
         def password

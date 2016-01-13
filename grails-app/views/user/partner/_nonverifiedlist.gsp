@@ -22,15 +22,15 @@
                         index = index + 1 
                     %>
                     <tr>
-				        <td class="text-center col-sm-1">${index}</td>
-				        <td class="text-center col-sm-1">${partner.user.firstName} ${partner.user.lastName}</td>
-				        <td class="text-center col-sm-2">${partner.user.email}</td>
-				        <td class="text-center col-sm-2">${partner.orgName}</td>
-				        <td class="text-center col-sm-3">${raw(partner.description)}</td>
-				        <td class="text-center col-sm-1">${partner.website}</td>
-				        <td class="text-center col-sm-1"><g:link class="btn btn-primary btn-sm" action="verifypartner" controller="user" id="${partner.id}">Validate</g:link></td>
-				        <td class="text-center col-sm-1"><g:link class="btn btn-danger btn-sm" action="rejectpartner" controller="user">Reject</g:link></td>
-				    </tr>
+                        <td class="text-center col-sm-1">${index}</td>
+                        <td class="text-center col-sm-1">${partner.user.firstName} ${partner.user.lastName}</td>
+                        <td class="text-center col-sm-2">${partner.user.email}</td>
+                        <td class="text-center col-sm-2">${partner.orgName}</td>
+                        <td class="text-center col-sm-3">${raw(partner.description)}</td>
+                        <td class="text-center col-sm-1">${partner.website}</td>
+                        <td class="text-center col-sm-1"><g:link class="btn btn-primary btn-sm" action="verifypartner" controller="user" id="${partner.id}">Validate</g:link></td>
+                        <td class="text-center col-sm-1"><g:link class="btn btn-danger btn-sm" action="rejectpartner" controller="user">Reject</g:link></td>
+                    </tr>
                 </g:each>
             </tbody>
         </table>

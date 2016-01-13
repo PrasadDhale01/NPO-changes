@@ -53,10 +53,10 @@
                     <g:render template="/user/partner/verifiedlist"/>
                 </g:if>
                 <g:else>
-		            <div class="alert alert-info">
-		                No such partner yet.
-		            </div>
-		        </g:else>
+                    <div class="alert alert-info">
+                        No such partner yet.
+                    </div>
+                </g:else>
             </div>
             
 	        <div class="tab-pane tab-pane-active" id="nonVerified">

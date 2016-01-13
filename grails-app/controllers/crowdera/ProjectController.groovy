@@ -1257,23 +1257,23 @@ class ProjectController {
 		}
 	}
 
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def projectupdate() {
-		def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
-		def project = projectService.getProjectById(projectId)
-		def currentUser =userService.getCurrentUser()
-		def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
-		
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def projectupdate() {
+        def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+        def project = projectService.getProjectById(projectId)
+        def currentUser =userService.getCurrentUser()
+        def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
+	
         if(project) {
-			if(!isCampaignOwnerOrAdmin){
-				render view:"manageproject/error", model: [project: project]
-			}else{
-				render (view: 'update/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
-			}
-		} else {
-			render (view: 'manageproject/error', model: [project: project])
-		}
-	}
+            if(!isCampaignOwnerOrAdmin){
+                render view:"manageproject/error", model: [project: project]
+            }else{
+                render (view: 'update/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
+            }
+        } else {
+            render (view: 'manageproject/error', model: [project: project])
+        }
+    }
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def editCampaignUpdate(){

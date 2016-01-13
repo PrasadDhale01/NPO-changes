@@ -1787,30 +1787,30 @@ $(function() {
         var currentstring = $('#customVanityUrl').val().length;
 
         if(currentstring <=55) {
-        	if (currentstring == 55) {
-        		var text = currentstring ;
-        	} else {
-        		var text = currentstring + 1;
-        	}
+            if (currentstring == 55) {
+                var text = currentstring ;
+            } else {
+                var text = currentstring + 1;
+            }
         }
         if (event.keyCode > 31) {
             if(event.altKey==true){
-    	         setTitleText();
+                setTitleText();
             }
             else{
-  	             if(currentstring <54)
-  		             currentstring++;
-                 $('#vanityUrlLength').text(text+'/55');
+                if(currentstring <54)
+                    currentstring++;
+                $('#vanityUrlLength').text(text+'/55');
             }
 
         } else {
-	        currentstring--;
+            currentstring--;
             $('#vanityUrlLength').text(text+'/55');
         }
     }).keyup(function(e) {
     
         if(e.altKey==true){
-	        setTitleText();
+            setTitleText();
             return false;
         }
 

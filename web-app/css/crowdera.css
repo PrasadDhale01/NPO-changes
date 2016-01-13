@@ -9451,7 +9451,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
    .text-primary {
 	color: #008cba;
-	margin-left: -24px !important;
+	margin-left: -40px !important;
    }
    .payment-card-icons{
 	height:20px;
@@ -9467,8 +9467,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
    	margin-left:14px;
    }
    a.footerlink {
-    	color: #cccccc;
-    	font-size: 11px !important;
+    	color: #666666;
+    	font-size: 10px !important;
     	font-weight: 500;
     	text-decoration: none;
     }
@@ -9971,6 +9971,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+    .campaignCustomVanityUrl label#vanityUrlLength {
+        margin-right: 0px;
+    }
+    .campaignCustomVanityUrl .help-block, .editCustomVanityUrl .help-block {
+        padding-left: 0px;
+    }
 	#partner-sec-header .user-dashboard-header {
         width: 320px !important;
         height: 75px;
@@ -12622,7 +12628,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 /*Screen resolution 644 x 767 */
-@media only screen and (min-width: 644px) and (max-width: 767px){
+@media only screen and (min-width: 641px) and (max-width: 767px){
+    .editCustomVanityUrl label#vanityUrlLength {
+        margin-right: 8px;
+    }
     .form-group.col-sm-6.rewardPriceClass{
         padding-left:16px;
         width:102% !important;
@@ -12714,10 +12723,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 @media only screen and (max-width: 767px){
 
-.ansText {
-    width: 87%;
-    height: 100px;
-}
+    div.footer-newsletter {
+        margin-bottom: 20px;
+        overflow: auto;
+    }
+    .ansText {
+        width: 87%;
+        height: 100px;
+    }
 
 #embedTilemodal .modal-dialog.modal-tile{
     margin-left: auto;
@@ -12901,10 +12914,11 @@ textarea.textarea-embed-video {
 	}
 }
 @media only screen and (max-width: 640px){
-    .shippingreward > .btn-primary
-    {
+    .editCustomVanityUrl label#vanityUrlLength {
+        margin-right: 17px;
+    }
+    .shippingreward > .btn-primary {
        margin-left: 0px !important;
-/*        margin-right: 31px !important; */
        margin-top: 8px !important;
        width: 116px !important;
        padding-left: 16px !important;
@@ -14074,6 +14088,11 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	div .validatetile .show-tile-text-size {
+        margin-top: 6px;
+        padding-left: 19px;
+        padding-right: 19px;
+    }
     div.manage-teamgridTabs {
         padding-left: 39px;
     }

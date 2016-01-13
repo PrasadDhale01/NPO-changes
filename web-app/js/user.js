@@ -10,6 +10,8 @@ $(function() {
         style: 'btn btn-sm btn-default'
     });
     
+    $('.success-message').fadeOut(10000);
+    
     $('#state').change(function(event) {
         var option = $(this).val();
         if(option == 'other') {
@@ -108,6 +110,23 @@ $(function() {
     $('#partner-sec-header .span-space').click(function() {
    	    var toptabs = $("#partner-tab-content").offset().top;
    	    window.scrollTo(toptabs,toptabs - 170);
+    });
+    
+    $('#partnersOpts').change(function(){
+        var opts = $(this).val();
+        if (opts == 'Verified') {
+            $('#partners-list').find('.tab-pane').removeClass('active');
+            $('#verified').addClass('active');
+        } else if(opts == 'Non-Verified') {
+            $('#partners-list').find('.tab-pane').removeClass('active');
+            $('#nonVerified').addClass('active');
+        } else if(opts == 'Pending') {
+            $('#partners-list').find('.tab-pane').removeClass('active');
+            $('#pending').addClass('active');
+        } else if(opts == 'Draft') {
+            $('#partners-list').find('.tab-pane').removeClass('active');
+            $('#draft').addClass('active');
+        }
     });
     
     var currentEnvironment = $('#currentEnv').val();

@@ -6,6 +6,11 @@
 <body>
     <div class="feducontent partnercreatepage">
         <div class="container footer-container" id="partner-create-page">
+            <g:if test="${flash.success_msg}">
+                <div class="alert alert info">
+                    ${flash.success_msg}
+                </div>
+            </g:if>
             <h1 class="mainheading">Create your Partner Page</h1>
             <g:uploadForm action="partnersave" controller="user">
                 <g:hiddenField name="partnerId" value="${partner.id}"/>

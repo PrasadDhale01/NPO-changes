@@ -1242,6 +1242,26 @@ class MandrillService {
         sendTemplate(user, 'partner-invitation', globalMergeVars, tags)
     }
     
+    public def sendReInvitationEmailToPartner(Partner partner) {
+        User user = partner.user
+        def link = grailsLinkGenerator.link(controller: 'user', action: 'confirmPartner', id: partner.confirmCode, absolute: true)
+
+        def globalMergeVars = [[
+            'name': 'LINK',
+            'content': link
+        ], [
+            'name': 'NAME',
+            'content': user.firstName + ' ' + user.lastName
+        ], [
+            'name': 'EMAIL',
+            'content': user.email
+        ]]
+
+        def tags = ['partner-re-invitation']
+
+        sendTemplate(user, 'partner-re-invitation', globalMergeVars, tags)
+    }
+    
     public def sendInvitationToCampaignOwner(def email, User user, def confirmCode, def message) {
         def link = grailsLinkGenerator.link(controller: 'project', action: 'createCampaign', id: confirmCode, absolute: true)
         def globalMergeVars = [[

@@ -10,7 +10,7 @@ $(function() {
         style: 'btn btn-sm btn-default'
     });
     
-    $('.success-message').fadeOut(10000);
+    $('.success-message').fadeOut(6000);
     
     $('#state').change(function(event) {
         var option = $(this).val();

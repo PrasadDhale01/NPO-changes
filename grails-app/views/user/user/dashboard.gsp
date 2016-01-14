@@ -180,7 +180,7 @@
                     </div>
                 </g:if>
                 <%
-                    boolean ispartnerdraft
+                    boolean ispartnerdraft = false
                     if (partner) {
                         ispartnerdraft = partner.draft
                     }
@@ -189,14 +189,16 @@
                     <li>
                         <a href="${resource(dir: '/campaign/create')}" class="active">Create Campaign</a>
                     </li>
-                    <g:if test="${ispartnerdraft}">
+                    <g:if test="${partner && ispartnerdraft}">
                         <li>
                             <a href="${resource(dir: '/partner/edit')}" class="active">Edit Partner Page</a>
                         </li>
                     </g:if>
-                    <li>
-                        <g:link controller="user" action="userActivity1" id="${user.id}" class="active">User Profile</g:link>
-                    </li>
+                    <g:if test="${environment == 'testIndia' || environment == 'test' || environment == 'development'}">
+                        <li>
+                            <g:link controller="user" action="userActivity1" id="${user.id}" class="active">User Profile</g:link>
+                        </li>
+                    </g:if>
                     <li>
                         <a href="#userInfo" data-toggle="tab">Manage Profile</a>
                     </li>

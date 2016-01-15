@@ -1133,3 +1133,27 @@ img.home-img-large-size{
     color: #ff0000;
     padding-left: 15px;
 }
+.hm-how-it-work {
+    position: relative;
+}
+.hm-how-it-work-img {
+    bottom: 17%;
+    position: absolute;
+    right: 16%;
+    z-index: 1000;
+}
+.hm-start-campaign-btn,
+.hm-start-campaign-btn:hover,
+.hm-start-campaign-btn:focus{
+    background-color: #01bbd3;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 900;
+}
+.hm-headingtext{
+    color: #005f84;
+    font-size: 40px;
+    font-weight: 900;
+    padding: 30px 0 0;
+    margin-left: 36px;
+}

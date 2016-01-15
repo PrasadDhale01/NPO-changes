@@ -447,7 +447,8 @@ $(function() {
             if(file.size < 1024 * 1024 * 3) {
                 if ($('#teamImages').find('.pr-thumb-div').length <= 4){
                 isvalidsize =  true;
-                $('#uploadingCampaignUpdateEditImage').show();
+//                $('#uploadingCampaignUpdateEditImage').show();
+                $('#loading-gif').show();
 
                 var formData = !!window.FormData ? new FormData() : null;
                 var name = 'file';
@@ -480,7 +481,8 @@ $(function() {
                                         + file.name + "'/><div class=\"deleteicon\"><img onClick=\"deleteTeamImage(this,'"+json.imageId+"','"+teamId+"');\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>";
 
                         output.insertBefore(div, null);
-                        $('#uploadingCampaignUpdateEditImage').hide();
+//                        $('#uploadingCampaignUpdateEditImage').hide();
+                        $('#loading-gif').hide();
                     }
                 }, this);
                 xhr.send(formData);
@@ -890,6 +892,9 @@ $(function() {
         $('.show-mobilejs').css("margin-bottom","20px");
     });
     
+    if(screen.width < 1024){
+        $('.show-mobilejs-sm-md').css("margin-bottom","55px");
+    }
     /***Show-details-page-tabs-scroll-code****/
     $('.show-all-icons-header-tabs').click(function(){
     	 var toptabs = $(".show-ids-header").offset().top;
@@ -914,7 +919,6 @@ $(function() {
             	var topicons = $('.show-socials-iconsA').offset().top;
             }
             
-		   
 //		    Top header code
             if (window_top > div_top) {
                 $('.show1-Primary').addClass('sh-primery-header-padding');
@@ -933,7 +937,6 @@ $(function() {
                 $('.show-btn-js').hide();
                 $('.sh-aproval-btn').hide();
             }
-//          End Top header
 		    
             if(window_top > topFb){
                 $('.sh-shareicons-Fixedtophead').show();
@@ -941,11 +944,6 @@ $(function() {
                 $('.sh-shareicons-Fixedtophead').hide();
             }
 
-//            if( window_top > topicons) {
-//                $('.show-headers-icons').show();
-//            }else if(window_top < topicons){
-//                $('.show-headers-icons').hide();
-//            }
         }
         $(window).scroll(sticky_relocate);
         sticky_relocate();
@@ -996,6 +994,11 @@ $(function() {
     	    	    }
     	        }
     		}
+    	});
+    	
+    	$('.manageTeamMob, .contributionsMob').click(function() {
+    		$(".sh-tabs").find("a.show-tabs-text").removeClass('sh-selected');
+    		$(this).addClass('sh-selected');
     	});
     	
     	var activeClass

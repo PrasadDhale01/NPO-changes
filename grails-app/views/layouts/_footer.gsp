@@ -124,7 +124,7 @@
     </div>
         
     <!-- Footer Design for medium size device -->
-    <div class="visible-sm visible-md">
+    <div class="visible-sm visible-md show-mobilejs-sm-md">
         <div class="row">
         <div class="col-sm-4 footer-logo-padding-left">
             <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a>

@@ -22,39 +22,41 @@
         
         <div class="clear"></div>
         <g:if test="${flash.alreadyExistMsg}">
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 text-center success-message">
                 <div class="alert alert-info">${flash.alreadyExistMsg}</div>
             </div>
         </g:if>
         <g:elseif test="${flash.invitesuccessmsg}">
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 text-center success-message">
                 <div class="alert alert-success">${flash.invitesuccessmsg}</div>
             </div>
         </g:elseif>
         <g:elseif test="${flash.discardmsg}">
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 text-center success-message">
                 <div class="alert alert-success">${flash.discardmsg}</div>
             </div>
         </g:elseif>
         <g:elseif test="${flash.discardfailmsg}">
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 text-center success-message">
                 <div class="alert alert-success">${flash.discardfailmsg}</div>
             </div>
         </g:elseif>
         <g:elseif test="${flash.validationSuccessMsg}">
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 text-center success-message">
                 <div class="alert alert-success">${flash.validationSuccessMsg}</div>
             </div>
         </g:elseif>
-        
+        <div class="clear"></div>
         <div class="tab-content" id="partners-list">
             <div class="active tab-pane tab-pane-active" id="verified">
                 <g:if test="${partners.size > 0}">
                     <g:render template="/user/partner/verifiedlist"/>
                 </g:if>
                 <g:else>
-                    <div class="alert alert-info">
-                        No such partner yet.
+                    <div class="col-md-12 text-center">
+                        <div class="alert alert-info">
+                            No such partner yet.
+                        </div>
                     </div>
                 </g:else>
             </div>
@@ -64,8 +66,10 @@
                     <g:render template="/user/partner/nonverifiedlist"/>
                 </g:if>
                 <g:else>
-                    <div class="alert alert-info">
-                        No such partner yet.
+                    <div class="col-md-12 text-center">
+                        <div class="alert alert-info">
+                            No such partner yet.
+                        </div>
                     </div>
                 </g:else>
 	        </div>
@@ -75,8 +79,10 @@
                     <g:render template="/user/partner/pendinglist"/>
                 </g:if>
                 <g:else>
-                    <div class="alert alert-info">
-                        No such partner yet.
+                    <div class="col-md-12 text-center">
+                        <div class="alert alert-info">
+                            No such partner yet.
+                        </div>
                     </div>
                 </g:else>
 	        </div>
@@ -86,8 +92,10 @@
                     <g:render template="/user/partner/draftlist"/>
                 </g:if>
                 <g:else>
-                    <div class="alert alert-info">
-                        No such partner yet.
+                    <div class="col-md-12 text-center">
+                        <div class="alert alert-info">
+                            No such partner yet.
+                        </div>
                     </div>
                 </g:else>
             </div>
@@ -133,7 +141,7 @@
                 </div>
             </g:form>
         </div>
-								
+	    				
     </div>
 </div>
 </body>

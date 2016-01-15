@@ -5,7 +5,7 @@
 			<h2>TIPS FOR SUCCESS</h2>
 		</div>
 		<div class="row">
-			<div class="col-lg-6">
+			<div class="col-sm-6 col-xs-12">
 				<h4>
 					01/ <span>Set Your Funding Goal</span>
 				</h4>
@@ -42,7 +42,7 @@
 				</h5>
 			</div>
 
-			<div class="col-lg-6">
+			<div class="col-sm-6 col-xs-12">
 				<h4>
 					04/ <span>Reach out to family and friends</span>
 				</h4>
@@ -75,7 +75,7 @@
 					closely match the contributions to your campaign. The average
 					contribution is $70, but the most common is $25.</h5>
 			</div>
-			<div class="col-sm-12 col-lg-12">
+			<div class="col-sm-12 col-xs-12">
 				<h5>
 					More advice for setting your funding goals, creating a great
 					campaign video, and marketing your campaign can be found on our <a
@@ -86,6 +86,5 @@
 			
 		</div>
 
-		<!-- /.row -->
 	</div>
 </div>

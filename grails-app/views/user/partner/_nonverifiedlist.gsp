@@ -29,7 +29,11 @@
                         <td class="text-center col-sm-3">${raw(partner.description)}</td>
                         <td class="text-center col-sm-1">${partner.website}</td>
                         <td class="text-center col-sm-1"><g:link class="btn btn-primary btn-sm" action="verifypartner" controller="user" id="${partner.id}">Validate</g:link></td>
-                        <td class="text-center col-sm-1"><g:link class="btn btn-danger btn-sm" action="rejectpartner" controller="user">Reject</g:link></td>
+                        <td class="text-center col-sm-1">
+                            <g:form action="rejectpartner" controller="user" id="${partner.id}">
+                                <button class="btn btn-danger btn-sm" type="submit" onClick="return confirm(&#39;Are you sure you want to Delete this Partner?&#39;);">Reject</button>
+                            </g:form>
+                        </td>
                     </tr>
                 </g:each>
             </tbody>

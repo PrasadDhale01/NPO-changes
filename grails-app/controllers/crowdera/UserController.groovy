@@ -526,13 +526,13 @@ class UserController {
     @Secured(['ROLE_ADMIN'])
     def managePartner() {
         if (flash.invitesuccessmsg) {
-            flash.invitesuccessmsg = "Email Sent Successfully"
+            flash.invitesuccessmsg = flash.invitesuccessmsg
         } else if(flash.discardmsg) {
-            flash.discardmsg = "Partner has been deleted successfully."
+            flash.discardmsg = flash.discardmsg
         } else if(flash.discardfailmsg) {
-            flash.discardfailmsg = "Oh snap! Something went wrong while deleting partner. Please try again."
+            flash.discardfailmsg = flash.discardfailmsg
         } else if (flash.validationSuccessMsg) {
-            flash.validationSuccessMsg = "Partner is validated successfully!"
+            flash.validationSuccessMsg = flash.validationSuccessMsg
         }
         
         List partners = userService.getPartners()
@@ -881,10 +881,14 @@ class UserController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def createpartner() {
         def user = userService.getCurrentUser()
-        def partner = userService.getPartnerByUser(user)
+        Partner partner = userService.getPartnerByUser(user)
         
         if (partner) {
             boolean alreadyExist = true
+            if (partner.rejected) {
+                partner.rejected = false
+                partner.save()
+            }
             render (view: '/user/partner/create/justcreated', model:[partner: partner, alreadyExist: alreadyExist])
         } else {
             partner = userService.setPartner(user)
@@ -991,7 +995,7 @@ class UserController {
     def verifypartner() {
         Partner partner = userService.getPartnerById(params.int('id'))
         if (partner) {
-            if (!userService.isPartner()) {
+            if (!userService.isPartner(partner.user)) {
                 userService.createPartnerRole(partner.user, roleService)
             }
             
@@ -1016,6 +1020,31 @@ class UserController {
             } else {
                  render view:'/401error'
             }
+        } else {
+            render view:'/404error'
+        }
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def rejectpartner() {
+        Partner partner = userService.getPartnerById(params.int('id'))
+        if (partner) {
+            partner.rejected = true
+            partner.save()
+            flash.validationSuccessMsg = "Partner is discarded successfully!"
+            redirect action:'managePartner'
+        } else {
+            render view:'/404error'
+        }
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def reInvitePartner() {
+        Partner partner = userService.getPartnerById(params.int('id'))
+        if (partner) {
+            mandrillService.sendReInvitationEmailToPartner(partner)
+            flash.validationSuccessMsg = "Partner is discarded successfully!"
+            redirect action:'managePartner'
         } else {
             render view:'/404error'
         }

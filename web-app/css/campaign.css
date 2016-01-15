@@ -620,6 +620,9 @@ div.validate-show-div .show-description {
     padding-left: 0px;
     padding-right: 0px;
 }
+.show-pageDiscription{
+    padding-left: 15px !important;
+}
 #validateChecklistmsg {
 	   display: none;
 }

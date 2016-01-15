@@ -374,7 +374,8 @@ $(function() {
     
                 if(file.size < 1024 * 1024 * 3) {
                     isvalidsizefile = true;
-                    $('#uploadingUpdateImage').show();
+//                    $('#uploadingUpdateImage').show();
+                    $('#loading-gif').show();
 
                     var formData = !!window.FormData ? new FormData() : null;
                     var name = 'file';
@@ -405,7 +406,9 @@ $(function() {
                                             + file.name + "'><div class=\"deleteicon\"><img onClick=\"deleteProjectUpdateImage(this,'"+json.filelink+"');\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"></div>";
 
                             output.insertBefore(div, null);
-                            $('#uploadingUpdateImage').hide();
+//                            $('#uploadingUpdateImage').hide();
+                            $('#loading-gif').hide();
+                            
                             imageList.push(json.filelink);
                             $('#imageList').val(imageList);
                         }
@@ -467,8 +470,8 @@ $(function() {
                 var filename = file.name;
                 if (file.size < 1024 * 1024 * 3) {
                 	isvalidsize =  true;
-                	$('#uploadingUpdateEditImage').show();
-
+//                	$('#uploadingUpdateEditImage').show();
+                	$('#loading-gif').show();
                     var formData = !!window.FormData ? new FormData() : null;
                     var name = 'file';
                     var projectUpdateId = $('[name="projectUpdateId"]').val();
@@ -500,7 +503,8 @@ $(function() {
                                             + file.name + "'><div class=\"deleteicon\"><img onClick=\"deleteProjectImage(this,'"+json.imageId+"','"+projectUpdateId+"');\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"></div>";
 
                             output.insertBefore(div, null);
-                            $('#uploadingUpdateEditImage').hide();
+//                            $('#uploadingUpdateEditImage').hide();
+                            $('#loading-gif').hide();
                         }
                     }, this);
                     xhr.send(formData);

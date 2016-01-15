@@ -741,8 +741,6 @@ ul.unstyled {
 .marketing .col-lg-4 p {
     margin-right: 10px;
     margin-left: 10px;
-    padding-left: 50px;
-    padding-right: 50px;
 }
 
 /* Featurettes
@@ -5570,6 +5568,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.manage-contributiontile {
+        margin-left: -10px !important;
+    }
     input.cr-input-digit{
         width: 100%;
     }
@@ -6631,7 +6632,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 20px;
     }
     .tile-goal .fa-inr {
-        font-size: 20px !important;
+        font-size: 15px !important;
     }
 	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	   width: 66.1% !important;
@@ -6731,12 +6732,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    display: -webkit-inline-flex;
         display: -ms-inline-flexbox;
 	}
-/*     input.cr-marg-mobile{ */
-/*         margin-left: -9px;	     */
-/*     } */
-/*     div.cr-marg-mobile{ */
-/*         margin-left: -9px;	     */
-/*     } */
+    input.cr-marg-mobile{
+        margin-left: -9px;	    
+    }
+    div.cr-marg-mobile{
+        margin-left: -9px;	    
+    }
     ul.cr-safari-mobile{
         display: -webkit-box;
         display: -webkit-inline-flex;
@@ -7214,7 +7215,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 	span.tile-day-num {
     	   color: #000 !important;
-    	   font-size: 21px !important;
+    	   font-size: 17px !important;
     	   font-weight: bold;
 	}
 	.lead.show-contribution-amt-tile {
@@ -7222,12 +7223,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     	   font-weight: bold !important;
 	}
 	.lead{
-	   font-size: 22px !important;
+	   font-size: 17px !important;
     	   font-weight: bold !important;
 	}
 	.show-tile-text-size {
     	  font-size: 10px !important;
-    	  line-height: 5px;
+    	  line-height: 7px;
     	  margin-bottom: 0;
     	  margin-top: 10px;
     	  padding-left: 16px !important;
@@ -7722,6 +7723,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+    a.sh-fund-2header {
+        width: 125px;
+        font-size: 20px;
+        padding-top: 5px;
+    }
 	.partner-show-tile {
         width: 230px;
     }
@@ -7742,9 +7748,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 181px;
     }
     ul.show-paddingsbtn {
-        left: 139px;
-        padding-left: 42px;
-        top: -27px;
+        margin-right: -183px !important;
+        padding-left: 0;
     }
     span.manage-btn-width-aft-validated {
         width: 88.1%;
@@ -7829,7 +7834,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /*         margin-top: 120px; */
 /*     } */
     div.show-description {
-        margin-top: 28px;
+        margin-top: 24px;
         height: 82px;
     }
     a.show-btn-sh-fb {
@@ -9344,7 +9349,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     	  font-weight: bold !important;
 	}
 	.lead{
-	  font-size: 22px !important;
+	  font-size: 17px !important;
     	  font-weight: bold !important;
 	}
 	.show-tile-text-size {
@@ -9993,6 +9998,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	.zero-padding.col-xs-12 {
+	    padding-left: 0px;
+	    padding-right: 0px;
+	}
     .campaignCustomVanityUrl label#vanityUrlLength {
         margin-right: 0px;
     }
@@ -10703,6 +10712,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+    div.show-description {
+        background-color: #e7e7e7;
+        height: 81px;
+        margin-top: 32px;
+        padding-bottom: 9px;
+        padding-left: 9px;
+        padding-top: 10px;
+        margin-left: -13px;
+        color: #000;
+    }
 	.partner-show-tile {
         width: 220px;
     }
@@ -10723,9 +10742,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 221px;
     }
     ul.show-paddingsbtn {
-        left: 97px;
-        padding-left: 42px;
-        top: -27px;
+        margin-right: -140px !important;
+        padding-left: 0;
+    }
+    a.sh-fund-2header{
+    /*     margin-top: 0px; */
+        padding: 0;
+        width: 219px;
+        height: 41px;
     }
     button.sh-fund-2header {
         width: 220px;
@@ -12654,6 +12678,21 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /*Screen resolution 644 x 767 */
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    .cr-icon-tabs-info {
+        font-size: 18px;
+        padding: 10px 22px;
+        width: 29px;
+    }
+    .cr-icon-tabs-eye {
+        font-size: 18px;
+        padding: 10px 22px;
+        width: 18px;
+    }
+    .cr-icon-tabs-user {
+        font-size: 18px;
+        padding: 10px 24px;
+        width: 34px;
+    }
     .editCustomVanityUrl label#vanityUrlLength {
         margin-right: 8px;
     }
@@ -12939,6 +12978,15 @@ textarea.textarea-embed-video {
 	}
 }
 @media only screen and (max-width: 640px){
+	.cr-icon-tabs-info {
+        padding: 10px 18px;
+    }
+    .cr-icon-tabs-eye {
+        padding: 10px 18px;
+    }
+    .cr-icon-tabs-user {
+        padding: 10px 22px;
+    }
     .editCustomVanityUrl label#vanityUrlLength {
         margin-right: 17px;
     }
@@ -14110,6 +14158,9 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.manage-contributiontile {
+        margin-left: -10px !important;
+    }
     input.cr-input-digit{
         width: 100%;
     }
@@ -15140,9 +15191,9 @@ textarea.textarea-embed-video {
 	    display: -webkit-inline-flex;
         display: -ms-inline-flexbox;
 	}
-/*     input.cr-marg-mobile{ */
-/*         margin-left: -9px;	     */
-/*     } */
+    input.cr-marg-mobile{
+        margin-left: -9px;	    
+    }
 /*     div.cr-marg-mobile{ */
 /*         margin-left: -9px;	     */
 /*     } */
@@ -16675,7 +16726,7 @@ a#downloadEbook{
 }
 .TW-ebook-footer-links{
 	width:126px;
-	margin-top:5px;
+	margin-top:10px;
 }
 .TW-ebook-body{
 	background-color: #f6f8f8;
@@ -17038,7 +17089,7 @@ img.home-pg-icons{
         display: none;
     }
     ::i-block-chrome, .sh-shareicons-Fixedtophead {
-        top: 51px !important;
+        top: 51px;
     }
     ::i-block-chrome, button.sh-submitaproval-2header {
         margin-top: -10px;

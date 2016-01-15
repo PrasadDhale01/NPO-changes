@@ -203,3 +203,7 @@
 		</div>
     </g:uploadForm>
 </div>
+<div class="loadinggif text-center" id="loading-gif">
+    <img src="//s3.amazonaws.com/crowdera/documents/loading.gif" alt="'loadingImage'" id="loading-gif-img">
+</div>
+    

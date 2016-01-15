@@ -330,7 +330,7 @@
                     <label class="col-md-8 col-sm-6 hidden-xs cr-panel-spend-matrix-guide cr-panel-qa-guide"></label>
                 </div>
                 <div class="panel panel-body cr-panel-body-spend-matrix">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 col-xs-12 zero-padding">
                         1. Did you try other fundraising methods ?
                         <div class="question-ans question-ans-1 form-group">
                             <p><input type="radio" name="ans1" class="ans1 yes" value="yes" <g:if test="${qA && qA.ans1 && qA.ans1 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
@@ -460,7 +460,7 @@
                         <div class="col-sm-4">
                             <div class="form-group" id="organizationName">
                                 <div class="col-sm-12 cr-mobiledisplyorg ">
-                                    <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.ORGANIZATIONNAME}" value="${project.organizationName}" id="organizationname" placeholder="Individual / Organization Name">
+                                    <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.ORGANIZATIONNAME}" value="${project.organizationName}" id="organizationname" placeholder="Individual / Organization Name">
                                 </div>
                             </div>
                         </div>
@@ -468,10 +468,10 @@
                             <div class="form-group">
                                 <div class="col-sm-12 cr-mobiledisplyorg">
                                     <g:if test="${project.webAddress}">
-                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook" value="${project.webAddress}">
+                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook" value="${project.webAddress}">
                                     </g:if>
                                     <g:else>
-                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook">
+                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook">
                                     </g:else>
                                 </div>
                             </div>
@@ -479,7 +479,7 @@
                         <div class="col-sm-4">
                             <div class="form-group createOrgIconDiv">
                                 <div class="col-lg-6 col-sm-8 col-md-8 col-xs-7 cr-mobiledisplyorg">
-                                    <div class="fileUpload btn btn-info btn-sm cr-btn-color cr-marg-mobile">
+                                    <div class="fileUpload btn btn-info btn-sm cr-btn-color">
                                         Display Picture
                                         <input type="file" class="upload" id="iconfile" name="iconfile" accept="image/jpeg, image/png">
                                     </div>

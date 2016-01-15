@@ -164,7 +164,7 @@
                 <div class="userprofilecaption">
                     <span class="pull-left">
                         <span class="userdashboard-caption-font">Raised</span>
-                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                        <g:if test="${environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'}">
                             <span class="fa fa-inr"></span><g:if test="${campaign.payuStatus}"><span class="lead">${contribution}</span></g:if><g:else><span class="lead">${contribution * conversionMultiplier}</span></g:else>
                         </g:if>
                         <g:else>
@@ -174,7 +174,7 @@
     
                     <span class="pull-right">
                         <span class="userdashboard-caption-font">Goal</span>
-                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                        <g:if test="${environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'}">
                             <span class="fa fa-inr"></span><g:if test="${campaign.payuStatus}"><span class="lead">${amount}</span></g:if><g:else><span class="lead">${amount * conversionMultiplier}</span></g:else>
                         </g:if>
                         <g:else>

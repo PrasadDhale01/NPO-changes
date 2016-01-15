@@ -7,7 +7,6 @@
     <div class="container">
         <h2>Error</h2>
         <div class="alert alert-danger">
-            Oh snap! Something went wrong editing the Campaign.
             <g:if test="${flash.prj_edit_message}">
                 <ul>
                     <li>${flash.prj_edit_message}</li>

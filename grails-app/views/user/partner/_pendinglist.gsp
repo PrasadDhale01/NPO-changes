@@ -23,7 +23,7 @@
                         <td class="text-center col-sm-2">${partner.user.lastName}</td>
                         <td class="text-center col-sm-2">${partner.user.email}</td>
                         <td class="text-center col-sm-2">${partner.created}</td>
-                        <td class="text-center col-sm-2"><g:link class="btn btn-primary btn-sm" action="" controller="user" id="${partner.id}">Send</g:link></td>
+                        <td class="text-center col-sm-2"><g:link class="btn btn-primary btn-sm" action="reInvitePartner" controller="user" id="${partner.id}">Send</g:link></td>
                     </tr>
                 </g:each>
             </tbody>

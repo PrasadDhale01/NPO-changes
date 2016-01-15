@@ -395,7 +395,7 @@ class SitemapController {
 						}
 						
 						url {
-							loc(g.createLink(controller: 'fund', action:'acknowledge', params:[projectTitle:vanityTitle]))
+							loc(g.createLink(absolute: true, controller: 'fund', action:'acknowledge', params:[projectTitle:vanityTitle]))
 							changefreq('always')
 							priority(0.8)
 						}

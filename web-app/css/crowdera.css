@@ -6729,12 +6729,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    display: -webkit-inline-flex;
         display: -ms-inline-flexbox;
 	}
-/*     input.cr-marg-mobile{ */
-/*         margin-left: -9px;	     */
-/*     } */
-/*     div.cr-marg-mobile{ */
-/*         margin-left: -9px;	     */
-/*     } */
+    input.cr-marg-mobile{
+        margin-left: -9px;	    
+    }
+    div.cr-marg-mobile{
+        margin-left: -9px;	    
+    }
     ul.cr-safari-mobile{
         display: -webkit-box;
         display: -webkit-inline-flex;
@@ -9991,6 +9991,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	.zero-padding.col-xs-12 {
+	    padding-left: 0px;
+	    padding-right: 0px;
+	}
     .campaignCustomVanityUrl label#vanityUrlLength {
         margin-right: 0px;
     }
@@ -12652,6 +12656,21 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /*Screen resolution 644 x 767 */
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    .cr-icon-tabs-info {
+        font-size: 18px;
+        padding: 10px 22px;
+        width: 29px;
+    }
+    .cr-icon-tabs-eye {
+        font-size: 18px;
+        padding: 10px 22px;
+        width: 18px;
+    }
+    .cr-icon-tabs-user {
+        font-size: 18px;
+        padding: 10px 24px;
+        width: 34px;
+    }
     .editCustomVanityUrl label#vanityUrlLength {
         margin-right: 8px;
     }
@@ -12937,6 +12956,15 @@ textarea.textarea-embed-video {
 	}
 }
 @media only screen and (max-width: 640px){
+	.cr-icon-tabs-info {
+        padding: 10px 18px;
+    }
+    .cr-icon-tabs-eye {
+        padding: 10px 18px;
+    }
+    .cr-icon-tabs-user {
+        padding: 10px 22px;
+    }
     .editCustomVanityUrl label#vanityUrlLength {
         margin-right: 17px;
     }
@@ -15138,9 +15166,9 @@ textarea.textarea-embed-video {
 	    display: -webkit-inline-flex;
         display: -ms-inline-flexbox;
 	}
-/*     input.cr-marg-mobile{ */
-/*         margin-left: -9px;	     */
-/*     } */
+    input.cr-marg-mobile{
+        margin-left: -9px;	    
+    }
 /*     div.cr-marg-mobile{ */
 /*         margin-left: -9px;	     */
 /*     } */
@@ -16673,7 +16701,7 @@ a#downloadEbook{
 }
 .TW-ebook-footer-links{
 	width:126px;
-	margin-top:5px;
+	margin-top:10px;
 }
 .TW-ebook-body{
 	background-color: #f6f8f8;

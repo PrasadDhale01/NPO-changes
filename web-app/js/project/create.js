@@ -1742,7 +1742,7 @@ $(function() {
 
                     output.insertBefore(div, null);
 //                    $('.uploadingFile').hide();
-                    $('#loading-gif').show();
+                    $('#loading-gif').hide();
                 }
             }, this);
             xhr.send(formData);

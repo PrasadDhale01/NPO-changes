@@ -892,6 +892,9 @@ $(function() {
         $('.show-mobilejs').css("margin-bottom","20px");
     });
     
+    if(screen.width < 1024){
+        $('.show-mobilejs-sm-md').css("margin-bottom","55px");
+    }
     /***Show-details-page-tabs-scroll-code****/
     $('.show-all-icons-header-tabs').click(function(){
     	 var toptabs = $(".show-ids-header").offset().top;
@@ -991,6 +994,11 @@ $(function() {
     	    	    }
     	        }
     		}
+    	});
+    	
+    	$('.manageTeamMob, .contributionsMob').click(function() {
+    		$(".sh-tabs").find("a.show-tabs-text").removeClass('sh-selected');
+    		$(this).addClass('sh-selected');
     	});
     	
     	var activeClass

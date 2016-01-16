@@ -81,12 +81,7 @@ class ProjectController {
 		}
 		def sortsOptions = projectService.getSorts()
         
-        def projects
-        if(currentEnv =="testIndia" || currentEnv=="test"){
-            projects = projectService.getValidatedProjectsByPercentage(currentEnv)
-        }else{
-            projects = projectService.getValidatedProjects(currentEnv)
-        }
+        def projects = projectService.getValidatedProjectsByPercentage(currentEnv)
         
 		def selectedCategory = "All Categories"
 		def multiplier = projectService.getCurrencyConverter();

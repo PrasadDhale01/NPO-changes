@@ -497,15 +497,21 @@ $(function() {
         });
         
         $('[name="reason1"]').rules( "add", {
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 140
         });
         
         $('[name="reason2"]').rules( "add", {
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 140
         });
         
         $('[name="reason3"]').rules( "add", {
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 140
         });
         
         $( '[name="webAddress"]' ).rules( "add", {

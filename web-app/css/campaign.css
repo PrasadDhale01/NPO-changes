@@ -1139,8 +1139,12 @@ img.home-img-large-size{
 .hm-how-it-work-img {
     bottom: 17%;
     position: absolute;
-    right: 16%;
-    z-index: 1000;
+    right: 3.2%;
+}
+.learn-how-it-work-img{
+    bottom: 17%;
+    position: absolute;
+    right: 3.2%;
 }
 .hm-start-campaign-btn,
 .hm-start-campaign-btn:hover,

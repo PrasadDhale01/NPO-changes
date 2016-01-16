@@ -1600,7 +1600,7 @@ $(function() {
     });
     
     function setDescriptionText(){
-        var currentString = $('#descarea').val().length;
+        var currentString = $('#descarea, #descarea1').val().length;
         if (currentString == 0) {
             $('#desclength').text("0/140");
         } else {
@@ -2943,7 +2943,7 @@ $(function() {
 //        $('#customVanityUrl').val(title.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-'));
 //    });
 
-    $('.descarea1').blur(function (){
+    $('#descarea1').blur(function (){
         var descarea = $(this).val();
         autoSave('descarea', descarea);
     });

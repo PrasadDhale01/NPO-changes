@@ -433,7 +433,7 @@ span.cr-label-spend-matrix {
 
 .cr-currency{
     position: absolute;
-    left: 20px;
+    left: 22px;
     top: 11px;
 }
 
@@ -620,6 +620,9 @@ div.validate-show-div .show-description {
     padding-left: 0px;
     padding-right: 0px;
 }
+.show-pageDiscription{
+    padding-left: 15px !important;
+}
 #validateChecklistmsg {
 	   display: none;
 }
@@ -795,7 +798,7 @@ img.hm-img-bottompadding {
 hr.hm-line-color{
     border-color: #666666;
     margin-top: 0;
-    margin-bottom: 52px;
+/*     margin-bottom: 52px; */
 }
 
 .show-headered-without-update {
@@ -1089,11 +1092,11 @@ img.home-img-large-size{
     display: none;
 }
 .whatsapp-mobile-icon {
-     position: fixed;
-     bottom: 70px;
-     right: 3%;
-     z-index: 100;
- }
+    position: fixed;
+    bottom: 70px;
+    right: 3%;
+    z-index: 100;
+}
  
  .whatsapp-mobile-icon .btn-whatsapp{
      width: 60px;
@@ -1103,3 +1106,54 @@ img.home-img-large-size{
      background-color: #29a628;
      padding: 14px;
  }
+ 
+.whatsapp-mobile-icon .btn-whatsapp{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    outline: 0px;
+    background-color: #29a628;
+    padding: 14px;
+}
+
+.campaignCustomVanityUrl label#vanityUrlLength {
+    margin-right: -12px;
+}
+.campaignCustomVanityUrl .form-group {
+    margin-bottom: 0px;
+}
+.campaignCustomVanityUrl .help-block {
+    color: #ff0000;
+    padding-left: 26px;
+}
+.editCustomVanityUrl .form-group {
+    margin-bottom: 0px;
+}
+.editCustomVanityUrl .help-block {
+    color: #ff0000;
+    padding-left: 15px;
+}
+.hm-how-it-work {
+    position: relative;
+}
+.hm-how-it-work-img {
+    bottom: 17%;
+    position: absolute;
+    right: 16%;
+    z-index: 1000;
+}
+.hm-start-campaign-btn,
+.hm-start-campaign-btn:hover,
+.hm-start-campaign-btn:focus{
+    background-color: #01bbd3;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 900;
+}
+.hm-headingtext{
+    color: #005f84;
+    font-size: 40px;
+    font-weight: 900;
+    padding: 30px 0 0;
+    margin-left: 36px;
+}

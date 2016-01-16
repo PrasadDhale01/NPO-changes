@@ -33,14 +33,22 @@
         }
     });
     $('.folderlist').find('.folder').click(function(event){
-    	$('#remove-file').val('');
-        $('.trash-file-fixed-btn').hide();
-        $('.folderlist').find('.folder').removeClass('active');
-        $('.file-thumbnail-container').removeClass('active');
-        $(this).addClass('active');
-        var id = $(this).attr('id');
-        $('.trash-docs-fixed-btn').show();
-        $('#remove-folder').val(id);
+
+    	if ($(this).hasClass("active")) {
+    		$('.trash-docs-fixed-btn').hide();
+            $('#remove-folder').val('');
+            $(this).removeClass('active');
+    	} else {
+    		$('#remove-file').val('');
+            $('.trash-file-fixed-btn').hide();
+            $('.folderlist').find('.folder').removeClass('active');
+            $('.file-thumbnail-container').removeClass('active');
+            $(this).addClass('active');
+            var id = $(this).attr('id');
+            $('.trash-docs-fixed-btn').show();
+            $('#remove-folder').val(id);
+        }
+    	
     });
     </script>
 </g:if>

@@ -29,7 +29,7 @@
             <a class="share-mail pull-left show-icons show-email-hover show-pointer-not">
                 <img src="//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png" class="show-email" alt="Mail Share">
             </a>
-            <a class="twitter-share pull-left show-icons show-pointer-not">
+            <a class="pull-left show-icons show-pointer-not">
                 <img src="//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png" class="show-twitter" alt="Twitter Share">
             </a>
             <a class="pull-left show-icons show-pointer-not">
@@ -76,7 +76,7 @@
         </g:else>
     </div>
 
-    <div class="col-md-12 col-sm-12 col-xs-12 TW-campaignstory-img-width">
+    <div class="col-md-12 col-sm-12 col-xs-12 show-pageDiscription">
 		<g:if test="${isCrFrCampBenOrAdmin}">
 			<div class="show-description">
 	            <p class="campaignDescription justify">${raw(project.description)}</p>

@@ -16,7 +16,7 @@
         <div class="hidden-md hidden-lg hidden-sm col-xs-12 contact-details contact-details-bottom">
             <div class="contact-details-heading"><b>Contact Details</b></div>
             <div class="contact-details-body">
-                <label class="col-xs-5"><b>Phone number</b></label> <span class="col-xs-7">+91 77 5592 2037</span>
+                <label class="col-xs-5"><b>Phone number</b></label> <span class="col-xs-7">+91 721 970 2234</span>
                 <div class="clear"></div>
                 <label class="col-xs-5"><b>Contact</b></label><span class="col-xs-7">206, Sankalp Nagar,<br>Wathoda Layout,<br>Nagpur - 440009</span>
             </div>
@@ -86,7 +86,7 @@
         <div class="col-sm-4 col-md-4 hidden-xs contact-details">
             <div class="contact-details-heading"><b>Contact Details</b></div>
             <div class="contact-details-body">
-                <label class="col-sm-4"><b>Phone number</b></label> <span class="col-sm-8">+91 77 5592 2037</span>
+                <label class="col-sm-4"><b>Phone number</b></label> <span class="col-sm-8">+91 721 970 2234</span>
                 <div class="clear"></div>
                 <label class="col-sm-4"><b>Contact</b></label><span class="col-sm-8">206, Sankalp Nagar,<br>Wathoda Layout,<br>Nagpur - 440009</span>
             </div>
@@ -96,7 +96,7 @@
     <g:else>
         <div class="container contactUs" id="contactUs">
             <div class="helpdesk col-md-12 col-sm-12 col-xs-12 helpdeskpadding">
-                <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://crowdera.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=Crowdera+Customer+Help+&submitThanks=Your+Query+has+been+submitted.+We+will+get+back+to+you+soon.&screenshot=no" scrolling="no" height="550" width="100%" frameborder="0" >
+                <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://crowdera.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=Crowdera+Customer+Help+&submitThanks=Your+Query+has+been+submitted.+We+will+get+back+to+you+soon.&screenshot=no" scrolling="no" height="550px" width="100%" frameborder="0" >
                 </iframe>
             </div>
         </div>

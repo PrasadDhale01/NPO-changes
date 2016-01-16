@@ -10,6 +10,8 @@ $(function() {
         style: 'btn btn-sm btn-default'
     });
     
+    $('.success-message').fadeOut(6000);
+    
     $('#state').change(function(event) {
         var option = $(this).val();
         if(option == 'other') {
@@ -21,16 +23,24 @@ $(function() {
         }
     });
     
+    $('#side-menu').find('.li').click(function() {
+        $('#side-menu').find('.li').removeClass('active');
+        $(this).addClass('active');
+    });
+    
     var validator = $('#validpass').find('form').validate({
         rules: {
         	firstName: {
+        		minlength: 2,
         		maxlength: 20
         	},
         	lastName: {
+        		minlength: 2,
         		maxlength: 20
         	},
         	password: {
-                minlength: 6
+                minlength: 6,
+                maxlength: 30
             },
     		confirmPassword: {
 		        isEqualToPassword: true
@@ -49,7 +59,8 @@ $(function() {
                 maxlength: 20
             },
             password: {
-                minlength: 6
+                minlength: 6,
+                maxlength: 30
             },
             confirmPassword: {
                 isEqualToPassword: true
@@ -63,6 +74,7 @@ $(function() {
                 maxlength: 20
             },
             state: {
+            	minlength: 2,
                 maxlength: 20
             },
             country: {
@@ -81,14 +93,39 @@ $(function() {
     $('#invitePartnerModal').find('form').validate({
         rules: {
             email : {
-                required: true
+                required: true,
+                maxlength: 30
             },
             firstName: {
-                required: true
+                required: true,
+                maxlength: 20
             },
             lastName : {
-                required: true
+                required: true,
+                maxlength: 20
             }
+        }
+    });
+    
+    $('#partner-sec-header .span-space').click(function() {
+   	    var toptabs = $("#partner-tab-content").offset().top;
+   	    window.scrollTo(toptabs,toptabs - 170);
+    });
+    
+    $('#partnersOpts').change(function(){
+        var opts = $(this).val();
+        if (opts == 'Verified') {
+            $('#partners-list').find('.tab-pane').removeClass('active');
+            $('#verified').addClass('active');
+        } else if(opts == 'Non-Verified') {
+            $('#partners-list').find('.tab-pane').removeClass('active');
+            $('#nonVerified').addClass('active');
+        } else if(opts == 'Pending') {
+            $('#partners-list').find('.tab-pane').removeClass('active');
+            $('#pending').addClass('active');
+        } else if(opts == 'Draft') {
+            $('#partners-list').find('.tab-pane').removeClass('active');
+            $('#draft').addClass('active');
         }
     });
     
@@ -201,26 +238,26 @@ $(function() {
     });
     
     $('#userAvatarUploadIcon').hover(function() {
-        $('.defaultprofileimage').show();
+        $('.partneruploadprofileimage').show();
     });
     $('#userAvatarUploadIcon').mouseleave(function() {
-        $('.defaultprofileimage').hide();
+        $('.partneruploadprofileimage').hide();
     });
     $('#userAvatarUploadIcon').click(function(event) {
         event.preventDefault();
         $("#avatar").click();
     });
-    $('#userImageEditDeleteIcon').hover(function() {
-        $('.userprofileeditimage').show();
+    $('#partnerImageEditDeleteIcon').hover(function() {
+        $('.partnerprofileeditimage').show();
     });
-    $('#userImageEditDeleteIcon').mouseleave(function() {
-        $('.userprofileeditimage').hide();
+    $('#partnerImageEditDeleteIcon').mouseleave(function() {
+        $('.partnerprofileeditimage').hide();
     });
-    $('.userprofileeditimage').click(function(event) {
+    $('.partnerprofileeditimage').click(function(event) {
         event.preventDefault();
         $("#editavatar").click();
     });
-
+    
     
     var elem1 = '<div class="well"><a href="google.com">Message one, From someone.</a></div>'+
     '<button id="close-popover" data-toggle="clickover" class="btn btn-small btn-primary pull-right" onclick="$(&quot;#contributionshare1&quot;).popover(&quot;hide&quot;);">Close please!</button>';

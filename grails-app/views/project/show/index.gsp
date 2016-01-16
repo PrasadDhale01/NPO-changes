@@ -282,7 +282,7 @@
                         </div>
                     </div>
                     <div class="collapse navbar-collapse col-lg-8 col-sm-8 col-md-8 show-header-tabsmanage show-tabsDesktop-headers">
-                        <ul class="nav nav-pills nav-justified nav-justi sh-tabs">
+                        <ul class="nav nav-pills nav-justified nav-justi sh-tabs show-pages-width">
                         
                         <li><span class="active show-tbs-right-borders  hidden-xs">
                                 <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials show-all-icons-header-tabs show-story">

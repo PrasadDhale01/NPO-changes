@@ -6,66 +6,101 @@
 <body>
 <div class="feducontent">
     <div class="container dashboard-container" id="partner-container">
+        <%
+            def partnersOpts = ['Verified':'Verified', 'Non-Verified': 'Non-Verified', 'Pending':'Pending', 'Draft': 'Draft']
+        %>
         <h1 class="text-center green-heading"><span class="fa fa-users"></span>&nbsp;&nbsp;<b>Partners</b></h1>
 
-        <div class="col-sm-12 invitepartner">
-            <a href="#" class="btn btn-primary btn-sm pull-right managecontribution hidden-xs" data-toggle="modal" data-target="#invitePartnerModal">Invite Partner</a>
-            <a href="#" class="btn btn-primary btn-sm btn-block managecontribution visible-xs" data-toggle="modal" data-target="#invitePartnerModal">Invite Partner</a>
+        <div class="col-xs-12 invitepartner">
+            <div class="partner-verification pull-right">
+	            <a href="#" class="btn btn-primary btn-sm pull-right managecontribution" data-toggle="modal" data-target="#invitePartnerModal">Invite Partner</a>
+	            <div class="partnerOpts pull-right">
+	                <g:select class="selectpicker text-center" name="partnersOpts" id="partnersOpts" from="${partnersOpts}" optionKey="value" optionValue="value"/>
+	            </div>
+	        </div>
         </div>
+        
         <div class="clear"></div>
         <g:if test="${flash.alreadyExistMsg}">
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 text-center success-message">
                 <div class="alert alert-info">${flash.alreadyExistMsg}</div>
             </div>
         </g:if>
         <g:elseif test="${flash.invitesuccessmsg}">
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 text-center success-message">
                 <div class="alert alert-success">${flash.invitesuccessmsg}</div>
             </div>
         </g:elseif>
         <g:elseif test="${flash.discardmsg}">
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 text-center success-message">
                 <div class="alert alert-success">${flash.discardmsg}</div>
             </div>
         </g:elseif>
         <g:elseif test="${flash.discardfailmsg}">
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 text-center success-message">
                 <div class="alert alert-success">${flash.discardfailmsg}</div>
             </div>
         </g:elseif>
-        <%
-            indexcount = 1;
-        %>
-        <div class="col-md-12 invitepartner">
-            <div class="panel-body partner-panel">
-                <ul class="thumbnails list-unstyled">
-                    <g:each in="${partners}" var="partner">
-                        <li class="col-md-3 col-lg-3 col-sm-4 col-xs-12">
-                            <div class="partner-tile thumbnail">
-                                <g:link action="partnerdashboard" controller="user" id="${partner.id}">
-                                    <g:if test="${!partner.enabled}">
-                                        <div class="over user-tile">
-                                            <img src="//s3.amazonaws.com/crowdera/assets/Pending-tag.png" alt="' '">
-                                        </div>
-                                    </g:if>
-                                    <g:if test="${partner.user.userImageUrl}">
-                                        <img class="partner-profile-img" src="${partner.user.userImageUrl}" alt="''">
-                                    </g:if>
-                                    <g:else>
-                                        <img class="partner-profile-img" src="//s3.amazonaws.com/crowdera/assets/profile_image.jpg" alt="''">
-                                    </g:else>
-                                </g:link>
-
-                                <div class="partner-information-bio text-center">
-                                    <label><b>${partner.user.firstName}</b></label>
-                                </div>
-                            </div>
-                        </li>
-                    </g:each>
-                </ul>
+        <g:elseif test="${flash.validationSuccessMsg}">
+            <div class="col-md-12 text-center success-message">
+                <div class="alert alert-success">${flash.validationSuccessMsg}</div>
             </div>
-        </div>
-								
+        </g:elseif>
+        <div class="clear"></div>
+        <div class="tab-content" id="partners-list">
+            <div class="active tab-pane tab-pane-active" id="verified">
+                <g:if test="${partners.size > 0}">
+                    <g:render template="/user/partner/verifiedlist"/>
+                </g:if>
+                <g:else>
+                    <div class="col-md-12 text-center">
+                        <div class="alert alert-info">
+                            No such partner yet.
+                        </div>
+                    </div>
+                </g:else>
+            </div>
+            
+	        <div class="tab-pane tab-pane-active" id="nonVerified">
+	            <g:if test="${nonVerified.size() > 0}">
+                    <g:render template="/user/partner/nonverifiedlist"/>
+                </g:if>
+                <g:else>
+                    <div class="col-md-12 text-center">
+                        <div class="alert alert-info">
+                            No such partner yet.
+                        </div>
+                    </div>
+                </g:else>
+	        </div>
+	        
+	        <div class="tab-pane tab-pane-active" id="pending">
+	            <g:if test="${pendingList.size() > 0}">
+                    <g:render template="/user/partner/pendinglist"/>
+                </g:if>
+                <g:else>
+                    <div class="col-md-12 text-center">
+                        <div class="alert alert-info">
+                            No such partner yet.
+                        </div>
+                    </div>
+                </g:else>
+	        </div>
+	        
+	        <div class="tab-pane tab-pane-active" id="draft">
+	            <g:if test="${draftList.size() > 0}">
+                    <g:render template="/user/partner/draftlist"/>
+                </g:if>
+                <g:else>
+                    <div class="col-md-12 text-center">
+                        <div class="alert alert-info">
+                            No such partner yet.
+                        </div>
+                    </div>
+                </g:else>
+            </div>
+	    </div>
+        
         <!-- invitePartnerModal -->
         <div class="modal fade" id="invitePartnerModal" tabindex="-1">
             <g:form name="invite-partner-form" action="addpartner" controller="user" role="form">
@@ -106,7 +141,7 @@
                 </div>
             </g:form>
         </div>
-								
+	    				
     </div>
 </div>
 </body>

@@ -9,6 +9,11 @@
     } else {
         mailChimpUrl = "//crowdera.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&amp;id=e37aea1b78"
     }
+    boolean isTestEnv = false
+    if (currentEnv == 'development' || currentEnv == 'testIndia' || currentEnv == 'test') {
+        isTestEnv = true
+    }
+    
 %>
 <input type="hidden" id="b_url" value="<%=base_url%>" />
 <!-- Footer -->
@@ -18,7 +23,7 @@
         <%--<div class="footer-mobile-border visible-xs"></div>--%>
         <div class="container footer-container">
             <div class="visible-xs show-mobilejs">
-                <section class="row">
+                <div class="row">
                     <div class="col-xs-12">
                         <div class="crowdera-title"><a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a></div>
                         <div class="crowdera-menu">
@@ -39,15 +44,18 @@
                                         <li><g:link controller="project" action="create">Start Your Campaign</g:link></li>
                                         <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
                                         <li><a href="${resource(dir: '/crowdfunding-ebook')}">Crowdfunding Ebook</a></li>
+                                        <g:if test="${isTestEnv}">
+                                            <li><g:link controller="user" action="partners">Partner Pages</g:link></li>
+                                        </g:if>
                                         <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
                 <!-- ***********************************Section two************************ -->
-                <section class="row">
+                <div class="row">
                     <div class="col-xs-12 footer-first-section-mobile footer-text-align">
                         <p>Hands up for a Better World. See how you can make a difference with Crowdera.</p>
                         <div class="footer-first-section-mobile footer-img-align">
@@ -55,9 +63,9 @@
                             <g:link controller="project" action="create"><img src="//s3.amazonaws.com/crowdera/assets/start-a-campaign-mobile.png" alt="Crowdera"></g:link>
                         </div>
                     </div>
-                </section>
+                </div>
                 <!-- ********************************Section three************************* -->
-                <section class="row">
+                <div class="row">
                     <div class="col-xs-12 footer-mid-section footer-p-text-align">
                         <br>
                         <div class="socialicon">
@@ -80,22 +88,21 @@
                                 <div class="col-xs-offset-1 newsletter-align">
                                     <br>
                                     <div class="col-xs-6 footer-input-align">
-                                        <input type="text" class="text-email all-place form-control" name="EMAIL" value="" placeholder="Your email">
+                                        <input type="text" class="text-email all-place form-control" name="EMAIL" placeholder="Your email">
                                     </div>
                                     <div class="col-xs-6 ">
-                                        <input type="submit" value="" name="subscribe" class="button-signup signup-sm all-place ">
+                                        <input type="submit" name="subscribe" value="" class="button-signup signup-sm all-place ">
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <br>
                     </div>
-                </section>
+                </div>
         
         <!-- *********************Section four*****************-->
         <hr class="footer-hr">
  
-        <section class="row">
+        <div class="row">
             <div class="col-xs-12">
                 <div class="text-primary">
                     <a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms  Of  Use</a>&nbsp;&nbsp;
@@ -103,22 +110,22 @@
                     <a class="footerlink">&copy;&nbsp; Crowdera,inc, 2015</a>
                 </div>
             </div>
-        </section>
+        </div>
         <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-            <section class="row">
+            <div class="row">
                 <div class="col-lg-12 footer-disclaimer-lg">
                     <span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.
                     Crowdera does not guarantee that beneficiary projects will be fully or partially funded. Crowdera is an internet platform to connect individuals, non-profits and contributors to collaborate published purposes. Crowdera does not take any responsibility for any promises made by campaign creators on our platform.
                     Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform. *Crowdera does not charge a fee, however payment gateway and bank transfer fee are applicable.</span>
                 </div>
-            </section>
+            </div>
         </g:if>
         <br><br>            
     </div>
         
     <!-- Footer Design for medium size device -->
-    <div class="visible-sm visible-md">
-        <section class="row">
+    <div class="visible-sm visible-md show-mobilejs-sm-md">
+        <div class="row">
         <div class="col-sm-4 footer-logo-padding-left">
             <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a>
             <div class="col-sm-6 footer-mid-section-menu tab-menu-padding">
@@ -135,6 +142,9 @@
                 <li><g:link controller="project" action="create">Start Your Campaign</g:link></li>
                 <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
                 <li><a href="${resource(dir: '/crowdfunding-ebook')}">Crowdfunding Ebook</a></li>
+                <g:if test="${isTestEnv}">
+                    <li><g:link controller="user" action="partners">Partner Pages</g:link></li>
+                </g:if>
                 <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
             </ul>
             </div>
@@ -178,8 +188,8 @@
             </div>
         </div>
         <hr class="footer-hr">
-        </section>
-            <section class="row">
+        </div>
+            <div class="row">
                 <div class="col-sm-8 footer-last-section-payment-icon">
                     <g:if test="${currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv=='development'}">
                         <div class="col-sm-6 payment-method-footer">
@@ -218,22 +228,22 @@
                 </span>
             </div>
         </g:else>
-        </section>
+        </div>
         <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-            <section class="row">
+            <div class="row">
                 <div class="col-lg-12 footer-disclaimer-lg">
                     <span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.
                     Crowdera does not guarantee that beneficiary projects will be fully or partially funded. Crowdera is an internet platform to connect individuals, non-profits and contributors to collaborate published purposes. Crowdera does not take any responsibility for any promises made by campaign creators on our platform.
                     Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform. *Crowdera does not charge a fee, however payment gateway and bank transfer fee are applicable.</span>
                 </div>
-            </section>
+            </div>
         </g:if>
     </div>
         
     <!-- Footer Design for large size device -->    
     <div class="visible-lg footer-lg">
             
-        <section class="row footer-lg-first-section">
+        <div class="row footer-lg-first-section">
         <div class="col-md-4">
             <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a>
             <div class="col-md-6 footer-mid-section-menu">
@@ -250,6 +260,9 @@
                 <li><g:link controller="project" action="create">Start Your Campaign</g:link></li>
                 <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
                 <li><a href="${resource(dir: '/crowdfunding-ebook')}">Crowdfunding Ebook</a></li>
+                <g:if test="${isTestEnv}">
+                    <li><g:link controller="user" action="partners">Partner Pages</g:link></li>
+                </g:if>
                 <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
             </ul>
         
@@ -294,9 +307,9 @@
             </div>
         </div>
         <hr class="footer-hr">
-        </section>
+        </div>
          
-        <section class="row">
+        <div class="row">
         <div class="col-md-8 footer-last-section-payment-icon">
             <g:if test="${currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv=='development'}">
                 <div class="col-md-6 payment-method-footer">
@@ -335,15 +348,15 @@
                 </span>
             </div>
         </g:else>
-        </section>
+        </div>
         <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-            <section class="row">
+            <div class="row">
                 <div class="col-lg-12 footer-disclaimer-lg">
                     <span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.
                     Crowdera does not guarantee that beneficiary projects will be fully or partially funded. Crowdera is an internet platform to connect individuals, non-profits and contributors to collaborate published purposes. Crowdera does not take any responsibility for any promises made by campaign creators on our platform.
                     Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform. *Crowdera does not charge a fee, however payment gateway and bank transfer fee are applicable.</span>
                 </div>
-            </section>
+            </div>
         </g:if>
     </div>
     </div>

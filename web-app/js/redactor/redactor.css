@@ -120,6 +120,12 @@ body .redactor-box-fullscreen {
     .redactor-editor {
          width: 254px;
     }
+    #partner-create-page .redactor-box {
+        width: 273px;
+    }
+    #partner-create-page .redactor-editor {
+         width: 273px;
+    }
 }
 
 @media only screen and (min-width: 641px) and (max-width: 767px){

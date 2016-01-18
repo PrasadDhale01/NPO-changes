@@ -831,15 +831,21 @@ $(function() {
         });
         
         $('[name="reason1"]').rules( "add", {
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 140
         });
         
         $('[name="reason2"]').rules( "add", {
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 140
         });
         
         $('[name="reason3"]').rules( "add", {
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 140
         });
         
         $('.rewardNumberAvailable').each(function () {
@@ -3090,6 +3096,26 @@ $(function() {
     $('.ansText3').blur(function(){
     	var ansText3 = $(this).val();
     	autoSave('ans3', ansText3);
+    });
+    
+    $('.ansText5').blur(function(){
+    	var ansText5 = $(this).val();
+    	autoSave('ans5', ansText5);
+    });
+    
+    $('.ansText6').blur(function(){
+    	var ansText6 = $(this).val();
+    	autoSave('ans6', ansText6);
+    });
+    
+    $('.ansText7').blur(function(){
+    	var ansText7 = $(this).val();
+    	autoSave('ans7', ansText7);
+    });
+    
+    $('.ansText8').blur(function(){
+    	var ansText8 = $(this).val();
+    	autoSave('ans8', ansText8);
     });
     
     $('#deleteVideo').click(function(){

@@ -495,6 +495,37 @@ class ProjectController {
         }
 		render(view: 'validate/index', model: [projects: projects])
 	}
+    
+    def comment() {
+        User user = userService.getCurrentUser()
+        def base_url = grailsApplication.config.crowdera.BASE_URL
+
+        def reqUrl
+        if (!user) {
+            
+            Cookie cookie = new Cookie("requestUrl", reqUrl)
+            cookie.path = '/'
+            cookie.maxAge= 600
+            response.addCookie(cookie)
+        }
+        reqUrl = base_url+"/project/savecomment?comment=${params.comment}&id=${params.id}&fr=${params.fr}"
+        redirect (url: reqUrl)
+    }
+
+    def teamcomment() {
+        User user = userService.getCurrentUser()
+        def base_url = grailsApplication.config.crowdera.BASE_URL
+
+        def reqUrl
+        if (!user) {
+            Cookie cookie = new Cookie("requestUrl", reqUrl)
+            cookie.path = '/'
+            cookie.maxAge= 600
+            response.addCookie(cookie)
+        }
+        reqUrl = base_url+"/project/saveteamcomment?comment=${params.comment}&id=${params.id}&fr=${params.fr}"
+        redirect (url: reqUrl)
+    }
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def savecomment() {

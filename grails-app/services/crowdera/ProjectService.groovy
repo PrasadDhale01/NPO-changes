@@ -3346,6 +3346,90 @@ class ProjectService {
                     isValueChanged = true;
                 }
                break;
+               
+           case 'ans5':
+               QA qA = QA.findByProject(project)
+               if (varValue.isAllWhitespace()){
+                   if(qA){
+                       qA.ans5 = null;
+                       qA.save(failOnError:true);
+                   }
+               } else {
+                   if(qA){
+                       qA.ans5 = varValue;
+                       qA.save(failOnError:true);
+                   } else {
+                       new QA(
+                          ans5 : varValue,
+                          project:project
+                       ).save(failOnError:true)
+                   }
+                   isValueChanged = true;
+               }
+               break;
+
+           case 'ans6':
+              QA qA = QA.findByProject(project)
+              if (varValue.isAllWhitespace()){
+                  if(qA){
+                      qA.ans6 = null;
+                      qA.save(failOnError:true);
+                  }
+              } else {
+                  if(qA){
+                      qA.ans6 = varValue;
+                      qA.save(failOnError:true);
+                  } else {
+                      new QA(
+                          ans6 : varValue,
+                          project:project
+                      ).save(failOnError:true)
+                  }
+                  isValueChanged = true;
+              }
+              break;
+
+           case 'ans7':
+               QA qA = QA.findByProject(project)
+               if (varValue.isAllWhitespace()){
+                   if(qA){
+                       qA.ans7 = null;
+                       qA.save(failOnError:true);
+                   }
+               } else {
+                   if(qA){
+                       qA.ans7 = varValue;
+                       qA.save(failOnError:true);
+                   } else {
+                      new QA(
+                          ans7 : varValue,
+                          project:project
+                      ).save(failOnError:true)
+                   }
+                   isValueChanged = true;
+               }
+               break;
+
+           case 'ans8':
+               QA qA = QA.findByProject(project)
+               if (varValue.isAllWhitespace()){
+                   if(qA){
+                       qA.ans8 = null;
+                       qA.save(failOnError:true);
+                   }
+               } else {
+                   if(qA){
+                       qA.ans8 = varValue;
+                       qA.save(failOnError:true);
+                   } else {
+                       new QA(
+                           ans8 : varValue,
+                           project:project
+                       ).save(failOnError:true)
+                   }
+                   isValueChanged = true;
+               }
+               break;
  
             case 'reason1':
                 ReasonsToFund reasonToFund = ReasonsToFund.findByProject(project)

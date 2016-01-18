@@ -321,7 +321,7 @@
 	                            </span>
 	                        </li>
 	                        <li><span class="show-comit-lft hidden-xs">
-	                               <a href="#comments" data-toggle="tab"  class="show-tabs-text comments show-all-icons-header-tabs">
+	                               <a href="#essentials" data-toggle="tab"  class="show-tabs-text comments navComment scrollToComment">
 	                                   <span class="tab-text hidden-xs sh-tabs-font"> COMMENTS</span>
 	                               </a>
 	                            </span>
@@ -562,7 +562,7 @@
                             </span>
                         </li>
                         <li><span class="show-comit-lft hidden-xs">
-                                <a href="#comments" data-toggle="tab"  class="show-tabs-text comments">
+                                <a href="#essentials" data-toggle="tab"  class="show-tabs-text comments scrollToComment">
                                     <span class="tab-text hidden-xs"> COMMENTS</span>
                                 </a>
                                 <span class="show-ids-header"></span>
@@ -602,9 +602,9 @@
                         <div class="tab-pane tab-pane-active" id="contributions">
                             <g:render template="show/contributions" model="['team':currentTeam]"/>
                         </div>
-                        <div class="tab-pane tab-pane-active hidden-xs" id="comments">
-                            <g:render template="show/comments"/>
-                        </div>
+<%--                        <div class="tab-pane tab-pane-active hidden-xs" id="comments">--%>
+<%--                            <g:render template="show/comments"/>--%>
+<%--                        </div>--%>
                     </div>
                     
                     <div class="row"> 
@@ -784,22 +784,7 @@
                                   <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
                               </a>
                           </g:else>
-                          
-                          <div class="impactassessment">
-                              <g:render template="show/impactstatement"/>
-                          </div>
-                          
-                          <div class="modal-footer tile-footer perks-style perk-title">
-                              <h2 class="rewardsectionheading text-center">3 Reasons to Fund</h2>
-                          </div>
-                          <br>
-                          <div class="hidden-xs">
-                              <g:if test="${project.rewards.size()>1}">
-                                  <div class="sh-perks-preview">
-                                      <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
-                                  </div>
-                              </g:if>
-                          </div> 
+                           
                       </g:if>
                       <g:elseif test="${percentage == 999}">
                           <div class="show-A-fund"> </div>
@@ -849,21 +834,22 @@
                           </g:else>
                       </g:if>
                       
+                      
                       <div class="impactassessment">
                           <g:render template="show/impactstatement"/>
                       </div>
                       
                       <g:if test="${reasons}">
-                          <div class="modal-footer tile-footer perks-style perk-title">
-                              <h2 class="rewardsectionheading text-center">3 Reasons to Fund</h2>
+                          <div class="modal-footer tile-footer perks-style reasons-title">
+                              <h2 class="rewardsectionheading text-center">3 Reasons to Fund Our Campaign</h2>
                           </div>
                           <g:if test="${reasons.reason1}">
 		                      <div class="reasonsToFund">
 		                          <div class="reasonspadding">
                                       <div class="col-xs-2 col-plr-0">
-                                          <span class="badge">1</span>
+                                          <span class="badge1">#1</span>
                                       </div>
-                                      <div class="col-xs-10 col-plr-5">
+                                      <div class="col-xs-10 col-p-5">
                                            ${reasons.reason1}
                                       </div>
                                   </div>
@@ -873,9 +859,9 @@
 		                      <div class="reasonsToFund">
 		                          <div class="reasonspadding">
 		                              <div class="col-xs-2 col-plr-0">
-		                                  <span class="badge">2</span>
+		                                  <span class="badge1">#2</span>
 		                              </div>
-		                              <div class="col-xs-10 col-plr-5">
+		                              <div class="col-xs-10 col-p-5">
 		                                  ${reasons.reason2}
 		                              </div>
 	                              </div>
@@ -885,14 +871,24 @@
 	                          <div class="reasonsToFund">
 	                              <div class="reasonspadding">
                                       <div class="col-xs-2 col-plr-0">
-                                          <span class="badge">3</span>
+                                          <span class="badge1">#3</span>
                                       </div>
-                                      <div class="col-xs-10 col-plr-5">
+                                      <div class="col-xs-10 col-p-5">
                                           ${reasons.reason3}
                                       </div>
                                   </div>
 	                          </div>
                           </g:if>
+                      </g:if>
+                      
+                      <g:if test="${isPreview && !project.validated}">
+                          <div class="hidden-xs">
+                              <g:if test="${project.rewards.size()>1}">
+                                  <div class="sh-perks-preview">
+                                      <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
+                                  </div>
+                              </g:if>
+                          </div>
                       </g:if>
                       
                       <div class="visible-xs show-mobile-update">
@@ -916,7 +912,13 @@
                               </g:if>
                           </g:if>
                       </div>
-                    
+                      
+                      <g:if test="${remainingTagsTabs}">
+                          <br>
+                          <h3 class="moretags-tabs visible-xs"><b>#Tags</b></h3>
+                          <p class="moretags-tabs visible-xs">${project.hashtags}</p>
+                      </g:if>
+				      
                       <div class="visible-xs sh-comments-align">
                           <div id="comment-mobile">
                               <g:render template="show/comments"/>

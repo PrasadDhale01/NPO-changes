@@ -32,63 +32,57 @@
         teamCommentId = teamcomment.id
     }
 %>
-<sec:ifLoggedIn>
-    <g:if test="${flash.commentmessage}">
-        <div class="alert alert-danger">${flash.commentmessage}</div>
-    </g:if>
-    
-    <g:if test="${project.validated}">
-    <g:if test="${projectComment || teamcomment}">
-    <div id="commentBox">
-        <g:form controller="project" action="editCommentSave" role="form" params="['projectTitle': vanityTitle, 'fr': fundRaiser]">
-            <g:hiddenField name='teamCommentId' value="${teamCommentId}"></g:hiddenField>
-            <g:hiddenField name='commentId' value="${commentId}"></g:hiddenField>
-            <h4 class="lead">Edit a comment</h4>
-                <div class="form-group">
-                    <textarea class="form-control" name="comment" rows="4" required>${commentval}</textarea>
-                </div>
-                <button type="submit" class="btn btn-primary btn-sm pull-right">Save comment</button>
-                <div class="clear"></div>
-            
-        </g:form>
-        </div>
-    </g:if>
-    <g:else>
-        <h4 class="lead">Leave a comment</h4>
-        <div id="commentBox">
-            <g:if test="${team.user!=project.user}">
-                <g:form controller="project" action="saveteamcomment"  id="${project.id}" params="['fr': fundRaiser]">
-                    <div class="form-group">
-                        <textarea class="form-control" name="comment" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
-                    <div class="clear"></div>
-                </g:form>
-            </g:if>
-            <g:else>
-                <g:form controller="project" action="savecomment"  id="${project.id}" params="['fr':fundRaiser]">
-                    <div class="form-group">
-                        <textarea class="form-control" name="comment" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
-                    <div class="clear"></div>
-                </g:form>
-            </g:else>
-        </div>
-    </g:else>
-    </g:if>
-    <g:else>
-        <div class="alert alert-info sh-comnt-align hidden-xs">No Comments yet.</div>
-    </g:else>
-</sec:ifLoggedIn>
-<sec:ifNotLoggedIn>
-    <div class="alert alert-warning sh-comnt-align sh-logincommnt hidden-xs">Please login to comment.</div>
-</sec:ifNotLoggedIn>
+
+<g:if test="${flash.commentmessage}">
+    <div class="alert alert-danger">${flash.commentmessage}</div>
+</g:if>
+
+<g:if test="${project.validated}">
+    <h3><b>Comments</b></h3>
+	<g:if test="${projectComment || teamcomment}">
+	    <div id="commentBox">
+		    <g:form controller="project" action="editCommentSave" role="form" params="['projectTitle': vanityTitle, 'fr': fundRaiser]">
+		        <g:hiddenField name='teamCommentId' value="${teamCommentId}"></g:hiddenField>
+		        <g:hiddenField name='commentId' value="${commentId}"></g:hiddenField>
+	            
+	            <div class="form-group">
+	                <textarea class="form-control" name="comment" rows="4" required>${commentval}</textarea>
+	            </div>
+	            <button type="submit" class="btn btn-primary btn-sm pull-right">Save comment</button>
+	            <div class="clear"></div>
+		    </g:form>
+	    </div>
+	</g:if>
+	<g:else>
+	     <div id="commentBox">
+	         <g:if test="${team.user!=project.user}">
+	             <g:form controller="project" action="teamcomment"  id="${project.id}" params="['fr': fundRaiser]">
+	                 <div class="form-group">
+	                     <textarea class="form-control" name="comment" rows="4" placeholder="Leave a comment" required></textarea>
+	                 </div>
+	                 <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
+	                 <div class="clear"></div>
+	             </g:form>
+	        </g:if>
+	        <g:else>
+	            <g:form controller="project" action="comment"  id="${project.id}" params="['fr':fundRaiser]">
+	                <div class="form-group">
+	                    <textarea class="form-control" name="comment" rows="4" placeholder="Leave a comment" required></textarea>
+	                </div>
+	                <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
+	                <div class="clear"></div>
+	            </g:form>
+	        </g:else>
+	    </div>
+	</g:else>
+</g:if>
+<g:else>
+    <h3 class="hidden-xs"><b>Comments</b></h3>
+    <div class="alert alert-info sh-comnt-align hidden-xs">No Comments yet.</div>
+</g:else>
+     
 <g:if test="${!listcomment.isEmpty()}">
     <div class="panel panel-default show-comments-details">
-        <div class="panel-heading">
-            <h3 class="panel-title">Campaign Comments</h3>
-        </div>
         <div class="panel-body commentsoncampaign">
             <div class="list-group">
                 <g:each in="${listcomment}" var="comment">

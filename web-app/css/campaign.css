@@ -620,9 +620,7 @@ div.validate-show-div .show-description {
     padding-left: 0px;
     padding-right: 0px;
 }
-.show-pageDiscription{
-    padding-left: 15px !important;
-}
+
 #validateChecklistmsg {
 	   display: none;
 }
@@ -1156,4 +1154,7 @@ img.home-img-large-size{
     font-weight: 900;
     padding: 30px 0 0;
     margin-left: 36px;
+}
+.show-pageDiscription img {
+    width: 100%;
 }

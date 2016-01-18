@@ -7,7 +7,7 @@
 		<div class="row">
 			<div class="col-sm-6 col-xs-12">
 				<h4>
-					01/ <span>Set Your Funding Goal</span>
+					#1 <span>Set Your Funding Goal</span>
 				</h4>
 				<h5>
 					Decide how much you’d like to raise for your cause and how long to
@@ -19,7 +19,7 @@
 				</h5>
 				<hr/>
 				<h4>
-					02/ <span>Build your campaign page</span>
+					#2 <span>Build your campaign page</span>
 				</h4>
 				<h5>
 					Share your ideas and engage with supporters of your cause. Post a
@@ -30,7 +30,7 @@
 				</h5>
 				<hr/>
 				<h4>
-					03/ <span>Include video</span>
+					#3 <span>Include video</span>
 				</h4>
 				<h5>
 					Tell the story of your campaign with a short video. Crowdfunding
@@ -44,7 +44,7 @@
 
 			<div class="col-sm-6 col-xs-12">
 				<h4>
-					04/ <span>Reach out to family and friends</span>
+					#4 <span>Reach out to family and friends</span>
 				</h4>
 				<h5>
 					Get your loved ones involved with your campaign! Once your campaign
@@ -54,7 +54,7 @@
 				</h5>
 				<hr/>
 				<h4>
-					05/ <span>Appoint a Chief Enthusiasm Officer</span>
+					#5 <span>Appoint a Chief Enthusiasm Officer</span>
 				</h4>
 				<h5>
 					Keep up the momentum of your campaign with a CEO – a Chief
@@ -67,7 +67,7 @@
 				</h5>
 				<hr/>
 				<h4>
-					06/ <span>Add perks</span>
+					#6 <span>Add perks</span>
 				</h4>
 				<h5>Express your gratitude to your supporters with perks.
 					They can be as simple as two free tickets to a school sponsored

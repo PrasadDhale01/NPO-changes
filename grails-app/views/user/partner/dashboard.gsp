@@ -104,17 +104,17 @@
                     <li>
                         <a href="#userInfo" data-toggle="tab">Manage Profile</a>
                     </li>
-                    <li class="active">
-                        <a href="#myCampaigns" data-toggle="tab">My Campaigns</a>
+                    <li class="<g:if test="${!isInviteTrue}">active</g:if>">
+                        <a href="#myCampaigns" data-toggle="tab"> My Campaigns</a>
                     </li>
                     <li>
                         <a href="#mycontributions" data-toggle="tab">Campaigns Supported</a>
                     </li>
-                    <li>
-                        <a href="#validate" data-toggle="tab">Validate Campaigns</a>
+                    <li class="<g:if test="${isInviteTrue}">active</g:if>">
+                        <a href="#invite" data-toggle="tab"> Invite Campaign Owner</a>
                     </li>
                     <li>
-                        <a href="#invite" data-toggle="tab">Invite Campaign Owner</a>
+                        <a href="#validate" data-toggle="tab">Validate Campaigns</a>
                     </li>
                     <li>
                         <a href="#docs" data-toggle="tab">Manage Docs</a>
@@ -251,28 +251,10 @@
                         </div>
                     </div>
                     
-                    <div class="tab-pane tab-pane-active" id="invite">
-                        <div class="col-lg-offset-2 col-lg-8 col-md-offset-1 col-md-10 col-sm-offset-0 col-sm-12 col-xs-12" id="invite-campaign-owner">
-                            <g:form action="invite" controller="user">
-                                <h4 class="green-heading"><b>Recipient Email ID's</b></h4>
-                                <div class="form-group">
-                                    <label><b>Your Name</b></label> 
-                                    <input type="text" class="form-control all-place" name="name" placeholder="Name" value="${user.firstName}"/>
-                                </div>
-                                <div class="form-group">
-                                    <label><b>Email ID's (separated by comma)</b></label>
-                                    <textarea class="form-control all-place" name="emails" rows="4" placeholder="Email ID's"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label><b>Message (Optional)</b></label>
-                                    <textarea class="form-control all-place" name="message" rows="4" placeholder="Message"></textarea>
-                                </div>
-                                <g:if test="${!isAdmin}">
-                                    <button type="submit" class="btn btn-primary pull-right hidden-xs" id="btnSendinvitation">Invite</button>
-                                    <button type="submit" class="btn btn-block btn-sm btn-primary visible-xs" id="mobBtnSendinvitation">Invite</button>
-                                </g:if>
-                            </g:form>
-                        </div>
+                    <div class="tab-pane tab-pane-active <g:if test="${isInviteTrue}">active</g:if>" id="invite">
+                        <div id="partnercampaignpaginate">
+                             <g:render template="/user/partner/invitecampaignmember"/>
+                         </div>
                     </div>
                     
                     <div class="tab-pane tab-pane-active" id="mycontributions">
@@ -281,7 +263,7 @@
                         </div>
                     </div>
                     
-                    <div class="active tab-pane tab-pane-active" id="myCampaigns">
+                    <div class="<g:if test="${!isInviteTrue}">active tab-pane tab-pane-active</g:if>" id="myCampaigns">
                          <div id="partnercampaignpaginate">
                              <g:render template="/user/partner/tile"/>
                          </div>

@@ -12,7 +12,7 @@
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6 text-center hm-log-width hm-js-hover2">
                 <span><a href="https://cgexecblog.wordpress.com/2015/04/15/peer-2-peer-knowledge-network-for-public-innovators-learning-and-development-crowd-resourcing-program-proposal/" class="hm-mediastrip" target="_blank">
-                <img src="//s3.amazonaws.com/crowdera/assets/canada-govt-white.png" alt="Canada-govt" class="hm-img-bottompadding hm-renderingimg hm-media-2"></a></span><br>
+                <img src="//s3.amazonaws.com/crowdera/assets/canada-govt-white-media.png" alt="Canada-govt" class="hm-img-bottompadding hm-renderingimg hm-media-2"></a></span><br>
             </div>
              <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6 text-center hm-log-width hm-js-hover3">
                 <span><a href="http://finance.yahoo.com/news/immigrant-entrepreneur-launches-100-free-121600250.html" target="_blank">

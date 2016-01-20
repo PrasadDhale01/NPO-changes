@@ -656,11 +656,21 @@ class UserController {
             } else if(flash.receipt_sent_msg) {
                 flash.receipt_sent_msg = flash.receipt_sent_msg
             }
+            def isInviteTrue = false
             
-            render view:'/user/partner/dashboard', model:[user: user, campaigns: projectObj.projects, totalCampaigns: projectObj.totalprojects, baseUrl: baseUrl, currentEnv: currentEnv,
+            if(chainModel){
+                isInviteTrue = true
+                render view:'/user/partner/dashboard', model:[user: user, campaigns: projectObj.projects, totalCampaigns: projectObj.totalprojects, baseUrl: baseUrl, currentEnv: currentEnv,
+                    fundRaised: fundRaised, numberOfInvites: numberOfInvites, userCampaigns: userCampaign.projects, totalUserCampaigns: userCampaign.totalprojects,
+                    country: country, state: state, partner: partner, isAdmin: isAdmin, conversionMultiplier: conversionMultiplier, folders: folders,
+                    files: files, isInviteTrue: isInviteTrue, contactList:chainModel.contactList, email:chainModel.email, provider:chainModel.socialProvider]
+            }else{
+                
+               render view:'/user/partner/dashboard', model:[user: user, campaigns: projectObj.projects, totalCampaigns: projectObj.totalprojects, baseUrl: baseUrl, currentEnv: currentEnv,
                                                          fundRaised: fundRaised, numberOfInvites: numberOfInvites, userCampaigns: userCampaign.projects, totalUserCampaigns: userCampaign.totalprojects,
                                                          country: country, state: state, partner: partner, isAdmin: isAdmin, conversionMultiplier: conversionMultiplier, folders: folders,
                                                          files: files, contributedAmount:contributedAmount, contributions: contribution.contributions, totalContributions : contribution.totalContributions]
+           }
         }
     }
     

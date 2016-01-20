@@ -52,16 +52,22 @@ class SocialAuthService {
           return socialContacts
     }
 
-    def setSocailContactsByUser(def socialContatcs, def contactList, def provider){
+    def setSocailContactsByUser(def socialContacts, def contactList, def provider){
           switch(provider){
                 case 'constant':
-                      socialContatcs.constantContact= contactList
+                      socialContacts.constantContact= contactList
                 break;
                 case 'google':
-                      socialContatcs.gmail= contactList
+                      socialContacts.gmail= contactList
                 break;
                 case 'mailchimp':
-                     socialContatcs.mailchimp= contactList
+                     socialContacts.mailchimp= contactList
+                break;
+                case 'csv':
+                    socialContacts.csvContact= contactList
+                break;
+                case 'facebook':
+                    socialContacts.facebook= contactList
                 break;
           }
     }

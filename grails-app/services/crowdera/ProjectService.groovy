@@ -23,6 +23,7 @@ class ProjectService {
     def mandrillService
     def rewardService
     def grailsApplication
+    def socialAuthService
 
     def getProjectById(def projectId){
         if (projectId) {
@@ -1449,17 +1450,15 @@ class ProjectService {
             sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
             finalList =  sortedProjects.reverse() + endedProjects.reverse()
         }
-        if(currentEnv == 'testIndia' || currentEnv == 'test'){
-            finalList.each{
-                def percentage = contributionService.getPercentageContributionForProject(it)
-                if(percentage >= 17){
-                    sortedCampaignByPercentage.add(it)
-                }
+        
+        finalList.each{
+            def percentage = contributionService.getPercentageContributionForProject(it)
+            if(percentage >= 17){
+                sortedCampaignByPercentage.add(it)
             }
-            return sortedCampaignByPercentage
-        }else{
-            return finalList
         }
+        return sortedCampaignByPercentage
+        
     }
 
     def isPayuProject(Project project){
@@ -4950,6 +4949,42 @@ class ProjectService {
                 }
             }
         }
+    }
+    
+    def getDataFromImportedCSV(def file, def user){
+        List contactList =[]
+        InputStream is = file?.getInputStream()
+        
+        is.splitEachLine(',') {
+            it.findAll{
+                //Pattern matching to match email
+                def matcher = (it ==~ /[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/) 
+                if(matcher){
+                    contactList.add(it+' ')
+                }
+            }
+        }
+        def filterList = contactList.toString().replace('[','').replace(']','')
+        def socialContact  = SocialContacts.findByUser(user)
+        if(socialContact){
+            socialAuthService.setSocailContactsByUser(socialContact ,filterList, 'csv')
+        }else{
+            new SocialContacts(constantContact:null, gmail:null, mailchimp:null, facebook:null, csvContact:filterList, user:user).save(failOnError: true)
+        }
+        return filterList
+    }
+    
+    def getFilterGmailContacts(def filterList, def email){
+        List gmailContacts = []
+
+        filterList.each {
+           it.each{
+              if(it != email){
+                  gmailContacts.add(it)
+              }      
+            }
+         }
+         return gmailContacts.toString().replace('[','').replace(']','')
     }
 
     @Transactional

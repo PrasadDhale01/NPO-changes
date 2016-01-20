@@ -9941,9 +9941,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 	.show-tile-text-size.contribution-tile.show-contribution-amt-tile {
 		font-size: 10px;
-		line-height: 5px;
+		line-height: 6px;
 		margin-bottom: 0;
-		margin-top: 10px;
+		margin-top: 6px;
 		padding-left: 17px !important;
 		padding-right: 17px !important;
 	}
@@ -12731,6 +12731,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /*Screen resolution 644 x 767 */
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.campaign-tile-xs {
+	    padding-left: 0px;
+	}
     .cr-icon-tabs-info {
         font-size: 18px;
         padding: 10px 22px;

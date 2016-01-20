@@ -39,20 +39,20 @@
 
 <g:if test="${project.validated}">
     <h3><b>Comments</b></h3>
-	<g:if test="${projectComment || teamcomment}">
-	    <div id="commentBox">
-		    <g:form controller="project" action="editCommentSave" role="form" params="['projectTitle': vanityTitle, 'fr': fundRaiser]">
-		        <g:hiddenField name='teamCommentId' value="${teamCommentId}"></g:hiddenField>
-		        <g:hiddenField name='commentId' value="${commentId}"></g:hiddenField>
-	            
-	            <div class="form-group">
-	                <textarea class="form-control" name="comment" rows="4" required>${commentval}</textarea>
-	            </div>
-	            <button type="submit" class="btn btn-primary btn-sm pull-right">Save comment</button>
-	            <div class="clear"></div>
-		    </g:form>
-	    </div>
-	</g:if>
+    <g:if test="${projectComment || teamcomment}">
+        <div id="commentBox">
+            <g:form controller="project" action="editCommentSave" role="form" params="['projectTitle': vanityTitle, 'fr': fundRaiser]">
+                <g:hiddenField name='teamCommentId' value="${teamCommentId}"></g:hiddenField>
+                <g:hiddenField name='commentId' value="${commentId}"></g:hiddenField>
+
+                <div class="form-group">
+                    <textarea class="form-control" name="comment" rows="4" required>${commentval}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm pull-right">Save comment</button>
+                <div class="clear"></div>
+            </g:form>
+        </div>
+    </g:if>
 	<g:else>
 	     <div id="commentBox">
 	         <g:if test="${team.user!=project.user}">

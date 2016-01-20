@@ -165,7 +165,7 @@
                 </g:if>
                 
                 
-                <div class="col-xs-12 col-md-4 mobileview-top sh-mobiles-top">
+                <div class="col-xs-12 col-md-4 mobileview-top sh-mobiles-top campaign-tile-xs">
                     <div class="visible-xs">
                         <g:render model="['project': project]" template="/layouts/tile_for_mobile"></g:render>
                     </div>
@@ -836,11 +836,11 @@
                           </g:else>
                       </g:if>
                       
-                      
-                      <div class="impactassessment">
-                          <g:render template="show/impactstatement"/>
-                      </div>
-                      
+                      <g:if test="${project.impactNumber > 0 && project.impactAmount > 0}">
+                          <div class="impactassessment">
+                              <g:render template="show/impactstatement"/>
+                          </div>
+                      </g:if>
                       <g:if test="${reasons}">
                           <div class="modal-footer tile-footer perks-style reasons-title">
                               <h2 class="rewardsectionheading text-center">3 Reasons to Fund Our Campaign</h2>
@@ -916,7 +916,6 @@
                       </div>
                       
                       <g:if test="${remainingTagsTabs}">
-                          <br>
                           <h3 class="moretags-tabs visible-xs"><b>#Tags</b></h3>
                           <p class="moretags-tabs visible-xs">${project.hashtags}</p>
                       </g:if>

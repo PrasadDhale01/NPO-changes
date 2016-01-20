@@ -165,9 +165,11 @@
 </div>
 
 <div class="col-sm-4 col-xs-12">
-    <div class="impactassessment">
-        <g:render template="show/impactstatement"/>
-    </div>
+    <g:if test="${project.impactNumber > 0 && project.impactAmount > 0}">
+        <div class="impactassessment">
+            <g:render template="show/impactstatement"/>
+        </div>
+    </g:if>
     
     <g:if test="${reasons}">
         <div class="modal-footer tile-footer perks-style reasons-title">
@@ -180,7 +182,7 @@
                         <span class="badge1">#1</span>
                     </div>
                     <div class="col-xs-10 col-p-5">
-                         ${reasons.reason1}
+                        ${reasons.reason1}
                     </div>
                 </div>
             </div>
@@ -213,13 +215,9 @@
     
     <br>
     <div class="visible-xs">
-        <g:if test="${remainingTagsDesktop}">
-            <h3 class="moretags-desktop"><b>#Tags</b></h3>
-            <p class="moretags-desktop">${remainingTagsDesktop}</p>
-        </g:if>
-        <g:if test="${remainingTagsTabs}">
+        <g:if test="${project.hashtags}">
             <h3 class="moretags-tabs"><b>#Tags</b></h3>
-            <p class="moretags-tabs">${remainingTagsTabs}</p>
+            <p class="moretags-tabs">${project.hashtags}</p>
         </g:if>
     </div>
 </div>

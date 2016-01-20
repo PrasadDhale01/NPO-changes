@@ -145,36 +145,10 @@
 
 <!-- *******************************************Mobile header fixed*************************************************** -->
 
-<div class="hidden-lg hidden-md hidden-sm navbar navbar-default navbar-fixed-top header-section home-header-section mobile-fixedHeader" role="navigation">
-    <div class="header-container TW-mobile-fixedHeaderBackColor">
-        <div class="info-banner">Doing good from India? Visit <a href="http://crowdera.in" class="banner-link">www.crowdera.in</a><a href="#" class="banner-close">Close</a>
-        </div>
-  
-        <div class="navbar-header">
-            <button data-target="#TW-navbar-collapsed" data-toggle="collapse" class="navbar-toggle collapsed toggle-MobileHeader" type="button">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div class="searchengine pull-right hidden-lg hidden-md hidden-sm visible-xs">
-               <form name="SearchForm" action="/campaign">
-                   <div class="inner-addon left-addon search-icon-header search-image-header">
-                      <img id="scrolltrigger2" class="trigger-mob scrolltrigger" alt="search" src="https://s3.amazonaws.com/crowdera/assets/header-search-icon.png">
-                      <input type="text" placeholder="Search....." id="search-barr" value="" name="q" class="search-barr form-control form-control-no-border search-box">
-                   </div>
-               </form>
-            </div>
-  <div class="mobile-fixed-header-text text-center"> 
-   <img class="center-block" src="//s3.amazonaws.com/crowdera/assets/header-logo-crowdera.png" alt="Crowdera">
-  future of funding for <b>things</b> that matter
-  </div>
-        </div>
-    </div>
-</div>
+
 
 <!--  **********************************************Scrolled Header************************************************* -->
-<div role="navigation" class="navbar navbar-default navbar-fixed-top header-section home-header-section scrollHeader header-scrolled">
+<div role="navigation" class="navbar navbar-default navbar-fixed-top  hidden-lg hidden-md header-section home-header-section scrollHeader header-scrolled hm-headeropicity">
     <div class="header-container TW-scrollHeaderBackColor">
   
    <div class="info-banner">
@@ -183,7 +157,7 @@
    </div>
   
         <div class="navbar-header">
-            <button data-target="#TW-navbar-collapsed" data-toggle="collapse" class="navbar-toggle collapsed TW-scrollHeader-hamBurger" type="button">
+            <button data-target="#TW-navbar-collapsed" data-toggle="collapse"  data-target=".navbar-collapse" class="navbar-toggle collapsed TW-scrollHeader-hamBurger burger" type="button">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -319,7 +293,7 @@
         </div>
         
         <!-- Visible in mobile -->
-        <div id="TW-navbar-collapsed" class="hidden-lg hidden-md hidden-sm navbar-collapse collapse TW-scrollHeaderBackColor">
+        <div id="TW-navbar-collapsed" class="hidden-lg hidden-md hidden-sm collapse TW-scrollHeaderBackColor navbar-collapse">
             <div class="scrollHeaderMenu hidden-lg hidden-md hidden-sm">
             <ul>
                 <li><a href="/campaigns">Discover</a></li>

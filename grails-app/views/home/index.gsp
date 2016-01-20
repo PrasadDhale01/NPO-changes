@@ -50,6 +50,7 @@
        </g:if>
        <g:else>
            <img class="img-responsive home-img-large-size" src="//s3.amazonaws.com/crowdera/assets/slider-home-page-united-state-slider.jpg" alt="india-slide">
+           <div class="hm-image-header"></div>  
        </g:else>
     <div class="hidden-xs">
        <g:render template="banner"></g:render>

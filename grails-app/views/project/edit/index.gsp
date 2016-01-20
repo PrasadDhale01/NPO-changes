@@ -58,6 +58,9 @@
     <input type="hidden" class="campaigndate" value="<%=numberOfDays%>"/>
     <g:hiddenField name="taxRecieptId" value="${taxRecieptId}" id="taxRecieptId"/>
     <g:hiddenField name="offeringTaxReciept" id="offeringTaxReciept" value="${project.offeringTaxReciept}"/>
+    
+    <g:hiddenField name="isIndianCampaign" value="${project.payuStatus}" id="isIndianCampaign"/>
+    
 
     <div class="edit-container">
         <div class="text-center">
@@ -125,7 +128,7 @@
                     
                     <div class="col-sm-3 cr2-width-dropdown5">
                         <div class="cr-dropdown-alignment font-list">
-                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                            <g:if test="${project.payuStatus}">
                                 <g:if test="${project.fundsRecievedBy}">
                                     <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color  cr-all-mobile-dropdown recipient cr2-edit-funds" name="#" from="${nonIndprofit}" value="${project.fundsRecievedBy}" optionKey="key" optionValue="value" />
                                 </g:if>
@@ -161,7 +164,7 @@
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-7">
                             <span class="col-lg-6 col-sm-6 col-md-6 cr-padding-index1">I need</span>
                             <div class="cr-tops">
-                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                <g:if test="${project.payuStatus}">
                                     <span class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
                                 </g:if>
                                 <g:else>
@@ -206,7 +209,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-7">
                         <span class="col-lg-6 col-sm-6 col-md-6 cr-padding-index1">I need</span>
                         <div class="cr-tops">
-                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                            <g:if test="${project.payuStatus}">
                                 <span class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
                             </g:if>
                             <g:else>
@@ -244,7 +247,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 editCustomVanityUrl">
                         <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 hidden-xs">My campaign web address</label>
                         <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 visible-xs">
-                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                            <g:if test="${project.payuStatus}">
                                 crowdera.in/campaigns/
                             </g:if>
                             <g:else>
@@ -253,7 +256,7 @@
                         </label>
                         <div class="col-sm-12 col-xs-12 cr1-mobile-indx1 col-web-url">
                             <div class="cr1-vanityUrl-indx1 hidden-xs">
-                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                <g:if test="${project.payuStatus}">
                                     crowdera.in/campaigns/
                                 </g:if>
                                 <g:else>
@@ -402,7 +405,7 @@
                                         <div class="col-sm-amt col-sm-12">
                                             <span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>
                                             <div class="form-group col-sm-3 col-xs-4 col-sm-input-group">
-                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                                <g:if test="${project.payuStatus}">
                                                      <span class="fa fa-inr cr-currency"></span>
                                                 </g:if>
                                                 <g:else>
@@ -440,7 +443,7 @@
                                     <div class="col-sm-amt col-sm-12">
                                         <span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>
                                         <div class="form-group col-sm-3 col-xs-4 col-sm-input-group">
-                                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                            <g:if test="${project.payuStatus}">
                                                 <span class="fa fa-inr cr-currency"></span>
                                             </g:if>
                                             <g:else>
@@ -810,7 +813,7 @@
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                    <g:if test="${project.payuStatus}">
                                         <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
                                         <input type="text" placeholder="Amount" name="rewardPrice${reward.rewardCount}" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${reward.rewardCount}" value="${price}">
                                     </g:if>
@@ -894,7 +897,7 @@
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                    <g:if test="${project.payuStatus}">
                                         <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
                                         <input type="text" placeholder="Amount" name="rewardPrice1" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice1">
                                     </g:if>
@@ -979,7 +982,7 @@
                     </div>
                 </div><br>
                 <div class="form-group">
-                    <g:if test ="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                    <g:if test ="${project.payuStatus}">
                         <div id="PayUMoney">
                              <div class="form-group">
                                  <label class="col-sm-4 control-label">Email</label>
@@ -1060,7 +1063,7 @@
 
                     <div class="col-sm-12">
                         <div class="col-md-offset-4 col-md-8 col-sm-offset-3 col-sm-9">
-                            <div class="form-group form-group-termsOfUse <g:if test="${(project.fundsRecievedBy != 'NGO' && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')) || (project.fundsRecievedBy != 'NON-PROFIT' && (currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv == 'development'))}">tax-reciept</g:if>" id="tax-reciept">
+                            <div class="form-group form-group-termsOfUse <g:if test="${(project.fundsRecievedBy != 'NGO' && (project.payuStatus)) || (project.fundsRecievedBy != 'NON-PROFIT' && (currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv == 'development'))}">tax-reciept</g:if>" id="tax-reciept">
                                 <input type="checkbox" name="tax-reciept-checkbox" id="tax-reciept-checkbox" class="tax-reciept-checkbox" <g:if test="${project.offeringTaxReciept}">checked="checked"</g:if>>
                                 Do you want to offer receipt to your contributors?
                             </div>
@@ -1074,7 +1077,7 @@
                             </label>
                         </div>
                         <div class="panel panel-body cr-panel-body-spend-matrix form-group cr-panel-body">
-                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                            <g:if test="${project.payuStatus}">
                             <g:if test="${taxReciept}">
                              <div class="row">
                              <div class="col-sm-4">

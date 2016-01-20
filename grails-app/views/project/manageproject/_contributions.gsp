@@ -14,12 +14,10 @@
 <g:if test="${project.validated}">
 <div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
     <g:if test="${totalContributions.empty}">
-        <div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="alert alert-info">No contributions yet.</div>
-        </div>
+        <div class="alert alert-info">No contributions yet.</div>
     </g:if>
     <g:if test="${project.validated}">
-        <div class="col-md-12 col-md-12 col-sm-12 col-xs-12 manage-report-offline-lft">
+        <div class="manage-report-offline-lft">
             <g:if test="${project.payuStatus == false && !ended}">
                 <a href="#" class="btn btn-primary btn-sm pull-right managecontribution mange-contribution-mobile" data-toggle="modal" data-target="#offlineContributionModal">
                     Manage Offline Contribution
@@ -105,6 +103,7 @@
                 <b>CONTRIBUTION REPORT</b>
             </h4>
          </div>
+         
          <g:hiddenField name="projectId" value="${project.id}" id="projectId${project.id}"/>
          <div class="modal-body">
            <g:if test="${!totalContributions.empty}">
@@ -196,9 +195,7 @@
                     </div>
                 </dl>
             </g:if>
-            <g:else>
-                <div class="alert alert-info">No contributions yet. Yours can be the first one.</div>
-            </g:else>
+            
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary btnGenerateCSV" >Export CSV

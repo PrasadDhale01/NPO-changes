@@ -97,11 +97,10 @@
         </g:else>
         
         <g:if test="${spendCauseList && spendAmountPerList}">
-             <h5><b>Campaign money will be used as</b></h5>
+             <h4><b>Campaign money will be used as</b></h4>
              <div id="chart-container">
                  <g:hiddenField name="spendCauseList" value="${spendCauseList}" id="spendCauseList"/>
                  <g:hiddenField name="spendAmountPerList" value="${spendAmountPerList}" id="spendAmountPerList"/>
-                 <g:hiddenField name="payuStatus" id="payuStatus" value="${project.payuStatus}"/>
                  <div id="graph"></div>
              </div>
              <script src="/js/raphel-pie/raphael-min.js"></script>

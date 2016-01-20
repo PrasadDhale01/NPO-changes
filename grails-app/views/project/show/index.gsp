@@ -78,6 +78,8 @@
        <meta name="twitter:description" content="${project.description}" />
     </g:if>
     <meta name="layout" content="main" />
+    
+    
     <r:require modules="projectshowjs"/>
     <g:javascript>
         $(function() {
@@ -107,9 +109,9 @@
     
     <div class="container show-cmpgn-container">
 
-    <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
-    <g:hiddenField name="pieList" value="${pieList}" id="pieList"/>
-    <g:hiddenField name="projectamount" value="${project.amount.round()}" id="projectamount"/>
+        <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
+        <g:hiddenField name="pieList" value="${pieList}" id="pieList"/>
+        <g:hiddenField name="projectamount" value="${project.amount.round()}" id="projectamount"/>
 
         <g:if test="${project}">
             <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>

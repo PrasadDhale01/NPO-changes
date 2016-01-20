@@ -49,6 +49,7 @@
     <input type="hidden" name="uuid" id="uuid" />
     <input type="hidden" name="charity_name" id="charity_name" />
     <input type="hidden" name="url" value="${currentEnv}" id="currentEnv"/>
+    
     <g:hiddenField name="payfir" value="${project.charitableId}" id="payfir"/>
     <g:hiddenField name="paypal" value="${project.paypalEmail}"/>
     <g:hiddenField name="projectamount" value="${project.amount.round()}" id="projectamount"/>
@@ -58,6 +59,8 @@
     <g:hiddenField name="selectedCountry" id="selectedCountry" value="${selectedCountry}"/>
     <g:hiddenField name="taxRecieptId" value="${taxRecieptId}" id="taxRecieptId"/>
     <g:hiddenField name="offeringTaxReciept" id="offeringTaxReciept" value="${project.offeringTaxReciept}"/>
+    
+    <g:hiddenField name="isIndianCampaign" value="${project.payuStatus}" id="isIndianCampaign"/>
 
     <div class="text-center">
         <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">

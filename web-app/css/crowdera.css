@@ -5494,6 +5494,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /**********************Start of Media CSS*******************************/
 
 @media only screen and (min-width: 768px){
+	div.managecampaign-hashtag.manage-social {
+        padding-left: 25px;
+    }
 	.reasons-title h2.rewardsectionheading {
         padding-top: 14px;
     }
@@ -5610,15 +5613,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.mange-editupdate-btns {
         margin-left: 6%;
     }
-    ul.mange-active-teams-mobile{
-        margin-right: 6px;
-        padding-left: 5px;
-    }
     div.manage-panel-mobile-size {
         height: 100px;
         margin-bottom: 15px;
-        margin-left: -11px;
-        width: 280px;
+        width: 100%;
     }
     a.mange-contribution-mobile{
         font-size: 11px;
@@ -5672,9 +5670,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     ul.mobile-justified li{
         display: flex !important;
         width: 15%;
-    }
-	div.mange-borders {
-        width: 292px;
     }
 	div.manage-container-page{
         width: 320px;
@@ -6332,7 +6327,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .mobileview-top{
         display:block !important;
         margin-bottom: 15px;
-        padding-left: 0px;
     }
     a.show-mobile-readstory{
         color: #01bbd3;
@@ -8156,9 +8150,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-right: 2px;
         padding-left: 5px;
         height: 54px;
-    }
-    div.mange-borders {
-        width: 718px;
     }
     div.manage-container-page{
         width: 750px;
@@ -10014,6 +10005,27 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+    .mange-story-imgs #chart-container #graph {
+        height: 180px;
+        width: 420px;
+        margin-left: -135px;
+        margin-bottom: 25px;
+    }
+    .managecampaignDescription {
+        min-height: 50px;
+        height: 100%;
+    }
+	.col-xs-p-0 {
+	    padding-left: 0px;
+	    padding-right: 0px;
+	}
+	.mange-story-imgs {
+        margin-top: 30px;
+    }
+	li.perk-grid-paddings{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
     .reasonsToFund .badge1 {
         font-size: 32px;
     }
@@ -13677,9 +13689,9 @@ textarea.textarea-embed-video {
 	.team-footer {
 		margin-left: 7px !important;
 	}
-	.nav-pills {
-		margin-right: 13px;
-	}
+/* 	.nav-pills { */
+/* 		margin-right: 13px; */
+/* 	} */
 	.button-team-show{
 		padding: 0px !important;
 		margin: 4px !important;
@@ -13872,9 +13884,6 @@ textarea.textarea-embed-video {
 	}
 	.team-footer {
 		margin-left: 7px !important;
-	}
-	.nav-pills {
-		margin-right: 13px;
 	}
 	.button-team-show{
 		padding: 0px !important;
@@ -14165,10 +14174,6 @@ textarea.textarea-embed-video {
     input#hiddencharId {
         font-size: 12px;
     }
-	li.perk-grid-paddings{
-        padding-left: 40px;
-        padding-right: 40px;
-	}
 	div.pan {
 		height: 116px;
 		overflow: hidden;
@@ -14243,15 +14248,10 @@ textarea.textarea-embed-video {
     input.manage-mobile-title {
         width: 94%;
     }
-    ul.mange-active-teams-mobile{
-        margin-right: 6px;
-        padding-left: 5px;
-    }
     div.manage-panel-mobile-size {
         height: 100px;
         margin-bottom: 15px;
-        margin-left: -11px;
-        width: 280px;
+        width: 100%;
     }
     div.manage-report-offline-lft {
         left: 11px;
@@ -14308,9 +14308,6 @@ textarea.textarea-embed-video {
     ul.mobile-justified li{
         display: flex !important;
         width: 15%;
-    }
-	div.mange-borders {
-        width: 279px;
     }
     div.manage-container-page{
         width: 320px;
@@ -15148,9 +15145,6 @@ textarea.textarea-embed-video {
 	.show-cmpgn-container{
 		width:310px !important;
 	}
-    .containrewards {
-        height: 230px !important;
-    }
     a.charitableLink {
         padding-left: 5px;
     }

@@ -6,6 +6,8 @@ var list1 = spendCauseList.split(",");
 var list2 = spendAmountPerList.split(",");
 var percentageList = []
 var currentEnv=$('#currentEnv').val();
+
+
 for (i=0; i<list2.length; i++){
 	percentageList.push(parseInt(list2[i]))
 }

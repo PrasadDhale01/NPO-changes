@@ -309,25 +309,28 @@ class ProjectService {
 
     def getUpdateValidationDetails(def params){
         def project = Project.get(params.id)
-        project.created = new Date()
-        if(!project.validated){
-            project.validated = true
-            project.onHold = false
-            project.save()
-            mandrillService.sendValidationEmailToOWnerAndAdmins(project)
+        if (project) {
+            project.created = new Date()
+            if(!project.validated){
+                project.validated = true
+                project.onHold = false
+                project.save()
+//                mandrillService.sendValidationEmailToOWnerAndAdmins(project)
+                sendEmailOnValidation(project)
+            }
         }
     }
 
-     def getCommentsDetails(params){
-         def project = Project.get(params.id)
-         if (project && params.comment) {
-             new ProjectComment(
-                 comment: params.comment,
-                 user: userService.getCurrentUser(),
-                 project: project,
-                 date: new Date()).save(failOnError: true)
-         }
-     }
+    def getCommentsDetails(params){
+        def project = Project.get(params.id)
+        if (project && params.comment) {
+            new ProjectComment(
+                comment: params.comment,
+                user: userService.getCurrentUser(),
+                project: project,
+                date: new Date()).save(failOnError: true)
+        }
+    }
 
      def getUpdateCommentDetails(def request){
          def checkid= request.getParrmeter('checkID')
@@ -4901,6 +4904,71 @@ class ProjectService {
             }
          }
          return gmailContacts.toString().replace('[','').replace(']','')
+    }
+    
+    def sendEmailOnValidation(Project project) {
+        def currentEnv = getCurrentEnvironment()
+        
+        def campaigns = getCampaignsByCategory(project.category)
+        List emails = getBulkEmailsforCampaigns(campaigns)
+        mandrillService.sendEmailOnValidation(currentEnv, emails, project)
+    }
+    
+    def getCampaignsByCategory(def category) {
+        return Project.findAllWhere(category: category, validated: true, rejected: false, inactive: false)
+    }
+    
+    def getBulkEmailsforCampaigns(def campaigns) {
+        List emails = []
+        
+        List teams = []
+        List supporters = []
+        List contributors = []
+        
+        def campaignsOwnerEmail = campaigns.user.email
+        
+        String supportersEmail
+        String fundRaiserEmail
+        String contributorsEmail
+        
+        campaignsOwnerEmail.each { it-> 
+            if (it != null && (!emails.contains(it))) {
+                emails.add(it)
+            }
+        }
+        
+        campaigns.each { campaign ->
+            
+            teams = campaign.teams
+            
+            teams.each { team ->
+                fundRaiserEmail = team.user.email
+                if (fundRaiserEmail != null && (!emails.contains(fundRaiserEmail))) {
+                    emails.add(fundRaiserEmail)
+                }
+            }
+            
+            supporters = campaign.supporters
+            
+            supporters.each { supporter ->
+                supportersEmail = supporter.user.email
+                if (supportersEmail != null && (!emails.contains(supportersEmail))) {
+                    emails.add(supportersEmail)
+                }
+            }
+            
+            contributors = campaign.contributions
+            
+            contributors.each { contribution ->
+                contributorsEmail = contribution.contributorEmail
+                if (contributorsEmail != null && (!emails.contains(contributorsEmail))) {
+                    emails.add(contributorsEmail)
+                }
+            }
+            
+        }
+        
+        return emails
     }
 
     @Transactional

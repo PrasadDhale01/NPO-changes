@@ -315,7 +315,7 @@ class ProjectService {
                 project.validated = true
                 project.onHold = false
                 project.save()
-//                mandrillService.sendValidationEmailToOWnerAndAdmins(project)
+                mandrillService.sendValidationEmailToOWnerAndAdmins(project)
                 sendEmailOnValidation(project)
             }
         }

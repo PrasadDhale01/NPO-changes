@@ -10008,6 +10008,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	div.sh-mobperks {
+	    margin-top: 15px;
+	}
     .mange-story-imgs #chart-container #graph {
         height: 180px;
         width: 420px;

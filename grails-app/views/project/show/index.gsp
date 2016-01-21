@@ -896,7 +896,7 @@
                       <div class="visible-xs show-mobile-update">
                           <g:render template="show/projectupdates"/>
                       </div>
-                      <br>
+                      
                       <div class="visible-xs sh-mobperks">
                           <g:if test="${isPreview && !project.validated}">
                               <g:if test="${project.rewards.size()>1}">

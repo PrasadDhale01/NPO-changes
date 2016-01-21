@@ -157,7 +157,7 @@
    </div>
   
         <div class="navbar-header">
-            <button data-target="#TW-navbar-collapsed" data-toggle="collapse"  data-target=".navbar-collapse" class="navbar-toggle collapsed TW-scrollHeader-hamBurger burger" type="button">
+            <button data-target="#TW-navbar-collapsed" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed TW-scrollHeader-hamBurger burger" type="button">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -170,7 +170,7 @@
             
             <div class="searchengine pull-right hidden-lg hidden-md hidden-sm visible-xs">
                <form name="SearchForm" action="/campaign">
-                   <div class="inner-addon left-addon search-icon-header search-image-header">
+                   <div class="inner-addon left-addon search-icon-header search-image-header mobile-searchengin-header">
                       <img id="scrolltrigger" class="trigger-mob scrolltrigger" alt="search" src="https://s3.amazonaws.com/crowdera/assets/search-icon.png">
                       <input type="text" placeholder="Search....." id="search-barr1" value="" name="q" class="search-barr form-control form-control-no-border search-box">
                    </div>
@@ -193,7 +193,7 @@
                     <form name="searchableForm" action="/campaign">
                         <span class="form-group inner-addon left-addon">
                             <i class="glyphicon glyphicon-search search-glyph-icon"></i>
-                            <input type="search" placeholder="Search....." value="" class="form-control form-control-no-border search-box-xs" name="q">
+                            <input type="search" placeholder="Search....." value="" class="form-control form-control-no-border search-box-xs search-on-header" name="q">
                         </span>
                     </form>
                 </li>

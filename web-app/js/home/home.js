@@ -122,6 +122,8 @@ $(function() {
         }
     });
 	
+	$('.mobile-header-onmain').css("margin-top","-52px");
+	
     $('#customer-support-btn').click(function() {
     	var slider_width = $('#support').width();//get width automaticly
         //check if slider is collapsed

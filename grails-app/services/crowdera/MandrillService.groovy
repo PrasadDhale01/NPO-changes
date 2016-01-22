@@ -1350,23 +1350,25 @@ class MandrillService {
     }
     
     def sendEmailOnValidation(def environment, def emails, Project project) {
-        emails.each { email ->
-            if (email)  {
-                def globalMergeVars = [[
-                        'name': 'TITLE',
-                        'content': project.title
-                    ], [
-                        'name': 'CATEGORY',
-                        'content': project.category
-                    ], [
-                        'name':'Email',
-                        'content' : email
+        if (environment != 'development') {
+            emails.each { email ->
+                if (email)  {
+                    def globalMergeVars = [[
+                            'name': 'TITLE',
+                            'content': project.title
+                        ], [
+                            'name': 'CATEGORY',
+                            'content': project.category
+                        ], [
+                            'name':'Email',
+                            'content' : email
+                        ]
                     ]
-                ]
-
-                def tags = ['recommendation-engine']
-
-                inviteToShare(email,'recommendation-engine', globalMergeVars, tags)
+    
+                    def tags = ['recommendation-engine']
+    
+                    inviteToShare(email,'recommendation-engine', globalMergeVars, tags)
+                }
             }
         }
     }

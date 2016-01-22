@@ -4833,7 +4833,6 @@ class ProjectService {
     
     def getFundRaisedByPartner(User user) {
         def environment = getCurrentEnvironment();
-        List projects = []
         def campaigns = getAllProjectByUser(user, environment)
         def projectAdmins = getProjectAdminEmail(user)
         def teams = getEnabledAndValidatedTeam(user)
@@ -4938,9 +4937,7 @@ class ProjectService {
         }
         
         campaigns.each { campaign ->
-            
             teams = campaign.teams
-            
             teams.each { team ->
                 fundRaiserEmail = team.user.email
                 if (fundRaiserEmail != null && (!emails.contains(fundRaiserEmail))) {
@@ -4949,7 +4946,6 @@ class ProjectService {
             }
             
             supporters = campaign.supporters
-            
             supporters.each { supporter ->
                 supportersEmail = supporter.user.email
                 if (supportersEmail != null && (!emails.contains(supportersEmail))) {
@@ -4958,7 +4954,6 @@ class ProjectService {
             }
             
             contributors = campaign.contributions
-            
             contributors.each { contribution ->
                 contributorsEmail = contribution.contributorEmail
                 if (contributorsEmail != null && (!emails.contains(contributorsEmail))) {
@@ -4967,7 +4962,6 @@ class ProjectService {
             }
             
         }
-        
         return emails
     }
 

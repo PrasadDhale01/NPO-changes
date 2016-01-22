@@ -1350,6 +1350,8 @@ class MandrillService {
     }
     
     def sendEmailOnValidation(def environment, def emails, Project project) {
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:project.user.username], absolute: true)
+        
         if (environment != 'development') {
             emails.each { email ->
                 if (email)  {
@@ -1362,6 +1364,9 @@ class MandrillService {
                         ], [
                             'name':'Email',
                             'content' : email
+                        ], [
+                            'name':'LINK',
+                            'content' : link
                         ]
                     ]
     

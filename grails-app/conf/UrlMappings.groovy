@@ -72,12 +72,12 @@ class UrlMappings {
         "/campaign/updatesaverender"(controller:'project', action:'updatesaverender')
         "/campaigns"(controller:'project', action:'list')
         "/campaigns-widget"(controller:'project', action:'listwidget')
-        "/campaigns/$id"(controller:'project', action:'showCampaign')
-        "/campaigns/$projectTitle/$fr"(controller:'project', action:'show')
-		"/campaigns/$projectTitle/$fr/$offset"(controller:'project', action:'show')
-		"/campaigns/$projectTitle/$fr/$offset/$max"(controller:'project', action:'show')
+        
+//        "/campaigns/$id"(controller:'project', action:'showCampaign')
+        "/campaigns/$projectTitle/$fr?"(controller:'project', action:'show')
 		"/campaigns/$projectTitle/$fr/$teamCommentId"(controller:'project', action:'show')
 		"/campaigns/$projectTitle/$fr/$commentId"(controller:'project', action:'show')
+        
         "/campaigns/$id/thumbnail"(controller:'project', action:'thumbnail')
         "/campaigns/$id/fund"(controller:'fund', action:'fund')
         "/campaign"(controller:'project' , action:'search')
@@ -135,5 +135,6 @@ class UrlMappings {
         "/partners"(controller:'user', action:'partners')
         "/partnering-with-crowdera"(controller:'user', action:'partnerFaq')
         "/partner/new"(controller:'user', action:'createpartner')
+        "/partner/edit"(controller:'user', action:'editpartner')
     }
 }

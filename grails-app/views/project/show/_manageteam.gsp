@@ -50,7 +50,7 @@
 				       <li>
 				           <g:if test="${!ended}">
 				               <g:if test="${currentFundraiser == currentUser || isCrUserCampBenOrAdmin}">
-				                   <a class="list" href="/project/redirectToInviteMember?projectId=${project.id}&page=show" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
+				                   <a class="list" href="#" data-toggle="modal" onclick="javascript:window.open('/project/redirectToInviteMember?projectId=${project.id}&page=show','', 'menubar=no,toolbar=no,resizable=0,scrollbars=yes,height=500,width=786');return false;"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
     		               </g:if>
 				           </g:if>
 				           <g:else>
@@ -203,3 +203,7 @@
 		</div>
     </g:uploadForm>
 </div>
+<div class="loadinggif text-center" id="loading-gif">
+    <img src="//s3.amazonaws.com/crowdera/documents/loading.gif" alt="'loadingImage'" id="loading-gif-img">
+</div>
+    

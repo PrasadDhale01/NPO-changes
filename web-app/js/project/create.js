@@ -20,6 +20,8 @@ $(function() {
 
     var count = $('#rewardCount').val();
     var projectId = $('#projectId').val();
+    var isIndianCampaign = ($('#isIndianCampaign').val() == 'true') ? true : false;
+    
 
     var storyContent
     var storyPlaceholder = "<p><h3>Introduce Your Campaign</h3></p>"+
@@ -192,7 +194,7 @@ $(function() {
             	isLinkedInUrl: true
             },
             customVanityUrl:{
-            	maxlength:40,
+            	maxlength:55,
             	isVanityUrlUnique:true
             },
             amount: {
@@ -200,14 +202,14 @@ $(function() {
                 number: true,
                 min: 500,
                 maxlength: function() {
-                    if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                    if(isIndianCampaign) {
                         return 8;
                     } else {
                         return 6;
                     }
                 },
                 max: function() {
-                    if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                    if(isIndianCampaign) {
                         return 99999999;
                     } else {
                         return 100000;
@@ -219,14 +221,14 @@ $(function() {
                 number: true,
                 min: 500,
                 maxlength: function() {
-                    if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                    if(isIndianCampaign) {
                         return 8;
                     } else {
                         return 6;
                     }
                 },
                 max: function() {
-                    if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                    if(isIndianCampaign) {
                         return 99999999;
                     } else {
                         return 100000;
@@ -251,6 +253,8 @@ $(function() {
             }else if($(element).prop("id") == "projectEditImageFile") {
                 error.appendTo(document.getElementById("col-error-placement"));
             }else if($(element).prop("id") == "editiconfile") {
+                error.appendTo(element.parent().parent());
+            }else if($(element).prop("id") == "customVanityUrl") {
                 error.appendTo(element.parent().parent());
             }else{
                 error.insertAfter(element);
@@ -407,7 +411,7 @@ $(function() {
             });
         });
     	
-    	if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+    	if (isIndianCampaign){
     	      $('.spendAmount').each(function () {
                   $(this).rules("add", {
                       required: true,
@@ -495,15 +499,21 @@ $(function() {
         });
         
         $('[name="reason1"]').rules( "add", {
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 140
         });
         
         $('[name="reason2"]').rules( "add", {
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 140
         });
         
         $('[name="reason3"]').rules( "add", {
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 140
         });
         
         $( '[name="webAddress"]' ).rules( "add", {
@@ -543,7 +553,7 @@ $(function() {
             });
     	}
     	
-    	if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+    	if(isIndianCampaign) {
             $('.rewardPrice').each(function () {
                 $(this).rules("add", {
                     required: true,
@@ -719,7 +729,7 @@ $(function() {
         
         $('#isSubmitButton').val(true);
         
-		if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+		if (isIndianCampaign){
 			$('.spendAmount').each(function () {
 				$(this).rules("add", {
 					required: true,
@@ -823,15 +833,21 @@ $(function() {
         });
         
         $('[name="reason1"]').rules( "add", {
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 140
         });
         
         $('[name="reason2"]').rules( "add", {
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 140
         });
         
         $('[name="reason3"]').rules( "add", {
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 140
         });
         
         $('.rewardNumberAvailable').each(function () {
@@ -851,7 +867,7 @@ $(function() {
         });
     	}
         
-        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+        if(isIndianCampaign) {
             $('.rewardPrice').each(function () {
                 $(this).rules("add", {
                     required: true,
@@ -1598,7 +1614,7 @@ $(function() {
     });
     
     function setDescriptionText(){
-        var currentString = $('#descarea').val().length;
+        var currentString = $('#descarea, #descarea1').val().length;
         if (currentString == 0) {
             $('#desclength').text("0/140");
         } else {
@@ -1706,7 +1722,8 @@ $(function() {
         } else {
         if(file.size < 1024 * 1024 * 3) {
             isvalidFilesize =  true;
-            $('.uploadingFile').show();
+//            $('.uploadingFile').show();
+            $('#loading-gif').show();
 
             var formData = !!window.FormData ? new FormData() : null;
             var name = 'file';
@@ -1718,7 +1735,7 @@ $(function() {
             var xhr = new XMLHttpRequest();
             xhr.open('POST', $("#b_url").val()+'/project/uploadTaxRecieptFiles');
             xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-         
+            
             // complete
             xhr.onreadystatechange = $.proxy(function() {
                 if (xhr.readyState == 4) {
@@ -1738,7 +1755,8 @@ $(function() {
                     div.innerHTML = "<div class=\"cr-tax-files\"><div class=\"col-file-name\">"+file.name +"</div><div class=\"deleteicon\"><button type=\"button\" class=\"close\" onClick=\"deleteTaxRecieptFiles(this,'"+json.fileId+"','"+taxRecieptId+"');\">&times;</button></div></div>";
 
                     output.insertBefore(div, null);
-                    $('.uploadingFile').hide();
+//                    $('.uploadingFile').hide();
+                    $('#loading-gif').hide();
                 }
             }, this);
             xhr.send(formData);
@@ -1773,6 +1791,84 @@ $(function() {
         } else {
 	        currentstring = currentstring;
             $('#titleLength').text(currentstring+'/55');
+        }
+    }
+    
+    var counter = 1;
+    $('#customVanityUrl').on('keydown', function(event) {
+    
+        event.altKey==true;
+        var currentstring = $('#customVanityUrl').val().length;
+
+        if(currentstring <=55) {
+            if (currentstring == 55) {
+                var text = currentstring ;
+            } else {
+                var text = currentstring + 1;
+            }
+        }
+        if (event.keyCode > 31) {
+            if(event.altKey==true){
+                setTitleText();
+            }
+            else{
+                if(currentstring <54)
+                    currentstring++;
+                $('#vanityUrlLength').text(text+'/55');
+            }
+
+        } else {
+            currentstring--;
+            $('#vanityUrlLength').text(text+'/55');
+        }
+    }).keyup(function(e) {
+    
+        if(e.altKey==true){
+            setTitleText();
+            return false;
+        }
+
+        switch (e.keyCode) {
+ 
+            case 13:      //Enter
+            case 8:       //backspace
+            case 46:      //delete
+            case 17:      
+            case 27:      //escape
+            case 10:      //new line
+            case 20:      
+            case 9:       //horizontal TAB
+            case 11:      //vertical tab
+            case 33:      //page up  
+            case 34:      //page  down
+            case 35:      //End 
+            case 36:      //Home
+            case 37:      //Left arrow
+            case 38:      //up arrow
+            case 39:      //Right arrow
+            case 40:      //Down arrow
+            case 45:      //Insert
+            case 12:      //vertical tab
+    	        setTitleText();
+                break;
+            case 16:      //shift
+    	        setTitleText();
+                break;
+        }
+    }).focus(function(){
+	    setTitleText();
+    }).focusout(function(){
+	    setTitleText();
+    });
+    
+    function setTitleText() {
+        
+        var currentstring = $('#customVanityUrl').val().length;
+        if (currentstring == 0) {
+            $('#vanityUrlLength').text("0/55");
+        } else {
+	        currentstring = currentstring;
+            $('#vanityUrlLength').text(currentstring+'/55');
         }
     }
 
@@ -1917,7 +2013,7 @@ $(function() {
         '<div class="form-group">'+
             '<div class="col-sm-12">';
         
-        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+        if(isIndianCampaign){
            	str = str + '<span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>';
              }else{
            	str = str + '<span class="cr2-currency-label">$</span>' ;
@@ -2021,7 +2117,7 @@ $(function() {
                 min: 1
             });
         });
-        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+        if(isIndianCampaign) {
            $('.rewardPrice').each(function () {
                $(this).rules("add", {
                    required: true,
@@ -2213,7 +2309,7 @@ $(function() {
 					'<div class="col-sm-amt col-sm-12">'+
 						'<span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>'+
 						'<div class="form-group col-sm-3 col-xs-4 col-sm-input-group">';
-							if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+							if (isIndianCampaign){
 								template = template +'<span class="fa fa-inr cr-currency"></span>';
 							} else {
 								template = template +'<span class="fa fa-usd cr-currency"></span>';
@@ -2247,7 +2343,7 @@ $(function() {
 		});
 
           function validateSpendMatrix(shippingMatrixCount){
-        	  if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+        	  if (isIndianCampaign){
         	      $('.spendAmount').each(function () {
                       $(this).rules("add", {
                           required: true,
@@ -2564,50 +2660,49 @@ $(function() {
         }
     });
 
-    $('.recipient').change(function(){
+    $('.recipient').change(function() {
         var recipient = $(this).val();
-        if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'){
-            if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-                if (recipient == 'NGO'){
-                    $('#tax-reciept').show();
-                } else {
-                    $('#tax-reciept').hide();
-                    if ($('#offeringTaxReciept').val() == 'true' || $('#offeringTaxReciept').val() == true){
-                        if (confirm("If you will change the recipient of fund you will not be liable to offer tax reciept. \nAre you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
-                            $('.col-tax-reciept-panel').hide();
-                            $('#taxRecieptId').val(null);
-                            deleteTaxReciept();
-                        } else {
-                            $(this).val('NGO');
-                            $('#tax-reciept').show();
-                            $('.recipient li').removeClass('selected');
-                            $(".recipient li:eq('1')").addClass('selected');
-                            $('.recipient ').find('span.filter-option').text('NGO');
-                        }
+        if (isIndianCampaign){
+            if (recipient == 'NGO'){
+                $('#tax-reciept').show();
+            } else {
+                $('#tax-reciept').hide();
+                if ($('#offeringTaxReciept').val() == 'true' || $('#offeringTaxReciept').val() == true){
+                    if (confirm("If you will change the recipient of fund you will not be liable to offer tax reciept. \nAre you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
+                        $('.col-tax-reciept-panel').hide();
+                        $('#taxRecieptId').val(null);
+                        deleteTaxReciept();
+                    } else {
+                        $(this).val('NGO');
+                        $('#tax-reciept').show();
+                        $('.recipient li').removeClass('selected');
+                        $(".recipient li:eq('1')").addClass('selected');
+                        $('.recipient ').find('span.filter-option').text('NGO');
                     }
                 }
+            }
+        } else {
+            if (recipient == 'NON-PROFIT'){
+                 $('#tax-reciept').show();
             } else {
-                if (recipient == 'NON-PROFIT'){
-                     $('#tax-reciept').show();
-                } else {
-                    $('#tax-reciept').hide();
-                    if ($('#offeringTaxReciept').val() == 'true' || $('#offeringTaxReciept').val() == true){
-                        if (confirm("If you will change the recipient of fund you will not be liable to offer tax reciept. \nAre you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
-                            $('.tax-reciept-checkbox').attr('checked', false);
-                            $('.col-tax-reciept-panel').hide();
-                            $('#taxRecieptId').val(null);
-                            deleteTaxReciept();
-                        } else {
-                            $(this).val('NON-PROFIT');
-                            $('#tax-reciept').show();
-                            $('.recipient li').removeClass('selected');
-                            $(".recipient li:eq('1')").addClass('selected');
-                            $('.recipient ').find('span.filter-option').text('Non-Profit');
-                        }
+                $('#tax-reciept').hide();
+                if ($('#offeringTaxReciept').val() == 'true' || $('#offeringTaxReciept').val() == true){
+                    if (confirm("If you will change the recipient of fund you will not be liable to offer tax reciept. \nAre you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
+                        $('.tax-reciept-checkbox').attr('checked', false);
+                        $('.col-tax-reciept-panel').hide();
+                        $('#taxRecieptId').val(null);
+                        deleteTaxReciept();
+                    } else {
+                        $(this).val('NON-PROFIT');
+                        $('#tax-reciept').show();
+                        $('.recipient li').removeClass('selected');
+                        $(".recipient li:eq('1')").addClass('selected');
+                        $('.recipient ').find('span.filter-option').text('Non-Profit');
                     }
                 }
             }
         }
+        
 
         $.ajax({
             type:'post',
@@ -2861,7 +2956,7 @@ $(function() {
 //        $('#customVanityUrl').val(title.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-'));
 //    });
 
-    $('.descarea1').blur(function (){
+    $('#descarea1').blur(function (){
         var descarea = $(this).val();
         autoSave('descarea', descarea);
     });
@@ -3002,6 +3097,26 @@ $(function() {
     $('.ansText3').blur(function(){
     	var ansText3 = $(this).val();
     	autoSave('ans3', ansText3);
+    });
+    
+    $('.ansText5').blur(function(){
+    	var ansText5 = $(this).val();
+    	autoSave('ans5', ansText5);
+    });
+    
+    $('.ansText6').blur(function(){
+    	var ansText6 = $(this).val();
+    	autoSave('ans6', ansText6);
+    });
+    
+    $('.ansText7').blur(function(){
+    	var ansText7 = $(this).val();
+    	autoSave('ans7', ansText7);
+    });
+    
+    $('.ansText8').blur(function(){
+    	var ansText8 = $(this).val();
+    	autoSave('ans8', ansText8);
     });
     
     $('#deleteVideo').click(function(){

@@ -38,14 +38,40 @@
 </div>
 <!-- /.row -->
 </div>--%>
+<%--<g:if test="${currentEnv == 'test' || currentEnv == 'development' || currentEnv == 'testIndia'}">--%>
+<%--<div class="container how-it-work-container hidden">--%>
+<%--   <div class="row">--%>
+<%--    <h1 class="hm-headingtext how-it-works-title">It's Simple, Secure and Free to <br> Fundraise on Crowdera</h1>--%>
+<%--   </div> --%>
+<%--</div>--%>
+<%--</g:if>--%>
+<%--<g:else>--%>
+<%--<div class="container how-it-work-container hidden-xs">--%>
+<%--   <div class="row">--%>
+<%--    <h1 class="text-center headingtext how-it-works-title">It's Simple, Secure and Free to <br> Fundraise on Crowdera</h1>--%>
+<%--   </div> --%>
+<%--</div>--%>
+<%--</g:else>--%>
 
-<div class="container how-it-work-container">
-   <div class="row">
-    <h1 class="text-center headingtext how-it-works-title">It's Simple, Secure and Free to <br> Fundraise on Crowdera</h1>
-   </div> 
-</div>
-<img class="img-responsive home-img-large-size" src="//s3.amazonaws.com/crowdera/assets/how-it-work-new-image-pix.jpg" alt="How-it-work">
-<div class="container how-it-work-container">
+<%--<g:if test="${currentEnv == 'test' || currentEnv == 'development' || currentEnv == 'testIndia'}">--%>
+	<div class="hm-how-it-work">
+	    <img class="img-responsive home-img-large-size hidden-xs  visible-lg" src="//s3.amazonaws.com/crowdera/assets/how-it-work-step-web-a-3.jpg" alt="How-it-work">
+	    
+	    <div class="hm-howitworks-mobile-image">
+	       <img class="img-responsive home-img-large-size visible-xs" src="//s3.amazonaws.com/crowdera/assets/howitwork-step-mobile-a-1.jpg" alt="How-it-work">
+	    </div>
+	    
+	    <img class="img-responsive home-img-large-size hidden-xs hidden-lg visible-sm visible-md" src="//s3.amazonaws.com/crowdera/assets/howitwork-step-a-tab-2.jpg" alt="How-it-work">
+	    
+	    <div class="hm-how-it-work-img">
+	        <a href="${resource(dir: '/campaign/create')}" class="btn btn-default hm-start-campaign-btn">Start Your Campaign</a>
+	    </div>
+	</div>
+<%--</g:if>--%>
+<%--<g:else>--%>
+<%--    <img class="img-responsive home-img-large-size hidden-xs" src="//s3.amazonaws.com/crowdera/assets/how-it-work-new-image-pix.jpg" alt="How-it-work">--%>
+<%----%>
+<%--<div class="container how-it-work-container">--%>
 <%--    <div class="row">--%>
 <%--        <div class="col-md-12 col-sm-12 col-xs-12">--%>
 <%--            <div class="col-md-3 col-sm-6 col-xs-12 text-center">--%>
@@ -72,7 +98,8 @@
 <%--            <div class="clear-both"></div>--%>
 <%--        </div>--%>
 <%--    </div>--%>
-    <div class="row text-center explorebtn">
-        <a href="${resource(dir: '/campaign/create')}" class="btn btn-default hm-start-campaign">Start Your Campaign</a>
-    </div>
-</div>
+<%--    <div class="row text-center explorebtn">--%>
+<%--        <a href="${resource(dir: '/campaign/create')}" class="btn btn-default hm-start-campaign">Start Your Campaign</a>--%>
+<%--    </div>--%>
+<%--</div>--%>
+<%--</g:else>--%>

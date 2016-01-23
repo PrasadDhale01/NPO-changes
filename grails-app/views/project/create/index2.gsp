@@ -14,11 +14,15 @@
         spendLastMatrix = spends.last()
         spendLastNumAvail = spendLastMatrix.numberAvailable
     }
-    String ans1val, ans3val, ans2val, r1, r2, r3
+    String ans1val, ans3val, ans2val, ans5val, ans6val, ans7val , ans8val, r1, r2, r3
     if (qA){
         ans1val = (qA.ans1 && qA.ans1 != 'NO')? qA.ans1 : null;
         ans3val = (qA.ans3 && qA.ans3 != 'NO')? qA.ans3 : null;
         ans2val = (qA.ans2 && qA.ans2 != 'NO')? qA.ans2 : null;
+        ans5val = (qA.ans5 && qA.ans5 != 'NO')? qA.ans5 : null;
+        ans6val = (qA.ans6 && qA.ans6 != 'NO')? qA.ans6 : null;
+        ans7val = (qA.ans7 && qA.ans7 != 'NO')? qA.ans7 : null;
+        ans8val = (qA.ans8 && qA.ans8 != 'NO')? qA.ans8 : null;
     }
     if(reasonsToFund){
         r1 = (reasonsToFund.reason1) ? reasonsToFund.reason1 : null;
@@ -45,6 +49,7 @@
     <input type="hidden" name="uuid" id="uuid" />
     <input type="hidden" name="charity_name" id="charity_name" />
     <input type="hidden" name="url" value="${currentEnv}" id="currentEnv"/>
+    
     <g:hiddenField name="payfir" value="${project.charitableId}" id="payfir"/>
     <g:hiddenField name="paypal" value="${project.paypalEmail}"/>
     <g:hiddenField name="projectamount" value="${project.amount.round()}" id="projectamount"/>
@@ -54,6 +59,8 @@
     <g:hiddenField name="selectedCountry" id="selectedCountry" value="${selectedCountry}"/>
     <g:hiddenField name="taxRecieptId" value="${taxRecieptId}" id="taxRecieptId"/>
     <g:hiddenField name="offeringTaxReciept" id="offeringTaxReciept" value="${project.offeringTaxReciept}"/>
+    
+    <g:hiddenField name="isIndianCampaign" value="${project.payuStatus}" id="isIndianCampaign"/>
 
     <div class="text-center">
         <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
@@ -234,7 +241,7 @@
                 </div>
             </div>
 
-            <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
+            
             <div class="col-sm-12 padding-right-xs">
                 <div class="cr-spend-matrix">
                     <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-panel-spend-xs"><span class="cr-spend-matrix-font">Spend Matrix</span></label>
@@ -324,13 +331,14 @@
                 </div>
             </div>
 
+        <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
             <div class="col-sm-12 padding-right-xs">
                 <div class="cr-spend-matrix">
                     <label class="col-md-4 col-sm-6 col-xs-12 text-center cr-panel-spend-matrix cr-panel-qa"><span class="cr-spend-matrix-font">Your Contributors Want to Know</span></label>
                     <label class="col-md-8 col-sm-6 hidden-xs cr-panel-spend-matrix-guide cr-panel-qa-guide"></label>
                 </div>
                 <div class="panel panel-body cr-panel-body-spend-matrix">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 col-xs-12 zero-padding">
                         1. Did you try other fundraising methods ?
                         <div class="question-ans question-ans-1 form-group">
                             <p><input type="radio" name="ans1" class="ans1 yes" value="yes" <g:if test="${qA && qA.ans1 && qA.ans1 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
@@ -353,10 +361,30 @@
                             <p><input type="radio" name="ans4" class="ans4 personally-raising" value="personally-raising" <g:if test="${qA && qA.ans4 && qA.ans4 == 'personally-raising'}">checked="checked"</g:if>>&nbsp;I will personally start walking towards cause using raised funds.</p>
                             <p><input type="radio" name="ans4" class="ans4 contact-admin" value="contact-admin" <g:if test="${qA && qA.ans4 && qA.ans4 == 'contact-admin'}">checked="checked"</g:if>>&nbsp;I will contact crowdera admin.</p>
                         </div>
+                        
+                        5. What are the issues you or your organization is facing with regards to funding?
+                        <div class="question-ans form-group">
+                            <textarea class="ansText ansText5 form-control" name="ansText5">${ans5val}</textarea>
+                        </div>
+                        
+                        6. Why are you crowdfunding at this moment?
+                        <div class="question-ans form-group">
+                            <textarea class="ansText ansText6 form-control" name="ansText6">${ans6val}</textarea>
+                        </div>
+                        
+                        7. What will you do if you do not reach your goal within the chosen deadline? Will you still complete your project?
+                        <div class="question-ans form-group">
+                            <textarea class="ansText ansText7 form-control" name="ansText7">${ans7val}</textarea>
+                        </div>
+                        
+                        8. Why should the contributors trust you?
+                        <div class="question-ans form-group">
+                            <textarea class="ansText ansText8 form-control" name="ansText8">${ans8val}</textarea>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+        </g:if>    
             <div class="col-sm-12 padding-right-xs">
                 <div class="cr-spend-matrix">
                     <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-reasons-to-fund"><span class="cr-spend-matrix-font">3 Reason to Fund</span></label>
@@ -390,7 +418,7 @@
                     <textarea name="hashtags" class="hashtags form-control">${project.hashtags}</textarea>
                 </div>
             </div>
-            </g:if>
+            
 
             <div class="col-sm-12 manage-Top-tabs-mobile" id="admins">
                 <div class="cr-tabs-admins cr-safari">
@@ -459,27 +487,27 @@
                     <div class="tab-pane panel-body active row" id="organization">
                         <div class="col-sm-4">
                             <div class="form-group" id="organizationName">
-                                <div class="col-sm-12">
-                                    <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.ORGANIZATIONNAME}" value="${project.organizationName}" id="organizationname" placeholder="Individual / Organization Name">
+                                <div class="col-sm-12 cr-mobiledisplyorg ">
+                                    <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.ORGANIZATIONNAME}" value="${project.organizationName}" id="organizationname" placeholder="Individual / Organization Name">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 cr-mobiledisplyorg">
                                     <g:if test="${project.webAddress}">
-                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook" value="${project.webAddress}">
+                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook" value="${project.webAddress}">
                                     </g:if>
                                     <g:else>
-                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook">
+                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook">
                                     </g:else>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group createOrgIconDiv">
-                                <div class="col-sm-6">
-                                    <div class="fileUpload btn btn-info btn-sm cr-btn-color cr-marg-mobile">
+                                <div class="col-lg-6 col-sm-8 col-md-8 col-xs-7 cr-mobiledisplyorg">
+                                    <div class="fileUpload btn btn-info btn-sm cr-btn-color">
                                         Display Picture
                                         <input type="file" class="upload" id="iconfile" name="iconfile" accept="image/jpeg, image/png">
                                     </div>
@@ -712,7 +740,7 @@
                     <div class="rewardsTemplate" id="rewardTemplate1" value="1">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 col-xs-12">
                                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                                         <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
                                         <input type="text" placeholder="Amount" name="rewardPrice1" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice1">
@@ -1151,7 +1179,7 @@
                 <div class="col-sm-12 cr-paddingspace termsOfUseCheckboxOnCreatePage" id="launch">
                     <div class="col-md-offset-4 col-md-8 col-sm-offset-3 col-sm-9">
                         <div class="form-group form-group-termsOfUse">
-                            <input type="checkbox" name="checkBox" id="agreetoTermsandUse" <g:if test="${project.touAccepted}">checked="checked"</g:if>>  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
+                            <input type="checkbox" name="checkBox" id="agreetoTermsandUse" <g:if test="${project.touAccepted}">checked="checked"</g:if>>  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and have read <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
                         </div>
                     </div>
                     <div class="clear"></div>

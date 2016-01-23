@@ -23,6 +23,7 @@ class ProjectService {
     def mandrillService
     def rewardService
     def grailsApplication
+    def socialAuthService
 
     def getProjectById(def projectId){
         if (projectId) {
@@ -308,25 +309,28 @@ class ProjectService {
 
     def getUpdateValidationDetails(def params){
         def project = Project.get(params.id)
-        project.created = new Date()
-        if(!project.validated){
-            project.validated = true
-            project.onHold = false
-            project.save()
-            mandrillService.sendValidationEmailToOWnerAndAdmins(project)
+        if (project) {
+            project.created = new Date()
+            if(!project.validated){
+                project.validated = true
+                project.onHold = false
+                project.save()
+                mandrillService.sendValidationEmailToOWnerAndAdmins(project)
+                sendEmailOnValidation(project)
+            }
         }
     }
 
-     def getCommentsDetails(params){
-         def project = Project.get(params.id)
-         if (project && params.comment) {
-             new ProjectComment(
-                 comment: params.comment,
-                 user: userService.getCurrentUser(),
-                 project: project,
-                 date: new Date()).save(failOnError: true)
-         }
-     } 
+    def getCommentsDetails(params){
+        def project = Project.get(params.id)
+        if (project && params.comment) {
+            new ProjectComment(
+                comment: params.comment,
+                user: userService.getCurrentUser(),
+                project: project,
+                date: new Date()).save(failOnError: true)
+        }
+    }
 
      def getUpdateCommentDetails(def request){
          def checkid= request.getParrmeter('checkID')
@@ -1452,17 +1456,15 @@ class ProjectService {
             sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
             finalList =  sortedProjects.reverse() + endedProjects.reverse()
         }
-        if(currentEnv == 'testIndia' || currentEnv == 'test'){
-            finalList.each{
-                def percentage = contributionService.getPercentageContributionForProject(it)
-                if(percentage >= 17){
-                    sortedCampaignByPercentage.add(it)
-                }
+        
+        finalList.each{
+            def percentage = contributionService.getPercentageContributionForProject(it)
+            if(percentage >= 17){
+                sortedCampaignByPercentage.add(it)
             }
-            return sortedCampaignByPercentage
-        }else{
-            return finalList
         }
+        return sortedCampaignByPercentage
+        
     }
 
     def isPayuProject(Project project){
@@ -1888,8 +1890,11 @@ class ProjectService {
 
         def tempImageUrl
         def imageUrl = new ImageUrl()
+        def imageUrls = project.imageUrl
+        def imageCount = 0;
+        
         if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
-            try{
+            try {
                 def file= new File("${imageFile.getOriginalFilename()}")
                 def key = "${Folder}/${imageFile.getOriginalFilename()}"
                 key = key.toLowerCase()
@@ -1900,10 +1905,16 @@ class ProjectService {
                 tempImageUrl = "//s3.amazonaws.com/crowdera/${key}"
                 s3Service.putObject(s3Bucket, object)
                 imageUrl.url = tempImageUrl
+                
+                imageUrls.each {
+                    imageCount = (it.url.equalsIgnoreCase(tempImageUrl)) ? imageCount + 1 : imageCount ;
+                }
+                imageUrl.numberOfUrls = imageCount
                 imageUrl.save()
                 project.addToImageUrl(imageUrl)
                 file.delete()
-            }catch(Exception e) {
+                
+            } catch(Exception e) {
                 log.error("Error: " + e);
             }
         }
@@ -1959,6 +1970,9 @@ class ProjectService {
         def Folder = "project-images"
 
         def tempImageUrl
+        def imageUrls = team.imageUrl
+        def imageCount = 0
+        
         def imageUrl = new ImageUrl()
         if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
             try{
@@ -1972,6 +1986,11 @@ class ProjectService {
                 tempImageUrl = "//s3.amazonaws.com/crowdera/${key}"
                 s3Service.putObject(s3Bucket, object)
                 imageUrl.url = tempImageUrl
+                
+                imageUrls.each {
+                    imageCount = (it.url.equalsIgnoreCase(tempImageUrl)) ? imageCount + 1 : imageCount ;
+                }
+                imageUrl.numberOfUrls = imageCount
                 imageUrl.save()
 
                 team.addToImageUrl(imageUrl)
@@ -2590,6 +2609,11 @@ class ProjectService {
     def getTeamByUserAndEnable(User user, def enable){
       def teams=Team.findAllWhere(user:user, enable: enable)
       return teams
+    }
+    
+    def getEnabledAndValidatedTeam(User user) {
+        def teams=Team.findAllWhere(user:user, enable: true, validated: true)
+        return teams
     }
     
     def getAddress(def params){
@@ -3326,6 +3350,90 @@ class ProjectService {
                     }
                     isValueChanged = true;
                 }
+               break;
+               
+           case 'ans5':
+               QA qA = QA.findByProject(project)
+               if (varValue.isAllWhitespace()){
+                   if(qA){
+                       qA.ans5 = null;
+                       qA.save(failOnError:true);
+                   }
+               } else {
+                   if(qA){
+                       qA.ans5 = varValue;
+                       qA.save(failOnError:true);
+                   } else {
+                       new QA(
+                          ans5 : varValue,
+                          project:project
+                       ).save(failOnError:true)
+                   }
+                   isValueChanged = true;
+               }
+               break;
+
+           case 'ans6':
+              QA qA = QA.findByProject(project)
+              if (varValue.isAllWhitespace()){
+                  if(qA){
+                      qA.ans6 = null;
+                      qA.save(failOnError:true);
+                  }
+              } else {
+                  if(qA){
+                      qA.ans6 = varValue;
+                      qA.save(failOnError:true);
+                  } else {
+                      new QA(
+                          ans6 : varValue,
+                          project:project
+                      ).save(failOnError:true)
+                  }
+                  isValueChanged = true;
+              }
+              break;
+
+           case 'ans7':
+               QA qA = QA.findByProject(project)
+               if (varValue.isAllWhitespace()){
+                   if(qA){
+                       qA.ans7 = null;
+                       qA.save(failOnError:true);
+                   }
+               } else {
+                   if(qA){
+                       qA.ans7 = varValue;
+                       qA.save(failOnError:true);
+                   } else {
+                      new QA(
+                          ans7 : varValue,
+                          project:project
+                      ).save(failOnError:true)
+                   }
+                   isValueChanged = true;
+               }
+               break;
+
+           case 'ans8':
+               QA qA = QA.findByProject(project)
+               if (varValue.isAllWhitespace()){
+                   if(qA){
+                       qA.ans8 = null;
+                       qA.save(failOnError:true);
+                   }
+               } else {
+                   if(qA){
+                       qA.ans8 = varValue;
+                       qA.save(failOnError:true);
+                   } else {
+                       new QA(
+                           ans8 : varValue,
+                           project:project
+                       ).save(failOnError:true)
+                   }
+                   isValueChanged = true;
+               }
                break;
  
             case 'reason1':
@@ -4471,7 +4579,7 @@ class ProjectService {
         List projects = []
         def campaigns = getAllProjectByUser(user, environment)
         def projectAdmins = getProjectAdminEmail(user)
-        def teams = getTeamByUserAndEnable(user, true)
+        def teams = getEnabledAndValidatedTeam(user)
         def totalprojects = getProjects(campaigns, projectAdmins, teams, environment)
         
         def max = Math.min(params.int('max') ?: 6, 100)
@@ -4817,10 +4925,9 @@ class ProjectService {
     
     def getFundRaisedByPartner(User user) {
         def environment = getCurrentEnvironment();
-        List projects = []
         def campaigns = getAllProjectByUser(user, environment)
         def projectAdmins = getProjectAdminEmail(user)
-        def teams = getTeamByUserAndEnable(user, true)
+        def teams = getEnabledAndValidatedTeam(user)
         def totalprojects = getProjects(campaigns, projectAdmins, teams, environment)
         
         def raised = getTotalFundRaisedByUser(campaigns)
@@ -4852,6 +4959,102 @@ class ProjectService {
                 }
             }
         }
+    }
+    
+    def getDataFromImportedCSV(def file, def user){
+        List contactList =[]
+        InputStream is = file?.getInputStream()
+        
+        is.splitEachLine(',') {
+            it.findAll{
+                //Pattern matching to match email
+                def matcher = (it ==~ /[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/) 
+                if(matcher){
+                    contactList.add(it+' ')
+                }
+            }
+        }
+        def filterList = contactList.toString().replace('[','').replace(']','')
+        def socialContact  = SocialContacts.findByUser(user)
+        if(socialContact){
+            socialAuthService.setSocailContactsByUser(socialContact ,filterList, 'csv')
+        }else{
+            new SocialContacts(constantContact:null, gmail:null, mailchimp:null, facebook:null, csvContact:filterList, user:user).save(failOnError: true)
+        }
+        return filterList
+    }
+    
+    def getFilterGmailContacts(def filterList, def email){
+        List gmailContacts = []
+
+        filterList.each {
+           it.each{
+              if(it != email){
+                  gmailContacts.add(it)
+              }      
+            }
+         }
+         return gmailContacts.toString().replace('[','').replace(']','')
+    }
+    
+    def sendEmailOnValidation(Project project) {
+        def currentEnv = getCurrentEnvironment()
+        
+        def campaigns = getCampaignsByCategory(project.category)
+        List emails = getBulkEmailsforCampaigns(campaigns)
+        mandrillService.sendEmailOnValidation(currentEnv, emails, project)
+    }
+    
+    def getCampaignsByCategory(def category) {
+        return Project.findAllWhere(category: category, validated: true, rejected: false, inactive: false)
+    }
+    
+    def getBulkEmailsforCampaigns(def campaigns) {
+        List emails = []
+        
+        List teams = []
+        List supporters = []
+        List contributors = []
+        
+        def campaignsOwnerEmail = campaigns.user.email
+        
+        String supportersEmail
+        String fundRaiserEmail
+        String contributorsEmail
+        
+        campaignsOwnerEmail.each { it-> 
+            if (it != null && (!emails.contains(it))) {
+                emails.add(it)
+            }
+        }
+        
+        campaigns.each { campaign ->
+            teams = campaign.teams
+            teams.each { team ->
+                fundRaiserEmail = team.user.email
+                if (fundRaiserEmail != null && (!emails.contains(fundRaiserEmail))) {
+                    emails.add(fundRaiserEmail)
+                }
+            }
+            
+            supporters = campaign.supporters
+            supporters.each { supporter ->
+                supportersEmail = supporter.user.email
+                if (supportersEmail != null && (!emails.contains(supportersEmail))) {
+                    emails.add(supportersEmail)
+                }
+            }
+            
+            contributors = campaign.contributions
+            contributors.each { contribution ->
+                contributorsEmail = contribution.contributorEmail
+                if (contributorsEmail != null && (!emails.contains(contributorsEmail))) {
+                    emails.add(contributorsEmail)
+                }
+            }
+            
+        }
+        return emails
     }
 
     def getAllProjectByUserHavingContribution(User user , def environment, def params){

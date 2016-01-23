@@ -179,14 +179,26 @@
                         </div>
                     </div>
                 </g:if>
-              
+                <%
+                    boolean ispartnerdraft = false
+                    if (partner) {
+                        ispartnerdraft = partner.draft
+                    }
+                %>
                 <ul id="side-menu">
                     <li>
                         <a href="${resource(dir: '/campaign/create')}" class="active">Create Campaign</a>
                     </li>
-                    <li>
-                        <g:link controller="user" action="userActivity1" id="${user.id}" class="active">User Profile</g:link>
-                    </li>
+                    <g:if test="${partner && ispartnerdraft}">
+                        <li>
+                            <a href="${resource(dir: '/partner/edit')}" class="active">Edit Partner Page</a>
+                        </li>
+                    </g:if>
+                    <g:if test="${environment == 'testIndia' || environment == 'test' || environment == 'development'}">
+                        <li>
+                            <g:link controller="user" action="userActivity1" id="${user.id}" class="active">User Profile</g:link>
+                        </li>
+                    </g:if>
                     <li>
                         <a href="#userInfo" data-toggle="tab">Manage Profile</a>
                     </li>
@@ -263,6 +275,15 @@
                     </div>
                 </div>
                 
+                <div class="clear"></div>
+                <g:if test="${flash.prj_validate_message}">
+                    <div class="col-sm-12 text-center success-message">
+                        <div class="alert alert-success">
+                            ${flash.prj_validate_message}
+                        </div>
+                    </div>
+                </g:if>
+				
                 <div class="col-md-12 col-sm-12 col-lg-12" id="vitalseperator">
                     <hr>
                 </div>

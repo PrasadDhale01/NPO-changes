@@ -69,12 +69,12 @@
     margin-bottom: 15px;
 }
 .usersCampaignsPagination a , .usersCampaignsPagination .currentStep {
-				font-size: 13px;
-				text-align: center;
-				padding-left: 10px;
-				padding-right: 5px;
-				color: #31497B !important;
-				font-weight: 700 !important;
+    font-size: 13px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 5px;
+    color: #31497B !important;
+    font-weight: 700 !important;
 }
 .usersCampaignsPagination .currentStep {
     color: black !important;
@@ -906,7 +906,7 @@ div.dashboardtile-min-height {
 }
 
 .partner-dashboard .sidebar-nav {
-    height: 700px;
+    height: 750px;
     width: 200px;
     background-color: #f6f8f8;
     padding-top: 15px;
@@ -1740,4 +1740,10 @@ div.search-sort-back div.search-sort{
 	width: 130px !important;
 	margin-top: 6px;
 	margin-right: 10px;
+}
+#partners-list {
+    min-height: 150px;
+}
+.userprofilebottom {
+    height: 30px;
 }

@@ -1146,7 +1146,6 @@ class UserService {
         user.username = params.email
         if (user.save(failOnError:true)) {
             createUserRole(user, roleService)
-            createPartnerRole(user, roleService)
         }
         
         return [password : password, user : user]
@@ -1161,7 +1160,19 @@ class UserService {
     }
     
     def getPartners() {
-        return Partner.findAllWhere(discarded: false, validated: true)
+        return Partner.findAllWhere(discarded: false, rejected: false, validated: true)
+    }
+    
+    def getNonVerifiedPartners() {
+        return Partner.findAllWhere(discarded: false, rejected: false, validated: false, draft: false)
+    }
+    
+    def getPendingPartners() {
+        return Partner.findAllWhere(discarded: false, rejected: false, enabled: false)
+    }
+    
+    def getDraftPartners() {
+        return Partner.findAllWhere(discarded: false, rejected: false, draft: true, enabled: true)
     }
     
     def isPartner() {
@@ -1571,6 +1582,7 @@ class UserService {
         partner.user = user
         partner.confirmCode = UUID.randomUUID().toString()
         partner.enabled = true
+        partner.created = new Date()
         if (partner.save(failOnError: true)) {
             return partner
         } else {

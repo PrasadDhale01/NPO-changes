@@ -7,7 +7,8 @@ import groovy.transform.ToString
 @EqualsAndHashCode
 
 class ImageUrl {
-	String url
+    String url
+    int numberOfUrls
 
 	static belongsTo = Project, ProjectUpdate, CustomerService, TaxReciept
 

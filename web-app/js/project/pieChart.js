@@ -2,7 +2,7 @@ var miscellaneous = $('#miscellaneous').val();
 var spendAmountPerList = $('#spendAmountPerList').val();
 var projectAmount = $('#projectamount').val();
 var percentageList = [];
-var currentEnv=$('#currentEnv').val();
+
 if (miscellaneous == 'hasOtherValues'){
 	var list2 = spendAmountPerList.split(",");
 	for (i=0; i<list2.length; i++){
@@ -42,6 +42,7 @@ if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'produc
 } else {
     center_label.attr('text', 'Rs. '+projectAmount);
 }
+var isIndianCampaign = ($('#isIndianCampaign').val() == 'true') ? true : false;
 
 // assign the hover in/out functions
 pie.hover(function () {
@@ -50,10 +51,10 @@ pie.hover(function () {
   this.sector.animate({ 'stroke': highlightcolor }, 400);
   this.sector.animate({ 'stroke-width': 1 }, 500, "bounce");
   
-    if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
-    	center_label.attr('text', '$'+this.value.value);
-    } else {
+    if (isIndianCampaign){
     	center_label.attr('text', 'Rs. '+this.value.value);
+    } else {
+    	center_label.attr('text', '$'+this.value.value);
     }
 //	    center_label.attr({ 'opacity': 1 });
 //	    center_label.animate({ 'opacity': 1.0 }, 500);
@@ -64,7 +65,27 @@ pie.hover(function () {
 //	      center_label.animate({ 'opacity': 0.0 }, 500);
     if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
         center_label.attr('text', '$'+projectAmount);
+//      center_label.animate({ 'opacity': 0.0 }, 500);
+});
+
+pie.mouseout(function (){
+    if (isIndianCampaign){
+    	center_label.attr('text', 'Rs. '+projectAmount);
     } else {
-        center_label.attr('text', 'Rs. '+projectAmount);
+    	center_label.attr('text', '$'+projectAmount);
     }
 });
+
+// blank circle in center to create donut hole effect
+paper.circle(pwidth/2, pheight/2, radius*0.5)
+    .attr({'fill': bgcolor, 'stroke': bgcolor});
+
+var center_label = paper.text(pwidth/2, pheight/2, '')
+    .attr({'fill': 'black', 'font-size': '12', "font-weight": 800, 'opacity': 1 });
+
+//to show campaign amount at center on page load
+if (isIndianCampaign){
+	center_label.attr('text', 'Rs. '+projectAmount);
+} else {
+	center_label.attr('text', '$'+projectAmount);
+}

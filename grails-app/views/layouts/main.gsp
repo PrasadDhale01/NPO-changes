@@ -57,7 +57,7 @@ mixpanel.init("d75cc9b700aea96b693ba0c44fa47bb9");
         <g:render template="/layouts/header"/>
     </div>
 
-    <div class="feduoutercontent">
+    <div class="feduoutercontent mobile-header-onmain">
         <g:layoutBody />
     </div>
     <g:render template="/layouts/footer"/>

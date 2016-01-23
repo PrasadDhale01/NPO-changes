@@ -1242,6 +1242,26 @@ class MandrillService {
         sendTemplate(user, 'partner-invitation', globalMergeVars, tags)
     }
     
+    public def sendReInvitationEmailToPartner(Partner partner) {
+        User user = partner.user
+        def link = grailsLinkGenerator.link(controller: 'user', action: 'confirmPartner', id: partner.confirmCode, absolute: true)
+
+        def globalMergeVars = [[
+            'name': 'LINK',
+            'content': link
+        ], [
+            'name': 'NAME',
+            'content': user.firstName + ' ' + user.lastName
+        ], [
+            'name': 'EMAIL',
+            'content': user.email
+        ]]
+
+        def tags = ['partner-re-invitation']
+
+        sendTemplate(user, 'partner-re-invitation', globalMergeVars, tags)
+    }
+    
     public def sendInvitationToCampaignOwner(def email, User user, def confirmCode, def message) {
         def link = grailsLinkGenerator.link(controller: 'project', action: 'createCampaign', id: confirmCode, absolute: true)
         def globalMergeVars = [[
@@ -1381,4 +1401,34 @@ class MandrillService {
 
         inviteToShare(contribution.contributorEmail, 'sendContributorUsernameAndPassword', globalMergeVars, tags)
     }
+    
+    def sendEmailOnValidation(def environment, def emails, Project project) {
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:project.user.username], absolute: true)
+        
+        if (environment != 'development') {
+            emails.each { email ->
+                if (email)  {
+                    def globalMergeVars = [[
+                            'name': 'TITLE',
+                            'content': project.title
+                        ], [
+                            'name': 'CATEGORY',
+                            'content': project.category
+                        ], [
+                            'name':'Email',
+                            'content' : email
+                        ], [
+                            'name':'LINK',
+                            'content' : link
+                        ]
+                    ]
+    
+                    def tags = ['recommendation-engine']
+    
+                    inviteToShare(email,'recommendation-engine', globalMergeVars, tags)
+                }
+            }
+        }
+    }
+    
 }

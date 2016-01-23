@@ -24,6 +24,11 @@ $(function() {
         window.location.hash = this.hash;
         $('html,body').scrollTop(scrollmem);
     });
+    
+    $('.scrollToComment').click(function(e) {
+    	var toptabs = $("#scrollToComment").offset().top;
+   	    window.scrollTo(toptabs , toptabs-170);
+    });
 
     $('#sendmailmodal').find('form').validate({
         rules: {
@@ -106,7 +111,14 @@ $(function() {
     		}
     	}
     });
-    
+    $('#scrollToComment').find('#commentBox').find('form').validate({
+        rules: {
+            comment: {
+                required: true,
+                maxlength: 5000
+            }
+        }
+    });
     $('#comment-mobile').find('#commentBox').find('form').validate({
     	rules: {
     		comment: {

@@ -16,34 +16,6 @@
    	<div class="manage-organization-details text-center manage-org-title manage-org-height">
    		<br><br>
    	    <h4><b class="TW-org-title-font-size-manage">${project.organizationName}</b></h4>
-<%--   	    <g:if test="${!isCrFrCampBenOrAdmin}">--%>
-<%--   	    	<g:if test="${currentTeam.user.userImageUrl}">--%>
-<%--   	        	<div class="col-sm-12">--%>
-<%--   	            	<img alt="Organization" src="${currentTeam.user.userImageUrl}" class="org-logo">--%>
-<%--            	</div>--%>
-<%--        	</g:if>--%>
-<%--        	<g:else>--%>
-<%--            	<div class="col-sm-12">--%>
-<%--   	            	<img alt="Upload Icon" src="//s3.amazonaws.com/crowdera/assets/defaultOrgIcon.jpg" class="org-logo">--%>
-<%--            	</div>--%>
-<%--        	</g:else>--%>
-<%--   	    </g:if>--%>
-<%--   	    <g:elseif test="${project.organizationIconUrl}">--%>
-<%--   	        <div class="col-sm-12">--%>
-<%--   	            <img alt="Organization" src="${project.organizationIconUrl}" class="org-logo">--%>
-<%--            </div>--%>
-<%--        </g:elseif>--%>
-<%--        <g:else>--%>
-<%--            <div class="col-sm-12">--%>
-<%--   	            <img alt="Upload Icon" src="//s3.amazonaws.com/crowdera/assets/defaultOrgIcon.jpg" class="org-logo">--%>
-<%--            </div>--%>
-<%--        </g:else>--%>
-<%--        --%>
-<%--        <g:if test="${project.webAddress}">--%>
-<%--            <div class="col-sm-12 web-links">--%>
-<%--                <label>Web: <a href="${webUrl}" target="${webUrl}">${project.webAddress}</a></label>--%>
-<%--            </div>--%>
-<%--        </g:if>--%>
         
         <div class="col-sm-12">
             <label><a href="#"></a></label>

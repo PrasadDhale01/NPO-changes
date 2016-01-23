@@ -10,10 +10,6 @@
     def manageCampaign = "manageCampaign"
     def fundRaiser = user.username
     def projectId = project.id
-    def conversionMultiplier = multiplier
-    if (!conversionMultiplier) {
-        conversionMultiplier = projectService.getCurrencyConverter();
-    }
 %>
 <g:if test="${!contributions.empty}">
     <h2 class="crowderasupport text-center"><img src="//s3.amazonaws.com/crowdera/assets/icon-contribution.png" alt="Campaign Contributions"/>&nbsp;&nbsp;Campaign Contributions</h2>
@@ -47,8 +43,8 @@
                             <g:if test="${isFacebookUser}">
                                 <h4><a href="${userFacebookUrl}">${friendlyName}</a></h4>
                                 <span class="sso">
-                                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                        <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${contribution.amount.round()}</b></g:if><g:else><b>${(contribution.amount * conversionMultiplier).round()}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                    <g:if test="${project.payuStatus}">
+                                        <span class="fa fa-inr"><b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;INR</span>
                                     </g:if>
                                     <g:else>
                                         $<b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
@@ -60,8 +56,8 @@
                                 <g:if test="${contribution.contributorName}">
                                     <h4>${contribution.contributorName}</h4>
                                     <span class="sso">
-                                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                            <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${contribution.amount.round()}</b></g:if><g:else><b>${(contribution.amount * conversionMultiplier).round()}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                        <g:if test="${project.payuStatus}">
+                                            <span class="fa fa-inr"><b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;INR</span>
                                         </g:if>
                                         <g:else>
                                             $<b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
@@ -87,8 +83,8 @@
                         <div class="col-sm-9 col-xs-9 pn-word">
                             <h4>${contribution.contributorName}</h4> 
                             <span class="sso">
-                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${contribution.amount.round()}</b></g:if><g:else><b>${(contribution.amount * conversionMultiplier).round()}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                <g:if test="${project.payuStatus}">
+                                    <span class="fa fa-inr"><b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;INR</span>
                                 </g:if>
                                 <g:else>
                                     $<b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;USD</span>

@@ -3,6 +3,11 @@
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
     def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
     def fbShareUrl = base_url+"/campaign/create"
+    
+    boolean isIndianCampaign = false
+    if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+        isIndianCampaign = true
+    }
 %>
 <html>
 <head>
@@ -17,21 +22,18 @@
     <r:require modules="projectcreatejs" />
 </head>
 <body>
-<g:hiddenField name="vanityUrlStatus" id="vanityUrlStatus" value="true"/>
     <input type="hidden" name="url" value="${currentEnv}" id="currentEnv"/>
+    
+    <g:hiddenField name="vanityUrlStatus" id="vanityUrlStatus" value="true"/>
     <g:hiddenField name="baseUrl" value="${base_url}" id="b_url"/>
-    <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
-	    <div class="cr1-header-indx1">
-	        <h1 class="text-center cr1-headertitle-indx1">Create Campaign</h1>
-	        <h3 class="text-center cr1-subheading-indx1">Raise money for what matters to you</h3>
-	    </div>
-    </g:if>
-    <g:else>
-        <div class="cr-headerA">
-            <h1 class="text-center cr-header-name">Create Campaign</h1>
-            <h3 class="text-center cr-sub-name">Raise money for what matters to you</h3>
-        </div>
-    </g:else>
+    <g:hiddenField name="isIndianCampaign" value="${isIndianCampaign}" id="isIndianCampaign"/>
+    
+    
+    <div class="cr1-header-indx1">
+        <h1 class="text-center cr1-headertitle-indx1">Create Campaign</h1>
+        <h3 class="text-center cr1-subheading-indx1">Raise money for what matters to you</h3>
+    </div>
+    
     <div class="bg-color">
         <div class="container footer-container" id="campaigncreate">
             <g:uploadForm class="form-horizontal cr-top-spaces" controller="project" action="saveCampaign">

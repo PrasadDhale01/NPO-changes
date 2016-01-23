@@ -69,12 +69,12 @@
     margin-bottom: 15px;
 }
 .usersCampaignsPagination a , .usersCampaignsPagination .currentStep {
-				font-size: 13px;
-				text-align: center;
-				padding-left: 10px;
-				padding-right: 5px;
-				color: #31497B !important;
-				font-weight: 700 !important;
+    font-size: 13px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 5px;
+    color: #31497B !important;
+    font-weight: 700 !important;
 }
 .usersCampaignsPagination .currentStep {
     color: black !important;

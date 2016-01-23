@@ -4,6 +4,7 @@
 <%
     def partnerId = partner.id
     def userId = user.id
+    def multiplier = conversionMultiplier
 %>
 <html>
 <head>
@@ -33,7 +34,7 @@
         <div class="navbar navbar-default navbar-fixed-top visible-xs" id="partner-third-header">
             <div class="navbar-header">
                 <span class="span-space"><span class="header-text">Raised</span> <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${fundRaised.round()}</span>
-                <span class="span-space"><span class="header-text">Contributed</span> <g:if test="${environment == 'prodIndia' || environment == 'stagingIndia' || environment == 'testIndia'}"><span class="fa fa-inr"></span>${contributedAmount.round() * multiplier}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
+                <span class="span-space"><span class="header-text">Contributed</span> <g:if test="${currentEnv == 'prodIndia' || currentEnv == 'stagingIndia' || currentEnv == 'testIndia'}"><span class="fa fa-inr"></span>${contributedAmount.round() * multiplier}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
                 <span class="span-space"><span class="header-text">Campaigns</span> ${totalUserCampaigns.size()}</span>
             </div>
         </div>
@@ -176,7 +177,7 @@
                                     </div>
                                     <div class="col-xs-10 col-sm-12 col-md-10 text-right">
                                         <p class="announcement-heading">
-                                            <span class="amountSection-Font"><g:if test="${environment == 'prodIndia' || environment == 'stagingIndia' || environment == 'testIndia'}"><span class="fa fa-inr"></span>${contributedAmount.round() * multiplier}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
+                                            <span class="amountSection-Font"><g:if test="${currentEnv == 'prodIndia' || currentEnv == 'stagingIndia' || currentEnv == 'testIndia'}"><span class="fa fa-inr"></span>${contributedAmount.round() * multiplier}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
                                         </p>
                                     </div>
                                 </div>

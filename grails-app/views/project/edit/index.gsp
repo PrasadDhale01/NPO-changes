@@ -16,11 +16,15 @@
         spendLastNumAvail = spendLastMatrix.numberAvailable
     }
     def beneficiaryName = (project.beneficiary.lastName)? project.beneficiary.firstName +' ' +project.beneficiary.lastName :  project.beneficiary.firstName
-    String ans1val, ans3val, ans2val
+    String ans1val, ans3val, ans2val, ans5val, ans6val, ans7val , ans8val, r1, r2, r3
     if (qA){
         ans1val = (qA.ans1 && qA.ans1 != 'NO')? qA.ans1 : null;
         ans3val = (qA.ans3 && qA.ans3 != 'NO')? qA.ans3 : null;
         ans2val = (qA.ans2 && qA.ans2 != 'NO')? qA.ans2 : null;
+        ans5val = (qA.ans5 && qA.ans5 != 'NO')? qA.ans5 : null;
+        ans6val = (qA.ans6 && qA.ans6 != 'NO')? qA.ans6 : null;
+        ans7val = (qA.ans7 && qA.ans7 != 'NO')? qA.ans7 : null;
+        ans8val = (qA.ans8 && qA.ans8 != 'NO')? qA.ans8 : null;
     }
     if(reasonsToFund){
         r1 = (reasonsToFund.reason1) ? reasonsToFund.reason1 : null;
@@ -54,6 +58,9 @@
     <input type="hidden" class="campaigndate" value="<%=numberOfDays%>"/>
     <g:hiddenField name="taxRecieptId" value="${taxRecieptId}" id="taxRecieptId"/>
     <g:hiddenField name="offeringTaxReciept" id="offeringTaxReciept" value="${project.offeringTaxReciept}"/>
+    
+    <g:hiddenField name="isIndianCampaign" value="${project.payuStatus}" id="isIndianCampaign"/>
+    
 
     <div class="edit-container">
         <div class="text-center">
@@ -121,7 +128,7 @@
                     
                     <div class="col-sm-3 cr2-width-dropdown5">
                         <div class="cr-dropdown-alignment font-list">
-                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                            <g:if test="${project.payuStatus}">
                                 <g:if test="${project.fundsRecievedBy}">
                                     <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color  cr-all-mobile-dropdown recipient cr2-edit-funds" name="#" from="${nonIndprofit}" value="${project.fundsRecievedBy}" optionKey="key" optionValue="value" />
                                 </g:if>
@@ -157,7 +164,7 @@
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-7">
                             <span class="col-lg-6 col-sm-6 col-md-6 cr-padding-index1">I need</span>
                             <div class="cr-tops">
-                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                <g:if test="${project.payuStatus}">
                                     <span class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
                                 </g:if>
                                 <g:else>
@@ -202,7 +209,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-7">
                         <span class="col-lg-6 col-sm-6 col-md-6 cr-padding-index1">I need</span>
                         <div class="cr-tops">
-                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                            <g:if test="${project.payuStatus}">
                                 <span class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
                             </g:if>
                             <g:else>
@@ -240,7 +247,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 editCustomVanityUrl">
                         <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 hidden-xs">My campaign web address</label>
                         <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 visible-xs">
-                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                            <g:if test="${project.payuStatus}">
                                 crowdera.in/campaigns/
                             </g:if>
                             <g:else>
@@ -249,7 +256,7 @@
                         </label>
                         <div class="col-sm-12 col-xs-12 cr1-mobile-indx1 col-web-url">
                             <div class="cr1-vanityUrl-indx1 hidden-xs">
-                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                <g:if test="${project.payuStatus}">
                                     crowdera.in/campaigns/
                                 </g:if>
                                 <g:else>
@@ -384,96 +391,96 @@
                     </div>
                 </div>
 
-                <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
-                    <div class="col-sm-12 cr-padding-edit-xs">
-                        <div class="cr-spend-matrix">
-                            <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-panel-spend-xs"><span class="cr-spend-matrix-font">Spend Matrix</span></label>
-                            <label class="col-md-10 col-sm-9 col-xs-12 cr-panel-spend-matrix-guide cr-spend-guide-text">The matrix will be displayed as a pie chart on your campaign page for your contributors to know how the contributions or funds raised will be utilized</label>
-                        </div>
-                        <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-spendMatrix-height">
-                            <div class="col-sm-9 col-xs-12 spend-matrix">
-                                <g:if test="${spendCount > 0}">
-                                    <g:each in="${spends}" var="spend">
-                                        <div class="spend-matrix-template" id="spend-matrix-template${spend.numberAvailable}">
-                                            <g:if test="${spend.numberAvailable > 1}"><br class="hidden-lg hidden-md hidden-sm"></g:if>
-                                            <div class="col-sm-amt col-sm-12">
-                                                <span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>
-                                                <div class="form-group col-sm-3 col-xs-4 col-sm-input-group">
-                                                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                                         <span class="fa fa-inr cr-currency"></span>
-                                                    </g:if>
-                                                    <g:else>
-                                                         <span class="fa fa-usd cr-currency"></span>
-                                                    </g:else>
-                                                    <input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount${spend.numberAvailable}" value="${spend.amount.round()}" name="spendAmount${spend.numberAvailable}">
-                                                    <span class="digitsError"></span>
-                                                </div>
-                                                <span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>
-                                                <div class="col-sm-5 col-xs-7 col-input-for form-group">
-                                                    <input type="text" class="form-control form-control-input-for spendCause" id="spendCause${spend.numberAvailable}" name="spendCause${spend.numberAvailable}" value="${spend.cause}">
-                                                </div>&nbsp;&nbsp;
-                                                <div class="clear visible-xs"></div>
-                                                <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
-                                                    <g:hiddenField name="spendFieldSave" value="${spend.numberAvailable}" class="spendFieldSave" id="spendFieldSave${spend.numberAvailable}"/>
-                                                    <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>
-                                                </div>
-                                                <g:if test="${spend.numberAvailable != 1}">
-                                                    <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateDelete">
-                                                        <input type="hidden" name="spendFieldDelete" value="${spend.numberAvailable}" class="spendFieldDelete">
-                                                        <i class="glyphicon glyphicon-trash glyphicon-size"></i>
-                                                    </div>
-                                                </g:if>
-                                                <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateAdd <g:if test="${spend.numberAvailable != spendLastNumAvail}">display-none</g:if>" id="spendMatrixTemplateAdd${spend.numberAvailable}">
-                                                    <i class="glyphicon glyphicon-plus glyphicon-size"></i>
-                                                </div>
-                                            </div>
-                                            <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="${spend.numberAvailable}" id="spenMatrixNumberAvailable${spend.numberAvailable}"/>
-                                        </div>
-                                    </g:each>
-                                    <g:hiddenField name="lastSpendField" id="lastSpendField" value="${spendLastNumAvail}"/>
-                                </g:if>
-                                <g:else>
-                                    <div class="spend-matrix-template" id="spend-matrix-template1">
+                <div class="col-sm-12 cr-padding-edit-xs">
+                    <div class="cr-spend-matrix">
+                        <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-panel-spend-xs"><span class="cr-spend-matrix-font">Spend Matrix</span></label>
+                        <label class="col-md-10 col-sm-9 col-xs-12 cr-panel-spend-matrix-guide cr-spend-guide-text">The matrix will be displayed as a pie chart on your campaign page for your contributors to know how the contributions or funds raised will be utilized</label>
+                    </div>
+                    <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-spendMatrix-height">
+                        <div class="col-sm-9 col-xs-12 spend-matrix">
+                            <g:if test="${spendCount > 0}">
+                                <g:each in="${spends}" var="spend">
+                                    <div class="spend-matrix-template" id="spend-matrix-template${spend.numberAvailable}">
+                                        <g:if test="${spend.numberAvailable > 1}"><br class="hidden-lg hidden-md hidden-sm"></g:if>
                                         <div class="col-sm-amt col-sm-12">
                                             <span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>
                                             <div class="form-group col-sm-3 col-xs-4 col-sm-input-group">
-                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                                    <span class="fa fa-inr cr-currency"></span>
+                                                <g:if test="${project.payuStatus}">
+                                                     <span class="fa fa-inr cr-currency"></span>
                                                 </g:if>
                                                 <g:else>
-                                                    <span class="fa fa-usd cr-currency"></span>
+                                                     <span class="fa fa-usd cr-currency"></span>
                                                 </g:else>
-                                                <input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount1" name="spendAmount1">
+                                                <input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount${spend.numberAvailable}" value="${spend.amount.round()}" name="spendAmount${spend.numberAvailable}">
                                                 <span class="digitsError"></span>
                                             </div>
                                             <span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>
                                             <div class="col-sm-5 col-xs-7 col-input-for form-group">
-                                                <input type="text" class="form-control form-control-input-for spendCause" id="spendCause1" name="spendCause1">
+                                                <input type="text" class="form-control form-control-input-for spendCause" id="spendCause${spend.numberAvailable}" name="spendCause${spend.numberAvailable}" value="${spend.cause}">
                                             </div>&nbsp;&nbsp;
                                             <div class="clear visible-xs"></div>
                                             <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
-                                                <g:hiddenField name="spendFieldSave" value="1" class="spendFieldSave" id="spendFieldSave1"/>
+                                                <g:hiddenField name="spendFieldSave" value="${spend.numberAvailable}" class="spendFieldSave" id="spendFieldSave${spend.numberAvailable}"/>
                                                 <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>
                                             </div>
-                                            <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateAdd" id="spendMatrixTemplateAdd1">
+                                            <g:if test="${spend.numberAvailable != 1}">
+                                                <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateDelete">
+                                                    <input type="hidden" name="spendFieldDelete" value="${spend.numberAvailable}" class="spendFieldDelete">
+                                                    <i class="glyphicon glyphicon-trash glyphicon-size"></i>
+                                                </div>
+                                            </g:if>
+                                            <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateAdd <g:if test="${spend.numberAvailable != spendLastNumAvail}">display-none</g:if>" id="spendMatrixTemplateAdd${spend.numberAvailable}">
                                                 <i class="glyphicon glyphicon-plus glyphicon-size"></i>
                                             </div>
                                         </div>
-                                        <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="1" id="spenMatrixNumberAvailable1"/>
+                                        <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="${spend.numberAvailable}" id="spenMatrixNumberAvailable${spend.numberAvailable}"/>
                                     </div>
-                                    <g:hiddenField name="lastSpendField" id="lastSpendField" value="1"/>
-                                </g:else>
-                            </div>
-                            <div class="col-sm-offset-0 col-sm-3 col-xs-offset-1 col-xs-11 pieChart pieChart-edit">
-                                <g:render template="create/pieChartWithoutLabel"/>
-                            </div>
-                            <div class="clear"></div>
-                            <div class="height-xs">
-                                <span class="saved-message">Spend Saved</span>
-                            </div>
+                                </g:each>
+                                <g:hiddenField name="lastSpendField" id="lastSpendField" value="${spendLastNumAvail}"/>
+                            </g:if>
+                            <g:else>
+                                <div class="spend-matrix-template" id="spend-matrix-template1">
+                                    <div class="col-sm-amt col-sm-12">
+                                        <span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>
+                                        <div class="form-group col-sm-3 col-xs-4 col-sm-input-group">
+                                            <g:if test="${project.payuStatus}">
+                                                <span class="fa fa-inr cr-currency"></span>
+                                            </g:if>
+                                            <g:else>
+                                                <span class="fa fa-usd cr-currency"></span>
+                                            </g:else>
+                                            <input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount1" name="spendAmount1">
+                                            <span class="digitsError"></span>
+                                        </div>
+                                        <span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>
+                                        <div class="col-sm-5 col-xs-7 col-input-for form-group">
+                                            <input type="text" class="form-control form-control-input-for spendCause" id="spendCause1" name="spendCause1">
+                                        </div>&nbsp;&nbsp;
+                                        <div class="clear visible-xs"></div>
+                                        <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
+                                            <g:hiddenField name="spendFieldSave" value="1" class="spendFieldSave" id="spendFieldSave1"/>
+                                            <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>
+                                        </div>
+                                        <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateAdd" id="spendMatrixTemplateAdd1">
+                                            <i class="glyphicon glyphicon-plus glyphicon-size"></i>
+                                        </div>
+                                    </div>
+                                    <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="1" id="spenMatrixNumberAvailable1"/>
+                                </div>
+                                <g:hiddenField name="lastSpendField" id="lastSpendField" value="1"/>
+                            </g:else>
+                        </div>
+                        <div class="col-sm-offset-0 col-sm-3 col-xs-offset-1 col-xs-11 pieChart pieChart-edit">
+                            <g:render template="create/pieChartWithoutLabel"/>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="height-xs">
+                            <span class="saved-message">Spend Saved</span>
                         </div>
                     </div>
-
+                </div>
+                    
+                <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
                     <div class="col-sm-12 cr-padding-edit-xs">
                         <div class="cr-spend-matrix">
                             <label class="col-md-4 col-sm-6 col-xs-12 text-center cr-panel-spend-matrix cr-panel-qa"><span class="cr-spend-matrix-font">Your Contributors Want to Know</span></label>
@@ -481,31 +488,56 @@
                         </div>
                         <div class="panel panel-body cr-panel-body-spend-matrix">
                             <div class="col-sm-12 col-xs-12 zero-padding">
-                                1. Did you try other fundraising methods ?
+                                1. Did you try other fundraising methods?
                                 <div class="question-ans form-group">
                                     <p><input type="radio" name="ans1" class="ans1" value="yes" <g:if test="${qA && qA.ans1 && qA.ans1 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
                                     <input type="radio" name="ans1" class="ans1" value="no" <g:if test="${qA && qA.ans1 && qA.ans1 == 'NO'}">checked="checked"</g:if>>&nbsp;NO</p>
                                     <textarea name="ansText1" class="ansText ansText1 form-control <g:if test="${ans1val}">display-block-text1</g:if><g:else>display-none-text1</g:else>">${ans1val}</textarea>
                                 </div><br>
-                                2. Why do you want to crowdfund ?
+                                
+                                2. Why do you want to crowdfund?
                                 <div class="question-ans form-group">
                                     <textarea class="ansText ansText2 form-control" name="ansText2">${ans2val}</textarea>
                                 </div><br>
-                                3. Have you crowdfunded before ?
+                                
+                                3. Have you crowdfunded before?
                                 <div class="question-ans form-group">
                                     <p><input type="radio" name="ans3" class="ans3" value="yes" <g:if test="${qA && qA.ans3 && qA.ans3 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
                                     <input type="radio" name="ans3" class="ans3" value="no" <g:if test="${qA && qA.ans3 && qA.ans3 == 'NO'}">checked="checked"</g:if>>&nbsp;NO</p>
                                     <textarea class="ansText ansText3 form-control <g:if test="${ans3val}">display-block-text3</g:if><g:else>display-none-text3</g:else>" name="ansText3">${ans3val}</textarea>
                                 </div><br>
-                                4. If you don't recieve 100% goal what will you do.
+                                
+                                4. If you don't recieve 100% goal what will you do?
                                 <div class="question-ans form-group">
                                     <p><input type="radio" name="ans4" class="ans4 extend-deadline" value="extend-deadline" <g:if test="${qA && qA.ans4 && qA.ans4 == 'extend-deadline'}">checked="checked"</g:if>>&nbsp;I would extend my deadline.</p>
                                     <p><input type="radio" name="ans4" class="ans4 personally-raising" value="personally-raising" <g:if test="${qA && qA.ans4 && qA.ans4 == 'personally-raising'}">checked="checked"</g:if>>&nbsp;I will personally start walking towards cause using raised funds.</p>
                                     <p><input type="radio" name="ans4" class="ans4 contact-admin" value="contact-admin" <g:if test="${qA && qA.ans4 && qA.ans4 == 'contact-admin'}">checked="checked"</g:if>>&nbsp;I will contact crowdera admin.</p>
                                 </div>
+                                
+                                5. What are the issues you or your organization is facing with regards to funding?
+                                <div class="question-ans form-group">
+                                    <textarea class="ansText ansText5 form-control" name="ansText5">${ans5val}</textarea>
+                                </div>
+                                
+                                6. Why are you crowdfunding at this moment?
+                                <div class="question-ans form-group">
+                                    <textarea class="ansText ansText6 form-control" name="ansText6">${ans6val}</textarea>
+                                </div>
+                                
+                                7. What will you do if you do not reach your goal within the chosen deadline? Will you still complete your project?
+                                <div class="question-ans form-group">
+                                    <textarea class="ansText ansText7 form-control" name="ansText7">${ans7val}</textarea>
+                                </div>
+                                
+                                8. Why should the contributors trust you?
+                                <div class="question-ans form-group">
+                                    <textarea class="ansText ansText8 form-control" name="ansText8">${ans8val}</textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    
+                </g:if>
                     
                     <div class="col-sm-12 cr-padding-edit-xs">
                         <div class="cr-spend-matrix">
@@ -540,7 +572,6 @@
                             <textarea name="hashtags" class="hashtags form-control">${project.hashtags}</textarea>
                         </div>
                     </div>
-               </g:if>
                      
                <div class="col-sm-12 manage-Top-tabs-mobile" id="admins">
                    <div class="cr-tabs-admins cr-safari">
@@ -770,19 +801,19 @@
                  </div>
                 </div>
 
-                <div id="addNewRewards">
+            <div id="addNewRewards">
                 <g:if test="${rewardItrCount > 0}">
-                <g:each in="${projectRewards}" var="reward">
-                <%
-        def shippingInfo = rewardService.getRewardShippingObjectByReward(reward);
-     def price = (reward.price).round();
-     lastrewardCount = reward.rewardCount
-    %>
+                    <g:each in="${projectRewards}" var="reward">
+                    <%
+                        def shippingInfo = rewardService.getRewardShippingObjectByReward(reward);
+                        def price = (reward.price).round();
+                        lastrewardCount = reward.rewardCount
+                    %>
                     <div class="rewardsTemplate" id="rewardTemplate${reward.rewardCount}" value="${reward.rewardCount}">
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                    <g:if test="${project.payuStatus}">
                                         <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
                                         <input type="text" placeholder="Amount" name="rewardPrice${reward.rewardCount}" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${reward.rewardCount}" value="${price}">
                                     </g:if>
@@ -866,7 +897,7 @@
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                    <g:if test="${project.payuStatus}">
                                         <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
                                         <input type="text" placeholder="Amount" name="rewardPrice1" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice1">
                                     </g:if>
@@ -951,7 +982,7 @@
                     </div>
                 </div><br>
                 <div class="form-group">
-                    <g:if test ="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                    <g:if test ="${project.payuStatus}">
                         <div id="PayUMoney">
                              <div class="form-group">
                                  <label class="col-sm-4 control-label">Email</label>
@@ -1032,7 +1063,7 @@
 
                     <div class="col-sm-12">
                         <div class="col-md-offset-4 col-md-8 col-sm-offset-3 col-sm-9">
-                            <div class="form-group form-group-termsOfUse <g:if test="${(project.fundsRecievedBy != 'NGO' && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')) || (project.fundsRecievedBy != 'NON-PROFIT' && (currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv == 'development'))}">tax-reciept</g:if>" id="tax-reciept">
+                            <div class="form-group form-group-termsOfUse <g:if test="${(project.fundsRecievedBy != 'NGO' && (project.payuStatus)) || (project.fundsRecievedBy != 'NON-PROFIT' && (currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv == 'development'))}">tax-reciept</g:if>" id="tax-reciept">
                                 <input type="checkbox" name="tax-reciept-checkbox" id="tax-reciept-checkbox" class="tax-reciept-checkbox" <g:if test="${project.offeringTaxReciept}">checked="checked"</g:if>>
                                 Do you want to offer receipt to your contributors?
                             </div>
@@ -1046,7 +1077,7 @@
                             </label>
                         </div>
                         <div class="panel panel-body cr-panel-body-spend-matrix form-group cr-panel-body">
-                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                            <g:if test="${project.payuStatus}">
                             <g:if test="${taxReciept}">
                              <div class="row">
                              <div class="col-sm-4">

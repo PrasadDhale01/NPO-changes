@@ -974,7 +974,6 @@ class UserController {
         if (request.xhr) {
             if (partner) {
                 if (partner.user == user) {
-                    def partnerId = params.partnerId
                     def status = userService.isCustomUrlUnique(params, partner)
                     render status
                 } else {

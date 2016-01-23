@@ -38,7 +38,7 @@
 		<div class="teamtileseperator"></div>
 
         <div class="tab-content">
-            <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="manageTeam">
+            <div class="tab-pane active col-md-12 col-sm-12 col-xs-12 col-xs-p-0" id="manageTeam">
                 <div class="teamList" id="teamList">
                     <g:render template="manageproject/teamgrid"/>
                 </div>

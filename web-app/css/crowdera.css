@@ -1668,7 +1668,7 @@ div.tile-min-height{
     font-weight:bold;
     margin-bottom: 0px;
     margin-top: 0px;
-    padding-left:6px;
+/*     padding-left:6px; */
     color: #01bbd3;
     padding-bottom: 20px;
     padding-top: 18px;
@@ -2451,13 +2451,11 @@ a.footerlink {
 	padding: 13px;
 }
 .perks-style{
-	border-bottom-style:solid;
-	border-bottom-width:1px;
 	border-left-width: 0px;
-    	border-right-width: 0px;
-    	border-top-width: 0px;
-    	background-color: #e7e7e7;
-    	border-color: #dadada #dadada #b2b2b2 #c9c9c9;
+   	border-right-width: 0px;
+   	border-top-width: 0px;
+   	background-color: #e7e7e7;
+   	border-color: #dadada #dadada #b2b2b2 #c9c9c9;
 	margin-top: -3px;
 	text-align: left;
 	height: 90px;
@@ -3104,10 +3102,9 @@ ul.menu{
 	margin-bottom:8px;
 }
 .pan{
-	max-width: 280px;
 	height: 100px;
 	overflow: hidden;
-	display: table-cell;
+/* 	display: table-cell; */
 	word-wrap: break-word;
 }
 .pn-word h4 {
@@ -4611,7 +4608,6 @@ ul.personalDetailClasses, menu, dir {
 	font-weight: 600;
 	font-size: 18px;
 	word-wrap: break-word;
-	padding-top: 10px;
 }
 p {
         word-wrap: break-word;
@@ -5498,6 +5494,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /**********************Start of Media CSS*******************************/
 
 @media only screen and (min-width: 768px){
+	div.managecampaign-hashtag.manage-social {
+        padding-left: 25px;
+    }
+	.reasons-title h2.rewardsectionheading {
+        padding-top: 14px;
+    }
     #chart-container #graph{
         margin-left: -100px;
     }
@@ -5593,6 +5595,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: 10px;
         text-align: center;
     }
+    div.contact-us-top {
+        margin-top: 40px;
+    }
+    div.startsection {
+        margin-top: 20px;
+    }
+    div.feduoutercontent {
+        margin-top: 48px;
+    }
 	.csvbtn, .btnSocialContacts{
        margin-top:8px;
 	}
@@ -5639,15 +5650,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.mange-editupdate-btns {
         margin-left: 6%;
     }
-    ul.mange-active-teams-mobile{
-        margin-right: 6px;
-        padding-left: 5px;
-    }
     div.manage-panel-mobile-size {
         height: 100px;
         margin-bottom: 15px;
-        margin-left: -11px;
-        width: 280px;
+        width: 100%;
     }
     a.mange-contribution-mobile{
         font-size: 11px;
@@ -5701,9 +5707,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     ul.mobile-justified li{
         display: flex !important;
         width: 15%;
-    }
-	div.mange-borders {
-        width: 292px;
     }
 	div.manage-container-page{
         width: 320px;
@@ -6056,7 +6059,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   padding-right: 5px;
 	}
 	.scrollHeader {
-	   display: none;
+/* 	   display: none; */
 	   height: 40px;
 	   margin-bottom: 21px;
 	}
@@ -6085,7 +6088,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   width: 100% !important;
 	}
 	.scrollHeaderMenu li {
-	   border-bottom: 2px solid white;
+       border-bottom: 1px ridge white;
 	   color: white;
 	   font-size: 18px;
 	   font-weight: bold;
@@ -6093,7 +6096,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 	.scrollHeaderMenu li a {
 	   color: white;
-	   font-size: 22px;
+	   font-size: 15px;
 	   font-weight: bold;
 	   text-decoration:none;
 	}
@@ -6294,9 +6297,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         border-right: 2px solid #6d6e6e;
         margin-left: -22px;
     }
-    div.sh-alignedteamtiles{
-        left: 16px;
-    }
+/*     div.sh-alignedteamtiles{ */
+/*         left: 16px; */
+/*     } */
     div.show-msz {
         margin-left: 17px;
         margin-top: 5px;
@@ -6321,7 +6324,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-right: 26px;
     }
     a.sho-fb-color{
-        background-color: rgb(118, 134, 179);
+        background-color: #3b5998;
         font-size: 17px;
         padding-top: 9px;
     }
@@ -6341,12 +6344,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     li.sh-teamtabmobiles {
         left: 2px;
-        width: 112% !important;
+        width: 100% !important;
     }
     li.show-team {
         font-size: 16px;
         margin-left: 3px;
-        width: 111% !important;
+        width: 100% !important;
     }
     div.sh-mobiletabs{
         padding-left: 90px;
@@ -6366,10 +6369,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         color: #01bbd3;
         text-decoration: none;
     }
-    div.sh-mobilecontibutionpadding{
-        margin-left: -14px;
-        width: 313px;
-    }
+/*     div.sh-mobilecontibutionpadding{ */
+/*         margin-left: -14px; */
+/*         width: 313px; */
+/*     } */
     li.sh-teamsactive {
         left: -10px;
         margin-left: -20px;
@@ -6381,7 +6384,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.sh-comments-align{
 	    padding-left: 0;
         padding-right: 0;
-        width: 312px;
+/*         width: 312px; */
     }
     div.sh-comnt-align{
         margin-left: -16px;
@@ -6409,10 +6412,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: -21px;
         width: 111%;
     }
-    div.sh-mobperks{
-        margin-left: 2px;
-        width: 110%;    
-    }
+/*     div.sh-mobperks{ */
+/*         margin-left: 2px; */
+/*         width: 110%;     */
+/*     } */
     div.show-tops-corsal {
         margin-top: 6px;
         padding-left: 14px;
@@ -6441,8 +6444,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    margin-right: auto;
     }
     div.show-mobile-update{
-        margin-left: 2px;
-        width: 110%;
+/*         margin-left: 2px; */
+/*         width: 110%; */
+        margin-top: 20px;
     }
     div.show-mobiletabs-top {
         padding-top: 15px;
@@ -6461,13 +6465,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         color: white;
     }
     a.mob-show-fb {
-        width: 111%;
+        width: 105%;
     }
     input.show-mob-btnJoinOur {
         background-color: #f6bf0b;
         color: black;
         text-decoration: none;
-        width: 111% !important;
+        width: 105% !important;
         color: #fff;
         font-size: 21px;
         font-family: Ubuntu Condensed;
@@ -6484,7 +6488,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    padding-left: 7px;
         padding-right: 7px;
         border: 1px solid #e3e3e3;
-        width: 111%;
+        width: 105%;
 	}
     button.mob-show-sucessend {
 /*         margin-top: -21px; */
@@ -7030,7 +7034,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		display:blockk;
 		margin-left:auto;
 		margin-right:auto;
-		width:275px;
 	}
 	.mng-contribution-center-alignment{
 		display:block;
@@ -7751,6 +7754,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+    .reasonsToFund .badge1 {
+        font-size: 28px;
+    }
     a.sh-fund-2header {
         width: 125px;
         font-size: 20px;
@@ -7851,22 +7857,25 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-top: 4px;
     }
     a.sho-fb-color{
-        background-color: rgb(118, 134, 179);
+        background-color: #3b5998;
         font-size: 17px;
         padding-top: 9px;
     }
-    div.show-perksRewardtabs{
-        margin-top: 117px;
-	}
+/*     div.show-perksRewardtabs{ */
+/*         margin-top: 117px; */
+/* 	} */
 /* 	div.perks-supporters { */
 /*         margin-top: 120px; */
 /*     } */
     div.show-description {
-        margin-top: 24px;
-        height: 82px;
+        margin-top: 9px;
+        height: 90px;
+    }
+    .impactassessment .panel-default p {
+        font-size: 15px;
     }
     a.show-btn-sh-fb {
-        margin-bottom: 26px;
+        margin-bottom: 108px;
     }
     div.organization-details h4 {
         margin-top: -25px;
@@ -8185,9 +8194,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-right: 2px;
         padding-left: 5px;
         height: 54px;
-    }
-    div.mange-borders {
-        width: 718px;
     }
     div.manage-container-page{
         width: 750px;
@@ -8649,11 +8655,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 110%;
     }
     p.campaignDescription {
-        font-size: 13px;
+        font-size: 14px;
     }
     h2.sh-fundclosed-mobile{
         font-size: 20px !important;
         padding-top: 13px !important;
+    }
+    .reasons-title h2.rewardsectionheading {
+        font-size: 24px;
+        padding-top: 0px;
     }
     h2.rewardsectionheading {
 	    font-size: 24px;
@@ -9972,9 +9982,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 	.show-tile-text-size.contribution-tile.show-contribution-amt-tile {
 		font-size: 10px;
-		line-height: 5px;
+		line-height: 6px;
 		margin-bottom: 0;
-		margin-top: 10px;
+		margin-top: 6px;
 		padding-left: 17px !important;
 		padding-right: 17px !important;
 	}
@@ -10039,6 +10049,37 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	div.sh-mobperks {
+	    margin-top: 15px;
+	}
+    .mange-story-imgs #chart-container #graph {
+        height: 180px;
+        width: 420px;
+        margin-left: -135px;
+        margin-bottom: 25px;
+    }
+    .managecampaignDescription {
+        min-height: 50px;
+        height: 100%;
+    }
+	.col-xs-p-0 {
+	    padding-left: 0px;
+	    padding-right: 0px;
+	}
+	.mange-story-imgs {
+        margin-top: 30px;
+    }
+	li.perk-grid-paddings{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .reasonsToFund .badge1 {
+        font-size: 32px;
+    }
+    .contribution-inner-tile .top-pan{
+        padding-left: 0;
+        padding-right: 0;
+    }
 	.zero-padding.col-xs-12 {
 	    padding-left: 0px;
 	    padding-right: 0px;
@@ -10199,9 +10240,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         height: 45px;
         width: 145% !important;
     }
+    
+    .question-ans {
+        padding-top: 5px;
+        padding-left: 10px;
+    }
 
     .ansText{
-        width:82% !important;
+        width:95% !important;
         margin-top: 5px;
     }
 
@@ -10354,7 +10400,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-bottom: 0;
     }
     #partner-tab-content {
-        margin-top: 30px;
+        margin-top: 93px;
     }
     .partner-dashboard .green-heading {
         font-size: 18px;
@@ -10753,14 +10799,24 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	.reasonsToFund .badge1 {
+        font-size: 28px;
+    }
+	div.show-description {
+        margin-top: 9px;
+        height: 90px;
+    }
+    .impactassessment .panel-default p {
+        padding: 3px 0px;
+        font-size: 14px;
+    }
     div.show-description {
         background-color: #e7e7e7;
         height: 81px;
-        margin-top: 32px;
+        margin-top: 24px;
         padding-bottom: 9px;
         padding-left: 9px;
         padding-top: 10px;
-        margin-left: -13px;
         color: #000;
     }
 	.partner-show-tile {
@@ -12726,6 +12782,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /*Screen resolution 644 x 767 */
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.campaign-tile-xs {
+	    padding-left: 0px;
+	}
     .cr-icon-tabs-info {
         font-size: 18px;
         padding: 10px 22px;
@@ -13687,9 +13746,9 @@ textarea.textarea-embed-video {
 	.team-footer {
 		margin-left: 7px !important;
 	}
-	.nav-pills {
-		margin-right: 13px;
-	}
+/* 	.nav-pills { */
+/* 		margin-right: 13px; */
+/* 	} */
 	.button-team-show{
 		padding: 0px !important;
 		margin: 4px !important;
@@ -13882,9 +13941,6 @@ textarea.textarea-embed-video {
 	}
 	.team-footer {
 		margin-left: 7px !important;
-	}
-	.nav-pills {
-		margin-right: 13px;
 	}
 	.button-team-show{
 		padding: 0px !important;
@@ -14175,15 +14231,10 @@ textarea.textarea-embed-video {
     input#hiddencharId {
         font-size: 12px;
     }
-	li.perk-grid-paddings{
-        padding-left: 40px;
-        padding-right: 40px;
-	}
 	div.pan {
-		max-width: 225px;
 		height: 116px;
 		overflow: hidden;
-		display: table-cell;
+/* 		display: table-cell; */
 		word-wrap: break-word;
     }
 	div.edits {
@@ -14231,6 +14282,15 @@ textarea.textarea-embed-video {
         position: initial;
         margin-top: 10px;
         text-align: center;
+    }
+    div.contact-us-top {
+        margin-top: 40px;
+    }
+    div.startsection {
+        margin-top: 20px;
+    }
+    div.feduoutercontent {
+        margin-top: 48px;
     }
 	.csvbtn, .btnSocialContacts{
 	   margin-top:8px;
@@ -14283,15 +14343,10 @@ textarea.textarea-embed-video {
     input.manage-mobile-title {
         width: 94%;
     }
-    ul.mange-active-teams-mobile{
-        margin-right: 6px;
-        padding-left: 5px;
-    }
     div.manage-panel-mobile-size {
         height: 100px;
         margin-bottom: 15px;
-        margin-left: -11px;
-        width: 280px;
+        width: 100%;
     }
     div.manage-report-offline-lft {
         left: 11px;
@@ -14348,9 +14403,6 @@ textarea.textarea-embed-video {
     ul.mobile-justified li{
         display: flex !important;
         width: 15%;
-    }
-	div.mange-borders {
-        width: 279px;
     }
     div.manage-container-page{
         width: 320px;
@@ -14682,15 +14734,15 @@ textarea.textarea-embed-video {
 	   width: 100% !important;
 	}
 	.scrollHeaderMenu li {
-	   border-bottom: 2px solid white;
+	   border-bottom: 1px ridge white;
 	   color: white;
 	   font-size: 18px;
 	   font-weight: bold;
-	   line-height: 42px;
+	   line-height: 35px;
 	}
 	.scrollHeaderMenu li a {
 	   color: white;
-	   font-size: 20px;
+	   font-size: 14px;
 	   font-weight: bold;
 	   text-decoration:none;
 	}
@@ -14881,6 +14933,9 @@ textarea.textarea-embed-video {
 	div.perks-style {
         height: 94px;
     }
+    .reasons-title h2.rewardsectionheading {
+        padding-top: 5px;
+    }
     h2.rewardsectionheading {
         padding-top: 15px;
     }
@@ -14892,12 +14947,13 @@ textarea.textarea-embed-video {
     }
 	div.sh-mobiles-top{
         padding-top: 10px;
+        padding-left: 8px;
 	}
 	i.sh-fb-icons{
         padding-right: 26px;
 	}
 	a.sho-fb-color{
-        background-color: rgb(118, 134, 179);
+        background-color: #3b5998;
         font-size: 17px;
         padding-top: 9px;
     }
@@ -14912,7 +14968,7 @@ textarea.textarea-embed-video {
 		padding-right: 9px;
     }
     li.button-team-show {
-        width: 103% !important;
+        width: 100% !important;
     }
 	div.sh-mobiletabs{
 	    padding-left: 76px;
@@ -14953,7 +15009,8 @@ textarea.textarea-embed-video {
 	div.sh-comments-align{
         padding-left: 0;
         padding-right: 0;
-        width: 291px;
+/*         width: 291px; */
+        margin-top: 20px;
     }
 	div.sh-comnt-align{
         margin-left: 1px;
@@ -14984,10 +15041,10 @@ textarea.textarea-embed-video {
 	div.sh-mobile-tile{
 	   width: 290px !important;
 	}
-    div.sh-mobperks {
-        left: -14px;
-        width: 105%;
-    }
+/*     div.sh-mobperks { */
+/*         left: -14px; */
+/*         width: 105%; */
+/*     } */
     div.show-tops-corsal {
         margin-top: 6px;
     }
@@ -15015,7 +15072,8 @@ textarea.textarea-embed-video {
 	    margin-right: auto;
 	}
 	div.show-mobile-update{
-	    width: 104%;
+/* 	    width: 104%; */
+        margin-top: 20px;
 	}
     div.show-mobiletabs-top {
         padding-top: 15px;
@@ -15034,12 +15092,12 @@ textarea.textarea-embed-video {
         color: white;
     }
 	a.mob-show-fb {
-        width: 104%;
+        width: 103%;
     }
     input.show-mob-btnJoinOur {
 		background-color: #f6bf0b;
 		text-decoration: none;
-		width: 104% !important;
+		width: 103% !important;
         color: #fff;
         font-size: 21px;
         font-family: Ubuntu Condensed;
@@ -15056,7 +15114,7 @@ textarea.textarea-embed-video {
 	    padding-left: 7px;
         padding-right: 7px;
         border: 1px solid #e3e3e3;
-        width: 104%;
+        width: 103%;
 	}
     button.mob-show-sucessend {
 /*         margin-top: -21px; */
@@ -15182,9 +15240,6 @@ textarea.textarea-embed-video {
 	.show-cmpgn-container{
 		width:310px !important;
 	}
-    .containrewards {
-        height: 230px !important;
-    }
     a.charitableLink {
         padding-left: 5px;
     }
@@ -15576,7 +15631,6 @@ textarea.textarea-embed-video {
 		display:blockk;
 		margin-left:auto;
 		margin-right:auto;
-		width:275px;
 	}
 	.term-of-use-center-alignment{
 		display: block;
@@ -15842,7 +15896,7 @@ textarea.textarea-embed-video {
 	}
 	.tile-pad {
     	padding: 0 !important;
-    	width: 290px !important;
+    	width: 295px !important;
 	}
 	.footer-newsletter .help-block {
     	color: #f04124;
@@ -16238,7 +16292,7 @@ textarea.textarea-embed-video {
 }
 .show-btn-sh-fb{
 	 background-color: #4c69ba;
-	 margin-bottom: 102px;
+	 margin-bottom: 103px;
 	 height: 50px;
      padding-top: 8px;
 }
@@ -16352,7 +16406,7 @@ textarea.textarea-embed-video {
     margin-bottom: 0;
 }
 .sh-perks-preview {
-    margin-top: 98px;
+    margin-top: 20px;
 }
 /* .sh-none-pft { */
 /*     padding-left: 45px; */
@@ -16371,8 +16425,7 @@ textarea.textarea-embed-video {
     padding-bottom: 9px;
     padding-left: 9px;
     padding-top: 10px;
-    margin-left: -16px;
-    color: #000;
+    color: #5a6771;
 }
 .sh-contrialignment{
 	margin-top: -19px;
@@ -16721,7 +16774,7 @@ a#downloadEbook{
     padding-top: 2px;
 }
 .sho-fb-color{
-    background-color: rgb(118, 134, 179);
+    background-color: #3b5998;
     font-size: 17px;
     padding-top: 9px;
     font-weight: bold;
@@ -16739,7 +16792,7 @@ a#downloadEbook{
     width: 100%;
 }
 .scrollHeader{
-	display:none;
+/* 	display:none; */
 	height: 40px;
 	margin-bottom: 21px; 
 }
@@ -17370,4 +17423,7 @@ input[readonly] {
 .csv-empty-emails-error{
 	display:block;
 	color: #f04124;
+}
+.reasons-title {
+    padding: 5px;
 }

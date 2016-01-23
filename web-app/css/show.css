@@ -1,0 +1,47 @@
+.reasonsToFund {
+    border: 5px solid rgba(231, 231, 231, 0.73);
+    margin-top: 4px;
+    margin-bottom: 4px;
+    text-align: left;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+.reasonspadding {
+    padding: 5px;
+    overflow: auto;
+}
+.reasonsToFund .badge1 {
+    font-size: 38px;
+    font-weight: 900;
+    font-family: fantasy;
+    color: #01BBD3;
+}
+.col-plr-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.col-plr-5 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.col-p-5 {
+    padding: 5px;
+}
+.impactassessment .panel-default {
+    border: #e7e7e7;
+    background-color: #e7e7e7;
+    height: 90px;
+    margin-top: -3px
+}
+.impactassessment .panel-default p {
+    color: #5a6771;
+    font-weight: 900;
+    font-family: sans-serif;
+    font-size: 19px;
+}
+.impactassessment .panel-body {
+    padding: 5px;
+}
+.managecampaign-hashtag {
+    
+}

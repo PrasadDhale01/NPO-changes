@@ -5570,6 +5570,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.contact-us-top {
+        margin-top: 40px;
+    }
+    div.startsection {
+        margin-top: 20px;
+    }
+    div.feduoutercontent {
+        margin-top: 48px;
+    }
 	.csvbtn, .btnSocialContacts{
        margin-top:8px;
 	}
@@ -6025,7 +6034,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   padding-right: 5px;
 	}
 	.scrollHeader {
-	   display: none;
+/* 	   display: none; */
 	   height: 40px;
 	   margin-bottom: 21px;
 	}
@@ -6054,7 +6063,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   width: 100% !important;
 	}
 	.scrollHeaderMenu li {
-	   border-bottom: 2px solid white;
+       border-bottom: 1px ridge white;
 	   color: white;
 	   font-size: 18px;
 	   font-weight: bold;
@@ -6062,7 +6071,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 	.scrollHeaderMenu li a {
 	   color: white;
-	   font-size: 22px;
+	   font-size: 15px;
 	   font-weight: bold;
 	   text-decoration:none;
 	}
@@ -10359,7 +10368,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-bottom: 0;
     }
     #partner-tab-content {
-        margin-top: 30px;
+        margin-top: 93px;
     }
     .partner-dashboard .green-heading {
         font-size: 18px;
@@ -14209,6 +14218,15 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.contact-us-top {
+        margin-top: 40px;
+    }
+    div.startsection {
+        margin-top: 20px;
+    }
+    div.feduoutercontent {
+        margin-top: 48px;
+    }
 	.csvbtn, .btnSocialContacts{
 	   margin-top:8px;
 	}
@@ -14651,15 +14669,15 @@ textarea.textarea-embed-video {
 	   width: 100% !important;
 	}
 	.scrollHeaderMenu li {
-	   border-bottom: 2px solid white;
+	   border-bottom: 1px ridge white;
 	   color: white;
 	   font-size: 18px;
 	   font-weight: bold;
-	   line-height: 42px;
+	   line-height: 35px;
 	}
 	.scrollHeaderMenu li a {
 	   color: white;
-	   font-size: 20px;
+	   font-size: 14px;
 	   font-weight: bold;
 	   text-decoration:none;
 	}
@@ -16709,7 +16727,7 @@ a#downloadEbook{
     width: 100%;
 }
 .scrollHeader{
-	display:none;
+/* 	display:none; */
 	height: 40px;
 	margin-bottom: 21px; 
 }

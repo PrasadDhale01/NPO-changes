@@ -64,11 +64,11 @@ class UserController {
     def userprofile(String userViews, String activeTab){
         User user = (User)userService.getCurrentUser()
         def environment = Environment.current.getName()
-        
+
         if (flash.prj_validate_message) {
             flash.prj_validate_message= "Campaign Discarded Successfully"
         }
-        
+
         if (userService.isAdmin()) {
             redirect action: 'admindashboard'
         } else if(userService.isPartner() && userService.isPartnerValidated(user)) {
@@ -111,27 +111,18 @@ class UserController {
             }
             def multiplier = projectService.getCurrencyConverter();
             def countryOpts = [India: 'INDIA', USA: 'USA']
-<<<<<<< HEAD
-
             def isUserProjectHavingContribution = userService.isUserProjectHavingContribution(user, environment)
-
-            render view: userViews, 
-            model: [user: user, projects: project, totalCampaings: totalCampaings,country: country, fundRaised: fundRaised, state: state,
-                    activeTab:activeTab, environment: environment, contributedAmount: contributedAmount, multiplier: multiplier, countryOpts: countryOpts,
-                    contributions: contribution.contributions, totalContributions : contribution.totalContributions, sortByOptions: sortByOptions,
-                    isUserProjectHavingContribution:isUserProjectHavingContribution]
-=======
-            
             def partner = userService.getPartnerByUser(user)
-            
-            render view: userViews, model: [user: user, projects: project, totalCampaings: totalCampaings,country: country, fundRaised: fundRaised, state: state,
-                                            activeTab:activeTab, environment: environment, contributedAmount: contributedAmount, multiplier: multiplier, countryOpts: countryOpts,
-                                            contributions: contribution.contributions, totalContributions : contribution.totalContributions, sortByOptions: sortByOptions,
-                                            partner: partner]
->>>>>>> upstream/master
+                
+            render view: userViews,
+            model: [user: user, projects: project, totalCampaings: totalCampaings,country: country, fundRaised: fundRaised, 
+            state: state, activeTab:activeTab, environment: environment, contributedAmount: contributedAmount, 
+            multiplier: multiplier, countryOpts: countryOpts, contributions: contribution.contributions, 
+            totalContributions : contribution.totalContributions, sortByOptions: sortByOptions, partner: partner,
+            isUserProjectHavingContribution:isUserProjectHavingContribution]
         }
     }
-    
+
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def myproject() {
         userprofile('user/myproject',null)

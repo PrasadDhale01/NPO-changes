@@ -1348,4 +1348,34 @@ class MandrillService {
 
         inviteToShare(contribution.contributorEmail, 'sendContributorUsernameAndPassword', globalMergeVars, tags)
     }
+    
+    def sendEmailOnValidation(def environment, def emails, Project project) {
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:project.user.username], absolute: true)
+        
+        if (environment != 'development') {
+            emails.each { email ->
+                if (email)  {
+                    def globalMergeVars = [[
+                            'name': 'TITLE',
+                            'content': project.title
+                        ], [
+                            'name': 'CATEGORY',
+                            'content': project.category
+                        ], [
+                            'name':'Email',
+                            'content' : email
+                        ], [
+                            'name':'LINK',
+                            'content' : link
+                        ]
+                    ]
+    
+                    def tags = ['recommendation-engine']
+    
+                    inviteToShare(email,'recommendation-engine', globalMergeVars, tags)
+                }
+            }
+        }
+    }
+    
 }

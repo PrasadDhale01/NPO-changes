@@ -5568,6 +5568,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.contact-us-top {
+        margin-top: 40px;
+    }
+    div.startsection {
+        margin-top: 20px;
+    }
+    div.feduoutercontent {
+        margin-top: 48px;
+    }
 	.csvbtn, .btnSocialContacts{
        margin-top:8px;
 	}
@@ -10322,7 +10331,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-bottom: 0;
     }
     #partner-tab-content {
-        margin-top: 30px;
+        margin-top: 93px;
     }
     .partner-dashboard .green-heading {
         font-size: 18px;
@@ -14167,7 +14176,15 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-   
+    div.contact-us-top {
+        margin-top: 40px;
+    }
+    div.startsection {
+        margin-top: 20px;
+    }
+    div.feduoutercontent {
+        margin-top: 48px;
+    }
 	.csvbtn, .btnSocialContacts{
 	   margin-top:8px;
 	}

@@ -195,6 +195,15 @@ $(function() {
             if (_opened == true) {
                 $("button.navbar-toggle").click();
             }
+            
+//            var _searchBox = $('.search-box');
+//            if(_searchBox){
+//                    var delay = 300;
+//                    setTimeout(function() {
+//                        $('.search-box').hide();
+//                    }, delay);
+//                 
+//            }
         	
         	if (window_top < image_header) {
                 $('.hm-headeropicity').css('opacity','0.60');

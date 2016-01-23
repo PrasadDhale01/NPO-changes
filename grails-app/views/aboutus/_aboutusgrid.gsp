@@ -209,18 +209,33 @@
 	                <div class="clear"></div>
 	        </div>
 
-	        <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
-	                <div class="the-crews thumbnail crew-img-centering">
-	                    <a href="#myCrewDetails" data-toggle="modal"><img class="img-gray" src="//s3.amazonaws.com/crowdera/assets/abt-you-image.jpg" alt="YOU"></a>
-			    <div class="crew-iconss">
-				<a href="https://www.facebook.com/tushar.warhade?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/about-us-facebook-icons.png" alt="facebook"></a>
-				<a href="https://twitter.com/tushar14830" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
-				<a href="https://in.linkedin.com/in/tusharwarhade" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
-			    </div>
-	                </div>
-	                <div class="caption crew-name-centering abt-you-pad abt-name-center">You</div>
-	                <div class="clear"></div>
-	        </div> 
+	        <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs abt-image-tab4cols">
+                    <div class="the-crews thumbnail crew-img-centering">
+                        <img class="img-gray" src="//s3.amazonaws.com/crowdera/assets/reyhansh-image.jpg" alt="Reyhansh">
+                        <div class="crew-icons icons-manage">
+                            <a href="https://www.facebook.com/pratik.jain.543908" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/about-us-facebook-icons.png" alt="facebook"></a>
+                            <a href="https://twitter.com/ReyhanshJain" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
+                        </div>
+                    </div>
+                    <div class="caption crew-name-centering text-center abt-name-center">Reyhansh Jain</div>
+                    <div class="clear"></div>
+            </div>
+	        
+	        </div>
+	        
+	        <div class="abt-us-cardposition col-lg-12">
+		        <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
+                    <div class="the-crews thumbnail crew-img-centering">
+                        <a href="#myCrewDetails" data-toggle="modal"><img class="img-gray" src="//s3.amazonaws.com/crowdera/assets/abt-you-image.jpg" alt="YOU"></a>
+                        <div class="crew-iconss">
+                            <a href="https://www.facebook.com/tushar.warhade?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/about-us-facebook-icons.png" alt="facebook"></a>
+                            <a href="https://twitter.com/tushar14830" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
+                            <a href="https://in.linkedin.com/in/tusharwarhade" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
+                        </div>
+                    </div>
+                    <div class="caption crew-name-centering abt-you-pad abt-name-center">You</div>
+                    <div class="clear"></div>
+	            </div> 
 	        </div>
        </div>  
 <%--     <h3><p class="text-center">Passionate enough to make a difference? We are hiring&nbsp;&nbsp;<a href="#myCrewDetails" class="btn btn-primary btn-sm" data-toggle="modal">Join Our Crew</a></p></h3>--%>

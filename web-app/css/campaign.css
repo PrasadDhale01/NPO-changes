@@ -895,7 +895,7 @@ img.hm-height-width {
     margin-left: -36px;
 }
 .hm-toi {
-    top: -5px;
+    top: 0px;
 }
 .manage-container-page{
 	width: 1000px;
@@ -1134,8 +1134,12 @@ img.home-img-large-size{
 .hm-how-it-work-img {
     bottom: 17%;
     position: absolute;
-    right: 16%;
-    z-index: 1000;
+    right: 3.2%;
+}
+.learn-how-it-work-img{
+    bottom: 17%;
+    position: absolute;
+    right: 3.2%;
 }
 .hm-start-campaign-btn,
 .hm-start-campaign-btn:hover,
@@ -1151,6 +1155,12 @@ img.home-img-large-size{
     font-weight: 900;
     padding: 30px 0 0;
     margin-left: 36px;
+}
+.hm-mediastrip img {
+    margin-top: 9px;
+}
+.abt-us-cardposition{
+	left: 38.4%;
 }
 .show-pageDiscription img {
     width: 100%;

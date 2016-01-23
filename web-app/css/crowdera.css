@@ -5570,6 +5570,31 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.abt-us-cardposition {
+        left: 1.4%;
+    }
+	a.learn-startcampaign-btn {
+        width: 303px;
+    }
+    div.learn-how-it-work-img {
+        margin-top: 10px;
+        position: initial;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    h1.hm-headingtext {
+        font-size: 18px;
+        margin-left: 11px;
+    }
+    div.hm-howitworks-mobile-image{
+        width: 300px;
+        margin: auto;
+    }
+    div.hm-how-it-work-img {
+        position: initial;
+        margin-top: 10px;
+        text-align: center;
+    }
     div.contact-us-top {
         margin-top: 40px;
     }
@@ -8084,10 +8109,17 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.abt-us-cardposition {
+        left: -0.6%;
+    }
+    div.abt-image-tab4cols {
+        left: -14px;
+        padding-left: 20px;
+    }
 	a.hm-start-campaign-btn, .hm-start-campaign-btn:hover, .hm-start-campaign-btn:focus {
 	    background-color: #01bbd3;
 	    color: #fff;
-	    font-size: 12px;
+	    font-size: 14px;
 	    font-weight: 900;
 	}
     a.nav-text2{
@@ -11234,6 +11266,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	div.abt-us-cardposition {
+        left: -0.6%;
+    }
+    div.abt-image-tab4cols {
+        left: -14px;
+        padding-left: 20px;
+    }
     div.cr-btn-color {
         margin-right: 21px;
     }
@@ -14218,6 +14257,32 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.abt-us-cardposition {
+        left: 2.4%;
+    }
+    div.learn-how-it-work-img {
+        margin-top: 10px;
+        position: initial;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    a.learn-startcampaign-btn {
+        width: 303px;
+    }
+    h1.hm-headingtext {
+	    font-size: 18px;
+	    margin-left: 11px;
+    }
+    div.hm-howitworks-mobile-image{
+        width: 300px;
+        margin: auto;
+        padding-top: 4px;
+    }
+    div.hm-how-it-work-img {
+        position: initial;
+        margin-top: 10px;
+        text-align: center;
+    }
     div.contact-us-top {
         margin-top: 40px;
     }

@@ -55,9 +55,8 @@
        </g:else>
     <div class="hidden-xs">
        <g:render template="banner"></g:render>
-    
-       <g:render template="ace"></g:render>
     </div>
+    <g:render template="ace"></g:render>
     
     <div class="hm-section-top"></div>
     <div class="row text-center hm-fontfamily visible-xs">

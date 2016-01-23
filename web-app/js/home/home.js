@@ -144,9 +144,9 @@ $('.hm-js-hover1').hover(function(){
     $('.hm-media-1').attr('src',"//s3.amazonaws.com/crowdera/assets/times-of-india-2-colour.png");
 });
 $('.hm-js-hover2').hover(function(){
-    $('.hm-media-2').attr('src',"//s3.amazonaws.com/crowdera/assets/the-hitavada-colour-samll-2.png");
+    $('.hm-media-2').attr('src',"//s3.amazonaws.com/crowdera/assets/canada-govt-colour.png");
  	}).mouseleave(function(){
-    $('.hm-media-2').attr('src',"//s3.amazonaws.com/crowdera/assets/the-hitavada-white-samll-1.png");
+    $('.hm-media-2').attr('src',"//s3.amazonaws.com/crowdera/assets/canada-govt-white.png");
 });
 $('.hm-js-hover3').hover(function(){
     $('.hm-media-3').attr('src',"//s3.amazonaws.com/crowdera/assets/yahoo-finance-colour-samll-2.png");

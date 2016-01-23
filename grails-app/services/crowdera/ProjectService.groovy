@@ -640,14 +640,14 @@ class ProjectService {
              }
          }
     }
-	
-	def getContributionEditedDetails(def params){
-		def contribution = Contribution.get(params.long('id'))
-		contribution.contributorName = params.contributorName
-		contribution.amount = Double.parseDouble(params.amount)
+
+    def getContributionEditedDetails(def params){
+        def contribution = Contribution.get(params.long('id'))
+        contribution.contributorName = params.contributorName
+        contribution.amount = Double.parseDouble(params.amount)
         contribution.contributorEmail = params.contributorEmail
         contribution.save()
-	}
+    }
 
     def getNumberOfProjects() {
         return Project.count()

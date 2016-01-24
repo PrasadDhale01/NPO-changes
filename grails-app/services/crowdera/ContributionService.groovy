@@ -547,4 +547,51 @@ class ContributionService {
         return ['highestContributionDay':highestContributionDay , 'highestContributionHour': highestContributionHour]
     }
     
+    def getContributorsForProject(def id, def params){
+        Project project = Project.get(id)
+        def totalContributions =  Contribution.findAllWhere(project:project)
+        List contributions
+        if (!totalContributions.empty){
+            def offset = params.offset ? params.int('offset') : 0
+            def max = 10
+            def count = totalContributions.size()
+            def maxrange
+
+            if(offset + max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            contributions = totalContributions.reverse().subList(offset, maxrange)
+        }
+
+        return [totalContributions:totalContributions, contributions:contributions]
+    }
+    
+    def contributorsSortUs(){
+        def sort = [
+            'All':'All',
+            'Anonymous':'Anonymous',
+            'Non-Anonymous':'Non-Anonymous',
+            'Online':'Online',
+            'Offline':'Offline',
+            'Receipt Sent':'Receipt Sent',
+            'Receipt Not Sent':'Receipt Not Sent',
+            'Perk Selected':'Perk Selected',
+            'No Perk Selected':'No Perk Selected',
+        ]
+    }
+
+    def contributorsSortInd(){
+        def sort = [
+            'All':'All',
+            'Anonymous':'Anonymous',
+            'Non-Anonymous':'Non-Anonymous',
+            'Receipt Sent':'Receipt Sent',
+            'Receipt Not Sent':'Receipt Not Sent',
+            'Perk Selected':'Perk Selected',
+            'No Perk Selected':'No Perk Selected',
+        ]
+    }
+    
 }

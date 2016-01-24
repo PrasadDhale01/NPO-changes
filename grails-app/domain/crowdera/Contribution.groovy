@@ -26,6 +26,7 @@ class Contribution {
     boolean shippingDone = false
     boolean isContributionOffline = false
     boolean isAnonymous = false
+    boolean receiptSent = false
 
     static constraints = {
         credit nullable: true

@@ -5494,6 +5494,29 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /**********************Start of Media CSS*******************************/
 
 @media only screen and (min-width: 768px){
+	.col-contributor {
+		width: 375px;
+		float: right;
+	}
+
+	#sendReceipt .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),
+	.sendTaxReceiptBoard .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
+	   width:140px;    
+	}
+
+	input.search-contributors {
+		height: 33px;
+		margin-top: 2px;
+		padding-left: 38px;
+		width:185px;
+	}
+
+	span.glyphicon-contributor-search {
+		position: absolute;
+		top: 11px;
+		left: 27px;
+	}
+	
 	div.managecampaign-hashtag.manage-social {
         padding-left: 25px;
     }
@@ -7754,6 +7777,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+	.validate-show-div .organization-panel.org-panel-2.panel {
+	   height: 270px;
+	}
+	br.visible-reciept-md{
+        display:block;
+	}
     .reasonsToFund .badge1 {
         font-size: 28px;
     }
@@ -8057,12 +8086,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .validate-show-div .amount-centering {
         width: 250px !important;
     }
-    .validate-show-div .organization-panel.org-panel-2.panel {
-        height: 225px;
+]    .validate-show-div .organization-panel.org-panel-2.panel {
+        height: 270px;
         margin-bottom: 20px;
     }
     .validate-show-div .organization-panel.org-panel-3.panel, .validate-show-div .organization-panel.org-panel-4.panel {
-        height: 230px;
+        height: 270px;
     }
     #page-content-wrapper {
         padding: 15px 0 15px 0;
@@ -8072,7 +8101,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-right: 0px;
     }
     .validate-show-div .organization-panel.org-panel-1.panel {
-        height: 360px;
+        height: 406px;
     }
 }
 @media only screen and (min-width:768px) and (max-width: 830px) {
@@ -10049,6 +10078,35 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	#sendReceipt .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),
+	.sendTaxReceiptBoard .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
+	   width:105px;    
+	}
+
+	.col-contributor{
+        left:-15px;
+	}
+
+	input.search-contributors{
+		height: 33px;
+		margin-top: 2px;
+		padding-left: 31px;
+		width: 172px;
+	}
+	
+	span.glyphicon-contributor-search {
+		position: absolute;
+		top: 11px;
+		left: 7px;
+	}
+	
+	.col-contributor, .contributor-search-box{
+	    padding-left:0px;
+	}
+
+	.img-size-xs{
+        width:12%;
+	}
 	div.sh-mobperks {
 	    margin-top: 15px;
 	}
@@ -11196,6 +11254,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1200px) and (max-width: 1280px){
+/* 	.backToTiles{ */
+/*         width:56%; */
+/* 	} */
     li.sh-button-fund-secandaryheader{
         left: 19.8% !important;
     }
@@ -13217,6 +13278,11 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (min-width: 481px) and (max-width:600px){
+	.offlineContributionModal .modal-content{
+		width: 445px;
+		margin-left: auto;
+		margin-right: auto;
+    }
     header.cr-tabs-link {
         font-size: 24px;
         padding-left: 38px !important;
@@ -13252,6 +13318,11 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (min-width: 601px) and (max-width:767px){
+	.offlineContributionModal .modal-content{
+		width: 445px;
+		margin-left: auto;
+		margin-right: auto;
+	}
 	li.perks-grid {
         width: 50%;
     }
@@ -17317,7 +17388,7 @@ li.sh-button-fund-secandaryheader{
 #footer-top-height {
     display: none;
 }
-#loading-gif {
+#loading-gif , #loadingfilegif {
     background-color: #f6f8f8;
     opacity: 0.7;
     filter: alpha(opacity=60);
@@ -17331,7 +17402,7 @@ li.sh-button-fund-secandaryheader{
     z-index: 9999;
     display: none;
 }
-#loading-gif-img {
+#loading-gif-img, #loading-file-gif-img {
     position: fixed;
     top: 48%;
     left: 48%;

@@ -30,6 +30,18 @@ var pie = paper.piechart(pwidth/2, pheight/2, radius, data, {
 	colors: barcolors
 });
 
+// blank circle in center to create donut hole effect
+paper.circle(pwidth/2, pheight/2, radius*0.5)
+    .attr({'fill': bgcolor, 'stroke': bgcolor});
+
+var center_label = paper.text(pwidth/2, pheight/2, '')
+    .attr({'fill': 'black', 'font-size': '12', "font-weight": 800, 'opacity': 1});
+
+if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
+    center_label.attr('text', '$'+projectAmount);
+} else {
+    center_label.attr('text', 'Rs. '+projectAmount);
+}
 var isIndianCampaign = ($('#isIndianCampaign').val() == 'true') ? true : false;
 
 // assign the hover in/out functions
@@ -44,12 +56,15 @@ pie.hover(function () {
     } else {
     	center_label.attr('text', '$'+this.value.value);
     }
-//    center_label.attr({ 'opacity': 1 });
-//    center_label.animate({ 'opacity': 1.0 }, 500);
+//	    center_label.attr({ 'opacity': 1 });
+//	    center_label.animate({ 'opacity': 1.0 }, 500);
   }, function () {
     this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
     this.sector.animate({ 'stroke': bgcolor }, 400);
       //center_label.attr('text','');
+//	      center_label.animate({ 'opacity': 0.0 }, 500);
+    if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
+        center_label.attr('text', '$'+projectAmount);
 //      center_label.animate({ 'opacity': 0.0 }, 500);
 });
 

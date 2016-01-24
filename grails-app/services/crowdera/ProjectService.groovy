@@ -580,7 +580,7 @@ class ProjectService {
 		 
 		 return result
 	 }
-	 
+
 	 def getOfflineDetails(def params){
 		 def project = Project.get(params.id)
 		 def user = User.findByUsername('anonymous@example.com')
@@ -595,16 +595,17 @@ class ProjectService {
                  } else {
                      currency = 'USD'
                  }
-		 if (amount && contributorName) {
+		 if (amount && contributorName && params.contributorEmail1) {
 			 Contribution contribution = new Contribution(
 				 date: new Date(),
 				 user: user,
 				 reward: reward,
 				 amount: amount,
 				 contributorName: contributorName,
+                 contributorEmail: params.contributorEmail1,
 				 isContributionOffline: true,
 				 fundRaiser: username,
-                                 currency:currency
+                 currency:currency
 			 )
 			 project.addToContributions(contribution).save(failOnError: true)
  
@@ -639,12 +640,14 @@ class ProjectService {
              }
          }
     }
-	
-	def getContributionEditedDetails(def params){
-		def contribution = Contribution.get(params.long('id'))
-		contribution.contributorName = params.contributorName
-		contribution.amount = Double.parseDouble(params.amount)
-	}
+
+    def getContributionEditedDetails(def params){
+        def contribution = Contribution.get(params.long('id'))
+        contribution.contributorName = params.contributorName
+        contribution.amount = Double.parseDouble(params.amount)
+        contribution.contributorEmail = params.contributorEmail
+        contribution.save()
+    }
 
     def getNumberOfProjects() {
         return Project.count()
@@ -4614,7 +4617,7 @@ class ProjectService {
         def taxrecieptId = (taxreciept) ? taxreciept.id : null;
         return taxrecieptId
     }
-
+    
     def getDeductibleStatusList(){
         def deductibleStatus = [
             PC : 'PC (50%)',
@@ -4631,6 +4634,11 @@ class ProjectService {
             SOUNK : 'SOUNK (50%)'
         ]
         return deductibleStatus
+    }
+
+    def getDeductibleStatus(def deductibleStatus){
+        def deductibleStatusList = getDeductibleStatusList();
+        return deductibleStatusList.getAt(deductibleStatus);
     }
 
     def getCategoryAndHashTagsSaved(Project project, def currentEnv, def selectedCategory){
@@ -5049,6 +5057,75 @@ class ProjectService {
         return emails
     }
 
+    def getAllProjectByUserHavingContribution(User user , def environment, def params){
+        List activeProjects=[]
+        List endedProjects=[]
+        List sortedProjects = []
+        def finalList
+        boolean ended
+
+        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
+            def projects= Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:true, offeringTaxReciept:true)
+            projects.each { project->
+                if (project.contributions && project.offeringTaxReciept){
+                    ended = isProjectDeadlineCrossed(project)
+                    if (ended) {
+                        endedProjects.add(project)
+                    } else if(project.validated==true && project.inactive==false){
+                        activeProjects.add(project)
+                    }
+                }
+            }
+        } else {
+            def projects= Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:false, offeringTaxReciept:true)
+            projects.each { project->
+                if (project.contributions && project.offeringTaxReciept){
+                    ended = isProjectDeadlineCrossed(project)
+                    if (ended) {
+                        endedProjects.add(project)
+                    } else if(project.validated==true && project.inactive==false){
+                        activeProjects.add(project)
+                    }
+                }
+            }
+        }
+
+        sortedProjects = activeProjects.sort{contributionService.getPercentageContributionForProject(it)}
+        finalList = sortedProjects.reverse() + endedProjects.reverse()
+        
+        def projects = []
+        if (!finalList.isEmpty()){
+            def offset = params.offset ? params.int('offset') : 0
+            def max = 6
+            def count = finalList.size()
+            def maxrange
+
+            if(offset + max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            projects = finalList.reverse().subList(offset, maxrange)
+        }
+        return ['totalProjects' : finalList, 'projects' : projects]
+    }
+
+    def doProjectHaveContribution(def vanityTitle){
+        Project project = getProjectFromVanityTitle(vanityTitle)
+        if (project.contributions){
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    def sendTaxReceiptToContributors(def params){
+        def list = [];
+        def idList = params.list.split(",");
+        idList = idList.collect { it.trim() }
+        mandrillService.sendTaxReceiptToContributors(idList);
+    }
+    
     @Transactional
     def bootstrap() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")

@@ -8,19 +8,14 @@
             </a>
             </span>
         </li>
-        <li><span class="doc-tab-right-border doc-tab-padding">
+        <li><span class="doc-tab-padding">
             <a href="#drive" data-toggle="tab" class="tab-data-toggle">
                 Google Drive
             </a>
             </span>
         </li>
-        <li><span class="doc-tab-padding">
-            <a href="#" data-toggle="modal" data-target="#sendReceiptModal">
-                Send Receipt
-            </a>
-            </span>
-        </li>
     </ul>
+    
 </div>
 <!-- Modal -->
 <div class="modal fade" id="createNewFolder" aria-hidden="true">
@@ -46,47 +41,6 @@
             </div>
         </div>
     </g:form>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="sendReceiptModal" aria-hidden="true">
-    <g:uploadForm action="sendReceipt" controller="user">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h3 class="modal-title text-center"><b>Send Receipt</b></h3>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label><b>Your Name</b></label> 
-                        <input type="text" class="form-control all-place" name="name" placeholder="Name" value="${user.firstName}"/>
-                    </div>
-                    <div class="form-group">
-                        <label><b>Recipient Email</b></label>
-                        <input type="text" class="form-control all-place" name="email" placeholder="Email"/>
-                    </div>
-                    <div class="form-group">
-                        <label><b>Message (Optional)</b></label>
-                        <textarea class="form-control all-place" name="message" rows="4" placeholder="Message"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <div class="fileUpload btn btn-info btn-sm cr-btn-color" id="receiptUploadBtn">
-                            Upload File
-                            <input type="file" class="upload" name="file">
-                        </div>
-                    </div>
-                </div>
-                <g:if test="${!isAdmin}">
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-sm btn-primary" id="sendReceiptBtn">Send</button>
-                    </div>
-                </g:if>
-				
-            </div>
-        </div>
-    </g:uploadForm>
 </div>
 
 <div class="clear"></div>

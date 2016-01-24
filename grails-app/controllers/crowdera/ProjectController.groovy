@@ -341,6 +341,11 @@ class ProjectController {
                 def hasMoreTagsDesktop = projectService.getHashTags(project.hashtags)
                 def hasMoreTagsTabs = projectService.getHashTagsTabs(project.hashtags)
                 def reasons = projectService.getReasonsToFundFromProject(project)
+                def taxReceipt = projectService.getTaxRecieptOfProject(project)
+                def deductibleStatus
+                if (taxReceipt){
+                    deductibleStatus = projectService.getDeductibleStatus(taxReceipt.deductibleStatus)
+                }
                 
                 if(project.validated == false) {
                     render (view: 'validate/validateshow',
@@ -348,13 +353,13 @@ class ProjectController {
                     endDate: endDate,projectComments: projectComments,totalteams: totalteams,totalContribution: totalContribution, 
                     percentage:percentage, teamContribution: teamContribution, webUrl: webUrl,teamComments: teamComments, 
                     teamOffset: teamOffset,teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, 
-                    day: day,totalContributions: totalContributions,contributions: contributions,
+                    day: day,totalContributions: totalContributions,contributions: contributions, deductibleStatus:deductibleStatus,
                     isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, 
                     isFundingOpen: isFundingOpen, rewards: rewards,validatedPage: validatedPage, isTeamExist: isTeamExist, 
                     FORMCONSTANTS: FORMCONSTANTS, multiplier: multiplier,spendCauseList:pieList.spendCauseList, 
                     spendAmountPerList:pieList.spendAmountPerList, hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, 
                     remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, 
-                    remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, reasons:reasons])
+                    remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, reasons:reasons, taxReceipt:taxReceipt])
                 }
             } else {
                 render (view: '404error')

@@ -78,6 +78,8 @@
        <meta name="twitter:description" content="${project.description}" />
     </g:if>
     <meta name="layout" content="main" />
+    
+    
     <r:require modules="projectshowjs"/>
     <g:javascript>
         $(function() {
@@ -107,9 +109,9 @@
     
     <div class="container show-cmpgn-container">
 
-    <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
-    <g:hiddenField name="pieList" value="${pieList}" id="pieList"/>
-    <g:hiddenField name="projectamount" value="${project.amount.round()}" id="projectamount"/>
+        <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
+        <g:hiddenField name="pieList" value="${pieList}" id="pieList"/>
+        <g:hiddenField name="projectamount" value="${project.amount.round()}" id="projectamount"/>
 
         <g:if test="${project}">
             <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>
@@ -161,7 +163,9 @@
                         </h4>
                     </div>
                 </g:if>
-                <div class="col-xs-12 col-md-4 mobileview-top sh-mobiles-top">
+                
+                
+                <div class="col-xs-12 col-md-4 mobileview-top sh-mobiles-top campaign-tile-xs">
                     <div class="visible-xs">
                         <g:render model="['project': project]" template="/layouts/tile_for_mobile"></g:render>
                     </div>
@@ -175,29 +179,29 @@
                             <g:render template="/user/user/tilemobile" model="['project': project]"></g:render>
                         </div>
                         
-                            <div class="submitForApprovalSection">
-                                <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
-                                    <g:form controller="project" action="saveasdraft" id="${project.id}">
-                                        <g:if test="${!project.touAccepted}">
-                                            <div class="form-group hidden">
-                                                <input type="checkbox" name="submitForApprovalcheckbox" id="agreetoTermsandUse">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
-                                            </div>
-                                        </g:if>
-                                        <div class="clear"></div>
-                                        <div class="show-mobile-button">
-                                            <button class="btn btn-block btn-lg sh-submitapproval  show-mob-mobile">
-                                                <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-                                            </button>
+                        <div class="submitForApprovalSection">
+                            <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                                <g:form controller="project" action="saveasdraft" id="${project.id}">
+                                    <g:if test="${!project.touAccepted}">
+                                        <div class="form-group hidden">
+                                            <input type="checkbox" name="submitForApprovalcheckbox" id="agreetoTermsandUse">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
                                         </div>
-                                    </g:form>
-                                </g:if>
-                                <g:else>
+                                    </g:if>
+                                    <div class="clear"></div>
                                     <div class="show-mobile-button">
-                                        <button class="btn btn-block btn-lg show-mob-mobile" id="submitForApprovalBtnMobile">
+                                        <button class="btn btn-block btn-lg sh-submitapproval  show-mob-mobile">
                                             <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
                                         </button>
                                     </div>
-                                </g:else>
+                                </g:form>
+                            </g:if>
+                            <g:else>
+                                <div class="show-mobile-button">
+                                    <button class="btn btn-block btn-lg show-mob-mobile" id="submitForApprovalBtnMobile">
+                                        <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                    </button>
+                                </div>
+                            </g:else>
                         </div>
                         
                         <div class="hidden-xs">
@@ -213,27 +217,28 @@
                     </g:elseif>
                     <g:else>
                         <div class="show-mobile-button">
-                        <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
-                            <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
-                                <div class="redirectCampaign">
-                                    <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund" id="btnFundDesktop">FUND NOW!</button></g:link>
-                                </div>
-                            </g:if>
-                            <g:else>
-                                <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
-                                    <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund"  id="btnFundMobile">FUND NOW!</button>
-                                </g:form>
-                            </g:else>
-                        </g:if>
-                        <g:else>
-                            <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund">FUND NOW!</button>
-                        </g:else>
+	                        <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
+	                            <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
+	                                <div class="redirectCampaign">
+	                                    <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund" id="btnFundDesktop">FUND NOW!</button></g:link>
+	                                </div>
+	                            </g:if>
+	                            <g:else>
+	                                <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
+	                                    <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund"  id="btnFundMobile">FUND NOW!</button>
+	                                </g:form>
+	                            </g:else>
+	                        </g:if>
+	                        <g:else>
+	                            <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund">FUND NOW!</button>
+	                        </g:else>
                         </div>
                     </g:else>
 
                    <div class="panel-body show-mobile-slogn visible-xs">
                         <p>Crowdera is free, we do not charge any fee Payments are securely made via Paypal</p>
                    </div>
+                   
                    <div class="visible-xs">
                        <g:if test="${!isTeamExist && project.validated}">
                            <g:if test="${!ended}">
@@ -246,6 +251,7 @@
                            </g:else>
                       </g:if>
                    </div>
+                   
                    <%-- Mobile share FB--%>
                    <g:if test="${isPreview}">
                        <a class="btn btn-social btn-facebook show-mobilebt-fb mob-show-fb sho-fb-color">
@@ -284,100 +290,99 @@
                     <div class="collapse navbar-collapse col-lg-8 col-sm-8 col-md-8 show-header-tabsmanage show-tabsDesktop-headers">
                         <ul class="nav nav-pills nav-justified nav-justi sh-tabs show-pages-width">
                         
-                        <li><span class="active show-tbs-right-borders  hidden-xs">
-                                <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials show-all-icons-header-tabs show-story">
-                                    <span class="tab-text sh-tabs-font hidden-xs"> STORY</span>
-                                </a>
-                            </span>
-                        </li>
-                        <g:if test="${!project.projectUpdates.isEmpty() }">
-                            <li><span class="show-tbs-right-borders hidden-xs">
-                                    <a href="#projectupdates" data-toggle="tab"  class="show-tabs-text projectupdates show-all-icons-header-tabs">
-                                        <span class="tab-text sh-tabs-font hidden-xs"> UPDATES</span> 
-                                    </a>
-                                    <span class="show-tabs-count hidden-xs">
-                                        <g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if>
-                                    </span>
-                                </span>
-                            </li>
-                        </g:if>
-                        <li><span class="show-tbs-right-borders hidden-xs">
-                                <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text manageTeam show-all-icons-header-tabs">
-                                    <span class="tab-text sh-tabs-font"> TEAMS</span>
-                                </a>
-                            </span>
-                        </li>
-                        <li><span class="show-tbs-right-borders hidden-xs">
-                                <a href="#contributions" data-toggle="tab"  class="show-tabs-text contributions show-all-icons-header-tabs">
-                                    <span class="tab-text sh-tabs-font"> CONTRIBUTIONS</span>
-                                </a>
-                                <span class="show-tabs-count hidden-xs">
-                                    <g:if test="${totalContributions.size() > 0}">${totalContributions.size()}</g:if>
-                                </span>
-                            </span>
-                        </li>
-                        <li><span class="show-comit-lft hidden-xs">
-                               <a href="#comments" data-toggle="tab"  class="show-tabs-text comments show-all-icons-header-tabs">
-                                   <span class="tab-text hidden-xs sh-tabs-font"> COMMENTS</span>
-                               </a>
-                            </span>
-                        </li>
-                        
-                </ul>
-               
-               </div>
-               
-        <g:if test="${isPreview && !project.validated}">
-            <ul class="nav navbar-nav navbar-right col-lg-6 col-sm-6 col-md-6 show-paddingsbtn-submitapprov">
-                <li class="show-margin-right">
-                    <div class="submitForApprovalSectionbtn show-headerApproval-tooltip show-submit-tabs">
-                        <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
-                            <g:form controller="project" action="saveasdraft" id="${project.id}">
-                                <g:if test="${!project.touAccepted}">
-                                    <div class="form-group hidden">
-                                        <input type="checkbox" name="submitForApprovalcheckbox1">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
-                                    </div>
-                                </g:if>
-                                <div class="clear"></div>
-                                            
-                                <button class="btn btn-block btn-lg btn-primary sh-submitaproval-2header sh-aproval-btn hidden-xs">
-                                    <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-                                </button>
-                            </g:form>
-                        </g:if>
-                        <g:else>
-                            <button class="btn btn-block btn-lg btn-primary sh-submitaproval-2header sh-aproval-btn hidden-xs" id="submitForApprovalBtnright">
-                                <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-                            </button>
-                        </g:else>
-                    </div>
-                </li>
-            </ul>
-        </g:if>
-        <g:else>
-            <g:if test="${percentage!=999 && !ended}">
-                <ul class="nav navbar-nav navbar-right col-lg-6 col-sm-6 col-md-6 show-paddingsbtn">
-                    <li class="show-margin-right">
-	                    <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
-	                        <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
-	                            <div class="redirectCampaign">
-	                                <g:link class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js" controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="btnFundDesktop">FUND NOW</g:link>
-	                            </div>
+	                        <li><span class="active show-tbs-right-borders  hidden-xs">
+	                                <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials show-all-icons-header-tabs show-story">
+	                                    <span class="tab-text sh-tabs-font hidden-xs"> STORY</span>
+	                                </a>
+	                            </span>
+	                        </li>
+	                        <g:if test="${!project.projectUpdates.isEmpty() }">
+	                            <li><span class="show-tbs-right-borders hidden-xs">
+	                                    <a href="#projectupdates" data-toggle="tab"  class="show-tabs-text projectupdates show-all-icons-header-tabs">
+	                                        <span class="tab-text sh-tabs-font hidden-xs"> UPDATES</span> 
+	                                    </a>
+	                                    <span class="show-tabs-count hidden-xs">
+	                                        <g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if>
+	                                    </span>
+	                                </span>
+	                            </li>
 	                        </g:if>
-	                        <g:else>
-	                            <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
-	                                <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js">FUND NOW</button>
-	                            </g:form>
-	                        </g:else>
-	                    </g:if>
-                        <g:else>
-                            <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block sh-fund-2header mob-show-fund show-btn-js">FUND NOW</button>
-                        </g:else>
-                    </li>
-                </ul>
-            </g:if>
-        </g:else>
-    </div>
+	                        <li><span class="show-tbs-right-borders hidden-xs">
+	                                <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text manageTeam show-all-icons-header-tabs">
+	                                    <span class="tab-text sh-tabs-font"> TEAMS</span>
+	                                </a>
+	                            </span>
+	                        </li>
+	                        <li><span class="show-tbs-right-borders hidden-xs">
+	                                <a href="#contributions" data-toggle="tab"  class="show-tabs-text contributions show-all-icons-header-tabs">
+	                                    <span class="tab-text sh-tabs-font"> CONTRIBUTIONS</span>
+	                                </a>
+	                                <span class="show-tabs-count hidden-xs">
+	                                    <g:if test="${totalContributions.size() > 0}">${totalContributions.size()}</g:if>
+	                                </span>
+	                            </span>
+	                        </li>
+	                        <li><span class="show-comit-lft hidden-xs">
+	                               <a href="#essentials" data-toggle="tab"  class="show-tabs-text comments navComment scrollToComment">
+	                                   <span class="tab-text hidden-xs sh-tabs-font"> COMMENTS</span>
+	                               </a>
+	                            </span>
+	                        </li>
+                        </ul>
+               
+                    </div>
+               
+			        <g:if test="${isPreview && !project.validated}">
+			            <ul class="nav navbar-nav navbar-right col-lg-6 col-sm-6 col-md-6 show-paddingsbtn-submitapprov">
+			                <li class="show-margin-right">
+			                    <div class="submitForApprovalSectionbtn show-headerApproval-tooltip show-submit-tabs">
+			                        <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+			                            <g:form controller="project" action="saveasdraft" id="${project.id}">
+			                                <g:if test="${!project.touAccepted}">
+			                                    <div class="form-group hidden">
+			                                        <input type="checkbox" name="submitForApprovalcheckbox1">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
+			                                    </div>
+			                                </g:if>
+			                                <div class="clear"></div>
+			                                            
+			                                <button class="btn btn-block btn-lg btn-primary sh-submitaproval-2header sh-aproval-btn hidden-xs">
+			                                    <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+			                                </button>
+			                            </g:form>
+			                        </g:if>
+			                        <g:else>
+			                            <button class="btn btn-block btn-lg btn-primary sh-submitaproval-2header sh-aproval-btn hidden-xs" id="submitForApprovalBtnright">
+			                                <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+			                            </button>
+			                        </g:else>
+			                    </div>
+			                </li>
+			            </ul>
+			        </g:if>
+			        <g:else>
+			            <g:if test="${percentage!=999 && !ended}">
+			                <ul class="nav navbar-nav navbar-right col-lg-6 col-sm-6 col-md-6 show-paddingsbtn">
+			                    <li class="show-margin-right">
+				                    <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
+				                        <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
+				                            <div class="redirectCampaign">
+				                                <g:link class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js" controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="btnFundDesktop">FUND NOW</g:link>
+				                            </div>
+				                        </g:if>
+				                        <g:else>
+				                            <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
+				                                <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js">FUND NOW</button>
+				                            </g:form>
+				                        </g:else>
+				                    </g:if>
+			                        <g:else>
+			                            <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block sh-fund-2header mob-show-fund show-btn-js">FUND NOW</button>
+			                        </g:else>
+			                    </li>
+			                </ul>
+			            </g:if>
+			        </g:else>
+			    </div>
                     
                <div class="show-socialheads">
                    <div class="navbar navbar-default col-lg-12 hidden-sm col-md-12 sh-tabs hidden-xs sh-shareicons-Fixedtophead">
@@ -444,6 +449,7 @@
                        </div>
                   </div>
                </div>
+               
                <%--Tab code for whatsapp, facebook and twitter --%>
                <div class="visible-sm sh-tabs-social sh-shareicons-Fixedtophead">
                    <div class="col-sm-4 col-md-4 show-tabs">
@@ -513,6 +519,7 @@
                    </div>
                </g:else>
 
+               
                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 borders  hidden-xs">
                     <g:set var="screen" id="screen" value="false"></g:set>
                     <ul class="nav nav-pills">
@@ -555,16 +562,17 @@
                                 </span>
                                 <span class="show-ids-header"></span>
                             </span>
-                       </li>
-                       <li><span class="show-comit-lft hidden-xs">
-                               <a href="#comments" data-toggle="tab"  class="show-tabs-text comments">
-                                   <span class="tab-text hidden-xs"> COMMENTS</span>
-                               </a>
-                               <span class="show-ids-header"></span>
-                           </span>
-                       </li>
+                        </li>
+                        <li><span class="show-comit-lft hidden-xs">
+                                <a href="#essentials" data-toggle="tab"  class="show-tabs-text comments scrollToComment">
+                                    <span class="tab-text hidden-xs"> COMMENTS</span>
+                                </a>
+                                <span class="show-ids-header"></span>
+                            </span>
+                        </li>
                     </ul>
                 </div>
+                
                 
                 <div class="visible-xs sh-mobiletabs sh-tabs">
                     <span class="sh-mobile-tabs">
@@ -578,6 +586,7 @@
                         </a>
                     </span>
                 </div> 
+               
                
                 <div class="col-xs-12 col-md-8 col-sm-8 Top-tabs-mobile show-tops-corsal">
                 
@@ -595,9 +604,9 @@
                         <div class="tab-pane tab-pane-active" id="contributions">
                             <g:render template="show/contributions" model="['team':currentTeam]"/>
                         </div>
-                        <div class="tab-pane tab-pane-active hidden-xs" id="comments">
-                            <g:render template="show/comments"/>
-                        </div>
+<%--                        <div class="tab-pane tab-pane-active hidden-xs" id="comments">--%>
+<%--                            <g:render template="show/comments"/>--%>
+<%--                        </div>--%>
                     </div>
                     
                     <div class="row"> 
@@ -777,14 +786,7 @@
                                   <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
                               </a>
                           </g:else>
-                      
-                          <div class="hidden-xs">
-                              <g:if test="${project.rewards.size()>1}">
-                                  <div class="sh-perks-preview">
-                                      <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
-                                  </div>
-                              </g:if>
-                          </div> 
+                           
                       </g:if>
                       <g:elseif test="${percentage == 999}">
                           <div class="show-A-fund"> </div>
@@ -833,11 +835,68 @@
                               </span>
                           </g:else>
                       </g:if>
-                    
+                      
+                      <g:if test="${project.impactNumber > 0 && project.impactAmount > 0}">
+                          <div class="impactassessment">
+                              <g:render template="show/impactstatement"/>
+                          </div>
+                      </g:if>
+                      <g:if test="${reasons}">
+                          <div class="modal-footer tile-footer perks-style reasons-title">
+                              <h2 class="rewardsectionheading text-center">3 Reasons to Fund Our Campaign</h2>
+                          </div>
+                          <g:if test="${reasons.reason1}">
+		                      <div class="reasonsToFund">
+		                          <div class="reasonspadding">
+                                      <div class="col-xs-2 col-plr-0">
+                                          <span class="badge1">#1</span>
+                                      </div>
+                                      <div class="col-xs-10 col-p-5">
+                                           ${reasons.reason1}
+                                      </div>
+                                  </div>
+		                      </div>
+	                      </g:if>
+	                      <g:if test="${reasons.reason2}">
+		                      <div class="reasonsToFund">
+		                          <div class="reasonspadding">
+		                              <div class="col-xs-2 col-plr-0">
+		                                  <span class="badge1">#2</span>
+		                              </div>
+		                              <div class="col-xs-10 col-p-5">
+		                                  ${reasons.reason2}
+		                              </div>
+	                              </div>
+	                          </div>
+                          </g:if>
+                          <g:if test="${reasons.reason3}">
+	                          <div class="reasonsToFund">
+	                              <div class="reasonspadding">
+                                      <div class="col-xs-2 col-plr-0">
+                                          <span class="badge1">#3</span>
+                                      </div>
+                                      <div class="col-xs-10 col-p-5">
+                                          ${reasons.reason3}
+                                      </div>
+                                  </div>
+	                          </div>
+                          </g:if>
+                      </g:if>
+                      
+                      <g:if test="${isPreview && !project.validated}">
+                          <div class="hidden-xs">
+                              <g:if test="${project.rewards.size()>1}">
+                                  <div class="sh-perks-preview">
+                                      <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
+                                  </div>
+                              </g:if>
+                          </div>
+                      </g:if>
+                      
                       <div class="visible-xs show-mobile-update">
                           <g:render template="show/projectupdates"/>
                       </div>
-                    
+                      
                       <div class="visible-xs sh-mobperks">
                           <g:if test="${isPreview && !project.validated}">
                               <g:if test="${project.rewards.size()>1}">
@@ -855,7 +914,12 @@
                               </g:if>
                           </g:if>
                       </div>
-                    
+                      
+                      <g:if test="${remainingTagsTabs}">
+                          <h3 class="moretags-tabs visible-xs"><b>#Tags</b></h3>
+                          <p class="moretags-tabs visible-xs">${project.hashtags}</p>
+                      </g:if>
+				      
                       <div class="visible-xs sh-comments-align">
                           <div id="comment-mobile">
                               <g:render template="show/comments"/>

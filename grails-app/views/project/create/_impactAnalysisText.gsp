@@ -10,7 +10,7 @@
     </div>
     <span class="impact-text col-impact-text col-impact-animals-text-two col-xs-12 col-sm-3 impact-right-padding" id="impact-text">animals by providing</span>
     <div class="col-sm-2 col-xs-12 col-sm-impact-animal-amount form-group">
-        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+        <g:if test="${project.payuStatus}">
             <span class="fa fa-inr cr-impact-animals-currency"></span>
         </g:if>
         <g:else>
@@ -36,7 +36,7 @@
     </div>
     <span class="impact-text col-impact-text col-impact-arts-text-two col-xs-12 col-sm-3 impact-right-padding" id="impact-text">individuals by providing</span>
     <div class="col-sm-2 col-xs-12 col-sm-impact-amount form-group">
-        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+        <g:if test="${project.payuStatus}">
             <span class="fa fa-inr cr-impact-currency"></span>
         </g:if>
         <g:else>
@@ -62,7 +62,7 @@
     </div>
     <span class="impact-text col-impact-text col-impact-text-one col-xs-12 col-sm-3 impact-right-padding" id="impact-text">children's life by providing</span>
     <div class="col-sm-2 col-xs-12 col-sm-impact-animal-amount form-group">
-         <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+         <g:if test="${project.payuStatus}">
               <span class="fa fa-inr cr-impact-animals-currency"></span>
          </g:if>
          <g:else>
@@ -88,7 +88,7 @@
     </div>
     <span class="impact-text col-impact-text col-impact-community-text-two col-xs-12 col-sm-2 impact-right-padding" id="impact-text">community by providing</span>
     <div class="col-sm-2 col-xs-12 col-sm-impact-animal-amount form-group">
-        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+        <g:if test="${project.payuStatus}">
             <span class="fa fa-inr cr-impact-animals-currency"></span>
         </g:if>
         <g:else>
@@ -114,7 +114,7 @@
     </div>
     <span class="impact-text col-impact-text col-impact-animals-text-two col-xs-12 col-sm-3 impact-right-padding" id="impact-text">neighbourhood/s by</span>
 	<div class="col-sm-2 col-xs-12 col-sm-impact-animal-amount form-group">
-		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+		<g:if test="${project.payuStatus}">
 		    <span class="fa fa-inr cr-impact-animals-currency"></span>
 		</g:if>
 		<g:else>
@@ -140,7 +140,7 @@
 	</div>
 	<span class="impact-text col-impact-text col-impact-education-text-two col-xs-12 col-sm-3 impact-right-padding" id="impact-text">students by providing</span>
 	<div class="col-sm-2 col-xs-12 form-group">
-		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+		<g:if test="${project.payuStatus}">
 		    <span class="fa fa-inr cr-impact-currency cr-impact-education-currency"></span>
 		</g:if>
 		<g:else>
@@ -166,7 +166,7 @@
 	</div>
 	<span class="impact-text col-impact-text col-impact-elderly-text-two col-xs-12 col-sm-2 impact-right-padding" id="impact-text">elderlies by providing</span>
 	<div class="col-sm-2 col-xs-12 col-sm-impact-amount form-group">
-		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+		<g:if test="${project.payuStatus}">
 		    <span class="fa fa-inr cr-impact-currency"></span>
 		</g:if>
 		<g:else>
@@ -192,7 +192,7 @@
 	</div>
 	<span class="impact-text col-impact-text col-impact-env-text-two col-xs-12 col-sm-3 impact-right-padding" id="impact-text">neighbourhood/s by providing</span>
 	<div class="col-sm-2 col-xs-12 col-sm-impact-amount form-group">
-		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+		<g:if test="${project.payuStatus}">
             <span class="fa fa-inr cr-impact-currency"></span>
 		</g:if>
 		<g:else>
@@ -218,7 +218,7 @@
 	</div>
 	<span class="impact-text col-impact-text col-impact-elderly-text col-xs-12 col-sm-2 impact-right-padding" id="impact-text">lives by using</span>
 	<div class="col-sm-2 col-xs-12 col-sm-impact-amount form-group">
-		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+		<g:if test="${project.payuStatus}">
             <span class="fa fa-inr cr-impact-currency"></span>
 		</g:if>
 		<g:else>
@@ -244,7 +244,7 @@
 	</div>
 	<span class="impact-text col-impact-text col-impact-text-two col-xs-12 col-sm-2 impact-right-padding" id="impact-text">lives by providing</span>
 	<div class="col-sm-2 col-xs-12 col-sm-impact-amount form-group">
-		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+		<g:if test="${project.payuStatus}">
             <span class="fa fa-inr cr-impact-currency"></span>
 		</g:if>
 		<g:else>
@@ -270,7 +270,7 @@
 	</div>
 	<span class="impact-text col-impact-text col-impact-arts-text-two col-xs-12 col-sm-2 impact-right-padding" id="impact-text">individual by innovating</span>
 	<div class="col-sm-2 col-xs-12 col-sm-impact-animal-amount form-group">
-		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+		<g:if test="${project.payuStatus}">
             <span class="fa fa-inr cr-impact-animals-currency"></span>
 		</g:if>
 		<g:else>
@@ -296,7 +296,7 @@
 	</div>
 	<span class="impact-text col-impact-text col-xs-12 col-sm-3 impact-right-padding col-impact-text-religion-two" id="impact-text">religion empowerment by</span>
 	<div class="col-sm-2 col-xs-12 col-sm-impact-amount form-group col-sm-impact-religion-amount">
-		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+		<g:if test="${project.payuStatus}">
             <span class="fa fa-inr cr-impact-currency cr-impact-religion-cr"></span>
 		</g:if>
 		<g:else>
@@ -322,7 +322,7 @@
 	</div>
 	<span class="impact-text col-impact-text col-impact-text-two col-xs-12 col-sm-2 impact-right-padding" id="impact-text">lives by providing</span>
 	<div class="col-sm-2 col-xs-12 col-sm-impact-amount form-group">
-		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+		<g:if test="${project.payuStatus}">
             <span class="fa fa-inr cr-impact-currency"></span>
 		</g:if>
 		<g:else>
@@ -348,7 +348,7 @@
 	</div>
 	<span class="impact-text col-impact-text col-impact-text-two col-xs-12 col-sm-2 impact-right-padding" id="impact-text">lives by providing</span>
 	<div class="col-sm-2 col-xs-12 col-sm-impact-amount form-group">
-		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+		<g:if test="${project.payuStatus}">
             <span class="fa fa-inr cr-impact-currency"></span>
 		</g:if>
 		<g:else>

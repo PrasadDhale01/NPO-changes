@@ -25,7 +25,7 @@
                         <li><a class="list" href="#campaignStatistics"><span class="glyphicon glyphicon-list-alt"></span> &nbsp;&nbsp;Campaign Statistics </a></li>
                         <li>
                             <g:if test="${!ended}">
-                                <a class="list" href="/project/redirectToInviteMember?projectId=${project.id}&page=manage" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
+                                <a class="list" href="#" onclick="javascript:window.open('/project/redirectToInviteMember?projectId=${project.id}&page=manage','', 'menubar=no,toolbar=no,resizable=no,scrollbars=yes,height=500,width=786');return false;" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
                             </g:if>
                             <g:else>
                                 <a class="list"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
@@ -38,7 +38,7 @@
 		<div class="teamtileseperator"></div>
 
         <div class="tab-content">
-            <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="manageTeam">
+            <div class="tab-pane active col-md-12 col-sm-12 col-xs-12 col-xs-p-0" id="manageTeam">
                 <div class="teamList" id="teamList">
                     <g:render template="manageproject/teamgrid"/>
                 </div>

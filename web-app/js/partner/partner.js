@@ -1,5 +1,5 @@
 $(function() {
-	
+
     var baseUrl = $('#baseUrl').val();
 	
     function getSelectedCampaignUrl() {
@@ -338,7 +338,6 @@ $(function() {
     $("#remove-folder").click(function(event) {
         if (confirm('Are you sure you want to discard this folder?')) {
             var folderId = $(this).val();
-            var baseUrl = $('#baseUrl').val();
             var partnerId = $('#partnerId').val();
             var grid = $('#docFolders');
             
@@ -474,6 +473,37 @@ $(function() {
     });
     
     $( document ).ready(function() {
+    	
+    	$(document).on('change', '.btn-file :file', function() {
+            var filename =this.files[0].name;
+            var input = $(this),
+                        fileExt = filename.substr(filename.lastIndexOf('.') + 1),
+                        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                        input.trigger('fileselect', [fileExt, label]);
+        });
+
+        
+        $('.btn-file :file').on('fileselect', function(event, fileExt, label) {
+
+            var input = $(this).parents('.input-group').find(':text'),
+                        log = (fileExt != 'csv') ? 'Select csv file' : label;
+            if(fileExt=='csv'){ 
+                $('.upload').removeClass('has-error');
+            }else{
+                $('.upload').addClass('has-error');
+            }
+   
+            if( input.length ) {
+                input.val(log);
+            }
+        });
+        
+    	if($('#socialContact').val()){
+        	$('.divSocialContact').show();
+        }else{
+        	$('.divSocialContact').hide();
+        }
+    	
         function sticky_relocate() {
             var div_top = $('#footermarker').offset().top;
             var marker = $('#add-docs-fixed-btn').offset().top;
@@ -494,6 +524,147 @@ $(function() {
         sticky_relocate();
     });
     
+    /***********************Social contacts******************************************/
+    $('.constantContact').click(function(){
+        $('.socialProvider').val("constant");
+        $('.divSocialContact').show();
+        $('.divCSVContacts').hide();
+        $('#socialContact').val('');
+        $(this).addClass('highlightIcon');
+        if($('.mailchimpContact, .facebookContact, .csvContact, .gmailContact').hasClass('highlightIcon')){
+        	$('.mailchimpContact, .facebookContact, .csvContact, .gmailContact').removeClass('highlightIcon');
+        }
+    });
+    
+    $('.gmailContact').click(function(){
+        $('.socialProvider').val("google");
+        $('.divSocialContact').show();
+        $('.divCSVContacts').hide();
+        $('#socialContact').val('');
+        $(this).addClass('highlightIcon');
+        if($(".mailchimpContact, .facebookContact, .csvContact, .constantContact").hasClass('highlightIcon')){
+           $(".mailchimpContact, .facebookContact, .csvContact, .constantContact").removeClass('highlightIcon');
+        }
+    });
+    $('.mailchimpContact').click(function(){
+        $('.socialProvider').val("mailchimp");
+        $('.divSocialContact').show();
+        $('.divCSVContacts').hide();
+        $('#socialContact').val('');
+        $(this).addClass('highlightIcon');
+        if($('.gmailContact, .facebookContact, .csvContact, .constantContact').hasClass('highlightIcon')){
+        	$('.gmailContact, .facebookContact, .csvContact, .constantContact').removeClass('highlightIcon');
+        }
+    });
+    
+    $('.facebookContact').click(function(){
+        $('.socialProvider').val("facebook");
+        $('.divSocialContact').show();
+        $('.divCSVContacts').hide();
+        $('#socialContact').val('');
+        $(this).addClass('highlightIcon');
+        if($('.mailchimpContact, .gmailContact, .csvContact, .constantContact').hasClass('highlightIcon')){
+        	$('.mailchimpContact, .gmailContact, .csvContact, .constantContact').removeClass('highlightIcon');
+        }
+    });
+    
+    $('.csvContact').click(function(){
+        $('.socialProvider').val("csv");
+        $('.divCSVContacts').show();
+        $('.divSocialContact').hide();
+        $(this).addClass('highlightIcon');
+        if($('.mailchimpContact, .facebookContact, .gmailContact, .constantContact').hasClass('highlightIcon')){
+        	$('.mailchimpContact, .facebookContact, .gmailContact, .constantContact').removeClass('highlightIcon');
+        }
+    });
+    
+    $('.socialContact').change(function(){
+        var regex=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
+        var socialContact= $('.socialContact').val();
+        var status =(socialContact.match(regex)) ? true : false;
+        if(status==true){
+            $('.socialContactDiv').removeClass("has-error");
+        }else{
+            return false;
+        }
+    });
+    
+    $('.btnSocialContacts').click(function(){
+        var socialProvider=$('.socialProvider').val();
+        var socialContact= $('.socialContact').val();
+        if(socialContact==null || socialContact==""){
+            $('.socialContactDiv').addClass("has-error");
+            $('.socialContact').focus();
+        }
+        if($('.socialContactDiv').hasClass("has-error")){
+            return false;
+        }else{
+            $.ajax({
+                 type:'post',
+                 url:$("#b_url").val()+'/project/importSocialContacts',
+                 data:'socialProvider='+socialProvider+'&socialContact='+socialContact,
+                 success: function(data){
+	                 if(data){
+		                 $(location).attr("href",data);
+                     }
+                 }
+            });
+        }
+    });
+    
+    $('.csvbtn').click(function(){
+    	var input = $('.csvFile').val();
+    	if($('.upload').hasClass('has-error')){
+    		return false;
+    	}
+    	if(input==''){
+    		$('.upload').addClass('has-error');
+    		return false;
+    	}else{
+    		$('.upload').removeClass('has-error');
+    	}
+    	
+    	var data = new FormData();
+        data.append( 'filecsv', $('.filecsv')[0].files[0] );
+        
+    	$.ajax({
+            type:'post',
+            url:$("#b_url").val()+'/project/importDataFromCSV',
+            data:data,
+            processData: false,  
+            contentType: false ,
+            success: function(data){
+                if(data){
+                    var list =jQuery.parseJSON(JSON.stringify(data));
+                    if(list.contacts == ''){
+                        $('.csv-empty-emails').addClass("csv-empty-emails-error");
+                        $('.upload').addClass('has-error');
+                        $('.contactlist').val('');
+                    }else{
+                        $('.csv-empty-emails').removeClass("csv-empty-emails-error");
+                        $('.upload').removeClass('has-error');
+                        $('.contactlist').val(list.contacts);
+                    }
+                }
+            }
+       });
+    });
+    
+    $('#btnSendinvitation').click(function(){
+        var form =$('#invite-campaign-owner').find('form');
+        var  error =form.find('div').hasClass('has-error');
+        if(error){
+	        return false;
+        }
+    });
+
+    $('#mobBtnSendinvitation').click(function(){
+        var form =$('#invite-campaign-owner').find('form');
+        var  error =form.find('div').hasClass('has-error');
+        if(error){
+	        return false;
+        }
+    });
     function validateExtension(imgExt){
         var allowedExtensions = new Array("jpg","JPG","png","PNG","pdf","doc","docx","xlsx","ppt","pptx","csv");
         for(var imgExtImg=0;imgExtImg<allowedExtensions.length;imgExtImg++)
@@ -505,5 +676,4 @@ $(function() {
         }
         return false;
     }
-    
 });

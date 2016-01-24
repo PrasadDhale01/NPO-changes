@@ -620,9 +620,7 @@ div.validate-show-div .show-description {
     padding-left: 0px;
     padding-right: 0px;
 }
-.show-pageDiscription{
-    padding-left: 15px !important;
-}
+
 #validateChecklistmsg {
 	   display: none;
 }
@@ -897,7 +895,7 @@ img.hm-height-width {
     margin-left: -36px;
 }
 .hm-toi {
-    top: -5px;
+    top: 0px;
 }
 .manage-container-page{
 	width: 1000px;
@@ -905,8 +903,6 @@ img.hm-height-width {
 .mange-borders{
     border-bottom: 2px solid #e3e3e3;
     border-top: 2px solid #e3e3e3;
-    width: 969px;
-    margin-left: 15px;
 }
 .manage-bottom-top{
     border-right-width: 0;
@@ -963,7 +959,7 @@ img.hm-height-width {
 .manage-fb-color,
 .manage-fb-color:hover,
 .manage-fb-color:focus {
-    background-color: rgb(118, 134, 179);
+    background-color: #3b5998;
     color: #fff;
 }
 .mange-size-FBbtn {
@@ -983,12 +979,11 @@ img.hm-height-width {
 .manage-social{
     border-bottom: 2px solid #e3e3e3;
     border-top: 2px solid #e3e3e3;
-    margin-left: 14px;
     margin-top: 10px;
     padding-bottom: 6px;
     padding-left: 238px;
     padding-top: 6px;
-    width: 97.1%;
+    margin-bottom: 20px;
 }
 .manage-btn-back-color,
 .manage-btn-back-color:hover,
@@ -1139,8 +1134,12 @@ img.home-img-large-size{
 .hm-how-it-work-img {
     bottom: 17%;
     position: absolute;
-    right: 16%;
-    z-index: 1000;
+    right: 3.2%;
+}
+.learn-how-it-work-img{
+    bottom: 17%;
+    position: absolute;
+    right: 3.2%;
 }
 .hm-start-campaign-btn,
 .hm-start-campaign-btn:hover,
@@ -1156,4 +1155,29 @@ img.home-img-large-size{
     font-weight: 900;
     padding: 30px 0 0;
     margin-left: 36px;
+}
+.hm-mediastrip img {
+    margin-top: 9px;
+}
+.abt-us-cardposition{
+	left: 38.4%;
+}
+.show-pageDiscription img {
+    width: 100%;
+}
+.managecampaignDescription {
+    border: #e7e7e7;
+    background-color: #e7e7e7;
+    height: 90px;
+    margin-top: -3px
+}
+.managecampaignDescription p {
+    color: #5a6771;
+    font-weight: 900;
+    font-family: sans-serif;
+    font-size: 19px;
+    margin: 0 0 0px
+}
+.managecampaignDescription .panel-body {
+    padding: 5px;
 }

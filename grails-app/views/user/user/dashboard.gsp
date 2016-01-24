@@ -228,7 +228,7 @@
                                         <p class="announcement-heading">
                                             <span class="amountSection-Font"><g:if test="${environment == 'prodIndia' || environment == 'stagingIndia' || environment == 'testIndia'}"><span class="fa fa-inr"></span>${fundRaised.round()}</g:if><g:else>$${fundRaised.round()}</g:else></span>
                                         </p>
-  	                                </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="panel-footer announcement-bottom">

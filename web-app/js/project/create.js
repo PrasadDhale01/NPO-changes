@@ -20,6 +20,8 @@ $(function() {
 
     var count = $('#rewardCount').val();
     var projectId = $('#projectId').val();
+    var isIndianCampaign = ($('#isIndianCampaign').val() == 'true') ? true : false;
+    
 
     var storyContent
     var storyPlaceholder = "<p><h3>Introduce Your Campaign</h3></p>"+
@@ -200,14 +202,14 @@ $(function() {
                 number: true,
                 min: 500,
                 maxlength: function() {
-                    if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                    if(isIndianCampaign) {
                         return 8;
                     } else {
                         return 6;
                     }
                 },
                 max: function() {
-                    if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                    if(isIndianCampaign) {
                         return 99999999;
                     } else {
                         return 100000;
@@ -219,14 +221,14 @@ $(function() {
                 number: true,
                 min: 500,
                 maxlength: function() {
-                    if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                    if(isIndianCampaign) {
                         return 8;
                     } else {
                         return 6;
                     }
                 },
                 max: function() {
-                    if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                    if(isIndianCampaign) {
                         return 99999999;
                     } else {
                         return 100000;
@@ -409,7 +411,7 @@ $(function() {
             });
         });
     	
-    	if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+    	if (isIndianCampaign){
     	      $('.spendAmount').each(function () {
                   $(this).rules("add", {
                       required: true,
@@ -497,15 +499,21 @@ $(function() {
         });
         
         $('[name="reason1"]').rules( "add", {
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 140
         });
         
         $('[name="reason2"]').rules( "add", {
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 140
         });
         
         $('[name="reason3"]').rules( "add", {
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 140
         });
         
         $( '[name="webAddress"]' ).rules( "add", {
@@ -545,7 +553,7 @@ $(function() {
             });
     	}
     	
-    	if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+    	if(isIndianCampaign) {
             $('.rewardPrice').each(function () {
                 $(this).rules("add", {
                     required: true,
@@ -721,7 +729,7 @@ $(function() {
         
         $('#isSubmitButton').val(true);
         
-		if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+		if (isIndianCampaign){
 			$('.spendAmount').each(function () {
 				$(this).rules("add", {
 					required: true,
@@ -825,15 +833,21 @@ $(function() {
         });
         
         $('[name="reason1"]').rules( "add", {
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 140
         });
         
         $('[name="reason2"]').rules( "add", {
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 140
         });
         
         $('[name="reason3"]').rules( "add", {
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 140
         });
         
         $('.rewardNumberAvailable').each(function () {
@@ -853,7 +867,7 @@ $(function() {
         });
     	}
         
-        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+        if(isIndianCampaign) {
             $('.rewardPrice').each(function () {
                 $(this).rules("add", {
                     required: true,
@@ -1600,7 +1614,7 @@ $(function() {
     });
     
     function setDescriptionText(){
-        var currentString = $('#descarea').val().length;
+        var currentString = $('#descarea, #descarea1').val().length;
         if (currentString == 0) {
             $('#desclength').text("0/140");
         } else {
@@ -1999,7 +2013,7 @@ $(function() {
         '<div class="form-group">'+
             '<div class="col-sm-12">';
         
-        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+        if(isIndianCampaign){
            	str = str + '<span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>';
              }else{
            	str = str + '<span class="cr2-currency-label">$</span>' ;
@@ -2103,7 +2117,7 @@ $(function() {
                 min: 1
             });
         });
-        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+        if(isIndianCampaign) {
            $('.rewardPrice').each(function () {
                $(this).rules("add", {
                    required: true,
@@ -2295,7 +2309,7 @@ $(function() {
 					'<div class="col-sm-amt col-sm-12">'+
 						'<span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>'+
 						'<div class="form-group col-sm-3 col-xs-4 col-sm-input-group">';
-							if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+							if (isIndianCampaign){
 								template = template +'<span class="fa fa-inr cr-currency"></span>';
 							} else {
 								template = template +'<span class="fa fa-usd cr-currency"></span>';
@@ -2329,7 +2343,7 @@ $(function() {
 		});
 
           function validateSpendMatrix(shippingMatrixCount){
-        	  if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+        	  if (isIndianCampaign){
         	      $('.spendAmount').each(function () {
                       $(this).rules("add", {
                           required: true,
@@ -2646,50 +2660,49 @@ $(function() {
         }
     });
 
-    $('.recipient').change(function(){
+    $('.recipient').change(function() {
         var recipient = $(this).val();
-        if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'){
-            if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-                if (recipient == 'NGO'){
-                    $('#tax-reciept').show();
-                } else {
-                    $('#tax-reciept').hide();
-                    if ($('#offeringTaxReciept').val() == 'true' || $('#offeringTaxReciept').val() == true){
-                        if (confirm("If you will change the recipient of fund you will not be liable to offer tax reciept. \nAre you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
-                            $('.col-tax-reciept-panel').hide();
-                            $('#taxRecieptId').val(null);
-                            deleteTaxReciept();
-                        } else {
-                            $(this).val('NGO');
-                            $('#tax-reciept').show();
-                            $('.recipient li').removeClass('selected');
-                            $(".recipient li:eq('1')").addClass('selected');
-                            $('.recipient ').find('span.filter-option').text('NGO');
-                        }
+        if (isIndianCampaign){
+            if (recipient == 'NGO'){
+                $('#tax-reciept').show();
+            } else {
+                $('#tax-reciept').hide();
+                if ($('#offeringTaxReciept').val() == 'true' || $('#offeringTaxReciept').val() == true){
+                    if (confirm("If you will change the recipient of fund you will not be liable to offer tax reciept. \nAre you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
+                        $('.col-tax-reciept-panel').hide();
+                        $('#taxRecieptId').val(null);
+                        deleteTaxReciept();
+                    } else {
+                        $(this).val('NGO');
+                        $('#tax-reciept').show();
+                        $('.recipient li').removeClass('selected');
+                        $(".recipient li:eq('1')").addClass('selected');
+                        $('.recipient ').find('span.filter-option').text('NGO');
                     }
                 }
+            }
+        } else {
+            if (recipient == 'NON-PROFIT'){
+                 $('#tax-reciept').show();
             } else {
-                if (recipient == 'NON-PROFIT'){
-                     $('#tax-reciept').show();
-                } else {
-                    $('#tax-reciept').hide();
-                    if ($('#offeringTaxReciept').val() == 'true' || $('#offeringTaxReciept').val() == true){
-                        if (confirm("If you will change the recipient of fund you will not be liable to offer tax reciept. \nAre you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
-                            $('.tax-reciept-checkbox').attr('checked', false);
-                            $('.col-tax-reciept-panel').hide();
-                            $('#taxRecieptId').val(null);
-                            deleteTaxReciept();
-                        } else {
-                            $(this).val('NON-PROFIT');
-                            $('#tax-reciept').show();
-                            $('.recipient li').removeClass('selected');
-                            $(".recipient li:eq('1')").addClass('selected');
-                            $('.recipient ').find('span.filter-option').text('Non-Profit');
-                        }
+                $('#tax-reciept').hide();
+                if ($('#offeringTaxReciept').val() == 'true' || $('#offeringTaxReciept').val() == true){
+                    if (confirm("If you will change the recipient of fund you will not be liable to offer tax reciept. \nAre you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
+                        $('.tax-reciept-checkbox').attr('checked', false);
+                        $('.col-tax-reciept-panel').hide();
+                        $('#taxRecieptId').val(null);
+                        deleteTaxReciept();
+                    } else {
+                        $(this).val('NON-PROFIT');
+                        $('#tax-reciept').show();
+                        $('.recipient li').removeClass('selected');
+                        $(".recipient li:eq('1')").addClass('selected');
+                        $('.recipient ').find('span.filter-option').text('Non-Profit');
                     }
                 }
             }
         }
+        
 
         $.ajax({
             type:'post',
@@ -2943,7 +2956,7 @@ $(function() {
 //        $('#customVanityUrl').val(title.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-'));
 //    });
 
-    $('.descarea1').blur(function (){
+    $('#descarea1').blur(function (){
         var descarea = $(this).val();
         autoSave('descarea', descarea);
     });
@@ -3084,6 +3097,26 @@ $(function() {
     $('.ansText3').blur(function(){
     	var ansText3 = $(this).val();
     	autoSave('ans3', ansText3);
+    });
+    
+    $('.ansText5').blur(function(){
+    	var ansText5 = $(this).val();
+    	autoSave('ans5', ansText5);
+    });
+    
+    $('.ansText6').blur(function(){
+    	var ansText6 = $(this).val();
+    	autoSave('ans6', ansText6);
+    });
+    
+    $('.ansText7').blur(function(){
+    	var ansText7 = $(this).val();
+    	autoSave('ans7', ansText7);
+    });
+    
+    $('.ansText8').blur(function(){
+    	var ansText8 = $(this).val();
+    	autoSave('ans8', ansText8);
     });
     
     $('#deleteVideo').click(function(){

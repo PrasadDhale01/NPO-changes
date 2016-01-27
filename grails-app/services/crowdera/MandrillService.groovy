@@ -1316,6 +1316,59 @@ class MandrillService {
         inviteToShare(user.email, 'partner-discard', globalMergeVars, tags)
     }
     
+    def sendTaxReceiptToContributors(def idList){
+        Contribution contribution;
+        def link;
+        idList.each{
+            contribution = Contribution.get(it);
+            link = grailsLinkGenerator.link(controller: 'user', action: 'exportTaxReceiptpdf', id: contribution.id, absolute: true);
+            def globalMergeVars = [[
+                'name': 'NAME',
+                'content': contribution.contributorName
+            ], [
+                'name': 'EMAIL',
+                'content': contribution.contributorEmail
+            ],[
+                'name': 'AMOUNT',
+                'content': contribution.amount
+            ],[
+                'name':'CURRENCY',
+                'content':(contribution.currency == 'USD') ? '$' : 'Rs. '
+            ],[
+                'name' : 'DATE',
+                'content':contribution.date.format("dd MMMM, YYYY")
+            ],[
+                'name': 'CAMPAIGNTITLE',
+                'content': contribution.project.title
+            ], [
+                'name':'BENEFICIARYNAME',
+                'content': contribution.project.beneficiary.firstName + ((contribution.project.beneficiary.lastName) ? (' ' + contribution.project.beneficiary.lastName) : '')
+            ], [
+                 'name':'USEDFOR',
+                 'content':contribution.project.usedFor
+            ], [
+                 'name':'IDENTITY',
+                 'content': (contribution.isAnonymous) ? 'Anonymous' : 'Non-Anonymous'
+            ], [
+                  'name':'MODE',
+                  'content': (contribution.isContributionOffline) ? 'Offline' : 'Online'
+            ], [
+                  'name':'FUNDRAISER',
+                  'content':contribution.fundRaiser
+            ], [
+                  'name':'LINK',
+                  'content':link
+            ]
+        
+        ]
+
+        def tags = ['sendTaxReceiptToContributors']
+
+        inviteToShare(contribution.contributorEmail, 'sendTaxReceiptToContributors', globalMergeVars, tags)
+        contribution.receiptSent = true;
+        }
+    }
+
     def sendEmailToContributors(Contribution contribution, def password){
         def globalMergeVars = [[
                 'name': 'NAME',
@@ -1348,4 +1401,34 @@ class MandrillService {
 
         inviteToShare(contribution.contributorEmail, 'sendContributorUsernameAndPassword', globalMergeVars, tags)
     }
+    
+    def sendEmailOnValidation(def environment, def emails, Project project) {
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:project.user.username], absolute: true)
+        
+        if (environment != 'development') {
+            emails.each { email ->
+                if (email)  {
+                    def globalMergeVars = [[
+                            'name': 'TITLE',
+                            'content': project.title
+                        ], [
+                            'name': 'CATEGORY',
+                            'content': project.category
+                        ], [
+                            'name':'Email',
+                            'content' : email
+                        ], [
+                            'name':'LINK',
+                            'content' : link
+                        ]
+                    ]
+    
+                    def tags = ['recommendation-engine']
+    
+                    inviteToShare(email,'recommendation-engine', globalMergeVars, tags)
+                }
+            }
+        }
+    }
+    
 }

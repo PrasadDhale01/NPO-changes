@@ -11,8 +11,8 @@
                 <img src="//s3.amazonaws.com/crowdera/assets/times-of-india-2-colour.png" alt="TOI" class="hm-img-bottompadding hm-media-1"></a></span><br>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6 text-center hm-log-width hm-js-hover2">
-                <span><a href="http://www.ehitavada.com/hitavadanew.aspx?lang=6&NB=2015-11-23&spage=NCpage&SB=2015-11-23#NCpage_8" target="_blank">
-                <img src="//s3.amazonaws.com/crowdera/assets/the-hitavada-white-samll-1.png" alt="Hitavada" class="hm-img-bottompadding hm-renderingimg hm-media-2"></a></span><br>
+                <span><a href="https://cgexecblog.wordpress.com/2015/04/15/peer-2-peer-knowledge-network-for-public-innovators-learning-and-development-crowd-resourcing-program-proposal/" class="hm-mediastrip" target="_blank">
+                <img src="//s3.amazonaws.com/crowdera/assets/canada-govt-white.png" alt="Canada-govt" class="hm-img-bottompadding hm-renderingimg hm-media-2"></a></span><br>
             </div>
              <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6 text-center hm-log-width hm-js-hover3">
                 <span><a href="http://finance.yahoo.com/news/immigrant-entrepreneur-launches-100-free-121600250.html" target="_blank">

@@ -92,6 +92,7 @@ class UrlMappings {
         "/campaign/supporter/$projectId/$fundRaiser"(controller:'project', action:'addcampaignsupporter')
         "/campaign/$projectTitle/$fr/embed/tile"(controller:'project', action:'embedTile')
         "/campaign/inviteMember/$projectId/$page?"(controller:'project', action:'inviteMember')
+        
 
         /* Admin */
         "/admin/dashboard"(controller:'user', action:'admindashboard')
@@ -126,7 +127,8 @@ class UrlMappings {
         "/user/edit-location"(controller:'user', action:'editlocation')
         "/user/userprofile/$id"(controller:'user', action:'userActivity1')
         "/user/userprofile/$amount/$id"(controller:'user', action:'userActivity')
-        
+        "/user/$vanityTitle/contributors"(controller:'user', action:'showContributor')
+
         /*Partner*/
         "/partner/dashboard"(controller:'user', action:'partnerdashboard')
         "/partner/dashboard/$id"(controller:'user', action:'partnerdashboard')

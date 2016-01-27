@@ -237,11 +237,13 @@ class ProjectController {
 			def offset = params.int('offset') ?: 0
 
             def multiplier = projectService.getCurrencyConverter();
+            
             def pieList = projectService.getPieList(project);
             def hasMoreTagsDesktop = projectService.getHashTags(project.hashtags)
             def hasMoreTagsTabs = projectService.getHashTagsTabs(project.hashtags)
             def reasons = projectService.getReasonsToFundFromProject(project)
             def isDeviceMobileOrTab = isDeviceMobileOrTab();
+            
             render (view: 'show/index',
             model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, 
                     isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
@@ -339,6 +341,11 @@ class ProjectController {
                 def hasMoreTagsDesktop = projectService.getHashTags(project.hashtags)
                 def hasMoreTagsTabs = projectService.getHashTagsTabs(project.hashtags)
                 def reasons = projectService.getReasonsToFundFromProject(project)
+                def taxReceipt = projectService.getTaxRecieptOfProject(project)
+                def deductibleStatus
+                if (taxReceipt){
+                    deductibleStatus = projectService.getDeductibleStatus(taxReceipt.deductibleStatus)
+                }
                 
                 if(project.validated == false) {
                     render (view: 'validate/validateshow',
@@ -346,13 +353,13 @@ class ProjectController {
                     endDate: endDate,projectComments: projectComments,totalteams: totalteams,totalContribution: totalContribution, 
                     percentage:percentage, teamContribution: teamContribution, webUrl: webUrl,teamComments: teamComments, 
                     teamOffset: teamOffset,teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, 
-                    day: day,totalContributions: totalContributions,contributions: contributions,
+                    day: day,totalContributions: totalContributions,contributions: contributions, deductibleStatus:deductibleStatus,
                     isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, 
                     isFundingOpen: isFundingOpen, rewards: rewards,validatedPage: validatedPage, isTeamExist: isTeamExist, 
                     FORMCONSTANTS: FORMCONSTANTS, multiplier: multiplier,spendCauseList:pieList.spendCauseList, 
                     spendAmountPerList:pieList.spendAmountPerList, hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, 
                     remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, 
-                    remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, reasons:reasons])
+                    remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, reasons:reasons, taxReceipt:taxReceipt])
                 }
             } else {
                 render (view: '404error')
@@ -490,6 +497,37 @@ class ProjectController {
         }
 		render(view: 'validate/index', model: [projects: projects])
 	}
+    
+    def comment() {
+        User user = userService.getCurrentUser()
+        def base_url = grailsApplication.config.crowdera.BASE_URL
+
+        def reqUrl
+        if (!user) {
+            
+            Cookie cookie = new Cookie("requestUrl", reqUrl)
+            cookie.path = '/'
+            cookie.maxAge= 600
+            response.addCookie(cookie)
+        }
+        reqUrl = base_url+"/project/savecomment?comment=${params.comment}&id=${params.id}&fr=${params.fr}"
+        redirect (url: reqUrl)
+    }
+
+    def teamcomment() {
+        User user = userService.getCurrentUser()
+        def base_url = grailsApplication.config.crowdera.BASE_URL
+
+        def reqUrl
+        if (!user) {
+            Cookie cookie = new Cookie("requestUrl", reqUrl)
+            cookie.path = '/'
+            cookie.maxAge= 600
+            response.addCookie(cookie)
+        }
+        reqUrl = base_url+"/project/saveteamcomment?comment=${params.comment}&id=${params.id}&fr=${params.fr}"
+        redirect (url: reqUrl)
+    }
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def savecomment() {
@@ -1173,6 +1211,13 @@ class ProjectController {
 
 			def day = projectService.getRemainingDay(project)
 			def multiplier = projectService.getCurrencyConverter();
+            
+            def pieList = projectService.getPieList(project);
+            def hasMoreTagsDesktop = projectService.getHashTags(project.hashtags)
+            def hasMoreTagsTabs = projectService.getHashTagsTabs(project.hashtags)
+            def reasons = projectService.getReasonsToFundFromProject(project)
+            
+//            def isDeviceMobileOrTab = isDeviceMobileOrTab();
 
 			if(project.user==user || isCampaignOwnerOrAdmin){
 				render (view: 'manageproject/index',
@@ -1180,7 +1225,10 @@ class ProjectController {
 					discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset, day: day,
 					ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
 					unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, vanityUsername:vanityUsername, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo,
-					tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier])
+					tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier, reasons: reasons,
+                    spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList,
+                    hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
+                    hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags])
 			} else {
 				flash.prj_mngprj_message = 'Campaign Not Found'
 				render (view: 'manageproject/error', model: [project: project])
@@ -1859,8 +1907,9 @@ class ProjectController {
 			def teams = teamObj.teamList
 			def totalteams = teamObj.teams
 			def multiplier = projectService.getCurrencyConverter();
+            boolean isshow = true;
 
-			def model = [teamOffset : teamOffset, teams: teams, totalteams: totalteams, project: project, vanityUsername:params.fr, multiplier: multiplier]
+			def model = [teamOffset : teamOffset, isshow: isshow, teams: teams, totalteams: totalteams, project: project, vanityUsername:params.fr, multiplier: multiplier]
 			if (request.xhr) {
 				render(template: "show/teamgrid", model: model)
 			}

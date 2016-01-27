@@ -1417,7 +1417,166 @@ class UserService {
         }
         return isDeleted
     }
+
+    def isUserProjectHavingContribution(User user, def environment){
+        Boolean doProjectHaveAnyContribution = false
+        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
+            List projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:true, offeringTaxReciept:true)
+            projects.each{
+                if (it.contributions){
+                    doProjectHaveAnyContribution = true
+                }
+            }
+        } else {
+            List projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:false, offeringTaxReciept:true)
+            projects.each{
+                if (it.contributions){
+                    doProjectHaveAnyContribution = true
+                }
+            }
+        }
+        return doProjectHaveAnyContribution
+    }
+
+    def userHasContributedToNonProfitOrNgo(User user){
+        Boolean result = false
+        def contributions = Contribution.findAllWhere(user:user)
+        if (contributions){
+            contributions.each{
+                if (it.receiptSent){
+                    result = true;
+                }
+            }
+        }
+        return result
+    }
+
+    def getContributionsForWhichTaxReceiptreceived(User user, def params){
+        def contributions = Contribution.findAllWhere(user:user)
+        List contributionList = []
+        def contributionsOffset
+        if (contributions){
+            contributions.each{
+                if (it.receiptSent){
+                    contributionList.add(it);
+                }
+            }
+        }
+        
+        if (contributionList && !contributionList.empty){
+            def offset = params.offset ? params.int('offset') : 0
+            def max = 10
+            def count = contributionList.size()
+            def maxrange
+
+            if(offset + max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            contributionsOffset = contributionList.reverse().subList(offset, maxrange)
+        }
+        
+        return [totalTaxReceiptContributions:contributionList, taxReceiptList:contributionsOffset]
+
+    }
+
+    def getSortedContributorsForProject(def params){
+        def project = projectService.getProjectFromVanityTitle(params.vanityTitle)
+        List contributions = []
+        def contributionsOffset
+        switch (params.sort){
+            case 'Anonymous':
+            contributions = Contribution.findAllWhere(project:project, isAnonymous:true)
+            break;
+
+            case 'Non-Anonymous':
+            contributions = Contribution.findAllWhere(project:project, isAnonymous:false)
+            break;
+
+            case 'Receipt Sent':
+            contributions = Contribution.findAllWhere(project:project, receiptSent:true)
+            break;
+
+            case 'Receipt Not Sent':
+            contributions = Contribution.findAllWhere(project:project, receiptSent:false)
+            break;
+
+            case 'Perk Selected':
+            def contributionList = Contribution.findAllWhere(project:project)
+            contributionList.each{
+                if (it.reward.id != 1){
+                    contributions.add(it)
+                }
+            }
+            break;
+
+            case 'No Perk Selected':
+            def contributionList = Contribution.findAllWhere(project:project)
+            contributionList.each{
+                if (it.reward.id == 1){
+                    contributions.add(it)
+                }
+            }
+            break;
+
+            case 'Online':
+            contributions = Contribution.findAllWhere(project:project, isContributionOffline:false)
+            break;
+
+            case 'Offline':
+            contributions = Contribution.findAllWhere(project:project, isContributionOffline:true)
+            break;
+
+            default:
+            contributions = Contribution.findAllWhere(project:project)
+        }
+        if (contributions && !contributions.empty){
+            def offset = params.offset ? params.int('offset') : 0
+            def max = 10
+            def count = contributions.size()
+            def maxrange
+
+            if(offset + max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            contributionsOffset = contributions.reverse().subList(offset, maxrange)
+        }
+        return ['totalContributions':contributions, 'contributions':contributionsOffset]
+    }
     
+    def getContributorsListSearchedByName(def params){
+        def project = projectService.getProjectFromVanityTitle(params.vanityTitle)
+        List contributionList = Contribution.findAllWhere(project:project)
+        List contributions = []
+        def contributionsOffset
+        if (params.query && params.query != " "){
+            contributionList.each{
+                if (it.contributorName.contains(params.query)){
+                    contributions.add(it)
+                }
+            }
+        } else {
+            contributions = contributionList
+        }
+        if (contributions && !contributions.empty){
+            def offset = params.offset ? params.int('offset') : 0
+            def max = 10
+            def count = contributions.size()
+            def maxrange
+
+            if(offset + max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            contributionsOffset = contributions.reverse().subList(offset, maxrange)
+        }
+        return ['totalContributions':contributions, 'contributions':contributionsOffset]
+    }
+
     def setPartner(User user) {
         Partner partner = new Partner()
         partner.user = user

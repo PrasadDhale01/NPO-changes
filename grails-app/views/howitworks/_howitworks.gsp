@@ -90,8 +90,6 @@
 <%--</div>--%>
 
 
-
-
 <%--<div class="how-it-on-image">--%>
 <%--    <div class="ss">--%>
 <%--        <img alt="sucess-tips" src="/images/sucess-tips---bg-Images.png" class="how-it-success-img">--%>

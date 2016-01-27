@@ -14,12 +14,10 @@
 <g:if test="${project.validated}">
 <div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
     <g:if test="${totalContributions.empty}">
-        <div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="alert alert-info">No contributions yet.</div>
-        </div>
+        <div class="alert alert-info">No contributions yet.</div>
     </g:if>
     <g:if test="${project.validated}">
-        <div class="col-md-12 col-md-12 col-sm-12 col-xs-12 manage-report-offline-lft">
+        <div class="manage-report-offline-lft">
             <g:if test="${project.payuStatus == false && !ended}">
                 <a href="#" class="btn btn-primary btn-sm pull-right managecontribution mange-contribution-mobile" data-toggle="modal" data-target="#offlineContributionModal">
                     Manage Offline Contribution
@@ -56,16 +54,28 @@
 	                        </p>
                         </div>
                         <g:hiddenField name="manageCampaign" value="${manageCampaign}"></g:hiddenField>
-                        <div class="col-sm-8">
+                        <div class="col-sm-12">
                             <div class="form-group">
-                                <label class="text">Display Name</label>
-                                <input type="text" class="form-control contributioninput" name="contributorName1">
+                                <label class="text col-sm-3">Display Name</label>
+                                <div class="col-sm-9"> 
+                                <input type="text" class="form-control contributioninput" name="contributorName1"><br>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-12">
                             <div class="form-group">
-                                <label class="text">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
-                                <input type="text" class="form-control contributioninput" name="amount1" id="offlineAmount1">
+                                <label class="text col-sm-3">Email</label>
+                                <div class="col-sm-9"> 
+                                <input type="email" class="form-control contributioninput" name="contributorEmail1" required><br>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="text col-sm-3">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+                                <div class="col-sm-9"> 
+                                <input type="text" class="form-control contributioninput" name="amount1" id="offlineAmount1"><br>
+                                </div>
                             </div>
                             <div id="errormsg1"></div>
                         </div>
@@ -105,6 +115,7 @@
                 <b>CONTRIBUTION REPORT</b>
             </h4>
          </div>
+         
          <g:hiddenField name="projectId" value="${project.id}" id="projectId${project.id}"/>
          <div class="modal-body">
            <g:if test="${!totalContributions.empty}">
@@ -196,9 +207,7 @@
                     </div>
                 </dl>
             </g:if>
-            <g:else>
-                <div class="alert alert-info">No contributions yet. Yours can be the first one.</div>
-            </g:else>
+            
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary btnGenerateCSV" >Export CSV

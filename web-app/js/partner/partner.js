@@ -1,5 +1,5 @@
 $(function() {
-	
+
     var baseUrl = $('#baseUrl').val();
 	
     function getSelectedCampaignUrl() {
@@ -338,7 +338,6 @@ $(function() {
     $("#remove-folder").click(function(event) {
         if (confirm('Are you sure you want to discard this folder?')) {
             var folderId = $(this).val();
-            var baseUrl = $('#baseUrl').val();
             var partnerId = $('#partnerId').val();
             var grid = $('#docFolders');
             

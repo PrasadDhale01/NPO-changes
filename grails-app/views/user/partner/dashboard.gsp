@@ -4,6 +4,7 @@
 <%
     def partnerId = partner.id
     def userId = user.id
+    def multiplier = conversionMultiplier
 %>
 <html>
 <head>
@@ -33,7 +34,7 @@
         <div class="navbar navbar-default navbar-fixed-top visible-xs" id="partner-third-header">
             <div class="navbar-header">
                 <span class="span-space"><span class="header-text">Raised</span> <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${fundRaised.round()}</span>
-                <span class="span-space"><span class="header-text">Contributed</span> <g:if test="${environment == 'prodIndia' || environment == 'stagingIndia' || environment == 'testIndia'}"><span class="fa fa-inr"></span>${contributedAmount.round() * multiplier}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
+                <span class="span-space"><span class="header-text">Contributed</span> <g:if test="${currentEnv == 'prodIndia' || currentEnv == 'stagingIndia' || currentEnv == 'testIndia'}"><span class="fa fa-inr"></span>${contributedAmount.round() * multiplier}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
                 <span class="span-space"><span class="header-text">Campaigns</span> ${totalUserCampaigns.size()}</span>
             </div>
         </div>
@@ -119,6 +120,21 @@
                     <li>
                         <a href="#docs" data-toggle="tab">Manage Docs</a>
                     </li>
+                    <g:if test="${(isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                        <li>
+                            <a href="#taxReceipt" data-toggle="tab">Tax Receipt</a>
+                        </li>
+                    </g:if>
+                    <g:elseif test="${isUserProjectHavingContribution && !userHasContributedToNonProfitOrNgo && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                        <li>
+                            <a href="#sendtaxReceipt" data-toggle="tab">Send Tax Receipt</a>
+                        </li>
+                    </g:elseif>
+                    <g:elseif test="${!isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+						<li>
+                            <a href="#exporttaxReceipt" data-toggle="tab">Export Tax Receipt</a>
+						</li>
+                    </g:elseif>
                     <li>
                         <a href="#promote" data-toggle="tab">Promote</a>
                     </li>
@@ -176,7 +192,7 @@
                                     </div>
                                     <div class="col-xs-10 col-sm-12 col-md-10 text-right">
                                         <p class="announcement-heading">
-                                            <span class="amountSection-Font"><g:if test="${environment == 'prodIndia' || environment == 'stagingIndia' || environment == 'testIndia'}"><span class="fa fa-inr"></span>${contributedAmount.round() * multiplier}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
+                                            <span class="amountSection-Font"><g:if test="${currentEnv == 'prodIndia' || currentEnv == 'stagingIndia' || currentEnv == 'testIndia'}"><span class="fa fa-inr"></span>${contributedAmount.round() * multiplier}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
                                         </p>
                                     </div>
                                 </div>
@@ -284,6 +300,37 @@
                             <g:render template="/user/partner/docs"/>
                         </div>
                     </div>
+                    <g:if test="${(isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                    <div class="tab-pane tab-pane-active" id="taxReceipt">
+                        <div class="col-sm-12">
+                            <g:render template="/user/partner/receiptBoard"/>
+                        </div>
+                    </div>
+                    </g:if>
+                    <g:elseif test="${(isUserProjectHavingContribution && !userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                    <div class="tab-pane tab-pane-active" id="sendtaxReceipt">
+                        <div class="col-sm-12 sendTaxReceiptBoard"><br>
+							<g:if test="${contributionList}">
+							    <div class="send-tax-receipt-to-contributors">
+							        <g:render template="/user/user/sendTaxReceipt" model="[sort:'All']"/>
+							    </div>
+							</g:if>
+							<g:else>
+								<div class="campaignTilePaginate send-tax-receipt-to-contributors">
+								    <g:render template="/user/user/userCampaignTile"/>
+								</div>
+							</g:else>
+                        </div>
+                    </div>
+                    </g:elseif>
+                    <g:elseif test="${(!isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                    <div class="tab-pane tab-pane-active exportTaxReceiptThumbnail" id="exporttaxReceipt">
+                        <div class="col-sm-12">
+                            <br><g:render template="/user/user/exportTaxReceipt"/>
+                        </div>
+                    </div>
+                    </g:elseif>
+
                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'development' || currentEnv == 'test'}">
                         <div class="tab-pane tab-pane-active" id="upgrade">
                             <div class="col-sm-12">
@@ -300,6 +347,9 @@
     </div>
     <div class="loadinggif text-center" id="loading-gif">
         <img src="//s3.amazonaws.com/crowdera/documents/loading.gif" alt="'loadingImage'" id="loading-gif-img">
+    </div>
+    <div class="loadingfilegif text-center" id="loadingfilegif">
+        <img src="//s3.amazonaws.com/crowdera/assets/loading.gif" alt="'loadingImage'" id="loading-file-gif-img">
     </div>
     <script src="/js/filepicker.js" ></script>
     <script>

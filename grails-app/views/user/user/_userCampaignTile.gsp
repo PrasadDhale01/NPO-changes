@@ -1,9 +1,8 @@
 <g:set var="projectService" bean="projectService" />
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="userService" bean="userService"/>
-
-<g:if test="${totalCampaings.size() > 0}">
-<g:each in="${totalCampaings}" var="campaign">
+<g:if test="${projects.size() > 0}">
+<g:each in="${projects}" var="campaign">
     <% 
         def isFundingOpen = projectService.isFundingOpen(campaign)
         def contribution = contributionService.getTotalContributionForProject(campaign)
@@ -14,6 +13,7 @@
         
         def username = campaign.user.username
         boolean ended = projectService.isProjectDeadlineCrossed(campaign)
+        def vanityTitle = projectService.getVanityTitleFromId(campaign.id)
     %>
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 campaign-tile-seperator">
         <div class="thumbnail campaign-tile-width">
@@ -26,11 +26,6 @@
                 <g:elseif test="${campaign.rejected}">
                     <div class="over user-tile">
                         <img src="//s3.amazonaws.com/crowdera/assets/Rejected-tag.png"  alt="rejected">
-                    </div>
-                </g:elseif>
-                <g:elseif test="${campaign.onHold}">
-                    <div class="over user-tile">
-                        <img src="//s3.amazonaws.com/crowdera/assets/on-hold.png" alt="On Hold">
                     </div>
                 </g:elseif>
                 <g:elseif test="${!campaign.validated}">
@@ -82,11 +77,6 @@
                         <img src="//s3.amazonaws.com/crowdera/assets/Rejected-tag.png" alt="rejected">
                     </div>
                 </g:elseif>
-                <g:elseif test="${campaign.onHold}">
-                    <div class="over user-tile">
-                        <img src="//s3.amazonaws.com/crowdera/assets/on-hold.png" alt="On Hold">
-                    </div>
-                </g:elseif>
                 <g:elseif test="${!campaign.validated}">
                     <div class="over user-tile">
                         <img src="//s3.amazonaws.com/crowdera/assets/Pending-tag.png" alt="Pending">
@@ -126,29 +116,15 @@
                         <span>${projectService.getRemainingDay(campaign)}</span>
                     </g:else>
                 </div>
-                <g:if test="${iscampaignAdmin}">
-                    <g:link controller="project" action="manageCampaign" id="${campaign.id}" title="${campaign.title}">
-                        <img alt="${campaign.title}" class="campaign-img" src="${projectService.getProjectImageLink(campaign)}">
-                    </g:link>
-                </g:if>
-                <g:else>
-                    <g:link controller="project" action="showCampaign" id="${campaign.id}" params="['fr': username]" title="${campaign.title}">
-                        <img alt="${campaign.title}" class="campaign-img" src="${projectService.getProjectImageLink(campaign)}">
-                    </g:link>
-                </g:else>
+                <div title="${campaign.title}" data-vanitytitle="${vanityTitle}" class="campaignTileClick">
+                    <img alt="${campaign.title}" class="campaign-img img-size" src="${projectService.getProjectImageLink(campaign)}">
+                </div>
             </div>
             <div class="campaign-tile-content">
                 <div class="campaign-title-padding">
-                    <g:if test="${iscampaignAdmin}">
-                        <g:link controller="project" action="manageCampaign" id="${campaign.id}" title="${campaign.title}">
-                            ${campaign.title.toUpperCase()}
-                        </g:link>
-                    </g:if>
-                    <g:else>
-                        <g:link controller="project" action="showCampaign" id="${campaign.id}" params="['fr': username]" title="${campaign.title}">
-                            ${campaign.title.toUpperCase()}
-                        </g:link>
-                    </g:else>
+                    <div title="${campaign.title}" data-vanityTitle="${vanityTitle}" class="campaignTileClick">
+                        ${campaign.title.toUpperCase()}
+                    </div>
                 </div>
                 <g:if test="${isFundingOpen}">
                     <div class="progress progress-striped active">
@@ -164,12 +140,22 @@
                 <div class="userprofilecaption">
                     <span class="pull-left">
                         <span class="userdashboard-caption-font">Raised</span>
-                        <g:if test="${campaign.payuStatus}"><span class="fa fa-inr"></span><span class="lead">${contribution}</span></g:if><g:else><span class="lead">$${contribution}</span></g:else>
+                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                            <span class="fa fa-inr"></span><g:if test="${campaign.payuStatus}"><span class="lead">${contribution}</span></g:if><g:else><span class="lead">${contribution * conversionMultiplier}</span></g:else>
+                        </g:if>
+                        <g:else>
+                            <span class="lead">$${contribution}</span>
+                        </g:else>
                     </span>
     
                     <span class="pull-right">
                         <span class="userdashboard-caption-font">Goal</span>
-                        <g:if test="${campaign.payuStatus}"><span class="fa fa-inr"></span><span class="lead">${amount}</span></g:if><g:else><span class="lead">$${amount}</span></g:else>
+                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                            <span class="fa fa-inr"></span><g:if test="${campaign.payuStatus}"><span class="lead">${amount}</span></g:if><g:else><span class="lead">${amount * conversionMultiplier}</span></g:else>
+                        </g:if>
+                        <g:else>
+                            <span class="lead">$${amount}</span>
+                        </g:else>
                     </span>
                 </div>
             </div>
@@ -178,33 +164,42 @@
     
 </g:each>
 <div class="clear"></div>
-    <div class="usersCampaignsPagination text-center" id="userCampaignsPagination">
-        <g:paginate controller="user" max="6" maxsteps= "5" action="campaignpagination"  total="${projects.size()}"/>
-    </div>
+<div class="pull-right campaignpaginate filespaginate">
+    <g:paginate controller="user" max="6" action="loadCampaignTile" total="${totalProjects.size()}"/>
+</div>
+<script>
+    var baseUrl = $('#baseUrl').val();
 
-    <script>
-        $('#usercampaignpaginate').find('#userCampaignsPagination a').click(function(event) {
-            event.preventDefault();
-            var url = $(this).attr('href');
-            var grid = $(this).parents('#usercampaignpaginate');
-            ajaxCall(url, grid);
+    /*Pagination logic*/
+    $(".campaignTilePaginate").find('.campaignpaginate a').click(function(event) {
+        event.preventDefault();
+        var url = $(this).attr('href');
+        var grid = $(this).parents('.campaignTilePaginate');
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function(data) {
+                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+            }
         });
-    
-        function ajaxCall(url, grid) {
-            $.ajax({
-                type: 'GET',
-                url: url,
-                success: function(data) {
-                    $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
-                }
-            });
-        }
-    </script>
+    });
+
+    /*Renders contributor list on campaign tile click*/
+    $('.campaignTileClick').click(function (){
+        var vanityTitle = $(this).data('vanitytitle');
+        var grid = $(".campaignTilePaginate");
+        $.ajax({
+            type: 'post',
+            url:baseUrl+'/user/loadContributors',
+            data:'vanityTitle='+vanityTitle+'&sort=All',
+            success: function(data) {
+                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+            }
+        }).error(function(e){
+           console.log('Error occured while showing contributor list of '+vanityTitle);
+        });
+    });
+
+</script>
 </g:if>
-<g:else>
-    <div class="col-sm-12">
-        <div class="alert alert-info">
-            You haven't created any campaigns yet. You can create one <g:link controller="project" action="create">here</g:link>.
-        </div>
-    </div>
-</g:else>

@@ -49,7 +49,10 @@
 	
 </head>
 <body>
+    <g:hiddenField id="projectamount" name="projectamount" value="${project.amount.round()}"/>
+    <g:hiddenField id="payuStatus" name="payuStatus" value="${project.payuStatus}"/>
 	<g:hiddenField id="b_url" name="b_url" value="${base_url}"/>
+	
 	<div class="feducontent">
 		<div class="container manage-container-page">
 			<g:if test="${project}">
@@ -102,49 +105,65 @@
                             <h4 class="green-heading"> by ${fundRaiserName}</h4>
                         </div>
                     </g:if>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  mange-borders">
-                        <ul class="nav nav-pills manage-projects nav-justified mobile-justified sh-tabs nav-justi mng-safari-mobile mng-safari-tabs <g:if test="${!project.payuStatus}"> manage-bottom-top</g:if><g:else>mange-tabs-payu</g:else>">
-                            <li class="active show-tabs"><span class="manage-tbs-right-borders ">
-                                    <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials"><span class="hidden-xs">STORY</span> 
-                                    <span class="glyphicon glyphicon-leaf visible-xs show-tab-right-border"></span></a>
-                                </span>
-                            </li>
-                            <li><span class="manage-tbs-right-borders ">
-                                    <a href="#projectupdates" data-toggle="tab" class="show-tabs-text projectupdates"><span class="hidden-xs">UPDATES</span> 
-                                    <span class="glyphicon glyphicon-asterisk visible-xs"></span></a>
-                                    <span class="show-tabs-count hidden-xs"><g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if></span>
-                                </span>
-                            </li>
-                            <li><span class="manage-tbs-right-borders ">
-                                    <a href="#manageTeams" data-toggle="tab" class="show-tabs-text manageTeams"><span class="hidden-xs">TEAMS</span>
-                                    <span class="fa fa-users visible-xs"></span></a> 
-                                </span>
-                            </li>
-                            <li><span class="manage-tbs-right-borders ">
-                                    <a href="#rewards" data-toggle="tab" class="show-tabs-text rewards"><span class="hidden-xs">PERKS</span>
-                                    <span class="fa fa-gift fa-lg visible-xs"></span></a>
-                                </span>
-                            </li>
-                            <g:if test="${project.payuStatus}">
-                                <li><span class="manage-tbs-right-borders ">
-                                        <a href="#payments" data-toggle="tab" class="show-tabs-text payments"><span class="hidden-xs">PAYMENTS</span>
-                                        <span class="glyphicon glyphicon-credit-card visible-xs"></span></a>
+                    <div class="col-xs-12">
+                        <div class="col-xs-12 mange-borders">
+                            <ul class="nav nav-pills manage-projects nav-justified mobile-justified sh-tabs nav-justi mng-safari-mobile mng-safari-tabs <g:if test="${!project.payuStatus}"> manage-bottom-top</g:if><g:else>mange-tabs-payu</g:else>">
+                                <li class="active show-tabs">
+                                    <span class="manage-tbs-right-borders ">
+                                        <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials"><span class="hidden-xs">STORY</span> 
+                                            <span class="glyphicon glyphicon-leaf visible-xs show-tab-right-border"></span>
+                                        </a>
                                     </span>
                                 </li>
-                            </g:if>
-                            <li><span class="manage-tbs-right-borders ">
-                                    <a href="#contributions" data-toggle="tab" class="show-tabs-text contributions"><span class="hidden-xs">CONTRIBUTIONS</span>
-                                    <span class="glyphicon glyphicon-tint visible-xs"></span></a> 
-                                    <span class="show-tabs-count hidden-xs"><g:if test="${project.contributions.size() > 0}">${project.contributions.size()}</g:if></span>
-                                </span>
-                            </li>
-                            <li><span class="manage-comit-lft">
-                                    <a href="#comments" data-toggle="tab" class="show-tabs-text comments"><span class="hidden-xs">COMMENTS</span>
-                                    <span class="glyphicon glyphicon-comment visible-xs"></span></a> 
-                                </span>
-                            </li>
-                        </ul>
+                                <li>
+                                    <span class="manage-tbs-right-borders ">
+                                        <a href="#projectupdates" data-toggle="tab" class="show-tabs-text projectupdates"><span class="hidden-xs">UPDATES</span> 
+                                            <span class="glyphicon glyphicon-asterisk visible-xs"></span>
+                                        </a>
+                                        <span class="show-tabs-count hidden-xs"><g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if></span>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="manage-tbs-right-borders ">
+                                        <a href="#manageTeams" data-toggle="tab" class="show-tabs-text manageTeams"><span class="hidden-xs">TEAMS</span>
+                                             <span class="fa fa-users visible-xs"></span>
+                                        </a>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="manage-tbs-right-borders ">
+                                        <a href="#rewards" data-toggle="tab" class="show-tabs-text rewards"><span class="hidden-xs">PERKS</span>
+                                            <span class="fa fa-gift fa-lg visible-xs"></span>
+                                        </a>
+                                    </span>
+                                </li>
+                                <g:if test="${project.payuStatus}">
+                                    <li>
+                                        <span class="manage-tbs-right-borders ">
+                                            <a href="#payments" data-toggle="tab" class="show-tabs-text payments"><span class="hidden-xs">PAYMENTS</span>
+                                                <span class="glyphicon glyphicon-credit-card visible-xs"></span>
+                                            </a>
+                                        </span>
+                                    </li>
+                                </g:if>
+                                <li>
+                                    <span class="manage-tbs-right-borders ">
+                                        <a href="#contributions" data-toggle="tab" class="show-tabs-text contributions"><span class="hidden-xs">CONTRIBUTIONS</span>
+                                            <span class="glyphicon glyphicon-tint visible-xs"></span>
+                                        </a> 
+                                        <span class="show-tabs-count hidden-xs"><g:if test="${project.contributions.size() > 0}">${project.contributions.size()}</g:if></span>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="manage-comit-lft">
+                                        <a href="#comments" data-toggle="tab" class="show-tabs-text comments"><span class="hidden-xs">COMMENTS</span>
+                                            <span class="glyphicon glyphicon-comment visible-xs"></span>
+                                        </a> 
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
+                    </div>
                     
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 manage-Top-tabs-mobile ">
                         <!-- Tab panes -->

@@ -200,7 +200,7 @@
                 <h2 class="learn-tips-title">TIPS FOR SUCCESS</h2>
             </div>
             
-            <div class=" col-lg-4 col-md-4 col-sm-3 col-xs-12 how-zindex">
+            <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 how-zindex how-mobile-left">
                 <div class="circle-how col-lg-12 col-md-12 col-sm-12 col-xs-12 learn-radious-bgcolor">
                     <div class="circle-small text-center learn-no-transform learn-number">#1</div>
 	                <h4 class="text-center how-title">
@@ -217,8 +217,8 @@
                 </div>        
             </div>
             
-            <div class=" col-lg-4 col-md-4 col-sm-3 col-xs-12 how-zindex">
-	            <div class="circle-how col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 how-zindex how-mobile-top">
+	            <div class="circle-how col-lg-12 col-md-12 col-sm-12 col-xs-12 learn-radious-bgcolor">
                     <div class="circle-small text-center learn-no-transform learn-number">#2</div>
 	                <h4 class="text-center how-title">
 	                    <span>Build your campaign page</span>
@@ -227,13 +227,12 @@
 						Share your ideas and engage with supporters of your cause. Post a
 						description of your campaign, the beginning and end dates of your
 						campaign, and your funding goal. Include content like pictures and
-						video to make your page pop! Get started <a
-						    href="/campaigns/create">here</a>.
+						video to make your page pop! Get started <a href="/campaign/create" target="_blank">here</a>.
 			         </h6>
 			    </div>
             </div>
-            <div class=" col-lg-4 col-md-4 col-sm-3 col-xs-12 how-zindex">
-	            <div class="circle-how col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 how-zindex how-it-mobilespaceA how-mobile-top1">
+	            <div class="circle-how col-lg-12 col-md-12 col-sm-12 col-xs-12 learn-radious-bgcolor">
                      <div class="circle-small text-center learn-no-transform learn-number">#3</div>
 	                <h4 class="text-center how-title">
 	                    <span>Include video</span>
@@ -251,8 +250,8 @@
             
             <div class="learn-between-space"></div>
             
-            <div class=" col-lg-4 col-md-4 col-sm-3 col-xs-12 how-zindex">
-                <div class="circle-how col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 how-zindex how-it-mobilespaceA how-mobile-top2">
+                <div class="circle-how col-lg-12 col-md-12 col-sm-12 col-xs-12 learn-radious-bgcolor">
                      <div class="circle-small text-center learn-no-transform learn-number">#4</div>
                     <h4 class="text-center how-title">
                    <span>Reach out to <br> family and friends</span>
@@ -266,8 +265,8 @@
                 </div> 
             </div>
             
-            <div class=" col-lg-4 col-md-4 col-sm-3 col-xs-12 how-zindex">
-	            <div class="circle-how col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 how-zindex how-it-mobilespaceB how-mobile-top3">
+	            <div class="circle-how col-lg-12 col-md-12 col-sm-12 col-xs-12 learn-radious-bgcolor">
                     <div class="circle-small text-center learn-no-transform learn-number">#5</div>
 	                <h4 class="text-center how-title">
 	                    <span>Appoint a Chief <br> Enthusiasm Officer</span>
@@ -284,8 +283,8 @@
 	            </div>              
             </div>
            
-            <div class=" col-lg-4 col-md-4 col-sm-3 col-xs-12 how-zindex">
-	            <div class="circle-how col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 how-zindex how-it-mobilespaceB how-mobile-top4">
+	            <div class="circle-how col-lg-12 col-md-12 col-sm-12 col-xs-12 learn-radious-bgcolor">
                      <div class="circle-small text-center learn-no-transform learn-number">#6</div>
 	                 <h4 class="text-center how-title">
 	                    <span>Add perks</span>

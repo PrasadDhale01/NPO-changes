@@ -1156,71 +1156,6 @@ img.home-img-large-size{
     padding: 30px 0 0;
     margin-left: 36px;
 }
-.how-it-on-image{
-    position: relative;
-/*     background-image: url("/images/sucess-tips---bg-Images.png"); */
-}
-/* .how-it-content{ */
-/* 	position: relative; */
-/* } */
-/* .how-it-img{ */
-/* 	height: 100%; */
-/*     left: 0; */
-/*     overflow: hidden; */
-/*     position: absolute; */
-/*     top: 0; */
-/*     width: 100%; */
-/* } */
-
-
-
-.hiw-tips-for {
-    color: #fff;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 20px;
-}
-
-.how-it-hash-number {
-    background-color: #000;
-    border-radius: 50%;
-    color: #fff !important;
-    font-size: 20px;
-    font-weight: 900;
-    height: 177%;
-    padding: 8px;
-}
-.how-it-thousands{
-    width: 1000px;
-}
-.how-it-discriptionsall {
-    position: absolute;
-    top: 12%;
-    color: #fff;
-    left: 12%;
-}
-.how-it-one {
-    color: #fff;
-    left: 41%;
-    position: absolute;
-    top: 12%;
-}
-.how-it-two{
-    color: #fff;
-    position: absolute;
-    left: 69%;
-    top: 12%;
-}
-.how-it-th{
-    width: 1000px;	
-}
-.sso{
-    position: relative;
-}
-.ss{
-    position: absolute;
-}
 
 /* new */
 img.how-it-success-img{
@@ -1260,13 +1195,14 @@ img.how-it-success-img{
 }
 .how-title {
     padding-top: 18px;
-    font-family: fantasy;
+    font-family: ubuntu condensed;
 }
 .how-des-1 {
-    font-family: fantasy;
+    font-family: ubuntu condensed;
     line-height: 14px;
     padding-left: 20px;
     padding-right: 20px;
+    color: #000;
 }
 .learn-tips-title {
     font-size: 15px;
@@ -1294,9 +1230,13 @@ img.how-it-success-img{
 }
 .learn-number{
     margin-top: -41px;
+    font-weight: 900;
 }
 .learn-radious-bgcolor:hover{
-    background-color: yellow;
+    background-color: #FDD45E;
+}
+.learn-radious-bgcolor:hover > .learn-no-transform {
+    transform: rotateY(360deg);
 }
 
 #how-it-image{
@@ -1304,7 +1244,7 @@ img.how-it-success-img{
     background-attachment: fixed;  
     background-repeat: no-repeat;
     background-size: cover;
-    height: 1000px;
+    height: 860px;
 }
 .hm-mediastrip img {
     margin-top: 9px;

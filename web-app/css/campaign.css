@@ -1174,9 +1174,7 @@ img.home-img-large-size{
 /* } */
 
 
-img.how-it-success-img{
-    width: 100%;
-}
+
 .hiw-tips-for {
     color: #fff;
     left: 0;
@@ -1223,4 +1221,89 @@ img.how-it-success-img{
 }
 .ss{
     position: absolute;
+}
+
+/* new */
+img.how-it-success-img{
+    width: 100%;
+}
+.how{
+    position: relative;
+}
+.how-A{
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+.how-B{
+	position: relative;
+}
+.how-zindex{
+    z-index: 1000;
+    color: white;
+}
+.howit-container{
+    width: 1000px;
+}
+.how-zindex-title {
+    color: white;
+    padding-bottom: 50px;
+    padding-top: 20px;
+    z-index: 1000;
+}
+.circle-how {
+    background-color: #fff;
+    border-radius: 50%;
+    color: #000;
+    height: 300px;
+    opacity: 0.66;
+    width: 300px;
+}
+.how-title {
+    padding-top: 18px;
+    font-family: fantasy;
+}
+.how-des-1 {
+    font-family: fantasy;
+    line-height: 14px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.learn-tips-title {
+    font-size: 15px;
+}
+.circle-small{
+    background-color: #000;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 30px;
+    padding-top: 15px;
+    height: 80px;
+    margin: 0 auto;
+    width: 80px;
+}
+.learn-between-space {
+    height: 500px;
+}
+.learn-no-transform{
+    transform: rotateY(0deg);
+    transform-style: preserve-3d;
+    transition: all 0.6s ease-out 0s;
+}
+.learn-no-transform:hover{
+    transform: rotateY(360deg);
+}
+.learn-number{
+    margin-top: -41px;
+}
+.learn-radious-bgcolor:hover{
+    background-color: yellow;
+}
+
+#how-it-image{
+	background-image: url("http://s3.amazonaws.com/crowdera/assets/sucess-tips-bg-images.png");
+    background-attachment: fixed;  
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 1000px;
 }

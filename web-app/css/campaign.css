@@ -1245,7 +1245,7 @@ img.how-it-success-img{
     background-attachment: fixed;  
     background-repeat: no-repeat;
     background-size: cover;
-    height: 860px;
+    height: 930px;
 }
 .hm-mediastrip img {
     margin-top: 9px;
@@ -1271,4 +1271,12 @@ img.how-it-success-img{
 }
 .managecampaignDescription .panel-body {
     padding: 5px;
+}
+.how-toptext {
+    padding-top: 54px;
+    
+}
+.how-bottomstrip {
+    font-family: ubuntu condensed;
+    font-size: 17px;
 }

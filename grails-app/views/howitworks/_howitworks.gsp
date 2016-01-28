@@ -295,6 +295,14 @@
 	                    contribution is $70, but the most common is $25.</h6>           
 	            </div>
             </div>
+            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 how-zindex text-center how-toptext">
+                <h5 class="how-bottomstrip">
+                    More advice for setting your funding goals, creating a great
+                    campaign video, and marketing your campaign can be found on our <a
+                        href="http://crowdera.tumblr.com" target="_blanck">blog</a> along with other useful
+                    tips for success. Take a look!
+                </h5>
+            </div>
         </div>
     </div>
     <div class="how-B">

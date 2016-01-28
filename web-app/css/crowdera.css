@@ -5593,6 +5593,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.how-toptext {
+        padding-top: 54px;
+        top: 278px;
+    }
     div.abt-us-cardposition {
         left: 1.4%;
     }
@@ -7777,12 +7781,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+    div.how-toptext {
+        padding-top: 54px;
+        top: 124px;
+    }
     h6.how-des-1 {
         font-size: 14px;
         line-height: 14px !important;
     }
     #how-it-image {
-        height: 1200px;
+        height: 1260px;
     }
     div.how-it-mobilespaceA{
         top: 70px;
@@ -12895,7 +12903,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 320px;
     }
     #how-it-image {
-        height: 2224px;
+        height: 2365px;
     }
 	.campaign-tile-xs {
 	    padding-left: 0px;
@@ -14382,6 +14390,10 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.how-toptext {
+        padding-top: 54px;
+        top: 278px;
+    }
     h6.how-des-1 {
         line-height: 14px !important;
     }
@@ -14415,7 +14427,7 @@ textarea.textarea-embed-video {
         width: 320px;
     }
     #how-it-image {
-        height: 2224px;
+        height: 2365px;
     }
     div.abt-us-cardposition {
         left: 2.4%;

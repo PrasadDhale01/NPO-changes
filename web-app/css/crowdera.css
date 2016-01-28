@@ -7778,7 +7778,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
     h6.how-des-1 {
-        line-height: 12px !important;
+        font-size: 14px;
+        line-height: 14px !important;
     }
     #how-it-image {
         height: 1200px;

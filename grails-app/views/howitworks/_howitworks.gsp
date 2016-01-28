@@ -272,9 +272,8 @@
 	                    <span>Appoint a Chief <br> Enthusiasm Officer</span>
 	                </h4>
 	                <h6 class="text-center how-des-1">
-	                    Keep up the momentum of your campaign with a CEO – a Chief
-	                    Enthusiasm Officer. A CEO actively engages with your campaign
-	                    supporters through email, social media, pictures, video, and
+	                    Keep up the momentum of your campaign with a CEO, who actively engages with your campaign
+	                    supporters through email, social media and
 	                    campaign updates. Campaigns with more than 25 updates have raised
 	                    upward of 400% more funding! Frequent updates keep your supporters
 	                    informed and excited about your cause, which is key to a successful

@@ -1234,7 +1234,8 @@ img.how-it-success-img{
     font-weight: 900;
 }
 .learn-radious-bgcolor:hover{
-    background-color: #FDD45E;
+    background-color: #E9BD29;
+    opacity: 1;
 }
 .learn-radious-bgcolor:hover > .learn-no-transform {
     transform: rotateY(360deg);

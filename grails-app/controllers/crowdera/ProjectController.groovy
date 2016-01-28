@@ -307,6 +307,7 @@ class ProjectController {
                 def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
                 def totalContribution = contributionService.getTotalContributionForProject(project)
                 def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
+                
                 def teamContribution
                 def teamPercentage
                 if (currentTeam) {
@@ -320,6 +321,7 @@ class ProjectController {
                     isCrUserCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
                     isTeamExist = userService.isValidatedTeamExist(project, currentUser)
                 }
+                
                 def teamObj = projectService.getEnabledAndValidatedTeamsForCampaign(project, params)
                 def teamOffset = teamObj.maxrange
                 def teams = teamObj.teamList
@@ -331,16 +333,20 @@ class ProjectController {
                 def day= projectService.getRemainingDay(project)
                 def endDate = projectService.getProjectEndDate(project)
                 def webUrl = projectService.getWebUrl(project)
+                
                 def validatedPage = true
-                def projectComments = projectService.getProjectComments(project)
-                def teamComments = projectService.getTeamComments(currentTeam)
                 List totalContributions = []
                 List contributions = []
+                
+                def projectComments = projectService.getProjectComments(project)
+                def teamComments = projectService.getTeamComments(currentTeam)
                 def multiplier = projectService.getCurrencyConverter();
+
                 def pieList = projectService.getPieList(project);
                 def hasMoreTagsDesktop = projectService.getHashTags(project.hashtags)
                 def hasMoreTagsTabs = projectService.getHashTagsTabs(project.hashtags)
                 def reasons = projectService.getReasonsToFundFromProject(project)
+                
                 def taxReceipt = projectService.getTaxRecieptOfProject(project)
                 def deductibleStatus
                 if (taxReceipt){

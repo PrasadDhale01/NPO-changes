@@ -1246,7 +1246,7 @@ img.how-it-success-img{
     background-attachment: fixed;  
     background-repeat: no-repeat;
     background-size: cover;
-    height: 930px;
+    height: 1325px;
 }
 .hm-mediastrip img {
     margin-top: 9px;
@@ -1283,11 +1283,19 @@ img.how-it-success-img{
 }
 .how-tipsbuildcampaign {
     color: #B3373C;
+    text-decoration: none !important;
 }
-.how-bolg-tips {
+.how-bolg-tips{
     color: #5FBED5;
 }
 .how-bolg-tips:hover,
 .how-bolg-tips:focus {
     color: #5FBED5;
+}
+.learn-between-space-2{
+    height: 400px;
+}
+.how-it-contactus {
+    padding-top: 34px;
+    font-size: 17px !important;
 }

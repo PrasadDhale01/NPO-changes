@@ -149,22 +149,21 @@
             
             <div class="learn-between-space"></div>
             
-            <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 how-zindex how-it-mobilespaceA how-mobile-top2">
+            <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 how-zindex how-it-mobilespaceB how-mobile-top4">
                 <div class="circle-how col-lg-12 col-md-12 col-sm-12 col-xs-12 learn-radious-bgcolor">
                      <div class="circle-small text-center learn-no-transform learn-number">#4</div>
-                    <h4 class="text-center how-title">
-                   <span>Reach out to <br> family and friends</span>
-                </h4>
-                <h6 class="text-center how-des-1">
-                    Get your loved ones involved with your campaign! Once your campaign
-                    goes live, share your campaign page with your network through email
-                    or social media. Don’t be shy. Friends and family are always happy
-                    to show their support if you just ask.
-                </h6>
-                </div> 
+                     <h4 class="text-center how-title">
+                        <span>Add perks</span>
+                    </h4>
+                    <h6  class="text-center how-des-1">Express your gratitude to your supporters with perks.
+                        They can be as simple as two free tickets to a school sponsored
+                        event or an original piece of student artwork. Your perks should
+                        closely match the contributions to your campaign. The average
+                        contribution is $70, but the most common is $25.</h6>           
+                </div>
             </div>
             
-            <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 how-zindex how-it-mobilespaceB how-mobile-top3">
+            <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 how-zindex how-it-mobilespace5 how-mobile-top3">
 	            <div class="circle-how col-lg-12 col-md-12 col-sm-12 col-xs-12 learn-radious-bgcolor">
                     <div class="circle-small text-center learn-no-transform learn-number">#5</div>
 	                <h4 class="text-center how-title">
@@ -180,20 +179,69 @@
 	                </h6>           
 	            </div>              
             </div>
-           
-            <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 how-zindex how-it-mobilespaceB how-mobile-top4">
-	            <div class="circle-how col-lg-12 col-md-12 col-sm-12 col-xs-12 learn-radious-bgcolor">
+            
+            <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 how-zindex how-it-mobilespace6 how-mobile-top2">
+                <div class="circle-how col-lg-12 col-md-12 col-sm-12 col-xs-12 learn-radious-bgcolor">
                      <div class="circle-small text-center learn-no-transform learn-number">#6</div>
-	                 <h4 class="text-center how-title">
-	                    <span>Add perks</span>
-	                </h4>
-	                <h6  class="text-center how-des-1">Express your gratitude to your supporters with perks.
-	                    They can be as simple as two free tickets to a school sponsored
-	                    event or an original piece of student artwork. Your perks should
-	                    closely match the contributions to your campaign. The average
-	                    contribution is $70, but the most common is $25.</h6>           
-	            </div>
+                    <h4 class="text-center how-title">
+                   <span>Reach out to <br> family and friends</span>
+                </h4>
+                <h6 class="text-center how-des-1">
+                    Get your loved ones involved with your campaign! 
+                    Spread the word about your fundraising efforts by 
+                    reaching out to your networks and sharing your campaign
+                    on social media outlets and via email! Don’t be shy!
+                    One of the reasons that crowdfunding campaigns are so successful is that they 
+                    have been shared across various geographies and reach a wide audience of contributors.
+                </h6>
+                </div> 
             </div>
+            
+            <div class="learn-between-space-2"></div>
+            
+            <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 how-zindex how-it-mobilespace7 how-mobile-top7">
+                <div class="circle-how col-lg-12 col-md-12 col-sm-12 col-xs-12 learn-radious-bgcolor">
+                     <div class="circle-small text-center learn-no-transform learn-number">#7</div>
+                    <h4 class="text-center how-title">
+                   <span>Add Milestones</span>
+                </h4>
+                <h6 class="text-center how-des-1">
+                   Add updates to your campaign regularly. 
+                   Campaign updates are automatically emailed to your contributors, 
+                   followers and teams. They trust and believe in you and your cause; 
+                   adding updates is a good way to keep in touch with them and keeping 
+                   them informed about the progress of your campaign. 
+                </h6>
+                </div> 
+            </div>
+            
+            <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 how-zindex how-it-mobilespace8 how-mobile-top8">
+                <div class="circle-how col-lg-12 col-md-12 col-sm-12 col-xs-12 learn-radious-bgcolor">
+                     <div class="circle-small text-center learn-no-transform learn-number">#8</div>
+                    <h4 class="text-center how-title">
+                   <span>Team Up</span>
+                </h4>
+                <h6 class="text-center how-des-1">
+                   Add teams to your campaign to multiply your results! 
+                   Each of your team members can help you gain momentum on 
+                   your fundraiser by telling their individual story, adding their own perks, 
+                   and sharing your fundraiser with their networks.
+                </h6>
+                </div> 
+            </div>
+            
+            <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 how-zindex how-it-mobilespace9 how-mobile-top9">
+                <div class="circle-how col-lg-12 col-md-12 col-sm-12 col-xs-12 learn-radious-bgcolor">
+                     <div class="circle-small text-center learn-no-transform learn-number">#9</div>
+                    <h4 class="text-center how-title">
+                   <span>Contact Us</span>
+                </h4>
+                <h6 class="text-center how-des-1 how-it-contactus">
+                   Our <a class="how-tipsbuildcampaign" href="${resource(dir: '/customer-service')}" target="_blank">crowdfunding champion</a> is here to help if you have any queries.
+                </h6>
+                </div> 
+            </div>
+           
             <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 how-zindex text-center how-toptext">
                 <h5 class="how-bottomstrip">
                     More advice for setting your funding goals, creating a great

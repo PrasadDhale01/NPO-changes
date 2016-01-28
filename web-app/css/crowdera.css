@@ -5593,21 +5593,35 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.how-it-learn-title{
+        background-color: #e7e7e7;
+        height: 75px;
+        left: -12px;
+    }
+    h1.how-it-title1 {
+        color: #005e84;
+        font-size: 18px;
+        font-weight: 900;
+        padding-top: 25px;
+    }
+    div.footer-mobile-startcampaign {
+        padding-bottom: 30px;
+    }
     div.how-toptext {
         padding-top: 54px;
-        top: 278px;
+        top: 433px;
     }
     div.abt-us-cardposition {
         left: 1.4%;
     }
-	a.learn-startcampaign-btn {
-        width: 303px;
-    }
+/* 	a.learn-startcampaign-btn { */
+/*         width: 303px; */
+/*     } */
     div.learn-how-it-work-img {
-        margin-top: 10px;
+/*         margin-top: 10px; */
         position: initial;
         text-align: center;
-        margin-bottom: 10px;
+/*         margin-bottom: 10px; */
     }
     h1.hm-headingtext {
         font-size: 18px;
@@ -7781,22 +7795,40 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+    div.how-it-mobilespace5 {
+        top: 140px;
+    }
+    div.how-it-mobilespace6 {
+        top: 140px;
+    }
+    div.how-it-mobilespace7 {
+        top: 212px;
+    }
+    div.how-it-mobilespace8 {
+        top: 212px;
+    }
+    div.how-it-mobilespace9 {
+        top: 280px;
+    }
+    div.learn-between-space-2 {
+        height: 0;
+    }
     div.how-toptext {
         padding-top: 54px;
-        top: 124px;
+        top: 249px;
     }
     h6.how-des-1 {
         font-size: 14px;
         line-height: 14px !important;
     }
     #how-it-image {
-        height: 1260px;
+        height: 1960px;
     }
     div.how-it-mobilespaceA{
         top: 70px;
     }
     div.how-it-mobilespaceB{
-        top: 141px;
+        top: 67px;
     }
     div.learn-between-space{
         height: 0;
@@ -12888,7 +12920,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         height: 0;    
     }
     div.how-mobile-top2 {
-        top: 170px;
+        top: 283px;
         left: -24px;
     }
     div.how-mobile-top3 {
@@ -12896,14 +12928,26 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         left: -24px;
     }
     div.how-mobile-top4 {
-        top: 281px;
+        top: 173px;
         left: -24px;
+    }
+    div.how-mobile-top7 {
+        left: -24px;
+        top: 340px;
+    }
+    div.how-mobile-top8 {
+        left: -24px;
+        top: 397px;
+    }
+    div.how-mobile-top9 {
+        left: -24px;
+        top: 451px;
     }
     div.howit-container {
         width: 320px;
     }
     #how-it-image {
-        height: 2365px;
+        height: 3400px;
     }
 	.campaign-tile-xs {
 	    padding-left: 0px;
@@ -14390,9 +14434,23 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.how-it-learn-title{
+        background-color: #e7e7e7;
+        height: 75px;
+        left: -12px;
+    }
+    h1.how-it-title1 {
+        color: #005e84;
+        font-size: 18px;
+        font-weight: 900;
+        padding-top: 10px;
+    }
+    div.footer-mobile-startcampaign {
+        padding-bottom: 30px;
+    }
     div.how-toptext {
-        padding-top: 54px;
-        top: 278px;
+        padding-top: 0;
+        top: 473px;
     }
     h6.how-des-1 {
         line-height: 14px !important;
@@ -14412,7 +14470,7 @@ textarea.textarea-embed-video {
         height: 0;    
     }
     div.how-mobile-top2 {
-        top: 170px;
+        top: 285px;
         left: -24px;
     }
     div.how-mobile-top3 {
@@ -14420,27 +14478,39 @@ textarea.textarea-embed-video {
         left: -24px;
     }
     div.how-mobile-top4 {
-        top: 281px;
+        top: 173px;
         left: -24px;
+    }
+    div.how-mobile-top7 {
+        left: -24px;
+        top: 340px;
+    }
+    div.how-mobile-top8 {
+        left: -24px;
+        top: 397px;
+    }
+    div.how-mobile-top9 {
+        left: -24px;
+        top: 451px;
     }
     div.howit-container {
         width: 320px;
     }
     #how-it-image {
-        height: 2365px;
+        height: 3400px;
     }
     div.abt-us-cardposition {
         left: 2.4%;
     }
     div.learn-how-it-work-img {
-        margin-top: 10px;
+/*         margin-top: 10px; */
         position: initial;
         text-align: center;
-        margin-bottom: 10px;
+/*         margin-bottom: 10px; */
     }
-    a.learn-startcampaign-btn {
-        width: 303px;
-    }
+/*     a.learn-startcampaign-btn { */
+/*         width: 303px; */
+/*     } */
     h1.hm-headingtext {
 	    font-size: 18px;
 	    margin-left: 11px;

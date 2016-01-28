@@ -55,15 +55,20 @@
                     </div>
                 </div>
                 <!-- ***********************************Section two************************ -->
-                <div class="row">
-                    <div class="col-xs-12 footer-first-section-mobile footer-text-align">
-                        <p>Hands up for a Better World. See how you can make a difference with Crowdera.</p>
-                        <div class="footer-first-section-mobile footer-img-align">
-                            <img src="//s3.amazonaws.com/crowdera/assets/hand-image-mobile.png" alt="Crowdera">
-                            <g:link controller="project" action="create"><img src="//s3.amazonaws.com/crowdera/assets/start-a-campaign-mobile.png" alt="Crowdera"></g:link>
-                        </div>
-                    </div>
+                <div class="footer-newsletter">
+	                <form action="${mailChimpUrl}" method="post" id="mc-embedded-subscribe-form-sm" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+	                    <div class="col-xs-offset-1 newsletter-align">
+	                        <br>
+	                        <div class="col-xs-6 footer-input-align">
+	                            <input type="text" class="text-email all-place form-control" name="EMAIL" placeholder="Your email">
+	                        </div>
+	                        <div class="col-xs-6 ">
+	                            <input type="submit" name="subscribe" value="" class="button-signup signup-sm all-place ">
+	                        </div>
+	                    </div>
+	                </form>
                 </div>
+                
                 <!-- ********************************Section three************************* -->
                 <div class="row">
                     <div class="col-xs-12 footer-mid-section footer-p-text-align">
@@ -77,27 +82,26 @@
                         </div>
                         <br>
 
-                        <div class="thomas-testimonial">
-                            <p>"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. 
-                                I'd recommend Crowdera to every serious fundraiser." <br><br>
-                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="thomas-margin-align">- Swaroop Ramchandra</span></g:if>
-                            <span class="thomas-margin-align">Two Cents of Hope</span><br>
-                        </div>
-                        <div class="footer-newsletter">
-                            <form action="${mailChimpUrl}" method="post" id="mc-embedded-subscribe-form-sm" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                                <div class="col-xs-offset-1 newsletter-align">
-                                    <br>
-                                    <div class="col-xs-6 footer-input-align">
-                                        <input type="text" class="text-email all-place form-control" name="EMAIL" placeholder="Your email">
-                                    </div>
-                                    <div class="col-xs-6 ">
-                                        <input type="submit" name="subscribe" value="" class="button-signup signup-sm all-place ">
-                                    </div>
-                                </div>
-                            </form>
+<%--                        <div class="thomas-testimonial">--%>
+<%--                            <p>"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. --%>
+<%--                                I'd recommend Crowdera to every serious fundraiser." <br><br>--%>
+<%--                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="thomas-margin-align">- Swaroop Ramchandra</span></g:if>--%>
+<%--                            <span class="thomas-margin-align">Two Cents of Hope</span><br>--%>
+<%--                        </div>--%>
+                        
+                        
+                        <div class="row">
+                            <div class="col-xs-12 footer-first-section-mobile footer-text-align footer-mobile-startcampaign">
+<%--                        <p>Hands up for a Better World. See how you can make a difference with Crowdera.</p>--%>
+                            <div class="footer-first-section-mobile footer-img-align">
+<%--                            <img src="//s3.amazonaws.com/crowdera/assets/hand-image-mobile.png" alt="Crowdera">--%>
+                                <g:link controller="project" action="create"><img src="//s3.amazonaws.com/crowdera/assets/start-a-campaign-mobile.png" alt="Crowdera"></g:link>
+                            </div>
                         </div>
                     </div>
+                        
                 </div>
+             </div>
         
         <!-- *********************Section four*****************-->
         <hr class="footer-hr">
@@ -362,3 +366,4 @@
     </div>
   </div>
 </footer>
+                        

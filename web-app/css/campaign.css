@@ -1281,3 +1281,13 @@ img.how-it-success-img{
     font-family: ubuntu condensed;
     font-size: 17px;
 }
+.how-tipsbuildcampaign {
+    color: #B3373C;
+}
+.how-bolg-tips {
+    color: #5FBED5;
+}
+.how-bolg-tips:hover,
+.how-bolg-tips:focus {
+    color: #5FBED5;
+}

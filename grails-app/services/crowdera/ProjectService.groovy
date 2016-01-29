@@ -1440,6 +1440,8 @@ class ProjectService {
                     (project.payuStatus) ? indiaOpenCampaign.add(project) : usOpenCampaign.add(project)
                 }
             }
+            indiaEndedCampaign = indiaEndedCampaign.sort {contributionService.getPercentageContributionForProject(it)}
+            usEndedCampaign = usEndedCampaign.sort {contributionService.getPercentageContributionForProject(it)}
             sortIndiaCampaign = indiaOpenCampaign.sort {contributionService.getPercentageContributionForProject(it)}
             sortUsCampaign = usOpenCampaign.sort {contributionService.getPercentageContributionForProject(it)}
             finalList = sortIndiaCampaign.reverse() + sortUsCampaign.reverse() + indiaEndedCampaign.reverse() + usEndedCampaign.reverse()
@@ -1453,6 +1455,7 @@ class ProjectService {
                     openProjects.add(project)
                 }
             }
+            endedProjects = endedProjects.sort {contributionService.getPercentageContributionForProject(it)}
             sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
             finalList =  sortedProjects.reverse() + endedProjects.reverse()
         }

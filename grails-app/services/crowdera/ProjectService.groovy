@@ -316,7 +316,7 @@ class ProjectService {
                 project.onHold = false
                 project.save()
                 mandrillService.sendValidationEmailToOWnerAndAdmins(project)
-                sendEmailOnValidation(project)
+                //sendEmailOnValidation(project)
             }
         }
     }
@@ -3814,13 +3814,17 @@ class ProjectService {
                 break;
 
             case 'impactAmount':
-                project.impactAmount = Integer.parseInt(varValue);
-                isValueChanged = true
+                if (varValue.isNumber()) {
+                    project.impactAmount = Integer.parseInt(varValue);
+                    isValueChanged = true
+                }
                 break;
                 
             case 'impactNumber':
-                project.impactNumber = Integer.parseInt(varValue);
-                isValueChanged = true
+                if (varValue.isNumber()) {
+                    project.impactNumber = Integer.parseInt(varValue);
+                    isValueChanged = true
+                }
                 break;
 
             default :

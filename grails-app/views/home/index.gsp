@@ -61,7 +61,7 @@
     <div class="hm-section-top"></div>
     <div class="row text-center hm-fontfamily visible-xs">
         <p class="hm-slogn-mobile">Always Free! Instant Disbursal</p>
-        <a href="${resource(dir: '/campaign/create')}" class="btn hm-raisemony-btn">Raise Money Free</a>
+        <a href="${resource(dir: '/campaign/create')}" class="btn btn-block hm-raisemony-btn">Raise Money Free</a>
         <p class="hm-slogn-mobile">Flexible Goals Unlimited Teams</p>
     </div>
     
@@ -70,7 +70,11 @@
     	    <g:render template="projects"></g:render>
     	</div>
     </div>
-    
+    <div class="row visible-xs">
+        <div class="text-center explorebtn">
+            <a href="${resource(dir: '/campaigns')}" class="btn btn-default btn-block hm-explorecampaign">Explore Campaigns</a>
+        </div>
+    </div>
     <div class="hidden-xs">
         <div class="whycrowderacontainer">
             <g:render template="whycrowdera"></g:render>

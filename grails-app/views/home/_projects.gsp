@@ -1,5 +1,5 @@
-<div class="container">
-    <div class="col-md-10 col-md-offset-1">
+<div class="container col-x-plf-0">
+    <div class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
     
 	    <div class="row">
 	        <div class="col-md-12 hm-mobile-title">
@@ -45,7 +45,7 @@
                                    <ul class="thumbnails list-unstyled">
                                        <g:each in="${1..cols}">
                                            <% if (index < count) { %>
-                                               <li class="col-xs-2">
+                                               <li class="col-xs-12">
                                                    <g:render template="/layouts/tile" model="['project': projects.get(index++)]"></g:render>
                                                </li>
 		                                    <% } %>
@@ -59,7 +59,7 @@
                                    <ul class="thumbnails list-unstyled">
                                        <g:each in="${1..cols}">
                                            <% if (index < count) { %>
-                                               <li class="col-xs-2">
+                                               <li class="col-xs-12">
                                                    <g:render template="/layouts/tile" model="['project': projects.get(index++)]"></g:render>
                                                </li>
                                            <% } %>
@@ -81,7 +81,7 @@
                </a>
            </div>
         </div>
-        <div class="text-center explorebtn">
+        <div class="text-center explorebtn hidden-xs">
             <a href="${resource(dir: '/campaigns')}" class="btn btn-default hm-explorecampaign">Explore Campaigns</a>
         </div>
     </div>

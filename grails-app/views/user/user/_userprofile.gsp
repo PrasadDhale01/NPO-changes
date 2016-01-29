@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="text" name="city" required class="form-control all-place" value="${user.city}" placeholder="City">
+                <input type="text" name="city" class="form-control all-place" value="${user.city}" placeholder="City">
             </div>
         </div>
         <div class="clear"></div>

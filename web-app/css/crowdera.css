@@ -5662,7 +5662,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         float:none;
     }
     div.explorebtn {
-        margin-bottom: 20px;
+        margin-bottom: 0;
         margin-left: 10px;
         margin-top: 20px;
     }
@@ -7163,6 +7163,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		font-weight: 900;
 		padding: 13px 0 20px;
 	}
+	.how-it-work--title h1.headingtext {
+        padding: 24px 0 20px;
+    }
 	.Explore-Campaigns-Button-img{
 		height:60px;
 		width:230px;
@@ -10141,6 +10144,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.sendTaxReceiptBoard .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
 	   width:105px;    
 	}
+	
+	div.how-it-work--title {
+        background-color: #e7e7e7;
+        height: 75px;
+        margin-bottom: 10px;
+    }
 
 	.col-contributor{
         left:-15px;
@@ -13061,6 +13070,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 @media only screen and (max-width: 767px){
 
+	div.col-x-plf-0 {
+	    padding-left: 0;
+	    padding-right: 0;
+	}
     div.footer-newsletter {
         margin-bottom: 20px;
         overflow: auto;
@@ -14370,10 +14383,9 @@ textarea.textarea-embed-video {
 	 div.hm-mobile-title{
          background-color: #e7e7e7;
          height: 75px;
-         left: -12px;
+         left: -20px;
          margin-bottom: 10px;
          width: 111%;
-         margin-top: 14px;
     }
 
     .col-xs-button{
@@ -14552,7 +14564,7 @@ textarea.textarea-embed-video {
     }
     div.explorebtn {
         margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 0;
         margin-left: -13px;
     }
 	div .validatetile .show-tile-text-size {
@@ -15923,8 +15935,7 @@ textarea.textarea-embed-video {
 		display:block;
 		margin-left:auto;
 		margin-right:auto;
-		width:300px;
-		left: -10px;
+		width:320px;
 	}
 	.home-campaign-tile li div.tilepad{
 		display:block;

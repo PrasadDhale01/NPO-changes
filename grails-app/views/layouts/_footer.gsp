@@ -111,7 +111,7 @@
                 <div class="text-primary">
                     <a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms  Of  Use</a>&nbsp;&nbsp;
                     <a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy &nbsp;&nbsp;</a>
-                    <a class="footerlink">&copy;&nbsp; Crowdera,inc, 2015</a>
+                    <a class="footerlink">&copy;&nbsp; 2015 Crowdera, Inc.</a>
                 </div>
             </div>
         </div>
@@ -219,7 +219,7 @@
                 <span class="text-primary ft-text-termsofUse">
                 <a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms  Of Use</a>&nbsp;&nbsp;
                 <a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy &nbsp;&nbsp;</a>
-                <a class="footerlink">&copy;&nbsp; Crowdera,inc, 2015</a>
+                <a class="footerlink">&copy;&nbsp; 2015 Crowdera, Inc.</a>
                 </span>
             </div>
         </g:if>
@@ -228,7 +228,7 @@
                 <span class="text-primary">
                     <a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms Of  Use</a>&nbsp;&nbsp;
                 <a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy &nbsp;&nbsp;</a>
-                <a class="footerlink">&copy;&nbsp; Crowdera,inc, 2015</a>
+                <a class="footerlink">&copy;&nbsp; 2015 Crowdera, Inc.</a>
                 </span>
             </div>
         </g:else>
@@ -339,7 +339,7 @@
                 <span class="text-primary ft-text-terms-privacy">
                     <a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms Of  Use</a>&nbsp;&nbsp;
                 <a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy &nbsp;&nbsp;</a>
-                <a class="footerlink">&copy;&nbsp; Crowdera,inc, 2015</a>
+                <a class="footerlink">&copy;&nbsp; 2015 Crowdera, Inc.</a>
                 </span>
             </div>
         </g:if>
@@ -348,7 +348,7 @@
                 <span class="text-primary">
                     <a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms Of  Use</a>&nbsp;&nbsp;
                 <a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy &nbsp;&nbsp;</a>
-                <a class="footerlink">&copy;&nbsp; Crowdera,inc, 2015</a>
+                <a class="footerlink">&copy;&nbsp; 2015 Crowdera, Inc.</a>
                 </span>
             </div>
         </g:else>

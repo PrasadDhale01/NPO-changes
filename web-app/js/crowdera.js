@@ -183,60 +183,6 @@ $(function() {
   	
     }); 
     
-    
-    $( document ).ready(function() {
-        function sticky_relocate() {
-        	var window_top = $(window).scrollTop();
-        	if($('.hm-image-header').length){
-        		var image_header = $('.hm-image-header').offset().top;
-        	}
-        	
-        	var _opened = $("#TW-navbar-collapsed").hasClass("collapse in");
-            if (_opened == true) {
-                $("button.navbar-toggle").click();
-            }
-            
-//            var _searchBox = $('.search-box');
-//            if(_searchBox){
-//                    var delay = 300;
-//                    setTimeout(function() {
-//                        $('.search-box').hide();
-//                    }, delay);
-//                 
-//            }
-        	
-        	if (window_top < image_header) {
-                $('.hm-headeropicity').css('opacity','0.60');
-                
-                if($('.burger')){
-                	$('.burger').click(function(){
-                    	$('.hm-headeropicity').css('opacity','1');
-                    });
-                }
-                if($('.mobile-searchengin-header')){
-                	$('.mobile-searchengin-header').click(function(){
-                		$('.hm-headeropicity').css('opacity','1');
-                	});
-                }
-               
-        	}else if (window_top > image_header) {
-        		$('.hm-headeropicity').css('opacity','1');
-        	}
-        	
-        }
-        $(window).scroll(sticky_relocate);
-        sticky_relocate();
-        
-        $(document).click(function (event) {
-            var clickover = $(event.target);
-            var _opened = $("#TW-navbar-collapsed").hasClass("collapse in");
-            if (_opened == true && !clickover.hasClass("navbar-toggle")) {
-                $("button.navbar-toggle").click();
-            }
-        });
-        
-    });
-    
     $.validator.addMethod('isValidTelephoneNumber', function (value, element) {
         if(value && value.length !=0){
             var reg = /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;

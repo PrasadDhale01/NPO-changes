@@ -148,8 +148,8 @@
 
 
 <!--  **********************************************Scrolled Header************************************************* -->
-<div role="navigation" class="navbar navbar-default navbar-fixed-top  hidden-lg hidden-md header-section home-header-section scrollHeader header-scrolled hm-headeropicity">
-    <div class="header-container TW-scrollHeaderBackColor">
+<div role="navigation" class="navbar  navbar-fixed-top hidden-lg hidden-md header-section home-header-section scrollHeader header-scrolled hm-headeropicity">
+    <div id="opacityremove" class="header-container TW-scrollHeaderBackColor navbar-default ">
   
    <div class="info-banner">
     Doing good from India? Visit <a class="banner-link" href="http://crowdera.in">www.crowdera.in</a>
@@ -159,16 +159,17 @@
         <div class="navbar-header">
             <button data-target="#TW-navbar-collapsed" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed TW-scrollHeader-hamBurger burger" type="button">
                 <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+                <span class="icon-bar icon-bar-xs" id="icon-bar-1"></span>
+                <span class="icon-bar icon-bar-xs" id="icon-bar-2"></span>
+                <span class="icon-bar icon-bar-xs" id="icon-bar-3"></span>
+                
             </button>
             <a href="/" class="navbar-brand scrollHeaderLogo hidden-xs">
                 <img alt="Crowdera" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png" class="hidden-xs">
                 <img class="mobile-scrollCrwdLogo hidden-lg hidden-xs hidden-md hidden-sm visible-xs center-block" alt="Crowdera" src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" >
             </a>
             
-            <div class="searchengine pull-right hidden-lg hidden-md hidden-sm visible-xs">
+            <div class="searchengine pull-right visible-xs">
                <form name="SearchForm" action="/campaign">
                    <div class="inner-addon left-addon search-icon-header search-image-header mobile-searchengin-header">
                       <img id="scrolltrigger" class="trigger-mob scrolltrigger" alt="search" src="https://s3.amazonaws.com/crowdera/assets/search-icon.png">

@@ -2146,7 +2146,7 @@ button.projectedit.close{
 }
 .text-primary {
     color: #008cba;
-    margin-left:35px;
+    margin-left:34px;
 }
 a.footerlink {
 	color: #666666;
@@ -5593,6 +5593,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    button.navbar-toggle {
+        margin-top: 2px;
+    }
     div.how-it-learn-title{
         background-color: #e7e7e7;
         height: 75px;
@@ -10137,6 +10140,22 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	.icon-bar-xs {
+	    background-color: #000 !important;
+	}
+	
+	.icon-bar-xs, .icon-bar-home {
+        display: block;
+        width: 22px;
+        height: 2px;
+        border-radius: 1px;
+        margin-top: 4px;
+    }
+    
+    .icon-bar-home {
+        background-color: #fff !important;
+    }
+    
 	#sendReceipt .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),
 	.sendTaxReceiptBoard .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
 	   width:105px;    
@@ -14434,6 +14453,12 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    button.navbar-toggle {
+        margin-top: 2px;
+    }
+    div.burgerheader-white{
+        background-color: #fff !important;
+    }
     div.how-it-learn-title{
         background-color: #e7e7e7;
         height: 75px;

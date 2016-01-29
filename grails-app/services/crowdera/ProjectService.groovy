@@ -1440,6 +1440,8 @@ class ProjectService {
                     (project.payuStatus) ? indiaOpenCampaign.add(project) : usOpenCampaign.add(project)
                 }
             }
+            indiaEndedCampaign = indiaEndedCampaign.sort {contributionService.getPercentageContributionForProject(it)}
+            usEndedCampaign = usEndedCampaign.sort {contributionService.getPercentageContributionForProject(it)}
             sortIndiaCampaign = indiaOpenCampaign.sort {contributionService.getPercentageContributionForProject(it)}
             sortUsCampaign = usOpenCampaign.sort {contributionService.getPercentageContributionForProject(it)}
             finalList = sortIndiaCampaign.reverse() + sortUsCampaign.reverse() + indiaEndedCampaign.reverse() + usEndedCampaign.reverse()
@@ -1453,6 +1455,7 @@ class ProjectService {
                     openProjects.add(project)
                 }
             }
+            endedProjects = endedProjects.sort {contributionService.getPercentageContributionForProject(it)}
             sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
             finalList =  sortedProjects.reverse() + endedProjects.reverse()
         }
@@ -1518,9 +1521,9 @@ class ProjectService {
 		def currentEnv = Environment.current.getName()
 		def projects
 		if (currentEnv == 'staging' || currentEnv == 'production')
-		   projects = Project.getAll('2c9f84884d094bf3014dbc5347da000d', '2c9f848850ec4666015173ec7f930011', '2c9f84884fc22f8b014fe7788be40003')
+		   projects = Project.getAll('2c9f84884d094bf3014dbc5347da000d', '2c9f848850ec466601515b0c6efd000d', '2c9f84884fc22f8b014fe7788be40003')
 		else
-		   projects = Project.getAll('2c9f84884d094bf3014dbc5347da000d', '2c9f848850ec4666015173ec7f930011', '2c9f8f3b4feeeee0014fefed7fae0001')
+		   projects = Project.getAll('2c9f84884d094bf3014dbc5347da000d', '2c9f848850ec46660152289aaf560021', '2c9f8f3b4feeeee0014fefed7fae0001')
 	    return projects
 	}
 

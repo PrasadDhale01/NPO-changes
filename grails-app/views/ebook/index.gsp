@@ -22,7 +22,7 @@
 		<div id="sticky-header"></div>
 		<div class="TW-ebook-header">
 		    <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${ebookUrl}"/>
-  		    <a id="downloadEbook" class="btn btn-info" <g:if test='${user}'>href="//s3.amazonaws.com/crowdera/assets/crowdera%20ebook-your%20go%20to%20guide%20for%20crowdfunding%20success.pdf"</g:if><g:else>data-target="#ebookModal" data-toggle="modal"</g:else>>Download eBook</a>
+  		    <a id="downloadEbook" class="btn btn-info" <g:if test='${user}'>href="//s3.amazonaws.com/crowdera/assets/crowdera%20ebook-your%20go%20to%20guide%20for%20crowdfunding%20success.pdf"</g:if><g:else>data-target="#ebookModal" data-toggle="modal"</g:else>>Download E-book</a>
   		    <div class="TW-socialicons">
 		       <a id="fbshare" class="fb-like pull-left" target="_blank" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${ebookUrl}">
 		           <img alt="Facebook Share" src="//s3.amazonaws.com/crowdera/assets/contribution-fb-share.png">
@@ -592,7 +592,7 @@
 	                <div class="modal-content">
 	                    <div class="modal-header">
 	                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	                        <h4 class="modal-title text-center"><b>Information</b></h4>
+	                        <h4 class="modal-title text-center"><b>Get your free ebook!</b></h4>
 	                    </div>
 	                    <div class="modal-body">
 	                        <div class="row">

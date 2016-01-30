@@ -52,18 +52,18 @@
 <head>
     <meta name="title" content="${project.title} - Crowdera" />
     <g:if test="${project.description}">
-        <meta name="description" content="${project.description}"/>
+        <meta name="description" content="${project.description}" />
     </g:if>
     <meta name="keywords" content="Crowdera, crowdfunding, contribute online, raise funds free, film crowdfunding, raise money online, fundraising site, fundraising website, fundraising project, online fundraising, raise money for a cause, global crowdfunding, (${project.organizationName}, ${project.beneficiary.country}, ${project.category} ,${project.usedFor})" />
     
-    <meta property="og:site_name" content="Crowdera"/>
+    <meta property="og:site_name" content="Crowdera" />
     <meta property="og:type" content="Crowdera:Campaign" />
-    <meta property="og:title" content="Click here to support ${project.title} by ${project.beneficiary.firstName}"/>
+    <meta property="og:title" content="Click here to support ${project.title} by ${project.beneficiary.firstName}" />
     <g:if test="${project.description}">
-        <meta property="og:description" content="${project.description} Crowdfunding is a practical and inspiring way to support the fundraising needs of a cause or community. Do some good. Make a Contribution Today!"/>
+        <meta property="og:description" content="${project.description} Crowdfunding is a practical and inspiring way to support the fundraising needs of a cause or community. Do some good. Make a Contribution Today!" />
     </g:if>
     <g:if test="${project.organizationIconUrl}">
-        <meta property="og:image" content="${project.organizationIconUrl}"/>
+        <meta property="og:image" content="${project.organizationIconUrl}" />
     </g:if>
     <g:elseif test="${imageUrl}">
         <meta property="og:image" content="${imageUrl}" />

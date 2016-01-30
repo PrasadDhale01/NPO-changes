@@ -977,7 +977,7 @@ $(function() {
     });
   
     $('.show-mobilejs').find(function(){
-        $('.show-mobilejs').css("margin-bottom","20px");
+        $('.show-mobilejs').css("margin-bottom","50px");
     });
     
     if(screen.width < 1024){

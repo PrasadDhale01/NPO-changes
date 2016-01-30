@@ -451,45 +451,45 @@
                </div>
                
                <%--Tab code for whatsapp, facebook and twitter --%>
-               <div class="visible-sm sh-tabs-social sh-shareicons-Fixedtophead">
-                   <div class="col-sm-4 col-md-4 show-tabs">
+               <div class="visible-sm visible-xs sh-tabs-social sh-shareicons-Fixedtophead">
+                   <div class="col-sm-4 col-md-4 col-xs-4 show-tabs">
                        <g:if test="${isPreview}">
-                           <a class="btn btn-block btn-social btn-facebook sh-head-fb-over show-Allsocialtabs-size hidden-xs">
+                           <a class="btn btn-block btn-social btn-facebook sh-head-fb-over show-Allsocialtabs-size show-whats-paddingmobile">
                                 <i class="fa fa-facebook show-tabsfooter-fb"></i> 
                            </a>
                        </g:if>
                        <g:else>
-                           <a class="btn btn-block btn-social btn-facebook sh-head-fb-over show-Allsocialtabs-size hidden-xs fbshare-header" href="#">
+                           <a class="btn btn-block btn-social btn-facebook sh-head-fb-over show-Allsocialtabs-size fbshare-header show-whats-paddingmobile" href="#">
                                <i class="fa fa-facebook show-tabsfooter-fb"></i> 
                            </a>
                        </g:else>
                    </div>
-                  <div class="col-sm-4 col-md-4 show-tabs">
+                  <div class="col-sm-4 col-md-4 col-xs-4 show-tabs">
                       <g:if test="${isPreview}">
-                          <a href="whatsapp://send?text=${shareUrl}" data-action="share/whatsapp/share" class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-whatsapp-color show-Allsocialtabs-size hidden-xs">
-                              <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> 
+                          <a href="whatsapp://send?text=${shareUrl}" data-action="share/whatsapp/share" class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-whatsapp-color show-Allsocialtabs-size show-whats-paddingmobile">
+                              <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb show-small-whatsappmobile" alt="whatsapp"> 
                           </a>
                       </g:if>
                       <g:elseif test="${isDeviceMobileOrTab}">
-                          <a href="whatsapp://send?text=${shareUrl}" data-action="share/whatsapp/share" class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-whatsapp-color show-Allsocialtabs-size hidden-xs">
-                              <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> 
+                          <a href="whatsapp://send?text=${shareUrl}" data-action="share/whatsapp/share" class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-whatsapp-color show-Allsocialtabs-size show-whats-paddingmobile">
+                              <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb show-small-whatsappmobile" alt="whatsapp"> 
                           </a>
                       </g:elseif>
                       <g:else>
-                          <a href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-whatsapp-color show-Allsocialtabs-size hidden-xs" >
-                              <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> 
+                          <a href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-whatsapp-color show-Allsocialtabs-size show-whats-paddingmobile" >
+                              <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb show-small-whatsappmobile" alt="whatsapp"> 
                           </a>
                       </g:else>
                   </div>
 
-                  <div class="col-sm-4 col-md-4 show-tabs">
+                  <div class="col-sm-4 col-md-4 col-xs-4 show-tabs">
                        <g:if test="${isPreview}">
-                           <a class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-twitter-color show-Allsocialtabs-size hidden-xs">
+                           <a class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-twitter-color show-Allsocialtabs-size show-whats-paddingmobile">
                                <i class="fa fa-fw fa-twitter show-tabsfooter-fb"></i> 
                            </a>
                        </g:if>
                        <g:else>
-                           <a class="btn btn-block btn-social twitter-share btn-facebook sh-head-fb-over shTabs-twitter-color show-Allsocialtabs-size hidden-xs" data-url="${shareUrl}" target="_blank">
+                           <a class="btn btn-block btn-social twitter-share btn-facebook sh-head-fb-over <g:if test="${ended}">shTabs-twitter-color-b</g:if><g:else>shTabs-twitter-color</g:else> show-Allsocialtabs-size show-whats-paddingmobile" data-url="${shareUrl}" target="_blank">
                                <i class="fa fa-fw fa-twitter show-tabsfooter-fb"></i> 
                            </a>
                        </g:else>
@@ -497,28 +497,27 @@
                </div>
                
                <%--Mobile code for whatsapp--%>
-               <g:if test="${isPreview}">
-                  <div class="whatsapp-mobile-icon visible-xs">
-                      <a class="btn btn-whatsapp" href="whatsapp://send?text=${shareUrl}" data-action="share/whatsapp/share">
-                          <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> 
-                      </a>
-                  </div>
-               </g:if>
-               <g:elseif test="${isDeviceMobileOrTab}">
-                   <div class="whatsapp-mobile-icon visible-xs">
-                       <a class="btn btn-whatsapp" href="whatsapp://send?text=${shareUrl}">
-                           <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> 
-                       </a>
-                   </div>
-               </g:elseif>
-               <g:else>
-                   <div class="whatsapp-mobile-icon visible-xs">
-                       <a class="btn btn-whatsapp" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank">
-                           <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> 
-                       </a>
-                   </div>
-               </g:else>
-
+<%--               <g:if test="${isPreview}">--%>
+<%--                  <div class="whatsapp-mobile-icon visible-xs">--%>
+<%--                      <a class="btn btn-whatsapp" href="whatsapp://send?text=${shareUrl}" data-action="share/whatsapp/share">--%>
+<%--                          <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> --%>
+<%--                      </a>--%>
+<%--                  </div>--%>
+<%--               </g:if>--%>
+<%--               <g:elseif test="${isDeviceMobileOrTab}">--%>
+<%--                   <div class="whatsapp-mobile-icon visible-xs">--%>
+<%--                       <a class="btn btn-whatsapp" href="whatsapp://send?text=${shareUrl}">--%>
+<%--                           <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> --%>
+<%--                       </a>--%>
+<%--                   </div>--%>
+<%--               </g:elseif>--%>
+<%--               <g:else>--%>
+<%--                   <div class="whatsapp-mobile-icon visible-xs">--%>
+<%--                       <a class="btn btn-whatsapp" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank">--%>
+<%--                           <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> --%>
+<%--                       </a>--%>
+<%--                   </div>--%>
+<%--               </g:else>--%>
                
                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 borders  hidden-xs">
                     <g:set var="screen" id="screen" value="false"></g:set>

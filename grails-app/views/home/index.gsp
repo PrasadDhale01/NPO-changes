@@ -10,15 +10,15 @@
 
 <meta property="og:type" content="website" />
 <g:if test="${currentEnv == 'production' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'development'}">
-    <meta property="og:site_name" content="Crowdera"/>
+    <meta property="og:site_name" content="Crowdera" />
 </g:if>
 <g:else>
-    <meta property="og:site_name" content="Crowdera- First free crowdfunding platform in India"/>
+    <meta property="og:site_name" content="Crowdera- First free crowdfunding platform in India" />
 </g:else>
 <meta property="og:title" content="Crowdera: Future of funding for things that matter" />
 <meta property="og:description" content="Crowdera is a free crowdfunding platform that helps individuals, non-profits & independent filmmakers to raise money online. We offer flexible goals, deadlines and our teams tool helps multiply crowdfunding results." />
-<meta property="og:image" content="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png"/>
-<meta property="og:url" content="${base_url}"/>
+<meta property="og:image" content="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png" />
+<meta property="og:url" content="${base_url}" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@gocrowdera" />

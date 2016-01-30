@@ -5593,6 +5593,32 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.sh-shareicons-Fixedtophead {
+        background-color: #fff;
+        bottom: 0 !important;
+        display: none;
+        left: 0;
+        position: fixed;
+        width: 100%;
+        z-index: 999;
+        top: auto;
+    }
+    img.show-small-whatsappmobile {
+        height: 18px;
+    }
+    a.show-whats-paddingmobile {
+        padding-bottom: 3px;
+        padding-top: 3px;
+    }
+    a.shTabs-whatsapp-color{
+        background-color: #29a628;
+    }
+    a.shTabs-twitter-color{
+        background-color: #000;
+    }
+    a.shTabs-twitter-color-b{
+        background-color: #42C0FB;
+    }
     button.navbar-toggle {
         margin-top: 2px;
     }
@@ -5869,7 +5895,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin: 0;
     }
     div.show-mobile-button {
-        bottom: 0;
+        bottom: 29px;
         left: 0;
         position: fixed;
         width: 100%;
@@ -6536,7 +6562,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
     button.mob-show-sucessend {
 /*         margin-top: -21px; */
-        width: 111%;
+        width: 105%;
         font-family: Ubuntu Condensed;
     }  
     button.mob-show-fund {
@@ -8435,6 +8461,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     a.shTabs-twitter-color{
         background-color: #2CA8D2;
     }
+    a.shTabs-twitter-color-b{
+        background-color: #42C0FB;
+    }
     a.show-whtsapp-color{
         background-color: #29A628
     }
@@ -10143,6 +10172,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	div.show-tabs {
+        padding: 0;
+    }
 	.icon-bar-xs {
 	    background-color: #000 !important;
 	}
@@ -14465,6 +14497,32 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.sh-shareicons-Fixedtophead {
+        background-color: #fff;
+        bottom: 0 !important;
+        display: none;
+        left: 0;
+        position: fixed;
+        width: 100%;
+        z-index: 999;
+        top: auto;
+    }
+    img.show-small-whatsappmobile {
+        height: 18px;
+    }
+    a.show-whats-paddingmobile {
+        padding-bottom: 3px;
+        padding-top: 3px;
+    }
+    a.shTabs-whatsapp-color{
+        background-color: #29a628;
+    }
+    a.shTabs-twitter-color{
+        background-color: #000;
+    }
+    a.shTabs-twitter-color-b{
+        background-color: #42C0FB;
+    }
     button.navbar-toggle {
         margin-top: 2px;
     }
@@ -14780,7 +14838,7 @@ textarea.textarea-embed-video {
         margin: 0;
     }
     div.show-mobile-button {
-        bottom: 0;
+        bottom: 29px;
         left: 0;
         position: fixed;
         width: 100%;

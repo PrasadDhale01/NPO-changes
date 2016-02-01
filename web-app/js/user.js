@@ -1,20 +1,19 @@
 $(function() {
-    console.log("user.js initialized");
     $('#uploadProfilesize').hide();
     $('#uploadProfileImg').hide();
-    
+
     $('#editProfilesize').hide();
     $('#editProfileImg').hide();
-    
+
     $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
     });
-    
+
     $('.success-message').fadeOut(6000);
-    
-    $('#state').change(function(event) {
+
+    $('#state').change(function() {
         var option = $(this).val();
-        if(option == 'other') {
+        if(option === 'other') {
             $("#ostate").show();
             $("#dashboard_otherstate").show();
         } else {
@@ -22,32 +21,49 @@ $(function() {
             $("#dashboard_otherstate").hide();
         }
     });
-    
+
+    $('.contributorsSort').change(function (){
+        var vanityTitle = $('.vanityTitle').val();
+        var isBackRequired = $('#isBackRequired').val();
+        var grid = $(".send-tax-receipt-to-contributors");
+        var baseUrl = $('#baseUrl').val();
+
+        $.ajax({
+            type: 'post',
+            url :   baseUrl+'/user/sortContributorsList',
+            data:  'vanityTitle='+vanityTitle+'&sort='+$(this).val()+'&isBackRequired='+isBackRequired,
+            success: function(data) {
+                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+            }
+        }).error(function(){
+        });
+    });
+
     $('#side-menu').find('.li').click(function() {
         $('#side-menu').find('.li').removeClass('active');
         $(this).addClass('active');
     });
-    
-    var validator = $('#validpass').find('form').validate({
+
+    $('#validpass').find('form').validate({
         rules: {
-        	firstName: {
-        		minlength: 2,
-        		maxlength: 20
-        	},
-        	lastName: {
-        		minlength: 2,
-        		maxlength: 20
-        	},
-        	password: {
+            firstName: {
+                minlength: 2,
+                maxlength: 20
+            },
+            lastName: {
+                minlength: 2,
+                maxlength: 20
+            },
+            password: {
                 minlength: 6,
                 maxlength: 30
             },
-    		confirmPassword: {
-		        isEqualToPassword: true
+            confirmPassword: {
+                isEqualToPassword: true
             }
         }
     });
-    
+
     $('.dashboarduserprofile').find('form').validate({
         rules: {
             firstName: {
@@ -89,7 +105,7 @@ $(function() {
             error.insertAfter(element);
         }
     });
-    
+
     $('#invitePartnerModal').find('form').validate({
         rules: {
             email : {
@@ -106,72 +122,72 @@ $(function() {
             }
         }
     });
-    
+
     $('#partner-sec-header .span-space').click(function() {
    	    var toptabs = $("#partner-tab-content").offset().top;
    	    window.scrollTo(toptabs,toptabs - 170);
     });
-    
+
     $('#partnersOpts').change(function(){
         var opts = $(this).val();
-        if (opts == 'Verified') {
+        if (opts === 'Verified') {
             $('#partners-list').find('.tab-pane').removeClass('active');
             $('#verified').addClass('active');
-        } else if(opts == 'Non-Verified') {
+        } else if(opts === 'Non-Verified') {
             $('#partners-list').find('.tab-pane').removeClass('active');
             $('#nonVerified').addClass('active');
-        } else if(opts == 'Pending') {
+        } else if(opts === 'Pending') {
             $('#partners-list').find('.tab-pane').removeClass('active');
             $('#pending').addClass('active');
-        } else if(opts == 'Draft') {
+        } else if(opts === 'Draft') {
             $('#partners-list').find('.tab-pane').removeClass('active');
             $('#draft').addClass('active');
         }
     });
-    
+
     var currentEnvironment = $('#currentEnv').val();
-    
+
     $(".amountsectionfbicon").click(function(){
     	var url;
-    	if (currentEnvironment == 'prodIndia') {
-            url = 'http://www.facebook.com/sharer.php?p[url]=http://crowdera.in/campaign/create'
+    	if (currentEnvironment === 'prodIndia') {
+            url = 'http://www.facebook.com/sharer.php?p[url]=http://crowdera.in/campaign/create';
     	}
-        else if (currentEnvironment == 'testIndia') {
-        	url = 'http://www.facebook.com/sharer.php?p[url]=http://test.crowdera.in/campaign/create'
+        else if (currentEnvironment === 'testIndia') {
+        	url = 'http://www.facebook.com/sharer.php?p[url]=http://test.crowdera.in/campaign/create';
         }
-        else if (currentEnvironment == 'stagingIndia') {
-        	url = 'http://www.facebook.com/sharer.php?p[url]=http://staging.crowdera.in/campaign/create'
+        else if (currentEnvironment === 'stagingIndia') {
+        	url = 'http://www.facebook.com/sharer.php?p[url]=http://staging.crowdera.in/campaign/create';
         }
-        else if (currentEnvironment == 'test') {
-        	url = 'http://www.facebook.com/sharer.php?p[url]=http://test.crowdera.co/campaign/create'
+        else if (currentEnvironment === 'test') {
+        	url = 'http://www.facebook.com/sharer.php?p[url]=http://test.crowdera.co/campaign/create';
         }
-        else if (currentEnvironment == 'staging') {
-        	url = 'http://www.facebook.com/sharer.php?p[url]=http://staging.crowdera.co/campaign/create'
+        else if (currentEnvironment === 'staging') {
+        	url = 'http://www.facebook.com/sharer.php?p[url]=http://staging.crowdera.co/campaign/create';
         }
-        else if (currentEnvironment == 'production') {
-        	url = 'http://www.facebook.com/sharer.php?p[url]=http://crowdera.co/campaign/create'
+        else if (currentEnvironment === 'production') {
+        	url = 'http://www.facebook.com/sharer.php?p[url]=http://crowdera.co/campaign/create';
         }
     	else {
-    		url = 'http://www.facebook.com/sharer.php?p[url]=http://localhost:8080/campaign/create'
+    		url = 'http://www.facebook.com/sharer.php?p[url]=http://localhost:8080/campaign/create';
     	}
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
     });
-    
-    $.validator.addMethod('isEqualToPassword', function (value, element) {
+
+    $.validator.addMethod('isEqualToPassword', function (value) {
         var confirmpassword = value;
         var password = $("#password").val();
-        if(confirmpassword != password) {
-            return (confirmpassword == password) ? password : false;
+        if(confirmpassword !== password) {
+            return (confirmpassword === password) ? password : false;
         }
         return true;
     }, "Passwords do not match! Please enter a valid password.");
-    
+
     $("#uploadavatar").click(function() {
         $("#avatar").click();
     });
-    
-    $('#avatar').change( function(event) {
+
+    $('#avatar').change( function() {
     	var file =this.files[0];
 	    if(!file.type.match('image')){
 	        $('#uploadProfilesize').hide();
@@ -187,14 +203,14 @@ $(function() {
 		        $('#uploadProfileImg').hide();
                         $("#uploadbutton").click();
 	        }
-	    } 
+	    }
     });
-    
+
     $("#editavatarbutton").click(function() {
         $("#editavatar").click();
     });
-    
-    $('#editavatar').change( function(event) {
+
+    $('#editavatar').change( function() {
     	var file =this.files[0];
 	    if(!file.type.match('image')){
 	        $('#editProfilesize').hide();
@@ -210,12 +226,12 @@ $(function() {
 		        $('#editProfileImg').hide();
 		        $("#editbutton").click();
 	        }
-	    } 
+	    }
     });
-    
-    $("#applicantfile").change(function(event) {
+
+    $("#applicantfile").change(function() {
         var file =this.files[0];
-        if(validateExtension(file.name) == false){
+        if(validateExtension(file.name) === false){
 	        $('#applicantOutput').hide();
 	        $("#applicantfilesize").show();
         	$("#applicantfilesize").html("Only text,docx and pdf files are allowed.");
@@ -232,11 +248,11 @@ $(function() {
                 $('#applicantOutput').show();
                 $('#applicantfilesize').hide();
                 $("#applicantOutput").html(""+file.name);
-                
+
 	        }
-	    } 
+	    }
     });
-    
+
     $('#userAvatarUploadIcon').hover(function() {
         $('.partneruploadprofileimage').show();
     });
@@ -257,27 +273,27 @@ $(function() {
         event.preventDefault();
         $("#editavatar").click();
     });
-    
-    
+
+
     var elem1 = '<div class="well"><a href="google.com">Message one, From someone.</a></div>'+
     '<button id="close-popover" data-toggle="clickover" class="btn btn-small btn-primary pull-right" onclick="$(&quot;#contributionshare1&quot;).popover(&quot;hide&quot;);">Close please!</button>';
-    
+
     var elem2 = '<div class="well"><a href="google.com">Message one, From someone.</a></div>'+
     '<button id="close-popover" data-toggle="clickover" class="btn btn-small btn-primary pull-right" onclick="$(&quot;#contributionshare2&quot;).popover(&quot;hide&quot;);">Close please!</button>';
 
-    
+
 	function validateExtension(imgExt) {
         var allowedExtensions = new Array("txt","docx","doc","pdf");
         for(var imgExtImg=0;imgExtImg<allowedExtensions.length;imgExtImg++)
         {
             imageFile = imgExt.lastIndexOf(allowedExtensions[imgExtImg]);
-            if(imageFile != -1){
+            if(imageFile !== -1){
     	        return true;
             }
         }
         return false;
 	}
-	
+
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {
         $(this).popover('show');
@@ -305,15 +321,14 @@ $(function() {
     .focus(showPopover)
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
-    
+
 });
 
 function campaignsort(){
-	var currency = $('#currency').val();
 	var selectedSortValue = $('#sortByOptions').val();
 	var selectedCountry = $('#countryOpts').val();
 	var grid = $('#adminCampaignGrid');
-	
+
 	$.ajax({
 		type: 'post',
 		url: $('#baseUrl').val()+'/user/getSortedCampaigns',
@@ -321,17 +336,15 @@ function campaignsort(){
 		success: function(data){
 			$(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
 		}
-	}).error(function(data){
-		console.log('Error occured while fetching campaigns');
+	}).error(function(){
 	});
 }
 
 function campaignsortByCountry(){
-	var currency = $('#currency').val();
 	var selectedSortValue = $('#sortByOptions').val();
 	var selectedCountry = $('#countryOpts').val();
 	var grid = $('#adminCampaignGrid');
-	
+
 	$.ajax({
 		type: 'post',
 		url: $('#baseUrl').val()+'/user/getSortedCampaigns',
@@ -339,7 +352,6 @@ function campaignsortByCountry(){
 		success: function(data){
 			$(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
 		}
-	}).error(function(data){
-		console.log('Error occured while fetching campaigns');
+	}).error(function(){
 	});
 }

@@ -50,10 +50,10 @@ $(function() {
     $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
     });
-    
-    $('#state').change(function(event) {
+
+    $('#state').change(function() {
         var option = $(this).val();
-        if(option == 'other') {
+        if(option === 'other') {
             $("#ostate").show();
             $("#dashboard_otherstate").show();
         } else {
@@ -61,7 +61,23 @@ $(function() {
             $("#dashboard_otherstate").hide();
         }
     });
-    
+
+    $('.contributorsSort').change(function (){
+        var vanityTitle = $('.vanityTitle').val();
+        var isBackRequired = $('#isBackRequired').val();
+        var grid = $(".send-tax-receipt-to-contributors");
+
+        $.ajax({
+            type: 'post',
+            url:baseUrl+'/user/sortContributorsList',
+            data:'vanityTitle='+vanityTitle+'&sort='+$(this).val()+'&isBackRequired='+isBackRequired,
+            success: function(data) {
+                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+            }
+        }).error(function(){
+        });
+    });
+
     var currentEnv = $('#currentEnv').val();
 
     $('#invite-campaign-owner').find('form').validate({
@@ -75,7 +91,7 @@ $(function() {
             }
         }
     });
-    
+
     $('.dashboarduserprofile').find('form').validate({
         rules: {
             firstName: {

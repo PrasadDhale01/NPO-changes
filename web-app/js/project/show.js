@@ -1,5 +1,4 @@
 $(function() {
-    console.log('show.js initialized');
     /***************Hide/Show label******************************/
     hideShowLabel();
     changeTeamStatus();
@@ -10,24 +9,24 @@ $(function() {
 
     var hash = window.location.hash;
     hash && $('ul.nav a[href="' + hash + '"]').tab('show');
-    
+
     var videoVal = $('#youtubeVideoUrl').val();
     if(videoVal && videoVal.length > 0) {
-    	$('.carousel').carousel({
+        $('.carousel').carousel({
             interval: false
         });
     }
 
-    $('.nav a').click(function (e) {
+    $('.nav a').click(function () {
         $(this).tab('show');
         var scrollmem = $('body').scrollTop();
         window.location.hash = this.hash;
         $('html,body').scrollTop(scrollmem);
     });
-    
-    $('.scrollToComment').click(function(e) {
-    	var toptabs = $("#scrollToComment").offset().top;
-   	    window.scrollTo(toptabs , toptabs-170);
+
+    $('.scrollToComment').click(function() {
+        var toptabs = $("#scrollToComment").offset().top;
+        window.scrollTo(toptabs , toptabs-170);
     });
 
     $('#sendmailmodal').find('form').validate({
@@ -41,7 +40,7 @@ $(function() {
             }
         }
     });
-    
+
     $('.submitForApprovalSection').find('form').validate({
         rules: {
         	submitForApprovalcheckbox : {
@@ -54,7 +53,7 @@ $(function() {
             }
         }
     });
-    
+
     $('.submitForApprovalSectionbtn').find('form').validate({
         rules: {
         	submitForApprovalcheckbox1 : {
@@ -196,29 +195,29 @@ $(function() {
         	$('#validateChecklistmsg').fadeOut(30000);
         }
     });
-    
-    $('.redirectCampaign, .redirectCampaignOnPerk a').click(function(event) {
+
+    $('.redirectCampaign a, .redirectCampaignOnPerk a').click(function(event) {
         event.preventDefault();
-        var url = $('.redirectUrl a').attr('href');
+        var url = $(this).attr('href');
         var redirectUrl;
-        if (currentEnv == 'testIndia') {
+        if (currentEnv === 'testIndia') {
             redirectUrl = 'http://test.crowdera.co'+url;
             if (confirm('You are being redirected to our global site www.test.crowdera.co')) {
                 window.location.href = redirectUrl;
             }
-        } else if(currentEnv == 'stagingIndia') {
+        } else if(currentEnv === 'stagingIndia') {
             redirectUrl = 'http://staging.crowdera.co'+url;
             if (confirm('You are being redirected to our global site www.staging.crowdera.co')) {
                 window.location.href = redirectUrl;
             }
-        } else if(currentEnv == 'prodIndia') {
+        } else if(currentEnv === 'prodIndia') {
             redirectUrl = 'https://crowdera.co'+url;
             if (confirm('You are being redirected to our global site www.crowdera.co')) {
                 window.location.href = redirectUrl;
             }
         }
     });
-    
+
     $('#loadTeamPage').click(function() {
         location.reload(true);
     });

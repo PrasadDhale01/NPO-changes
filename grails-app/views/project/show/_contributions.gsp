@@ -19,7 +19,7 @@
 </g:if>
 <g:if test="${user && !isCrUserCampBenOrAdmin && CurrentUserTeam}">
     <g:if test="${team.user == user}">
-        <g:if test="${project.payuStatus == false && !ended}">
+        <g:if test="${!ended}">
             <a href="#" class="btn btn-primary btn-sm pull-right offlinecontributionbtn" data-toggle="modal" data-target="#offlineContributionModal">
                 Manage Offline Contribution
             </a>

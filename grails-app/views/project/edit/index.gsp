@@ -60,6 +60,7 @@
     <g:hiddenField name="offeringTaxReciept" id="offeringTaxReciept" value="${project.offeringTaxReciept}"/>
     
     <g:hiddenField name="isIndianCampaign" value="${project.payuStatus}" id="isIndianCampaign"/>
+    <g:hiddenField name="titleUniqueStatus" value="true" id="titleUniqueStatus"/>
     
 
     <div class="edit-container">

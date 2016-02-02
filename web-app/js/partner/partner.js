@@ -1,27 +1,27 @@
 $(function() {
 
     var baseUrl = $('#baseUrl').val();
-	
+
     function getSelectedCampaignUrl() {
         return $('#promote-campaigns').find('.list-group-item.active').data('campaignurl');
     }
-    
+
     function getSelectedCampaignTwitterUrl() {
         return $('#promote-campaigns').find('.list-group-item.active').attr('id');
     }
-    
+
     $('#promote-campaigns').find('.list-group-item').click(function() {
-    	if ($(this).hasClass("active")) {
+        if ($(this).hasClass("active")) {
             $(this).removeClass('active');
             $('#campaign-select-msg').hide();
-    	} else {
+        } else {
             $('#promote-campaigns').find('div.list-group-item').removeClass('active');
             $(this).addClass('active');
             $('#campaign-select-msg').show();
-		    $('#campaign-select-msg').fadeOut(10000);
-    	}
+            $('#campaign-select-msg').fadeOut(10000);
+        }
     });
-	
+
     $('#side-menu').find('.li').click(function() {
         $('#side-menu').find('.li').removeClass('active');
         $(this).addClass('active');
@@ -30,7 +30,7 @@ $(function() {
         $('#partner-sec-header').find('span').removeClass('active');
         $(this).addClass('active');
     });
-    
+
     $('.nav-tab-doc').find('.tab-data-toggle').click(function() {
         $('.nav-tab-doc').find('.tab-data-toggle').removeClass('active');
         $(this).addClass('active');
@@ -50,10 +50,10 @@ $(function() {
     $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
     });
-    
-    $('#state').change(function(event) {
+
+    $('#state').change(function() {
         var option = $(this).val();
-        if(option == 'other') {
+        if(option === 'other') {
             $("#ostate").show();
             $("#dashboard_otherstate").show();
         } else {
@@ -61,7 +61,23 @@ $(function() {
             $("#dashboard_otherstate").hide();
         }
     });
-    
+
+    $('.contributorsSort').change(function (){
+        var vanityTitle = $('.vanityTitle').val();
+        var isBackRequired = $('#isBackRequired').val();
+        var grid = $(".send-tax-receipt-to-contributors");
+
+        $.ajax({
+            type: 'post',
+            url:baseUrl+'/user/sortContributorsList',
+            data:'vanityTitle='+vanityTitle+'&sort='+$(this).val()+'&isBackRequired='+isBackRequired,
+            success: function(data) {
+                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+            }
+        }).error(function(){
+        });
+    });
+
     var currentEnv = $('#currentEnv').val();
 
     $('#invite-campaign-owner').find('form').validate({
@@ -75,7 +91,7 @@ $(function() {
             }
         }
     });
-    
+
     $('.dashboarduserprofile').find('form').validate({
         rules: {
             firstName: {
@@ -116,7 +132,7 @@ $(function() {
             error.insertAfter(element);
         }
     });
-    
+
     $('#createNewFolder').find('form').validate({
     	rules: {
     		title : {
@@ -126,7 +142,7 @@ $(function() {
     		}
     	}
     });
-    
+
     $('#sendReceiptModal').find('form').validate({
         rules: {
             email : {
@@ -137,12 +153,12 @@ $(function() {
             }
         }
     });
-    
+
     $("#uploadavatar").click(function() {
         $("#avatar").click();
     });
-    
-    $('#avatar').change( function(event) {
+
+    $('#avatar').change( function() {
     	var file =this.files[0];
 	    if(!file.type.match('image')){
 	        $('#uploadProfilesize').hide();
@@ -158,14 +174,14 @@ $(function() {
 		        $('#uploadProfileImg').hide();
                 $("#uploadbutton").click();
 	        }
-	    } 
+	    }
     });
-    
+
     $("#editavatarbutton").click(function() {
         $("#editavatar").click();
     });
-    
-    $('#editavatar').change( function(event) {
+
+    $('#editavatar').change( function() {
     	var file =this.files[0];
 	    if(!file.type.match('image')){
 	        $('#editProfilesize').hide();
@@ -181,18 +197,16 @@ $(function() {
 		        $('#editProfileImg').hide();
 		        $("#editbutton").click();
 	        }
-	    } 
+	    }
     });
-    
-    $("#insertfile").change(function(event) {
+
+    $("#insertfile").change(function() {
         var file = this.files[0];
         if (file.size > 0) {
         	$('#files').find('form').submit();
-        } else {
-        	
         }
     });
-    
+
     $('#userAvatarUploadIcon').hover(function() {
         $('.partneruploadprofileimage').show();
     });
@@ -213,10 +227,10 @@ $(function() {
         event.preventDefault();
         $("#editavatar").click();
     });
-    
+
     $("#fbshare").click(function(){
     	var selectedUrl = getSelectedCampaignUrl();
-    	if (selectedUrl == undefined) {
+    	if (selectedUrl === undefined) {
     		$('#campaign-select-alert').show();
     		$('#campaign-select-alert').fadeOut(3000);
     	} else {
@@ -227,14 +241,15 @@ $(function() {
     });
     $("#twitterShare").click(function(){
         var selectedUrl = getSelectedCampaignTwitterUrl();
-        if (selectedUrl == undefined) {
+        var url;
+        if (selectedUrl === undefined) {
         	$('#campaign-select-alert').show();
     		$('#campaign-select-alert').fadeOut(3000);
     	} else {
-            if(currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
-                var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.co!"&url='+encodeURIComponent(selectedUrl);
+            if(currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'production' || currentEnv === 'staging'){
+                url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.co!"&url='+encodeURIComponent(selectedUrl);
             } else {
-                var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.in!"&url='+encodeURIComponent(selectedUrl);
+                url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.in!"&url='+encodeURIComponent(selectedUrl);
             }
             window.open(url, 'Share on Twitter', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
             return false;
@@ -242,7 +257,7 @@ $(function() {
     });
     $("#linkedinShareUrl").click(function(){
     	var selectedUrl = getSelectedCampaignTwitterUrl();
-        if (selectedUrl == undefined) {
+        if (selectedUrl === undefined) {
     		$('#campaign-select-alert').show();
     		$('#campaign-select-alert').fadeOut(3000);
     	} else {
@@ -253,7 +268,7 @@ $(function() {
     });
     $("#googlePlusShareUrl").click(function(){
     	var selectedUrl = getSelectedCampaignTwitterUrl();
-        if (selectedUrl == undefined) {
+        if (selectedUrl === undefined) {
         	$('#campaign-select-alert').show();
     		$('#campaign-select-alert').fadeOut(3000);
     	} else {
@@ -262,26 +277,26 @@ $(function() {
             return false;
     	}
     });
-    
-    $.validator.addMethod('validateMultipleEmailsCommaSeparated', function (value, element) {
+
+    $.validator.addMethod('validateMultipleEmailsCommaSeparated', function (value) {
         var result = value.split(",");
         for(var i = 0;i < result.length;i++)
-        if(!validateEmail(result[i])) 
-                return false;    		
+        if(!validateEmail(result[i]))
+                return false;
         return true;
     },"Please add valid emails only");
-    
+
     function validateEmail(field) {
         var regex=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
         return (regex.test(field)) ? true : false;
     }
-    
+
     var partnerId = $('#partnerId').val();
-    
+
     var validategrid = $('#validatecampaignpaginate');
     var loadValidateCampaignUrl = baseUrl+'/user/validatecampaigns?partnerId='+partnerId;
     loadValidateCampaigns(loadValidateCampaignUrl, validategrid);
-    
+
     function loadValidateCampaigns(url, grid) {
         $.ajax({
             type: 'GET',
@@ -291,12 +306,12 @@ $(function() {
             }
         });
     }
-    
+
     $('#partner-sec-header .span-space').click(function() {
    	    var toptabs = $("#partner-tab-content").offset().top;
    	    window.scrollTo(toptabs,toptabs - 170);
     });
-    
+
     var userId = $('#userId').val();
     var driveFileGrid = $('#driveFiles');
     var loadFilesUrl = baseUrl+'/user/loadDriveFiles?userId='+userId;
@@ -307,12 +322,12 @@ $(function() {
             $(driveFileGrid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
         }
     });
-    
+
     $('#savenewfolderbtn').click(function(event){
     	event.preventDefault();
     	if($('#createNewFolder').find('form').valid()){
     		$('#createNewFolder').modal("hide");
-    		
+
     		var userId = $('#userId').val();
     	    var driveFileGrid = $('#docFolders');
     	    var loadFilesUrl = baseUrl+'/user/newfolder?userId='+userId+'&title='+$('#folderName').val();
@@ -321,10 +336,10 @@ $(function() {
     	        url: loadFilesUrl,
     	        success: function(data) {
     	            $(driveFileGrid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
-    	            
+
     	            $('.nav-tab-doc').find('.tab-data-toggle').removeClass('active');
     	            $('.doc-tab-files').addClass('active');
-    	            
+
     	            $('#partner-doc-content').find('.tab-pane').removeClass('active');
     	            $('#files').addClass('active');
     	            $('#folderName').val('');
@@ -334,13 +349,13 @@ $(function() {
     	    });
         }
     });
-    
-    $("#remove-folder").click(function(event) {
+
+    $("#remove-folder").click(function() {
         if (confirm('Are you sure you want to discard this folder?')) {
             var folderId = $(this).val();
             var partnerId = $('#partnerId').val();
             var grid = $('#docFolders');
-            
+
             $.ajax({
                 type: 'GET',
                 url: baseUrl+'/user/trashFolder?partnerId='+partnerId+'&folderId='+folderId,
@@ -358,23 +373,24 @@ $(function() {
             });
         }
     });
-    
-    $("#remove-file").click(function(event) {
+
+    $("#remove-file").click(function() {
     	if (confirm('Are you sure you want to discard this file?')) {
             var url = $("#remove-file").val();
             var folderId = $('#folderId').val();
+            var driveFileGrid;
 
             $.ajax({
                 type: 'GET',
                 url: url,
                 success: function(data) {
                     if (folderId) {
-                        var driveFileGrid = $('#viewfolder');
+                        driveFileGrid = $('#viewfolder');
                         $(driveFileGrid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
                         $('.trash-file-fixed-btn').hide();
                         $('#remove-file').val('');
                     } else {
-                        var driveFileGrid = $('#docFiles');
+                        driveFileGrid = $('#docFiles');
                         $(driveFileGrid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
                         $('.trash-file-fixed-btn').hide();
                         $('#remove-file').val('');
@@ -383,8 +399,8 @@ $(function() {
             });
         }
     });
-    
-    $("#remove-drive-file").click(function(event) {
+
+    $("#remove-drive-file").click(function() {
     	if (confirm('Are you sure you want to discard this file?')) {
             var url = $("#remove-drive-file").val();
             var grid = $('#driveFiles');
@@ -399,7 +415,7 @@ $(function() {
             });
         }
     });
-    
+
     $("#deletePartner").click(function(event) {
     	event.preventDefault();
         if (confirm('Are you sure you want to discard this partner?')) {
@@ -407,14 +423,12 @@ $(function() {
         	window.location.href = deleteUrl;
         }
     });
-    
-    $("#newDocFile").change(function(event) {
+
+    $("#newDocFile").change(function() {
         var file =this.files[0];
-        if(validateExtension(file.name) == false){
-        	alert("Please upload valid type of documents only.")
+        if(validateExtension(file.name) === false){
+        	alert("Please upload valid type of documents only.");
         } else if (file.size > 0) {
-            var file = this.files[0];
-            var fileName = file.name;
             var formData = !!window.FormData ? new FormData() : null;
             var partnerId = $('#partnerId').val();
             var folderId = $('#folderId').val();
@@ -425,35 +439,29 @@ $(function() {
             var xhr = new XMLHttpRequest();
             xhr.open('POST', $("#b_url").val()+'/user/uploadDocument');
             xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-            
+
             // complete
             xhr.onreadystatechange = $.proxy(function() {
-                if (xhr.readyState == 4) {
+                if (xhr.readyState === 4) {
                     var data = xhr.responseText;
                     data = data.replace(/^\[/, '');
                     data = data.replace(/\]$/, '');
+                    var driveFileGrid;
 
-                    var json;
-                    try {
-                        json = (typeof data === 'string' ? $.parseJSON(data) : data);
-                    } catch(err) {
-                        json = { error: true };
-                    }
-                    
                     if (folderId) {
-                    	var driveFileGrid = $('#viewfolder');
+                    	driveFileGrid = $('#viewfolder');
                         $(driveFileGrid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
                         $('.nav-tab-doc').find('.tab-data-toggle').removeClass('active');
-        	            
+
         	            $('#partner-doc-content').find('.tab-pane').removeClass('active');
         	            $('#viewfolder').addClass('active');
         	            $('#newDocFile').val('');
                     } else {
-                    	var driveFileGrid = $('#docFiles');
+                    	driveFileGrid = $('#docFiles');
                         $(driveFileGrid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
                         $('.nav-tab-doc').find('.tab-data-toggle').removeClass('active');
         	            $('.doc-tab-files').addClass('active');
-        	            
+
         	            $('#partner-doc-content').find('.tab-pane').removeClass('active');
         	            $('#files').addClass('active');
         	            $('#newDocFile').val('');
@@ -464,16 +472,16 @@ $(function() {
             xhr.send(formData);
         }
     });
-    
+
     $('#add-docs-fixed-btn').find('.dropdown-menu .dropdown-doc-padding').click(function() {
     	var opts = $(this).attr('id');
-    	if(opts == 'first') {
+    	if(opts === 'first') {
     		$('#newDocFile').click();
     	}
     });
-    
+
     $( document ).ready(function() {
-    	
+
     	$(document).on('change', '.btn-file :file', function() {
             var filename =this.files[0].name;
             var input = $(this),
@@ -482,28 +490,29 @@ $(function() {
                         input.trigger('fileselect', [fileExt, label]);
         });
 
-        
+
         $('.btn-file :file').on('fileselect', function(event, fileExt, label) {
 
             var input = $(this).parents('.input-group').find(':text'),
-                        log = (fileExt != 'csv') ? 'Select csv file' : label;
-            if(fileExt=='csv'){ 
+                log = (fileExt !== 'csv') ? 'Select csv file' : label;
+
+            if(fileExt === 'csv'){
                 $('.upload').removeClass('has-error');
             }else{
                 $('.upload').addClass('has-error');
             }
-   
+
             if( input.length ) {
                 input.val(log);
             }
         });
-        
+
     	if($('#socialContact').val()){
         	$('.divSocialContact').show();
         }else{
         	$('.divSocialContact').hide();
         }
-    	
+
         function sticky_relocate() {
             var div_top = $('#footermarker').offset().top;
             var marker = $('#add-docs-fixed-btn').offset().top;
@@ -523,7 +532,7 @@ $(function() {
         $(window).scroll(sticky_relocate);
         sticky_relocate();
     });
-    
+
     /***********************Social contacts******************************************/
     $('.constantContact').click(function(){
         $('.socialProvider').val("constant");
@@ -535,7 +544,7 @@ $(function() {
         	$('.mailchimpContact, .facebookContact, .csvContact, .gmailContact').removeClass('highlightIcon');
         }
     });
-    
+
     $('.gmailContact').click(function(){
         $('.socialProvider').val("google");
         $('.divSocialContact').show();
@@ -556,7 +565,7 @@ $(function() {
         	$('.gmailContact, .facebookContact, .csvContact, .constantContact').removeClass('highlightIcon');
         }
     });
-    
+
     $('.facebookContact').click(function(){
         $('.socialProvider').val("facebook");
         $('.divSocialContact').show();
@@ -567,7 +576,7 @@ $(function() {
         	$('.mailchimpContact, .gmailContact, .csvContact, .constantContact').removeClass('highlightIcon');
         }
     });
-    
+
     $('.csvContact').click(function(){
         $('.socialProvider').val("csv");
         $('.divCSVContacts').show();
@@ -577,22 +586,22 @@ $(function() {
         	$('.mailchimpContact, .facebookContact, .gmailContact, .constantContact').removeClass('highlightIcon');
         }
     });
-    
+
     $('.socialContact').change(function(){
         var regex=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
         var socialContact= $('.socialContact').val();
         var status =(socialContact.match(regex)) ? true : false;
-        if(status==true){
+        if(status === true){
             $('.socialContactDiv').removeClass("has-error");
         }else{
             return false;
         }
     });
-    
+
     $('.btnSocialContacts').click(function(){
         var socialProvider=$('.socialProvider').val();
         var socialContact= $('.socialContact').val();
-        if(socialContact==null || socialContact==""){
+        if(socialContact === null || socialContact === ""){
             $('.socialContactDiv').addClass("has-error");
             $('.socialContact').focus();
         }
@@ -611,32 +620,32 @@ $(function() {
             });
         }
     });
-    
+
     $('.csvbtn').click(function(){
     	var input = $('.csvFile').val();
     	if($('.upload').hasClass('has-error')){
     		return false;
     	}
-    	if(input==''){
+    	if(input === ''){
     		$('.upload').addClass('has-error');
     		return false;
     	}else{
     		$('.upload').removeClass('has-error');
     	}
-    	
+
     	var data = new FormData();
         data.append( 'filecsv', $('.filecsv')[0].files[0] );
-        
+
     	$.ajax({
             type:'post',
             url:$("#b_url").val()+'/project/importDataFromCSV',
             data:data,
-            processData: false,  
+            processData: false,
             contentType: false ,
             success: function(data){
                 if(data){
                     var list =jQuery.parseJSON(JSON.stringify(data));
-                    if(list.contacts == ''){
+                    if(list.contacts === ''){
                         $('.csv-empty-emails').addClass("csv-empty-emails-error");
                         $('.upload').addClass('has-error');
                         $('.contactlist').val('');
@@ -649,7 +658,7 @@ $(function() {
             }
        });
     });
-    
+
     $('#btnSendinvitation').click(function(){
         var form =$('#invite-campaign-owner').find('form');
         var  error =form.find('div').hasClass('has-error');
@@ -665,12 +674,14 @@ $(function() {
 	        return false;
         }
     });
+
     function validateExtension(imgExt){
         var allowedExtensions = new Array("jpg","JPG","png","PNG","pdf","doc","docx","xlsx","ppt","pptx","csv");
+
         for(var imgExtImg=0;imgExtImg<allowedExtensions.length;imgExtImg++)
         {
-            imageFile = imgExt.lastIndexOf(allowedExtensions[imgExtImg]);
-            if(imageFile != -1){
+            var imageFile = imgExt.lastIndexOf(allowedExtensions[imgExtImg]);
+            if(imageFile !== -1){
           	  return true;
             }
         }

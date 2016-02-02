@@ -108,6 +108,7 @@
 <g:else>
     <div class="partner-dashboard user-dashboard" id="wrapper">
         <g:hiddenField name='currentEnv' value='${environment}' id='currentEnv'/>
+        <g:hiddenField name='baseUrl' value='${base_url}' id='baseUrl'/>
         
         <div class="navbar navbar-default navbar-fixed-top visible-xs" id="partner-sec-header">
             <div class="navbar-header user-dashboard-header">
@@ -208,6 +209,21 @@
                     <li>
                         <a href="#mycontributions" data-toggle="tab"> Campaigns Supported</a>
                     </li>
+                    <g:if test="${(isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                        <li>
+                            <a href="#taxReceipt" data-toggle="tab">Tax Receipt</a>
+                        </li>
+                    </g:if>
+                    <g:elseif test="${isUserProjectHavingContribution && !userHasContributedToNonProfitOrNgo && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                        <li>
+                            <a href="#sendtaxReceipt" data-toggle="tab">Send Tax Receipt</a>
+                        </li>
+                    </g:elseif>
+                    <g:elseif test="${!isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                        <li>
+                            <a href="#exporttaxReceipt" data-toggle="tab">Export Tax Receipt</a>
+                        </li>
+                    </g:elseif>
                     <li class="hidden">
                         <a href="#track" data-toggle="tab">Track Growth</a>
                     </li>
@@ -264,7 +280,7 @@
                                         <i class="fa fa-leaf fa-3x"></i>
                                     </div>
                                     <div class="col-xs-10 col-sm-12 col-md-10 text-right">
-                                        <p class="announcement-heading">${projects.size()}</p>
+                                        <p class="announcement-heading">${totalprojects.size()}</p>
                                     </div>
                                 </div>
                             </div>
@@ -303,13 +319,46 @@
                             <g:render template="user/campaigntile"/>
                         </div>
                     </div>
-                </div>
+
+                    <g:if test="${(isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                        <div class="tab-pane tab-pane-active" id="taxReceipt">
+                            <div class="col-sm-12">
+                                <g:render template="/user/partner/receiptBoard"/>
+                            </div>
+                        </div>
+                    </g:if>
+                    <g:elseif test="${(isUserProjectHavingContribution && !userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                        <div class="tab-pane tab-pane-active" id="sendtaxReceipt">
+                            <div class="col-sm-12 sendTaxReceiptBoard"><br>
+                                <g:if test="${contributionList}">
+                                    <div class="send-tax-receipt-to-contributors">
+                                        <g:render template="/user/user/sendTaxReceipt" model="[sort:'All', isBackRequired: 'No', selectpicker: 'hide']"/>
+                                    </div>
+                                </g:if>
+                                <g:else>
+                                    <div class="campaignTilePaginate send-tax-receipt-to-contributors">
+                                        <g:render template="/user/user/userCampaignTile"/>
+                                    </div>
+                                </g:else>
+                            </div>
+                        </div>
+                    </g:elseif>
+                    <g:elseif test="${(!isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                        <div class="tab-pane tab-pane-active exportTaxReceiptThumbnail" id="exporttaxReceipt">
+                            <div class="col-sm-12">
+                                <br><g:render template="/user/user/exportTaxReceipt"/>
+                            </div>
+                        </div>
+                    </g:elseif>
+                 </div>
                     
              </div>
           
          </div>
      </div>
-            
+     <div class="loadingfilegif text-center" id="loadingfilegif">
+         <img src="//s3.amazonaws.com/crowdera/assets/loading.gif" alt="'loadingImage'" id="loading-file-gif-img">
+     </div>
 </g:else>
 </body>
 </html>

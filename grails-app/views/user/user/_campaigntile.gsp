@@ -179,7 +179,7 @@
 </g:each>
 <div class="clear"></div>
     <div class="usersCampaignsPagination text-center" id="userCampaignsPagination">
-        <g:paginate controller="user" max="6" maxsteps= "5" action="campaignpagination"  total="${projects.size()}"/>
+        <g:paginate controller="user" max="6" maxsteps= "5" action="campaignpagination"  total="${totalprojects.size()}"/>
     </div>
 
     <script>

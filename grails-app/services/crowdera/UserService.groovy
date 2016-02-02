@@ -1481,8 +1481,7 @@ class UserService {
 
     }
 
-    def getSortedContributorsForProject(def params){
-        def project = projectService.getProjectFromVanityTitle(params.vanityTitle)
+    def getSortedContributorsForProject(def params, Project project){
         List contributions = []
         def contributionsOffset
         switch (params.sort){
@@ -1547,8 +1546,7 @@ class UserService {
         return ['totalContributions':contributions, 'contributions':contributionsOffset]
     }
     
-    def getContributorsListSearchedByName(def params){
-        def project = projectService.getProjectFromVanityTitle(params.vanityTitle)
+    def getContributorsListSearchedByName(def params, Project project){
         List contributionList = Contribution.findAllWhere(project:project)
         List contributions = []
         def contributionsOffset

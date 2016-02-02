@@ -5055,6 +5055,21 @@ class ProjectService {
         return Project.findAllWhere(category: category, validated: true, rejected: false, inactive: false)
     }
     
+    def isTitleUnique(def title, def projectId){
+        def projectList = Project.findAllWhere(rejected:false, inactive:false, title:title)
+        Project project = Project.get(projectId)
+        Boolean status = true;
+        
+        projectList.each{
+            if (it.title.equalsIgnoreCase(title)){
+                if (it != project){
+                    status = false
+                }
+            }
+        }
+        return status;
+    }
+    
     def getBulkEmailsforCampaigns(def campaigns) {
         List emails = []
         

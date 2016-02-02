@@ -20,6 +20,16 @@
 	</div>
 </div><br><br><br>
 
+<g:if test="${campaign}">
+    <%
+        def projectTitle = campaign.title
+        if (projectTitle) {
+            projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
+        }
+    %>
+    <h4><b>${projectTitle}</b></h4>
+</g:if>
+
 <g:if test="${contributionList && totalContributions && !contributionList.empty && !totalContributions.empty}">
 	<%
 	def count = contributionList.size()

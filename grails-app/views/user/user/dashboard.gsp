@@ -280,7 +280,7 @@
                                         <i class="fa fa-leaf fa-3x"></i>
                                     </div>
                                     <div class="col-xs-10 col-sm-12 col-md-10 text-right">
-                                        <p class="announcement-heading">${projects.size()}</p>
+                                        <p class="announcement-heading">${totalprojects.size()}</p>
                                     </div>
                                 </div>
                             </div>

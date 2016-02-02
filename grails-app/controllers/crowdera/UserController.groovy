@@ -77,7 +77,7 @@ class UserController {
             def projects
             def projectAdmins
             def teams
-            def project
+            def project = []
             def sortByOptions = []
             if (user.email == 'campaignadmin@crowdera.co') {
                 if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
@@ -121,11 +121,16 @@ class UserController {
             def vanityTitle
             def taxReceiptRecievedList = userService.getContributionsForWhichTaxReceiptreceived(user, params)
             
+            def campaign
+            
             if (projectList.totalProjects.size() == 1) {
-                contributorListForProject = contributionService.getContributorsForProject(projectList.totalProjects[0].id, params)
+                campaign = projectList.totalProjects[0]
+                vanityTitle = projectService.getVanityTitleFromId(campaign.id)
+                
+                contributorListForProject = contributionService.getContributorsForProject(campaign.id, params)
                 totalContributions = contributorListForProject.totalContributions
                 contributionList = contributorListForProject.contributions
-                vanityTitle = projectService.getVanityTitleFromId(projectList.totalProjects[0].id)
+                
             } else {
                 contributorListForProject = null
                 totalContributions = null
@@ -135,7 +140,7 @@ class UserController {
             
             def partner = userService.getPartnerByUser(user)
                 
-            render view: userViews, model: [user: user, projects: project, totalCampaings: totalCampaings,country: country, fundRaised: fundRaised, 
+            render view: userViews, model: [user: user, totalprojects: project, totalCampaings: totalCampaings,country: country, fundRaised: fundRaised, 
                                             state: state, activeTab:activeTab, environment: environment, contributedAmount: contributedAmount, 
                                             multiplier: multiplier, countryOpts: countryOpts, sortByOptions: sortByOptions, partner: partner,
                                             isUserProjectHavingContribution:isUserProjectHavingContribution, totalProjects:projectList.totalProjects, 
@@ -144,7 +149,7 @@ class UserController {
                                             contributorListForProject:contributorListForProject, totalContributions:totalContributions, sortList:sortList,
                                             userHasContributedToNonProfitOrNgo:userHasContributedToNonProfitOrNgo, vanityTitle:vanityTitle,
                                             contributionList:contributionList, totalTaxReceiptContributions:taxReceiptRecievedList.totalTaxReceiptContributions,
-                                            taxReceiptContribution:taxReceiptRecievedList.taxReceiptList]
+                                            taxReceiptContribution:taxReceiptRecievedList.taxReceiptList, campaign: campaign]
         }
     }
 
@@ -364,7 +369,7 @@ class UserController {
         List totalCampaings = projectService.getUsersPaginatedCampaigns(project, params, max)
         def multiplier = projectService.getCurrencyConverter();
         
-        def model = [user: user, totalCampaings: totalCampaings, projects: project, dashboard: 'dashboard', activeTab: 'campaigns', multiplier: multiplier]
+        def model = [user: user, totalCampaings: totalCampaings, totalprojects: project, dashboard: 'dashboard', activeTab: 'campaigns', multiplier: multiplier]
         if (request.xhr) {
             render(template: "user/campaigntile", model: model)
         }
@@ -471,15 +476,15 @@ class UserController {
     }
 
     def loadContributors() {
-        def contributorListForProject = userService.getSortedContributorsForProject(params)
+        def project = projectService.getProjectFromVanityTitle(params.vanityTitle)
+        def contributorListForProject = userService.getSortedContributorsForProject(params, project)
         def environment = projectService.getCurrentEnvironment()
         def offset = params.int('offset') ?: 0
         def sortList = (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') ? contributionService.contributorsSortInd() : contributionService.contributorsSortUs();
         if (request.xhr) {
             render template: '/user/user/sendTaxReceipt',
-            model: [vanityTitle: params.vanityTitle, offset: offset, sortList:sortList,
-            totalContributions:contributorListForProject.totalContributions, 
-            contributionList:contributorListForProject.contributions, sort:params.sort]
+            model: [vanityTitle: params.vanityTitle, offset: offset, sortList:sortList, totalContributions:contributorListForProject.totalContributions, 
+                    contributionList:contributorListForProject.contributions, sort:params.sort, campaign: project]
         }
     }
     
@@ -780,11 +785,15 @@ class UserController {
             def vanityTitle
             def taxReceiptRecievedList = userService.getContributionsForWhichTaxReceiptreceived(user, params)
             
+            def campaign
+            
             if (projectList.totalProjects.size() == 1) {
-                contributorListForProject = contributionService.getContributorsForProject(projectList.totalProjects[0].id, params)
+                campaign = projectList.totalProjects[0]
+                vanityTitle = projectService.getVanityTitleFromId(campaign.id)
+                
+                contributorListForProject = contributionService.getContributorsForProject(campaign.id, params)
                 totalContributions = contributorListForProject.totalContributions
                 contributionList = contributorListForProject.contributions
-                vanityTitle = projectService.getVanityTitleFromId(projectList.totalProjects[0].id)
             } else {
                 contributorListForProject = null
                 totalContributions = null
@@ -806,7 +815,7 @@ class UserController {
                 contributionList:contributionList, totalTaxReceiptContributions:taxReceiptRecievedList.totalTaxReceiptContributions,
                 taxReceiptContribution:taxReceiptRecievedList.taxReceiptList, isInviteTrue:isInviteTrue, email:chainModel.email,
                 contactList:chainModel.contactList, provider:chainModel.socialProvider, totalCampaignSupported: campaignsSupported.totalCampaignSupported,
-                campaignSupported: campaignsSupported.campaignSupported,]
+                campaignSupported: campaignsSupported.campaignSupported, campaign: campaign]
             } else {
                 render view:'/user/partner/dashboard',
                 model:[user: user, campaigns: projectObj.projects, totalCampaigns: projectObj.totalprojects, baseUrl: baseUrl,
@@ -817,7 +826,7 @@ class UserController {
                 contributorListForProject:contributorListForProject, totalContributions:totalContributions, sortList:sortList,
                 userHasContributedToNonProfitOrNgo:userHasContributedToNonProfitOrNgo, vanityTitle:vanityTitle,
                 contributionList:contributionList, totalTaxReceiptContributions:taxReceiptRecievedList.totalTaxReceiptContributions,
-                taxReceiptContribution:taxReceiptRecievedList.taxReceiptList, isInviteTrue:isInviteTrue,
+                taxReceiptContribution:taxReceiptRecievedList.taxReceiptList, isInviteTrue:isInviteTrue, campaign: campaign,
                 contributedAmount:contributedAmount, totalCampaignSupported: campaignsSupported.totalCampaignSupported, campaignSupported: campaignsSupported.campaignSupported]
             }
         }
@@ -1014,7 +1023,8 @@ class UserController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def sortContributorsList(){
-        def contributorListForProject = userService.getSortedContributorsForProject(params)
+        def project = projectService.getProjectFromVanityTitle(params.vanityTitle)
+        def contributorListForProject = userService.getSortedContributorsForProject(params, project)
         def environment = projectService.getCurrentEnvironment()
        
         def sortList = (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') ? contributionService.contributorsSortInd() : contributionService.contributorsSortUs();
@@ -1024,12 +1034,12 @@ class UserController {
             if (request.xhr) {
                 render template: '/user/user/sendTaxReceipt',sortList:sortList,
                 model: [vanityTitle: params.vanityTitle, offset: offset, totalContributions:null, contributionList:null, sort:params.sort, 
-                        doProjectHaveContribution:false, isBackRequired: params.isBackRequired]
+                        doProjectHaveContribution:false, isBackRequired: params.isBackRequired, campaign: project]
             }
         } else {
             if (request.xhr) {
                 render template: '/user/user/sendTaxReceipt',
-                model: [vanityTitle: params.vanityTitle, offset: offset,sortList:sortList, totalContributions:contributorListForProject.totalContributions,
+                model: [vanityTitle: params.vanityTitle, offset: offset,sortList:sortList, totalContributions:contributorListForProject.totalContributions, campaign: project,
                         contributionList:contributorListForProject.contributions, sort:params.sort, doProjectHaveContribution:true, isBackRequired: params.isBackRequired]
             }
         }
@@ -1038,7 +1048,8 @@ class UserController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def searchByName(){
-        def contributorListForProject = userService.getContributorsListSearchedByName(params)
+        def project = projectService.getProjectFromVanityTitle(params.vanityTitle)
+        def contributorListForProject = userService.getContributorsListSearchedByName(params, project)
         def environment = projectService.getCurrentEnvironment()
         def sortList = (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') ? contributionService.contributorsSortInd() : contributionService.contributorsSortUs();
         def offset = params.int('offset') ?: 0
@@ -1052,7 +1063,7 @@ class UserController {
             if (request.xhr) {
                 render template: '/user/user/sendTaxReceipt',
                 model: [vanityTitle: params.vanityTitle, offset: offset,sortList:sortList, totalContributions:contributorListForProject.totalContributions,
-                        contributionList:contributorListForProject.contributions, sort:params.sort,
+                        contributionList:contributorListForProject.contributions, sort: params.sort, campaign: project,
                         doProjectHaveContribution:true, isBackRequired: params.isBackRequired]
             }
         }

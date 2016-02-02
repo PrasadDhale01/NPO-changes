@@ -1,7 +1,5 @@
 <g:set var="projectService" bean="projectService" />
-<%@ page import="java.text.SimpleDateFormat" %>
 <%
-    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, YYYY");
     def index = 1;
     def base_url = grailsApplication.config.crowdera.BASE_URL
 %>

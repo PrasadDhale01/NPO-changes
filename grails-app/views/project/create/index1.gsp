@@ -27,6 +27,7 @@
     <g:hiddenField name="vanityUrlStatus" id="vanityUrlStatus" value="true"/>
     <g:hiddenField name="baseUrl" value="${base_url}" id="b_url"/>
     <g:hiddenField name="isIndianCampaign" value="${isIndianCampaign}" id="isIndianCampaign"/>
+    <g:hiddenField name="titleUniqueStatus" value="true" id="titleUniqueStatus"/>
     
     
     <div class="cr1-header-indx1">

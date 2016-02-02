@@ -5495,7 +5495,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 @media only screen and (min-width: 768px){
 	.col-contributor {
-		width: 375px;
+		width: 362px;
 		float: right;
 	}
 
@@ -5505,8 +5505,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 
 	input.search-contributors {
-		height: 33px;
-		margin-top: 2px;
+		height: 36px;
 		padding-left: 38px;
 		width:185px;
 	}
@@ -10221,6 +10220,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	
 	.col-contributor, .contributor-search-box{
 	    padding-left:0px;
+	    padding-right: 15px;
 	}
 
 	.img-size-xs{

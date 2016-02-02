@@ -312,7 +312,7 @@
                         <div class="col-sm-12 sendTaxReceiptBoard"><br>
 							<g:if test="${contributionList}">
 							    <div class="send-tax-receipt-to-contributors">
-							        <g:render template="/user/user/sendTaxReceipt" model="[sort:'All']"/>
+							        <g:render template="/user/user/sendTaxReceipt" model="[sort:'All', isBackRequired: 'No', selectpicker: 'hide']"/>
 							    </div>
 							</g:if>
 							<g:else>

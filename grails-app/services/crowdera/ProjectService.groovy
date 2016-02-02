@@ -4319,12 +4319,22 @@ class ProjectService {
     }
 
     def getPaginatedContibutionByUser(User user,def environment, def params, def max) {
-        List contributions = getContibutionByUser(user, environment)
-        List totalContributions = []
-        if (!contributions.isEmpty()) {
+        List contributions = []
+        List totalCampaignSupported = []
+        List campaignSupported = []
+        
+        contributions = getContibutionByUser(user, environment)
+        
+        contributions.each { contribution ->
+            if (!totalCampaignSupported.contains(contribution.project)) {
+                totalCampaignSupported.add(contribution.project)
+            }
+        }
+        
+        if (!totalCampaignSupported.isEmpty()) {
             def offset = params.int('offset') ?: 0
 
-            def count = contributions.size()
+            def count = totalCampaignSupported.size()
             def maxrange
 
             if(offset + max <= count) {
@@ -4332,11 +4342,40 @@ class ProjectService {
             } else {
                 maxrange = offset + (count - offset)
             }
-            totalContributions = contributions.reverse().subList(offset, maxrange)
+            campaignSupported = totalCampaignSupported.reverse().subList(offset, maxrange)
         }
-        return [totalContributions: totalContributions, contributions: contributions]
+        return [totalCampaignSupported: totalCampaignSupported, campaignSupported: campaignSupported]
     }
-	
+    
+    def getPaginatedCampaignsContributedByUser(User user,def environment, def params, def max) {
+        List contributions = []
+        List totalCampaignSupported = []
+        List campaignSupported = []
+        
+        contributions = getContibutionByUser(user, environment)
+        
+        contributions.each { contribution ->
+            if (!totalCampaignSupported.contains(contribution.project)) {
+                totalCampaignSupported.add(contribution.project)
+            }
+        }
+        
+        if (!totalCampaignSupported.isEmpty()) {
+            def offset = params.int('offset') ?: 0
+
+            def count = totalCampaignSupported.size()
+            def maxrange
+
+            if(offset + max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            campaignSupported = totalCampaignSupported.reverse().subList(offset, maxrange)
+        }
+        return [totalCampaignSupported: totalCampaignSupported, campaignSupported: campaignSupported, contributions: contributions]
+    }
+
     def getShortenUrl(def projectId, def user_name){
         def username
         def code
@@ -5014,6 +5053,21 @@ class ProjectService {
     
     def getCampaignsByCategory(def category) {
         return Project.findAllWhere(category: category, validated: true, rejected: false, inactive: false)
+    }
+    
+    def isTitleUnique(def title, def projectId){
+        def projectList = Project.findAllWhere(rejected:false, inactive:false, title:title)
+        Project project = Project.get(projectId)
+        Boolean status = true;
+        
+        projectList.each{
+            if (it.title.equalsIgnoreCase(title)){
+                if (it != project){
+                    status = false
+                }
+            }
+        }
+        return status;
     }
     
     def getBulkEmailsforCampaigns(def campaigns) {

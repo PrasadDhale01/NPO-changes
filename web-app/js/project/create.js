@@ -2,7 +2,7 @@ $(function() {
     $('#iconfile').val('');
 
     $("#sendEmailButton").click(function(){
-   	    $("#sendEmailButton").attr('disabled','disabled');
+        $("#sendEmailButton").attr('disabled','disabled');
     });
 
     $('.text-date').keydown(function(e){
@@ -20,10 +20,9 @@ $(function() {
 
     var count = $('#rewardCount').val();
     var projectId = $('#projectId').val();
-    var isIndianCampaign = ($('#isIndianCampaign').val() == 'true') ? true : false;
-    
+    var isIndianCampaign = ($('#isIndianCampaign').val() === 'true') ? true : false;
 
-    var storyContent
+
     var storyPlaceholder = "<p><h3>Introduce Your Campaign</h3></p>"+
     	"<p>Contributors want to know all about your cause and the details related to your organization, so think of this section as an executive summary to get your audience introduced to your campaign! Here are some essential components of a campaign introduction:</p>"+ 
     		"<ul>"+
@@ -61,21 +60,21 @@ $(function() {
     			"<li>	Wear your enthusiasm loud and proud - get your crowd excited! </li>"+
     			"</ul>"+
     			"<p>Your mission is the heart of your campaign; it's what makes your fundraising efforts unique. Don't be shy in making your goal clear! Energize your crowd with your passion and get ready to make a difference! </p>";
-    
+
     $('.redactorEditor').redactor({
         imageUpload:'/project/getRedactorImage',
         autosave: '/project/saveStory/?projectId='+projectId,
         imageResizable: true,
         initCallback: function(){
             var projectHasStory = $('#projectHasStory').val();
-            if (projectHasStory && projectHasStory != ''){
+            if (projectHasStory && projectHasStory !== ''){
                 this.code.set(projectHasStory);
             } else {
                 this.code.set(storyPlaceholder);
             }
-        },focusCallback: function(e){
+        },focusCallback: function(){
             $(".cr-story-padding .redactor-box .redactor-editor").toggleClass("redactor-animate", true, 100000);
-        },blurCallback: function(e) {
+        },blurCallback: function() {
             $(".cr-story-padding .redactor-box .redactor-editor").toggleClass("redactor-animate", false, 100000);
         },
         plugins: ['video','fontsize','fontfamily','fontcolor'],
@@ -83,17 +82,18 @@ $(function() {
     });
 
     var currentEnv = $('#currentEnv').val();
-    
+
     /********************* Create page Session timeout ***************************/
-        var SessionTime = 60* 1000 * 60; //set for 60 minute
+        //set for 60 minute
+        var SessionTime = 60* 1000 * 60;
         var tickDuration = 1000;
-        var myInterval = setInterval(function() {
+        setInterval(function() {
         	SessionTimeout();
         }, 1000);
-    
+
         function SessionTimeout() {
         	SessionTime = SessionTime - tickDuration;
-        	if(SessionTime ==900000){
+        	if(SessionTime === 900000){
         		alert("15 minutes left for session timeout. Please save your data as draft or data will be lost.");
         	}else if (SessionTime <= 0) {
                 alert("Your session has expired. Please login again.");
@@ -105,20 +105,18 @@ $(function() {
                     	$('#test').html(data);
                     }
                 }).error(function(){
-                	console.log('Error occured while session timeout');
                 });
-                window.location.href =$("#b_url").val()+"/logout";   
+                window.location.href =$("#b_url").val()+"/logout";
              }
        }
     /*********************************************************************/
 
-    $("#payopt").show(); // paypal option
-//    $("#paypalemail").hide(); // paypal button
+    $("#payopt").show();
     if ($('#payfir').val()) {
     	$("#paypalemail").hide();
     	$("#charitableId").show();
     }
-    
+
     /* Apply selectpicker to selects. */
     $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
@@ -160,7 +158,8 @@ $(function() {
             title: {
                 required: true,
                 minlength: 5,
-                maxlength: 100
+                maxlength: 100,
+                isTitleUnique: true
             },
             videoUrl: {
                 isYoutubeVideo: true
@@ -260,30 +259,30 @@ $(function() {
                 error.insertAfter(element);
             }
         }//end error Placement
-        
+
         //ignore: []
     });
-    
-    $.validator.addMethod('isFacebookUrl', function (value, element) {
-        if(value && value.length !=0){
+
+    $.validator.addMethod('isFacebookUrl', function (value) {
+        if(value && value.length !== 0){
            var p = /^https?:\/\/(?:www.)?facebook.com\/?.*$/;
            var facebookmatch = value.match(p);
-           var match
+           var match;
            if (facebookmatch)
                match = facebookmatch;
-           else 
+           else
                match = null;
            return (match) ? true : false;
         }
         return true;
      }, "Please enter valid Facebook url");
 
-    $.validator.addMethod('isVanityUrlUnique', function (value, element) {
+    $.validator.addMethod('isVanityUrlUnique', function (value) {
     	var status;
-    	if(value && value.length !=0){
+    	if(value && value.length !== 0){
     	    vanityUrlUniqueStatus(value.trim());
     	    status = $('#vanityUrlStatus').val();
-    	    return (status == 'true') ? true : false;
+    	    return (status === 'true') ? true : false;
         } else {
             $('#vanityUrlStatus').val('true');
             status = 'true';
@@ -298,74 +297,81 @@ $(function() {
             url:$("#b_url").val()+'/project/isCustomVanityUrlUnique',
             data:'vanityUrl='+vanityValue+'&projectId='+projectId,
             success: function(data){
-            	(data == 'true') ? $('#vanityUrlStatus').val('true') : $('#vanityUrlStatus').val('false');
+            	(data === 'true') ? $('#vanityUrlStatus').val('true') : $('#vanityUrlStatus').val('false');
             }
-        }).error(function(e){
-     	   console.log('Error occured while checking Custom Vanity Url Uniqueness'+e);
+        }).error(function(){
         });
     }
 
-    $.validator.addMethod('isTwitterUrl', function (value, element) {
-        if(value && value.length !=0){
+    function titleUniqueStatus(title){
+ 		$.ajax({
+ 			type:'post',
+ 			url:$("#b_url").val()+'/project/isTitleUnique',
+ 			data:'title='+title+'&projectId='+projectId,
+ 			success: function(data){
+ 				(data === 'true') ? $('#titleUniqueStatus').val('true') : $('#titleUniqueStatus').val('false');
+ 			}
+ 		}).error(function(){
+ 		});
+    }
+
+    $.validator.addMethod('isTwitterUrl', function (value) {
+        if(value && value.length !== 0){
            var p = /^https?:\/\/(?:www.)?twitter.com\/?.*$/;
            var twittermatch = value.match(p);
-           var match
+           var match;
            if (twittermatch)
                match = twittermatch;
-           else 
+           else
                match = null;
            return (match) ? true : false;
         }
         return true;
      }, "Please enter valid Twitter url");
-    
-    $.validator.addMethod('isLinkedInUrl', function (value, element) {
-        if(value && value.length !=0){
+
+    $.validator.addMethod('isLinkedInUrl', function (value) {
+        if(value && value.length !== 0){
            var p = /^https?:\/\/(?:www.)?linkedin.com\/?.*$/;
            var linkedinmatch = value.match(p);
-           var match
+           var match;
            if (linkedinmatch)
                match = linkedinmatch;
-           else 
+           else
                match = null;
            return (match) ? true : false;
         }
         return true;
      }, "Please enter valid LinkedIn url");
-    
-    $('.createsubmitbutton').click(function(event) {
+
+    $('.createsubmitbutton').click(function() {
         if(validator.form()){
         	needToConfirm = false;
-        } 	
+        }
     });
-    
-    $.validator.addMethod('isPaypalEmailVerified', function (value, element) {
+
+    $.validator.addMethod('isPaypalEmailVerified', function () {
         var ack = $("#paypalEmailAck").val();
         var base_url = $("#b_url").val();
-        if (base_url != 'https://crowdera.co'){
-            if(ack == 'Failure') {
-                return (ack == 'Success') ? ack : false;
-            }
+        if (base_url !== 'https://crowdera.co' && ack === 'Failure'){
+            return (ack === 'Success') ? ack : false;
         }
         return true;
     }, "Please enter verified paypal email id");
-    
-    $.validator.addMethod('isFullName', function(value, element){
-        if(value && value.length !=0){
+
+    $.validator.addMethod('isFullName', function(value){
+        if(value && value.length !== 0){
             var space= value.split(" ");
-            if(space.length < 2){
+            if(space.length < 2 || space[1] === ''){
                 return false;
-            }else if(space[1]==''){
-                return false;
-            }else{
-                var p=/^[A-Za-z]+([\sA-Za-z]+)*$/
+            } else{
+                var p=/^[A-Za-z]+([\sA-Za-z]+)*$/ ;
                 return (value.match(p));
             }
         }
         return true;
     }, "Please enter a valid fullname");
 
-    $.validator.addMethod('isTotalSpendAmountGreaterThanProjectAmount', function (value, element) {
+    $.validator.addMethod('isTotalSpendAmountGreaterThanProjectAmount', function () {
         var totalSpendAmount = 0;
         var projectAmount = $("#projectamount").val();
         $('.spendAmount').each(function(){
@@ -391,11 +397,25 @@ $(function() {
             $('#campaigncreatebtn, #campaigncreatebtnXS').attr('disabled','disabled');
         }
     });
-    
+
+    $.validator.addMethod('isTitleUnique', function (value) {
+ 		var status;
+ 		if(value && value.length !== 0){
+ 			titleUniqueStatus(value.trim());
+ 			status = $('#titleUniqueStatus').val();
+ 	        	return (status === 'true') ? true : false;
+ 		} else {
+ 			$('#titleUniqueStatus').val('true');
+ 			status = 'true';
+ 		}
+
+ 		return true;
+ 	 }, "This Project Title is already in use");
+
     $('#saveButton, #saveButtonXS').on('click', function() {
     	var storyValue = $('.redactorEditor').redactor('code.get');
         var storyEmpty = false;
-        if (storyValue == '' || storyValue == undefined){
+        if (storyValue === '' || storyValue === undefined){
             $('#storyRequired').show();
             storyEmpty = true;
         } else {
@@ -410,7 +430,7 @@ $(function() {
                 min: 1
             });
         });
-    	
+
     	if (isIndianCampaign){
     	      $('.spendAmount').each(function () {
                   $(this).rules("add", {
@@ -419,7 +439,6 @@ $(function() {
                       maxlength: 9,
                	      min:100,
                       max: function() {
-                          
                           return Number(campaignAmount);
                       },
                       isTotalSpendAmountGreaterThanProjectAmount : true,
@@ -450,9 +469,9 @@ $(function() {
                           min:'min $1'
                       }
                   });
-              }); 
+              });
           }
-    
+
           $('.spendCause').each(function () {
               $(this).rules("add", {
                   required: true,
@@ -465,11 +484,11 @@ $(function() {
                   }
               });
           });
-    	
+
         $( '[name="answer"]' ).rules( "add", {
             required: true
         });
-        
+
         $('[name="ans1"]').rules( "add", {
             required: true
         });
@@ -493,34 +512,34 @@ $(function() {
         $('[name="ans3"]').rules( "add", {
             required: true
         });
-        
+
         $('[name="ans4"]').rules( "add", {
             required: true
         });
-        
+
         $('[name="reason1"]').rules( "add", {
             required: true,
             minlength: 5,
             maxlength: 140
         });
-        
+
         $('[name="reason2"]').rules( "add", {
             required: true,
             minlength: 5,
             maxlength: 140
         });
-        
+
         $('[name="reason3"]').rules( "add", {
             required: true,
             minlength: 5,
             maxlength: 140
         });
-        
+
         $( '[name="webAddress"]' ).rules( "add", {
             required: true,
             isWebUrl:true
         });
-        
+
         $( '[name="city"]' ).rules( "add", {
             required: true,
             minlength:3
@@ -533,9 +552,9 @@ $(function() {
         $( '[name="days"]' ).rules( "add", {
             required: true
         });
-    	
+
     	var iconUrl = $('#imgIcon').attr('src');
-    	
+
     	if (!iconUrl) {
     	    $('[name="iconfile"]').rules( "add", {
                 required: true,
@@ -552,7 +571,7 @@ $(function() {
                 }
             });
     	}
-    	
+
     	if(isIndianCampaign) {
             $('.rewardPrice').each(function () {
                 $(this).rules("add", {
@@ -566,12 +585,12 @@ $(function() {
                     min: 100
                 });
             });
-            
+
             $( '[name="payuEmail"]' ).rules( "add", {
                 required: true,
                 email:true
             });
-            
+
             $('[name="impactAmount"]').rules( "add", {
                 required: true,
                 number:true,
@@ -582,7 +601,7 @@ $(function() {
                 },
                 min:100
             });
-            
+
         } else {
         	$('.rewardPrice').each(function () {
                 $(this).rules("add", {
@@ -596,7 +615,7 @@ $(function() {
                     min: 1
                 });
             });
-        	
+
         	$('[name="impactAmount"]').rules( "add", {
                 required: true,
                 number:true,
@@ -607,18 +626,18 @@ $(function() {
                 },
                 min:1
             });
-        	
+
         	$( '[name="paypalEmail"]' ).rules( "add", {
                 required: true,
                 isPaypalEmailVerified : true,
                 email:true
             });
-        	
+
         	$( '[name="charitableId"]' ).rules( "add", {
                 required: true
             });
         }
-    	
+
     	$('[name="impactNumber"]').rules( "add", {
             required: true,
             number:true,
@@ -638,19 +657,19 @@ $(function() {
                 minlength: 5
             });
         });
-        
+
         $( '[name="tax-reciept-holder-city"]' ).rules( "add", {
             required: true,
             minlength:2
         });
-        
+
         $( '[name="tax-reciept-holder-name"]' ).rules( "add", {
             required: true,
             minlength:2,
             isFullName: true
         });
-        
-        if (currentEnv =='development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+
+        if (currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'staging' || currentEnv === 'production'){
             $( '[name="ein"]' ).rules( "add", {
                 required: true,
                 minlength:9
@@ -707,28 +726,26 @@ $(function() {
             });
 
         }
-        
-        if (validator.form()) {
-            if (!storyEmpty){
-                $('#saveButton, #saveButtonXS').attr('disabled','disabled');
-                $('#campaigncreate').find('form').submit();
-            }
+
+        if (validator.form() && !storyEmpty) {
+            $('#saveButton, #saveButtonXS').attr('disabled','disabled');
+            $('#campaigncreate').find('form').submit();
         }
     });
 
     $('#submitProject, #submitProjectXS').on('click', function() {
         var storyValue = $('.redactorEditor').redactor('code.get');
         var storyEmpty = false;
-        if (storyValue == '' || storyValue == undefined){
+        if (storyValue === '' || storyValue === undefined){
             $('#storyRequired').show();
             storyEmpty = true;
         } else {
         $('#storyRequired').hide();
             storyEmpty = false;
         }
-        
+
         $('#isSubmitButton').val(true);
-        
+
 		if (isIndianCampaign){
 			$('.spendAmount').each(function () {
 				$(this).rules("add", {
@@ -768,9 +785,9 @@ $(function() {
 						min:'min $1'
 					}
 				});
-			}); 
+			});
 		}
-		
+
 		$('.spendCause').each(function () {
 			$(this).rules("add", {
 				required: true,
@@ -792,12 +809,12 @@ $(function() {
                 }
             });
     	}
-        
+
         $( '[name="city"]' ).rules( "add", {
             required: true,
             minlength:3
         });
-        
+
         $( '[name="checkBox"]' ).rules( "add", {
             required: true
         });
@@ -818,38 +835,38 @@ $(function() {
         $('[name="ans1"]').rules( "add", {
             required: true
         });
-        
-        
+
+
         $('[name="ansText2"]').rules( "add", {
             required: true
         });
-        
+
         $('[name="ans3"]').rules( "add", {
             required: true
         });
-        
+
         $('[name="ans4"]').rules( "add", {
             required: true
         });
-        
+
         $('[name="reason1"]').rules( "add", {
             required: true,
             minlength: 5,
             maxlength: 140
         });
-        
+
         $('[name="reason2"]').rules( "add", {
             required: true,
             minlength: 5,
             maxlength: 140
         });
-        
+
         $('[name="reason3"]').rules( "add", {
             required: true,
             minlength: 5,
             maxlength: 140
         });
-        
+
         $('.rewardNumberAvailable').each(function () {
             $(this).rules("add", {
                 required: true,
@@ -857,16 +874,15 @@ $(function() {
                 min: 1
             });
         });
-        
+
         var iconUrl = $('#imgIcon').attr('src');
-    	
+
     	if (!iconUrl) {
-        
-        $('#iconfile').rules("add", {
-            required: true
-        });
+            $('#iconfile').rules("add", {
+                required: true
+            });
     	}
-        
+
         if(isIndianCampaign) {
             $('.rewardPrice').each(function () {
                 $(this).rules("add", {
@@ -880,12 +896,12 @@ $(function() {
                     min: 100
                 });
             });
-            
+
             $( '[name="payuEmail"]' ).rules( "add", {
                 required: true,
                 email:true
             });
-            
+
             $('[name="impactAmount"]').rules( "add", {
                 required: true,
                 number:true,
@@ -909,7 +925,7 @@ $(function() {
                     min: 1
                 });
             });
-        	
+
         	$('[name="impactAmount"]').rules( "add", {
                 required: true,
                 number:true,
@@ -920,17 +936,17 @@ $(function() {
                 },
                 min:1
             });
-        	
+
         	$( '[name="paypalEmail"]' ).rules( "add", {
                 required: true,
                 isPaypalEmailVerified : true,
                 email:true
             });
-        	
+
         	$( '[name="charitableId"]' ).rules( "add", {
                 required: true
             });
-        	
+
         }
 
         $('[name="impactNumber"]').rules( "add", {
@@ -945,7 +961,7 @@ $(function() {
                     minlength : 5
                 });
             });
-           	
+
            	$('.rewardTitle').each(function () {
                 $(this).rules("add", {
                     required: true,
@@ -964,19 +980,19 @@ $(function() {
                   required: true
                });
             }
-            
+
             $( '[name="tax-reciept-holder-city"]' ).rules( "add", {
                 required: true,
                 minlength:2
             });
-            
+
             $( '[name="tax-reciept-holder-name"]' ).rules( "add", {
                 required: true,
                 minlength:2,
                 isFullName: true
             });
-            
-            if (currentEnv =='development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+
+            if (currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'staging' || currentEnv === 'production'){
             	$( '[name="ein"]' ).rules( "add", {
                     required: true,
                     minlength:9
@@ -2682,11 +2698,11 @@ $(function() {
                 }
             }
         } else {
-            if (recipient == 'NON-PROFIT'){
+            if (recipient === 'NON-PROFIT'){
                  $('#tax-reciept').show();
             } else {
                 $('#tax-reciept').hide();
-                if ($('#offeringTaxReciept').val() == 'true' || $('#offeringTaxReciept').val() == true){
+                if ($('#offeringTaxReciept').val() === 'true' || $('#offeringTaxReciept').val() === true){
                     if (confirm("If you will change the recipient of fund you will not be liable to offer tax reciept. \nAre you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
                         $('.tax-reciept-checkbox').attr('checked', false);
                         $('.col-tax-reciept-panel').hide();
@@ -2702,17 +2718,16 @@ $(function() {
                 }
             }
         }
-        
+
 
         $.ajax({
             type:'post',
             url:$('#b_url').val()+'/project/saveRecipientAndHashTags',
             data:'recipient='+recipient+'&projectId='+projectId,
-            success: function(data){
+            success: function(){
                 changeHashTags();
             }
-        }).error(function(data){
-            console.log('Error occured while autosaving recipient and hashtags info'+ data);
+        }).error(function(){
         });
     });
 
@@ -2721,7 +2736,7 @@ $(function() {
             type:'post',
             url:$("#b_url").val()+'/project/deleteTaxReciept',
             data:'projectId='+projectId,
-            success: function(data) {
+            success: function() {
                $('#offeringTaxReciept').val(false);
                $('.tax-reciept-checkbox').attr('checked', false);
                $('.fcra-details').hide();
@@ -2729,7 +2744,7 @@ $(function() {
                $('.tax-reciept-holder-city').val('');
                $('.tax-reciept-holder-name').val('');
                $('.tax-reciept-holder-state').val('');
-               if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+               if (currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'staging' || currentEnv === 'production'){
                    $('.ein').val('');
                    $('.tax-reciept-holder-country').val('');
                    $('.tax-reciept-deductible-status').val('');
@@ -2747,7 +2762,6 @@ $(function() {
                }
            }
        }).error(function() {
-           console.log('Error occured while autosaving field'+ variable + 'value :'+ varValue);
        });
     }
 
@@ -2806,10 +2820,11 @@ $(function() {
 
     $('.customVanityUrl').blur(function (){
         var customUrl = $(this).val();
-        var delay = 50; //delayed code to prevent error, time in milliseconds
+       //delayed code to prevent error, time in milliseconds
+        var delay = 50;
         setTimeout(function() {
                 var customUrlStatus = $('#vanityUrlStatus').val();
-                if(validator.element(".customVanityUrl") && customUrlStatus == 'true')
+                if(validator.element(".customVanityUrl") && customUrlStatus === 'true')
                     autoSave('customVanityUrl', customUrl.trim());
             }, delay);
     });
@@ -2822,61 +2837,60 @@ $(function() {
     	var name = $(this).val();
     	autoSave('organizationname', name);
     });
-    
+
     $('#webAddress').blur(function (){
     	var webAddress = $(this).val();
     	if (validator.element( "#webAddress")) {
             autoSave('webAddress', webAddress);
     	}
     });
-    
+
     $('#telephone').blur(function (){
         var telephone = $(this).val();
         autoSave('telephone', telephone);
     });
-    
-    
+
+
     $('#payuemail').blur(function (){
         var payUEmailId = $(this).val();
         if (validator.element( "#payuemail")) {
             autoSave('payuEmail', payUEmailId);
         }
     });
-    
+
     $('#secretKey').blur(function (){
         var secretKey = $(this).val();
         autoSave('secretKey', secretKey);
     });
-    
+
     $('#facebookUrl').blur(function (){
         var facebookUrl = $(this).val();
         if (validator.element( "#facebookUrl")) {
             autoSave('facebookUrl', facebookUrl);
         }
     });
-    
+
     $('#twitterUrl').blur(function (){
         var twitterUrl = $(this).val();
         autoSave('twitterUrl', twitterUrl);
     });
-    
+
     $('#linkedinUrl').blur(function (){
         var linkedinUrl = $(this).val();
         autoSave('linkedinUrl', linkedinUrl);
     });
-    
+
     function autoSave(variable, varValue) {
         $.ajax({
             type:'post',
             url:$("#b_url").val()+'/project/autoSave',
             data:'projectId='+projectId+'&variable='+variable+'&varValue='+varValue,
             success: function(data) {
-                if (data != 'null'){
+                if (data !== 'null'){
                     $('#taxRecieptId').val(data);
                 }
             }
         }).error(function() {
-            console.log('Error occured while autosaving field'+ variable + 'value :'+ varValue);
         });
     }
 
@@ -2892,12 +2906,11 @@ $(function() {
            url:$("#b_url").val()+'/project/autoSaveCharitableIdAndOrganisationName',
            data:'projectId='+projectId+'&charitableId='+uuid+'&organizationname='+charityName,
            success: function(data) {
-               if (data != 'null'){
+               if (data !== 'null'){
                    $('#taxRecieptId').val(data);
                }
            }
        }).error(function() {
-           console.log('Error occured while autosaving charitable Id and organisation name'+ variable + 'value :'+ varValue);
        });
     });
 
@@ -2916,12 +2929,12 @@ $(function() {
     $('#personal').click(function(){
         $('#usedFor').val('PERSONAL_NEEDS');
     });
-    
+
     $('#name1').blur(function (){
         var name = $(this).val();
         autoSave('name', name);
     });
-    
+
     $('#amount1').blur(function (){
         var amount = $(this).val();
         $('#projectamount').val(amount);
@@ -2929,7 +2942,7 @@ $(function() {
             autoSave('amount', amount);
         }
     });
-    
+
     $('#amount2').blur(function (){
         var amount = $(this).val();
         $('#projectamount').val(amount);
@@ -2947,45 +2960,37 @@ $(function() {
 
     $('#campaignTitle1').blur(function (){
         var title = $(this).val();
-//        $('#customVanityUrl').val(title.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-'));
         autoSave('campaignTitle', title);
     });
-
-//    $('#campaignTitle').blur(function(){
-//    	var title = $(this).val();
-//        $('#customVanityUrl').val(title.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-'));
-//    });
 
     $('#descarea1').blur(function (){
         var descarea = $(this).val();
         autoSave('descarea', descarea);
     });
-    
+
     $('.city').blur(function (){
     	var city = $(this).val();
     	$.ajax({
             type:'post',
             url:$("#b_url").val()+'/project/autoSaveCityAndHashTags',
             data:'projectId='+projectId+'&city='+city,
-            success: function(data) {
+            success: function() {
             	changeHashTags();
             }
         }).error(function() {
-            console.log('error occured saving city and hashtags info '+data);
         });
     });
-    
+
     $('#impact1').click(function(){
     	$('#usedFor').val('IMPACT');
     	$.ajax({
             type:'post',
             url:$("#b_url").val()+'/project/autoSaveUsedForAndHashTags',
             data:'projectId='+projectId+'&usedFor=IMPACT',
-            success: function(data) {
+            success: function() {
             	changeHashTags();
             }
         }).error(function() {
-            console.log('error occured saving city and hashtags info '+data);
         });
     });
 
@@ -2995,11 +3000,10 @@ $(function() {
             type:'post',
             url:$("#b_url").val()+'/project/autoSaveUsedForAndHashTags',
             data:'projectId='+projectId+'&usedFor=PASSION',
-            success: function(data) {
+            success: function() {
             	changeHashTags();
             }
         }).error(function() {
-            console.log('error occured saving city and hashtags info '+data);
         });
     });
 
@@ -3009,11 +3013,10 @@ $(function() {
             type:'post',
             url:$("#b_url").val()+'/project/autoSaveUsedForAndHashTags',
             data:'projectId='+projectId+'&usedFor=SOCIAL_NEEDS',
-            success: function(data) {
+            success: function() {
             	changeHashTags();
             }
         }).error(function() {
-            console.log('error occured saving city and hashtags info '+data);
         });
     });
 
@@ -3023,43 +3026,42 @@ $(function() {
             type:'post',
             url:$("#b_url").val()+'/project/autoSaveUsedForAndHashTags',
             data:'projectId='+projectId+'&usedFor=PERSONAL_NEEDS',
-            success: function(data) {
+            success: function() {
             	changeHashTags();
             }
         }).error(function() {
-            console.log('error occured saving city and hashtags info '+data);
         });
     });
 
     function changeHashTags(){
         var category = $('#category').val();
         var country = $('#selectedCountry').val();
-        var usedFor = ($('#usedFor').val() == undefined) ? $('#usedForCreate').val() : $('#usedFor').val();
+        var usedFor = ($('#usedFor').val() === undefined) ? $('#usedForCreate').val() : $('#usedFor').val();
         var fundRaisedBy = $('.recipient').val();
         var city = $('.city').val();
         var list;
-        if (usedFor == 'SOCIAL_NEEDS') {
+        if (usedFor === 'SOCIAL_NEEDS') {
             list = '#Social-Innovation';
-        } else if (usedFor == 'PERSONAL_NEEDS') {
+        } else if (usedFor === 'PERSONAL_NEEDS') {
             list = '#Personal-Needs';
-        } else if (usedFor == 'IMPACT'){
+        } else if (usedFor === 'IMPACT'){
             list = '#Impact';
-        } else if (usedFor == 'PASSION'){
+        } else if (usedFor === 'PASSION'){
             list = '#Passion';
         }
-        (fundRaisedBy && fundRaisedBy != 'null') ? list = list + ', #'+getStringCaptalised(fundRaisedBy) : ' ' ;
-        (category && category != 'null') ? list = list + ', #'+getStringCaptalised(category) : ' ' ;
-        if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
-            (country != 'null' && country != null && country != '') ? list = list + ', #'+country : ' ' ;
+        (fundRaisedBy && fundRaisedBy !== 'null') ? list = list + ', #'+getStringCaptalised(fundRaisedBy) : ' ' ;
+        (category && category !== 'null') ? list = list + ', #'+getStringCaptalised(category) : ' ' ;
+        if (currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'staging' || currentEnv === 'production'){
+            (country !== 'null' && country !== null && country !== '') ? list = list + ', #'+country : ' ' ;
         }
-        (city && city != '') ? list = list + ', #'+city : ' ' ;
+        (city && city !== '') ? list = list + ', #'+city : ' ' ;
 
         if ($('.hashtags').val()){
-            var remainingList
+            var remainingList;
             var hashtagsList = $('.hashtags').val().split(',');
             if (hashtagsList.length > 5){
                 for (var i=5; i<hashtagsList.length; i++){
-                    remainingList = (i == 5) ? hashtagsList[i].trim() : remainingList + ', ' + hashtagsList[i].trim();
+                    remainingList = (i === 5) ? hashtagsList[i].trim() : remainingList + ', ' + hashtagsList[i].trim();
                 }
                 list = list + ', ' + remainingList;
             }
@@ -3069,15 +3071,15 @@ $(function() {
     }
 
     function getStringCaptalised(string){
-        if (string == 'CIVIC_NEEDS'){
+        if (string === 'CIVIC_NEEDS'){
             return 'Civic-Needs';
-        } else if (string == 'NON_PROFITS'){
+        } else if (string === 'NON_PROFITS'){
             return 'Non-Profits';
-        } else if (string == 'SOCIAL_INNOVATION'){
+        } else if (string === 'SOCIAL_INNOVATION'){
             return 'Social-Innovation';
-        } else if (string == 'NON-PROFIT'){
+        } else if (string === 'NON-PROFIT'){
             return 'Non-Profit';
-        } else if (string == 'NGO'){
+        } else if (string === 'NGO'){
             return 'NGO';
         } else {
             return string.charAt(0).toUpperCase() + string.toLowerCase().slice(1);
@@ -3088,37 +3090,37 @@ $(function() {
     	var ansText1 = $(this).val();
     	autoSave('ans1', ansText1);
     });
-    
+
     $('.ansText2').blur(function(){
     	var ansText2 = $(this).val();
     	autoSave('ans2', ansText2);
     });
-    
+
     $('.ansText3').blur(function(){
     	var ansText3 = $(this).val();
     	autoSave('ans3', ansText3);
     });
-    
+
     $('.ansText5').blur(function(){
     	var ansText5 = $(this).val();
     	autoSave('ans5', ansText5);
     });
-    
+
     $('.ansText6').blur(function(){
     	var ansText6 = $(this).val();
     	autoSave('ans6', ansText6);
     });
-    
+
     $('.ansText7').blur(function(){
     	var ansText7 = $(this).val();
     	autoSave('ans7', ansText7);
     });
-    
+
     $('.ansText8').blur(function(){
     	var ansText8 = $(this).val();
     	autoSave('ans8', ansText8);
     });
-    
+
     $('#deleteVideo').click(function(){
     	if (confirm('Are you sure you want to delete this video')){
     	    autoSave('videoUrl', '');
@@ -3128,7 +3130,7 @@ $(function() {
             $('.videoUrl').val('');
     	}
     });
-    
+
 
     function saveRewards(rewardNum,rewardPrice,rewardTitle,rewardNumberAvailable,rewardDesc,email,address,twitter,custom){
         $.ajax({
@@ -3136,11 +3138,10 @@ $(function() {
             type:'post',
             url:$("#b_url").val()+'/project/saveReward',
             data:'projectId='+projectId+'&rewardNum='+rewardNum+'&rewardPrice='+rewardPrice+'&rewardTitle='+rewardTitle+'&rewardNumberAvailable='+rewardNumberAvailable+'&rewardDesc='+rewardDesc+'&email='+email+'&address='+address+'&twitter='+twitter+'&custom='+custom,
-            success: function(data) {
+            success: function() {
                $('#test').val('test');
             }
         }).error(function() {
-            console.log('error occured saving'+rewardNum+'no. reward');
         });
      }
 
@@ -3149,11 +3150,10 @@ $(function() {
              type:'post',
              url:$("#b_url").val()+'/project/deleteReward',
              data:'projectId='+projectId+'&rewardCount='+deleteCount,
-             success: function(data) {
+             success: function() {
                  $('#test').val('test');
              }
          }).error(function() {
-             console.log('error occured deleting'+deleteCount+'no. reward');
          });
      }
 
@@ -3162,15 +3162,14 @@ $(function() {
              type:'post',
              url:$("#b_url").val()+'/project/deleteAllRewards',
              data:'projectId='+projectId,
-             success: function(data) {
+             success: function() {
                  $('#test').val('test');
              }
          }).error(function() {
-             console.log('error occured while deleting all perks');
           });
     }
 
-     $('#previewButton, #previewButtonXS').on('click', function(event){  // capture the click
+     $('#previewButton, #previewButtonXS').on('click', function(){
       	$('#isSubmitButton').val(false);
        	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactAmount"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
              $(this).rules('remove');
@@ -3185,27 +3184,27 @@ $(function() {
         });
 
        	$( "#projectImageFile" ).rules("remove");
- 
+
        	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactAmount"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
              $(this).closest('.form-group').removeClass('has-error');
          });
-       	
+
        	$('.rewardNumberAvailable').each(function () {
             $(this).rules("remove");
         });
-       	
+
        	$('.rewardPrice').each(function () {
             $(this).rules("remove");
         });
-       	
+
        	$('.rewardDescription').each(function () {
             $(this).rules("remove");
         });
-       	
+
        	$('.rewardTitle').each(function () {
             $(this).rules("remove");
         });
-       	
+
        	$("#createthumbnail").removeClass('has-error');
        	if (validator.form()) {
        		$('#campaigncreate').find('form').submit();
@@ -3215,7 +3214,7 @@ $(function() {
               $('#previewButtonXS').attr('disabled','disabled');
        	}
        });
-     
+
 /*Javascript error raised due to tooltip is resolved*/
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {
@@ -3244,7 +3243,7 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-        
+
         $('.amountInfo-img').popover({
             content: 'Maximum $100,000, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
@@ -3253,7 +3252,7 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-        
+
         $('.amountInfoInd-img').popover({
             content: 'Maximum Rs.99,999,999, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
@@ -3262,7 +3261,7 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-        
+
         $('.cr1-guidence-us').popover({
             content: 'Maximum $100,000, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
@@ -3271,7 +3270,7 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-        
+
         $('.cr1-guidence-indo').popover({
             content: 'Maximum Rs.99,999,999, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
@@ -3280,7 +3279,7 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-        
+
         $('.deadlineInfo-img').popover({
             content: 'Campaign End Date - At Least 30 days and maximum 90 days.',
             trigger: 'manual',
@@ -3289,7 +3288,7 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-        
+
         $('.pictureInfo-img').popover({
             content: 'Pictures help contributors connect with you and your cause. Maximum 3MB.',
             trigger: 'manual',
@@ -3298,7 +3297,8 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-        
+
+
         $('.videoInfo-img').popover({
             content: 'Add a 3 minute video that can hold the attention of the viewer. It is your chance to pitch to your contributors, make it heartfelt.',
             trigger: 'manual',
@@ -3307,14 +3307,5 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-        
-    /* Initialize pop-overs (tooltips) */
-   /* $("input[name='days']").popover({
-        content: 'Number of days to raise the funds by.',
-        trigger: 'manual',
-        placement: 'top'
-    })
-    .focus(showPopover)
-    .blur(hidePopover)
-    .hover(showPopover, hidePopover);*/
+
 });

@@ -18,7 +18,7 @@
     </g:if>
     <g:if test="${project.validated}">
         <div class="manage-report-offline-lft">
-            <g:if test="${project.payuStatus == false && !ended}">
+            <g:if test="${!ended}">
                 <a href="#" class="btn btn-primary btn-sm pull-right managecontribution mange-contribution-mobile" data-toggle="modal" data-target="#offlineContributionModal">
                     Manage Offline Contribution
                 </a>

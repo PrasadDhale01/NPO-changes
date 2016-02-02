@@ -1,11 +1,9 @@
 <g:set var="projectService" bean="projectService" />
-<%@ page import="java.text.SimpleDateFormat" %>
 <%
-    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, YYYY");
     def index = 1;
     def base_url = grailsApplication.config.crowdera.BASE_URL
 %>
-<g:if test="${contributions.size() == 0}">
+<g:if test="${totalCampaignSupported.size() == 0}">
     <div class="col-sm-12">
         <div class="alert alert-info">
             You haven't contributed to any campaign yet. You can start contributing <g:link controller="project" action="list">here</g:link>.
@@ -13,9 +11,8 @@
     </div>
 </g:if>
 <g:else>
-    <g:each in="${totalContributions}" var="contribution">
+    <g:each in="${campaignSupported}" var="project">
 	    <% 
-	        def project = contribution.project
 	        def username = project.user.username
 	        def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
 	    %>
@@ -23,7 +20,7 @@
 	        <div class="contributiontimeline">
 	            <div class="timeline-panel">
 	                <div class="timeline-body setting-user-contributions">
-	                    <g:render template="/user/user/dashboardtile" model="['project': contribution.project, 'usercontributions': 'usercontributions', 'fbShareUrl': fbShareUrl, 'index': index]"></g:render>
+	                    <g:render template="/user/user/dashboardtile" model="['project': project, 'usercontributions': 'usercontributions', 'fbShareUrl': fbShareUrl, 'index': index]"></g:render>
 	                </div>
 	            </div>
 	        </div>
@@ -42,7 +39,7 @@
 
 <div class="clear"></div>
 <div class="usersContributionsPagination text-center" id="usersContributionsPagination">
-    <g:paginate controller="user" max="6" maxsteps= "5" action="contributionspagination" params="['userId': user.id]" total="${contributions.size()}"/>
+    <g:paginate controller="user" max="6" maxsteps= "5" action="contributionspagination" params="['userId': user.id]" total="${totalCampaignSupported.size()}"/>
 </div>
 <script>
     $('#usercontributionpaginate').find('#usersContributionsPagination a').click(function(event) {
@@ -62,3 +59,5 @@
         });
     }
 </script>
+
+

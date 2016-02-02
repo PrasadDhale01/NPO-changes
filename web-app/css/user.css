@@ -1,3 +1,4 @@
+
 .domainUsersPagination {
 	   margin-bottom: 15px;
 }
@@ -1448,10 +1449,11 @@ div.dashboardtile-min-height {
 
 .backToTiles ,.campaignTilePaginate .campaignTileClick{
 	cursor:pointer;
+	color: #01BBD2;
 }
 
 .backToTiles:hover, .backToTiles:visited, .backToTiles:active, .backToTiles:focus{
-	color:#008CBA;;
+	color:#01BBD2;
 }
 
 div.search-sort-back div.search-sort{

@@ -71,7 +71,7 @@
 	</div>
 
 	<span class="pull-right" id="selectedLength"></span>
-	<div id="email-send-confirmation">Email has been send to the contributors</div>
+	<div id="email-send-confirmation">Email has been sent successfully!</div>
 </g:if>
 <g:else>
 	<div class="alert alert-info">

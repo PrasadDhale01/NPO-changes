@@ -1754,11 +1754,11 @@ class ProjectService {
     }
 
     def getProjectImageLink(Project project) {
-        if (project.imageUrl) {
-            if (project.imageUrl[0].getUrl().startsWith('http')) {
-                return project.imageUrl[0].getUrl()
+        if (project.organizationIconUrl) {
+            if (project.organizationIconUrl.startsWith('http')) {
+                return project.organizationIconUrl
             } else {
-                return grailsLinkGenerator.resource(file: project.imageUrl[0].getUrl())
+                return grailsLinkGenerator.resource(file: project.organizationIconUrl)
             }
         } else if (project.image) {
             return grailsLinkGenerator.link(controller: 'project', action: 'thumbnail', id: project.id)

@@ -44,6 +44,12 @@ $(function() {
         $(this).addClass('active');
     });
 
+    $('.nav-tab-doc').find('.tab-data-toggle').click(function() {
+        $('.nav-tab-doc').find('.tab-data-toggle').removeClass('active');
+        $(this).addClass('active');
+        $('.file-thumbnail-container').removeClass('active');
+    });
+
     $('#validpass').find('form').validate({
         rules: {
             firstName: {
@@ -273,13 +279,6 @@ $(function() {
         event.preventDefault();
         $("#editavatar").click();
     });
-
-
-    var elem1 = '<div class="well"><a href="google.com">Message one, From someone.</a></div>'+
-    '<button id="close-popover" data-toggle="clickover" class="btn btn-small btn-primary pull-right" onclick="$(&quot;#contributionshare1&quot;).popover(&quot;hide&quot;);">Close please!</button>';
-
-    var elem2 = '<div class="well"><a href="google.com">Message one, From someone.</a></div>'+
-    '<button id="close-popover" data-toggle="clickover" class="btn btn-small btn-primary pull-right" onclick="$(&quot;#contributionshare2&quot;).popover(&quot;hide&quot;);">Close please!</button>';
 
 
 	function validateExtension(imgExt) {

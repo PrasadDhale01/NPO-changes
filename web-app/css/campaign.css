@@ -918,37 +918,39 @@ img.hm-height-width {
     margin-bottom: 0px;
 }
 .manage-btn-width {
-    padding-bottom: 11px;
-    padding-top: 11px;
-    width: 91.5%;
+/*     padding-bottom: 11px; */
+/*     padding-top: 11px; */
+    width: 100%;
 }
 .manage-deletebtn-width{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-left: 14px;
-    width: 91.5%;	
+/*     padding-top: 10px; */
+/*     padding-bottom: 10px; */
+/*     margin-left: 14px; */
+    width: 100%;
+}
+.manage-btn-padding {
+    padding-left: 0;
 }
 .manage-edit-draft-left {
-    margin-left: 14px;
+    padding-right: 0;
 }
 @-moz-document url-prefix() { 
     .manage-btn-width {
-         padding-bottom: 9px;
-         padding-top: 8px;
-         width: 91.5%;
+/*          padding-bottom: 9px; */
+/*          padding-top: 8px; */
+         width: 100%;
     }
     .manage-deletebtn-width{
-         padding-top: 9px;
-         padding-bottom: 11px;
-         margin-left: 14px;
-         width: 91.5%;   
+        width: 100%;  
+/*         margin-left: -2px; */
     }
 }
 .manage-btn-width-aft-validated{
-	height: 100%;
-    padding-top: 8px;
-    padding-bottom: 10px;
-    width: 91.2%; 
+	font-size: 20px;
+    height: 100%;
+    padding-bottom: 25px;
+    padding-top: 25px;
+    width: 91.2%;
 }
 .manage-edit-left{
     margin-left: 15px;
@@ -963,17 +965,19 @@ img.hm-height-width {
     color: #fff;
 }
 .mange-size-FBbtn {
-    height: 100%;
-    padding: 12px;
-    width: 100%;
+    font-size: 17px;
     font-weight: 900;
+    height: 100%;
+    padding: 14px;
+    width: 100%;
 }
 @-moz-document url-prefix() { 
     .mange-size-FBbtn {
-        height: 100%;
-        padding: 9px;
-        width: 100%;
+        font-size: 17px;
         font-weight: 900;
+        height: 100%;
+        padding: 14px;
+        width: 100%;
     }
 }
 .manage-social{
@@ -1299,4 +1303,92 @@ img.how-it-success-img{
 .how-it-contactus {
     padding-top: 34px;
     font-size: 17px !important;
+}
+.manage-header-primary-top {
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #fff !important;
+    display: none; 
+}
+.manage-headers-A-one{
+  display: none;
+}
+.manage-header-logo img {
+    height: 39px;
+    margin-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px !important;
+}
+.manage-header-height {
+    height: 31px;
+}
+.manage-headerstabs-height{
+    height: 24px;
+    margin-top: 14px;
+}
+.manage-alltabs {
+    padding-left: 30px;
+}
+.manage-social-mB {
+    left: 0;
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    background-color: #fff !important;
+    z-index: 999;
+    display: none;
+}
+.manage-fb-btn-width {
+    height: 38px;
+    margin-top: 4px;
+    padding: 7px;
+    width: 306px;
+    font-weight: 900;
+}
+.manage-fbheader-size {
+    padding-left: 180px;
+}
+.mange-social-all {
+    padding-top: 4px;
+}
+.manage-width-edit {
+    margin-right: -28px !important;
+    margin-top: 4px !important;
+    padding-left: 152px;
+}
+.manage-width-india {
+    margin-right: -99px !important;
+    margin-top: 4px !important;
+    padding-left: 82px;
+}
+.mange-padding-btn {
+    padding: 0 !important;
+}
+.manage-headerbts {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 305px;
+}
+.mange-headerbtn-india {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 305px;
+}
+.manage-submitapprove-edit {
+    margin-right: -14px !important;
+    margin-top: 3px !important;
+    padding-left: 167px;
+}
+.manage-submitapprov-india {
+    margin-right: -94px !important;
+    margin-top: 3px !important;
+    padding-left: 87px;
+}
+.mange-btnsubmitapprov-size {
+    height: 45px;
+    padding: 0;
+    width: 303px;
 }

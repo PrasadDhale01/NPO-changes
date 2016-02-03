@@ -5743,7 +5743,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 20px;
     }
     div.manage-edit-mobilebtns {
-        bottom: 0;
+        bottom: 30px;
         left: -15px;
         position: fixed;
         width: 111%;
@@ -7909,27 +7909,30 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 88.1%;
         padding-bottom: 15px;
         padding-top: 13px;
+        font-size: 16px;
     }
     span.manage-btn-width {
-        padding-bottom: 19px;
-        padding-top: 18px;
-        width: 88.5%;
+/*         padding-bottom: 19px; */
+/*         padding-top: 18px; */
+/*         width: 88.5%; */
     }
-    button.manage-deletebtn-width {
-        padding-top: 15px;
-        padding-bottom: 17px;
-    }
+/*     button.manage-deletebtn-width { */
+/*         padding-top: 15px; */
+/*         padding-bottom: 17px; */
+/*     } */
     @-moz-document url-prefix() { 
-        button.manage-deletebtn-width {
-            padding-bottom: 15px;
-            padding-top: 14px;
-        }
+/*         button.manage-deletebtn-width { */
+/*             padding-bottom: 15px; */
+/*             padding-top: 14px; */
+/*         } */
         span.mange-size-FBbtn {
             padding: 18px !important;
+            font-size: 15px;
         } 
     }
     span.mange-size-FBbtn {
         padding: 20px;
+        font-size: 15px;
     }
     button.manage-btn-width-aft-validated {
         padding-top: 19px;
@@ -8229,6 +8232,24 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    ul.manage-submitapprove-edit {
+        margin-right: -187px !important;
+        margin-top: 2px !important;
+        padding-left: 0;
+    }
+    button.mange-btnsubmitapprov-size {
+        font-size: 13px;
+        height: 45px;
+        padding: 0;
+        width: 172px;
+    }
+    a.show-tabs-text{
+        font-size: 13px;
+    }
+    div.manage-alltabs {
+        padding-left: 0;
+        padding-right: 0;
+    }
     div.abt-us-cardposition {
         left: -0.6%;
     }
@@ -8297,8 +8318,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 88.3%;
     }
     button.manage-deletebtn-width {
-        margin-left: 15px;
-        width: 88.3%;
+/*         margin-left: 15px; */
+/*         width: 88.3%; */
     }
     div.manage-tileIcons-width{
         width: 208px !important;
@@ -9770,6 +9791,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	 ul.manage-submitapprov-india {
+        margin-right: -182px !important;
+        margin-top: 3px !important;
+        padding-left: 0px;
+    }
+    ul.manage-submitapprove-edit {
+        margin-right: -183px !important;
+        margin-top: 3px !important;
+        padding-left: 0;
+    }
     ul.show-paddingsbtn {
         margin-right: -142px !important;
         padding-left: 40px;
@@ -10799,6 +10830,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width: 1281px) and (max-width: 1344px){
+    div.manage-alltabs {
+        padding-left: 0;
+    }
     div.position-top{
         margin-left:32px;
     }
@@ -10976,9 +11010,17 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+    ul.manage-submitapprov-india {
+        margin-right: -167px !important;
+        margin-top: 2px !important;
+        padding-left: 0;
+    }
+    div.manage-social-hidesm {
+        display: none !important;
+    }
     .how-des-1 {
-    line-height: 12px !important;
-}
+        line-height: 12px !important;
+    }
 	.reasonsToFund .badge1 {
         font-size: 28px;
     }
@@ -11042,27 +11084,28 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding: 16px;
         width: 100%;
         font-weight: 900;
+        font-size: 15px;
     }
     button.manage-btn-width-aft-validated {
         padding-bottom: 15px;
         padding-top: 15px;
     }
     span.manage-btn-width {
-        padding-bottom: 17px;
-        padding-top: 18px;
-        width: 88.9%;
+/*         padding-bottom: 17px; */
+/*         padding-top: 18px; */
+/*         width: 88.9%; */
     }
     @-moz-document url-prefix() { 
         span.manage-btn-width {
-            padding-bottom: 16px;
-            padding-top: 17px;
-            width: 88.9%;
+/*             padding-bottom: 16px; */
+/*             padding-top: 17px; */
+/*             width: 88.9%; */
         }
     }
-    button.manage-deletebtn-width {
-        padding-bottom: 17px;
-        padding-top: 16px;
-    }
+/*     button.manage-deletebtn-width { */
+/*         padding-bottom: 17px; */
+/*         padding-top: 16px; */
+/*     } */
     div.manage-contribution-md-tabs{
         width: 50%;    
     }
@@ -11449,6 +11492,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+    a.show-tabs-text {
+        font-size: 14px;
+    }
+    div.manage-alltabs {
+        padding-left: 0;
+        padding-right: 0;
+    }
 	div.abt-us-cardposition {
         left: -0.6%;
     }
@@ -12965,6 +13015,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /*Screen resolution 644 x 767 */
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    span.manage-btn-width-aft-validated {
+        font-size: 18px;
+        padding-bottom: 14px;
+        padding-top: 14px;
+    }
     div.how-mobile-left{
         left: -24px;
     }
@@ -14497,6 +14552,11 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    span.manage-btn-width-aft-validated {
+        font-size: 18px;
+        padding-bottom: 14px;
+        padding-top: 14px;
+    }
     div.sh-shareicons-Fixedtophead {
         background-color: #fff;
         bottom: 0 !important;
@@ -14703,7 +14763,7 @@ textarea.textarea-embed-video {
         font-size: 20px;
     }
     div.manage-edit-mobilebtns {
-        bottom: 0;
+        bottom: 29px;
         left: -15px;
         position: fixed;
         width: 111%;

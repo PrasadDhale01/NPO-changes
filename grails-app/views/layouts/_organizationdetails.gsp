@@ -4,14 +4,14 @@
     def beneficiary = project.user
 %>
 <div class="panel panel-default TW-org-panel-height manage-org-bottomMargin">
-    <div class="panel-heading panel-css TW-organization-panel-name-size mange-tabs-font">
-        <g:if test="${currentFundraiser == beneficiary}">
-            Campaign by ${beneficiary.firstName} ${beneficiary.lastName}
-        </g:if>
-        <g:else>
-            Benefiting ${beneficiary.firstName} ${beneficiary.lastName}
-        </g:else>
-    </div>
+<%--    <div class="panel-heading panel-css TW-organization-panel-name-size mange-tabs-font">--%>
+<%--        <g:if test="${currentFundraiser == beneficiary}">--%>
+<%--            Campaign by ${beneficiary.firstName} ${beneficiary.lastName}--%>
+<%--        </g:if>--%>
+<%--        <g:else>--%>
+<%--            Benefiting ${beneficiary.firstName} ${beneficiary.lastName}--%>
+<%--        </g:else>--%>
+<%--    </div>--%>
 
    	<div class="manage-organization-details text-center manage-org-title manage-org-height">
    		<br><br>

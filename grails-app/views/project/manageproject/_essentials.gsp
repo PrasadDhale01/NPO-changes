@@ -62,7 +62,14 @@
 <div class="col-xs-12 col-md-4 col-sm-4 mobileview-bottom-mange">
     <g:render template="/project/manageproject/tilesanstitle" />
     <g:if test="${project.validated}">
+        <div class="manage-socials-facebook"></div>
         <span class="btn btn-default fbShareForLargeDevices manage-fb-color mange-size-FBbtn" id="fbshare">
+            <i class="fa fa-facebook manage-fb-padding"></i> SHARE ON FACEBOOK
+        </span>
+    </g:if>
+    <g:if test="${!project.draft && !project.validated}">
+        <div class="manage-socials-facebook"></div>
+        <span class="btn btn-default fbShareForLargeDevices manage-fb-color mange-size-FBbtn show-pointer-not">
             <i class="fa fa-facebook manage-fb-padding"></i> SHARE ON FACEBOOK
         </span>
     </g:if>
@@ -76,10 +83,12 @@
                         </div>
                     </g:if>
                     <div class="clear"></div>
+                    <div class="mange-btn-submitapproval"></div>
                     <button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval</button>
                 </g:form>
             </g:if>
             <g:else>
+                <div class="mange-btn-submitapproval"></div>
                 <button class="btn btn-block btn-primary" id="submitForApprovalBtn"><i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval</button>
             </g:else>
         </div>
@@ -127,6 +136,32 @@
         </div>
     </div>
 </g:if>
+<g:else>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-xs">
+        <div class="col-xs-12 <g:if test="${hashTagsDesktop || hashTagsTabs}">managecampaign-hashtag </g:if> manage-social">
+            <span class="pull-left social show-pointer-not" href="#">
+                <img src="//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png" class="show-email" alt="Email Share">
+            </span>
+            <span class="pull-left social show-pointer-not">
+                <img src="//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png" class="show-twitter" alt="Twitter Share">
+            </span>
+            <span class="social share-linkedin pull-left show-pointer-not">
+                <img src="//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png" class="show-linkedin" alt="LinkedIn Share">
+            </span>
+            <span class="social google-plus-share pull-left show-pointer-not">
+                <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
+            </span>
+            <span href="#" class="pull-left embedIcon-manage-left social hidden-xs show-pointer-not"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" class="show-embedIcon" alt="embedicon"></span>
+            <div class="popoverClassManagePage">
+                <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="pull-left glyphicon glyphicon-link glyphicon-design glyphicon-show-link-color show-pointer-not"></span>
+            </div>
+            <div class="popoverClassMobManagePage">
+            </div>
+            <span class="showing-hashtags showing-hashtags-desktop hashtags-padding-left">${hashTagsDesktop}</span>
+            <span class="showing-hashtags showing-hashtags-tabs hashtags-padding-left">${hashTagsTabs}</span>
+        </div>
+    </div>
+</g:else>
 
 <div class="clear"></div>
 

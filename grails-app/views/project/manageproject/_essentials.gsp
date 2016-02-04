@@ -37,14 +37,14 @@
                         </div>
                     </g:if><br/>
                     <div class="clear"></div>
-                    <button class="btn btn-block btn-primary mange-submitapp-margin">
-                        <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                    <button class="btn btn-block btn-primary mange-submitapprovs  mange-submitapp-margin">
+                        <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
                     </button>
                 </g:form>
             </g:if>
             <g:else>
-                <button class="btn btn-block btn-primary" id="submitForApprovalBtnMobile">
-                    <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                <button class="btn btn-block btn-primary mange-submitapprovs " id="submitForApprovalBtnMobile">
+                    <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
                 </button>
             </g:else>
         </div>
@@ -74,7 +74,7 @@
         </span>
     </g:if>
     <g:if test="${project.draft}">
-        <div class="submitForApprovalSectionbtm" id="submitForApprovalSectionbtm">
+        <div class="submitForApprovalSectionbtn" id="submitForApprovalSectionbtn">
             <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                 <g:form controller="project" action="saveasdraft" id="${project.id}">
                     <g:if test="${!project.touAccepted}">
@@ -84,12 +84,12 @@
                     </g:if>
                     <div class="clear"></div>
                     <div class="mange-btn-submitapproval"></div>
-                    <button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval</button>
+                    <button class="btn btn-block btn-primary mange-submitapprovs"><i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL</button>
                 </g:form>
             </g:if>
             <g:else>
                 <div class="mange-btn-submitapproval"></div>
-                <button class="btn btn-block btn-primary" id="submitForApprovalBtn"><i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval</button>
+                <button class="btn btn-block btn-primary mange-submitapprovs" id="submitForApprovalBtn"><i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL</button>
             </g:else>
         </div>
     </g:if>

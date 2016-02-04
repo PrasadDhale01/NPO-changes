@@ -55,7 +55,7 @@ $(function() {
         }
     });
     
-    $('.submitForApprovalSectionbtn').find('form').validate({
+    $('#submitForApprovalSectionbtn').find('form').validate({
         rules: {
         	submitForApprovalcheckbox1 : {
         		required: true

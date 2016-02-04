@@ -1002,7 +1002,12 @@ class UserController {
         def title = contribution.project.organizationName
         response.setContentType("application/pdf")
         response.setHeader("Content-Disposition", "attachment; filename=taxreceipt-"+title+".pdf")
-        renderPdf(template:"/user/user/taxReceipt", model:[pdfRendering:true, contribution:contribution])
+        renderPdf(view:"/user/user/taxreceiptdownload", model:[pdfRendering:true, contribution:contribution])
+    }
+    
+    def export() {
+        def contribution = Contribution.get(params.id)
+        render view:"/user/user/taxreceiptdownload", model:[pdfRendering:true, contribution:contribution, project: contribution.project]
     }
 
     @Secured(['ROLE_ADMIN'])

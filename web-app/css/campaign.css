@@ -1303,3 +1303,30 @@ img.how-it-success-img{
 .col-tax-reciept-panel .rowseperator .help-block {
     margin-bottom: 0px;
 }
+.taxreceiptcontainer {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-botton: 20px;
+}
+.taxreceiptbgcolor {
+    background-color: #F4F4F4;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.taxreceiptcontributorlabel label {
+    background-color: #889299;
+    border-color: #889299;
+    color: #FFF;
+    height: 40px;
+    padding: 10px;
+}
+.taxreceiptlabelfont {
+    font-size: 16px;
+    font-weight: 600;
+}
+.searchablehastag, .searchablehastag:hover {
+    color: #01bbd2;
+    text-decoration: none;
+}

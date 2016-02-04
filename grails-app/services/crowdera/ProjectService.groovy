@@ -4965,6 +4965,38 @@ class ProjectService {
         }
     }
     
+    def getHashTagsForCampaign(def hashtags) {
+        if (hashtags){
+            List hashtagsList = []
+            hashtagsList = hashtags.split(',')
+            hashtagsList = hashtagsList.collect { it.trim() }
+            
+            List firstFiveHashtag = []
+            List firstThreeHashtag = []
+            List remainingHashTags = []
+            List remainingHashTagsTab = []
+            
+            if (hashtagsList.size() > 5) {
+                firstFiveHashtag = hashtagsList.subList(0, 5)
+                remainingHashTags = hashtagsList.subList(5, hashtagsList.size())
+            } else {
+                firstFiveHashtag = hashtagsList
+            }
+            
+            if (hashtagsList.size() > 3) {
+                firstThreeHashtag = hashtagsList.subList(0, 3)
+                remainingHashTagsTab = hashtagsList.subList(3, hashtagsList.size())
+            } else {
+                firstThreeHashtag = hashtagsList
+            }
+            
+            return [firstFiveHashtag: firstFiveHashtag, remainingHashTags: remainingHashTags, firstThreeHashtag: firstThreeHashtag, 
+                    remainingHashTagsTab: remainingHashTagsTab, hashtagsList: hashtagsList]
+        } else {
+            return [firstFiveHashtag: [], remainingHashTags: [], firstThreeHashtag: [], remainingHashTagsTab: [], hashtagsList: [] ]
+        }
+    }
+    
     def getReasonsToFundFromProject(Project project){
         return ReasonsToFund.findByProject(project)
     }

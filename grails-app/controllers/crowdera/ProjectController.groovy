@@ -2561,4 +2561,10 @@ class ProjectController {
             render view:'/401error'
         }
     }
+    
+    def isTitleUnique(){
+        def status = projectService.isTitleUnique(params.title, params.projectId)
+        render status
+    }
+    
 }

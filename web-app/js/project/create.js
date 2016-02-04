@@ -2,7 +2,7 @@ $(function() {
     $('#iconfile').val('');
 
     $("#sendEmailButton").click(function(){
-   	    $("#sendEmailButton").attr('disabled','disabled');
+        $("#sendEmailButton").attr('disabled','disabled');
     });
 
     $('.text-date').keydown(function(e){
@@ -11,19 +11,18 @@ $(function() {
 
     var rewardIteratorCount = $('#rewardCount').val();
     if (rewardIteratorCount > 0){
-    	$('#rewardTemplate1').show();
-    	$('#yesradio').prop('checked', true);
-	    $("#updatereward").show();
+        $('#rewardTemplate1').show();
+        $('#yesradio').prop('checked', true);
+        $("#updatereward").show();
     } else {
-    	$('#rewardTemplate1').hide();
+        $('#rewardTemplate1').hide();
     }
 
     var count = $('#rewardCount').val();
     var projectId = $('#projectId').val();
-    var isIndianCampaign = ($('#isIndianCampaign').val() == 'true') ? true : false;
-    
+    var isIndianCampaign = ($('#isIndianCampaign').val() === 'true') ? true : false;
 
-    var storyContent
+
     var storyPlaceholder = "<p><h3>Introduce Your Campaign</h3></p>"+
     	"<p>Contributors want to know all about your cause and the details related to your organization, so think of this section as an executive summary to get your audience introduced to your campaign! Here are some essential components of a campaign introduction:</p>"+ 
     		"<ul>"+
@@ -61,21 +60,21 @@ $(function() {
     			"<li>	Wear your enthusiasm loud and proud - get your crowd excited! </li>"+
     			"</ul>"+
     			"<p>Your mission is the heart of your campaign; it's what makes your fundraising efforts unique. Don't be shy in making your goal clear! Energize your crowd with your passion and get ready to make a difference! </p>";
-    
+
     $('.redactorEditor').redactor({
         imageUpload:'/project/getRedactorImage',
         autosave: '/project/saveStory/?projectId='+projectId,
         imageResizable: true,
         initCallback: function(){
             var projectHasStory = $('#projectHasStory').val();
-            if (projectHasStory && projectHasStory != ''){
+            if (projectHasStory && projectHasStory !== ''){
                 this.code.set(projectHasStory);
             } else {
                 this.code.set(storyPlaceholder);
             }
-        },focusCallback: function(e){
+        },focusCallback: function(){
             $(".cr-story-padding .redactor-box .redactor-editor").toggleClass("redactor-animate", true, 100000);
-        },blurCallback: function(e) {
+        },blurCallback: function() {
             $(".cr-story-padding .redactor-box .redactor-editor").toggleClass("redactor-animate", false, 100000);
         },
         plugins: ['video','fontsize','fontfamily','fontcolor'],
@@ -83,17 +82,18 @@ $(function() {
     });
 
     var currentEnv = $('#currentEnv').val();
-    
+
     /********************* Create page Session timeout ***************************/
-        var SessionTime = 60* 1000 * 60; //set for 60 minute
+        //set for 60 minute
+        var SessionTime = 60* 1000 * 60;
         var tickDuration = 1000;
-        var myInterval = setInterval(function() {
+        setInterval(function() {
         	SessionTimeout();
         }, 1000);
-    
+
         function SessionTimeout() {
         	SessionTime = SessionTime - tickDuration;
-        	if(SessionTime ==900000){
+        	if(SessionTime === 900000){
         		alert("15 minutes left for session timeout. Please save your data as draft or data will be lost.");
         	}else if (SessionTime <= 0) {
                 alert("Your session has expired. Please login again.");
@@ -105,20 +105,18 @@ $(function() {
                     	$('#test').html(data);
                     }
                 }).error(function(){
-                	console.log('Error occured while session timeout');
                 });
-                window.location.href =$("#b_url").val()+"/logout";   
+                window.location.href =$("#b_url").val()+"/logout";
              }
        }
     /*********************************************************************/
 
-    $("#payopt").show(); // paypal option
-//    $("#paypalemail").hide(); // paypal button
+    $("#payopt").show();
     if ($('#payfir').val()) {
     	$("#paypalemail").hide();
     	$("#charitableId").show();
     }
-    
+
     /* Apply selectpicker to selects. */
     $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
@@ -160,7 +158,8 @@ $(function() {
             title: {
                 required: true,
                 minlength: 5,
-                maxlength: 100
+                maxlength: 100,
+                isTitleUnique: true
             },
             videoUrl: {
                 isYoutubeVideo: true
@@ -260,30 +259,30 @@ $(function() {
                 error.insertAfter(element);
             }
         }//end error Placement
-        
+
         //ignore: []
     });
-    
-    $.validator.addMethod('isFacebookUrl', function (value, element) {
-        if(value && value.length !=0){
+
+    $.validator.addMethod('isFacebookUrl', function (value) {
+        if(value && value.length !== 0){
            var p = /^https?:\/\/(?:www.)?facebook.com\/?.*$/;
            var facebookmatch = value.match(p);
-           var match
+           var match;
            if (facebookmatch)
                match = facebookmatch;
-           else 
+           else
                match = null;
            return (match) ? true : false;
         }
         return true;
      }, "Please enter valid Facebook url");
 
-    $.validator.addMethod('isVanityUrlUnique', function (value, element) {
+    $.validator.addMethod('isVanityUrlUnique', function (value) {
     	var status;
-    	if(value && value.length !=0){
+    	if(value && value.length !== 0){
     	    vanityUrlUniqueStatus(value.trim());
     	    status = $('#vanityUrlStatus').val();
-    	    return (status == 'true') ? true : false;
+    	    return (status === 'true') ? true : false;
         } else {
             $('#vanityUrlStatus').val('true');
             status = 'true';
@@ -298,74 +297,81 @@ $(function() {
             url:$("#b_url").val()+'/project/isCustomVanityUrlUnique',
             data:'vanityUrl='+vanityValue+'&projectId='+projectId,
             success: function(data){
-            	(data == 'true') ? $('#vanityUrlStatus').val('true') : $('#vanityUrlStatus').val('false');
+            	(data === 'true') ? $('#vanityUrlStatus').val('true') : $('#vanityUrlStatus').val('false');
             }
-        }).error(function(e){
-     	   console.log('Error occured while checking Custom Vanity Url Uniqueness'+e);
+        }).error(function(){
         });
     }
 
-    $.validator.addMethod('isTwitterUrl', function (value, element) {
-        if(value && value.length !=0){
+    function titleUniqueStatus(title){
+ 		$.ajax({
+ 			type:'post',
+ 			url:$("#b_url").val()+'/project/isTitleUnique',
+ 			data:'title='+title+'&projectId='+projectId,
+ 			success: function(data){
+ 				(data === 'true') ? $('#titleUniqueStatus').val('true') : $('#titleUniqueStatus').val('false');
+ 			}
+ 		}).error(function(){
+ 		});
+    }
+
+    $.validator.addMethod('isTwitterUrl', function (value) {
+        if(value && value.length !== 0){
            var p = /^https?:\/\/(?:www.)?twitter.com\/?.*$/;
            var twittermatch = value.match(p);
-           var match
+           var match;
            if (twittermatch)
                match = twittermatch;
-           else 
+           else
                match = null;
            return (match) ? true : false;
         }
         return true;
      }, "Please enter valid Twitter url");
-    
-    $.validator.addMethod('isLinkedInUrl', function (value, element) {
-        if(value && value.length !=0){
+
+    $.validator.addMethod('isLinkedInUrl', function (value) {
+        if(value && value.length !== 0){
            var p = /^https?:\/\/(?:www.)?linkedin.com\/?.*$/;
            var linkedinmatch = value.match(p);
-           var match
+           var match;
            if (linkedinmatch)
                match = linkedinmatch;
-           else 
+           else
                match = null;
            return (match) ? true : false;
         }
         return true;
      }, "Please enter valid LinkedIn url");
-    
-    $('.createsubmitbutton').click(function(event) {
+
+    $('.createsubmitbutton').click(function() {
         if(validator.form()){
         	needToConfirm = false;
-        } 	
+        }
     });
-    
-    $.validator.addMethod('isPaypalEmailVerified', function (value, element) {
+
+    $.validator.addMethod('isPaypalEmailVerified', function () {
         var ack = $("#paypalEmailAck").val();
         var base_url = $("#b_url").val();
-        if (base_url != 'https://crowdera.co'){
-            if(ack == 'Failure') {
-                return (ack == 'Success') ? ack : false;
-            }
+        if (base_url !== 'https://crowdera.co' && ack === 'Failure'){
+            return (ack === 'Success') ? ack : false;
         }
         return true;
     }, "Please enter verified paypal email id");
-    
-    $.validator.addMethod('isFullName', function(value, element){
-        if(value && value.length !=0){
+
+    $.validator.addMethod('isFullName', function(value){
+        if(value && value.length !== 0){
             var space= value.split(" ");
-            if(space.length < 2){
+            if(space.length < 2 || space[1] === ''){
                 return false;
-            }else if(space[1]==''){
-                return false;
-            }else{
-                var p=/^[A-Za-z]+([\sA-Za-z]+)*$/
+            } else{
+                var p=/^[A-Za-z]+([\sA-Za-z]+)*$/ ;
                 return (value.match(p));
             }
         }
         return true;
     }, "Please enter a valid fullname");
 
-    $.validator.addMethod('isTotalSpendAmountGreaterThanProjectAmount', function (value, element) {
+    $.validator.addMethod('isTotalSpendAmountGreaterThanProjectAmount', function () {
         var totalSpendAmount = 0;
         var projectAmount = $("#projectamount").val();
         $('.spendAmount').each(function(){
@@ -391,11 +397,25 @@ $(function() {
             $('#campaigncreatebtn, #campaigncreatebtnXS').attr('disabled','disabled');
         }
     });
-    
+
+    $.validator.addMethod('isTitleUnique', function (value) {
+ 		var status;
+ 		if(value && value.length !== 0){
+ 			titleUniqueStatus(value.trim());
+ 			status = $('#titleUniqueStatus').val();
+ 	        	return (status === 'true') ? true : false;
+ 		} else {
+ 			$('#titleUniqueStatus').val('true');
+ 			status = 'true';
+ 		}
+
+ 		return true;
+ 	 }, "This Project Title is already in use");
+
     $('#saveButton, #saveButtonXS').on('click', function() {
     	var storyValue = $('.redactorEditor').redactor('code.get');
         var storyEmpty = false;
-        if (storyValue == '' || storyValue == undefined){
+        if (storyValue === '' || storyValue === undefined){
             $('#storyRequired').show();
             storyEmpty = true;
         } else {
@@ -410,7 +430,7 @@ $(function() {
                 min: 1
             });
         });
-    	
+
     	if (isIndianCampaign){
     	      $('.spendAmount').each(function () {
                   $(this).rules("add", {
@@ -419,7 +439,6 @@ $(function() {
                       maxlength: 9,
                	      min:100,
                       max: function() {
-                          
                           return Number(campaignAmount);
                       },
                       isTotalSpendAmountGreaterThanProjectAmount : true,
@@ -450,9 +469,9 @@ $(function() {
                           min:'min $1'
                       }
                   });
-              }); 
+              });
           }
-    
+
           $('.spendCause').each(function () {
               $(this).rules("add", {
                   required: true,
@@ -465,11 +484,11 @@ $(function() {
                   }
               });
           });
-    	
+
         $( '[name="answer"]' ).rules( "add", {
             required: true
         });
-        
+
         $('[name="ans1"]').rules( "add", {
             required: true
         });
@@ -493,34 +512,34 @@ $(function() {
         $('[name="ans3"]').rules( "add", {
             required: true
         });
-        
+
         $('[name="ans4"]').rules( "add", {
             required: true
         });
-        
+
         $('[name="reason1"]').rules( "add", {
             required: true,
             minlength: 5,
             maxlength: 140
         });
-        
+
         $('[name="reason2"]').rules( "add", {
             required: true,
             minlength: 5,
             maxlength: 140
         });
-        
+
         $('[name="reason3"]').rules( "add", {
             required: true,
             minlength: 5,
             maxlength: 140
         });
-        
+
         $( '[name="webAddress"]' ).rules( "add", {
             required: true,
             isWebUrl:true
         });
-        
+
         $( '[name="city"]' ).rules( "add", {
             required: true,
             minlength:3
@@ -533,9 +552,9 @@ $(function() {
         $( '[name="days"]' ).rules( "add", {
             required: true
         });
-    	
+
     	var iconUrl = $('#imgIcon').attr('src');
-    	
+
     	if (!iconUrl) {
     	    $('[name="iconfile"]').rules( "add", {
                 required: true,
@@ -552,7 +571,7 @@ $(function() {
                 }
             });
     	}
-    	
+
     	if(isIndianCampaign) {
             $('.rewardPrice').each(function () {
                 $(this).rules("add", {
@@ -566,12 +585,12 @@ $(function() {
                     min: 100
                 });
             });
-            
+
             $( '[name="payuEmail"]' ).rules( "add", {
                 required: true,
                 email:true
             });
-            
+
             $('[name="impactAmount"]').rules( "add", {
                 required: true,
                 number:true,
@@ -582,7 +601,7 @@ $(function() {
                 },
                 min:100
             });
-            
+
         } else {
         	$('.rewardPrice').each(function () {
                 $(this).rules("add", {
@@ -596,7 +615,7 @@ $(function() {
                     min: 1
                 });
             });
-        	
+
         	$('[name="impactAmount"]').rules( "add", {
                 required: true,
                 number:true,
@@ -607,18 +626,18 @@ $(function() {
                 },
                 min:1
             });
-        	
+
         	$( '[name="paypalEmail"]' ).rules( "add", {
                 required: true,
                 isPaypalEmailVerified : true,
                 email:true
             });
-        	
+
         	$( '[name="charitableId"]' ).rules( "add", {
                 required: true
             });
         }
-    	
+
     	$('[name="impactNumber"]').rules( "add", {
             required: true,
             number:true,
@@ -638,19 +657,19 @@ $(function() {
                 minlength: 5
             });
         });
-        
+
         $( '[name="tax-reciept-holder-city"]' ).rules( "add", {
             required: true,
             minlength:2
         });
-        
+
         $( '[name="tax-reciept-holder-name"]' ).rules( "add", {
             required: true,
             minlength:2,
             isFullName: true
         });
-        
-        if (currentEnv =='development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+
+        if (currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'staging' || currentEnv === 'production'){
             $( '[name="ein"]' ).rules( "add", {
                 required: true,
                 minlength:9
@@ -667,15 +686,6 @@ $(function() {
             });
         } else {
             $( '[name="reg-date"]' ).rules( "add", {
-                required: true
-            });
-
-            $( '[name="addressLine1"]' ).rules( "add", {
-                required: true,
-                minlength:5
-            });
-
-            $( '[name="zip"]' ).rules( "add", {
                 required: true
             });
 
@@ -708,27 +718,41 @@ $(function() {
 
         }
         
-        if (validator.form()) {
-            if (!storyEmpty){
-                $('#saveButton, #saveButtonXS').attr('disabled','disabled');
-                $('#campaigncreate').find('form').submit();
-            }
+        $( '[name="addressLine1"]' ).rules( "add", {
+            required: true,
+            minlength:5,
+            maxlength: 50
+        });
+
+        $( '[name="addressLine2"]' ).rules( "add", {
+            minlength: 5,
+            maxlength: 50
+        });
+
+        $( '[name="zip"]' ).rules( "add", {
+            required: true,
+            maxlength: 30
+        });
+
+        if (validator.form() && !storyEmpty) {
+            $('#saveButton, #saveButtonXS').attr('disabled','disabled');
+            $('#campaigncreate').find('form').submit();
         }
     });
 
     $('#submitProject, #submitProjectXS').on('click', function() {
         var storyValue = $('.redactorEditor').redactor('code.get');
         var storyEmpty = false;
-        if (storyValue == '' || storyValue == undefined){
+        if (storyValue === '' || storyValue === undefined){
             $('#storyRequired').show();
             storyEmpty = true;
         } else {
         $('#storyRequired').hide();
             storyEmpty = false;
         }
-        
+
         $('#isSubmitButton').val(true);
-        
+
 		if (isIndianCampaign){
 			$('.spendAmount').each(function () {
 				$(this).rules("add", {
@@ -768,9 +792,9 @@ $(function() {
 						min:'min $1'
 					}
 				});
-			}); 
+			});
 		}
-		
+
 		$('.spendCause').each(function () {
 			$(this).rules("add", {
 				required: true,
@@ -792,12 +816,12 @@ $(function() {
                 }
             });
     	}
-        
+
         $( '[name="city"]' ).rules( "add", {
             required: true,
             minlength:3
         });
-        
+
         $( '[name="checkBox"]' ).rules( "add", {
             required: true
         });
@@ -818,38 +842,38 @@ $(function() {
         $('[name="ans1"]').rules( "add", {
             required: true
         });
-        
-        
+
+
         $('[name="ansText2"]').rules( "add", {
             required: true
         });
-        
+
         $('[name="ans3"]').rules( "add", {
             required: true
         });
-        
+
         $('[name="ans4"]').rules( "add", {
             required: true
         });
-        
+
         $('[name="reason1"]').rules( "add", {
             required: true,
             minlength: 5,
             maxlength: 140
         });
-        
+
         $('[name="reason2"]').rules( "add", {
             required: true,
             minlength: 5,
             maxlength: 140
         });
-        
+
         $('[name="reason3"]').rules( "add", {
             required: true,
             minlength: 5,
             maxlength: 140
         });
-        
+
         $('.rewardNumberAvailable').each(function () {
             $(this).rules("add", {
                 required: true,
@@ -857,16 +881,15 @@ $(function() {
                 min: 1
             });
         });
-        
+
         var iconUrl = $('#imgIcon').attr('src');
-    	
+
     	if (!iconUrl) {
-        
-        $('#iconfile').rules("add", {
-            required: true
-        });
+            $('#iconfile').rules("add", {
+                required: true
+            });
     	}
-        
+
         if(isIndianCampaign) {
             $('.rewardPrice').each(function () {
                 $(this).rules("add", {
@@ -880,12 +903,12 @@ $(function() {
                     min: 100
                 });
             });
-            
+
             $( '[name="payuEmail"]' ).rules( "add", {
                 required: true,
                 email:true
             });
-            
+
             $('[name="impactAmount"]').rules( "add", {
                 required: true,
                 number:true,
@@ -909,7 +932,7 @@ $(function() {
                     min: 1
                 });
             });
-        	
+
         	$('[name="impactAmount"]').rules( "add", {
                 required: true,
                 number:true,
@@ -920,17 +943,17 @@ $(function() {
                 },
                 min:1
             });
-        	
+
         	$( '[name="paypalEmail"]' ).rules( "add", {
                 required: true,
                 isPaypalEmailVerified : true,
                 email:true
             });
-        	
+
         	$( '[name="charitableId"]' ).rules( "add", {
                 required: true
             });
-        	
+
         }
 
         $('[name="impactNumber"]').rules( "add", {
@@ -945,7 +968,7 @@ $(function() {
                     minlength : 5
                 });
             });
-           	
+
            	$('.rewardTitle').each(function () {
                 $(this).rules("add", {
                     required: true,
@@ -964,19 +987,19 @@ $(function() {
                   required: true
                });
             }
-            
+
             $( '[name="tax-reciept-holder-city"]' ).rules( "add", {
                 required: true,
                 minlength:2
             });
-            
+
             $( '[name="tax-reciept-holder-name"]' ).rules( "add", {
                 required: true,
                 minlength:2,
                 isFullName: true
             });
-            
-            if (currentEnv =='development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+
+            if (currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'staging' || currentEnv === 'production'){
             	$( '[name="ein"]' ).rules( "add", {
                     required: true,
                     minlength:9
@@ -995,25 +1018,16 @@ $(function() {
             	$( '[name="reg-date"]' ).rules( "add", {
                     required: true
                 });
-                
-                $( '[name="addressLine1"]' ).rules( "add", {
-                    required: true,
-                    minlength:5
-                });
-                
-                $( '[name="zip"]' ).rules( "add", {
-                    required: true
-                });
-                
+
                 $( '[name="tax-reciept-registration-num"]' ).rules( "add", {
                     required: true
                 });
-                
+
                 $( '[name="tax-reciept-holder-pan-card"]' ).rules( "add", {
                     required: true,
                     minlength:10
                 });
-                
+
                 $( '[name="tax-reciept-holder-phone"]' ).rules( "add", {
                     required: true,
                     minlength:9,
@@ -1023,16 +1037,31 @@ $(function() {
                 $( '[name="expiry-date"]' ).rules( "add", {
                     required: true
                 });
-                
+
                 $( '[name="fcra-reg-no"]' ).rules( "add", {
                     required: true
                 });
-                
+
                 $( '[name="fcra-reg-date"]' ).rules( "add", {
                     required: true
                 });
             }
-        
+            $( '[name="addressLine1"]' ).rules( "add", {
+                required: true,
+                minlength:5,
+                maxlength: 50
+            });
+
+            $( '[name="addressLine2"]' ).rules( "add", {
+                minlength:5,
+                maxlength: 50
+            });
+            
+            $( '[name="zip"]' ).rules( "add", {
+                required: true,
+                maxlength: 30
+            });
+
     	if (validator.form()) {
             if (!storyEmpty){
                 $('#campaigncreate').find('form').submit();
@@ -1176,27 +1205,27 @@ $(function() {
         var taxRecieptHolderName = $(this).val();
         autoSave('taxRecieptHolderName', taxRecieptHolderName);
     });
-    
+
     $('.addressLine1').blur(function(){
     	var addressLine1 = $(this).val();
     	autoSave('addressLine1', addressLine1);
     });
-    
+
     $('.addressLine2').blur(function(){
     	var addressLine2 = $(this).val();
     	autoSave('addressLine2', addressLine2);
     });
-    
+
     $('.zip').blur(function(){
     	var zip = $(this).val();
     	autoSave('zip', zip);
     });
-    
+
     $('.tax-reciept-holder-pan-card').blur(function(){
     	var panCardNumber = $(this).val();
     	autoSave('panCardNumber', panCardNumber);
     });
-    
+
     $( '.tax-reciept-holder-phone' ).blur(function(){
         var phoneNumber = $(this).val();
         autoSave('phoneNumber', phoneNumber);
@@ -1231,7 +1260,7 @@ $(function() {
         var taxRecieptHolderCountry = $(this).val();
         autoSave('taxRecieptHolderCountry', taxRecieptHolderCountry);
     });
-    
+
     function renameAndemptyRewardFields(){
     	$('#addNewRewards').find('.rewardsTemplate').attr('id', 'rewardTemplate1');
     	$('#addNewRewards').find('.rewardsTemplate').attr('value', '1');
@@ -1239,12 +1268,14 @@ $(function() {
     	$('#addNewRewards').find('.rewardsTemplate').find('.rewardPrice').attr('name', 'rewardPrice1');
         $('#addNewRewards').find('.rewardsTemplate').find('.rewardTitle').attr('id', 'rewardTitle1');
         $('#addNewRewards').find('.rewardsTemplate').find('.rewardTitle').attr('name', 'rewardTitle1');
+       
         $('#addNewRewards').find('.rewardsTemplate').find('.rewardNumberAvailable').attr('id', 'rewardNumberAvailable1');
         $('#addNewRewards').find('.rewardsTemplate').find('.rewardNumberAvailable').attr('name', 'rewardNumberAvailable1');
         $('#addNewRewards').find('.rewardsTemplate').find('.rewardDescription').attr('name', 'rewardDescription1');
         $('#addNewRewards').find('.rewardsTemplate').find('.rewardDescription').attr('id', 'rewardDesc1');
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingAddress").attr('id', 'mailaddcheckbox1');
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingAddress").attr('name', 'mailingAddress1');
+        
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingEmail").attr('id', 'emailcheckbox1');
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingEmail").attr('name', 'emailAddress1');
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingTwitter").attr('id', 'twittercheckbox1');
@@ -1255,11 +1286,12 @@ $(function() {
         $('#savereward').attr('value', '1');
         $('#addNewRewards').find('.rewardsTemplate').find("span.help-block").remove();
         $('#addNewRewards').find('.rewardsTemplate').find(".form-group").removeClass('has-error');
-    	
+
     	$('#addNewRewards').find('.rewardsTemplate').find('#rewardPrice1').val('');
         $('#addNewRewards').find('.rewardsTemplate').find('#rewardDesc1').val('');
         $('#addNewRewards').find('.rewardsTemplate').find('#rewardTitle1').val('');
         $('#addNewRewards').find('.rewardsTemplate').find('#rewardNumberAvailable1').val('');
+        
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingAddress").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color lblmail1');
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingEmail").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color lblemail1');
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingTwitter").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color lbltwitter1');
@@ -1270,15 +1302,15 @@ $(function() {
     }
 
      $("input[name='pay']").change(function(){
-  	    if($(this).val()=="paypal") {
+  	    if($(this).val() === "paypal") {
   	        $('#organizationName').find('input').val('');
   	       	$("#paypalemail").show();
   	        $("#charitableId").hide();
   	        $('#charitable').find('input').val('');
   	        $("#paypalcheckbox").show();
-  	     } else if($(this).val()=="firstgiving") {
+  	     } else if($(this).val() === "firstgiving") {
    	         $('#organizationName').find('input').val('');
-  	       	 $("#charitableId").show(); 
+  	       	 $("#charitableId").show();
   	         $("#paypalemail").hide();
   	         $("#paypalcheckbox").hide();
    	         $('#paypalemail').find('input').val('');
@@ -1287,97 +1319,96 @@ $(function() {
 
      $('#val3').change(function(){
         var c = $('#val3').val();
-        if(c=='US'){
+        if(c === 'US'){
           $('#val1').show();
           $('#val2').hide();
         }
-       else
-        {
+       else {
           $('#val1').hide();
           $('#val2').show();
-        }  
+        }
     });
-     
+
      $('.cr-img-start-icon').hover(function(){
      	$('.cr-start').attr('src',"//s3.amazonaws.com/crowdera/assets/start-Icon-White.png");
      	}).mouseleave(function(){
          $('.cr-start').attr('src',"//s3.amazonaws.com/crowdera/assets/start-Icon-White.png");
      });
-     
+
      $('.cr-img-story-icon').hover(function(){
       	$('.cr-story').attr('src',"//s3.amazonaws.com/crowdera/assets/story-Icon-White.png");
       	}).mouseleave(function(){
           $('.cr-story').attr('src',"//s3.amazonaws.com/crowdera/assets/story-Icon-White.png");
       });
-     
+
      $('.cr-img-admin-icon').hover(function(){
       	$('.cr-admin').attr('src',"//s3.amazonaws.com/crowdera/assets/admin-Icon---White.png");
       	}).mouseleave(function(){
           $('.cr-admin').attr('src',"//s3.amazonaws.com/crowdera/assets/admin-Icon---White.png");
       });
-     
+
      $('.cr-img-perk-icon').hover(function(){
        	$('.cr-perk').attr('src',"//s3.amazonaws.com/crowdera/assets/perk-Icon-White.png");
        	}).mouseleave(function(){
            $('.cr-perk').attr('src',"//s3.amazonaws.com/crowdera/assets/perk-Icon-White.png");
        });
-     
+
      $('.cr-img-payment-icon').hover(function(){
        	$('.cr-payment').attr('src',"//s3.amazonaws.com/crowdera/assets/payment-Icon-White.png");
        	}).mouseleave(function(){
            $('.cr-payment').attr('src',"//s3.amazonaws.com/crowdera/assets/payment-Icon-White.png");
        });
-     
+
      $('.cr-img-launch-icon').hover(function(){
        	$('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/launch-Icon--White.png");
        	}).mouseleave(function(){
            $('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/launch-Icon--White.png");
        });
-     
+
      $('.cr-img-save-icon').hover(function(){
         	$('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/hdr-save-white.png");
         	}).mouseleave(function(){
             $('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/hdr-save-white.png");
         });
-     
+
      $('#paymentOpt').change(function(){
     	 var pay = $('#paymentOpt').val();
-    	 if(pay=='FIR'){
+    	 if(pay === 'FIR'){
     		 $('#paypalemail').hide();
     		 $('#charitableId').show();
-    		 
-    	 }else if(pay=='PAY'){
+
+    	 }else if(pay === 'PAY'){
     		 $('#charitableId').hide();
     		 $('#paypalemail').show();
-    	 }else if(pay=='PMT'){
-    		 if(pay == 'selected'){
+    	 }else if(pay === 'PMT'){
+    		 if(pay === 'selected'){
     			 $('#paypalemail').show();
     		 }
     		 $('#paypalemail').hide();
     		 $('#charitableId').hide();
     	 }
      });
-     
+
      $('#paymentOpt').change(function(){
     	 var payind = $('#paymentOpt').val();
-    	 if(payind=='PAYU'){
+    	 if(payind === 'PAYU'){
     		 $('#PayUMoney').show();
     	 }
      });
-     
+
 	$('#countryList').change(function(){
 	    var c = $('#countryList').val();
-	    if(c=='IN'){
+	    if(c === 'IN'){
 	       	$('#stateList').show();
 	       	$('#txtState').hide();
 	    }else{
 	       	$('#stateList').hide();
 	       	$('#txtState').show();
-	    }  
+	    }
 	});
 
       /******************************Video Thumbnail***************************************/
-     
+
     if($('#addvideoUrl').val()) {
         var url= $('#addvideoUrl').val().trim();
         var youtube = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -1387,7 +1418,7 @@ $(function() {
         $('#media').hide();
         $('#media-video').show();
         var vurl;
-        if (match[2].length == 11){
+        if (match[2].length === 11){
         	vurl=url.replace("watch?v=", "embed/");
             $('#ytVideo').html('<iframe class="youtubeVideoIframe" src="'+ vurl +'?wmode=transparent"></iframe>');
         } else {
@@ -1399,7 +1430,7 @@ $(function() {
     $('#videoUrledit').on('click',function(){
     	$('#addVideo').modal('show');
     });
-    
+
     $('#addVideoFromModal').on('click',function(){
     	var youtube = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
@@ -1407,7 +1438,7 @@ $(function() {
         var match = (url.match(youtube) || url.match(vimeo));
         if (validator.element("#videoUrlTextModal")){
         	$('#addVideo').modal('hide');
-            if (match && match[2].length == 11) {
+            if (match && match[2].length === 11) {
                 $('#ytVideo').show();
                 $('#media').hide();
                 $('#media-video').show();
@@ -1415,19 +1446,17 @@ $(function() {
                 var vurl=url.replace("watch?v=", "embed/");
                 autoSave('videoUrl', vurl);
                 $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'?wmode=transparent></iframe>');
-            } else if (match && match[2].length == 9) {
+            } else if (match && match[2].length === 9) {
                 $('#ytVideo').show();
                 $('#media').hide();
                 $('#media-video').show();
                 autoSave('videoUrl', url);
                 $('#addvideoUrl').val(url);
                 $('#ytVideo').html('<iframe class="youtubeVideoIframe" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
-            } else if($(this)) {
-                if(!$('#addvideoUrl').val()) {
-                    $('#ytVideo').hide();
-                    $('#media').show();
-                    $('#media-video').hide();
-	            }
+            } else if($(this) && !$('#addvideoUrl').val()) {
+                $('#ytVideo').hide();
+                $('#media').show();
+                $('#media-video').hide();
             }
         }
     });
@@ -1438,7 +1467,7 @@ $(function() {
         var url= $('#videoUrlText').val().trim();
         var match = (url.match(youtube) || url.match(vimeo));
         if (validator.element("#videoUrlText")){
-            if (match && match[2].length == 11) {
+            if (match && match[2].length === 11) {
                 $('#ytVideo').show();
                 $('#media').hide();
                 $('#media-video').show();
@@ -1447,7 +1476,7 @@ $(function() {
                 $('#videoUrlTextModal').val(vurl);
                 autoSave('videoUrl', vurl);
                 $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'?wmode=transparent></iframe>');
-            } else if (match && match[2].length == 9) {
+            } else if (match && match[2].length === 9) {
                 $('#ytVideo').show();
                 $('#media').hide();
                 $('#media-video').show();
@@ -1455,21 +1484,19 @@ $(function() {
                 $('#addvideoUrl').val(url);
                 $('#videoUrlTextModal').val(url);
                 $('#ytVideo').html('<iframe class="youtubeVideoIframe" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
-            } else if($(this)) {
-                if(!$('#addvideoUrl').val()) {
-                    $('#ytVideo').hide();
-                    $('#media').show();
-                    $('#media-video').hide();
-                }
+            } else if($(this) && !$('#addvideoUrl').val()) {
+                $('#ytVideo').hide();
+                $('#media').show();
+                $('#media-video').hide();
             }
         }
     });
 
      /** ********************Organization Icon*************************** */
 
-    $("#iconfile").change(function(event) {
+    $("#iconfile").change(function() {
         var file =this.files[0];
-        if(validateExtension(file.name) == false){
+        if(validateExtension(file.name) === false){
 	        $('#icondiv').hide();
 	        $('#iconfilesize').hide();
 	        $('#logomsg').show();
@@ -1490,11 +1517,7 @@ $(function() {
 	            $('#iconfile').val('');
 	        } else {
 	        	$('#iconfilesize').hide();
-                var file = this.files[0];
-                var fileName = file.name;
-                var fileSize = file.size;
-               
-//               $('#uploadingCampaignOrgIcon').show();
+
                 $('#loading-gif').show();
 
                var formData = !!window.FormData ? new FormData() : null;
@@ -1506,10 +1529,10 @@ $(function() {
                var xhr = new XMLHttpRequest();
                xhr.open('POST', $("#b_url").val()+'/project/uploadOrganizationIcon');
                xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-                
+
                // complete
                xhr.onreadystatechange = $.proxy(function() {
-                   if (xhr.readyState == 4) {
+                   if (xhr.readyState === 4) {
                        var data = xhr.responseText;
                        data = data.replace(/^\[/, '');
                        data = data.replace(/\]$/, '');
@@ -1520,18 +1543,17 @@ $(function() {
                        } catch(err) {
                            json = { error: true };
                        }
-                       
+
                        $('#icondiv').show();
                        $('#logomsg').hide();
-                       
+
                        $('.edit-logo-icon').show();
                        $('#imgIcon').show();
                        $('#logoDelete').show();
-                       
+
                        $('#imgIcon').attr('src',json.filelink);
                        $('#delIcon').attr('src',"//s3.amazonaws.com/crowdera/assets/delete.ico");
                        $('#logoDelete').attr('src',"//s3.amazonaws.com/crowdera/assets/delete.ico");
-//                       $('#uploadingCampaignOrgIcon').hide();
                        $('#loading-gif').hide();
                    }
                }, this);
@@ -1539,20 +1561,19 @@ $(function() {
                $('.createOrgIconDiv, .projectImageFilediv').find("span").remove();
                $('.createOrgIconDiv, .projectImageFilediv').closest(".form-group").removeClass('has-error');
 	        }
-	    } 
+	    }
     });
 
 
      /*******************************Description text length******************** */
-    var counter = 1;
     $('#descarea, #descarea1').on('keydown', function(event) {
-        event.altKey==true;
+        event.altKey == true;
         var currentString = $('#descarea, #descarea1').val().length;
         if (currentString >= 9) {
         	$('.createDescDiv').find("span").remove();
             $('.createDescDiv').closest(".form-group").removeClass('has-error');
         }
-        
+
         if(currentString <=140) {
         	if (currentString == 140) {
         		var text = currentString;
@@ -1561,7 +1582,7 @@ $(function() {
         	}
         }
         if (event.keyCode > 31) {
-            if(event.altKey==true){
+            if(event.altKey === true){
                 setDescriptionText();
             }
             else {
@@ -1574,8 +1595,8 @@ $(function() {
             $('#desclength').text(text+'/140');
         }
     }).keyup(function(e) {
-      
-        if(e.altKey == true){
+
+        if(e.altKey === true){
            setDescriptionText();
            return false;
         }
@@ -1585,10 +1606,10 @@ $(function() {
             case 13:      //Enter
             case 8:       //backspace
             case 46:      //delete
-            case 17:      
+            case 17:
             case 27:      //escape
             case 10:      //new line
-            case 20:      
+            case 20:
             case 9:       //horizontal TAB
             case 11:      //vertical tab
             case 33:      //page up  
@@ -1612,21 +1633,19 @@ $(function() {
     }).focusout(function() {
         setDescriptionText();
     });
-    
+
     function setDescriptionText(){
         var currentString = $('#descarea, #descarea1').val().length;
-        if (currentString == 0) {
+        if (currentString === 0) {
             $('#desclength').text("0/140");
         } else {
-            currentString = currentString;
             $('#desclength').text(currentString+'/140');
         }
     }
 
     /*******************************Title text length******************** */
-    var counter = 1;
     $('#campaignTitle').on('keydown', function(event) {
-    
+
         event.altKey==true;
         var currentstring = $('#campaignTitle').val().length;
         if (currentstring >= 4) {
@@ -1693,25 +1712,22 @@ $(function() {
     }).focusout(function(){
 	    setTitleText();
     });
-    
+
     var isvalidFilesize =  false;
     $('.taxRecieptFiles').change(function(event) {
     	var file = this.files[0];
         $('.filesize').hide();
         $('.fileempty').hide();
-        var files = event.target.files; // FileList object
-        var output = document.getElementById("result");
+
         var fileName;
         var isFileSizeExceeds = false;
-        var file = this.files[0];
-        var filename = file.name;
 
-    	if($('#taxRecieptId').val() == undefined || $('#taxRecieptId').val() == '' || $('#taxRecieptId').val() == null){
+    	if($('#taxRecieptId').val() === undefined || $('#taxRecieptId').val() === '' || $('#taxRecieptId').val() === null){
             $('.fileempty').show();
             $('.taxRecieptFiles').val('');
             document.getElementById("fileempty").innerHTML= "Please fill above fields and then upload files.";
     	} else {
-        if (file.size == 0){
+        if (file.size === 0){
         	if (fileName) {
                 fileName = fileName +" "+ file.name;
             } else {
@@ -1722,7 +1738,6 @@ $(function() {
         } else {
         if(file.size < 1024 * 1024 * 3) {
             isvalidFilesize =  true;
-//            $('.uploadingFile').show();
             $('#loading-gif').show();
 
             var formData = !!window.FormData ? new FormData() : null;
@@ -1735,10 +1750,10 @@ $(function() {
             var xhr = new XMLHttpRequest();
             xhr.open('POST', $("#b_url").val()+'/project/uploadTaxRecieptFiles');
             xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-            
+
             // complete
             xhr.onreadystatechange = $.proxy(function() {
-                if (xhr.readyState == 4) {
+                if (xhr.readyState === 4) {
                     var data = xhr.responseText;
                     data = data.replace(/^\[/, '');
                     data = data.replace(/\]$/, '');
@@ -1755,7 +1770,6 @@ $(function() {
                     div.innerHTML = "<div class=\"cr-tax-files\"><div class=\"col-file-name\">"+file.name +"</div><div class=\"deleteicon\"><button type=\"button\" class=\"close\" onClick=\"deleteTaxRecieptFiles(this,'"+json.fileId+"','"+taxRecieptId+"');\">&times;</button></div></div>";
 
                     output.insertBefore(div, null);
-//                    $('.uploadingFile').hide();
                     $('#loading-gif').hide();
                 }
             }, this);
@@ -1776,7 +1790,8 @@ $(function() {
             $('.taxRecieptFiles').val('');
         }
     	}
-        var delay = 9999; //delayed code, time in milliseconds
+    	//delayed code, time in milliseconds
+        var delay = 9999;
         setTimeout(function() {
         	$('.filesize').hide();
         	$('.fileempty').hide();
@@ -1784,31 +1799,29 @@ $(function() {
     });
 
     function setTitleText() {
-        
+
         var currentstring = $('#campaignTitle').val().length;
-        if (currentstring == 0) {
+        if (currentstring === 0) {
             $('#titleLength').text("0/55");
         } else {
-	        currentstring = currentstring;
             $('#titleLength').text(currentstring+'/55');
         }
     }
-    
-    var counter = 1;
+
     $('#customVanityUrl').on('keydown', function(event) {
-    
-        event.altKey==true;
+
+        event.altKey === true;
         var currentstring = $('#customVanityUrl').val().length;
 
-        if(currentstring <=55) {
-            if (currentstring == 55) {
+        if(currentstring <= 55) {
+            if (currentstring === 55) {
                 var text = currentstring ;
             } else {
                 var text = currentstring + 1;
             }
         }
         if (event.keyCode > 31) {
-            if(event.altKey==true){
+            if(event.altKey === true){
                 setTitleText();
             }
             else{
@@ -1822,8 +1835,8 @@ $(function() {
             $('#vanityUrlLength').text(text+'/55');
         }
     }).keyup(function(e) {
-    
-        if(e.altKey==true){
+
+        if(e.altKey === true){
             setTitleText();
             return false;
         }
@@ -1860,14 +1873,13 @@ $(function() {
     }).focusout(function(){
 	    setTitleText();
     });
-    
+
     function setTitleText() {
-        
+
         var currentstring = $('#customVanityUrl').val().length;
-        if (currentstring == 0) {
+        if (currentstring === 0) {
             $('#vanityUrlLength').text("0/55");
         } else {
-	        currentstring = currentstring;
             $('#vanityUrlLength').text(currentstring+'/55');
         }
     }
@@ -1875,9 +1887,9 @@ $(function() {
     /***************************Multiple Image Selection*************** */
     var isvalidsize =  false;
     $('#projectImageFile, #projectEditImageFile, #campaignImage').change(function(event) {
-    	
+
         var file = this.files[0];
-        if(validateExtension(file.name) == false) {
+        if(validateExtension(file.name) === false) {
             $('.pr-thumbnail-div').hide();
             $('.imgmsg').css("display","block");
             $('.imgmsg').html("Add only PNG or JPG extension images");
@@ -1893,21 +1905,16 @@ $(function() {
         } else{
             $('.imgmsg').hide();
             $('.campaignfilesize').hide();
-            var files = event.target.files; // FileList object
-            var output = document.getElementById("result");
             var fileName;
             var isFileSizeExceeds = false;
-            var file = this.files[0];
-            var filename = file.name;
-            
+
             if(file.size < 1024 * 1024 * 3) {
-            	if($('#campaignthumbnails').find('.pr-thumb-div').length == 0){
+            	if($('#campaignthumbnails').find('.pr-thumb-div').length === 0){
                     $('.panel-no-image').hide();
                     $('.panel-pic-uploaded').show();
                 }
             	if ($('#campaignthumbnails').find('.pr-thumb-div').length <= 4){
                     isvalidsize =  true;
-//                    $('#uploadingCampaignImage').show();
                     $('#loading-gif').show();
 
                     var formData = !!window.FormData ? new FormData() : null;
@@ -1919,10 +1926,10 @@ $(function() {
                     var xhr = new XMLHttpRequest();
                     xhr.open('POST', $("#b_url").val()+'/project/uploadImage');
                     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-                 
+
                     // complete
                     xhr.onreadystatechange = $.proxy(function() {
-                        if (xhr.readyState == 4) {
+                        if (xhr.readyState === 4) {
                             var data = xhr.responseText;
                             data = data.replace(/^\[/, '');
                             data = data.replace(/\]$/, '');
@@ -1936,22 +1943,21 @@ $(function() {
                             var output = document.getElementById("campaignthumbnails");
                             var div = document.createElement("div");
                             div.id = "imgdiv";
-                            div.className = "pr-thumb-div"
+                            div.className = "pr-thumb-div";
                             div.innerHTML = "<img  class='pr-thumbnail' src='"+ json.filelink + "'"+ "title='"
                                         + file.name + "'/><div class=\"deleteicon\"><img onClick=\"deleteProjectImage(this,'"+json.imageId+"','"+projectId+"');\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>";
 
                             output.insertBefore(div, null);
-//                            $('#uploadingCampaignImage').hide();
                             $('#loading-gif').hide();
                         }
                     }, this);
                     xhr.send(formData);
-            
+
                     $('#createthumbnail').find("span").remove();
                     $('#createthumbnail').closest(".form-group").removeClass('has-error');
                 } else {
             	    $('.imageNumValidation').show();
-            	    var delay = 5000; //delayed code, time in milliseconds
+            	    var delay = 5000;
                     setTimeout(function() {
                     	$('.imageNumValidation').hide();
                     }, delay);
@@ -1965,14 +1971,14 @@ $(function() {
                 $('.campaignfilesize').show();
                 isFileSizeExceeds = true;
             }
-    
+
             document.getElementById("campaignFilesizeID").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
             document.getElementById("campaignFilesizeID1").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
             if (isFileSizeExceeds && !isvalidsize) {
                 $('#campaignImage').val('');
             }
             $('#projectImageFile, #projectEditImageFile').val('');
-            var delay = 9999; //delayed code, time in milliseconds
+            var delay = 9999;
             setTimeout(function() {
             	$('.campaignfilesize').hide();
             }, delay);
@@ -1984,13 +1990,13 @@ $(function() {
           for(var imgExtImg=0;imgExtImg<allowedExtensions.length;imgExtImg++)
           {
               imageFile = imgExt.lastIndexOf(allowedExtensions[imgExtImg]);
-              if(imageFile != -1){
+              if(imageFile !== -1){
             	  return true;
               }
           }
           return false;
     }
-    
+
     $('#createreward').click(function(){
         var rewardSaved = rewardValidationAndSaving(count);
         if (rewardSaved){
@@ -2012,19 +2018,19 @@ $(function() {
     '<div class="col-sm-2">'+
         '<div class="form-group">'+
             '<div class="col-sm-12">';
-        
+
         if(isIndianCampaign){
            	str = str + '<span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>';
              }else{
            	str = str + '<span class="cr2-currency-label">$</span>' ;
              }
-               
+
              str = str +  '<input type="text" placeholder="Amount"  name="rewardPrice'+count+'" id="rewardPrice'+count+
                        '" class="form-control cr-input-digit cr-tablat-padd form-control-no-border-amt rewardPrice">'+
            '</div>'+
        '</div>'+
     '</div>'+
-       
+
     '<div class="col-sm-5">'+
        '<div class="form-group">'+
            '<div class="col-sm-12">'+
@@ -2033,7 +2039,7 @@ $(function() {
            '</div>'+
        '</div>'+
     '</div>'+
-    
+
     '<div class="col-sm-5">'+
        '<div class="form-group">'+
            '<div class="col-sm-12">'+
@@ -2041,7 +2047,7 @@ $(function() {
            '</div>'+
        '</div>'+
     '</div>'+
-  
+
    '<div class="form-group row">'+
        '<div class="col-sm-12">'+
            '<div class="col-sm-12">'+
@@ -2067,13 +2073,13 @@ $(function() {
         $('#addNewRewards').append(str);
         $('#rewardCount').attr('value',count);
         }
-     });  
-    
+     });
+
     $('#removereward').click(function(){
-    	var rewardLength = $('#addNewRewards').find('.rewardsTemplate').length
+    	var rewardLength = $('#addNewRewards').find('.rewardsTemplate').length;
         if (confirm('Are you sure you want to discard this perk?')){
             removeRewards(count);
-            if (rewardLength == 1){
+            if (rewardLength === 1){
                 $("#updatereward").hide();
                 $('#addNewRewards').find('.rewardsTemplate').hide();
                 renameAndemptyRewardFields();
@@ -2102,14 +2108,14 @@ $(function() {
                 minlength : 5
             });
         });
-       	
+
        	$('.rewardTitle').each(function () {
             $(this).rules("add", {
                 required: true,
                 minlength : 5
             });
        	});
-    	
+
         $('.rewardNumberAvailable').each(function () {
             $(this).rules("add", {
                 required: true,
@@ -2144,7 +2150,7 @@ $(function() {
                });
            });
         }
-        if($('#rewardPrice'+rewardCount).length == 0){
+        if($('#rewardPrice'+rewardCount).length === 0){
             return true;
         } else if((validator.element("#rewardPrice"+rewardCount)) && (validator.element("#rewardTitle"+rewardCount)) && (validator.element( "#rewardNumberAvailable"+rewardCount)) && (validator.element( "#rewardDesc"+rewardCount))) {
         	var rewardPrice = $('#rewardPrice'+rewardCount).val();
@@ -2166,100 +2172,73 @@ $(function() {
         }
     }
 
-     $.validator.addMethod('isequaltofirstadmin', function(value, element){
+     $.validator.addMethod('isequaltofirstadmin', function(value){
     	 var emailId = $('#firstadmin').val();
- 	     if(value.length != 0 && value == emailId) {
- 	         return (!value == emailId)
+ 	     if(value.length !== 0 && value === emailId) {
+ 	         return (!value === emailId);
  	     }
      	 return true;
      }, "This Co-creator is already added");
-     
-     $.validator.addMethod('isequaltosecondadmin', function(value, element){
+
+     $.validator.addMethod('isequaltosecondadmin', function(value){
     	 var emailId = $('#secondadmin').val();
-     	 if(value.length != 0 && value == emailId) {
-     	     return (!value == emailId)
-     	 } 
+     	 if(value.length !== 0 && value === emailId) {
+     	     return (!value === emailId);
+     	 }
      	 return true;
      }, "This Co-creator is already added");
-     
-     $.validator.addMethod('isequaltothirdadmin', function(value, element){
+
+     $.validator.addMethod('isequaltothirdadmin', function(value){
     	 var emailId = $('#thirdadmin').val();
- 	     if(value.length != 0 && value == emailId) {
- 	         return (!value == emailId)
- 	     } 
+ 	     if(value.length !== 0 && value === emailId) {
+ 	         return (!value === emailId);
+ 	     }
      	 return true;
      }, "This Co-creator is already added");
-     
-     $.validator.addMethod('iscampaigncreator', function(value, element){
+
+     $.validator.addMethod('iscampaigncreator', function(value){
     	 var emailId = $('#email').val();
-    	 if(value.length != 0 && value == emailId) {
-    		 return (!value == emailId)
+    	 if(value.length !== 0 && value === emailId) {
+    		 return (!value === emailId);
     	 }
     	 return true;
      }, "Campaign creator cannot be added as a Co-creator");
 
-    /* Click handler for Myself/Someone I Know. */
-    /*
-    $('#fundRaisingFor').change(function(event) {
-        var optionChosen = $(this).val(),
-            nameEl = $('#name'),
-            emailEl = $('#email');
-
-        if (optionChosen == 'MYSELF') {
-            validator.resetForm();
-
-            nameEl.closest('.form-group').removeClass('has-error');
-            nameEl.val(function() {
-                return $(this).attr('value');
-            });
-            nameEl.prop('disabled', true);
-
-            emailEl.closest('.form-group').removeClass('has-error');
-            emailEl.val(function() {
-                return $(this).attr('value');
-            });
-            emailEl.prop('disabled', true);
-        } else if (optionChosen == 'OTHER') {
-            nameEl.prop('disabled', false);
-            emailEl.prop('disabled', false);
-        }
-    });
-    */
 
     $(document).ready(function (){
         //called when key is pressed in textbox
         $("#amount").keypress(function (e) {
             //if the letter is not digit then display error and don't type anything
-            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
                 //display error message
                 $("#errormsg").html("Digits Only").show().fadeOut("slow");
                 return false;
-            } 
+            }
         });
-        
+
         $("form").on("click", ".spendAmount", function () {
             $('.spendAmount').each(function () {
                 $(this).keypress(function (e) {
                   //if the letter is not digit then display error and don't type anything
-                  if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                  if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
                     //display error message
                 	$(this).siblings(".digitsError").html("Digits Only").show().fadeOut(1000);
                     return false;
                   }
                 });
             });
-            
+
           });
-        
+
         $("#amount2,#amount3,#amount1").keypress(function (e) {
             //if the letter is not digit then display error and don't type anything
-            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
                 //display error message
                 $("#errormsg1,#errormsg2").html("Digits Only").show().fadeOut("slow");
                 return false;
-            } 
+            }
         });
-        
+
         $("#customVanityUrl").keypress(function (e) {
              return /[a-z0-9-]/i.test(
                 String.fromCharCode(e.charCode || e.keyCode)
@@ -2274,7 +2253,7 @@ $(function() {
             	$('#perkSaveMessage'+editCount).fadeOut(3000);
             }
         });
-        
+
         $("form").on("click", ".deletereward", function () {
         	var deleteCount = $(this).attr('value');
         	if (confirm('Are you sure you want to discard this perk?')){
@@ -2289,15 +2268,15 @@ $(function() {
             $('.rewardPrice').each(function () {
                 $(this).keypress(function (e) {
                   //if the letter is not digit then display error and don't type anything
-                  if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                  if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
                     //display error message
                     return false;
-                  } 
+                  }
                 });
             });
-            
+
           });
-        
+
 		$("form").on("click", ".spendMatrixTemplateAdd", function () {
 			var shippingMatrixCount = $('.spend-matrix').find('.spenMatrixNumberAvailable:last').val();
 			var spendMatrixSaved = validateSpendMatrix(shippingMatrixCount);
@@ -2382,7 +2361,7 @@ $(function() {
                               min:'min $1'
                           }
                       });
-                  }); 
+                  });
               }
 
         	  $('.spendCause').each(function () {
@@ -2421,7 +2400,6 @@ $(function() {
                 	  $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
                   }
               }).error(function() {
-                  console.log('error occured while saving spenMarix no.'+savingCount);
               });
           }
 
@@ -2429,11 +2407,13 @@ $(function() {
         	  if (confirm('Are you sure you want to delete this spend field?')){
                   var deleteCount = $(this).find('.spendFieldDelete').val();
                   var shippingMatrixCount = $('.spend-matrix').find('.spenMatrixNumberAvailable:last').val();
-                  if (deleteCount == shippingMatrixCount){
+
+                  if (deleteCount === shippingMatrixCount){
             	      $('.spendMatrixTemplateAdd:last').remove();
             	      var id = $('.spendMatrixTemplateAdd:last').attr('id');
             	      $('#'+id).removeClass('display-none');
                   }
+
                   deleteSpendMatrix(deleteCount);
         	  }
           });
@@ -2454,141 +2434,102 @@ $(function() {
                       $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
                   }
               }).error(function() {
-                  console.log('error occured while deleting spenMarix no.'+savingCount);
               });
           }
-          
+
           $("form").on("click", ".spendMatrixTemplateSave", function () {
               var saveCount = $(this).find('.spendFieldSave').val();
               var isSpendMatrixSaved = validateSpendMatrix(saveCount);
               if (isSpendMatrixSaved){
             	  $('.saved-message').show().fadeOut(3000);
-//            	  if (screen.width >767){
-//            		  $('.saved-message-sm').show().fadeOut(2000);
-//            	  } else {
-//            		  $('.saved-message-xs').show().fadeOut(2000);
-//            	  }
               }
           });
 
-//        var $win = $(window);
-//        $win.scroll(function () {
-//            if ($win.scrollTop() == 0){
-//                $('#start').css('padding-top','25px');
-//            	$('#story').css('padding-top','0px');
-//            	$('#admins').css('padding-top','0px');
-//            	$('#perk').css('padding-top','0px');
-//            	$('#payment').css('padding-top','0px');
-//            	$('#launch').css('padding-top','0px');
-//            }else if ($win.height() + $win.scrollTop()== $(document).height()) {
-//                $('#start').css('padding-top','0px');
-//            	$('#story').css('padding-top','0px');
-//            	$('#admins').css('padding-top','0px');
-//            	$('#perk').css('padding-top','0px');
-//            	$('#payment').css('padding-top','0px');
-//            	$('#launch').css('padding-top','30px');
-//            	$('#save').css('padding-top','25px');
-//            }
-//        });
-        
+
         $('.cr-img-start-icon').click(function(){
-        	
+
         	var target = this.hash,
                 $target = $(target);
-        
+
             $('html, body').stop().animate({
                 'scrollTop': $target.offset().top-160
             }, 90, 'swing', function () {
             });
-
-            console.log(window.location);
 
             return false;
     	});
     	$('.cr-img-story-icon').click(function(){
     		var target = this.hash,
                 $target = $(target);
-        
+
             $('html, body').stop().animate({
                 'scrollTop': $target.offset().top-170
             }, 90, 'swing', function () {
             });
-
-            console.log(window.location);
 
             return false;
     	});
     	$('.cr-img-admin-icon').click(function(){
     		var target = this.hash,
                 $target = $(target);
-        
+
             $('html, body').stop().animate({
                 'scrollTop': $target.offset().top-180
             }, 90, 'swing', function () {
             });
-
-            console.log(window.location);
 
             return false;
     	});
     	$('.cr-img-perk-icon').click(function(){
     		var target = this.hash,
                 $target = $(target);
-        
+
             $('html, body').stop().animate({
                 'scrollTop': $target.offset().top-170
             }, 90, 'swing', function () {
             });
-
-            console.log(window.location);
 
             return false;
     	});
     	$('.cr-img-payment-icon').click(function(){
     		var target = this.hash,
                 $target = $(target);
-        
+
             $('html, body').stop().animate({
                 'scrollTop': $target.offset().top-205
             }, 90, 'swing', function () {
             });
-
-            console.log(window.location);
 
             return false;
     	});
     	$('.cr-img-launch-icon').click(function(){
     		var target = this.hash,
                 $target = $(target);
-        
+
             $('html, body').stop().animate({
                 'scrollTop': $target.offset().top-180
             }, 90, 'swing', function () {
             });
-
-            console.log(window.location);
 
             return false;
     	});
     	$('.cr-img-save-icon').click(function(){
     		var target = this.hash,
             $target = $(target);
-        
+    		
             $('html, body').stop().animate({
                 'scrollTop': $target.offset().top-180
             }, 90, 'swing', function () {
             });
 
-            console.log(window.location);
-
             return false;
     	});
-        
+
    });
-    
+
    $('#paypalEmailId').change(function(){
        var base_url = $("#b_url").val();
-       if (base_url != 'https://crowdera.co'){
+       if (base_url !== 'https://crowdera.co'){
            var email =  $('#paypalEmailId').val();
            $.ajax({
                type:'post',
@@ -2596,17 +2537,16 @@ $(function() {
                data:'email='+email,
                success: function(data){
                    $('#paypalEmailAck').val(data);
-                   if (data == 'Success') {
+                   if (data === 'Success') {
                        $('.paypalVerification').find("span").remove();
                        $('.paypalVerification').closest(".form-group").removeClass('has-error');
                    }
                }
-           }).error(function(e){
-        	   console.log('Error occured during paypal email verification'+e);
+           }).error(function(){
            });
         }
     });
-   
+
    $('.form-amount-impact').blur(function (){
 	   var impactAmount = $(this).val();
 	   if (validator.element( ".form-amount-impact")){
@@ -2682,11 +2622,11 @@ $(function() {
                 }
             }
         } else {
-            if (recipient == 'NON-PROFIT'){
+            if (recipient === 'NON-PROFIT'){
                  $('#tax-reciept').show();
             } else {
                 $('#tax-reciept').hide();
-                if ($('#offeringTaxReciept').val() == 'true' || $('#offeringTaxReciept').val() == true){
+                if ($('#offeringTaxReciept').val() === 'true' || $('#offeringTaxReciept').val() === true){
                     if (confirm("If you will change the recipient of fund you will not be liable to offer tax reciept. \nAre you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
                         $('.tax-reciept-checkbox').attr('checked', false);
                         $('.col-tax-reciept-panel').hide();
@@ -2702,17 +2642,16 @@ $(function() {
                 }
             }
         }
-        
+
 
         $.ajax({
             type:'post',
             url:$('#b_url').val()+'/project/saveRecipientAndHashTags',
             data:'recipient='+recipient+'&projectId='+projectId,
-            success: function(data){
+            success: function(){
                 changeHashTags();
             }
-        }).error(function(data){
-            console.log('Error occured while autosaving recipient and hashtags info'+ data);
+        }).error(function(){
         });
     });
 
@@ -2721,7 +2660,7 @@ $(function() {
             type:'post',
             url:$("#b_url").val()+'/project/deleteTaxReciept',
             data:'projectId='+projectId,
-            success: function(data) {
+            success: function() {
                $('#offeringTaxReciept').val(false);
                $('.tax-reciept-checkbox').attr('checked', false);
                $('.fcra-details').hide();
@@ -2729,7 +2668,7 @@ $(function() {
                $('.tax-reciept-holder-city').val('');
                $('.tax-reciept-holder-name').val('');
                $('.tax-reciept-holder-state').val('');
-               if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+               if (currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'staging' || currentEnv === 'production'){
                    $('.ein').val('');
                    $('.tax-reciept-holder-country').val('');
                    $('.tax-reciept-deductible-status').val('');
@@ -2747,7 +2686,6 @@ $(function() {
                }
            }
        }).error(function() {
-           console.log('Error occured while autosaving field'+ variable + 'value :'+ varValue);
        });
     }
 
@@ -2806,10 +2744,11 @@ $(function() {
 
     $('.customVanityUrl').blur(function (){
         var customUrl = $(this).val();
-        var delay = 50; //delayed code to prevent error, time in milliseconds
+       //delayed code to prevent error, time in milliseconds
+        var delay = 50;
         setTimeout(function() {
                 var customUrlStatus = $('#vanityUrlStatus').val();
-                if(validator.element(".customVanityUrl") && customUrlStatus == 'true')
+                if(validator.element(".customVanityUrl") && customUrlStatus === 'true')
                     autoSave('customVanityUrl', customUrl.trim());
             }, delay);
     });
@@ -2822,61 +2761,60 @@ $(function() {
     	var name = $(this).val();
     	autoSave('organizationname', name);
     });
-    
+
     $('#webAddress').blur(function (){
     	var webAddress = $(this).val();
     	if (validator.element( "#webAddress")) {
             autoSave('webAddress', webAddress);
     	}
     });
-    
+
     $('#telephone').blur(function (){
         var telephone = $(this).val();
         autoSave('telephone', telephone);
     });
-    
-    
+
+
     $('#payuemail').blur(function (){
         var payUEmailId = $(this).val();
         if (validator.element( "#payuemail")) {
             autoSave('payuEmail', payUEmailId);
         }
     });
-    
+
     $('#secretKey').blur(function (){
         var secretKey = $(this).val();
         autoSave('secretKey', secretKey);
     });
-    
+
     $('#facebookUrl').blur(function (){
         var facebookUrl = $(this).val();
         if (validator.element( "#facebookUrl")) {
             autoSave('facebookUrl', facebookUrl);
         }
     });
-    
+
     $('#twitterUrl').blur(function (){
         var twitterUrl = $(this).val();
         autoSave('twitterUrl', twitterUrl);
     });
-    
+
     $('#linkedinUrl').blur(function (){
         var linkedinUrl = $(this).val();
         autoSave('linkedinUrl', linkedinUrl);
     });
-    
+
     function autoSave(variable, varValue) {
         $.ajax({
             type:'post',
             url:$("#b_url").val()+'/project/autoSave',
             data:'projectId='+projectId+'&variable='+variable+'&varValue='+varValue,
             success: function(data) {
-                if (data != 'null'){
+                if (data !== 'null'){
                     $('#taxRecieptId').val(data);
                 }
             }
         }).error(function() {
-            console.log('Error occured while autosaving field'+ variable + 'value :'+ varValue);
         });
     }
 
@@ -2892,12 +2830,11 @@ $(function() {
            url:$("#b_url").val()+'/project/autoSaveCharitableIdAndOrganisationName',
            data:'projectId='+projectId+'&charitableId='+uuid+'&organizationname='+charityName,
            success: function(data) {
-               if (data != 'null'){
+               if (data !== 'null'){
                    $('#taxRecieptId').val(data);
                }
            }
        }).error(function() {
-           console.log('Error occured while autosaving charitable Id and organisation name'+ variable + 'value :'+ varValue);
        });
     });
 
@@ -2916,12 +2853,12 @@ $(function() {
     $('#personal').click(function(){
         $('#usedFor').val('PERSONAL_NEEDS');
     });
-    
+
     $('#name1').blur(function (){
         var name = $(this).val();
         autoSave('name', name);
     });
-    
+
     $('#amount1').blur(function (){
         var amount = $(this).val();
         $('#projectamount').val(amount);
@@ -2929,7 +2866,7 @@ $(function() {
             autoSave('amount', amount);
         }
     });
-    
+
     $('#amount2').blur(function (){
         var amount = $(this).val();
         $('#projectamount').val(amount);
@@ -2947,45 +2884,37 @@ $(function() {
 
     $('#campaignTitle1').blur(function (){
         var title = $(this).val();
-//        $('#customVanityUrl').val(title.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-'));
         autoSave('campaignTitle', title);
     });
-
-//    $('#campaignTitle').blur(function(){
-//    	var title = $(this).val();
-//        $('#customVanityUrl').val(title.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-'));
-//    });
 
     $('#descarea1').blur(function (){
         var descarea = $(this).val();
         autoSave('descarea', descarea);
     });
-    
+
     $('.city').blur(function (){
     	var city = $(this).val();
     	$.ajax({
             type:'post',
             url:$("#b_url").val()+'/project/autoSaveCityAndHashTags',
             data:'projectId='+projectId+'&city='+city,
-            success: function(data) {
+            success: function() {
             	changeHashTags();
             }
         }).error(function() {
-            console.log('error occured saving city and hashtags info '+data);
         });
     });
-    
+
     $('#impact1').click(function(){
     	$('#usedFor').val('IMPACT');
     	$.ajax({
             type:'post',
             url:$("#b_url").val()+'/project/autoSaveUsedForAndHashTags',
             data:'projectId='+projectId+'&usedFor=IMPACT',
-            success: function(data) {
+            success: function() {
             	changeHashTags();
             }
         }).error(function() {
-            console.log('error occured saving city and hashtags info '+data);
         });
     });
 
@@ -2995,11 +2924,10 @@ $(function() {
             type:'post',
             url:$("#b_url").val()+'/project/autoSaveUsedForAndHashTags',
             data:'projectId='+projectId+'&usedFor=PASSION',
-            success: function(data) {
+            success: function() {
             	changeHashTags();
             }
         }).error(function() {
-            console.log('error occured saving city and hashtags info '+data);
         });
     });
 
@@ -3009,11 +2937,10 @@ $(function() {
             type:'post',
             url:$("#b_url").val()+'/project/autoSaveUsedForAndHashTags',
             data:'projectId='+projectId+'&usedFor=SOCIAL_NEEDS',
-            success: function(data) {
+            success: function() {
             	changeHashTags();
             }
         }).error(function() {
-            console.log('error occured saving city and hashtags info '+data);
         });
     });
 
@@ -3023,43 +2950,42 @@ $(function() {
             type:'post',
             url:$("#b_url").val()+'/project/autoSaveUsedForAndHashTags',
             data:'projectId='+projectId+'&usedFor=PERSONAL_NEEDS',
-            success: function(data) {
+            success: function() {
             	changeHashTags();
             }
         }).error(function() {
-            console.log('error occured saving city and hashtags info '+data);
         });
     });
 
     function changeHashTags(){
         var category = $('#category').val();
         var country = $('#selectedCountry').val();
-        var usedFor = ($('#usedFor').val() == undefined) ? $('#usedForCreate').val() : $('#usedFor').val();
+        var usedFor = ($('#usedFor').val() === undefined) ? $('#usedForCreate').val() : $('#usedFor').val();
         var fundRaisedBy = $('.recipient').val();
         var city = $('.city').val();
         var list;
-        if (usedFor == 'SOCIAL_NEEDS') {
+        if (usedFor === 'SOCIAL_NEEDS') {
             list = '#Social-Innovation';
-        } else if (usedFor == 'PERSONAL_NEEDS') {
+        } else if (usedFor === 'PERSONAL_NEEDS') {
             list = '#Personal-Needs';
-        } else if (usedFor == 'IMPACT'){
+        } else if (usedFor === 'IMPACT'){
             list = '#Impact';
-        } else if (usedFor == 'PASSION'){
+        } else if (usedFor === 'PASSION'){
             list = '#Passion';
         }
-        (fundRaisedBy && fundRaisedBy != 'null') ? list = list + ', #'+getStringCaptalised(fundRaisedBy) : ' ' ;
-        (category && category != 'null') ? list = list + ', #'+getStringCaptalised(category) : ' ' ;
-        if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
-            (country != 'null' && country != null && country != '') ? list = list + ', #'+country : ' ' ;
+        (fundRaisedBy && fundRaisedBy !== 'null') ? list = list + ', #'+getStringCaptalised(fundRaisedBy) : ' ' ;
+        (category && category !== 'null') ? list = list + ', #'+getStringCaptalised(category) : ' ' ;
+        if (currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'staging' || currentEnv === 'production'){
+            (country !== 'null' && country !== null && country !== '') ? list = list + ', #'+country : ' ' ;
         }
-        (city && city != '') ? list = list + ', #'+city : ' ' ;
+        (city && city !== '') ? list = list + ', #'+city : ' ' ;
 
         if ($('.hashtags').val()){
-            var remainingList
+            var remainingList;
             var hashtagsList = $('.hashtags').val().split(',');
             if (hashtagsList.length > 5){
                 for (var i=5; i<hashtagsList.length; i++){
-                    remainingList = (i == 5) ? hashtagsList[i].trim() : remainingList + ', ' + hashtagsList[i].trim();
+                    remainingList = (i === 5) ? hashtagsList[i].trim() : remainingList + ', ' + hashtagsList[i].trim();
                 }
                 list = list + ', ' + remainingList;
             }
@@ -3069,15 +2995,15 @@ $(function() {
     }
 
     function getStringCaptalised(string){
-        if (string == 'CIVIC_NEEDS'){
+        if (string === 'CIVIC_NEEDS'){
             return 'Civic-Needs';
-        } else if (string == 'NON_PROFITS'){
+        } else if (string === 'NON_PROFITS'){
             return 'Non-Profits';
-        } else if (string == 'SOCIAL_INNOVATION'){
+        } else if (string === 'SOCIAL_INNOVATION'){
             return 'Social-Innovation';
-        } else if (string == 'NON-PROFIT'){
+        } else if (string === 'NON-PROFIT'){
             return 'Non-Profit';
-        } else if (string == 'NGO'){
+        } else if (string === 'NGO'){
             return 'NGO';
         } else {
             return string.charAt(0).toUpperCase() + string.toLowerCase().slice(1);
@@ -3088,37 +3014,37 @@ $(function() {
     	var ansText1 = $(this).val();
     	autoSave('ans1', ansText1);
     });
-    
+
     $('.ansText2').blur(function(){
     	var ansText2 = $(this).val();
     	autoSave('ans2', ansText2);
     });
-    
+
     $('.ansText3').blur(function(){
     	var ansText3 = $(this).val();
     	autoSave('ans3', ansText3);
     });
-    
+
     $('.ansText5').blur(function(){
     	var ansText5 = $(this).val();
     	autoSave('ans5', ansText5);
     });
-    
+
     $('.ansText6').blur(function(){
     	var ansText6 = $(this).val();
     	autoSave('ans6', ansText6);
     });
-    
+
     $('.ansText7').blur(function(){
     	var ansText7 = $(this).val();
     	autoSave('ans7', ansText7);
     });
-    
+
     $('.ansText8').blur(function(){
     	var ansText8 = $(this).val();
     	autoSave('ans8', ansText8);
     });
-    
+
     $('#deleteVideo').click(function(){
     	if (confirm('Are you sure you want to delete this video')){
     	    autoSave('videoUrl', '');
@@ -3128,7 +3054,7 @@ $(function() {
             $('.videoUrl').val('');
     	}
     });
-    
+
 
     function saveRewards(rewardNum,rewardPrice,rewardTitle,rewardNumberAvailable,rewardDesc,email,address,twitter,custom){
         $.ajax({
@@ -3136,11 +3062,10 @@ $(function() {
             type:'post',
             url:$("#b_url").val()+'/project/saveReward',
             data:'projectId='+projectId+'&rewardNum='+rewardNum+'&rewardPrice='+rewardPrice+'&rewardTitle='+rewardTitle+'&rewardNumberAvailable='+rewardNumberAvailable+'&rewardDesc='+rewardDesc+'&email='+email+'&address='+address+'&twitter='+twitter+'&custom='+custom,
-            success: function(data) {
+            success: function() {
                $('#test').val('test');
             }
         }).error(function() {
-            console.log('error occured saving'+rewardNum+'no. reward');
         });
      }
 
@@ -3149,11 +3074,10 @@ $(function() {
              type:'post',
              url:$("#b_url").val()+'/project/deleteReward',
              data:'projectId='+projectId+'&rewardCount='+deleteCount,
-             success: function(data) {
+             success: function() {
                  $('#test').val('test');
              }
          }).error(function() {
-             console.log('error occured deleting'+deleteCount+'no. reward');
          });
      }
 
@@ -3162,15 +3086,14 @@ $(function() {
              type:'post',
              url:$("#b_url").val()+'/project/deleteAllRewards',
              data:'projectId='+projectId,
-             success: function(data) {
+             success: function() {
                  $('#test').val('test');
              }
          }).error(function() {
-             console.log('error occured while deleting all perks');
           });
     }
 
-     $('#previewButton, #previewButtonXS').on('click', function(event){  // capture the click
+     $('#previewButton, #previewButtonXS').on('click', function(){
       	$('#isSubmitButton').val(false);
        	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactAmount"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
              $(this).rules('remove');
@@ -3185,27 +3108,27 @@ $(function() {
         });
 
        	$( "#projectImageFile" ).rules("remove");
- 
+
        	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactAmount"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
              $(this).closest('.form-group').removeClass('has-error');
          });
-       	
+
        	$('.rewardNumberAvailable').each(function () {
             $(this).rules("remove");
         });
-       	
+
        	$('.rewardPrice').each(function () {
             $(this).rules("remove");
         });
-       	
+
        	$('.rewardDescription').each(function () {
             $(this).rules("remove");
         });
-       	
+
        	$('.rewardTitle').each(function () {
             $(this).rules("remove");
         });
-       	
+
        	$("#createthumbnail").removeClass('has-error');
        	if (validator.form()) {
        		$('#campaigncreate').find('form').submit();
@@ -3215,7 +3138,7 @@ $(function() {
               $('#previewButtonXS').attr('disabled','disabled');
        	}
        });
-     
+
 /*Javascript error raised due to tooltip is resolved*/
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {
@@ -3244,7 +3167,7 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-        
+
         $('.amountInfo-img').popover({
             content: 'Maximum $100,000, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
@@ -3253,7 +3176,7 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-        
+
         $('.amountInfoInd-img').popover({
             content: 'Maximum Rs.99,999,999, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
@@ -3262,7 +3185,7 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-        
+
         $('.cr1-guidence-us').popover({
             content: 'Maximum $100,000, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
@@ -3271,7 +3194,7 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-        
+
         $('.cr1-guidence-indo').popover({
             content: 'Maximum Rs.99,999,999, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
@@ -3280,7 +3203,7 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-        
+
         $('.deadlineInfo-img').popover({
             content: 'Campaign End Date - At Least 30 days and maximum 90 days.',
             trigger: 'manual',
@@ -3289,7 +3212,7 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-        
+
         $('.pictureInfo-img').popover({
             content: 'Pictures help contributors connect with you and your cause. Maximum 3MB.',
             trigger: 'manual',
@@ -3298,7 +3221,8 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-        
+
+
         $('.videoInfo-img').popover({
             content: 'Add a 3 minute video that can hold the attention of the viewer. It is your chance to pitch to your contributors, make it heartfelt.',
             trigger: 'manual',
@@ -3307,14 +3231,5 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-        
-    /* Initialize pop-overs (tooltips) */
-   /* $("input[name='days']").popover({
-        content: 'Number of days to raise the funds by.',
-        trigger: 'manual',
-        placement: 'top'
-    })
-    .focus(showPopover)
-    .blur(hidePopover)
-    .hover(showPopover, hidePopover);*/
+
 });

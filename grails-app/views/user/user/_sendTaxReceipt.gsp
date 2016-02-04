@@ -1,12 +1,16 @@
 <g:hiddenField name="vanityTitle" class="vanityTitle" value="${vanityTitle}"/>
+<g:hiddenField name="isBackRequired" class="isBackRequired" value="${isBackRequired}"/>
+
 <div class="search-sort-back">
-	<div class="col-sm-2">
-	   <div class="col-sm-3 col-md-5 backToTiles">&lt;&lt;&nbsp;Back</div>
-	</div>
-	<div class="col-sm-10 search-sort">
-		<div class="col-contributor col-xs-12">
+    <g:if test="${!isBackRequired}">
+	    <div class="col-sm-2 col-plr-0">
+	        <div class="backToTiles">&lt;&lt;&nbsp;Back</div>
+	    </div>
+	</g:if>
+	<div class=" <g:if test="${isBackRequired}">col-sm-12</g:if><g:else>col-sm-10</g:else> search-sort">
+		<div class="col-contributor col-xs-12 col-plr-0">
 			<div class="contributor-search-box col-sm-7 col-xs-8">
-				<input type="search" class="search-contributors" placeholder="Search....">
+				<input type="text" class="search-contributors form-control all-place" placeholder="Search....">
 				<span class="glyphicon glyphicon-search glyphicon-contributor-search"></span>
 			</div>
 			<div class="col-sm-5 col-xs-4 col-contributor-search">
@@ -15,6 +19,17 @@
 		</div>
 	</div>
 </div><br><br><br>
+
+<g:if test="${campaign}">
+    <%
+        def projectTitle = campaign.title
+        if (projectTitle) {
+            projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
+        }
+    %>
+    <h4><b>${projectTitle}</b></h4>
+</g:if>
+
 <g:if test="${contributionList && totalContributions && !contributionList.empty && !totalContributions.empty}">
 	<%
 	def count = contributionList.size()
@@ -56,25 +71,27 @@
 	</div>
 
 	<span class="pull-right" id="selectedLength"></span>
-	<div id="email-send-confirmation">Email has been send to the contributors</div>
+	<div id="email-send-confirmation">Email has been sent successfully!</div>
 </g:if>
 <g:else>
-	<div class="col-sm-12">
-		<br>
-		<div class="alert alert-info">
-    		You do not have such contributions yet.
-		</div>
-    </div>
+	<div class="alert alert-info">
+   		You do not have such contributions yet.
+	</div>
 </g:else>
+
+<g:if test="${!selectpicker}">
+    <script>
+        /* Apply selectpicker to selects. */
+        $('.selectpicker').selectpicker({
+            style: 'btn btn-sm btn-default'
+        });
+    </script>
+</g:if>
 
 <script>
 	var baseUrl = $('#baseUrl').val();
+	var isBackRequired = $('#isBackRequired').val();
 
-	/* Apply selectpicker to selects. */
-	$('.selectpicker').selectpicker({
-	    style: 'btn btn-sm btn-default'
-	});
-	
 	/* Pagination logic*/
 	$(".send-tax-receipt-to-contributors").find('.sendTaxReceiptPaginate a').click(function(event) {
 		event.preventDefault();
@@ -83,10 +100,12 @@
 		$.ajax({
 			type: 'GET',
 			url: url,
+			data: 'isBackRequired='+isBackRequired,
 			success: function(data) {
 			    $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
 			}
-		});
+		}).error(function(){
+        });
 	});
 	
 	/*sorting contribution list*/
@@ -96,28 +115,24 @@
 		$.ajax({
 			type: 'post',
 			url:baseUrl+'/user/sortContributorsList',
-			data:'vanityTitle='+vanityTitle+'&sort='+$(this).val(),
+			data:'vanityTitle='+vanityTitle+'&sort='+$(this).val()+'&isBackRequired='+isBackRequired,
 			success: function(data) {
 			    $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
 			}
-		}).error(function(e){
-		    console.log('Error occured while fetching contribution list sorted by '+$(this).val());
+		}).error(function(){
 		});
 	});
 	
 	/*back to campaign tiles*/
 	$('.backToTiles').click(function (){
 		var grid = $(".campaignTilePaginate");
-		$('#loadingfilegif').show(); 
 		$.ajax({
 			type: 'post',
 			url:baseUrl+'/user/loadCampaignTile',
 			success: function(data) {
-				$('#loadingfilegif').hide(); 
 				$(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
 			}
-		}).error(function(e){
-            console.log('Error occured while showing campaign tile for sending tax receipt');
+		}).error(function(){
 		});
 	});
 
@@ -130,12 +145,11 @@
 			$.ajax({
 				type: 'post',
 				url:baseUrl+'/user/searchByName',
-				data:'vanityTitle='+vanityTitle+'&query='+$(this).val(),
+				data:'vanityTitle='+vanityTitle+'&query='+$(this).val()+'&isBackRequired='+isBackRequired,
 				success: function(data) {
 				    $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
 				}
-			}).error(function(e){
-		         console.log('Error occured while fetching contribution list sorted by '+$(this).val());
+			}).error(function(){
 			});
 		}
 	});

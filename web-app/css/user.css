@@ -1,3 +1,4 @@
+
 .domainUsersPagination {
 	   margin-bottom: 15px;
 }
@@ -1313,6 +1314,7 @@ div.dashboardtile-min-height {
 .file-thumbnail .glyphicon-file, .tax-receipt-thumbnail .glyphicon-file{
     font-size: 40px;
     top: 35%;
+    color: #4285f4;
 }
 .file-thumbnail .glyphicon-file {
     font-size: 60px;
@@ -1404,8 +1406,8 @@ div.dashboardtile-min-height {
 }
 
 .tax-receipt-thumbnail-container:hover .tax-reciept-project-title{
-	background-color: #E7E7E7;
-	color: black;
+	background-color: #6D6E6E;
+	color: white;
 }
 
 .tax-receipt-background {
@@ -1448,10 +1450,11 @@ div.dashboardtile-min-height {
 
 .backToTiles ,.campaignTilePaginate .campaignTileClick{
 	cursor:pointer;
+	color: #01BBD2;
 }
 
 .backToTiles:hover, .backToTiles:visited, .backToTiles:active, .backToTiles:focus{
-	color:#008CBA;;
+	color:#01BBD2;
 }
 
 div.search-sort-back div.search-sort{
@@ -1469,6 +1472,7 @@ div.search-sort-back div.search-sort{
 
 #email-send-confirmation{
 	display:none;
+	color: #01bbd2;
 }
 .partner-gallery h1{
     font-size: 44px;

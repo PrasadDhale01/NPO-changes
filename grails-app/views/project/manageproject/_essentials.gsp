@@ -178,7 +178,7 @@
         <div id="chart-container">
             <g:hiddenField name="spendCauseList" value="${spendCauseList}" id="spendCauseList"/>
             <g:hiddenField name="spendAmountPerList" value="${spendAmountPerList}" id="spendAmountPerList"/>
-            <g:hiddenField name="payuStatus" id="payuStatus" value="${project.payuStatus}"/>
+<%--            <g:hiddenField name="payuStatus" id="payuStatus" value="${project.payuStatus}"/>--%>
             <div id="graph"></div>
         </div>
         <script src="/js/raphel-pie/raphael-min.js"></script>

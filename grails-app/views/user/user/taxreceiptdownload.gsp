@@ -8,20 +8,36 @@
         <h1 class="title">This is tax receipt</h1>
         <div class="row">
             <div class="col-xs-4">
+                <label class="taxdetailslabel"><b>Organization Logo:</b></label>
                 <div class="taxreceiptbgcolor text-center">
                     <img src="${project.organizationIconUrl}" alt="orglogo">
                 </div>
             </div>
-            <div class="col-xs-8">
-                <div class="col-xs-12 form-group">
-                    <h5><b>${project.organizationName}</b></h5>
+            <div class="col-xs-8 col-plr-0">
+                <div class="col-xs-12">
+                    <label class="taxdetailslabel"><b>Organization Name:</b></label>
+                    <div class="form-control">
+                        ${project.organizationName}
+                    </div>
                 </div>
                 <div class="col-xs-6">
-                    <h5><b>${project.webAddress}</b></h5>
-                    <h5><b>${project.user.email}</b></h5>
+                    <label class="taxdetailslabel"><b>Website</b></label>
+                    <div class="form-control">
+                        ${project.webAddress}
+                    </div>
+                    <label class="taxdetailslabel"><b>Email</b></label>
+                    <div class="form-control">
+                        ${project.user.email}
+                    </div>
+                    <label class="taxdetailslabel"><b>Phone</b></label>
+                    <div class="form-control">
+                    </div>
                 </div>
                 <div class="col-xs-6">
+                    <label class="taxdetailslabel"><b>Organization Address:</b></label>
+                    <div class="form-control taxorgaddress">
                     
+                    </div>
                 </div>
             </div>
             
@@ -31,10 +47,41 @@
         <div class="row">
             <div class="col-sm-12 ">
                 <div class="taxreceiptcontributorlabel">
-                    <label class="col-xs-12 text-center"><span class="taxreceiptlabelfont">CONTRIBUTOR DETAILS</span></label>
+                    <label class="col-xs-12"><span class="taxreceiptlabelfont">CONTRIBUTOR DETAILS</span></label>
                 </div>
-                <div class="panel panel-body cr-partner-contact-info">
-                    
+                <div class="panel panel-body taxreceiptbgcolor taxreceiptcontributiondetail">
+                    <div class="col-xs-6 taxreceipttop">
+                        <label class="pull-right taxreceiptdetailsfont">Contributed amount in words:</label>
+                    </div>
+                    <div class="col-xs-6 taxreceipttop">
+                        <div class="form-control"></div>
+                    </div>
+                    <div class="col-xs-6 taxreceipttop">
+                        <label class="pull-right taxreceiptdetailsfont">Contributed amount in number:</label>
+                    </div>
+                    <div class="col-xs-6 taxreceipttop">
+                        <div class="form-control"></div>
+                    </div>
+                    <div class="col-xs-6 taxreceipttop">
+                        <label class="pull-right taxreceiptdetailsfont">Contribution received from:</label>
+                    </div>
+                    <div class="col-xs-6 taxreceipttop">
+                        <div class="form-control"></div>
+                    </div>
+                    <div class="col-xs-6 taxreceipttop">
+                        <label class="pull-right taxreceiptdetailsfont">Date of contribution:</label>
+                    </div>
+                    <div class="col-xs-6 taxreceipttop">
+                        <div class="form-control"></div>
+                    </div>
+                    <div class="col-xs-6 taxreceipttop">
+                        <label class="pull-right taxreceiptdetailsfont">Perk claimed by contributor:</label>
+                        <div class="clear"></div>
+                        <label class="pull-right">(goods or services in exchange of contribution)</label>
+                    </div>
+                    <div class="col-xs-6 taxreceipttop">
+                        <div class="form-control"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -42,10 +89,29 @@
         <div class="row">
             <div class="col-sm-12 ">
                 <div class="taxreceiptcontributorlabel">
-                    <label class="col-xs-12 text-center"><span class="taxreceiptlabelfont">TAX DEDUCTION DETAILS</span></label>
+                    <label class="col-xs-12"><span class="taxreceiptlabelfont">TAX DEDUCTION DETAILS</span></label>
                 </div>
-                <div class="panel panel-body cr-partner-contact-info">
-                    
+                <div class="panel panel-body taxreceiptbgcolor taxreceiptcontributiondetail">
+                    <div class="col-xs-6 taxreceipttop">
+                        <label class="pull-right taxreceiptdetailsfont">Federal ID Number:</label>
+                    </div>
+                    <div class="col-xs-6 taxreceipttop">
+                        <div class="form-control"></div>
+                    </div>
+                    <div class="col-xs-6 taxreceipttop">
+                        <label class="pull-right taxreceiptdetailsfont">Legal Status / % of Exemption:</label>
+                    </div>
+                    <div class="col-xs-6 taxreceipttop">
+                        <div class="form-control"></div>
+                    </div>
+                    <div class="col-xs-6 taxreceipttop">
+                        <label class="pull-right taxreceiptdetailsfont">Name and Signature of</label>
+                        <label class="pull-right taxreceiptdetailsfont zerotopmargin">Authorized Representative of Organization:</label>
+                    </div>
+                    <div class="col-xs-6 taxreceipttop">
+                        <div class="form-control"></div>
+                        <div class="form-control digitalsignature taxreceipttop"></div>
+                    </div>
                 </div>
             </div>
         </div>

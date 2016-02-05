@@ -1312,8 +1312,12 @@ img.how-it-success-img{
 }
 .taxreceiptbgcolor {
     background-color: #F4F4F4;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+.taxreceiptbgcolor img {
+    width: 175px;
+    height: 175px;
 }
 .taxreceiptcontributorlabel label {
     background-color: #889299;
@@ -1329,4 +1333,27 @@ img.how-it-success-img{
 .searchablehastag, .searchablehastag:hover {
     color: #01bbd2;
     text-decoration: none;
+}
+.taxdetailslabel {
+    margin-top: 10px;
+    font-size: 14px;
+}
+.taxorgaddress {
+    min-height: 170px
+}
+.taxreceiptcontributiondetail .taxreceipttop {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.taxreceiptdetailsfont {
+    margin-top: 8px;
+    margin-bottom: 0px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.taxreceiptdetailsfont.zerotopmargin {
+    margin-top: 0px;
+}
+.digitalsignature {
+    height: 150px;
 }

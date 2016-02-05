@@ -1296,12 +1296,12 @@
 		                            <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
 		                                <div class="col-sm-4">
 		                                    <div class="form-group form-group-tax-reciept">
-		                                        <input type="text" placeholder="Address Line 1" class="form-control tax-reciept-holder-city addressLine1" name="addressLine1" value="${taxReciept.addressLine1}">
+		                                        <input type="text" placeholder="Address Line 1" class="form-control addressLine1" name="addressLine1" value="${taxReciept.addressLine1}">
 		                                    </div>
 		                                </div>
 		                                <div class="col-sm-4">
 		                                    <div class="form-group form-group-tax-reciept">
-		                                        <input type="text" placeholder="Address Line 2" class="form-control tax-reciept-holder-state addressLine2" name="addressLine2" value="${taxReciept.addressLine2}">
+		                                        <input type="text" placeholder="Address Line 2" class="form-control addressLine2" name="addressLine2" value="${taxReciept.addressLine2}">
 		                                    </div>
 		                                </div>
 		                                <div class="col-sm-4">
@@ -1313,7 +1313,7 @@
 		                            <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
 		                                <div class="col-sm-4">
                                             <div class="form-group form-group-tax-reciept">
-                                                <input type="text" placeholder="Zip" class="form-control tax-reciept-holder-state zip" name="zip" value="${taxReciept.zip}">
+                                                <input type="text" placeholder="Zip" class="form-control zip" name="zip" value="${taxReciept.zip}">
                                             </div>
                                         </div>
 		                                <div class="col-sm-4">
@@ -1351,12 +1351,12 @@
 		                            <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
 		                                <div class="col-sm-4">
 		                                    <div class="form-group form-group-tax-reciept">
-		                                        <input type="text" placeholder="Address Line 1" class="addressLine1 form-control tax-reciept-holder-city" name="addressLine1">
+		                                        <input type="text" placeholder="Address Line 1" class="addressLine1 form-control" name="addressLine1">
 		                                    </div>
 		                                </div>
 		                                <div class="col-sm-4">
 		                                    <div class="form-group form-group-tax-reciept">
-		                                        <input type="text" placeholder="Address Line 2" class="addressLine2 form-control tax-reciept-holder-state" name="addressLine2">
+		                                        <input type="text" placeholder="Address Line 2" class="addressLine2 form-control" name="addressLine2">
 		                                    </div>
 		                                </div>
 		                                <div class="col-sm-4">
@@ -1368,7 +1368,7 @@
 		                            <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
 		                                <div class="col-sm-4">
                                             <div class="form-group form-group-tax-reciept">
-                                                <input type="text" placeholder="Zip" class="form-control tax-reciept-holder-state" name="zip">
+                                                <input type="text" placeholder="Zip" class="form-control zip" name="zip">
                                             </div>
                                         </div>
 		                                <div class="col-sm-4">

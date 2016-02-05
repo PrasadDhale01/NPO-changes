@@ -496,28 +496,6 @@
                   </div>
                </div>
                
-               <%--Mobile code for whatsapp--%>
-<%--               <g:if test="${isPreview}">--%>
-<%--                  <div class="whatsapp-mobile-icon visible-xs">--%>
-<%--                      <a class="btn btn-whatsapp" href="whatsapp://send?text=${shareUrl}" data-action="share/whatsapp/share">--%>
-<%--                          <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> --%>
-<%--                      </a>--%>
-<%--                  </div>--%>
-<%--               </g:if>--%>
-<%--               <g:elseif test="${isDeviceMobileOrTab}">--%>
-<%--                   <div class="whatsapp-mobile-icon visible-xs">--%>
-<%--                       <a class="btn btn-whatsapp" href="whatsapp://send?text=${shareUrl}">--%>
-<%--                           <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> --%>
-<%--                       </a>--%>
-<%--                   </div>--%>
-<%--               </g:elseif>--%>
-<%--               <g:else>--%>
-<%--                   <div class="whatsapp-mobile-icon visible-xs">--%>
-<%--                       <a class="btn btn-whatsapp" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank">--%>
-<%--                           <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> --%>
-<%--                       </a>--%>
-<%--                   </div>--%>
-<%--               </g:else>--%>
                
                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 borders  hidden-xs">
                     <g:set var="screen" id="screen" value="false"></g:set>

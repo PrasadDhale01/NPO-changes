@@ -1058,9 +1058,6 @@ $(function() {
             if($('.mange-btn-submitapproval').length){
             	var manage_sapproval = $('.mange-btn-submitapproval').offset().top;
             }
-//            if($('.manage-socialicons').length){
-//            	var manage_socialicons = $('.manage-socialicons').offset().top;
-//            }
             
 //		    Top header code
             if (window_top > div_top) {
@@ -1112,12 +1109,6 @@ $(function() {
             }else if(window_top < manage_sapproval){
             	$('.manage-submitaprroval').hide();
             }
-//            if(window_top > manage_socialicons){
-//            	$('.manage-socials-icons').show();
-//            }else if(window_top < manage_socialicons){
-//            	$('.manage-socials-icons').hide();
-//            }
-
         }
         $(window).scroll(sticky_relocate);
         sticky_relocate();

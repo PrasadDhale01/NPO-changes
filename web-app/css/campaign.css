@@ -1399,3 +1399,8 @@ img.how-it-success-img{
 .col-tax-reciept-panel .rowseperator .help-block {
     margin-bottom: 0px;
 }
+.manage-urlshort {
+    cursor: pointer;
+    padding: 9px;
+    top: 1px;
+}

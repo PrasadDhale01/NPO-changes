@@ -16,6 +16,7 @@
 		imageUrl = project.imageUrl[0].getUrl()
 	}
     def fbShareUrl = base_url+"/campaign/managecampaign?id="+project.id
+    def shareUrl = base_url+'/c/'+shortUrl
     def fundRaiser = userService.getCurrentUser()
     def fundRaiserName
     if (fundRaiser) {
@@ -161,16 +162,16 @@
                         <g:if test="${project.draft}">
                             <ul class="nav navbar-nav navbar-right col-lg-6 col-md-6 <g:if test="${project.payuStatus}">hidden-sm manage-submitapprov-india</g:if><g:else>col-sm-6 manage-submitapprove-edit</g:else>">
                                 <li>
-									<div class="submitForApprovalSectionbtn">
-									    <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
-									        <g:form controller="project" action="saveasdraft" id="${project.id}">
-									            <button class="btn btn-block btn-primary manage-submitaprroval mange-btnsubmitapprov-size"><i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL</button>
-									        </g:form>
-									    </g:if>
-									    <g:else>
-									        <button class="btn btn-block btn-primary manage-submitaprroval mange-btnsubmitapprov-size" id="submitForApprovalBtnright"><i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL</button>
-									    </g:else>
-									</div>
+                                    <div class="submitForApprovalSectionbtn">
+                                        <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                                            <g:form controller="project" action="saveasdraft" id="${project.id}">
+                                                <button class="btn btn-block btn-primary manage-submitaprroval mange-btnsubmitapprov-size"><i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL</button>
+                                            </g:form>
+                                        </g:if>
+                                        <g:else>
+                                            <button class="btn btn-block btn-primary manage-submitaprroval mange-btnsubmitapprov-size" id="submitForApprovalBtnright"><i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL</button>
+                                        </g:else>
+                                    </div>
                                 </li>
                             </ul>
                         </g:if>
@@ -194,21 +195,13 @@
                                      <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
                                  </a>
                                  <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left embedIcon-manage-left social hidden-xs"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" class="show-embedIcon" alt="embedicon"></a>
-                                 <div class="popoverClassManagePage">
-                                     <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphicon pull-left glyphicon glyphicon-link glyphicon-design glyphicon-show-link-color"></span>
-                                     <div class="hidden">
+                                 <div class="popoverClass">
+                                     <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphiconheader glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color manage-urlshort"></span>
+                                     <div class="hidden popoverConent">
                                          <button type="button" class="close">&times;</button>
                                          <p>${shareUrl}</p>
                                      </div>
                                  </div>
-                                 <div class="popoverClassMobManagePage">
-                                     <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphiconMob pull-left glyphicon glyphicon-link glyphicon-design glyphicon-show-link-color"></span>
-                                     <div class="hidden">
-                                         <button type="button" class="close">&times;</button>
-                                         <p>${shareUrl}</p>
-                                     </div>
-                                 </div>
-                                     
                              </div>
                              <div class="col-lg-6 col-md-6 col-sm-6 manage-fbheader-size">
                                  <span class="btn btn-default fbShareForLargeDevices manage-fb-color manage-fb-btn-width fbshare-header">
@@ -218,80 +211,61 @@
                          </div>
                      </g:if>
                      
-               <%--Tab code for whatsapp, facebook and twitter css-same-as-it-is-on-show-page-social --%>
-               <g:if test="${project.validated}">
-	               <div class="visible-sm visible-xs sh-tabs-social sh-shareicons-Fixedtophead">
-	                   <div class="col-sm-4 col-md-4 col-xs-4 show-tabs">
-	                       <g:if test="${isPreview}">
-	                           <a class="btn btn-block btn-social btn-facebook sh-head-fb-over show-Allsocialtabs-size show-whats-paddingmobile">
-	                                <i class="fa fa-facebook show-tabsfooter-fb"></i> 
-	                           </a>
-	                       </g:if>
-	                       <g:else>
-	                           <a class="btn btn-block btn-social btn-facebook sh-head-fb-over show-Allsocialtabs-size fbshare-header show-whats-paddingmobile" href="#">
-	                               <i class="fa fa-facebook show-tabsfooter-fb"></i> 
-	                           </a>
-	                       </g:else>
-	                   </div>
-	                  <div class="col-sm-4 col-md-4 col-xs-4 show-tabs">
-	                      <g:if test="${isPreview}">
-	                          <a href="whatsapp://send?text=${shareUrl}" data-action="share/whatsapp/share" class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-whatsapp-color show-Allsocialtabs-size show-whats-paddingmobile">
-	                              <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb show-small-whatsappmobile" alt="whatsapp"> 
-	                          </a>
-	                      </g:if>
-	                      <g:elseif test="${isDeviceMobileOrTab}">
-	                          <a href="whatsapp://send?text=${shareUrl}" data-action="share/whatsapp/share" class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-whatsapp-color show-Allsocialtabs-size show-whats-paddingmobile">
-	                              <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb show-small-whatsappmobile" alt="whatsapp"> 
-	                          </a>
-	                      </g:elseif>
-	                      <g:else>
-	                          <a href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-whatsapp-color show-Allsocialtabs-size show-whats-paddingmobile" >
-	                              <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb show-small-whatsappmobile" alt="whatsapp"> 
-	                          </a>
-	                      </g:else>
-	                  </div>
+                     <%--Tab code for whatsapp, facebook and twitter css-same-as-it-is-on-show-page-social --%>
+                     <g:if test="${project.validated}">
+                         <div class="visible-sm visible-xs sh-tabs-social sh-shareicons-Fixedtophead">
+                             <div class="col-sm-4 col-md-4 col-xs-4 show-tabs">
+                                 <a class="btn btn-block btn-social btn-facebook sh-head-fb-over show-Allsocialtabs-size fbshare-header show-whats-paddingmobile" href="#">
+                                     <i class="fa fa-facebook show-tabsfooter-fb"></i> 
+                                 </a>
+                             </div>
+                             <div class="col-sm-4 col-md-4 col-xs-4 show-tabs">
+                                 <g:if test="${isDeviceMobileOrTab}">
+                                     <a href="whatsapp://send?text=${shareUrl}" data-action="share/whatsapp/share" class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-whatsapp-color show-Allsocialtabs-size show-whats-paddingmobile">
+                                         <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb show-small-whatsappmobile" alt="whatsapp"> 
+                                     </a>
+                                 </g:if>
+                                 <g:else>
+                                     <a href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-whatsapp-color show-Allsocialtabs-size show-whats-paddingmobile" >
+                                         <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb show-small-whatsappmobile" alt="whatsapp"> 
+                                     </a>
+                                 </g:else>
+                             </div>
 	
-	                  <div class="col-sm-4 col-md-4 col-xs-4 show-tabs">
-	                       <g:if test="${isPreview}">
-	                           <a class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-twitter-color show-Allsocialtabs-size show-whats-paddingmobile">
-	                               <i class="fa fa-fw fa-twitter show-tabsfooter-fb"></i> 
-	                           </a>
-	                       </g:if>
-	                       <g:else>
-	                           <a class="btn btn-block btn-social twitter-share btn-facebook sh-head-fb-over <g:if test="${ended}">shTabs-twitter-color-b</g:if><g:else>shTabs-twitter-color</g:else> show-Allsocialtabs-size show-whats-paddingmobile" data-url="${shareUrl}" target="_blank">
-	                               <i class="fa fa-fw fa-twitter show-tabsfooter-fb"></i> 
-	                           </a>
-	                       </g:else>
-	                  </div>
-	               </div>
-	            </g:if>
-				<g:else>
-				      <div class="visible-sm visible-xs sh-tabs-social sh-shareicons-Fixedtophead">
-                       <div class="col-sm-4 col-md-4 col-xs-4 show-tabs">
-                           <a class="btn btn-block btn-social btn-facebook sh-head-fb-over show-Allsocialtabs-size show-pointer-not show-whats-paddingmobile">
-                               <i class="fa fa-facebook show-tabsfooter-fb"></i> 
-                           </a>
-                       </div>
-                      <div class="col-sm-4 col-md-4 col-xs-4 show-tabs">
-                          <g:if test="${isDeviceMobileOrTab}">
-                              <a class="btn btn-block btn-social btn-facebook sh-head-fb-over show-pointer-not shTabs-whatsapp-color show-Allsocialtabs-size show-whats-paddingmobile">
-                                  <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb show-small-whatsappmobile" alt="whatsapp"> 
-                              </a>
-                          </g:if>
-                          <g:else>
-                              <a class="btn btn-block btn-social btn-facebook sh-head-fb-over show-pointer-not shTabs-whatsapp-color show-Allsocialtabs-size show-whats-paddingmobile" >
-                                  <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb show-small-whatsappmobile" alt="whatsapp"> 
-                              </a>
-                          </g:else>
-                      </div>
-    
-                      <div class="col-sm-4 col-md-4 col-xs-4 show-tabs">
-                          <a class="btn btn-block btn-social btn-facebook show-pointer-not sh-head-fb-over <g:if test="${ended}">shTabs-twitter-color-b</g:if><g:else>shTabs-twitter-color</g:else> show-Allsocialtabs-size show-whats-paddingmobile">
-                              <i class="fa fa-fw fa-twitter show-tabsfooter-fb"></i> 
-                          </a>
-                      </div>
-                   </div>
-                </g:else>              
+                             <div class="col-sm-4 col-md-4 col-xs-4 show-tabs">
+                                 <a class="btn btn-block btn-social twitter-share btn-facebook sh-head-fb-over <g:if test="${ended}">shTabs-twitter-color-b</g:if><g:else>shTabs-twitter-color</g:else> show-Allsocialtabs-size show-whats-paddingmobile" data-url="${shareUrl}" target="_blank">
+                                     <i class="fa fa-fw fa-twitter show-tabsfooter-fb"></i> 
+                                 </a>
+                             </div>
+                         </div>
+                     </g:if>
+                     <g:else>
+                         <div class="visible-sm visible-xs sh-tabs-social sh-shareicons-Fixedtophead">
+                             <div class="col-sm-4 col-md-4 col-xs-4 show-tabs">
+                                 <a class="btn btn-block btn-social btn-facebook sh-head-fb-over show-Allsocialtabs-size show-pointer-not show-whats-paddingmobile">
+                                     <i class="fa fa-facebook show-tabsfooter-fb"></i> 
+                                 </a>
+                              </div>
+                              <div class="col-sm-4 col-md-4 col-xs-4 show-tabs">
+                                  <g:if test="${isDeviceMobileOrTab}">
+                                      <a class="btn btn-block btn-social btn-facebook sh-head-fb-over show-pointer-not shTabs-whatsapp-color show-Allsocialtabs-size show-whats-paddingmobile">
+                                          <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb show-small-whatsappmobile" alt="whatsapp"> 
+                                      </a>
+                                  </g:if>
+                                  <g:else>
+                                      <a class="btn btn-block btn-social btn-facebook sh-head-fb-over show-pointer-not shTabs-whatsapp-color show-Allsocialtabs-size show-whats-paddingmobile" >
+                                          <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb show-small-whatsappmobile" alt="whatsapp"> 
+                                      </a>
+                                  </g:else>
+                              </div>
+
+                              <div class="col-sm-4 col-md-4 col-xs-4 show-tabs">
+                                  <a class="btn btn-block btn-social btn-facebook show-pointer-not sh-head-fb-over <g:if test="${ended}">shTabs-twitter-color-b</g:if><g:else>shTabs-twitter-color</g:else> show-Allsocialtabs-size show-whats-paddingmobile">
+                                      <i class="fa fa-fw fa-twitter show-tabsfooter-fb"></i> 
+                                  </a>
+                              </div>
+                         </div>
+                    </g:else>              
 				
                     
                     <div class="col-xs-12">

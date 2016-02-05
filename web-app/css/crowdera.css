@@ -5752,13 +5752,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.mange-team-bottem > h2 {
         font-size: 20px;
     }
-/*     div.manage-edit-mobilebtns { */
-/*         bottom: 30px; */
-/*         left: -15px; */
-/*         position: fixed; */
-/*         width: 111%; */
-/*         z-index: 1000; */
-/*     } */
     ul.manage-bottom-top {
         margin: 14px 0 14px 5px;
     }
@@ -7921,20 +7914,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-top: 13px;
         font-size: 16px;
     }
-    span.manage-btn-width {
-/*         padding-bottom: 19px; */
-/*         padding-top: 18px; */
-/*         width: 88.5%; */
-    }
-/*     button.manage-deletebtn-width { */
-/*         padding-top: 15px; */
-/*         padding-bottom: 17px; */
-/*     } */
     @-moz-document url-prefix() { 
-/*         button.manage-deletebtn-width { */
-/*             padding-bottom: 15px; */
-/*             padding-top: 14px; */
-/*         } */
         span.mange-size-FBbtn {
             padding: 18px !important;
             font-size: 15px;
@@ -11107,22 +11087,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-bottom: 15px;
         padding-top: 15px;
     }
-    span.manage-btn-width {
-/*         padding-bottom: 17px; */
-/*         padding-top: 18px; */
-/*         width: 88.9%; */
-    }
-    @-moz-document url-prefix() { 
-        span.manage-btn-width {
-/*             padding-bottom: 16px; */
-/*             padding-top: 17px; */
-/*             width: 88.9%; */
-        }
-    }
-/*     button.manage-deletebtn-width { */
-/*         padding-bottom: 17px; */
-/*         padding-top: 16px; */
-/*     } */
     div.manage-contribution-md-tabs{
         width: 50%;    
     }

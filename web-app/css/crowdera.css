@@ -7898,7 +7898,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 73px;
     }
     button.sh-submitaproval-2header {
-        font-size: 16px;
+        font-size: 13px;
         height: 42px;
         margin-left: -23px;
         padding: 6px;
@@ -8813,7 +8813,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         height: 300px;
     }
     button.sh-submitapproval {
-        padding-left: 7px;
+        font-size: 15px;
+        padding-left: 19px;
     }
     button.btn-show-fund {
         margin-top: -10%;
@@ -16790,7 +16791,7 @@ textarea.textarea-embed-video {
     height: 90px;
 }
 .sh-submitapproval{
-	height: 88px !important;
+	height: 56px !important;
     margin-bottom: 0;
 }
 .sh-perks-preview {

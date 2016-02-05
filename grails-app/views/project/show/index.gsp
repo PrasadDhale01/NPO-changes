@@ -190,7 +190,7 @@
                                     <div class="clear"></div>
                                     <div class="show-mobile-button">
                                         <button class="btn btn-block btn-lg sh-submitapproval  show-mob-mobile">
-                                            <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                            <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
                                         </button>
                                     </div>
                                 </g:form>
@@ -198,7 +198,7 @@
                             <g:else>
                                 <div class="show-mobile-button">
                                     <button class="btn btn-block btn-lg show-mob-mobile" id="submitForApprovalBtnMobile">
-                                        <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                        <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
                                     </button>
                                 </div>
                             </g:else>
@@ -346,13 +346,13 @@
 			                                <div class="clear"></div>
 			                                            
 			                                <button class="btn btn-block btn-lg btn-primary sh-submitaproval-2header sh-aproval-btn hidden-xs">
-			                                    <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+			                                    <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
 			                                </button>
 			                            </g:form>
 			                        </g:if>
 			                        <g:else>
 			                            <button class="btn btn-block btn-lg btn-primary sh-submitaproval-2header sh-aproval-btn hidden-xs" id="submitForApprovalBtnright">
-			                                <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+			                                <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
 			                            </button>
 			                        </g:else>
 			                    </div>
@@ -722,19 +722,19 @@
                               <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                                   <g:form controller="project" action="saveasdraft" id="${project.id}">
                                       <g:if test="${!project.touAccepted}">
-                                          <div class="form-group show-submit-margin">
+                                          <div class="form-group show-submit-margin hidden-xs">
                                               <input type="checkbox" name="submitForApprovalcheckbox1">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
                                           </div>
                                           <div class="show-A-fund"></div>
                                           <button class="btn btn-block btn-lg btn-primary show-submitapproval-in-check-box hidden-xs">
-                                          <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                          <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
                                           </button>
                                       </g:if>
                                       <g:else>
                                           <div class="clear"></div>
                                           <div class="show-A-fund"></div>
                                           <button class="btn btn-block btn-lg btn-primary sh-submitapproval hidden-xs">
-                                              <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                              <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
                                           </button>
                                       </g:else>
                                   </g:form>
@@ -742,7 +742,7 @@
                               <g:else>
                                   <div class="show-A-fund"></div>
                                   <button class="btn btn-block btn-lg btn-primary sh-submitapproval hidden-xs" id="submitForApprovalBtn">
-                                      <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                      <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
                                   </button>
                               </g:else>
                           </div>

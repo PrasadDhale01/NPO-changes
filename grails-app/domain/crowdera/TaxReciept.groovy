@@ -21,6 +21,7 @@ class TaxReciept {
     String zip
     String addressLine2
     String fcraRegNum
+    String signatureUrl
 
     Date regDate = new Date()
     Date expiryDate = new Date()
@@ -45,5 +46,6 @@ class TaxReciept {
         zip nullable:true
         addressLine2 nullable:true
         fcraRegNum nullable:true
+        signatureUrl nullable: true
     }
 }

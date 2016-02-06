@@ -999,20 +999,32 @@ class UserController {
 
     def exportTaxReceiptpdf() {
         def contribution = Contribution.get(params.id)
-        def title = contribution.project.organizationName
-        response.setContentType("application/pdf")
-        response.setHeader("Content-Disposition", "attachment; filename=taxreceipt-"+title+".pdf")
-        renderPdf(view:"/user/user/taxreceiptdownload", model:[pdfRendering:true, contribution:contribution])
+        
+        if (contribution) {
+            def title = contribution.project.organizationName
+            def taxReciept = projectService.getTaxRecieptOfProject(contribution.project)
+            def transaction = contributionService.getTransactionByContribution(contribution)
+            def amountInWords = userService.convert((long)contribution.amount)
+            response.setContentType("application/pdf")
+            response.setHeader("Content-Disposition", "attachment; filename=taxreceipt-"+title+".pdf")
+            renderPdf( template :"/user/user/taxReceipt", 
+                       model:[pdfRendering:true, contribution:contribution, taxReciept: taxReciept, transaction: transaction,project: contribution.project, amountInWords: amountInWords])
+        }
     }
     
     def export() {
         def contribution = Contribution.get(params.id)
-        render view:"/user/user/taxreceiptdownload", model:[pdfRendering:true, contribution:contribution, project: contribution.project]
+        def taxReciept = projectService.getTaxRecieptOfProject(contribution.project)
+        def transaction = contributionService.getTransactionByContribution(contribution)
+        def amountInWords = userService.convert((long)contribution.amount)
+        
+        render template:"/user/user/taxReceipt", model:[pdfRendering:true, contribution: contribution, project: contribution.project,
+                                                            taxReciept:taxReciept, transaction: transaction, amountInWords: amountInWords]
     }
 
     @Secured(['ROLE_ADMIN'])
     def deletePartner() {
-        Partner partner = userServicoe.getPartnerById(params.int('partnerId'))
+        Partner partner = userService.getPartnerById(params.int('partnerId'))
         if (partner) {
             boolean isPartnerDeleted = userService.deletePartner(params, partner)
             if (isPartnerDeleted) {

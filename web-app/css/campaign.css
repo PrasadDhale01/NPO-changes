@@ -1308,7 +1308,10 @@ img.how-it-success-img{
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
-    margin-botton: 20px;
+    margin-bottom: 20px;
+}
+.modal-body .taxreceiptcontainer {
+    width: auto;
 }
 .taxreceiptbgcolor {
     background-color: #F4F4F4;

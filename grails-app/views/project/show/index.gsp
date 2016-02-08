@@ -68,7 +68,7 @@
     <g:elseif test="${imageUrl}">
         <meta property="og:image" content="${imageUrl}" />
     </g:elseif>
-        <meta property="og:url" content="${fbShareUrl}" />
+    <meta property="og:url" content="${fbShareUrl}" />
     
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@gocrowdera" />
@@ -77,6 +77,14 @@
     <g:if test="${project.description}">
        <meta name="twitter:description" content="${project.description}" />
     </g:if>
+    
+    <g:if test="${project.organizationIconUrl}">
+        <meta property="twitter:image" content="${project.organizationIconUrl}" />
+    </g:if>
+    <g:elseif test="${imageUrl}">
+        <meta property="twitter:image" content="${imageUrl}" />
+    </g:elseif>
+    
     <meta name="layout" content="main" />
     
     

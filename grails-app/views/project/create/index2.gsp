@@ -1120,58 +1120,115 @@
                              </g:else>
                         </g:if>
                         <g:else>
-                         <g:if test="${taxReciept}">
-                             <div class="col-sm-4">
-                                 <div class="col-sm-12 form-group form-group-tax-reciept">
-                                      <input type="text" placeholder="EIN" class="form-control ein" data-fv-ein="true" name="ein" value="${taxReciept.ein}">
-                                 </div>
-                                 <div class="col-sm-12 form-group form-group-tax-reciept">
-                                     <input type="text" placeholder="City" class="form-control tax-reciept-holder-city" name="tax-reciept-holder-city" value="${taxReciept.city}">
-                                 </div>
-                             </div>
-                             <div class="col-sm-4">
-                                 <div class="col-sm-12 form-group form-group-tax-reciept">
-                                     <input type="text" placeholder="Name" class="form-control tax-reciept-holder-name" name="tax-reciept-holder-name" value="${taxReciept.name}">
-                                 </div>
-                                 <div class="col-sm-12 form-group form-group-tax-reciept">
-                                     <input type="text" placeholder="State" class="form-control tax-reciept-holder-state" name="tax-reciept-holder-state" value="${taxReciept.taxRecieptHolderState}">
-                                 </div>
-                             </div>
-                             <div class="col-sm-4">
-                                 <div class="col-sm-12 form-group form-group-tax-reciept-dropdown form-group-dropdown">
-                                     <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" value="${taxReciept.deductibleStatus}" noSelection="['null':'Deductible Status']"/>
-                                 </div>
-                                 <div class="col-sm-12 form-group form-group-tax-reciept-dropdown form-group-dropdown">
-                                     <g:select class="selectpicker form-control tax-reciept-holder-country tax-reciept-dropdown-menu" name="tax-reciept-holder-country" from="${country}" optionKey="value" value="${taxReciept.country}" optionValue="value" noSelection="['null':'Country']"/>
-                                 </div>
-                             </div>
-                         </g:if>
-                         <g:else>
-                             <div class="col-sm-4">
-                                 <div class="col-sm-12 form-group form-group-tax-reciept">
-                                      <input type="text" placeholder="EIN" class="form-control ein" data-fv-ein="true" name="ein">
-                                 </div>
-                                 <div class="col-sm-12 form-group form-group-tax-reciept">
-                                     <input type="text" placeholder="City" class="form-control tax-reciept-holder-city" name="tax-reciept-holder-city">
-                                 </div>
-                             </div>
-                             <div class="col-sm-4">
-                                 <div class="col-sm-12 form-group form-group-tax-reciept">
-                                     <input type="text" placeholder="Name" class="form-control tax-reciept-holder-name" name="tax-reciept-holder-name">
-                                 </div>
-                                 <div class="col-sm-12 form-group form-group-tax-reciept">
-                                     <input type="text" placeholder="State" class="form-control tax-reciept-holder-state" name="tax-reciept-holder-state">
-                                 </div>
-                             </div>
-                             <div class="col-sm-4">
-                                 <div class="col-sm-12 form-group form-group-tax-reciept-dropdown form-group-dropdown">
-                                     <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" noSelection="['null':'Deductible Status']"/>
-                                 </div>
-                                 <div class="col-sm-12 form-group form-group-tax-reciept-dropdown form-group-dropdown">
-                                     <g:select class="selectpicker form-control tax-reciept-holder-country tax-reciept-dropdown-menu" name="tax-reciept-holder-country" from="${country}" optionKey="value" optionValue="value" noSelection="['null':'Country']"/>
-                                 </div>
-                             </div>
-                         </g:else>
+                            <g:if test="${taxReciept}">
+                                <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
+                                    <div class="col-sm-4">
+                                        <div class="form-group form-group-tax-reciept">
+                                            <input type="text" placeholder="EIN" class="form-control ein" name="ein" value="${taxReciept.ein}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group form-group-tax-reciept">
+                                            <input type="text" placeholder="Name" class="form-control tax-reciept-holder-name" name="tax-reciept-holder-name" value="${taxReciept.name}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group form-group-tax-reciept-dropdown form-group-dropdown">
+                                            <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" value="${taxReciept.deductibleStatus}" noSelection="['null':'Deductible Status']"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
+                                    <div class="col-sm-4">
+                                        <div class="form-group form-group-tax-reciept">
+                                            <input type="text" placeholder="Address Line 1" class="form-control addressLine1" name="addressLine1" value="${taxReciept.addressLine1}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group form-group-tax-reciept">
+                                            <input type="text" placeholder="Address Line 2" class="form-control addressLine2" name="addressLine2" value="${taxReciept.addressLine2}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group form-group-tax-reciept">
+                                            <input type="text" placeholder="City" class="form-control tax-reciept-holder-city" name="tax-reciept-holder-city" value="${taxReciept.city}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
+                                    <div class="col-sm-4">
+                                        <div class="form-group form-group-tax-reciept">
+                                            <input type="text" placeholder="Zip" class="form-control zip" name="zip" value="${taxReciept.zip}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group form-group-tax-reciept">
+                                            <input type="text" placeholder="State" class="form-control tax-reciept-holder-state" name="tax-reciept-holder-state" value="${taxReciept.taxRecieptHolderState}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group form-group-tax-reciept-dropdown form-group-dropdown">
+                                            <g:select class="selectpicker form-control tax-reciept-holder-country-edit tax-reciept-holder-country" name="tax-reciept-holder-country" from="${country}" optionKey="value" value="${taxReciept.country}" optionValue="value" noSelection="['null':'Country']"/>
+                                        </div>    
+                                    </div>
+                                </div>
+
+                            </g:if>
+                            <g:else>
+                            
+                                <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
+                                    <div class="col-sm-4">
+                                        <div class="form-group form-group-tax-reciept">
+                                            <input type="text" placeholder="EIN" class="form-control ein" name="ein">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group form-group-tax-reciept">
+                                            <input type="text" placeholder="Name" class="form-control tax-reciept-holder-name" name="tax-reciept-holder-name">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group form-group-tax-reciept-dropdown form-group-dropdown">
+                                            <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" noSelection="['null':'Deductible Status']"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
+                                    <div class="col-sm-4">
+                                        <div class="form-group form-group-tax-reciept">
+                                            <input type="text" placeholder="Address Line 1" class="addressLine1 form-control" name="addressLine1">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group form-group-tax-reciept">
+                                            <input type="text" placeholder="Address Line 2" class="addressLine2 form-control" name="addressLine2">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group form-group-tax-reciept">
+                                            <input type="text" placeholder="City" class="form-control tax-reciept-holder-city" name="tax-reciept-holder-city">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
+                                    <div class="col-sm-4">
+                                        <div class="form-group form-group-tax-reciept">
+                                            <input type="text" placeholder="Zip" class="form-control zip" name="zip">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group form-group-tax-reciept">
+                                            <input type="text" placeholder="State" class="form-control tax-reciept-holder-state" name="tax-reciept-holder-state">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group form-group-tax-reciept-dropdown form-group-dropdown">
+                                            <g:select class="selectpicker form-control tax-reciept-holder-country-edit tax-reciept-holder-country" name="tax-reciept-holder-country" from="${country}" optionKey="value" optionValue="value" noSelection="['null':'Country']"/>
+                                        </div>    
+                                    </div>
+                                </div>
+                             
+                            </g:else>
                         </g:else>
                     </div>
                 </div>

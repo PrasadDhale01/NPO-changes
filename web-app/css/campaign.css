@@ -1372,3 +1372,6 @@ img.how-it-success-img{
     min-height: 34px;
     height: auto;
 }
+.sendemailtocontributors, #signaturemsg, #signaturemsgsize, #signatureIcon, #delsignature {
+    display: none;
+}

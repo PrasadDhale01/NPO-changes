@@ -2568,4 +2568,36 @@ class ProjectController {
         render status
     }
     
+    def uploadDigitalSignature() {
+        Project project = projectService.getProjectById(params.projectId)
+        TaxReciept taxReciept = projectService.getTaxRecieptOfProject(project)
+        
+        def imageUrl = userService.getImageUrl(params.file)
+        
+        if (imageUrl) {
+            if (taxReciept){
+                taxReciept.signatureUrl = imageUrl
+                taxReciept.save(failOnError:true);
+            } else {
+                TaxReciept taxreciept = new TaxReciept()
+                taxReciept.signatureUrl = imageUrl
+                taxreciept.project = project
+                taxreciept.save(failOnError:true);
+            }
+            JSONObject json = new JSONObject();
+            json.put('imageUrl',imageUrl)
+            render json
+        }
+    }
+    
+    def deleteDigitalSign() {
+        Project project = projectService.getProjectById(params.projectId)
+        TaxReciept taxReciept = projectService.getTaxRecieptOfProject(project)
+        if (taxReciept){
+            taxReciept.signatureUrl = null;
+            taxReciept.save(failOnError:true);
+        }
+        render ''
+    }
+    
 }

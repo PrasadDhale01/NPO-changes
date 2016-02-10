@@ -10158,6 +10158,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         background-color: #fff !important;
     }
     
+    .col-xs-pl-0 {
+        padding-left: 0px;
+    }
 	#sendReceipt .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),
 	.sendTaxReceiptBoard .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
 	   width:105px;    

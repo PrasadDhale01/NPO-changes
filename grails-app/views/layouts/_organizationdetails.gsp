@@ -4,15 +4,6 @@
     def beneficiary = project.user
 %>
 <div class="panel panel-default TW-org-panel-height manage-org-bottomMargin">
-    <div class="panel-heading panel-css TW-organization-panel-name-size mange-tabs-font">
-        <g:if test="${currentFundraiser == beneficiary}">
-            Campaign by ${beneficiary.firstName} ${beneficiary.lastName}
-        </g:if>
-        <g:else>
-            Benefiting ${beneficiary.firstName} ${beneficiary.lastName}
-        </g:else>
-    </div>
-
    	<div class="manage-organization-details text-center manage-org-title manage-org-height">
    		<br><br>
    	    <h4><b class="TW-org-title-font-size-manage">${project.organizationName}</b></h4>
@@ -51,7 +42,7 @@
 	            <g:else>
 					<img src="//s3.amazonaws.com/crowdera/assets/Team-tag.png" alt="team"/>
 	            </g:else>
-	        </g:elseif>
+            </g:elseif>
 	    </div>
     </div>
 </div>

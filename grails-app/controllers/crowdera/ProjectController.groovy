@@ -1224,7 +1224,7 @@ class ProjectController {
             def hasMoreTagsTabs = projectService.getHashTagsTabs(project.hashtags)
             def reasons = projectService.getReasonsToFundFromProject(project)
             
-//            def isDeviceMobileOrTab = isDeviceMobileOrTab();
+            def isDeviceMobileOrTab = isDeviceMobileOrTab();
 
 			if(project.user==user || isCampaignOwnerOrAdmin){
 				render (view: 'manageproject/index',
@@ -1233,7 +1233,7 @@ class ProjectController {
 					ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
 					unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, vanityUsername:vanityUsername, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo,
 					tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier, reasons: reasons,
-                    spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList,
+                    spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, isDeviceMobileOrTab: isDeviceMobileOrTab,
                     hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
                     hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags])
 			} else {

@@ -40,6 +40,18 @@ $(function() {
             }
         }
     });
+    
+    $('#updatesendmailmodal').find('form').validate({
+        rules: {
+        	name: {
+        		required: true
+        	},
+            emails: {
+                required: true,
+                validateMultipleEmailsCommaSeparated: true
+            }
+        }
+    });
 
     $('.submitForApprovalSection').find('form').validate({
         rules: {
@@ -287,6 +299,11 @@ $(function() {
             console.log('An error occured');
         });
     }
+    
+    $('a.show-emailjsid').click(function(){
+    	var updateId = $(this).attr('id');
+        $('#projectUpdateId').val(updateId);
+    });
     
     /***********************Enable or Disable a Team********************************/
     
@@ -690,6 +707,12 @@ $(function() {
         return false;
     });
     
+    $(".fbshare-headermangepage").click(function(){
+        var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent($('#fbShareUrl').val());
+        window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+        return false;
+    });
+    
     $("a.show-tabs-text").click(function(){
     	$('.choose-error').html('');
     	$(".sh-tabs").find("a.show-tabs-text").removeClass('sh-selected');
@@ -729,6 +752,17 @@ $(function() {
             var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.in!"&url='+shareUrl;
         }
         window.open(url, 'Share on Twitter', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+        return false;
+    });
+    
+    $(".twitter-share-updatepage").click(function(){
+        var shareUrl = $('#shareUrl').val()
+        if(currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
+            var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.co!"&url='+shareUrl+'%23projectupdates&';
+        } else {
+            var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.in!"&url='+shareUrl+'%23projectupdates&';
+        }
+        window.open(url, 'Share on Twitter', 'left=20,top=20,width=630,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
     });
 

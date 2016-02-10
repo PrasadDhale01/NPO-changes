@@ -1308,6 +1308,19 @@ class ProjectController {
 			redirect (action: 'show', params:[fr: params.vanityUsername, 'projectTitle': params.vanityTitle])
 		}
 	}
+    
+    def sendupdateemail() {
+        def fundRaiser = params.fr
+        def updateId = projectService.getProjectUpdateById(params.projectUpdateId)
+        
+        projectService.shareupdateemail(params,fundRaiser,updateId)
+        flash.prj_mngprj_message= "Email sent successfully."
+        if (params.ismanagepage) {
+            redirect(controller: 'project', action: 'manageproject', params:['projectTitle': params.vanityTitle])
+        } else {
+            redirect (action: 'show', params:[fr: params.vanityUsername, 'projectTitle': params.vanityTitle])
+        }
+    }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def projectupdate() {

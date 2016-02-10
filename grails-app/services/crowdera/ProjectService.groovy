@@ -2723,6 +2723,19 @@ class ProjectService {
         }
         project.gmailShareCount = project.gmailShareCount + 1
     }
+    
+    def shareupdateemail(def params, def fundRaiser, def projectUpdate) {
+        def project = Project.get(params.id)
+        String emails = params.emails
+        String name = params.name
+        String message = params.message
+        if(emails) {
+            def emaillist = emails.split(',')
+            emaillist = emaillist.collect {it.trim()}
+            mandrillService.shareProjectupdate(emaillist, name, message, project, fundRaiser, projectUpdate)
+        }
+        project.gmailShareCount = project.gmailShareCount + 1
+    }
 
     def getShippingDetails(def contibutions){
       def shippingDetails=" "

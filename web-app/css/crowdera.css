@@ -17816,3 +17816,6 @@ input[readonly] {
 .reasons-title {
     padding: 5px;
 }
+.col-pr-0 {
+    padding-right: 0px;
+}

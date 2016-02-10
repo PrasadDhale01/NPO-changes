@@ -40,7 +40,7 @@
             <g:uploadForm class="form-horizontal cr-top-spaces" controller="project" action="saveCampaign">
             
                 <g:hiddenField name="partnerInviteCode" value="${partnerInviteCode}"/>
-               
+                
                 <%--Desktop code --%>
                 <div class="form-group">
                     <div class="col-lg-6 col-md-6 col-sm-6">

@@ -594,4 +594,8 @@ class ContributionService {
         ]
     }
     
+    def getTransactionByContribution(def contribution) {
+        return Transaction.findByContribution(contribution)
+    }
+    
 }

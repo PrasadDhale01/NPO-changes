@@ -245,22 +245,21 @@ $(function() {
                 error.appendTo(element.parent().parent());
             } else if(element.is(":checkbox")) {
                 error.appendTo(element.parent());
-            } else if($(element).prop("id") == "projectImageFile") {
+            } else if($(element).prop("id") === "projectImageFile") {
                 error.appendTo(document.getElementById("col-error-placement"));
-            }else if($(element).prop("id") == "iconfile") {
+            }else if($(element).prop("id") === "iconfile") {
                 error.appendTo(element.parent().parent());
-            }else if($(element).prop("id") == "projectEditImageFile") {
+            }else if($(element).prop("id") === "projectEditImageFile") {
                 error.appendTo(document.getElementById("col-error-placement"));
-            }else if($(element).prop("id") == "editiconfile") {
+            }else if($(element).prop("id") === "editiconfile") {
                 error.appendTo(element.parent().parent());
-            }else if($(element).prop("id") == "customVanityUrl") {
+            }else if($(element).prop("id") === "customVanityUrl") {
                 error.appendTo(element.parent().parent());
             }else{
                 error.insertAfter(element);
             }
-        }//end error Placement
+        }
 
-        //ignore: []
     });
 
     $.validator.addMethod('isFacebookUrl', function (value) {
@@ -669,23 +668,8 @@ $(function() {
             isFullName: true
         });
 
-        if (currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'staging' || currentEnv === 'production'){
-            $( '[name="ein"]' ).rules( "add", {
-                required: true,
-                minlength:9
-            });
-
-            $( '[name="tax-reciept-deductible-status"]' ).rules( "add", {
-                required: true,
-                minlength:2
-            });
-
-            $( '[name="tax-reciept-holder-state"]' ).rules( "add", {
-                required: true,
-                minlength:2
-            });
-        } else {
-            $( '[name="reg-date"]' ).rules( "add", {
+        if (isIndianCampaign){
+        	$( '[name="reg-date"]' ).rules( "add", {
                 required: true
             });
 
@@ -716,8 +700,23 @@ $(function() {
                 required: true
             });
 
+        } else {
+        	$( '[name="ein"]' ).rules( "add", {
+                required: true,
+                minlength:9
+            });
+
+            $( '[name="tax-reciept-deductible-status"]' ).rules( "add", {
+                required: true,
+                minlength:2
+            });
+
+            $( '[name="tax-reciept-holder-state"]' ).rules( "add", {
+                required: true,
+                minlength:2
+            });
         }
-        
+
         $( '[name="addressLine1"]' ).rules( "add", {
             required: true,
             minlength:5,
@@ -999,22 +998,7 @@ $(function() {
                 isFullName: true
             });
 
-            if (currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'staging' || currentEnv === 'production'){
-            	$( '[name="ein"]' ).rules( "add", {
-                    required: true,
-                    minlength:9
-                });
-                
-                $( '[name="tax-reciept-deductible-status"]' ).rules( "add", {
-                    required: true,
-                    minlength:2
-                });
-                
-                $( '[name="tax-reciept-holder-state"]' ).rules( "add", {
-                    required: true,
-                    minlength:2
-                });
-            } else {
+            if (isIndianCampaign){
             	$( '[name="reg-date"]' ).rules( "add", {
                     required: true
                 });
@@ -1045,7 +1029,23 @@ $(function() {
                 $( '[name="fcra-reg-date"]' ).rules( "add", {
                     required: true
                 });
+            } else {
+            	$( '[name="ein"]' ).rules( "add", {
+                    required: true,
+                    minlength:9
+                });
+                
+                $( '[name="tax-reciept-deductible-status"]' ).rules( "add", {
+                    required: true,
+                    minlength:2
+                });
+                
+                $( '[name="tax-reciept-holder-state"]' ).rules( "add", {
+                    required: true,
+                    minlength:2
+                });
             }
+            
             $( '[name="addressLine1"]' ).rules( "add", {
                 required: true,
                 minlength:5,
@@ -2572,43 +2572,42 @@ $(function() {
            success: function(data){
                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
            }
-       }).error(function(data){
-           console.log('Error occured while autosaving category and hashtags info'+ data);
+       }).error(function(){
        });
     });
 
     $('#country').change(function(){
         var selectedCountry = $(this).val();
-        if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
-            $.ajax({
+        if (isIndianCampaign){
+        	if (selectedCountry === 'null') {
+                autoSave('country', 'IN');
+            } else {
+                autoSave('country', selectedCountry);
+            }
+        } else {
+        	$.ajax({
                 type:'post',
                 url:$("#b_url").val()+'/project/getCountryVal',
                 data:'country='+selectedCountry+'&projectId='+projectId,
                 success: function(data) {
                    $('#selectedCountry').val(data);
-                   changeHashTags()
+                   changeHashTags();
                 }
-            }).error(function(data){
-                console.log('Error occured while autosaving country and hashtags info'+ data);
+            }).error(function(){
             });
-        } else {
-            if (selectedCountry == 'null') {
-                autoSave('country', 'IN');
-            } else {
-                autoSave('country', selectedCountry);
-            }
         }
     });
 
     $('.recipient').change(function() {
+
         var recipient = $(this).val();
         if (isIndianCampaign){
-            if (recipient == 'NGO'){
+            if (recipient === 'NGO'){
                 $('#tax-reciept').show();
             } else {
                 $('#tax-reciept').hide();
-                if ($('#offeringTaxReciept').val() == 'true' || $('#offeringTaxReciept').val() == true){
-                    if (confirm("If you will change the recipient of fund you will not be liable to offer tax reciept. \nAre you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
+                if ($('#offeringTaxReciept').val() === 'true' || $('#offeringTaxReciept').val() === true){
+                    if (confirm("If you will change the recipient of fund you will not be liable to offer tax reciept. \n Are you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
                         $('.col-tax-reciept-panel').hide();
                         $('#taxRecieptId').val(null);
                         deleteTaxReciept();
@@ -2668,21 +2667,23 @@ $(function() {
                $('.tax-reciept-holder-city').val('');
                $('.tax-reciept-holder-name').val('');
                $('.tax-reciept-holder-state').val('');
-               if (currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'staging' || currentEnv === 'production'){
-                   $('.ein').val('');
-                   $('.tax-reciept-holder-country').val('');
-                   $('.tax-reciept-deductible-status').val('');
-               } else {
-                   $('.addressLine1').val('');
-                   $('.addressLine2').val('');
-                   $('.zip').val('');
+
+               $('.addressLine1').val('');
+               $('.addressLine2').val('');
+               $('.zip').val('');
+               $('.tax-reciept-holder-phone').val('');
+
+               if (isIndianCampaign){
                    $('.tax-reciept-registration-num').val('');
                    $('.tax-reciept-holder-pan-card').val('');
-                   $('.tax-reciept-holder-phone').val('');
                    $('.fcra-reg-no').val('');
                    $('.text-date').val('');
                    $('#taxRecieptFiles').val('');
                    $('.col-tax-file-show').find('.cr-tax-files').remove();
+               } else {
+            	   $('.ein').val('');
+                   $('.tax-reciept-holder-country').val('');
+                   $('.tax-reciept-deductible-status').val('');
                }
            }
        }).error(function() {
@@ -2973,11 +2974,14 @@ $(function() {
         } else if (usedFor === 'PASSION'){
             list = '#Passion';
         }
+
         (fundRaisedBy && fundRaisedBy !== 'null') ? list = list + ', #'+getStringCaptalised(fundRaisedBy) : ' ' ;
         (category && category !== 'null') ? list = list + ', #'+getStringCaptalised(category) : ' ' ;
-        if (currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'staging' || currentEnv === 'production'){
+
+        if (!isIndianCampaign){
             (country !== 'null' && country !== null && country !== '') ? list = list + ', #'+country : ' ' ;
         }
+
         (city && city !== '') ? list = list + ', #'+city : ' ' ;
 
         if ($('.hashtags').val()){

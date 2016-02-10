@@ -1404,3 +1404,72 @@ img.how-it-success-img{
     padding: 9px;
     top: 1px;
 }
+.taxreceiptcontainer {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.modal-body .taxreceiptcontainer {
+    width: auto;
+}
+.taxreceiptbgcolor {
+    background-color: #F4F4F4;
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+.taxreceiptbgcolor img {
+    width: 175px;
+    height: 175px;
+}
+.taxreceiptcontributorlabel label {
+    background-color: #889299;
+    border-color: #889299;
+    color: #FFF;
+    height: 40px;
+    padding: 10px;
+}
+.taxreceiptlabelfont {
+    font-size: 16px;
+    font-weight: 600;
+}
+.searchablehastag, .searchablehastag:hover {
+    color: #01bbd2;
+    text-decoration: none;
+}
+.taxdetailslabel {
+    margin-top: 10px;
+    font-size: 14px;
+}
+.taxreceiptcontainer .taxorgaddress.form-control {
+    min-height: 170px
+}
+.taxreceiptcontributiondetail .taxreceipttop {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.taxreceiptdetailsfont {
+    margin-top: 8px;
+    margin-bottom: 0px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.taxreceiptdetailsfont.zerotopmargin {
+    margin-top: 0px;
+}
+.taxreceiptcontainer .form-control.digitalsignature {
+    height: 150px;
+}
+.taxreceiptheader {
+    background-color: #B3373C;
+    color: #fff;
+    padding: 10px 50px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.taxreceiptcontainer .form-control {
+    min-height: 34px;
+    height: auto;
+}

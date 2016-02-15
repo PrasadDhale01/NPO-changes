@@ -7826,6 +7826,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+    div.show-css  div.manage-updateshare{
+        padding-left: 260px !important;
+        top: 6px !important;
+    }
+    div.manage-updateshare{
+        padding-left: 145px;
+        top: 6px !important;
+    }
     div.how-it-mobilespace5 {
         top: 140px;
     }
@@ -10976,9 +10984,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+    div.manage-updateshare {
+        padding-left: 148px;
+        top: 6px !important;
+    }
     .how-des-1 {
-    line-height: 12px !important;
-}
+        line-height: 12px !important;
+    }
 	.reasonsToFund .badge1 {
         font-size: 28px;
     }

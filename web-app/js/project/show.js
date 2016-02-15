@@ -708,7 +708,8 @@ $(function() {
     });
     
     $(".fbshare-headermangepage").click(function(){
-        var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent($('#fbShareUrl').val());
+        var fbShareUrl = $('#fbShareUrlupdatePage').val();
+        var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent(fbShareUrl);
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
     });

@@ -3,7 +3,6 @@
     def base_url = grailsApplication.config.crowdera.BASE_URL
     def projectimages = projectService.getProjectImageLinks(project)
     def teamimages = projectService.getTeamImageLinks(currentTeam,project)
-    def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
     def shareUrl = base_url+'/c/'+shortUrl
 %>
 <div class="col-md-12">

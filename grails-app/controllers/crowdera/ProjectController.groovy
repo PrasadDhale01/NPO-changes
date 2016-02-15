@@ -240,8 +240,9 @@ class ProjectController {
             def multiplier = projectService.getCurrencyConverter();
             
             def pieList = projectService.getPieList(project);
-            def hasMoreTagsDesktop = projectService.getHashTags(project.hashtags)
-            def hasMoreTagsTabs = projectService.getHashTagsTabs(project.hashtags)
+
+            def hasTags = projectService.getHashTagsForCampaign(project.hashtags)
+            
             def reasons = projectService.getReasonsToFundFromProject(project)
             def isDeviceMobileOrTab = isDeviceMobileOrTab();
             
@@ -256,10 +257,9 @@ class ProjectController {
                     isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,
                     isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: vanityUsername, FORMCONSTANTS: FORMCONSTANTS, 
                     isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier,
-                    spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList,
-                    hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
-                    hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, reasons:reasons,
-                    isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv])
+                    spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, reasons:reasons,
+                    isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
+                    remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList])
 		} else {
 			render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
@@ -356,8 +356,9 @@ class ProjectController {
                 def multiplier = projectService.getCurrencyConverter();
 
                 def pieList = projectService.getPieList(project);
-                def hasMoreTagsDesktop = projectService.getHashTags(project.hashtags)
-                def hasMoreTagsTabs = projectService.getHashTagsTabs(project.hashtags)
+                
+                def hasTags = projectService.getHashTagsForCampaign(project.hashtags)
+                
                 def reasons = projectService.getReasonsToFundFromProject(project)
                 
                 def taxReceipt = projectService.getTaxRecieptOfProject(project)
@@ -376,9 +377,9 @@ class ProjectController {
                     isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, 
                     isFundingOpen: isFundingOpen, rewards: rewards,validatedPage: validatedPage, isTeamExist: isTeamExist, 
                     FORMCONSTANTS: FORMCONSTANTS, multiplier: multiplier,spendCauseList:pieList.spendCauseList, 
-                    spendAmountPerList:pieList.spendAmountPerList, hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, 
-                    remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, 
-                    remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, reasons:reasons, taxReceipt:taxReceipt])
+                    spendAmountPerList:pieList.spendAmountPerList, reasons:reasons, taxReceipt:taxReceipt,
+                    firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
+                    remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList])
                 }
             } else {
                 render (view: '404error')
@@ -1236,7 +1237,7 @@ class ProjectController {
             def hasMoreTagsTabs = projectService.getHashTagsTabs(project.hashtags)
             def reasons = projectService.getReasonsToFundFromProject(project)
             
-//            def isDeviceMobileOrTab = isDeviceMobileOrTab();
+            def isDeviceMobileOrTab = isDeviceMobileOrTab();
 
 			if(project.user==user || isCampaignOwnerOrAdmin){
 				render (view: 'manageproject/index',
@@ -1245,7 +1246,7 @@ class ProjectController {
 					ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
 					unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, vanityUsername:vanityUsername, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo,
 					tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier, reasons: reasons,
-                    spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList,
+                    spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, isDeviceMobileOrTab: isDeviceMobileOrTab,
                     hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
                     hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags])
 			} else {

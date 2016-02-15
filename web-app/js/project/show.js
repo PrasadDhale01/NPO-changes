@@ -65,8 +65,8 @@ $(function() {
             }
         }
     });
-
-    $('.submitForApprovalSectionbtn').find('form').validate({
+    
+    $('#submitForApprovalSectionbtn').find('form').validate({
         rules: {
         	submitForApprovalcheckbox1 : {
         		required: true
@@ -719,29 +719,37 @@ $(function() {
     	$(".sh-tabs").find("a.show-tabs-text").removeClass('sh-selected');
     	if ($(this).hasClass('essentials')){
     		$('.essentials').addClass('sh-selected');
+    		$('.mange-fb-hideshow').show();
     	}
     	if ($(this).hasClass('projectupdates')){
     		$('.projectupdates').addClass('sh-selected');
+    		$('.mange-fb-hideshow').hide();
     	}
     	if ($(this).hasClass('manageTeam')){
     		$('.manageTeam').addClass('sh-selected');
+    		$('.mange-fb-hideshow').hide();
     	}
     	if ($(this).hasClass('contributions')){
     		$('.contributions').addClass('sh-selected');
+    		$('.mange-fb-hideshow').hide();
     	}
     	if ($(this).hasClass('comments')){
     		$('.comments').addClass('sh-selected');
+    		$('.mange-fb-hideshow').hide();
     	}
     	
     	/****manage page*****/
     	if ($(this).hasClass('rewards')){
     		$('.rewards').addClass('sh-selected');
+    		$('.mange-fb-hideshow').hide();
     	}
     	if ($(this).hasClass('payments')){
     		$('.payments').addClass('sh-selected');
+    		$('.mange-fb-hideshow').hide();
     	}
     	if ($(this).hasClass('manageTeams')){
     		$('.manageTeams').addClass('sh-selected');
+    		$('.mange-fb-hideshow').hide();
     	}
     });
     
@@ -1072,6 +1080,20 @@ $(function() {
             	var topicons = $('.show-socials-iconsA').offset().top;
             }
             
+//            Manage-Page-Header-code-1...
+            if($("#manage-tabs-one").length){
+            	var manage_AA = $("#manage-tabs-one").offset().top;
+            }
+            if($('.mobileview-bottom-mange').find('.manage-tile-edit').length){
+            	var tile_edit = $('.mobileview-bottom-mange').find('.manage-tile-edit').offset().top;
+            }
+            if($(".manage-socials-facebook").length){
+            	var manage_FB = $(".manage-socials-facebook").offset().top;
+            }
+            if($('.mange-btn-submitapproval').length){
+            	var manage_sapproval = $('.mange-btn-submitapproval').offset().top;
+            }
+            
 //		    Top header code
             if (window_top > div_top) {
                 $('.show1-Primary').addClass('sh-primery-header-padding');
@@ -1096,7 +1118,32 @@ $(function() {
             }else  if(window_top < topFb){
                 $('.sh-shareicons-Fixedtophead').hide();
             }
-
+            
+//            Manage-Page-Header-code...
+            if(window_top > manage_AA){
+            	$('.manage-headers-A-one').addClass('manage-header-primary-top');
+            	if($(window).width() < 768){
+            		$('.main-header-gsp').show();
+            	}else{
+            		$('.main-header-gsp').hide();
+            	}
+            	$('.manage-headers-A-one').show();
+           	
+            }else if(window_top < manage_AA){
+           	$('.manage-headers-A-one').removeClass('manage-header-primary-top');
+            	$('.main-header-gsp').show();
+            	$('.manage-headers-A-one').hide();
+            }
+            if(window_top  > manage_FB){
+            	$('.mange-fb-hideshow').show();
+            }else if(window_top < manage_FB) {
+            	$('.mange-fb-hideshow').hide();
+            }
+            if(window_top > manage_sapproval){
+            	$('.manage-submitaprroval').show();
+            }else if(window_top < manage_sapproval){
+            	$('.manage-submitaprroval').hide();
+            }
         }
         $(window).scroll(sticky_relocate);
         sticky_relocate();

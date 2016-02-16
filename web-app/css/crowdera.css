@@ -5592,6 +5592,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.show-css  div.manage-updateshare{
+        padding-left: 60px !important;
+    }
+    div.manage-updateshare{
+        padding-left: 60px;
+    }
     a.manage-edit-left {
         margin-left: 14px;
     }
@@ -7830,6 +7836,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+    div.show-css  div.manage-updateshare{
+        padding-left: 260px !important;
+        top: 6px !important;
+    }
+    div.manage-updateshare{
+        padding-left: 145px;
+        top: 6px !important;
+    }
     div.how-it-mobilespace5 {
         top: 140px;
     }
@@ -11008,6 +11022,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+    div.manage-updateshare {
+        padding-left: 148px;
+        top: 6px !important;
+    }
     ul.manage-submitapprov-india {
         margin-right: -167px !important;
         margin-top: 2px !important;
@@ -14534,6 +14552,12 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.show-css  div.manage-updateshare{
+        padding-left: 60px !important;
+    }
+    div.manage-updateshare{
+        padding-left: 60px;
+    }
     a.manage-edit-left {
         margin-left: 14px;
     }

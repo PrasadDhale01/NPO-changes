@@ -27,7 +27,9 @@
     if (imageUrl) {
         imageUrl = project.imageUrl[0].getUrl()
     }
-    def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
+    def fbShareUrl = base_url+"/campaigns/campaignShare"+project.id+"?fr="+username
+    def fbShareUrlupdatePage = base_url+"/campaigns/updateShare?id="+project.id+"&fr="+username
+    
     def currentTeamAmount = currentTeam.amount
     def shareUrl = base_url+'/c/'+shortUrl
     
@@ -120,7 +122,8 @@
         <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
         <g:hiddenField name="pieList" value="${pieList}" id="pieList"/>
         <g:hiddenField name="projectamount" value="${project.amount.round()}" id="projectamount"/>
-
+        <g:hiddenField name="fbShareUrlupdatePage" value="${fbShareUrlupdatePage}" id="fbShareUrlupdatePage"/>
+        
         <g:if test="${project}">
             <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>
             <div class="redirectUrl">

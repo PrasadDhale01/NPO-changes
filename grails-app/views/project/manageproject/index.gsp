@@ -15,8 +15,12 @@
 	if (imageUrl) {
 		imageUrl = project.imageUrl[0].getUrl()
 	}
-    def fbShareUrl = base_url+"/campaign/managecampaign?id="+project.id
+    def fbShareUrl = base_url+"/campaigns/campaignShare?id="+project.id+"?fr="+username
+   
+    def fbShareUrlupdatePage = base_url+"/campaigns/updateShare?id="+project.id+"&fr="+username
+   
     def shareUrl = base_url+'/c/'+shortUrl
+
     def fundRaiser = userService.getCurrentUser()
     def fundRaiserName
     if (fundRaiser) {
@@ -53,9 +57,10 @@
     <g:hiddenField id="projectamount" name="projectamount" value="${project.amount.round()}"/>
     <g:hiddenField id="payuStatus" name="payuStatus" value="${project.payuStatus}"/>
 	<g:hiddenField id="b_url" name="b_url" value="${base_url}"/>
+	<g:hiddenField name="fbShareUrlupdatePage" value="${fbShareUrlupdatePage}" id="fbShareUrlupdatePage"/>
 	
 	<div class="feducontent">
-		<div class="container manage-container-page">
+		<div class="container manage-container-page show-css">
 			<g:if test="${project}">
 				<div class="row">
 					<g:if test="${flash.prj_mngprj_message}">

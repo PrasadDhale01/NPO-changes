@@ -16,6 +16,7 @@ import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.util.EntityUtils
+import org.apache.jasper.compiler.Generator.FragmentHelperClass.Fragment;
 import org.apache.poi.ss.usermodel.Workbook
 import org.apache.poi.ss.usermodel.WorkbookFactory
 import org.codehaus.groovy.grails.web.json.JSONObject
@@ -263,6 +264,18 @@ class ProjectController {
 			render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
 	}
+    
+    def campaignShare() {
+        def title = projectService.getVanityTitleFromId(params.id)
+        def name = userService.getVanityNameFromUsername(params.fr, params.id)
+        redirect (action:'show', params:['projectTitle':title,'fr':name])
+    }
+    
+    def updateShare(){
+        def title = projectService.getVanityTitleFromId(params.id)
+        def name = userService.getVanityNameFromUsername(params.fr, params.id)
+        redirect (action:'show', params:['projectTitle':title,'fr':name], fragment:'projectupdates')
+    }
 
     def isDeviceMobileOrTab(){
         String userAgent = request.getHeader("User-Agent");
@@ -1309,6 +1322,19 @@ class ProjectController {
 			redirect (action: 'show', params:[fr: params.vanityUsername, 'projectTitle': params.vanityTitle])
 		}
 	}
+    
+    def sendupdateemail() {
+        def fundRaiser = params.fr
+        def updateId = projectService.getProjectUpdateById(params.projectUpdateId)
+        
+        projectService.shareupdateemail(params,fundRaiser,updateId)
+        flash.prj_mngprj_message= "Email sent successfully."
+        if (params.ismanagepage) {
+            redirect(controller: 'project', action: 'manageproject', params:['projectTitle': params.vanityTitle])
+        } else {
+            redirect (action: 'show', params:[fr: params.vanityUsername, 'projectTitle': params.vanityTitle])
+        }
+    }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def projectupdate() {

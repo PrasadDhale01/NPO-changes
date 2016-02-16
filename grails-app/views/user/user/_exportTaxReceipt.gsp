@@ -14,7 +14,7 @@
 				</div>
 			</div>
 		</div>
-		<% 
+		<%
 		    def taxReciept = projectService.getTaxRecieptOfProject(contribution.project)
             def transaction = contributionService.getTransactionByContribution(contribution)
             def amountInWords = userService.convert((long)contribution.amount)

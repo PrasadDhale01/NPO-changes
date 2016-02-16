@@ -13,6 +13,7 @@ import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.security.AWSCredentials
 import org.jets3t.service.model.*
 import grails.util.Environment
+import static java.util.Calendar.*
 
 class ProjectService {
     def userService
@@ -2021,6 +2022,51 @@ class ProjectService {
                 projectUpdate.addToImageUrls(imageUrl)
             }
         }
+    }
+    
+    def saveCampaignUpdate(def params, Project project, def story) {
+        def projectUpdate = new ProjectUpdate()
+        User user = userService.getCurrentUser()
+
+        projectUpdate.story = story
+        projectUpdate.title = params.title
+        
+        SimpleDateFormat tfm = new SimpleDateFormat("hh:mm a");
+        def cronExp
+        
+        if (params.scheduledcheckbox == 'on') {
+            
+            Date scheduledate = Date.parse("MM/dd/yyyy", params.scheduledDate)
+            Date dscheduleTime = tfm.parse(params.scheduletime);
+            
+            projectUpdate.isScheduled = true
+            
+            def calender = scheduledate.toCalendar()
+            def calender1 = dscheduleTime.toCalendar()
+            
+            calender[MINUTE] = calender1[MINUTE]
+            calender[HOUR_OF_DAY] = calender1[HOUR_OF_DAY]
+            def month = calender[MONTH] + 1
+            
+            projectUpdate.scheduledDate = calender.getTime()
+            
+            cronExp = '0 '+calender[MINUTE]+' '+ calender[HOUR_OF_DAY] +' ' +calender[DATE] + ' '+ month + ' ? '+calender[YEAR]
+        } else {
+            projectUpdate.scheduledDate = new Date()
+            projectUpdate.islive = true
+        }
+        getUpdatedImageUrls(params.imageList, projectUpdate)
+
+        project.addToProjectUpdates(projectUpdate)
+        
+        if (projectUpdate.save()) {
+            if (projectUpdate.isScheduled) {
+                SendUpdateLiveJob.schedule(cronExp, [id: projectUpdate.id])
+            } else {
+                mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user,params.title)
+            }
+        }
+        
     }
     
     def getSavedImageUrl(CommonsMultipartFile imageFile) {

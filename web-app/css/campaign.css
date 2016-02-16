@@ -1477,3 +1477,21 @@ img.how-it-success-img{
     min-height: 34px;
     height: auto;
 }
+.sendemailtocontributors, #signaturemsg, #signaturemsgsize, #signatureIcon, #delsignature {
+    display: none;
+}
+.updatesubmitbtn {
+    margin-top: 30px;
+}
+.schedulecheckboxdiv {
+    margin-bottom: 20px;
+}
+.scheduledate {
+    width: 200px;
+}
+.updateschedular {
+    display: none;
+}
+.bootstrap-timepicker-widget table td input {
+    width: 40px;
+}

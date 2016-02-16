@@ -81,7 +81,6 @@ $(function() {
         buttonsHide: ['indent', 'outdent', 'horizontalrule', 'deleted']
     });
 
-    var currentEnv = $('#currentEnv').val();
 
     /********************* Create page Session timeout ***************************/
         //set for 60 minute
@@ -247,13 +246,9 @@ $(function() {
                 error.appendTo(element.parent());
             } else if($(element).prop("id") === "projectImageFile") {
                 error.appendTo(document.getElementById("col-error-placement"));
-            }else if($(element).prop("id") === "iconfile") {
+            }else if($(element).prop("id") === "iconfile" || $(element).prop("id") === "digitalSign" || $(element).prop("id") === "projectEditImageFile") {
                 error.appendTo(element.parent().parent());
-            }else if($(element).prop("id") === "projectEditImageFile") {
-                error.appendTo(document.getElementById("col-error-placement"));
-            }else if($(element).prop("id") === "editiconfile") {
-                error.appendTo(element.parent().parent());
-            }else if($(element).prop("id") === "customVanityUrl") {
+            }else if($(element).prop("id") === "editiconfile" || $(element).prop("id") === "customVanityUrl") {
                 error.appendTo(element.parent().parent());
             }else{
                 error.insertAfter(element);
@@ -682,12 +677,6 @@ $(function() {
                 minlength:10
             });
 
-            $( '[name="tax-reciept-holder-phone"]' ).rules( "add", {
-                required: true,
-                minlength:9,
-                number:true
-            });
-
             $( '[name="expiry-date"]' ).rules( "add", {
                 required: true
             });
@@ -717,6 +706,12 @@ $(function() {
             });
         }
 
+        $( '[name="tax-reciept-holder-phone"]' ).rules( "add", {
+            required: true,
+            minlength:9,
+            number:true
+        });
+
         $( '[name="addressLine1"]' ).rules( "add", {
             required: true,
             minlength:5,
@@ -732,6 +727,14 @@ $(function() {
             required: true,
             maxlength: 30
         });
+
+        var signImgUrl = $('#editsignatureIcon').attr('src');
+
+        if (!signImgUrl) {
+            $('[name="digitalSign"]').rules( "add", {
+                required: true
+            });
+        }
 
         if (validator.form() && !storyEmpty) {
             $('#saveButton, #saveButtonXS').attr('disabled','disabled');
@@ -1012,12 +1015,6 @@ $(function() {
                     minlength:10
                 });
 
-                $( '[name="tax-reciept-holder-phone"]' ).rules( "add", {
-                    required: true,
-                    minlength:9,
-                    number:true
-                });
-
                 $( '[name="expiry-date"]' ).rules( "add", {
                     required: true
                 });
@@ -1034,18 +1031,24 @@ $(function() {
                     required: true,
                     minlength:9
                 });
-                
+
                 $( '[name="tax-reciept-deductible-status"]' ).rules( "add", {
                     required: true,
                     minlength:2
                 });
-                
+
                 $( '[name="tax-reciept-holder-state"]' ).rules( "add", {
                     required: true,
                     minlength:2
                 });
             }
             
+            $( '[name="tax-reciept-holder-phone"]' ).rules( "add", {
+                required: true,
+                minlength:9,
+                number:true
+            });
+
             $( '[name="addressLine1"]' ).rules( "add", {
                 required: true,
                 minlength:5,
@@ -1056,60 +1059,65 @@ $(function() {
                 minlength:5,
                 maxlength: 50
             });
-            
+
             $( '[name="zip"]' ).rules( "add", {
                 required: true,
                 maxlength: 30
             });
 
-    	if (validator.form()) {
-            if (!storyEmpty){
-                $('#campaigncreate').find('form').submit();
-                $('#submitProject').attr('disabled','disabled');
-                $('#previewButton').attr('disabled','disabled');
-                $('#submitProjectXS').attr('disabled','disabled');
-                $('#previewButtonXS').attr('disabled','disabled');
+            var signImgUrl = $('#editsignatureIcon').attr('src');
+            if (!signImgUrl) {
+                $('[name="digitalSign"]').rules( "add", {
+                    required: true
+                });
             }
+
+    	if (validator.form() && !storyEmpty) {
+            $('#campaigncreate').find('form').submit();
+            $('#submitProject').attr('disabled','disabled');
+            $('#previewButton').attr('disabled','disabled');
+            $('#submitProjectXS').attr('disabled','disabled');
+            $('#previewButtonXS').attr('disabled','disabled');
     	}
     });
 
-     $.validator.addMethod('isYoutubeVideo', function (value, element) {
-        if(value && value.length !=0){
+     $.validator.addMethod('isYoutubeVideo', function (value) {
+        if(value && value.length !== 0){
            var p = /^https?:\/\/(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
            var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
            var youtubematch = value.match(p);
            var vimeomatch = value.match(vimeo);
-           var match
+           var match;
            if (youtubematch)
                match = youtubematch;
-           else if (vimeomatch && vimeomatch[2].length == 9)
+           else if (vimeomatch && vimeomatch[2].length === 9)
                match = vimeomatch;
-           else 
+           else
                match = null;
            return (match) ? true : false;
         }
         return true;
      }, "Please upload a url of Youtube/Vimeo video");
-     
-     $.validator.addMethod('isValidTelephoneNumber', function (value, element) {
-     	  
-         if(value && value.length !=0){
+
+     $.validator.addMethod('isValidTelephoneNumber', function (value) {
+
+         if(value && value.length !== 0){
              var reg = /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
              return (value.match(reg)) ? RegExp.$1 : false;
          }
          return true;
      }, "Please provide valid Telephone number");
-     
-     $.validator.addMethod('isWebUrl', function(value, element){
-    	 if(value && value.length !=0){
+
+     $.validator.addMethod('isWebUrl', function(value){
+    	 if(value && value.length !== 0){
           var p = /(https | http?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/ig;;
-  	    	return (value.match(p))
+  	    	return (value.match(p));
     	 }
     	 return true;
      }, "Please provide valid url");
-     
+
      $("input[name='answer']").change(function(){
-     	if($(this).val()=="yes") {
+     	if($(this).val() === "yes") {
      		if($('#rewardCount').val() > 0){
      			count = rewardIteratorCount;
      		} else {
@@ -1121,7 +1129,7 @@ $(function() {
      	} else {
             if (count > 0){
                 if (confirm('Are you sure you want to discard all the perks for this campaign?')){
-                    removeAllPerks(); 
+                    removeAllPerks();
                     var rewardslength = $('#addNewRewards').find('.rewardsTemplate').length;
                     for (var i=rewardslength; i > 1; i--) {
                     	$('#addNewRewards').find('.rewardsTemplate').last().remove();
@@ -1143,7 +1151,7 @@ $(function() {
     });
 
 	$('.ans1').change(function(){
-		if ($(this).val()=="yes"){
+		if ($(this).val() === "yes"){
 			$('.ansText1').removeClass('display-none-text1');
 		} else {
 			$('.ansText1').addClass('display-none-text1');
@@ -1155,7 +1163,7 @@ $(function() {
 	});
 
 	$('.ans3').change(function(){
-		if ($(this).val()=="yes"){
+		if ($(this).val() === "yes"){
 			$('.ansText3').removeClass('display-none-text3');
 		} else {
 			$('.ansText3').addClass('display-none-text3');
@@ -1564,6 +1572,99 @@ $(function() {
 	    }
     });
 
+    $("#digitalSign").change(function() {
+        var file = this.files[0];
+        if(validateExtension(file.name) === false){
+	        $('#signaturediv').hide();
+	        $('#signaturemsgsize').hide();
+	        $('#signaturemsg').show();
+	        this.value=null;
+	        return;
+	    }
+
+	    if(!file.type.match('image')){
+	        $('#signaturediv').hide();
+	        $('#signaturemsgsize').hide();
+	        $('#signaturemsg').show();
+	        this.value=null;
+	    } else {
+	        if (file.size > 1024 * 1024 * 3) {
+	            $('#signaturediv').hide();
+	            $('#signaturemsg').hide();
+	            $('#signaturemsgsize').show();
+	            $('#digitalSign').val('');
+	        } else {
+	        	$('#signaturemsgsize').hide();
+
+                $('#loading-gif').show();
+
+               var formData = !!window.FormData ? new FormData() : null;
+               var name = 'file';
+               var projectId = $('[name="projectId"]').val();
+               formData.append(name, file);
+               formData.append('projectId', projectId);
+
+               var xhr = new XMLHttpRequest();
+               xhr.open('POST', $("#b_url").val()+'/project/uploadDigitalSignature');
+               xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
+               // complete
+               xhr.onreadystatechange = $.proxy(function() {
+                   if (xhr.readyState === 4) {
+                       var data = xhr.responseText;
+
+                       data = data.replace(/^\[/, '');
+                       data = data.replace(/\]$/, '');
+
+                       var json;
+                       try {
+                           json = (typeof data === 'string' ? $.parseJSON(data) : data);
+                       } catch(err) {
+                           json = { error: true };
+                       }
+
+                       $('#signatureIcon').attr('src',json.imageUrl);
+                       $('#editsignatureIcon').attr('src', json.imageUrl);
+                       $('#signaturediv').show();
+                       
+                       $('#signaturemsg').hide();
+                       
+                       $('#editsignatureIcon').show();
+                       $('#signatureIcon').show();
+                       
+                       $('#delsignature').show();
+                       $('#deleditsignature').show();
+                       $('#loading-gif').hide();
+                   }
+
+               }, this);
+               xhr.send(formData);
+               $('.createOrgIconDiv, .projectImageFilediv').find("span").remove();
+               $('.createOrgIconDiv, .projectImageFilediv').closest(".form-group").removeClass('has-error');
+	        }
+	    }
+    });
+
+    $('#delsignature, #deleditsignature').click(function(){
+        var projectId = $('[name="projectId"]').val();
+        $.ajax({
+            type:'post',
+            url:$("#b_url").val()+'/project/deleteDigitalSign',
+            data:'projectId='+projectId,
+            success: function(){
+                $('#signaturediv').hide();
+                $('#delsignature').hide();
+                $('#deleditsignature').hide();
+                $('#signatureIcon').hide();
+                $('#editsignatureIcon').hide();
+                $('#signatureIcon').attr('src',"");
+                $('#editsignatureIcon').attr('src', "");
+                $("#digitalSign").val('');
+            }
+        }).error(function(){
+        });
+    });
+
 
      /*******************************Description text length******************** */
     $('#descarea, #descarea1').on('keydown', function(event) {
@@ -1575,7 +1676,7 @@ $(function() {
         }
 
         if(currentString <=140) {
-        	if (currentString == 140) {
+        	if (currentString === 140) {
         		var text = currentString;
         	} else {
         		var text = currentString + 1;
@@ -3099,9 +3200,10 @@ $(function() {
 
      $('#previewButton, #previewButtonXS').on('click', function(){
       	$('#isSubmitButton').val(false);
-       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactAmount"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
+       	$('[name="pay"], [name="digitalSign"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactAmount"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
              $(this).rules('remove');
          });
+
 
         $('.spendAmount').each(function () {
             $(this).rules("remove");
@@ -3113,7 +3215,7 @@ $(function() {
 
        	$( "#projectImageFile" ).rules("remove");
 
-       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactAmount"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
+       	$('[name="pay"], [name="digitalSign"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactAmount"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
              $(this).closest('.form-group').removeClass('has-error');
          });
 

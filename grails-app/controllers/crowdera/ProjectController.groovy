@@ -1381,17 +1381,9 @@ class ProjectController {
 
 		if(project ) {
 			if (params.imageList || !story.isAllWhitespace()) {
-
-				def projectUpdate = new ProjectUpdate()
-				User user = userService.getCurrentUser()
-
-				projectUpdate.story = story
-				projectUpdate.title = params.title
-				projectService.getUpdatedImageUrls(params.imageList, projectUpdate)
-
-				project.addToProjectUpdates(projectUpdate)
-				mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user,params.title)
-
+                
+                projectService.saveCampaignUpdate(params, project, story)
+                
 				flash.prj_mngprj_message= "Update added successfully."
 				redirect (action: 'manageproject', controller:'project', params:['projectTitle':title], fragment: 'projectupdates')
 			} else {

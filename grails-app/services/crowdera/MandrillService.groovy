@@ -295,7 +295,7 @@ class MandrillService {
         }
        
         emaillist.each { email ->
-            def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id,params:[fr:fundraiser], absolute: true)
+            def link = grailsLinkGenerator.link(controller: 'project', action: 'updateShare', id: project.id,params:[fr:fundraiser], absolute: true)
             def globalMergeVars = [
                 [
                     'name': 'LINK',

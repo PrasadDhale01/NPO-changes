@@ -26,7 +26,7 @@
     </g:if>
 </div>
 <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
-	<div class="col-lg-12 col-sm-12 col-md-12 hidden-xs manage-updateshare">
+	<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 manage-updateshare">
 	    <a target="_self" class="fb-like pull-left social fbShareForLargeDevices fbshare-headermangepage" href="#">
 	        <img src="//s3.amazonaws.com/crowdera/assets/fb-icon-update.png" alt="Facebook Share">
 	    </a>

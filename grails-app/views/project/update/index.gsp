@@ -82,6 +82,8 @@
                         <g:hiddenField name="imageList" id="imageList"/>
                     </div>
                     
+                    <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
+                    
                     <div class="form-group">
                         <div class="col-sm-offset-1 col-sm-10 col-xs-12 schedulecheckboxdiv">
                             <label class="control-label"><input type="checkbox" class="scheduledcheckbox" name="scheduledcheckbox">  Do you want to schedule the campaign update?</label>
@@ -92,13 +94,15 @@
                         
                         <label class="col-sm-1 control-label"><b>Date</b></label>
                         <div class="clear visible-xs"></div>
-                        <div class="col-sm-4 col-xs-8">
+                        <div class="col-sm-4 col-lg-3 col-xs-8">
                             <input type="text" class="form-control scheduledate text-date" placeholder="Date" name="scheduledDate" value="${currentDate}">
                         </div>
-                        <div class="col-sm-2 col-xs-4">
+                        <div class="col-sm-2 col-lg-2 col-xs-4">
                             <input type="text" class="form-control scheduletime" placeholder="time" name="scheduletime">
                         </div>
                     </div>
+                    
+                    </g:if>
    
                 <div class="col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4 col-xs-8 mange-update-btns updatesubmitbtn">
                     <button type="submit" class="btn btn-primary updatesubmitbutton hidden-xs" name="button" id="updatesubmitbutton"></button>

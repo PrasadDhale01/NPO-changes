@@ -11,11 +11,11 @@ $(function() {
 
     var rewardIteratorCount = $('#rewardCount').val();
     if (rewardIteratorCount > 0){
-    	$('#rewardTemplate1').show();
-    	$('#yesradio').prop('checked', true);
-	    $("#updatereward").show();
+        $('#rewardTemplate1').show();
+        $('#yesradio').prop('checked', true);
+        $("#updatereward").show();
     } else {
-    	$('#rewardTemplate1').hide();
+        $('#rewardTemplate1').hide();
     }
 
     var count = $('#rewardCount').val();
@@ -81,7 +81,6 @@ $(function() {
         buttonsHide: ['indent', 'outdent', 'horizontalrule', 'deleted']
     });
 
-    var currentEnv = $('#currentEnv').val();
 
     /********************* Create page Session timeout ***************************/
         //set for 60 minute
@@ -245,22 +244,17 @@ $(function() {
                 error.appendTo(element.parent().parent());
             } else if(element.is(":checkbox")) {
                 error.appendTo(element.parent());
-            } else if($(element).prop("id") == "projectImageFile") {
+            } else if($(element).prop("id") === "projectImageFile") {
                 error.appendTo(document.getElementById("col-error-placement"));
-            }else if($(element).prop("id") == "iconfile") {
+            }else if($(element).prop("id") === "iconfile" || $(element).prop("id") === "digitalSign" || $(element).prop("id") === "projectEditImageFile") {
                 error.appendTo(element.parent().parent());
-            }else if($(element).prop("id") == "projectEditImageFile") {
-                error.appendTo(document.getElementById("col-error-placement"));
-            }else if($(element).prop("id") == "editiconfile") {
-                error.appendTo(element.parent().parent());
-            }else if($(element).prop("id") == "customVanityUrl") {
+            }else if($(element).prop("id") === "editiconfile" || $(element).prop("id") === "customVanityUrl") {
                 error.appendTo(element.parent().parent());
             }else{
                 error.insertAfter(element);
             }
-        }//end error Placement
+        }
 
-        //ignore: []
     });
 
     $.validator.addMethod('isFacebookUrl', function (value) {
@@ -669,32 +663,8 @@ $(function() {
             isFullName: true
         });
 
-        if (currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'staging' || currentEnv === 'production'){
-            $( '[name="ein"]' ).rules( "add", {
-                required: true,
-                minlength:9
-            });
-
-            $( '[name="tax-reciept-deductible-status"]' ).rules( "add", {
-                required: true,
-                minlength:2
-            });
-
-            $( '[name="tax-reciept-holder-state"]' ).rules( "add", {
-                required: true,
-                minlength:2
-            });
-        } else {
-            $( '[name="reg-date"]' ).rules( "add", {
-                required: true
-            });
-
-            $( '[name="addressLine1"]' ).rules( "add", {
-                required: true,
-                minlength:5
-            });
-
-            $( '[name="zip"]' ).rules( "add", {
+        if (isIndianCampaign){
+        	$( '[name="reg-date"]' ).rules( "add", {
                 required: true
             });
 
@@ -705,12 +675,6 @@ $(function() {
             $( '[name="tax-reciept-holder-pan-card"]' ).rules( "add", {
                 required: true,
                 minlength:10
-            });
-
-            $( '[name="tax-reciept-holder-phone"]' ).rules( "add", {
-                required: true,
-                minlength:9,
-                number:true
             });
 
             $( '[name="expiry-date"]' ).rules( "add", {
@@ -725,6 +689,51 @@ $(function() {
                 required: true
             });
 
+        } else {
+        	$( '[name="ein"]' ).rules( "add", {
+                required: true,
+                minlength:9
+            });
+
+            $( '[name="tax-reciept-deductible-status"]' ).rules( "add", {
+                required: true,
+                minlength:2
+            });
+
+            $( '[name="tax-reciept-holder-state"]' ).rules( "add", {
+                required: true,
+                minlength:2
+            });
+        }
+
+        $( '[name="tax-reciept-holder-phone"]' ).rules( "add", {
+            required: true,
+            minlength:9,
+            number:true
+        });
+
+        $( '[name="addressLine1"]' ).rules( "add", {
+            required: true,
+            minlength:5,
+            maxlength: 50
+        });
+
+        $( '[name="addressLine2"]' ).rules( "add", {
+            minlength: 5,
+            maxlength: 50
+        });
+
+        $( '[name="zip"]' ).rules( "add", {
+            required: true,
+            maxlength: 30
+        });
+
+        var signImgUrl = $('#editsignatureIcon').attr('src');
+
+        if (!signImgUrl) {
+            $('[name="digitalSign"]').rules( "add", {
+                required: true
+            });
         }
 
         if (validator.form() && !storyEmpty) {
@@ -992,111 +1001,123 @@ $(function() {
                 isFullName: true
             });
 
-            if (currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'staging' || currentEnv === 'production'){
-            	$( '[name="ein"]' ).rules( "add", {
-                    required: true,
-                    minlength:9
-                });
-                
-                $( '[name="tax-reciept-deductible-status"]' ).rules( "add", {
-                    required: true,
-                    minlength:2
-                });
-                
-                $( '[name="tax-reciept-holder-state"]' ).rules( "add", {
-                    required: true,
-                    minlength:2
-                });
-            } else {
+            if (isIndianCampaign){
             	$( '[name="reg-date"]' ).rules( "add", {
                     required: true
                 });
-                
-                $( '[name="addressLine1"]' ).rules( "add", {
-                    required: true,
-                    minlength:5
-                });
-                
-                $( '[name="zip"]' ).rules( "add", {
-                    required: true
-                });
-                
+
                 $( '[name="tax-reciept-registration-num"]' ).rules( "add", {
                     required: true
                 });
-                
+
                 $( '[name="tax-reciept-holder-pan-card"]' ).rules( "add", {
                     required: true,
                     minlength:10
-                });
-                
-                $( '[name="tax-reciept-holder-phone"]' ).rules( "add", {
-                    required: true,
-                    minlength:9,
-                    number:true
                 });
 
                 $( '[name="expiry-date"]' ).rules( "add", {
                     required: true
                 });
-                
+
                 $( '[name="fcra-reg-no"]' ).rules( "add", {
                     required: true
                 });
-                
+
                 $( '[name="fcra-reg-date"]' ).rules( "add", {
                     required: true
                 });
+            } else {
+            	$( '[name="ein"]' ).rules( "add", {
+                    required: true,
+                    minlength:9
+                });
+
+                $( '[name="tax-reciept-deductible-status"]' ).rules( "add", {
+                    required: true,
+                    minlength:2
+                });
+
+                $( '[name="tax-reciept-holder-state"]' ).rules( "add", {
+                    required: true,
+                    minlength:2
+                });
             }
-        
-    	if (validator.form()) {
-            if (!storyEmpty){
-                $('#campaigncreate').find('form').submit();
-                $('#submitProject').attr('disabled','disabled');
-                $('#previewButton').attr('disabled','disabled');
-                $('#submitProjectXS').attr('disabled','disabled');
-                $('#previewButtonXS').attr('disabled','disabled');
+            
+            $( '[name="tax-reciept-holder-phone"]' ).rules( "add", {
+                required: true,
+                minlength:9,
+                number:true
+            });
+
+            $( '[name="addressLine1"]' ).rules( "add", {
+                required: true,
+                minlength:5,
+                maxlength: 50
+            });
+
+            $( '[name="addressLine2"]' ).rules( "add", {
+                minlength:5,
+                maxlength: 50
+            });
+
+            $( '[name="zip"]' ).rules( "add", {
+                required: true,
+                maxlength: 30
+            });
+
+            var signImgUrl = $('#editsignatureIcon').attr('src');
+            if (!signImgUrl) {
+                $('[name="digitalSign"]').rules( "add", {
+                    required: true
+                });
             }
+
+    	if (validator.form() && !storyEmpty) {
+            $('#campaigncreate').find('form').submit();
+            $('#submitProject').attr('disabled','disabled');
+            $('#previewButton').attr('disabled','disabled');
+            $('#submitProjectXS').attr('disabled','disabled');
+            $('#previewButtonXS').attr('disabled','disabled');
     	}
     });
 
-     $.validator.addMethod('isYoutubeVideo', function (value, element) {
-        if(value && value.length !=0){
+     $.validator.addMethod('isYoutubeVideo', function (value) {
+        if(value && value.length !== 0){
            var p = /^https?:\/\/(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
            var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
            var youtubematch = value.match(p);
            var vimeomatch = value.match(vimeo);
-           var match
+           var match;
            if (youtubematch)
                match = youtubematch;
-           else if (vimeomatch && vimeomatch[2].length == 9)
+           else if (vimeomatch && vimeomatch[2].length === 9)
                match = vimeomatch;
-           else 
+           else
                match = null;
            return (match) ? true : false;
         }
         return true;
      }, "Please upload a url of Youtube/Vimeo video");
-     
-     $.validator.addMethod('isValidTelephoneNumber', function (value, element) {
-     	  
-         if(value && value.length !=0){
+
+     $.validator.addMethod('isValidTelephoneNumber', function (value) {
+
+         if(value && value.length !== 0){
              var reg = /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
              return (value.match(reg)) ? RegExp.$1 : false;
          }
          return true;
      }, "Please provide valid Telephone number");
-     
-     $.validator.addMethod('isWebUrl', function(value, element){
-    	 if(value && value.length !=0){
+
+     $.validator.addMethod('isWebUrl', function(value){
+    	 if(value && value.length !== 0){
           var p = /(https | http?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/ig;;
-  	    	return (value.match(p))
+  	    	return (value.match(p));
     	 }
     	 return true;
      }, "Please provide valid url");
-     
+
      $("input[name='answer']").change(function(){
-     	if($(this).val()=="yes") {
+     	if($(this).val() === "yes") {
      		if($('#rewardCount').val() > 0){
      			count = rewardIteratorCount;
      		} else {
@@ -1108,7 +1129,7 @@ $(function() {
      	} else {
             if (count > 0){
                 if (confirm('Are you sure you want to discard all the perks for this campaign?')){
-                    removeAllPerks(); 
+                    removeAllPerks();
                     var rewardslength = $('#addNewRewards').find('.rewardsTemplate').length;
                     for (var i=rewardslength; i > 1; i--) {
                     	$('#addNewRewards').find('.rewardsTemplate').last().remove();
@@ -1130,7 +1151,7 @@ $(function() {
     });
 
 	$('.ans1').change(function(){
-		if ($(this).val()=="yes"){
+		if ($(this).val() === "yes"){
 			$('.ansText1').removeClass('display-none-text1');
 		} else {
 			$('.ansText1').addClass('display-none-text1');
@@ -1142,7 +1163,7 @@ $(function() {
 	});
 
 	$('.ans3').change(function(){
-		if ($(this).val()=="yes"){
+		if ($(this).val() === "yes"){
 			$('.ansText3').removeClass('display-none-text3');
 		} else {
 			$('.ansText3').addClass('display-none-text3');
@@ -1192,27 +1213,27 @@ $(function() {
         var taxRecieptHolderName = $(this).val();
         autoSave('taxRecieptHolderName', taxRecieptHolderName);
     });
-    
+
     $('.addressLine1').blur(function(){
     	var addressLine1 = $(this).val();
     	autoSave('addressLine1', addressLine1);
     });
-    
+
     $('.addressLine2').blur(function(){
     	var addressLine2 = $(this).val();
     	autoSave('addressLine2', addressLine2);
     });
-    
+
     $('.zip').blur(function(){
     	var zip = $(this).val();
     	autoSave('zip', zip);
     });
-    
+
     $('.tax-reciept-holder-pan-card').blur(function(){
     	var panCardNumber = $(this).val();
     	autoSave('panCardNumber', panCardNumber);
     });
-    
+
     $( '.tax-reciept-holder-phone' ).blur(function(){
         var phoneNumber = $(this).val();
         autoSave('phoneNumber', phoneNumber);
@@ -1247,7 +1268,7 @@ $(function() {
         var taxRecieptHolderCountry = $(this).val();
         autoSave('taxRecieptHolderCountry', taxRecieptHolderCountry);
     });
-    
+
     function renameAndemptyRewardFields(){
     	$('#addNewRewards').find('.rewardsTemplate').attr('id', 'rewardTemplate1');
     	$('#addNewRewards').find('.rewardsTemplate').attr('value', '1');
@@ -1255,12 +1276,14 @@ $(function() {
     	$('#addNewRewards').find('.rewardsTemplate').find('.rewardPrice').attr('name', 'rewardPrice1');
         $('#addNewRewards').find('.rewardsTemplate').find('.rewardTitle').attr('id', 'rewardTitle1');
         $('#addNewRewards').find('.rewardsTemplate').find('.rewardTitle').attr('name', 'rewardTitle1');
+       
         $('#addNewRewards').find('.rewardsTemplate').find('.rewardNumberAvailable').attr('id', 'rewardNumberAvailable1');
         $('#addNewRewards').find('.rewardsTemplate').find('.rewardNumberAvailable').attr('name', 'rewardNumberAvailable1');
         $('#addNewRewards').find('.rewardsTemplate').find('.rewardDescription').attr('name', 'rewardDescription1');
         $('#addNewRewards').find('.rewardsTemplate').find('.rewardDescription').attr('id', 'rewardDesc1');
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingAddress").attr('id', 'mailaddcheckbox1');
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingAddress").attr('name', 'mailingAddress1');
+        
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingEmail").attr('id', 'emailcheckbox1');
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingEmail").attr('name', 'emailAddress1');
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingTwitter").attr('id', 'twittercheckbox1');
@@ -1271,11 +1294,12 @@ $(function() {
         $('#savereward').attr('value', '1');
         $('#addNewRewards').find('.rewardsTemplate').find("span.help-block").remove();
         $('#addNewRewards').find('.rewardsTemplate').find(".form-group").removeClass('has-error');
-    	
+
     	$('#addNewRewards').find('.rewardsTemplate').find('#rewardPrice1').val('');
         $('#addNewRewards').find('.rewardsTemplate').find('#rewardDesc1').val('');
         $('#addNewRewards').find('.rewardsTemplate').find('#rewardTitle1').val('');
         $('#addNewRewards').find('.rewardsTemplate').find('#rewardNumberAvailable1').val('');
+        
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingAddress").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color lblmail1');
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingEmail").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color lblemail1');
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingTwitter").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color lbltwitter1');
@@ -1286,15 +1310,15 @@ $(function() {
     }
 
      $("input[name='pay']").change(function(){
-  	    if($(this).val()=="paypal") {
+  	    if($(this).val() === "paypal") {
   	        $('#organizationName').find('input').val('');
   	       	$("#paypalemail").show();
   	        $("#charitableId").hide();
   	        $('#charitable').find('input').val('');
   	        $("#paypalcheckbox").show();
-  	     } else if($(this).val()=="firstgiving") {
+  	     } else if($(this).val() === "firstgiving") {
    	         $('#organizationName').find('input').val('');
-  	       	 $("#charitableId").show(); 
+  	       	 $("#charitableId").show();
   	         $("#paypalemail").hide();
   	         $("#paypalcheckbox").hide();
    	         $('#paypalemail').find('input').val('');
@@ -1303,97 +1327,96 @@ $(function() {
 
      $('#val3').change(function(){
         var c = $('#val3').val();
-        if(c=='US'){
+        if(c === 'US'){
           $('#val1').show();
           $('#val2').hide();
         }
-       else
-        {
+       else {
           $('#val1').hide();
           $('#val2').show();
-        }  
+        }
     });
-     
+
      $('.cr-img-start-icon').hover(function(){
      	$('.cr-start').attr('src',"//s3.amazonaws.com/crowdera/assets/start-Icon-White.png");
      	}).mouseleave(function(){
          $('.cr-start').attr('src',"//s3.amazonaws.com/crowdera/assets/start-Icon-White.png");
      });
-     
+
      $('.cr-img-story-icon').hover(function(){
       	$('.cr-story').attr('src',"//s3.amazonaws.com/crowdera/assets/story-Icon-White.png");
       	}).mouseleave(function(){
           $('.cr-story').attr('src',"//s3.amazonaws.com/crowdera/assets/story-Icon-White.png");
       });
-     
+
      $('.cr-img-admin-icon').hover(function(){
       	$('.cr-admin').attr('src',"//s3.amazonaws.com/crowdera/assets/admin-Icon---White.png");
       	}).mouseleave(function(){
           $('.cr-admin').attr('src',"//s3.amazonaws.com/crowdera/assets/admin-Icon---White.png");
       });
-     
+
      $('.cr-img-perk-icon').hover(function(){
        	$('.cr-perk').attr('src',"//s3.amazonaws.com/crowdera/assets/perk-Icon-White.png");
        	}).mouseleave(function(){
            $('.cr-perk').attr('src',"//s3.amazonaws.com/crowdera/assets/perk-Icon-White.png");
        });
-     
+
      $('.cr-img-payment-icon').hover(function(){
        	$('.cr-payment').attr('src',"//s3.amazonaws.com/crowdera/assets/payment-Icon-White.png");
        	}).mouseleave(function(){
            $('.cr-payment').attr('src',"//s3.amazonaws.com/crowdera/assets/payment-Icon-White.png");
        });
-     
+
      $('.cr-img-launch-icon').hover(function(){
        	$('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/launch-Icon--White.png");
        	}).mouseleave(function(){
            $('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/launch-Icon--White.png");
        });
-     
+
      $('.cr-img-save-icon').hover(function(){
         	$('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/hdr-save-white.png");
         	}).mouseleave(function(){
             $('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/hdr-save-white.png");
         });
-     
+
      $('#paymentOpt').change(function(){
     	 var pay = $('#paymentOpt').val();
-    	 if(pay=='FIR'){
+    	 if(pay === 'FIR'){
     		 $('#paypalemail').hide();
     		 $('#charitableId').show();
-    		 
-    	 }else if(pay=='PAY'){
+
+    	 }else if(pay === 'PAY'){
     		 $('#charitableId').hide();
     		 $('#paypalemail').show();
-    	 }else if(pay=='PMT'){
-    		 if(pay == 'selected'){
+    	 }else if(pay === 'PMT'){
+    		 if(pay === 'selected'){
     			 $('#paypalemail').show();
     		 }
     		 $('#paypalemail').hide();
     		 $('#charitableId').hide();
     	 }
      });
-     
+
      $('#paymentOpt').change(function(){
     	 var payind = $('#paymentOpt').val();
-    	 if(payind=='PAYU'){
+    	 if(payind === 'PAYU'){
     		 $('#PayUMoney').show();
     	 }
      });
-     
+
 	$('#countryList').change(function(){
 	    var c = $('#countryList').val();
-	    if(c=='IN'){
+	    if(c === 'IN'){
 	       	$('#stateList').show();
 	       	$('#txtState').hide();
 	    }else{
 	       	$('#stateList').hide();
 	       	$('#txtState').show();
-	    }  
+	    }
 	});
 
       /******************************Video Thumbnail***************************************/
-     
+
     if($('#addvideoUrl').val()) {
         var url= $('#addvideoUrl').val().trim();
         var youtube = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -1403,7 +1426,7 @@ $(function() {
         $('#media').hide();
         $('#media-video').show();
         var vurl;
-        if (match[2].length == 11){
+        if (match[2].length === 11){
         	vurl=url.replace("watch?v=", "embed/");
             $('#ytVideo').html('<iframe class="youtubeVideoIframe" src="'+ vurl +'?wmode=transparent"></iframe>');
         } else {
@@ -1415,7 +1438,7 @@ $(function() {
     $('#videoUrledit').on('click',function(){
     	$('#addVideo').modal('show');
     });
-    
+
     $('#addVideoFromModal').on('click',function(){
     	var youtube = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
@@ -1423,7 +1446,7 @@ $(function() {
         var match = (url.match(youtube) || url.match(vimeo));
         if (validator.element("#videoUrlTextModal")){
         	$('#addVideo').modal('hide');
-            if (match && match[2].length == 11) {
+            if (match && match[2].length === 11) {
                 $('#ytVideo').show();
                 $('#media').hide();
                 $('#media-video').show();
@@ -1431,19 +1454,17 @@ $(function() {
                 var vurl=url.replace("watch?v=", "embed/");
                 autoSave('videoUrl', vurl);
                 $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'?wmode=transparent></iframe>');
-            } else if (match && match[2].length == 9) {
+            } else if (match && match[2].length === 9) {
                 $('#ytVideo').show();
                 $('#media').hide();
                 $('#media-video').show();
                 autoSave('videoUrl', url);
                 $('#addvideoUrl').val(url);
                 $('#ytVideo').html('<iframe class="youtubeVideoIframe" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
-            } else if($(this)) {
-                if(!$('#addvideoUrl').val()) {
-                    $('#ytVideo').hide();
-                    $('#media').show();
-                    $('#media-video').hide();
-	            }
+            } else if($(this) && !$('#addvideoUrl').val()) {
+                $('#ytVideo').hide();
+                $('#media').show();
+                $('#media-video').hide();
             }
         }
     });
@@ -1454,7 +1475,7 @@ $(function() {
         var url= $('#videoUrlText').val().trim();
         var match = (url.match(youtube) || url.match(vimeo));
         if (validator.element("#videoUrlText")){
-            if (match && match[2].length == 11) {
+            if (match && match[2].length === 11) {
                 $('#ytVideo').show();
                 $('#media').hide();
                 $('#media-video').show();
@@ -1463,7 +1484,7 @@ $(function() {
                 $('#videoUrlTextModal').val(vurl);
                 autoSave('videoUrl', vurl);
                 $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'?wmode=transparent></iframe>');
-            } else if (match && match[2].length == 9) {
+            } else if (match && match[2].length === 9) {
                 $('#ytVideo').show();
                 $('#media').hide();
                 $('#media-video').show();
@@ -1471,21 +1492,19 @@ $(function() {
                 $('#addvideoUrl').val(url);
                 $('#videoUrlTextModal').val(url);
                 $('#ytVideo').html('<iframe class="youtubeVideoIframe" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
-            } else if($(this)) {
-                if(!$('#addvideoUrl').val()) {
-                    $('#ytVideo').hide();
-                    $('#media').show();
-                    $('#media-video').hide();
-                }
+            } else if($(this) && !$('#addvideoUrl').val()) {
+                $('#ytVideo').hide();
+                $('#media').show();
+                $('#media-video').hide();
             }
         }
     });
 
      /** ********************Organization Icon*************************** */
 
-    $("#iconfile").change(function(event) {
+    $("#iconfile").change(function() {
         var file =this.files[0];
-        if(validateExtension(file.name) == false){
+        if(validateExtension(file.name) === false){
 	        $('#icondiv').hide();
 	        $('#iconfilesize').hide();
 	        $('#logomsg').show();
@@ -1506,11 +1525,7 @@ $(function() {
 	            $('#iconfile').val('');
 	        } else {
 	        	$('#iconfilesize').hide();
-                var file = this.files[0];
-                var fileName = file.name;
-                var fileSize = file.size;
-               
-//               $('#uploadingCampaignOrgIcon').show();
+
                 $('#loading-gif').show();
 
                var formData = !!window.FormData ? new FormData() : null;
@@ -1522,10 +1537,10 @@ $(function() {
                var xhr = new XMLHttpRequest();
                xhr.open('POST', $("#b_url").val()+'/project/uploadOrganizationIcon');
                xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-                
+
                // complete
                xhr.onreadystatechange = $.proxy(function() {
-                   if (xhr.readyState == 4) {
+                   if (xhr.readyState === 4) {
                        var data = xhr.responseText;
                        data = data.replace(/^\[/, '');
                        data = data.replace(/\]$/, '');
@@ -1536,18 +1551,17 @@ $(function() {
                        } catch(err) {
                            json = { error: true };
                        }
-                       
+
                        $('#icondiv').show();
                        $('#logomsg').hide();
-                       
+
                        $('.edit-logo-icon').show();
                        $('#imgIcon').show();
                        $('#logoDelete').show();
-                       
+
                        $('#imgIcon').attr('src',json.filelink);
                        $('#delIcon').attr('src',"//s3.amazonaws.com/crowdera/assets/delete.ico");
                        $('#logoDelete').attr('src',"//s3.amazonaws.com/crowdera/assets/delete.ico");
-//                       $('#uploadingCampaignOrgIcon').hide();
                        $('#loading-gif').hide();
                    }
                }, this);
@@ -1555,29 +1569,121 @@ $(function() {
                $('.createOrgIconDiv, .projectImageFilediv').find("span").remove();
                $('.createOrgIconDiv, .projectImageFilediv').closest(".form-group").removeClass('has-error');
 	        }
-	    } 
+	    }
+    });
+
+    $("#digitalSign").change(function() {
+        var file = this.files[0];
+        if(validateExtension(file.name) === false){
+	        $('#signaturediv').hide();
+	        $('#signaturemsgsize').hide();
+	        $('#signaturemsg').show();
+	        this.value=null;
+	        return;
+	    }
+
+	    if(!file.type.match('image')){
+	        $('#signaturediv').hide();
+	        $('#signaturemsgsize').hide();
+	        $('#signaturemsg').show();
+	        this.value=null;
+	    } else {
+	        if (file.size > 1024 * 1024 * 3) {
+	            $('#signaturediv').hide();
+	            $('#signaturemsg').hide();
+	            $('#signaturemsgsize').show();
+	            $('#digitalSign').val('');
+	        } else {
+	        	$('#signaturemsgsize').hide();
+
+                $('#loading-gif').show();
+
+               var formData = !!window.FormData ? new FormData() : null;
+               var name = 'file';
+               var projectId = $('[name="projectId"]').val();
+               formData.append(name, file);
+               formData.append('projectId', projectId);
+
+               var xhr = new XMLHttpRequest();
+               xhr.open('POST', $("#b_url").val()+'/project/uploadDigitalSignature');
+               xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
+               // complete
+               xhr.onreadystatechange = $.proxy(function() {
+                   if (xhr.readyState === 4) {
+                       var data = xhr.responseText;
+
+                       data = data.replace(/^\[/, '');
+                       data = data.replace(/\]$/, '');
+
+                       var json;
+                       try {
+                           json = (typeof data === 'string' ? $.parseJSON(data) : data);
+                       } catch(err) {
+                           json = { error: true };
+                       }
+
+                       $('#signatureIcon').attr('src',json.imageUrl);
+                       $('#editsignatureIcon').attr('src', json.imageUrl);
+                       $('#signaturediv').show();
+                       
+                       $('#signaturemsg').hide();
+                       
+                       $('#editsignatureIcon').show();
+                       $('#signatureIcon').show();
+                       
+                       $('#delsignature').show();
+                       $('#deleditsignature').show();
+                       $('#loading-gif').hide();
+                   }
+
+               }, this);
+               xhr.send(formData);
+               $('.createOrgIconDiv, .projectImageFilediv').find("span").remove();
+               $('.createOrgIconDiv, .projectImageFilediv').closest(".form-group").removeClass('has-error');
+	        }
+	    }
+    });
+
+    $('#delsignature, #deleditsignature').click(function(){
+        var projectId = $('[name="projectId"]').val();
+        $.ajax({
+            type:'post',
+            url:$("#b_url").val()+'/project/deleteDigitalSign',
+            data:'projectId='+projectId,
+            success: function(){
+                $('#signaturediv').hide();
+                $('#delsignature').hide();
+                $('#deleditsignature').hide();
+                $('#signatureIcon').hide();
+                $('#editsignatureIcon').hide();
+                $('#signatureIcon').attr('src',"");
+                $('#editsignatureIcon').attr('src', "");
+                $("#digitalSign").val('');
+            }
+        }).error(function(){
+        });
     });
 
 
      /*******************************Description text length******************** */
-    var counter = 1;
     $('#descarea, #descarea1').on('keydown', function(event) {
-        event.altKey==true;
+        event.altKey == true;
         var currentString = $('#descarea, #descarea1').val().length;
         if (currentString >= 9) {
         	$('.createDescDiv').find("span").remove();
             $('.createDescDiv').closest(".form-group").removeClass('has-error');
         }
-        
+
         if(currentString <=140) {
-        	if (currentString == 140) {
+        	if (currentString === 140) {
         		var text = currentString;
         	} else {
         		var text = currentString + 1;
         	}
         }
         if (event.keyCode > 31) {
-            if(event.altKey==true){
+            if(event.altKey === true){
                 setDescriptionText();
             }
             else {
@@ -1590,8 +1696,8 @@ $(function() {
             $('#desclength').text(text+'/140');
         }
     }).keyup(function(e) {
-      
-        if(e.altKey == true){
+
+        if(e.altKey === true){
            setDescriptionText();
            return false;
         }
@@ -1601,10 +1707,10 @@ $(function() {
             case 13:      //Enter
             case 8:       //backspace
             case 46:      //delete
-            case 17:      
+            case 17:
             case 27:      //escape
             case 10:      //new line
-            case 20:      
+            case 20:
             case 9:       //horizontal TAB
             case 11:      //vertical tab
             case 33:      //page up  
@@ -1628,21 +1734,19 @@ $(function() {
     }).focusout(function() {
         setDescriptionText();
     });
-    
+
     function setDescriptionText(){
         var currentString = $('#descarea, #descarea1').val().length;
-        if (currentString == 0) {
+        if (currentString === 0) {
             $('#desclength').text("0/140");
         } else {
-            currentString = currentString;
             $('#desclength').text(currentString+'/140');
         }
     }
 
     /*******************************Title text length******************** */
-    var counter = 1;
     $('#campaignTitle').on('keydown', function(event) {
-    
+
         event.altKey==true;
         var currentstring = $('#campaignTitle').val().length;
         if (currentstring >= 4) {
@@ -1709,25 +1813,22 @@ $(function() {
     }).focusout(function(){
 	    setTitleText();
     });
-    
+
     var isvalidFilesize =  false;
     $('.taxRecieptFiles').change(function(event) {
     	var file = this.files[0];
         $('.filesize').hide();
         $('.fileempty').hide();
-        var files = event.target.files; // FileList object
-        var output = document.getElementById("result");
+
         var fileName;
         var isFileSizeExceeds = false;
-        var file = this.files[0];
-        var filename = file.name;
 
-    	if($('#taxRecieptId').val() == undefined || $('#taxRecieptId').val() == '' || $('#taxRecieptId').val() == null){
+    	if($('#taxRecieptId').val() === undefined || $('#taxRecieptId').val() === '' || $('#taxRecieptId').val() === null){
             $('.fileempty').show();
             $('.taxRecieptFiles').val('');
             document.getElementById("fileempty").innerHTML= "Please fill above fields and then upload files.";
     	} else {
-        if (file.size == 0){
+        if (file.size === 0){
         	if (fileName) {
                 fileName = fileName +" "+ file.name;
             } else {
@@ -1738,7 +1839,6 @@ $(function() {
         } else {
         if(file.size < 1024 * 1024 * 3) {
             isvalidFilesize =  true;
-//            $('.uploadingFile').show();
             $('#loading-gif').show();
 
             var formData = !!window.FormData ? new FormData() : null;
@@ -1751,10 +1851,10 @@ $(function() {
             var xhr = new XMLHttpRequest();
             xhr.open('POST', $("#b_url").val()+'/project/uploadTaxRecieptFiles');
             xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-            
+
             // complete
             xhr.onreadystatechange = $.proxy(function() {
-                if (xhr.readyState == 4) {
+                if (xhr.readyState === 4) {
                     var data = xhr.responseText;
                     data = data.replace(/^\[/, '');
                     data = data.replace(/\]$/, '');
@@ -1771,7 +1871,6 @@ $(function() {
                     div.innerHTML = "<div class=\"cr-tax-files\"><div class=\"col-file-name\">"+file.name +"</div><div class=\"deleteicon\"><button type=\"button\" class=\"close\" onClick=\"deleteTaxRecieptFiles(this,'"+json.fileId+"','"+taxRecieptId+"');\">&times;</button></div></div>";
 
                     output.insertBefore(div, null);
-//                    $('.uploadingFile').hide();
                     $('#loading-gif').hide();
                 }
             }, this);
@@ -1792,7 +1891,8 @@ $(function() {
             $('.taxRecieptFiles').val('');
         }
     	}
-        var delay = 9999; //delayed code, time in milliseconds
+    	//delayed code, time in milliseconds
+        var delay = 9999;
         setTimeout(function() {
         	$('.filesize').hide();
         	$('.fileempty').hide();
@@ -1800,31 +1900,29 @@ $(function() {
     });
 
     function setTitleText() {
-        
+
         var currentstring = $('#campaignTitle').val().length;
-        if (currentstring == 0) {
+        if (currentstring === 0) {
             $('#titleLength').text("0/55");
         } else {
-	        currentstring = currentstring;
             $('#titleLength').text(currentstring+'/55');
         }
     }
-    
-    var counter = 1;
+
     $('#customVanityUrl').on('keydown', function(event) {
-    
-        event.altKey==true;
+
+        event.altKey === true;
         var currentstring = $('#customVanityUrl').val().length;
 
-        if(currentstring <=55) {
-            if (currentstring == 55) {
+        if(currentstring <= 55) {
+            if (currentstring === 55) {
                 var text = currentstring ;
             } else {
                 var text = currentstring + 1;
             }
         }
         if (event.keyCode > 31) {
-            if(event.altKey==true){
+            if(event.altKey === true){
                 setTitleText();
             }
             else{
@@ -1838,8 +1936,8 @@ $(function() {
             $('#vanityUrlLength').text(text+'/55');
         }
     }).keyup(function(e) {
-    
-        if(e.altKey==true){
+
+        if(e.altKey === true){
             setTitleText();
             return false;
         }
@@ -1876,14 +1974,13 @@ $(function() {
     }).focusout(function(){
 	    setTitleText();
     });
-    
+
     function setTitleText() {
-        
+
         var currentstring = $('#customVanityUrl').val().length;
-        if (currentstring == 0) {
+        if (currentstring === 0) {
             $('#vanityUrlLength').text("0/55");
         } else {
-	        currentstring = currentstring;
             $('#vanityUrlLength').text(currentstring+'/55');
         }
     }
@@ -1891,9 +1988,9 @@ $(function() {
     /***************************Multiple Image Selection*************** */
     var isvalidsize =  false;
     $('#projectImageFile, #projectEditImageFile, #campaignImage').change(function(event) {
-    	
+
         var file = this.files[0];
-        if(validateExtension(file.name) == false) {
+        if(validateExtension(file.name) === false) {
             $('.pr-thumbnail-div').hide();
             $('.imgmsg').css("display","block");
             $('.imgmsg').html("Add only PNG or JPG extension images");
@@ -1909,21 +2006,16 @@ $(function() {
         } else{
             $('.imgmsg').hide();
             $('.campaignfilesize').hide();
-            var files = event.target.files; // FileList object
-            var output = document.getElementById("result");
             var fileName;
             var isFileSizeExceeds = false;
-            var file = this.files[0];
-            var filename = file.name;
-            
+
             if(file.size < 1024 * 1024 * 3) {
-            	if($('#campaignthumbnails').find('.pr-thumb-div').length == 0){
+            	if($('#campaignthumbnails').find('.pr-thumb-div').length === 0){
                     $('.panel-no-image').hide();
                     $('.panel-pic-uploaded').show();
                 }
             	if ($('#campaignthumbnails').find('.pr-thumb-div').length <= 4){
                     isvalidsize =  true;
-//                    $('#uploadingCampaignImage').show();
                     $('#loading-gif').show();
 
                     var formData = !!window.FormData ? new FormData() : null;
@@ -1935,10 +2027,10 @@ $(function() {
                     var xhr = new XMLHttpRequest();
                     xhr.open('POST', $("#b_url").val()+'/project/uploadImage');
                     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-                 
+
                     // complete
                     xhr.onreadystatechange = $.proxy(function() {
-                        if (xhr.readyState == 4) {
+                        if (xhr.readyState === 4) {
                             var data = xhr.responseText;
                             data = data.replace(/^\[/, '');
                             data = data.replace(/\]$/, '');
@@ -1952,22 +2044,21 @@ $(function() {
                             var output = document.getElementById("campaignthumbnails");
                             var div = document.createElement("div");
                             div.id = "imgdiv";
-                            div.className = "pr-thumb-div"
+                            div.className = "pr-thumb-div";
                             div.innerHTML = "<img  class='pr-thumbnail' src='"+ json.filelink + "'"+ "title='"
                                         + file.name + "'/><div class=\"deleteicon\"><img onClick=\"deleteProjectImage(this,'"+json.imageId+"','"+projectId+"');\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>";
 
                             output.insertBefore(div, null);
-//                            $('#uploadingCampaignImage').hide();
                             $('#loading-gif').hide();
                         }
                     }, this);
                     xhr.send(formData);
-            
+
                     $('#createthumbnail').find("span").remove();
                     $('#createthumbnail').closest(".form-group").removeClass('has-error');
                 } else {
             	    $('.imageNumValidation').show();
-            	    var delay = 5000; //delayed code, time in milliseconds
+            	    var delay = 5000;
                     setTimeout(function() {
                     	$('.imageNumValidation').hide();
                     }, delay);
@@ -1981,14 +2072,14 @@ $(function() {
                 $('.campaignfilesize').show();
                 isFileSizeExceeds = true;
             }
-    
+
             document.getElementById("campaignFilesizeID").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
             document.getElementById("campaignFilesizeID1").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
             if (isFileSizeExceeds && !isvalidsize) {
                 $('#campaignImage').val('');
             }
             $('#projectImageFile, #projectEditImageFile').val('');
-            var delay = 9999; //delayed code, time in milliseconds
+            var delay = 9999;
             setTimeout(function() {
             	$('.campaignfilesize').hide();
             }, delay);
@@ -2000,13 +2091,13 @@ $(function() {
           for(var imgExtImg=0;imgExtImg<allowedExtensions.length;imgExtImg++)
           {
               imageFile = imgExt.lastIndexOf(allowedExtensions[imgExtImg]);
-              if(imageFile != -1){
+              if(imageFile !== -1){
             	  return true;
               }
           }
           return false;
     }
-    
+
     $('#createreward').click(function(){
         var rewardSaved = rewardValidationAndSaving(count);
         if (rewardSaved){
@@ -2028,19 +2119,19 @@ $(function() {
     '<div class="col-sm-2">'+
         '<div class="form-group">'+
             '<div class="col-sm-12">';
-        
+
         if(isIndianCampaign){
            	str = str + '<span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>';
              }else{
            	str = str + '<span class="cr2-currency-label">$</span>' ;
              }
-               
+
              str = str +  '<input type="text" placeholder="Amount"  name="rewardPrice'+count+'" id="rewardPrice'+count+
                        '" class="form-control cr-input-digit cr-tablat-padd form-control-no-border-amt rewardPrice">'+
            '</div>'+
        '</div>'+
     '</div>'+
-       
+
     '<div class="col-sm-5">'+
        '<div class="form-group">'+
            '<div class="col-sm-12">'+
@@ -2049,7 +2140,7 @@ $(function() {
            '</div>'+
        '</div>'+
     '</div>'+
-    
+
     '<div class="col-sm-5">'+
        '<div class="form-group">'+
            '<div class="col-sm-12">'+
@@ -2057,7 +2148,7 @@ $(function() {
            '</div>'+
        '</div>'+
     '</div>'+
-  
+
    '<div class="form-group row">'+
        '<div class="col-sm-12">'+
            '<div class="col-sm-12">'+
@@ -2083,13 +2174,13 @@ $(function() {
         $('#addNewRewards').append(str);
         $('#rewardCount').attr('value',count);
         }
-     });  
-    
+     });
+
     $('#removereward').click(function(){
-    	var rewardLength = $('#addNewRewards').find('.rewardsTemplate').length
+    	var rewardLength = $('#addNewRewards').find('.rewardsTemplate').length;
         if (confirm('Are you sure you want to discard this perk?')){
             removeRewards(count);
-            if (rewardLength == 1){
+            if (rewardLength === 1){
                 $("#updatereward").hide();
                 $('#addNewRewards').find('.rewardsTemplate').hide();
                 renameAndemptyRewardFields();
@@ -2118,14 +2209,14 @@ $(function() {
                 minlength : 5
             });
         });
-       	
+
        	$('.rewardTitle').each(function () {
             $(this).rules("add", {
                 required: true,
                 minlength : 5
             });
        	});
-    	
+
         $('.rewardNumberAvailable').each(function () {
             $(this).rules("add", {
                 required: true,
@@ -2160,7 +2251,7 @@ $(function() {
                });
            });
         }
-        if($('#rewardPrice'+rewardCount).length == 0){
+        if($('#rewardPrice'+rewardCount).length === 0){
             return true;
         } else if((validator.element("#rewardPrice"+rewardCount)) && (validator.element("#rewardTitle"+rewardCount)) && (validator.element( "#rewardNumberAvailable"+rewardCount)) && (validator.element( "#rewardDesc"+rewardCount))) {
         	var rewardPrice = $('#rewardPrice'+rewardCount).val();
@@ -2182,100 +2273,73 @@ $(function() {
         }
     }
 
-     $.validator.addMethod('isequaltofirstadmin', function(value, element){
+     $.validator.addMethod('isequaltofirstadmin', function(value){
     	 var emailId = $('#firstadmin').val();
- 	     if(value.length != 0 && value == emailId) {
- 	         return (!value == emailId)
+ 	     if(value.length !== 0 && value === emailId) {
+ 	         return (!value === emailId);
  	     }
      	 return true;
      }, "This Co-creator is already added");
-     
-     $.validator.addMethod('isequaltosecondadmin', function(value, element){
+
+     $.validator.addMethod('isequaltosecondadmin', function(value){
     	 var emailId = $('#secondadmin').val();
-     	 if(value.length != 0 && value == emailId) {
-     	     return (!value == emailId)
-     	 } 
+     	 if(value.length !== 0 && value === emailId) {
+     	     return (!value === emailId);
+     	 }
      	 return true;
      }, "This Co-creator is already added");
-     
-     $.validator.addMethod('isequaltothirdadmin', function(value, element){
+
+     $.validator.addMethod('isequaltothirdadmin', function(value){
     	 var emailId = $('#thirdadmin').val();
- 	     if(value.length != 0 && value == emailId) {
- 	         return (!value == emailId)
- 	     } 
+ 	     if(value.length !== 0 && value === emailId) {
+ 	         return (!value === emailId);
+ 	     }
      	 return true;
      }, "This Co-creator is already added");
-     
-     $.validator.addMethod('iscampaigncreator', function(value, element){
+
+     $.validator.addMethod('iscampaigncreator', function(value){
     	 var emailId = $('#email').val();
-    	 if(value.length != 0 && value == emailId) {
-    		 return (!value == emailId)
+    	 if(value.length !== 0 && value === emailId) {
+    		 return (!value === emailId);
     	 }
     	 return true;
      }, "Campaign creator cannot be added as a Co-creator");
 
-    /* Click handler for Myself/Someone I Know. */
-    /*
-    $('#fundRaisingFor').change(function(event) {
-        var optionChosen = $(this).val(),
-            nameEl = $('#name'),
-            emailEl = $('#email');
-
-        if (optionChosen == 'MYSELF') {
-            validator.resetForm();
-
-            nameEl.closest('.form-group').removeClass('has-error');
-            nameEl.val(function() {
-                return $(this).attr('value');
-            });
-            nameEl.prop('disabled', true);
-
-            emailEl.closest('.form-group').removeClass('has-error');
-            emailEl.val(function() {
-                return $(this).attr('value');
-            });
-            emailEl.prop('disabled', true);
-        } else if (optionChosen == 'OTHER') {
-            nameEl.prop('disabled', false);
-            emailEl.prop('disabled', false);
-        }
-    });
-    */
 
     $(document).ready(function (){
         //called when key is pressed in textbox
         $("#amount").keypress(function (e) {
             //if the letter is not digit then display error and don't type anything
-            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
                 //display error message
                 $("#errormsg").html("Digits Only").show().fadeOut("slow");
                 return false;
-            } 
+            }
         });
-        
+
         $("form").on("click", ".spendAmount", function () {
             $('.spendAmount').each(function () {
                 $(this).keypress(function (e) {
                   //if the letter is not digit then display error and don't type anything
-                  if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                  if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
                     //display error message
                 	$(this).siblings(".digitsError").html("Digits Only").show().fadeOut(1000);
                     return false;
                   }
                 });
             });
-            
+
           });
-        
+
         $("#amount2,#amount3,#amount1").keypress(function (e) {
             //if the letter is not digit then display error and don't type anything
-            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
                 //display error message
                 $("#errormsg1,#errormsg2").html("Digits Only").show().fadeOut("slow");
                 return false;
-            } 
+            }
         });
-        
+
         $("#customVanityUrl").keypress(function (e) {
              return /[a-z0-9-]/i.test(
                 String.fromCharCode(e.charCode || e.keyCode)
@@ -2290,7 +2354,7 @@ $(function() {
             	$('#perkSaveMessage'+editCount).fadeOut(3000);
             }
         });
-        
+
         $("form").on("click", ".deletereward", function () {
         	var deleteCount = $(this).attr('value');
         	if (confirm('Are you sure you want to discard this perk?')){
@@ -2305,15 +2369,15 @@ $(function() {
             $('.rewardPrice').each(function () {
                 $(this).keypress(function (e) {
                   //if the letter is not digit then display error and don't type anything
-                  if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                  if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
                     //display error message
                     return false;
-                  } 
+                  }
                 });
             });
-            
+
           });
-        
+
 		$("form").on("click", ".spendMatrixTemplateAdd", function () {
 			var shippingMatrixCount = $('.spend-matrix').find('.spenMatrixNumberAvailable:last').val();
 			var spendMatrixSaved = validateSpendMatrix(shippingMatrixCount);
@@ -2398,7 +2462,7 @@ $(function() {
                               min:'min $1'
                           }
                       });
-                  }); 
+                  });
               }
 
         	  $('.spendCause').each(function () {
@@ -2437,7 +2501,6 @@ $(function() {
                 	  $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
                   }
               }).error(function() {
-                  console.log('error occured while saving spenMarix no.'+savingCount);
               });
           }
 
@@ -2445,11 +2508,13 @@ $(function() {
         	  if (confirm('Are you sure you want to delete this spend field?')){
                   var deleteCount = $(this).find('.spendFieldDelete').val();
                   var shippingMatrixCount = $('.spend-matrix').find('.spenMatrixNumberAvailable:last').val();
-                  if (deleteCount == shippingMatrixCount){
+
+                  if (deleteCount === shippingMatrixCount){
             	      $('.spendMatrixTemplateAdd:last').remove();
             	      var id = $('.spendMatrixTemplateAdd:last').attr('id');
             	      $('#'+id).removeClass('display-none');
                   }
+
                   deleteSpendMatrix(deleteCount);
         	  }
           });
@@ -2470,141 +2535,102 @@ $(function() {
                       $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
                   }
               }).error(function() {
-                  console.log('error occured while deleting spenMarix no.'+savingCount);
               });
           }
-          
+
           $("form").on("click", ".spendMatrixTemplateSave", function () {
               var saveCount = $(this).find('.spendFieldSave').val();
               var isSpendMatrixSaved = validateSpendMatrix(saveCount);
               if (isSpendMatrixSaved){
             	  $('.saved-message').show().fadeOut(3000);
-//            	  if (screen.width >767){
-//            		  $('.saved-message-sm').show().fadeOut(2000);
-//            	  } else {
-//            		  $('.saved-message-xs').show().fadeOut(2000);
-//            	  }
               }
           });
 
-//        var $win = $(window);
-//        $win.scroll(function () {
-//            if ($win.scrollTop() == 0){
-//                $('#start').css('padding-top','25px');
-//            	$('#story').css('padding-top','0px');
-//            	$('#admins').css('padding-top','0px');
-//            	$('#perk').css('padding-top','0px');
-//            	$('#payment').css('padding-top','0px');
-//            	$('#launch').css('padding-top','0px');
-//            }else if ($win.height() + $win.scrollTop()== $(document).height()) {
-//                $('#start').css('padding-top','0px');
-//            	$('#story').css('padding-top','0px');
-//            	$('#admins').css('padding-top','0px');
-//            	$('#perk').css('padding-top','0px');
-//            	$('#payment').css('padding-top','0px');
-//            	$('#launch').css('padding-top','30px');
-//            	$('#save').css('padding-top','25px');
-//            }
-//        });
-        
+
         $('.cr-img-start-icon').click(function(){
-        	
+
         	var target = this.hash,
                 $target = $(target);
-        
+
             $('html, body').stop().animate({
                 'scrollTop': $target.offset().top-160
             }, 90, 'swing', function () {
             });
-
-            console.log(window.location);
 
             return false;
     	});
     	$('.cr-img-story-icon').click(function(){
     		var target = this.hash,
                 $target = $(target);
-        
+
             $('html, body').stop().animate({
                 'scrollTop': $target.offset().top-170
             }, 90, 'swing', function () {
             });
-
-            console.log(window.location);
 
             return false;
     	});
     	$('.cr-img-admin-icon').click(function(){
     		var target = this.hash,
                 $target = $(target);
-        
+
             $('html, body').stop().animate({
                 'scrollTop': $target.offset().top-180
             }, 90, 'swing', function () {
             });
-
-            console.log(window.location);
 
             return false;
     	});
     	$('.cr-img-perk-icon').click(function(){
     		var target = this.hash,
                 $target = $(target);
-        
+
             $('html, body').stop().animate({
                 'scrollTop': $target.offset().top-170
             }, 90, 'swing', function () {
             });
-
-            console.log(window.location);
 
             return false;
     	});
     	$('.cr-img-payment-icon').click(function(){
     		var target = this.hash,
                 $target = $(target);
-        
+
             $('html, body').stop().animate({
                 'scrollTop': $target.offset().top-205
             }, 90, 'swing', function () {
             });
-
-            console.log(window.location);
 
             return false;
     	});
     	$('.cr-img-launch-icon').click(function(){
     		var target = this.hash,
                 $target = $(target);
-        
+
             $('html, body').stop().animate({
                 'scrollTop': $target.offset().top-180
             }, 90, 'swing', function () {
             });
-
-            console.log(window.location);
 
             return false;
     	});
     	$('.cr-img-save-icon').click(function(){
     		var target = this.hash,
             $target = $(target);
-        
+    		
             $('html, body').stop().animate({
                 'scrollTop': $target.offset().top-180
             }, 90, 'swing', function () {
             });
 
-            console.log(window.location);
-
             return false;
     	});
-        
+
    });
-    
+
    $('#paypalEmailId').change(function(){
        var base_url = $("#b_url").val();
-       if (base_url != 'https://crowdera.co'){
+       if (base_url !== 'https://crowdera.co'){
            var email =  $('#paypalEmailId').val();
            $.ajax({
                type:'post',
@@ -2612,17 +2638,16 @@ $(function() {
                data:'email='+email,
                success: function(data){
                    $('#paypalEmailAck').val(data);
-                   if (data == 'Success') {
+                   if (data === 'Success') {
                        $('.paypalVerification').find("span").remove();
                        $('.paypalVerification').closest(".form-group").removeClass('has-error');
                    }
                }
-           }).error(function(e){
-        	   console.log('Error occured during paypal email verification'+e);
+           }).error(function(){
            });
         }
     });
-   
+
    $('.form-amount-impact').blur(function (){
 	   var impactAmount = $(this).val();
 	   if (validator.element( ".form-amount-impact")){
@@ -2648,43 +2673,42 @@ $(function() {
            success: function(data){
                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
            }
-       }).error(function(data){
-           console.log('Error occured while autosaving category and hashtags info'+ data);
+       }).error(function(){
        });
     });
 
     $('#country').change(function(){
         var selectedCountry = $(this).val();
-        if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
-            $.ajax({
+        if (isIndianCampaign){
+        	if (selectedCountry === 'null') {
+                autoSave('country', 'IN');
+            } else {
+                autoSave('country', selectedCountry);
+            }
+        } else {
+        	$.ajax({
                 type:'post',
                 url:$("#b_url").val()+'/project/getCountryVal',
                 data:'country='+selectedCountry+'&projectId='+projectId,
                 success: function(data) {
                    $('#selectedCountry').val(data);
-                   changeHashTags()
+                   changeHashTags();
                 }
-            }).error(function(data){
-                console.log('Error occured while autosaving country and hashtags info'+ data);
+            }).error(function(){
             });
-        } else {
-            if (selectedCountry == 'null') {
-                autoSave('country', 'IN');
-            } else {
-                autoSave('country', selectedCountry);
-            }
         }
     });
 
     $('.recipient').change(function() {
+
         var recipient = $(this).val();
         if (isIndianCampaign){
-            if (recipient == 'NGO'){
+            if (recipient === 'NGO'){
                 $('#tax-reciept').show();
             } else {
                 $('#tax-reciept').hide();
-                if ($('#offeringTaxReciept').val() == 'true' || $('#offeringTaxReciept').val() == true){
-                    if (confirm("If you will change the recipient of fund you will not be liable to offer tax reciept. \nAre you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
+                if ($('#offeringTaxReciept').val() === 'true' || $('#offeringTaxReciept').val() === true){
+                    if (confirm("If you will change the recipient of fund you will not be liable to offer tax reciept. \n Are you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
                         $('.col-tax-reciept-panel').hide();
                         $('#taxRecieptId').val(null);
                         deleteTaxReciept();
@@ -2744,21 +2768,23 @@ $(function() {
                $('.tax-reciept-holder-city').val('');
                $('.tax-reciept-holder-name').val('');
                $('.tax-reciept-holder-state').val('');
-               if (currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'staging' || currentEnv === 'production'){
-                   $('.ein').val('');
-                   $('.tax-reciept-holder-country').val('');
-                   $('.tax-reciept-deductible-status').val('');
-               } else {
-                   $('.addressLine1').val('');
-                   $('.addressLine2').val('');
-                   $('.zip').val('');
+
+               $('.addressLine1').val('');
+               $('.addressLine2').val('');
+               $('.zip').val('');
+               $('.tax-reciept-holder-phone').val('');
+
+               if (isIndianCampaign){
                    $('.tax-reciept-registration-num').val('');
                    $('.tax-reciept-holder-pan-card').val('');
-                   $('.tax-reciept-holder-phone').val('');
                    $('.fcra-reg-no').val('');
                    $('.text-date').val('');
                    $('#taxRecieptFiles').val('');
                    $('.col-tax-file-show').find('.cr-tax-files').remove();
+               } else {
+            	   $('.ein').val('');
+                   $('.tax-reciept-holder-country').val('');
+                   $('.tax-reciept-deductible-status').val('');
                }
            }
        }).error(function() {
@@ -3049,11 +3075,14 @@ $(function() {
         } else if (usedFor === 'PASSION'){
             list = '#Passion';
         }
+
         (fundRaisedBy && fundRaisedBy !== 'null') ? list = list + ', #'+getStringCaptalised(fundRaisedBy) : ' ' ;
         (category && category !== 'null') ? list = list + ', #'+getStringCaptalised(category) : ' ' ;
-        if (currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'staging' || currentEnv === 'production'){
+
+        if (!isIndianCampaign){
             (country !== 'null' && country !== null && country !== '') ? list = list + ', #'+country : ' ' ;
         }
+
         (city && city !== '') ? list = list + ', #'+city : ' ' ;
 
         if ($('.hashtags').val()){
@@ -3171,9 +3200,10 @@ $(function() {
 
      $('#previewButton, #previewButtonXS').on('click', function(){
       	$('#isSubmitButton').val(false);
-       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactAmount"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
+       	$('[name="pay"], [name="digitalSign"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactAmount"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
              $(this).rules('remove');
          });
+
 
         $('.spendAmount').each(function () {
             $(this).rules("remove");
@@ -3185,7 +3215,7 @@ $(function() {
 
        	$( "#projectImageFile" ).rules("remove");
 
-       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactAmount"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
+       	$('[name="pay"], [name="digitalSign"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactAmount"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
              $(this).closest('.form-group').removeClass('has-error');
          });
 

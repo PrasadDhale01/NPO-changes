@@ -16,6 +16,7 @@ import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.util.EntityUtils
+import org.apache.jasper.compiler.Generator.FragmentHelperClass.Fragment;
 import org.apache.poi.ss.usermodel.Workbook
 import org.apache.poi.ss.usermodel.WorkbookFactory
 import org.codehaus.groovy.grails.web.json.JSONObject
@@ -239,8 +240,9 @@ class ProjectController {
             def multiplier = projectService.getCurrencyConverter();
             
             def pieList = projectService.getPieList(project);
-            def hasMoreTagsDesktop = projectService.getHashTags(project.hashtags)
-            def hasMoreTagsTabs = projectService.getHashTagsTabs(project.hashtags)
+
+            def hasTags = projectService.getHashTagsForCampaign(project.hashtags)
+            
             def reasons = projectService.getReasonsToFundFromProject(project)
             def isDeviceMobileOrTab = isDeviceMobileOrTab();
             
@@ -255,14 +257,25 @@ class ProjectController {
                     isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,
                     isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: vanityUsername, FORMCONSTANTS: FORMCONSTANTS, 
                     isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier,
-                    spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList,
-                    hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
-                    hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, reasons:reasons,
-                    isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv])
+                    spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, reasons:reasons,
+                    isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
+                    remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList])
 		} else {
 			render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
 	}
+    
+    def campaignShare() {
+        def title = projectService.getVanityTitleFromId(params.id)
+        def name = userService.getVanityNameFromUsername(params.fr, params.id)
+        redirect (action:'show', params:['projectTitle':title,'fr':name])
+    }
+    
+    def updateShare(){
+        def title = projectService.getVanityTitleFromId(params.id)
+        def name = userService.getVanityNameFromUsername(params.fr, params.id)
+        redirect (action:'show', params:['projectTitle':title,'fr':name], fragment:'projectupdates')
+    }
 
     def isDeviceMobileOrTab(){
         String userAgent = request.getHeader("User-Agent");
@@ -343,8 +356,9 @@ class ProjectController {
                 def multiplier = projectService.getCurrencyConverter();
 
                 def pieList = projectService.getPieList(project);
-                def hasMoreTagsDesktop = projectService.getHashTags(project.hashtags)
-                def hasMoreTagsTabs = projectService.getHashTagsTabs(project.hashtags)
+                
+                def hasTags = projectService.getHashTagsForCampaign(project.hashtags)
+                
                 def reasons = projectService.getReasonsToFundFromProject(project)
                 
                 def taxReceipt = projectService.getTaxRecieptOfProject(project)
@@ -363,9 +377,9 @@ class ProjectController {
                     isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, 
                     isFundingOpen: isFundingOpen, rewards: rewards,validatedPage: validatedPage, isTeamExist: isTeamExist, 
                     FORMCONSTANTS: FORMCONSTANTS, multiplier: multiplier,spendCauseList:pieList.spendCauseList, 
-                    spendAmountPerList:pieList.spendAmountPerList, hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, 
-                    remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, 
-                    remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, reasons:reasons, taxReceipt:taxReceipt])
+                    spendAmountPerList:pieList.spendAmountPerList, reasons:reasons, taxReceipt:taxReceipt,
+                    firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
+                    remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList])
                 }
             } else {
                 render (view: '404error')
@@ -1223,7 +1237,7 @@ class ProjectController {
             def hasMoreTagsTabs = projectService.getHashTagsTabs(project.hashtags)
             def reasons = projectService.getReasonsToFundFromProject(project)
             
-//            def isDeviceMobileOrTab = isDeviceMobileOrTab();
+            def isDeviceMobileOrTab = isDeviceMobileOrTab();
 
 			if(project.user==user || isCampaignOwnerOrAdmin){
 				render (view: 'manageproject/index',
@@ -1232,7 +1246,7 @@ class ProjectController {
 					ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
 					unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, vanityUsername:vanityUsername, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo,
 					tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier, reasons: reasons,
-                    spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList,
+                    spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, isDeviceMobileOrTab: isDeviceMobileOrTab,
                     hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
                     hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags])
 			} else {
@@ -1308,6 +1322,19 @@ class ProjectController {
 			redirect (action: 'show', params:[fr: params.vanityUsername, 'projectTitle': params.vanityTitle])
 		}
 	}
+    
+    def sendupdateemail() {
+        def fundRaiser = params.fr
+        def updateId = projectService.getProjectUpdateById(params.projectUpdateId)
+        
+        projectService.shareupdateemail(params,fundRaiser,updateId)
+        flash.prj_mngprj_message= "Email sent successfully."
+        if (params.ismanagepage) {
+            redirect(controller: 'project', action: 'manageproject', params:['projectTitle': params.vanityTitle])
+        } else {
+            redirect (action: 'show', params:[fr: params.vanityUsername, 'projectTitle': params.vanityTitle])
+        }
+    }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def projectupdate() {
@@ -1380,17 +1407,9 @@ class ProjectController {
 
 		if(project ) {
 			if (params.imageList || !story.isAllWhitespace()) {
-
-				def projectUpdate = new ProjectUpdate()
-				User user = userService.getCurrentUser()
-
-				projectUpdate.story = story
-				projectUpdate.title = params.title
-				projectService.getUpdatedImageUrls(params.imageList, projectUpdate)
-
-				project.addToProjectUpdates(projectUpdate)
-				mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user,params.title)
-
+                
+                projectService.saveCampaignUpdate(params, project, story)
+                
 				flash.prj_mngprj_message= "Update added successfully."
 				redirect (action: 'manageproject', controller:'project', params:['projectTitle':title], fragment: 'projectupdates')
 			} else {
@@ -2565,6 +2584,38 @@ class ProjectController {
     def isTitleUnique(){
         def status = projectService.isTitleUnique(params.title, params.projectId)
         render status
+    }
+    
+    def uploadDigitalSignature() {
+        Project project = projectService.getProjectById(params.projectId)
+        TaxReciept taxReciept = projectService.getTaxRecieptOfProject(project)
+        
+        def imageUrl = userService.getImageUrl(params.file)
+        
+        if (imageUrl) {
+            if (taxReciept){
+                taxReciept.signatureUrl = imageUrl
+                taxReciept.save(failOnError:true);
+            } else {
+                TaxReciept taxreciept = new TaxReciept()
+                taxReciept.signatureUrl = imageUrl
+                taxreciept.project = project
+                taxreciept.save(failOnError:true);
+            }
+            JSONObject json = new JSONObject();
+            json.put('imageUrl',imageUrl)
+            render json
+        }
+    }
+    
+    def deleteDigitalSign() {
+        Project project = projectService.getProjectById(params.projectId)
+        TaxReciept taxReciept = projectService.getTaxRecieptOfProject(project)
+        if (taxReciept){
+            taxReciept.signatureUrl = null;
+            taxReciept.save(failOnError:true);
+        }
+        render ''
     }
     
 }

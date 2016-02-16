@@ -71,7 +71,8 @@
 	</div>
 
 	<span class="pull-right" id="selectedLength"></span>
-	<div id="email-send-confirmation">Email has been send to the contributors</div>
+	<div class="sendemailtocontributors">Sending an email please wait &nbsp;&nbsp;<img src="//s3.amazonaws.com/crowdera/assets/checking-availibility.gif" alt="loading"></div>
+	<div id="email-send-confirmation">Email has been sent successfully!</div>
 </g:if>
 <g:else>
 	<div class="alert alert-info">
@@ -180,16 +181,18 @@
 		$('.contributor-checkbox-select:checked').each(function (){
 		    list.push(this.id);
 		});
+		$('.sendemailtocontributors').show();
 		
 		$.ajax({
 			type: 'post',
 			url:baseUrl+'/user/sendTaxReceiptToContributors',
 			data:'vanityTitle='+vanityTitle+'&list='+list,
 			success: function(data) {
+				$('.sendemailtocontributors').hide();
 			    $('#email-send-confirmation').show().fadeOut(9000);
 			}
-		}).error(function(e){
-		    console.log('Error occured while sending email to contributors');
+		}).error(function(){
+			$('.sendemailtocontributors').hide();
 		});
 	
 	});

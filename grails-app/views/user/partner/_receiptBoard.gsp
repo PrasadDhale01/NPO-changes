@@ -27,7 +27,7 @@
 			    </div>
 			</g:if>
 			<g:else>
-				<div class="campaignTilePaginate">
+				<div class="campaignTilePaginate send-tax-receipt-to-contributors">
 				    <g:render template="/user/user/userCampaignTile"/>
 				</div>
 			</g:else>

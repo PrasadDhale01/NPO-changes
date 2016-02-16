@@ -86,6 +86,14 @@ $(function() {
         	}
         }
     });
+    
+    $("input[name='scheduledcheckbox']").change(function(){
+    	if (this.checked) {
+    		$('.updateschedular').show();
+    	} else {
+    		$('.updateschedular').hide();
+    	}
+    });
 
     $('#editsubmitbutton').on('click', function() {
         var storyValue = $('.redactorEditor').redactor('code.get');

@@ -19,21 +19,21 @@
 <div class="row">
     <div class="fullwidth pull-right manage-edit-mobilebtns">
          <g:if test="${!project.validated && percentage <= 999}">
-             <g:link controller="project" action="editCampaign" class="manage-edit-draft-left" method="post" id="${project.id}">
-                 <span class="btn btn-default manage-btn-width manage-btn-back-color"  aria-label="Edit project">EDIT CAMPAIGN
+             <g:link controller="project" action="editCampaign" class="manage-edit-draft-left col-lg-6 col-md-6 col-sm-6 col-xs-6" method="post" id="${project.id}">
+                 <span class="btn btn-default manage-btn-width manage-btn-back-color"  aria-label="Edit project"><i class="fa fa-pencil-square-o edit-space"></i>EDIT
                  </span>
              </g:link>
          </g:if>
          <g:if test="${!project.validated || username.equals('campaignadmin@crowdera.co') }">
-             <g:form controller="project" action="projectdelete" method="post" id="${project.id}">
-                 <button class="btn btn-default manage-deletebtn-width" aria-label="Edit project" id="projectdelete" onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);">
-                 DELETE CAMPAIGN</button>
+             <g:form controller="project" action="projectdelete" method="post" id="${project.id}" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 manage-btn-padding">
+                 <button class="btn btn-danger manage-deletebtn-width" aria-label="Edit project" id="projectdelete" onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);">
+                 <i class="fa fa-trash edit-space"></i>DELETE</button>
              </g:form>
          </g:if>
          <g:if test="${project.validated && percentage <= 999}">
          <div class="">
              <g:link controller="project" action="editCampaign" class="manage-edit-left" method="post" id="${project.id}">
-                 <span class="btn btn-default manage-btn-width-aft-validated manage-btn-back-color"  aria-label="Edit project" >EDIT CAMPAIGN
+                 <span class="btn btn-default manage-btn-width-aft-validated manage-btn-back-color"  aria-label="Edit project" ><i class="fa fa-pencil-square-o edit-space"></i>EDIT CAMPAIGN
                  </span>
              </g:link>
          </div>

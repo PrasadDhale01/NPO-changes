@@ -27,7 +27,9 @@
     if (imageUrl) {
         imageUrl = project.imageUrl[0].getUrl()
     }
-    def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
+    def fbShareUrl = base_url+"/campaigns/campaignShare"+project.id+"?fr="+username
+    def fbShareUrlupdatePage = base_url+"/campaigns/updateShare?id="+project.id+"&fr="+username
+    
     def currentTeamAmount = currentTeam.amount
     def shareUrl = base_url+'/c/'+shortUrl
     
@@ -68,7 +70,7 @@
     <g:elseif test="${imageUrl}">
         <meta property="og:image" content="${imageUrl}" />
     </g:elseif>
-        <meta property="og:url" content="${fbShareUrl}" />
+    <meta property="og:url" content="${fbShareUrl}" />
     
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@gocrowdera" />
@@ -77,6 +79,14 @@
     <g:if test="${project.description}">
        <meta name="twitter:description" content="${project.description}" />
     </g:if>
+    
+    <g:if test="${project.organizationIconUrl}">
+        <meta property="twitter:image" content="${project.organizationIconUrl}" />
+    </g:if>
+    <g:elseif test="${imageUrl}">
+        <meta property="twitter:image" content="${imageUrl}" />
+    </g:elseif>
+    
     <meta name="layout" content="main" />
     
     
@@ -112,7 +122,8 @@
         <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
         <g:hiddenField name="pieList" value="${pieList}" id="pieList"/>
         <g:hiddenField name="projectamount" value="${project.amount.round()}" id="projectamount"/>
-
+        <g:hiddenField name="fbShareUrlupdatePage" value="${fbShareUrlupdatePage}" id="fbShareUrlupdatePage"/>
+        
         <g:if test="${project}">
             <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>
             <div class="redirectUrl">
@@ -190,7 +201,7 @@
                                     <div class="clear"></div>
                                     <div class="show-mobile-button">
                                         <button class="btn btn-block btn-lg sh-submitapproval  show-mob-mobile">
-                                            <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                            <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
                                         </button>
                                     </div>
                                 </g:form>
@@ -198,7 +209,7 @@
                             <g:else>
                                 <div class="show-mobile-button">
                                     <button class="btn btn-block btn-lg show-mob-mobile" id="submitForApprovalBtnMobile">
-                                        <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                        <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
                                     </button>
                                 </div>
                             </g:else>
@@ -346,13 +357,13 @@
 			                                <div class="clear"></div>
 			                                            
 			                                <button class="btn btn-block btn-lg btn-primary sh-submitaproval-2header sh-aproval-btn hidden-xs">
-			                                    <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+			                                    <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
 			                                </button>
 			                            </g:form>
 			                        </g:if>
 			                        <g:else>
 			                            <button class="btn btn-block btn-lg btn-primary sh-submitaproval-2header sh-aproval-btn hidden-xs" id="submitForApprovalBtnright">
-			                                <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+			                                <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
 			                            </button>
 			                        </g:else>
 			                    </div>
@@ -496,28 +507,6 @@
                   </div>
                </div>
                
-               <%--Mobile code for whatsapp--%>
-<%--               <g:if test="${isPreview}">--%>
-<%--                  <div class="whatsapp-mobile-icon visible-xs">--%>
-<%--                      <a class="btn btn-whatsapp" href="whatsapp://send?text=${shareUrl}" data-action="share/whatsapp/share">--%>
-<%--                          <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> --%>
-<%--                      </a>--%>
-<%--                  </div>--%>
-<%--               </g:if>--%>
-<%--               <g:elseif test="${isDeviceMobileOrTab}">--%>
-<%--                   <div class="whatsapp-mobile-icon visible-xs">--%>
-<%--                       <a class="btn btn-whatsapp" href="whatsapp://send?text=${shareUrl}">--%>
-<%--                           <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> --%>
-<%--                       </a>--%>
-<%--                   </div>--%>
-<%--               </g:elseif>--%>
-<%--               <g:else>--%>
-<%--                   <div class="whatsapp-mobile-icon visible-xs">--%>
-<%--                       <a class="btn btn-whatsapp" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank">--%>
-<%--                           <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> --%>
-<%--                       </a>--%>
-<%--                   </div>--%>
-<%--               </g:else>--%>
                
                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 borders  hidden-xs">
                     <g:set var="screen" id="screen" value="false"></g:set>
@@ -740,23 +729,23 @@
                       </div>
                     
                       <g:if test="${isPreview && !project.validated}">
-                          <div class="submitForApprovalSectionbtn">
+                          <div class="submitForApprovalSectionbtn" id="submitForApprovalSectionbtn">
                               <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                                   <g:form controller="project" action="saveasdraft" id="${project.id}">
                                       <g:if test="${!project.touAccepted}">
-                                          <div class="form-group show-submit-margin">
+                                          <div class="form-group show-submit-margin hidden-xs">
                                               <input type="checkbox" name="submitForApprovalcheckbox1">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
                                           </div>
                                           <div class="show-A-fund"></div>
                                           <button class="btn btn-block btn-lg btn-primary show-submitapproval-in-check-box hidden-xs">
-                                          <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                          <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
                                           </button>
                                       </g:if>
                                       <g:else>
                                           <div class="clear"></div>
                                           <div class="show-A-fund"></div>
                                           <button class="btn btn-block btn-lg btn-primary sh-submitapproval hidden-xs">
-                                              <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                              <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
                                           </button>
                                       </g:else>
                                   </g:form>
@@ -764,7 +753,7 @@
                               <g:else>
                                   <div class="show-A-fund"></div>
                                   <button class="btn btn-block btn-lg btn-primary sh-submitapproval hidden-xs" id="submitForApprovalBtn">
-                                      <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                      <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
                                   </button>
                               </g:else>
                           </div>
@@ -914,9 +903,20 @@
                           </g:if>
                       </div>
                       
-                      <g:if test="${remainingTagsTabs}">
+                      <g:if test="${project.hashtags}">
                           <h3 class="moretags-tabs visible-xs"><b>#Tags</b></h3>
-                          <p class="moretags-tabs visible-xs">${project.hashtags}</p>
+                          <g:if test="${project.validated}">
+                              <p class="moretags-tabs visible-xs">
+                                  <g:each in="${hashtagsList}" var="hashtag">
+                                      <g:link class="searchablehastag" controller="project" action="search" params="['q': hashtag]">${hashtag}</g:link>
+                                  </g:each>
+                              </p>
+                          </g:if>
+                          <g:else>
+                              <p class="moretags-tabs visible-xs">
+                                  ${project.hashtags}
+                              </p>
+                          </g:else>
                       </g:if>
 				      
                       <div class="visible-xs sh-comments-align">

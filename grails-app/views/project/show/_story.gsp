@@ -3,7 +3,6 @@
     def base_url = grailsApplication.config.crowdera.BASE_URL
     def projectimages = projectService.getProjectImageLinks(project)
     def teamimages = projectService.getTeamImageLinks(currentTeam,project)
-    def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
     def shareUrl = base_url+'/c/'+shortUrl
 %>
 <div class="col-md-12">
@@ -23,7 +22,7 @@
     <g:hiddenField name="shareUrl" id="shareUrl" value="${shareUrl}"/>
     <g:hiddenField name="embedTileUrl" id="embedTileUrl" value="${embedTileUrl}"/>
 
-    <div class="col-sm-12 social sharing-icon-alignment <g:if test="${hashTagsDesktop || hashTagsTabs}"></g:if><g:else>sharing-icons-padding-left</g:else> <g:if test="${isvalidateShow}">validate-share-border</g:if><g:else>show-share-border-line</g:else> hidden-xs">
+    <div class="col-sm-12 social sharing-icon-alignment <g:if test="${!firstFiveHashtag.isEmpty() || !firstThreeHashtag.isEmpty()}"></g:if><g:else>sharing-icons-padding-left</g:else> <g:if test="${isvalidateShow}">validate-share-border</g:if><g:else>show-share-border-line</g:else> hidden-xs">
         <a class="show-socials-iconsA"></a>
         <g:if test="${isPreview || isvalidateShow}">
             <a class="share-mail pull-left show-icons show-email-hover show-pointer-not">
@@ -41,10 +40,21 @@
             <a class="social google-plus-share pull-left show-icons show-pointer-not">
                 <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
             </a>
+            
             <span class="pull-left show-icons show-pointer-not"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" alt="embedicon" class="show-embedIcon"></span>
             <span class="shortUrlglyphicon glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color show-pointer-not"></span>
-            <span class="showing-hashtags <g:if test="${isvalidateShow}">hashtag-font-size</g:if> showing-hashtags-desktop">${hashTagsDesktop}</span>
-            <span class="showing-hashtags showing-hashtags-tabs">${hashTagsTabs}</span>
+            
+            <span class="showing-hashtags <g:if test="${isvalidateShow}">hashtag-font-size</g:if> showing-hashtags-desktop">
+                <g:each in="${firstFiveHashtag}" var="hashtag">
+                    ${hashtag}
+                </g:each>
+            </span>
+            
+            <span class="showing-hashtags showing-hashtags-tabs">
+                <g:each in="${firstThreeHashtag}" var="hashtag">
+                    ${hashtag}
+                </g:each>
+            </span>
         </g:if>
         <g:else>
             <a class="share-mail pull-left show-icons" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
@@ -71,8 +81,16 @@
                     <p>${shareUrl}</p>
                 </div>
             </div>
-			<span class="showing-hashtags showing-hashtags-desktop hashtags-padding-left">${hashTagsDesktop}</span>
-			<span class="showing-hashtags showing-hashtags-tabs hashtags-padding-left">${hashTagsTabs}</span>
+			<span class="showing-hashtags showing-hashtags-desktop hashtags-padding-left">
+			    <g:each in="${firstFiveHashtag}" var="hashtag">
+                    <g:link class="searchablehastag" controller="project" action="search" params="['q': hashtag]">${hashtag}</g:link>
+                </g:each>
+            </span>
+			<span class="showing-hashtags showing-hashtags-tabs hashtags-padding-left">
+                <g:each in="${firstThreeHashtag}" var="hashtag">
+                    <g:link class="searchablehastag" controller="project" action="search" params="['q': hashtag]">${hashtag}</g:link>
+                </g:each>
+			</span>
         </g:else>
     </div>
     <div class="clear"></div>
@@ -108,17 +126,27 @@
              <script src="/js/raphel-pie/g.pie.js"></script>
         </g:if>
         
-        <g:if test="${remainingTagsDesktop}">
+        <g:if test="${!remainingHashTags.isEmpty()}">
             <h3 class="moretags-desktop"><b>#Tags</b></h3>
-            <p class="moretags-desktop">${remainingTagsDesktop}</p>
+            <p class="moretags-desktop">
+                <g:each in="${remainingHashTags}" var="hashtag">
+                    <g:link class="searchablehastag" controller="project" action="search" params="['q': hashtag]">${hashtag}</g:link>
+                </g:each>
+            </p>
         </g:if>
-        <g:if test="${remainingTagsTabs}">
+        <g:if test="${!remainingHashTagsTab.isEmpty()}">
             <h3 class="moretags-tabs"><b>#Tags</b></h3>
-            <p class="moretags-tabs">${remainingTagsTabs}</p>
+            <p class="moretags-tabs">
+                 <g:each in="${remainingHashTagsTab}" var="hashtag">
+                    <g:link class="searchablehastag" controller="project" action="search" params="['q': hashtag]">${hashtag}</g:link>
+                </g:each>
+            </p>
         </g:if>
         
         <br/>
-        <div id="scrollToComment">
-            <g:render template="show/comments"/>
-        </div>
+        <g:if test="${!isvalidateShow}">
+            <div id="scrollToComment">
+                <g:render template="show/comments"/>
+            </div>
+        </g:if>
     </div>

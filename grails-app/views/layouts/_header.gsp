@@ -157,7 +157,7 @@
    </div>
   
         <div class="navbar-header">
-            <button data-target="#TW-navbar-collapsed" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle collapsed TW-scrollHeader-hamBurger burger" type="button">
+            <button data-target="#TW-navbar-collapsed" data-toggle="collapse" class="navbar-toggle collapsed TW-scrollHeader-hamBurger burger" type="button">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar icon-bar-xs" id="icon-bar-1"></span>
                 <span class="icon-bar icon-bar-xs" id="icon-bar-2"></span>

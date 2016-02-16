@@ -93,7 +93,9 @@ class UrlMappings {
         "/campaign/$projectTitle/$fr/embed/tile"(controller:'project', action:'embedTile')
         "/campaign/inviteMember/$projectId/$page?"(controller:'project', action:'inviteMember')
         
-
+        "/campaigns/updateShare"(controller:'project', action:'updateShare')
+        "/campaigns/campaignshare"(controller:'project', action:'campaignShare')
+        
         /* Admin */
         "/admin/dashboard"(controller:'user', action:'admindashboard')
         "/admin/importcampaigns"(controller: 'project', action: 'importprojects')

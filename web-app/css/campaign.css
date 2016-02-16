@@ -918,37 +918,35 @@ img.hm-height-width {
     margin-bottom: 0px;
 }
 .manage-btn-width {
-    padding-bottom: 11px;
-    padding-top: 11px;
-    width: 91.5%;
+    width: 100%;
+    border-color: #01bbd3;
 }
 .manage-deletebtn-width{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-left: 14px;
-    width: 91.5%;	
+    width: 100%;
+    font-weight: 900;
+}
+.manage-btn-padding {
+    padding-left: 0;
 }
 .manage-edit-draft-left {
-    margin-left: 14px;
+    padding-right: 0;
 }
 @-moz-document url-prefix() { 
     .manage-btn-width {
-         padding-bottom: 9px;
-         padding-top: 8px;
-         width: 91.5%;
+        width: 100%;
+        border-color: #01bbd3;
     }
     .manage-deletebtn-width{
-         padding-top: 9px;
-         padding-bottom: 11px;
-         margin-left: 14px;
-         width: 91.5%;   
+        width: 100%; 
+        font-weight: 900; 
     }
 }
 .manage-btn-width-aft-validated{
-	height: 100%;
-    padding-top: 8px;
-    padding-bottom: 10px;
-    width: 91.2%; 
+	font-size: 20px;
+    height: 100%;
+    padding-bottom: 25px;
+    padding-top: 25px;
+    width: 91.2%;
 }
 .manage-edit-left{
     margin-left: 15px;
@@ -963,17 +961,19 @@ img.hm-height-width {
     color: #fff;
 }
 .mange-size-FBbtn {
-    height: 100%;
-    padding: 12px;
-    width: 100%;
+    font-size: 17px;
     font-weight: 900;
+    height: 100%;
+    padding: 14px;
+    width: 100%;
 }
 @-moz-document url-prefix() { 
     .mange-size-FBbtn {
-        height: 100%;
-        padding: 9px;
-        width: 100%;
+        font-size: 17px;
         font-weight: 900;
+        height: 100%;
+        padding: 14px;
+        width: 100%;
     }
 }
 .manage-social{
@@ -989,6 +989,7 @@ img.hm-height-width {
 .manage-btn-back-color:hover,
 .manage-btn-back-color:focus {
     background-color: #01bbd3;
+    border-color: #01bbd3;
     color: #fff;
     font-weight: bold;
 }
@@ -1299,4 +1300,198 @@ img.how-it-success-img{
 .how-it-contactus {
     padding-top: 34px;
     font-size: 17px !important;
+}
+.manage-header-primary-top {
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #fff !important;
+    display: none; 
+}
+.manage-headers-A-one{
+  display: none;
+}
+.manage-header-logo img {
+    height: 39px;
+    margin-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px !important;
+}
+.manage-header-height {
+    height: 31px;
+}
+.manage-headerstabs-height{
+    height: 24px;
+    margin-top: 14px;
+}
+.manage-alltabs {
+    padding-left: 30px;
+}
+.manage-social-mB {
+    left: 0;
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    background-color: #fff !important;
+    z-index: 999;
+    display: none;
+}
+.manage-fb-btn-width {
+    height: 38px;
+    margin-top: 4px;
+    padding: 7px;
+    width: 306px;
+    font-weight: 900;
+}
+.manage-fbheader-size {
+    padding-left: 180px;
+}
+.mange-social-all {
+    padding-top: 4px;
+}
+.manage-width-edit {
+    margin-right: -28px !important;
+    margin-top: 4px !important;
+    padding-left: 152px;
+}
+.manage-width-india {
+    margin-right: -99px !important;
+    margin-top: 4px !important;
+    padding-left: 82px;
+}
+.mange-padding-btn {
+    padding: 0 !important;
+}
+.manage-headerbts {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 305px;
+}
+.mange-headerbtn-india {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 305px;
+}
+.manage-submitapprove-edit {
+    margin-right: -14px !important;
+    margin-top: 3px !important;
+    padding-left: 167px;
+}
+.manage-submitapprov-india {
+    margin-right: -94px !important;
+    margin-top: 3px !important;
+    padding-left: 87px;
+}
+.mange-btnsubmitapprov-size {
+    height: 45px;
+    padding: 0;
+    width: 303px;
+    font-weight: 900;
+}
+.edit-space {
+    padding-right: 4px;
+}
+.mange-submitapprovs {
+    font-weight: 900;
+}
+.col-tax-reciept-panel .rowseperator .help-block {
+    margin-bottom: 0px;
+}
+.manage-updateshare {
+    padding-left: 230px;
+    top: 6px !important;
+}
+.manage-urlshort {
+    cursor: pointer;
+    padding: 9px;
+    top: 1px;
+}
+.taxreceiptcontainer {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.modal-body .taxreceiptcontainer {
+    width: auto;
+}
+.taxreceiptbgcolor {
+    background-color: #F4F4F4;
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+.taxreceiptbgcolor img {
+    width: 175px;
+    height: 175px;
+}
+.taxreceiptcontributorlabel label {
+    background-color: #889299;
+    border-color: #889299;
+    color: #FFF;
+    height: 40px;
+    padding: 10px;
+}
+.taxreceiptlabelfont {
+    font-size: 16px;
+    font-weight: 600;
+}
+.searchablehastag, .searchablehastag:hover {
+    color: #01bbd2;
+    text-decoration: none;
+}
+.taxdetailslabel {
+    margin-top: 10px;
+    font-size: 14px;
+}
+.taxreceiptcontainer .taxorgaddress.form-control {
+    min-height: 170px
+}
+.taxreceiptcontributiondetail .taxreceipttop {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.taxreceiptdetailsfont {
+    margin-top: 8px;
+    margin-bottom: 0px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.taxreceiptdetailsfont.zerotopmargin {
+    margin-top: 0px;
+}
+.taxreceiptcontainer .form-control.digitalsignature {
+    height: 150px;
+}
+.taxreceiptheader {
+    background-color: #B3373C;
+    color: #fff;
+    padding: 10px 50px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.taxreceiptcontainer .form-control {
+    min-height: 34px;
+    height: auto;
+}
+.sendemailtocontributors, #signaturemsg, #signaturemsgsize, #signatureIcon, #delsignature {
+    display: none;
+}
+.updatesubmitbtn {
+    margin-top: 30px;
+}
+.schedulecheckboxdiv {
+    margin-bottom: 20px;
+}
+.scheduledate {
+    width: 200px;
+}
+.updateschedular {
+    display: none;
+}
+.bootstrap-timepicker-widget table td input {
+    width: 40px;
 }

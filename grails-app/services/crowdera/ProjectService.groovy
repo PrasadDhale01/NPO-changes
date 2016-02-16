@@ -13,6 +13,7 @@ import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.security.AWSCredentials
 import org.jets3t.service.model.*
 import grails.util.Environment
+import static java.util.Calendar.*
 
 class ProjectService {
     def userService
@@ -1754,11 +1755,11 @@ class ProjectService {
     }
 
     def getProjectImageLink(Project project) {
-        if (project.imageUrl) {
-            if (project.imageUrl[0].getUrl().startsWith('http')) {
-                return project.imageUrl[0].getUrl()
+        if (project.organizationIconUrl) {
+            if (project.organizationIconUrl.startsWith('http')) {
+                return project.organizationIconUrl
             } else {
-                return grailsLinkGenerator.resource(file: project.imageUrl[0].getUrl())
+                return grailsLinkGenerator.resource(file: project.organizationIconUrl)
             }
         } else if (project.image) {
             return grailsLinkGenerator.link(controller: 'project', action: 'thumbnail', id: project.id)
@@ -2021,6 +2022,51 @@ class ProjectService {
                 projectUpdate.addToImageUrls(imageUrl)
             }
         }
+    }
+    
+    def saveCampaignUpdate(def params, Project project, def story) {
+        def projectUpdate = new ProjectUpdate()
+        User user = userService.getCurrentUser()
+
+        projectUpdate.story = story
+        projectUpdate.title = params.title
+        
+        SimpleDateFormat tfm = new SimpleDateFormat("hh:mm a");
+        def cronExp
+        
+        if (params.scheduledcheckbox == 'on') {
+            
+            Date scheduledate = Date.parse("MM/dd/yyyy", params.scheduledDate)
+            Date dscheduleTime = tfm.parse(params.scheduletime);
+            
+            projectUpdate.isScheduled = true
+            
+            def calender = scheduledate.toCalendar()
+            def calender1 = dscheduleTime.toCalendar()
+            
+            calender[MINUTE] = calender1[MINUTE]
+            calender[HOUR_OF_DAY] = calender1[HOUR_OF_DAY]
+            def month = calender[MONTH] + 1
+            
+            projectUpdate.scheduledDate = calender.getTime()
+            
+            cronExp = '0 '+calender[MINUTE]+' '+ calender[HOUR_OF_DAY] +' ' +calender[DATE] + ' '+ month + ' ? '+calender[YEAR]
+        } else {
+            projectUpdate.scheduledDate = new Date()
+            projectUpdate.islive = true
+        }
+        getUpdatedImageUrls(params.imageList, projectUpdate)
+
+        project.addToProjectUpdates(projectUpdate)
+        
+        if (projectUpdate.save()) {
+            if (projectUpdate.isScheduled) {
+                SendUpdateLiveJob.schedule(cronExp, [id: projectUpdate.id])
+            } else {
+                mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user,params.title)
+            }
+        }
+        
     }
     
     def getSavedImageUrl(CommonsMultipartFile imageFile) {
@@ -2720,6 +2766,19 @@ class ProjectService {
             def emailList = emails.split(',')
             emailList = emailList.collect { it.trim() }
             mandrillService.shareProject(emailList, name, message, project, fundRaiser)
+        }
+        project.gmailShareCount = project.gmailShareCount + 1
+    }
+    
+    def shareupdateemail(def params, def fundRaiser, def projectUpdate) {
+        def project = Project.get(params.id)
+        String emails = params.emails
+        String name = params.name
+        String message = params.message
+        if(emails) {
+            def emaillist = emails.split(',')
+            emaillist = emaillist.collect {it.trim()}
+            mandrillService.shareProjectupdate(emaillist, name, message, project, fundRaiser, projectUpdate)
         }
         project.gmailShareCount = project.gmailShareCount + 1
     }
@@ -4962,6 +5021,38 @@ class ProjectService {
             return [firstFiveHashTags:firstFiveHashTags, remainingHashTags:remainingHashTags]
         } else {
             return [firstFiveHashTags:null, remainingHashTags:null]
+        }
+    }
+    
+    def getHashTagsForCampaign(def hashtags) {
+        if (hashtags){
+            List hashtagsList = []
+            hashtagsList = hashtags.split(',')
+            hashtagsList = hashtagsList.collect { it.trim() }
+            
+            List firstFiveHashtag = []
+            List firstThreeHashtag = []
+            List remainingHashTags = []
+            List remainingHashTagsTab = []
+            
+            if (hashtagsList.size() > 5) {
+                firstFiveHashtag = hashtagsList.subList(0, 5)
+                remainingHashTags = hashtagsList.subList(5, hashtagsList.size())
+            } else {
+                firstFiveHashtag = hashtagsList
+            }
+            
+            if (hashtagsList.size() > 3) {
+                firstThreeHashtag = hashtagsList.subList(0, 3)
+                remainingHashTagsTab = hashtagsList.subList(3, hashtagsList.size())
+            } else {
+                firstThreeHashtag = hashtagsList
+            }
+            
+            return [firstFiveHashtag: firstFiveHashtag, remainingHashTags: remainingHashTags, firstThreeHashtag: firstThreeHashtag, 
+                    remainingHashTagsTab: remainingHashTagsTab, hashtagsList: hashtagsList]
+        } else {
+            return [firstFiveHashtag: [], remainingHashTags: [], firstThreeHashtag: [], remainingHashTagsTab: [], hashtagsList: [] ]
         }
     }
     

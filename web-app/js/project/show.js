@@ -40,6 +40,18 @@ $(function() {
             }
         }
     });
+    
+    $('#updatesendmailmodal').find('form').validate({
+        rules: {
+        	name: {
+        		required: true
+        	},
+            emails: {
+                required: true,
+                validateMultipleEmailsCommaSeparated: true
+            }
+        }
+    });
 
     $('.submitForApprovalSection').find('form').validate({
         rules: {
@@ -53,8 +65,8 @@ $(function() {
             }
         }
     });
-
-    $('.submitForApprovalSectionbtn').find('form').validate({
+    
+    $('#submitForApprovalSectionbtn').find('form').validate({
         rules: {
         	submitForApprovalcheckbox1 : {
         		required: true
@@ -287,6 +299,11 @@ $(function() {
             console.log('An error occured');
         });
     }
+    
+    $('a.show-emailjsid').click(function(){
+    	var updateId = $(this).attr('id');
+        $('#projectUpdateId').val(updateId);
+    });
     
     /***********************Enable or Disable a Team********************************/
     
@@ -690,34 +707,49 @@ $(function() {
         return false;
     });
     
+    $(".fbshare-headermangepage").click(function(){
+        var fbShareUrl = $('#fbShareUrlupdatePage').val();
+        var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent(fbShareUrl);
+        window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+        return false;
+    });
+    
     $("a.show-tabs-text").click(function(){
     	$('.choose-error').html('');
     	$(".sh-tabs").find("a.show-tabs-text").removeClass('sh-selected');
     	if ($(this).hasClass('essentials')){
     		$('.essentials').addClass('sh-selected');
+    		$('.mange-fb-hideshow').show();
     	}
     	if ($(this).hasClass('projectupdates')){
     		$('.projectupdates').addClass('sh-selected');
+    		$('.mange-fb-hideshow').hide();
     	}
     	if ($(this).hasClass('manageTeam')){
     		$('.manageTeam').addClass('sh-selected');
+    		$('.mange-fb-hideshow').hide();
     	}
     	if ($(this).hasClass('contributions')){
     		$('.contributions').addClass('sh-selected');
+    		$('.mange-fb-hideshow').hide();
     	}
     	if ($(this).hasClass('comments')){
     		$('.comments').addClass('sh-selected');
+    		$('.mange-fb-hideshow').hide();
     	}
     	
     	/****manage page*****/
     	if ($(this).hasClass('rewards')){
     		$('.rewards').addClass('sh-selected');
+    		$('.mange-fb-hideshow').hide();
     	}
     	if ($(this).hasClass('payments')){
     		$('.payments').addClass('sh-selected');
+    		$('.mange-fb-hideshow').hide();
     	}
     	if ($(this).hasClass('manageTeams')){
     		$('.manageTeams').addClass('sh-selected');
+    		$('.mange-fb-hideshow').hide();
     	}
     });
     
@@ -729,6 +761,17 @@ $(function() {
             var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.in!"&url='+shareUrl;
         }
         window.open(url, 'Share on Twitter', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+        return false;
+    });
+    
+    $(".twitter-share-updatepage").click(function(){
+        var shareUrl = $('#shareUrl').val()
+        if(currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
+            var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.co!"&url='+shareUrl+'%23projectupdates&';
+        } else {
+            var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.in!"&url='+shareUrl+'%23projectupdates&';
+        }
+        window.open(url, 'Share on Twitter', 'left=20,top=20,width=630,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
     });
 
@@ -1037,6 +1080,20 @@ $(function() {
             	var topicons = $('.show-socials-iconsA').offset().top;
             }
             
+//            Manage-Page-Header-code-1...
+            if($("#manage-tabs-one").length){
+            	var manage_AA = $("#manage-tabs-one").offset().top;
+            }
+            if($('.mobileview-bottom-mange').find('.manage-tile-edit').length){
+            	var tile_edit = $('.mobileview-bottom-mange').find('.manage-tile-edit').offset().top;
+            }
+            if($(".manage-socials-facebook").length){
+            	var manage_FB = $(".manage-socials-facebook").offset().top;
+            }
+            if($('.mange-btn-submitapproval').length){
+            	var manage_sapproval = $('.mange-btn-submitapproval').offset().top;
+            }
+            
 //		    Top header code
             if (window_top > div_top) {
                 $('.show1-Primary').addClass('sh-primery-header-padding');
@@ -1061,7 +1118,32 @@ $(function() {
             }else  if(window_top < topFb){
                 $('.sh-shareicons-Fixedtophead').hide();
             }
-
+            
+//            Manage-Page-Header-code...
+            if(window_top > manage_AA){
+            	$('.manage-headers-A-one').addClass('manage-header-primary-top');
+            	if($(window).width() < 768){
+            		$('.main-header-gsp').show();
+            	}else{
+            		$('.main-header-gsp').hide();
+            	}
+            	$('.manage-headers-A-one').show();
+           	
+            }else if(window_top < manage_AA){
+           	$('.manage-headers-A-one').removeClass('manage-header-primary-top');
+            	$('.main-header-gsp').show();
+            	$('.manage-headers-A-one').hide();
+            }
+            if(window_top  > manage_FB){
+            	$('.mange-fb-hideshow').show();
+            }else if(window_top < manage_FB) {
+            	$('.mange-fb-hideshow').hide();
+            }
+            if(window_top > manage_sapproval){
+            	$('.manage-submitaprroval').show();
+            }else if(window_top < manage_sapproval){
+            	$('.manage-submitaprroval').hide();
+            }
         }
         $(window).scroll(sticky_relocate);
         sticky_relocate();

@@ -215,6 +215,26 @@ $(function() {
         }
     });
     
+    $( document ).ready(function() {
+        function sticky_relocate() {
+        	var _opened = $("#TW-navbar-collapsed").hasClass("collapse in");
+            if (_opened == true) {
+                $("button.navbar-toggle").click();
+            }
+        }
+        $(window).scroll(sticky_relocate);
+        sticky_relocate();
+        
+        $(document).click(function (event) {
+            var clickover = $(event.target);
+            var _opened = $("#TW-navbar-collapsed").hasClass("collapse in");
+            if (_opened == true && !clickover.hasClass("navbar-toggle")) {
+                $("button.navbar-toggle").click();
+            }
+        });
+    });
+    
+    
     $(document).ready(function(){
         $('.hover-cap-4col .the-crews').hover(
             function(){

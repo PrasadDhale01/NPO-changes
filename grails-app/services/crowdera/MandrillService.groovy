@@ -280,6 +280,58 @@ class MandrillService {
             inviteToShare(email, 'invite-to-share', globalMergeVars, tags)
         }
     }
+    
+    def shareProjectupdate(def emaillist, String name, String message, Project project, def fundraiser, def projectUpdate){
+        def imageUrl
+        def imageurls = projectUpdate.imageUrls
+        def projectImageUrl
+        if (!imageurls.isEmpty()) {
+            imageUrl = projectUpdate.imageUrls[0].getUrl()
+            if(imageUrl.startsWith("https") || imageUrl.startsWith("http")) {
+                projectImageUrl = imageUrl
+            } else {
+                projectImageUrl = "https:"+imageUrl
+            }
+        }
+       
+        emaillist.each { email ->
+            def link = grailsLinkGenerator.link(controller: 'project', action: 'updateShare', id: project.id,params:[fr:fundraiser], absolute: true)
+            def globalMergeVars = [
+                [
+                    'name': 'LINK',
+                    'content': link
+                ],
+                [
+                    'name': 'NAME',
+                    'content': name
+                ],
+                [
+                    'name': 'EMAIL',
+                    'content': email
+                ],
+                [
+                    'name': 'TITLE',
+                    'content': project.title
+                ],
+                [
+                    'name': 'UPDATETITLE',
+                    'content': projectUpdate.title
+                ],
+                [
+                    'name': 'MESSAGE',
+                    'content': message
+                ],
+                [
+                    'name': 'IMAGEURL',
+                    'content': projectImageUrl
+                ]
+            ]
+
+            def tags = ['updates-share']
+
+            inviteToShare(email, 'updates-share', globalMergeVars, tags)
+        }
+    }
 
     def shareContribution(def emailList, String name, String message, Project project, User fundraiser) {
         def imageUrl = project.imageUrl

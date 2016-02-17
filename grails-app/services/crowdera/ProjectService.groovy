@@ -25,6 +25,7 @@ class ProjectService {
     def rewardService
     def grailsApplication
     def socialAuthService
+    def roleService
 
     def getProjectById(def projectId){
         if (projectId) {
@@ -582,20 +583,24 @@ class ProjectService {
 		 return result
 	 }
 
-	 def getOfflineDetails(def params){
+	 def getOfflineDetails(def params) {
 		 def project = Project.get(params.id)
-		 def user = User.findByUsername('anonymous@example.com')
+		 def user = createUserForOfflineContributions(params)
 		 def reward = rewardService.getNoReward()
-		 def fundRaiser = userService.getCurrentUser()
+		 
+         def fundRaiser = userService.getCurrentUser()
 		 def username = fundRaiser.username
-		 def amount = params.amount1
+		 
+         def amount = params.amount1
 		 def contributorName = params.contributorName1
-                 def currency
-                 if (project.payuEmail) {
-                     currency = 'INR'
-                 } else {
-                     currency = 'USD'
-                 }
+         
+         def currency
+         if (project.payuEmail) {
+             currency = 'INR'
+         } else {
+             currency = 'USD'
+         }
+         
 		 if (amount && contributorName && params.contributorEmail1) {
 			 Contribution contribution = new Contribution(
 				 date: new Date(),
@@ -617,6 +622,7 @@ class ProjectService {
 				 }
 			 }
 		 }
+         
 	 }
 
      def getCommentDeletedDetails(def params){
@@ -2744,9 +2750,9 @@ class ProjectService {
         List payuContributions=[]
         List otherContributions=[]
         contributions.each{
-            if(it.project.payuStatus==true && it.project.payuEmail!=null){
+            if(it.project.payuStatus == true && it.project.payuEmail != null){
                 payuContributions.add(it)
-            } else if(it.project.payuStatus==false){
+            } else if(it.project.payuStatus == false){
                 otherContributions.add(it)
             }
         }
@@ -2755,7 +2761,7 @@ class ProjectService {
         } else {
             return otherContributions
         }
-   }
+    }
 
     def shareCampaignOrTeamByEmail(def params, def fundRaiser) {
         def project = Project.get(params.id)
@@ -5082,6 +5088,29 @@ class ProjectService {
                     mandrillService.sendEmailToContributors(contribution, password)
                 }
             }
+        }
+    }
+    
+    def createUserForOfflineContributions(def params){
+        User user
+        def password
+        def contributorEmail = (params.contributorEmail1).trim()
+        user = User.findByEmail(contributorEmail)
+        if (user) {
+            return user
+        } else {
+            password = getAlphaNumbericRandomUrl()
+            user = new User(
+                firstName : params.contributorName,
+                username : contributorEmail,
+                email : contributorEmail,
+                password : password,
+                confirmCode : UUID.randomUUID().toString()
+            ).save(failOnError:true)
+            
+            userService.createUserRole(user, roleService)
+            
+            return user
         }
     }
     

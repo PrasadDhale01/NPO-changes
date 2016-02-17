@@ -840,7 +840,7 @@ log4j = {
 }
 
 quartz {
-    autoStartup = true
+    autoStartup = false
     jdbcStore = false
 }
 

@@ -23,7 +23,7 @@
 		<g:if test="${isUserProjectHavingContribution}">
 			<g:if test="${contributorListForProject}">
                 <div class="send-tax-receipt-to-contributors">
-                    <g:render template="/user/user/sendTaxReceipt" model="[sort:'All']"/>
+                    <g:render template="/user/user/sendTaxReceipt" model="[sort:'All', isBackRequired: 'No', selectpicker: 'hide']"/>
 			    </div>
 			</g:if>
 			<g:else>

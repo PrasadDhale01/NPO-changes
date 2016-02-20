@@ -585,15 +585,17 @@ class ProjectService {
 
 	 def getOfflineDetails(def params) {
 		 def project = Project.get(params.id)
-		 def user = createUserForOfflineContributions(params)
+         
+         def contributorEmail1 = params.contributorEmail1
+         def contributorName = params.contributorName1
+         def amount = params.amount1
+         
+		 def user = createUserForNonRegisteredContributors(contributorName, contributorEmail1)
 		 def reward = rewardService.getNoReward()
 		 
          def fundRaiser = userService.getCurrentUser()
 		 def username = fundRaiser.username
 		 
-         def amount = params.amount1
-		 def contributorName = params.contributorName1
-         
          def currency
          if (project.payuEmail) {
              currency = 'INR'
@@ -601,14 +603,14 @@ class ProjectService {
              currency = 'USD'
          }
          
-		 if (amount && contributorName && params.contributorEmail1) {
+		 if (amount && contributorName && contributorEmail1) {
 			 Contribution contribution = new Contribution(
 				 date: new Date(),
 				 user: user,
 				 reward: reward,
 				 amount: amount,
 				 contributorName: contributorName,
-                 contributorEmail: params.contributorEmail1,
+                 contributorEmail: contributorEmail1,
 				 isContributionOffline: true,
 				 fundRaiser: username,
                  currency:currency
@@ -5091,17 +5093,18 @@ class ProjectService {
         }
     }
     
-    def createUserForOfflineContributions(def params){
+    def createUserForNonRegisteredContributors(String contributorName, String contributorEmail1){
         User user
         def password
-        def contributorEmail = (params.contributorEmail1).trim()
+        def contributorEmail = contributorEmail1.trim()
         user = User.findByEmail(contributorEmail)
+        
         if (user) {
             return user
         } else {
             password = getAlphaNumbericRandomUrl()
             user = new User(
-                firstName : params.contributorName,
+                firstName : contributorName,
                 username : contributorEmail,
                 email : contributorEmail,
                 password : password,

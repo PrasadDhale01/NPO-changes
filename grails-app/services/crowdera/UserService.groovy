@@ -1797,7 +1797,25 @@ class UserService {
         // remove extra spaces!
         return result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
     }
-  
+    
+    def getUserForContributors(def email, def userId) {
+        User user
+        if (userId == '3' || userId == 3) {
+            if (getCurrentUser()) {
+                user = getCurrentUser()
+            } else {
+                user = getUserByEmail(email)
+            }
+            
+            if (!user) {
+                user = getUserById(userId)
+            }
+        } else {
+            user = getUserById(userId)
+        }
+        return user
+    }
+
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')

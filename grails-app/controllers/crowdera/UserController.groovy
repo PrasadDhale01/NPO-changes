@@ -597,7 +597,21 @@ class UserController {
 	def userActivity1(){
 		userActivity('page', params.id)
 	}
-	
+    
+    def viewUserProfile() {
+        User user = userService.getUserByEmail(params.contributorEmail)
+        User userById = User.get(params.long('id'))
+        if (params.id == '3') {
+            if (user) {
+                redirect (action:'userActivity', id: user.id , params:[amount: params.amount])
+            } else {
+                redirect (action:'userActivity', id: userById.id , params:[amount: params.amount])
+            }
+        } else {
+            redirect (action:'userActivity', id: userById.id , params:[amount: params.amount])
+        }
+    }
+
 	def userActivity(String page, String id){
 	    def userId = id
  	    User user = User.get(userId)

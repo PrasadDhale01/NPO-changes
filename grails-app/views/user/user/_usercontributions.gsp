@@ -22,7 +22,7 @@
             def index = 0
         %>
         <g:each in="${contributions.reverse()}" var="contribution">
-            <g:if test="${!contribution.isAnonymous && !contribution.isContributionOffline}">
+            <g:if test="${!contribution.isAnonymous}">
                 <g:if test="${index++ % 2 == 0}">
                 <li>
             </g:if>

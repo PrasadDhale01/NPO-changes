@@ -11,35 +11,35 @@
 </head>
 <body>
     <div class="feducontent">
-		<div class="container fund-sm-container footer-container">
-			<% 
-				def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-				def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-			%>
-			<div class="row" id="fundindex">
-				<div class="alert alert-info" id="perkForAnonymousUser">
-				    <b>Sorry ! You cannot select twitter perk as you are contributing anonymously.</b>
-				</div>
+        <div class="container fund-sm-container footer-container">
+            <% 
+                def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+                def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+            %>
+            <div class="row" id="fundindex">
+                <div class="alert alert-info" id="perkForAnonymousUser">
+                    <b>Sorry ! You cannot select twitter perk as you are contributing anonymously.</b>
+                </div>
                 
                 <g:if test="${project.payuStatus}">
                     <form action="${grailsApplication.config.crowdera.PAYU.TEST_URL}" name="payuForm" class="payment-form" method="POST">
 					    
-						<div class="col-md-4">
-							<g:if test="${flash.amt_message}">
-								<div class="alert alert-danger">
-								    ${flash.amt_message}
-								</div>
-							</g:if>
-							<g:if test="${paypalFailureMessage}">
-								<div class="alert alert-danger">
-								    ${paypalFailureMessage}
-								</div>
-							</g:if>
-							<div class="row">
-								<div class="col-md-12 col-sm-12 col-xs-12">
-								    <h1>Amount</h1>
-								</div>
-							</div>
+                          <div class="col-md-4">
+                              <g:if test="${flash.amt_message}">
+                                  <div class="alert alert-danger">
+                                      ${flash.amt_message}
+                                  </div>
+                            </g:if>
+                            <g:if test="${paypalFailureMessage}">
+                                <div class="alert alert-danger">
+                                    ${paypalFailureMessage}
+                                </div>
+                            </g:if>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <h1>Amount</h1>
+                                </div>
+                            </div>
                 
 							<g:hiddenField name="projectId" id="projectId" value="${project.id}" />
 							<input type="hidden" name="fr" value="${vanityUsername}" />
@@ -69,24 +69,24 @@
 							<input type="hidden" name="productinfo" value="${project.title}">
 							<g:hiddenField name="b_url" id="b_url" value="${base_url}"/>
 							
-							<g:if test="${user}">
-								<input type="hidden" name="tempValue" id="tempValue" value="${user.id}"/>
-								<input type="hidden" name="userId"  id="userId" value="${user.id}"/>
-							</g:if>
-							<g:else>
-								<input type="hidden" name="tempValue" id="tempValue" value="3"/>
-								<input type="hidden" name="userId"  id="userId" value="3"/>
-							</g:else>
+                            <g:if test="${user}">
+                                <input type="hidden" name="tempValue" id="tempValue" value="${user.id}"/>
+                                <input type="hidden" name="userId"  id="userId" value="${user.id}"/>
+                            </g:if>
+                            <g:else>
+                                <input type="hidden" name="tempValue" id="tempValue" value="3"/>
+                                <input type="hidden" name="userId"  id="userId" value="3"/>
+                            </g:else>
 
-							<div class="row">
-								<div class="col-md-12 col-sm-6 col-xs-12">
-									<div class="form-group fund-inr">
-										<div class="input-group">
-										    <span class="amount input-group-addon"><g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else><span class="glyphicon glyphicon-usd"></span></g:else></span>
-										    <input class="amount form-control" id="amount" name="amount" type="text">
-										</div>
-									    <span id="errormsg"></span>
-						            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="form-group fund-inr">
+                                        <div class="input-group">
+                                            <span class="amount input-group-addon"><g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else><span class="glyphicon glyphicon-usd"></span></g:else></span>
+                                            <input class="amount form-control" id="amount" name="amount" type="text">
+                                        </div>
+                                        <span id="errormsg"></span>
+                                    </div>
 
    
                                     <label class="checkbox control-label">

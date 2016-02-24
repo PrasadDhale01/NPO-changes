@@ -2039,26 +2039,63 @@ class ProjectService {
         projectUpdate.story = story
         projectUpdate.title = params.title
         
-        SimpleDateFormat tfm = new SimpleDateFormat("hh:mm a");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         def cronExp
+        def cronExpBeforeAnHour
+        def isIntimationRequired = true
         
         if (params.scheduledcheckbox == 'on') {
             
-            Date scheduledate = Date.parse("MM/dd/yyyy", params.scheduledDate)
-            Date dscheduleTime = tfm.parse(params.scheduletime);
+            Date scheduledate = dateFormat.parse(params.scheduledDate);
+            Date dscheduleTime = timeFormat.parse(params.scheduletime);
+            Date today = new Date();
             
-            projectUpdate.isScheduled = true
             
             def calender = scheduledate.toCalendar()
             def calender1 = dscheduleTime.toCalendar()
+            def calenderInstance = today.toCalendar()
+            
+            def delay = scheduledate - today
             
             calender[MINUTE] = calender1[MINUTE]
             calender[HOUR_OF_DAY] = calender1[HOUR_OF_DAY]
             def month = calender[MONTH] + 1
             
+            def hourDiff = calender[HOUR_OF_DAY] - calenderInstance[HOUR_OF_DAY]
+            def minDiff = 0
+            if (hourDiff == 0) {
+                minDiff = calender[MINUTE] - calenderInstance[MINUTE]
+            }
+            
             projectUpdate.scheduledDate = calender.getTime()
             
+            // Cron Expression to schedule an Update
             cronExp = '0 '+calender[MINUTE]+' '+ calender[HOUR_OF_DAY] +' ' +calender[DATE] + ' '+ month + ' ? '+calender[YEAR]
+            
+            calender.set(Calendar.HOUR_OF_DAY , (calender.get(Calendar.HOUR_OF_DAY) - 1))
+            
+            if (delay > 0 ) {
+                // Cron Expression to schedule an Update before an Hour
+                cronExpBeforeAnHour = '0 '+calender[MINUTE]+' '+ calender[HOUR_OF_DAY] +' ' +calender[DATE] + ' '+ month + ' ? '+calender[YEAR]
+                
+                projectUpdate.isScheduled = true
+            } else {
+                if ((hourDiff == 0 && minDiff > 5) || hourDiff == 1) {
+                    projectUpdate.isScheduled = true
+                    isIntimationRequired = false
+                    
+                } else if (hourDiff >= 2)  {
+                    projectUpdate.isScheduled = true
+                    isIntimationRequired = true
+                    // Cron Expression to schedule an Update before an Hour
+                    cronExpBeforeAnHour = '0 '+calender[MINUTE]+' '+ calender[HOUR_OF_DAY] +' ' +calender[DATE] + ' '+ month + ' ? '+calender[YEAR]
+    
+                } else {
+                    isIntimationRequired = false
+                }
+            }
+            
         } else {
             projectUpdate.scheduledDate = new Date()
             projectUpdate.islive = true
@@ -2069,7 +2106,10 @@ class ProjectService {
         
         if (projectUpdate.save()) {
             if (projectUpdate.isScheduled) {
-                SendUpdateLiveJob.schedule(cronExp, [id: projectUpdate.id])
+                if (isIntimationRequired) {
+                    SendUpdateLiveJob.schedule(cronExpBeforeAnHour, [id: projectUpdate.id, isIntimationRequired: true])
+                }
+                SendUpdateLiveJob.schedule(cronExp, [id: projectUpdate.id, isIntimationRequired: false])
             } else {
                 mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user,params.title)
             }
@@ -3997,7 +4037,7 @@ class ProjectService {
         def user = User.get(params.userId)
         def reward = Reward.get(params.rewardId)
 
-        User fundraiser = User.findByUsername(params.fr)
+        User fundraiser = userService.getUserFromVanityName(params.fr)
         def address = getAddress(params, currentEnv)
         if (user == null){
             user = userService.getUserByUsername('anonymous@example.com')

@@ -57,7 +57,16 @@ class FundController {
         } else if (fundingAchieved || ended) {
             redirect(controller: 'project', action: 'showCampaign', id: project.id)
         } else {
-            render view: 'fund/index', model: [project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo]
+        
+            if (project.payuStatus){
+                def key = grailsApplication.config.crowdera.PAYU.KEY
+                def salt = grailsApplication.config.crowdera.PAYU.SALT
+                def service_provider = "payu_paisa"
+                render view: 'fund/index', model: [project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, key:key, salt:salt, service_provider:service_provider]
+            } else {
+                render view: 'fund/index', model: [project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo]
+            }
+        
         }
     }
 

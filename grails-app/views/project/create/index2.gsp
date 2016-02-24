@@ -396,16 +396,18 @@
                     <p class="reasons-p form-group">3. <input type="text" name="reason3" class="reason3 reasons form-control" value="${r3}"></p>
                 </div>
             </div>
-       
-            <div class="col-sm-12 padding-right-xs">
-                <div class="cr-spend-matrix">
-                    <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-impact-analysis"><span class="cr-spend-matrix-font">Impact Assessment</span></label>
-                    <label class="col-sm-9 hidden-xs cr-panel-spend-matrix-guide cr-impact-guide"></label>
+            
+            <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
+                <div class="col-sm-12 padding-right-xs">
+                    <div class="cr-spend-matrix">
+                        <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-impact-analysis"><span class="cr-spend-matrix-font">Impact Assessment</span></label>
+                        <label class="col-sm-9 hidden-xs cr-panel-spend-matrix-guide cr-impact-guide"></label>
+                    </div>
+                    <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-impact-analysis">
+                        <g:render template="create/impactAnalysisText"/>
+                    </div>
                 </div>
-                <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-impact-analysis">
-                    <g:render template="create/impactAnalysisText"/>
-                </div>
-            </div>
+            </g:if>
 
             <div class="col-sm-12 padding-right-xs">
                 <div class="cr-spend-matrix">

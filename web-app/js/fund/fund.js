@@ -1,5 +1,5 @@
 $(function() {
-	
+
     function getSelectedRewardId() {
         return $('.list-group-item.active').attr('id');
     }
@@ -27,22 +27,22 @@ $(function() {
             }
         }
     });
-    
+
     $("form").on("change", ".states", function () {
     	var option = $(this).val();
     	$('#stateField').val(option);
-    	if(option == 'other'){
+    	if(option === 'other'){
     		$(".ostate").show();
     	} else {
     		$(".ostate").hide();
     	}
     });
 
-    $.validator.addMethod('validateMultipleEmailsCommaSeparated', function (value, element) {
+    $.validator.addMethod('validateMultipleEmailsCommaSeparated', function (value) {
         var result = value.split(",");
-        for(var i = 0;i < result.length;i++) 
-            if(!validateEmail(result[i])) 
-                return false;    		
+        for(var i = 0;i < result.length; i++)
+            if(!validateEmail(result[i]))
+                return false;
         return true;
     },"Please add valid emails only");
 
@@ -50,10 +50,10 @@ $(function() {
         var regex=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
         return (regex.test(field)) ? true : false;
     }
-    
-    $('#fundindex').find('form').validate({
+
+    var validator = $('#fundindex').find('form').validate({
         submitHandler: function(form) {
-            if (getSelectedRewardId() == undefined) {
+            if (getSelectedRewardId() === undefined) {
             	var rewardId = 1;
                 $('form input[name="rewardId"]').val(rewardId);
 
@@ -71,16 +71,16 @@ $(function() {
                 number: true,
                 min: function() {
                     var rewardPrice = getSelectedRewardPrice();
-                    if (rewardPrice == undefined) {
+                    if (rewardPrice === undefined) {
                     	var isINR = $('#isINR').val();
-                    	if(isINR == undefined) {
+                    	if(isINR === undefined) {
                     		return 1;
                     	} else {
                     		return 100;
                     	}
                     } else {
                     	var isINR = $('#isINR').val();
-                    	if(isINR == undefined) {
+                    	if(isINR === undefined) {
                     		return _.max([1, Number(rewardPrice)]);
                     	} else {
                     		return _.max([100, Number(rewardPrice)]);
@@ -125,7 +125,7 @@ $(function() {
         errorPlacement: function(error, element) {
             if ( element.is(":checkbox")) {
                 error.appendTo(element.parent());
-            } else if($(element).prop("id") == "amount"){
+            } else if($(element).prop("id") === "amount"){
             	error.appendTo(document.getElementById("errormsg"));
             } else {
             	error.insertAfter(element);
@@ -133,16 +133,63 @@ $(function() {
         }
     });
 
-    $.validator.addMethod('isFullName', function(value, element){
-        if(value && value.length !=0){
+    $('.payucheckoutsubmitbutton').click(function(event) {
+         if(validator.form()) {
+             needToConfirm = false;
+             event.preventDefault();
+             var formData = {
+                 'anonymous'     : $('input[name= anonymous]').val(),
+                 'userId'        : $('input[name= userId]').val(),
+                 'rewardId'      : $('input[name= rewardId]').val(),
+                 'fr'            : $('input[name= fr]').val(),
+                 'projectAmount' : $('input[name= projectAmount]').val(),
+                 'projectTitle'  : $('input[name= projectTitle]').val(),
+                 'tempValue'     : $('input[name= tempValue]').val(),
+                 'billToTitle'   : $('input[name= billToTitle]').val(),
+                 'firstname'     : $('input[name= firstname]').val(),
+                 'lastname'      : $('input[name= lastname]').val(),
+                 'email'         : $('input[name= email]').val(),
+                 'phone'         : $('input[name= phone]').val(),
+                 'productinfo'   : $('input[name= productinfo]').val(),
+                 'amount'        : $('input[name= amount]').val(),
+                'campaignId'    : $('input[name= campaignId]').val(),
+                 'addressLine1'  : $('input[name= addressLine1]').val(),
+                 'addressLine2'  : $('input[name= addressLine2]').val(),
+                 'city'          : $('input[name= city]').val(),
+                 'zip'           : $('input[name= zip]').val(),
+                 'country'       : $('#payuCountry').val(),
+                 'state'         : $('#payuStates').val(),
+                 'otherstate'    : $('input[name= otherstate]').val(),
+                 'shippingEmail' : $('input[name= shippingEmail]').val(),
+                 'twitterHandle' : $('input[name= twitterHandle]').val(),
+                 'shippingCustom': $('input[name= shippingCustom]').val()
+             };
+
+              $.ajax({
+                 type    :'post',
+                 url     : $("#b_url").val()+'/fund/payupayment',
+                 data    : formData,
+                 dataType: 'json',
+                 success : function(response){
+                 	$('input[name = txnid]').val(response.txnid);
+                     $('input[name = hash]').val(response.hash);
+                     $('input[name = surl]').val(response.surl);
+                     $('input[name = furl]').val(response.furl);
+                     $("form[name = 'payuForm']").submit();
+                 }
+             }).error(function(){
+             });
+         }
+ 	});
+
+    $.validator.addMethod('isFullName', function(value){
+        if(value && value.length !== 0){
             var fullname =$('#receiptName').val();
             var space= fullname.split(" ");
-            if(space.length < 2){
+            if(space.length < 2 || space[1] === ''){
                 return false;
-            }else if(space[1]==''){
-                return false;
-            }else{
-                var p=/^[A-Za-z]+([\sA-Za-z]+)*$/
+            } else {
+                var p=/^[A-Za-z]+([\sA-Za-z]+)*$/ ;
                 return (value.match(p));
             }
         }
@@ -157,7 +204,7 @@ $(function() {
                 //display error message
                 $("#errormsg").html("Digits Only").show().fadeOut("slow");
             return false;
-        } 
+        }
      });
    });
 
@@ -179,15 +226,15 @@ $(function() {
 			success: function(data){
 				$(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
 			}
-		}).error(function(data){
-			console.log('Error occured while fetching shipping info'+ data);
+		}).error(function(){
 		});
 	}
 
     $('#anonymousUser').click(function(){
     	var projectId = $('#projectId').val();
     	var selectedRewardId = getSelectedRewardId();
-    	if($(this).prop("checked") == true){
+    	
+    	if($(this).prop("checked") === true) {
     		$('#anonymous').val(true);
             $('#twitterPerk').hide();
     		$.ajax({
@@ -216,26 +263,26 @@ $(function() {
     					var idval = list2[i].trim();
 					    var k = 0;
 					    $('.onlyTwitterReward').each(function () {
-					    	if(k == i) {
+					    	if(k === i) {
 			                    $(this).attr('id',idval);
 			                    $(this).attr('data-rewardprice',s[i]);
 					    	}
 					    	k++;
 			            });
     				}
-    				
+
     				$('a.list-group-item').click(function() {
     	    	        $('.choose-error').html('');
 
     	    	        $('.list-group.twitterHandler').find('a.list-group-item').removeClass('active');
     	    	        $(this).addClass('active');
     	    	        $('#perkForAnonymousUser').hide();
-    	    	        
+
                         var rewardId = $('a.list-group-item.active').attr('id');
                         showShippingDetails(rewardId);
     	    	    });
 
-    				$('.onlyTwitterReward').each(function(){    
+    				$('.onlyTwitterReward').each(function(){
     		            $(this).popover({
     		                content: 'As you are keeping your contribution anonymous, this perks which has only Twitter handler will be disabled for you',
     		                trigger: 'manual',
@@ -250,8 +297,7 @@ $(function() {
     	    			$('#perkForAnonymousUser').show();
     	    		}
     			}
-    		}).error(function(data){
-    			console.log('Error occured while changing the class'+ data);
+    		}).error(function(){
     		});
 
     		$.ajax({
@@ -289,11 +335,10 @@ $(function() {
     		            .hover(showPopover, hidePopover);
     		        });
                 }
-            }).error(function(e){
-            	console.log('Error occured while changing class of perk'+e);
+            }).error(function(){
             });
 
-        } else if ($(this).prop("checked") == false){
+        } else if ($(this).prop("checked") === false){
             $('#anonymous').val(false);
             $('#twitterPerk').show();
             $('#perkForAnonymousUser').hide();
@@ -335,7 +380,7 @@ $(function() {
             $('.list-group.twitterHandler').find('a.list-group-item').removeClass('active');
             $(this).addClass('active');
             $('#perkForAnonymousUser').hide();
-            
+
             var rewardId = $('a.list-group-item.active').attr('id');
             showShippingDetails(rewardId);
         });

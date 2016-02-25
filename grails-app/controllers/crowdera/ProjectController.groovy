@@ -1251,16 +1251,17 @@ class ProjectController {
     def projectupdate() {
         def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
         def project = projectService.getProjectById(projectId)
+        
         def currentUser =userService.getCurrentUser()
         def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
-        def currentEnv = Environment.current.getName()
-	
+        def currentEnv = projectService.getCurrentEnvironment()
+        
         if(project) {
             if(!isCampaignOwnerOrAdmin){
                 def priviousPage = 'manage'
                 render view:"manageproject/error", model: [project: project, priviousPage: priviousPage, currentEnv: currentEnv]
             }else{
-                render (view: 'update/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
+                render (view: 'update/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv])
             }
         } else {
             def priviousPage = 'manage'

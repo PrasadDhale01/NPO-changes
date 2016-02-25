@@ -455,6 +455,10 @@ class UserService {
         return inviteCode
     }
     
+    def getUserByEmail(String email) {
+        return User.findByEmail(email)
+    }
+    
     def getUserByResetCode(String id){
         def resetCode= User.findByResetCode(id)
         return resetCode
@@ -1131,7 +1135,7 @@ class UserService {
                     recentActivity.put("supporter"+it.id, it.project.title +";"+ dateFormat.format(it.followedDate))
             }
         }
-        //sort 
+        //sort
         return recentActivity.sort { a, b -> b.value.toString().substring(b.value.toString().indexOf(';') + 1) <=> a.value.toString().substring(a.value.toString().indexOf(';') + 1) }
    }
     
@@ -1793,7 +1797,25 @@ class UserService {
         // remove extra spaces!
         return result.replaceAll("^\\s+", "").replaceAll("\\b\\s{2,}\\b", " ");
     }
-  
+    
+    def getUserForContributors(def email, def userId) {
+        User user
+        if (userId == '3' || userId == 3) {
+            if (getCurrentUser()) {
+                user = getCurrentUser()
+            } else {
+                user = getUserByEmail(email)
+            }
+            
+            if (!user) {
+                user = getUserById(userId)
+            }
+        } else {
+            user = getUserById(userId)
+        }
+        return user
+    }
+
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')

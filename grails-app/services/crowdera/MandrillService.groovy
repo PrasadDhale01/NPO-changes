@@ -1483,4 +1483,32 @@ class MandrillService {
         }
     }
     
+    def sendIntimationEmailToCampaignOwner(Project project, ProjectUpdate projectUpdate, User campaignOwner) {
+        def title = projectUpdate.title
+        Date scheduledDate = projectUpdate.scheduledDate
+
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, absolute: true)
+        
+        def globalMergeVars = [[
+            'name': 'LINK',
+            'content': link
+        ], [
+            'name': 'NAME',
+            'content': campaignOwner.firstName + ' ' + campaignOwner.lastName
+        ], [
+            'name': 'UPDATETITLE',
+            'content': title
+        ], [
+            'name': 'CAMPAIGNTITLE',
+            'content': project.title
+        ], [
+            'name': 'DATE',
+            'content': scheduledDate.format("YYYY-MM-DD HH:mm:ss")
+        ]]
+
+        def tags = ['update-scheduled-info']
+
+        sendTemplate(campaignOwner, 'update-scheduled-info', globalMergeVars, tags)
+    }
+    
 }

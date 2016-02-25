@@ -5592,6 +5592,25 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    h2.error-title-color {
+        font-size: 15px;
+        text-align: center;
+    }
+    h6.error-description-font {
+        font-size: 12px;
+        text-align: center;
+    }
+    div.mobile-img-error img {
+        height: 101px;
+        margin-left: 60px;
+    }
+    div.error-paddingtop {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    div.success-error-container{
+        width: 320px;
+    }
 	div.show-css  div.manage-updateshare{
         padding-left: 60px !important;
     }
@@ -8236,6 +8255,21 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.mobile-img-error img {
+        height: 130px;
+    }
+    div.error-paddingtop {
+        padding-top: 35px;
+    }
+    h2.error-title-color {
+        font-size: 20px;
+    }
+    h6.error-description-font {
+        font-size: 13px;
+    }
+    div.success-error-container{
+        width: 750px;
+    }
     button.manage-deletebtn-width {
         padding-left: 22px;
     }
@@ -14555,6 +14589,25 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    h2.error-title-color {
+        font-size: 15px;
+        text-align: center;
+    }
+    h6.error-description-font {
+        font-size: 12px;
+        text-align: center;
+    }
+    div.mobile-img-error img {
+        height: 101px;
+        margin-left: 60px;
+    }
+    div.error-paddingtop {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    div.success-error-container{
+        width: 320px;
+    }
     div.show-css  div.manage-updateshare{
         padding-left: 60px !important;
     }

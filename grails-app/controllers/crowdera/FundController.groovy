@@ -53,7 +53,8 @@ class FundController {
         boolean ended = projectService.isProjectDeadlineCrossed(project)
 
         if (!project) {
-            render(view: 'error', model: [message: 'This project does not exist.'])
+           def priviousPage = 'manage'
+           render (view: '/project/manageproject/error', model: [project: project, currentEnv:currentEnv, priviousPage:priviousPage])
         } else if (fundingAchieved || ended) {
             redirect(controller: 'project', action: 'showCampaign', id: project.id)
         } else {
@@ -75,6 +76,7 @@ class FundController {
         def defaultCountry = 'US'
         perk = rewardService.getRewardById(params.long('rewardId'))
         def user1 = userService.getUserByUsername(params.tempValue)
+        def currentEnv = Environment.current.getName()
 
         def user = userService.getUserById(params.long('userId'))
         if (user == null){
@@ -122,7 +124,8 @@ class FundController {
 
         if (project && reward) {
             if(!team || ! project.user){
-                render view:"error", model: [message:'User not found'] 
+                def priviousPage = 'fund'
+                render (view: '/project/manageproject/error', model: [project: project, currentEnv:currentEnv, priviousPage:priviousPage]) 
             }else{
                 render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry, month:month, year:year, fundraiser:fundraiser, user1:user1, anonymous:anonymous, projectTitle:params.projectTitle, username:params.fr]
             }
@@ -136,7 +139,9 @@ class FundController {
         Project project
         Reward reward
         def vanityTitle
-
+        
+        def currentEnv = Environment.current.getName()
+        
         if (params.campaignId) {
             project = projectService.getProjectById(params.campaignId)
             vanityTitle = projectService.getVanityTitleFromId(params.campaignId)
@@ -157,7 +162,7 @@ class FundController {
             } else {
                 reward = rewardService.getNoReward()
             }
-
+            
             def amount = params.double(('amount'))
             if (amount < reward.price) {
                 render view: 'error', model: [message: 'Funding amount cannot be smaller than reward price. Please choose a smaller reward, or increase the funding amount.']
@@ -189,7 +194,7 @@ class FundController {
                 }
             }
         } else {
-            render view: 'error', model: [message: 'This project does not exist. Please try again.']
+            render (view: '/fund/error', model: [project: project, currentEnv: currentEnv])
         }
     }
 

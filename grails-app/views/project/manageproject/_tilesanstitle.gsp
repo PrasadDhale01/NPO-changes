@@ -20,7 +20,7 @@
     <div class="fullwidth pull-right manage-edit-mobilebtns">
          <g:if test="${!project.validated && percentage <= 999}">
              <g:link controller="project" action="editCampaign" class="manage-edit-draft-left col-lg-6 col-md-6 col-sm-6 col-xs-6" method="post" id="${project.id}">
-                 <span class="btn btn-default manage-btn-width manage-btn-back-color"  aria-label="Edit project"><i class="fa fa-pencil-square-o edit-space"></i>EDIT
+                 <span class="btn btn-default manage-btn-width manage-btn-back-color" aria-label="Edit project"><i class="fa fa-pencil-square-o edit-space"></i>EDIT
                  </span>
              </g:link>
          </g:if>

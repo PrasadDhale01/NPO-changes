@@ -25,6 +25,7 @@ class ProjectService {
     def rewardService
     def grailsApplication
     def socialAuthService
+    def roleService
 
     def getProjectById(def projectId){
         if (projectId) {
@@ -582,28 +583,34 @@ class ProjectService {
 		 return result
 	 }
 
-	 def getOfflineDetails(def params){
+	 def getOfflineDetails(def params) {
 		 def project = Project.get(params.id)
-		 def user = User.findByUsername('anonymous@example.com')
+         
+         def contributorEmail1 = params.contributorEmail1
+         def contributorName = params.contributorName1
+         def amount = params.amount1
+         
+		 def user = createUserForNonRegisteredContributors(contributorName, contributorEmail1)
 		 def reward = rewardService.getNoReward()
-		 def fundRaiser = userService.getCurrentUser()
+		 
+         def fundRaiser = userService.getCurrentUser()
 		 def username = fundRaiser.username
-		 def amount = params.amount1
-		 def contributorName = params.contributorName1
-                 def currency
-                 if (project.payuEmail) {
-                     currency = 'INR'
-                 } else {
-                     currency = 'USD'
-                 }
-		 if (amount && contributorName && params.contributorEmail1) {
+		 
+         def currency
+         if (project.payuEmail) {
+             currency = 'INR'
+         } else {
+             currency = 'USD'
+         }
+         
+		 if (amount && contributorName && contributorEmail1) {
 			 Contribution contribution = new Contribution(
 				 date: new Date(),
 				 user: user,
 				 reward: reward,
 				 amount: amount,
 				 contributorName: contributorName,
-                 contributorEmail: params.contributorEmail1,
+                 contributorEmail: contributorEmail1,
 				 isContributionOffline: true,
 				 fundRaiser: username,
                  currency:currency
@@ -617,6 +624,7 @@ class ProjectService {
 				 }
 			 }
 		 }
+         
 	 }
 
      def getCommentDeletedDetails(def params){
@@ -2031,26 +2039,63 @@ class ProjectService {
         projectUpdate.story = story
         projectUpdate.title = params.title
         
-        SimpleDateFormat tfm = new SimpleDateFormat("hh:mm a");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         def cronExp
+        def cronExpBeforeAnHour
+        def isIntimationRequired = true
         
         if (params.scheduledcheckbox == 'on') {
             
-            Date scheduledate = Date.parse("MM/dd/yyyy", params.scheduledDate)
-            Date dscheduleTime = tfm.parse(params.scheduletime);
+            Date scheduledate = dateFormat.parse(params.scheduledDate);
+            Date dscheduleTime = timeFormat.parse(params.scheduletime);
+            Date today = new Date();
             
-            projectUpdate.isScheduled = true
             
             def calender = scheduledate.toCalendar()
             def calender1 = dscheduleTime.toCalendar()
+            def calenderInstance = today.toCalendar()
+            
+            def delay = scheduledate - today
             
             calender[MINUTE] = calender1[MINUTE]
             calender[HOUR_OF_DAY] = calender1[HOUR_OF_DAY]
             def month = calender[MONTH] + 1
             
+            def hourDiff = calender[HOUR_OF_DAY] - calenderInstance[HOUR_OF_DAY]
+            def minDiff = 0
+            if (hourDiff == 0) {
+                minDiff = calender[MINUTE] - calenderInstance[MINUTE]
+            }
+            
             projectUpdate.scheduledDate = calender.getTime()
             
+            // Cron Expression to schedule an Update
             cronExp = '0 '+calender[MINUTE]+' '+ calender[HOUR_OF_DAY] +' ' +calender[DATE] + ' '+ month + ' ? '+calender[YEAR]
+            
+            calender.set(Calendar.HOUR_OF_DAY , (calender.get(Calendar.HOUR_OF_DAY) - 1))
+            
+            if (delay > 0 ) {
+                // Cron Expression to schedule an Update before an Hour
+                cronExpBeforeAnHour = '0 '+calender[MINUTE]+' '+ calender[HOUR_OF_DAY] +' ' +calender[DATE] + ' '+ month + ' ? '+calender[YEAR]
+                
+                projectUpdate.isScheduled = true
+            } else {
+                if ((hourDiff == 0 && minDiff > 5) || hourDiff == 1) {
+                    projectUpdate.isScheduled = true
+                    isIntimationRequired = false
+                    
+                } else if (hourDiff >= 2)  {
+                    projectUpdate.isScheduled = true
+                    isIntimationRequired = true
+                    // Cron Expression to schedule an Update before an Hour
+                    cronExpBeforeAnHour = '0 '+calender[MINUTE]+' '+ calender[HOUR_OF_DAY] +' ' +calender[DATE] + ' '+ month + ' ? '+calender[YEAR]
+    
+                } else {
+                    isIntimationRequired = false
+                }
+            }
+            
         } else {
             projectUpdate.scheduledDate = new Date()
             projectUpdate.islive = true
@@ -2061,7 +2106,10 @@ class ProjectService {
         
         if (projectUpdate.save()) {
             if (projectUpdate.isScheduled) {
-                SendUpdateLiveJob.schedule(cronExp, [id: projectUpdate.id])
+                if (isIntimationRequired) {
+                    SendUpdateLiveJob.schedule(cronExpBeforeAnHour, [id: projectUpdate.id, isIntimationRequired: true])
+                }
+                SendUpdateLiveJob.schedule(cronExp, [id: projectUpdate.id, isIntimationRequired: false])
             } else {
                 mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user,params.title)
             }
@@ -2744,9 +2792,9 @@ class ProjectService {
         List payuContributions=[]
         List otherContributions=[]
         contributions.each{
-            if(it.project.payuStatus==true && it.project.payuEmail!=null){
+            if(it.project.payuStatus == true && it.project.payuEmail != null){
                 payuContributions.add(it)
-            } else if(it.project.payuStatus==false){
+            } else if(it.project.payuStatus == false){
                 otherContributions.add(it)
             }
         }
@@ -2755,7 +2803,7 @@ class ProjectService {
         } else {
             return otherContributions
         }
-   }
+    }
 
     def shareCampaignOrTeamByEmail(def params, def fundRaiser) {
         def project = Project.get(params.id)
@@ -3262,8 +3310,10 @@ class ProjectService {
                 break;
 
             case 'story':
-                project.story = varValue;
-                isValueChanged = true;
+                if (project.story != varValue) {
+                    project.story = varValue;
+                    isValueChanged = true;
+                }
                 break;
 				
             case 'usedFor':
@@ -3989,7 +4039,7 @@ class ProjectService {
         def user = User.get(params.userId)
         def reward = Reward.get(params.rewardId)
 
-        User fundraiser = User.findByUsername(params.fr)
+        User fundraiser = userService.getUserFromVanityName(params.fr)
         def address = getAddress(params, currentEnv)
         if (user == null){
             user = userService.getUserByUsername('anonymous@example.com')
@@ -5095,6 +5145,30 @@ class ProjectService {
                     mandrillService.sendEmailToContributors(contribution, password)
                 }
             }
+        }
+    }
+    
+    def createUserForNonRegisteredContributors(String contributorName, String contributorEmail1){
+        User user
+        def password
+        def contributorEmail = contributorEmail1.trim()
+        user = User.findByEmail(contributorEmail)
+        
+        if (user) {
+            return user
+        } else {
+            password = getAlphaNumbericRandomUrl()
+            user = new User(
+                firstName : contributorName,
+                username : contributorEmail,
+                email : contributorEmail,
+                password : password,
+                confirmCode : UUID.randomUUID().toString()
+            ).save(failOnError:true)
+            
+            userService.createUserRole(user, roleService)
+            
+            return user
         }
     }
     

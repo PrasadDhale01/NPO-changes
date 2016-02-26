@@ -1342,12 +1342,13 @@ class ProjectController {
         def project = projectService.getProjectById(projectId)
         def currentUser =userService.getCurrentUser()
         def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
-	
+        def currentEnv = projectService.getCurrentEnvironment()
+        
         if(project) {
             if(!isCampaignOwnerOrAdmin){
                 render view:"manageproject/error", model: [project: project]
             }else{
-                render (view: 'update/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
+                render (view: 'update/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv])
             }
         } else {
             render (view: 'manageproject/error', model: [project: project])

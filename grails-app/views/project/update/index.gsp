@@ -95,7 +95,7 @@
                         <label class="col-sm-1 control-label"><b>Date</b></label>
                         <div class="clear visible-xs"></div>
                         <div class="col-sm-4 col-lg-3 col-xs-8">
-                            <input type="text" class="form-control scheduledate text-date" placeholder="Date" name="scheduledDate" value="${currentDate}">
+                            <input type="text" class="form-control scheduledate text-date" placeholder="Date" id="scheduledate" name="scheduledDate" value="${currentDate}">
                         </div>
                         <div class="col-sm-2 col-lg-2 col-xs-4">
                             <input type="text" class="form-control scheduletime" placeholder="time" name="scheduletime">
@@ -127,9 +127,17 @@
         }
     }
 
+    var nowDate = new Date();
+    nowDate.setDate(nowDate.getDate()-1);
+    
     var j = jQuery.noConflict();
     j(function(){
-        j('.scheduledate').datepicker({
+        j('#scheduledate').datepicker({
+            onRender: function(date) {    
+                if (date.valueOf() < nowDate.valueOf()) {
+                    return  'disabled';
+                }
+            }
         });
         j('.scheduletime').timepicker({
         });

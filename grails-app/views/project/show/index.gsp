@@ -824,12 +824,15 @@
                           </g:else>
                       </g:if>
                       
-                      <g:if test="${project.impactNumber > 0 && project.impactAmount > 0}">
-                          <div class="impactassessment">
-                              <g:render template="show/impactstatement"/>
-                          </div>
+                      <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
+                          <g:if test="${project.impactNumber > 0 && project.impactAmount > 0}">
+                              <div class="impactassessment">
+                                  <g:render template="show/impactstatement"/>
+                              </div>
+                          </g:if>
                       </g:if>
-                      <g:if test="${reasons}">
+                      
+                      <g:if test="${reasons && (reasons.reason1 || reasons.reason2 || reasons.reason3)}">
                           <div class="modal-footer tile-footer perks-style reasons-title">
                               <h2 class="rewardsectionheading text-center">3 Reasons to Fund Our Campaign</h2>
                           </div>

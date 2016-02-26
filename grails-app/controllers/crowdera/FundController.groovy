@@ -57,7 +57,16 @@ class FundController {
         } else if (fundingAchieved || ended) {
             redirect(controller: 'project', action: 'showCampaign', id: project.id)
         } else {
-            render view: 'fund/index', model: [project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo]
+        
+            if (project.payuStatus){
+                def key = grailsApplication.config.crowdera.PAYU.KEY
+                def salt = grailsApplication.config.crowdera.PAYU.SALT
+                def service_provider = "payu_paisa"
+                render view: 'fund/index', model: [project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, key:key, salt:salt, service_provider:service_provider]
+            } else {
+                render view: 'fund/index', model: [project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo]
+            }
+        
         }
     }
 
@@ -400,6 +409,8 @@ class FundController {
     }
 
     def payByFirstGiving(def params, Project project,Reward reward,User user,User fundraiser,def address){
+        user = userService.getUserForContributors(params.billToEmail, user.id)
+        
         def BASE_URL = grailsApplication.config.crowdera.firstgiving.BASE_URL
 
         def http = new HTTPBuilder(BASE_URL)
@@ -565,7 +576,9 @@ class FundController {
         def address = request.getParameter('address')
 
         Project project = projectService.getProjectFromVanityTitle(projectTitle)
-        User user = userService.getUserById(userid)
+        
+        User user = userService.getUserForContributors(request.getParameter('email') , userid)
+        
 		User fundraiser = userService.getUserById(fundraiserId)
         Reward reward = rewardService.getRewardById(rewardId)
 
@@ -573,7 +586,7 @@ class FundController {
         def payKey = paykeytemp.paykey
         paykeytemp.delete()
         
-        if (result){
+        if (result) {
             userContribution(project,reward,amount,payKey,user,fundraiser,request,address)
         } else {
             render view: 'fund/index', model: [project: project]
@@ -697,7 +710,8 @@ class FundController {
         def txnid = request.getParameter('txnid')
 
         Project project = Project.get(projectId)
-        User user = User.get(userid)
+        User user = userService.getUserForContributors(request.getParameter('email'), userid)
+        
         User fundraiser = User.get(fundraiserId)
         Reward reward = Reward.get(rewardId)
         if (result){
@@ -726,6 +740,7 @@ class FundController {
         }
     }
     
+    @Secured(['ROLE_ADMIN'])
     def sendEmailToContributors(){
         projectService.makeContributorsUser()
         flash.contributorUsernameAndPwdmessage = "Email has been send to the non-registered contributors with their username and password and registered contributors are now able to watch their contribution on their dashboard."

@@ -158,6 +158,9 @@ environments {
 		crowdera.PAYU.TEST_URL='https://test.payu.in/_payment.php'
 		crowdera.PAYU.KEY='czBDue'
 		crowdera.PAYU.SALT='g57jz4Cw'
+        
+        /*Citrus Credentials*/
+        crowdera.CITRUS.BASE_URL = "https://splitpay.citruspay.com"
 		
 		/*ConstantContact details*/
 		crowdera.cc.OAUTH_URL='https://oauth2.constantcontact.com/oauth2/oauth/siteowner/authorize?response_type=code&display=page&'
@@ -840,7 +843,7 @@ log4j = {
 }
 
 quartz {
-    autoStartup = false
+    autoStartup = true
     jdbcStore = false
 }
 

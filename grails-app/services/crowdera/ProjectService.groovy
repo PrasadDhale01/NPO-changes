@@ -3310,8 +3310,10 @@ class ProjectService {
                 break;
 
             case 'story':
-                project.story = varValue;
-                isValueChanged = true;
+                if (project.story != varValue) {
+                    project.story = varValue;
+                    isValueChanged = true;
+                }
                 break;
 				
             case 'usedFor':

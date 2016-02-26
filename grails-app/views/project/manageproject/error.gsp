@@ -16,7 +16,7 @@
                     <h2 class="error-title-color">We're sorry, looks like something is broken</h2>
                     <h6 class="error-description-font">We know you hate this and so do we! But our geeks will fix this issue in no time.
                         you can continue
-                        Click here to return to go back to <a href="${url}">${priviousPage}</a> page or send us a message.</h6>
+                        Click here to return to go back to <a href="${url}">${previousPage}</a> page or send us a message.</h6>
                </div>
         </g:if>
         <g:else>

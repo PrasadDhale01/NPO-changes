@@ -53,8 +53,8 @@ class FundController {
         boolean ended = projectService.isProjectDeadlineCrossed(project)
 
         if (!project) {
-           def priviousPage = 'manage'
-           render (view: '/project/manageproject/error', model: [project: project, currentEnv:currentEnv, priviousPage:priviousPage])
+           def previousPage = 'manage'
+           render (view: '/project/manageproject/error', model: [project: project, currentEnv:currentEnv, previousPage:previousPage])
         } else if (fundingAchieved || ended) {
             redirect(controller: 'project', action: 'showCampaign', id: project.id)
         } else {
@@ -133,8 +133,8 @@ class FundController {
 
         if (project && reward) {
             if(!team || ! project.user){
-                def priviousPage = 'fund'
-                render (view: '/project/manageproject/error', model: [project: project, currentEnv:currentEnv, priviousPage:priviousPage]) 
+                def previousPage = 'fund'
+                render (view: '/project/manageproject/error', model: [project: project, currentEnv:currentEnv, previousPage:previousPage]) 
             }else{
                 render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry, month:month, year:year, fundraiser:fundraiser, user1:user1, anonymous:anonymous, projectTitle:params.projectTitle, username:params.fr]
             }

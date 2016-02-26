@@ -427,8 +427,8 @@ class ProjectController {
         } else {
             flash.prj_validate_err_message = 'Campaign Not Found'
 //            render (view: 'validate/validateerror', model: [project: project])
-            def priviousPage = "validate"
-            render (view: 'edit/editerror', model:[project: project, currentEnv:currentEnv, priviousPage:priviousPage])
+            def previousPage = "validate"
+            render (view: 'edit/editerror', model:[project: project, currentEnv:currentEnv, previousPage:previousPage])
         }
     }
 
@@ -837,8 +837,8 @@ class ProjectController {
             render (view: 'create/justcreated', model:[project:project, FORMCONSTANTS: FORMCONSTANTS])
 	    } else {
            
-            def priviousPage = "create"
-            render (view: 'edit/editerror', model:[project: project, currentEnv:currentEnv, priviousPage:priviousPage])
+            def previousPage = "create"
+            render (view: 'edit/editerror', model:[project: project, currentEnv:currentEnv, previousPage:previousPage])
 	    }
 	}
 
@@ -912,10 +912,10 @@ class ProjectController {
                 email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3,
                 deductibleStatusList:deductibleStatusList,spendAmountPerList:pieList.spendAmountPerList])
         } else {
-            def priviousPage = "manage"
+            def previousPage = "manage"
         
             flash.prj_edit_message = "Campaign not found."
-            render (view: 'edit/editerror', model:[project: project, currentEnv:currentEnv, priviousPage:priviousPage])
+            render (view: 'edit/editerror', model:[project: project, currentEnv:currentEnv, previousPage:previousPage])
         }
     }
 
@@ -931,10 +931,10 @@ class ProjectController {
 			flash.prj_mngprj_message = "Successfully saved the changes"
 			redirect (action: 'manageproject', params:['projectTitle':vanityTitle])
 		} else {
-            def priviousPage = 'edit'
+            def previousPage = 'edit'
            
 			flash.prj_edit_message = "Campaign not found."
-			render (view: 'edit/editerror', model:[project: project, priviousPage:priviousPage, currentEnv: currentEnv])
+			render (view: 'edit/editerror', model:[project: project, previousPage:previousPage, currentEnv: currentEnv])
 		}
 	}
 
@@ -1155,8 +1155,8 @@ class ProjectController {
 			} else {
 				flash.prj_mngprj_message = 'Campaign Not Found'
                 
-                def priviousPage = 'manage'
-				render (view: 'manageproject/error', model: [project: project, priviousPage: priviousPage, currentEnv: currentEnv])
+                def previousPage = 'manage'
+				render (view: 'manageproject/error', model: [project: project, previousPage: previousPage, currentEnv: currentEnv])
 			}
 		} else {
 			render(view: '/404error', model: [message: 'This project does not exist.'])
@@ -1196,8 +1196,8 @@ class ProjectController {
 		} else {
 //			flash.prj_mngprj_message = 'Campaign Not Found'
         
-            def priviousPage = 'manage'
-			render (view: 'manageproject/error', model: [project: project, currentEnv:currentEnv, priviousPage:priviousPage])
+            def previousPage = 'manage'
+			render (view: 'manageproject/error', model: [project: project, currentEnv:currentEnv, previousPage:previousPage])
 		}
 	}
 
@@ -1218,8 +1218,8 @@ class ProjectController {
 			flash.prj_mngprj_message = 'Successfully created a new perk'
 			redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', params:['projectTitle':title])
 		} else {
-            def priviousPage = 'manage'
-			render (view: 'manageproject/error', model: [reward: reward, currentEnv:currentEnv, priviousPage: priviousPage])
+            def previousPage = 'manage'
+			render (view: 'manageproject/error', model: [reward: reward, currentEnv:currentEnv, previousPage: previousPage])
 		}
 	}
 
@@ -1258,14 +1258,14 @@ class ProjectController {
         
         if(project) {
             if(!isCampaignOwnerOrAdmin){
-                def priviousPage = 'manage'
-                render view:"manageproject/error", model: [project: project, priviousPage: priviousPage, currentEnv: currentEnv]
+                def previousPage = 'manage'
+                render view:"manageproject/error", model: [project: project, previousPage: previousPage, currentEnv: currentEnv]
             }else{
                 render (view: 'update/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv])
             }
         } else {
-            def priviousPage = 'manage'
-            render (view: 'manageproject/error', model: [project: project, priviousPage: priviousPage, currentEnv: currentEnv])
+            def previousPage = 'manage'
+            render (view: 'manageproject/error', model: [project: project, previousPage: previousPage, currentEnv: currentEnv])
         }
     }
 
@@ -1290,8 +1290,8 @@ class ProjectController {
 			flash.editUpdateSuccessMsg = "Campaign Update Edited Successfully"
 			render (view:'editupdate/index', model:[projectUpdate: projectUpdate, project: project, FORMCONSTANTS: FORMCONSTANTS])
 		} else {
-            def priviousPage = 'manage'
-			render (view: 'manageproject/error', model:[project: project, priviousPage: priviousPage, currentEnv: currentEnv])
+            def previousPage = 'manage'
+			render (view: 'manageproject/error', model:[project: project, previousPage: previousPage, currentEnv: currentEnv])
 		}
 	}
 
@@ -1336,8 +1336,8 @@ class ProjectController {
 				redirect (action: 'manageproject', controller:'project', params:['projectTitle':title], fragment: 'projectupdates')
 			}
 		} else {
-            def priviousPage = 'update'
-			render (view: 'manageproject/error', model: [project: project, priviousPage: priviousPage, currentEnv: currentEnv])
+            def previousPage = 'update'
+			render (view: 'manageproject/error', model: [project: project, previousPage: previousPage, currentEnv: currentEnv])
 		}
 	}
 

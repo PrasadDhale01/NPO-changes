@@ -1,7 +1,4 @@
-<%
-    def currentEnv = projectService.getCurrentEnvironment()
-    def url = request.getHeader('referer')
-%>
+<g:set var="projectService" bean="projectService"/>
 <html>
 	<head>
 		<title>
@@ -16,6 +13,10 @@
 	<body>
         <div class="feducontent">
             <div class="container success-error-container">
+            <%
+                def currentEnv = projectService.getCurrentEnvironment()
+                def url = request.getHeader('referer')
+            %>
 	           <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
 	               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 mobile-img-error">
 			      <img alt="web-error" src="//s3.amazonaws.com/crowdera/assets/web-image-1.jpg">

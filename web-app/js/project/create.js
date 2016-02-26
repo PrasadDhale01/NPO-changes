@@ -61,9 +61,10 @@ $(function() {
     			"</ul>"+
     			"<p>Your mission is the heart of your campaign; it's what makes your fundraising efforts unique. Don't be shy in making your goal clear! Energize your crowd with your passion and get ready to make a difference! </p>";
 
+
     $('.redactorEditor').redactor({
         imageUpload:'/project/getRedactorImage',
-        autosave: '/project/saveStory/?projectId='+projectId,
+//        autosave: '/project/saveStory/?projectId='+projectId,
         imageResizable: true,
         initCallback: function(){
             var projectHasStory = $('#projectHasStory').val();
@@ -72,6 +73,14 @@ $(function() {
             } else {
                 this.code.set(storyPlaceholder);
             }
+
+            var that = this;
+            setInterval(function() {
+            	// you get code from Redactor
+                var story = that.code.get();
+                autoSave('story', story);
+            }, 5000);
+
         },focusCallback: function(){
             $(".cr-story-padding .redactor-box .redactor-editor").toggleClass("redactor-animate", true, 100000);
         },blurCallback: function() {
@@ -405,6 +414,8 @@ $(function() {
 
  		return true;
  	 }, "This Project Title is already in use");
+    
+    
 
     $('#saveButton, #saveButtonXS').on('click', function() {
     	var storyValue = $('.redactorEditor').redactor('code.get');
@@ -741,6 +752,8 @@ $(function() {
             $('#campaigncreate').find('form').submit();
         }
     });
+    
+    
 
     $('#submitProject, #submitProjectXS').on('click', function() {
         var storyValue = $('.redactorEditor').redactor('code.get');

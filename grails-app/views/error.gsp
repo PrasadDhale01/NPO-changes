@@ -22,7 +22,7 @@
 			      <img alt="web-error" src="//s3.amazonaws.com/crowdera/assets/web-image-1.jpg">
 	               </div>
 	               <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 error-paddingtop">
-	                   <h2 class="error-title-color">We're sorry, looks like something is broken</h2>
+	                   <div class="error-title-color">We're sorry, looks like something is broken</div>
 	                   <h6 class="error-description-font">We know you hate this and so do we! But our geeks will fix this issue in no time.
 	                   <br/>
 	                   Click <a href="${url}" id="previousUrl">here</a> to go back to previous page or send us a message.</h6>

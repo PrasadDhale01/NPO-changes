@@ -1506,6 +1506,12 @@ img.how-it-success-img{
     font-weight: 900;
     font-size: 27px;
 }
+.error-title-color404{
+	color: #D0363E;
+    font-weight: 900;
+    font-size: 20px;
+    margin-top: 33px;
+}
 .error-description-font {
     font-size: 16px;
     font-weight: 900;
@@ -1520,4 +1526,19 @@ img.how-it-success-img{
 }
 .error-description-font a {
     text-decoration: none;
+}
+.error-autorizedmsz{
+	color: #000;
+	font-size: 15px;
+	font-weight: 900;
+}
+.error-title-color401{
+    color: #D0363E;
+    font-weight: 900;
+    font-size: 25px;
+    margin-top: 33px;
+}
+.error-img {
+    padding-left: 161px;
+    width: 1106px;
 }

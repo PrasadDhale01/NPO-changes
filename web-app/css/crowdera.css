@@ -5592,7 +5592,25 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-    h2.error-title-color {
+    div.error-img {
+        padding-left: 0;
+    }
+	div.error-title-color401{
+        font-size: 17px;
+        text-align: center;
+        margin-top: -20px;
+    }
+    h6.error-autorizedmsz {
+        font-size: 12px;
+        font-weight: 900;
+        text-align: center;
+    }
+    div.error-title-color404{
+        font-size: 13px;
+        margin-top: -25px;
+        margin-bottom: 55px;
+    }
+    div.error-title-color {
         font-size: 15px;
         text-align: center;
     }
@@ -8255,17 +8273,25 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.error-img {
+        padding-left: 64px;
+        width: 750px;
+    }
+    div.error-title-color401{
+        font-size: 20px;
+        margin-top: 33px;
+    }
     div.mobile-img-error img {
         height: 130px;
     }
     div.error-paddingtop {
         padding-top: 35px;
     }
-    h2.error-title-color {
+    div.error-title-color {
         font-size: 20px;
     }
     h6.error-description-font {
-        font-size: 13px;
+        font-size: 12px;
     }
     div.success-error-container{
         width: 750px;
@@ -14589,7 +14615,25 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-    h2.error-title-color {
+    div.error-img {
+        padding-left: 0;
+    }
+    div.error-title-color401{
+        font-size: 17px;
+        text-align: center;
+        margin-top: -20px;
+    }
+    h6.error-autorizedmsz {
+        font-size: 12px;
+        font-weight: 900;
+        text-align: center;
+    }
+    div.error-title-color404{
+        font-size: 13px;
+        margin-top: -25px;
+        margin-bottom: 55px;
+    }
+    div.error-title-color {
         font-size: 15px;
         text-align: center;
     }

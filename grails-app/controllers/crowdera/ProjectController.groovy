@@ -140,7 +140,7 @@ class ProjectController {
 				redirect (action:'show', params:['projectTitle':title,'fr':name])
 			}
 		} else {
-			render(view: '/404error', model: [message: 'This project does not exist.'])
+			render(view: '/404error', model: [message: 'This campaign does not exist.'])
 		}
 	}
 
@@ -262,7 +262,7 @@ class ProjectController {
                     isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
                     remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList])
 		} else {
-			render(view: '/404error', model: [message: 'This project does not exist.'])
+			render(view: '/404error', model: [message: 'This campaign does not exist.'])
 		}
 	}
     
@@ -755,7 +755,7 @@ class ProjectController {
                 render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
             }
         } else {
-            render(view: '/404error', model: [message: 'This project does not exist.'])
+            render(view: '/404error', model: [message: 'This campaign does not exist.'])
         }
     }
 	
@@ -763,7 +763,7 @@ class ProjectController {
     def campaignOnDraftAndLaunch() {
         Project project = projectService.getProjectById(params.projectId)
         def vanitytitle
-        if (!project) {
+        if (project) {
             User user = userService.getCurrentUser()
             if (project.user == user) {
                 def currentEnv = Environment.current.getName()
@@ -816,7 +816,7 @@ class ProjectController {
 				render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
 			}
 		} else {
-			render(view: '/404error', model: [message: 'This project does not exist.'])
+			render(view: '/404error', model: [message: 'This campaign does not exist.'])
 		}
 	}
 	
@@ -854,7 +854,7 @@ class ProjectController {
 		if(title){
 			redirect (action : 'edit', params:['projectTitle':title])
 		}else{
-			render(view: '/404error', model: [message: 'This project does not exist.'])
+			render(view: '/404error', model: [message: 'This campaign does not exist.'])
 		}
 	}
 
@@ -1165,7 +1165,7 @@ class ProjectController {
 				render (view: 'manageproject/error', model: [project: project, previousPage: previousPage, currentEnv: currentEnv])
 			}
 		} else {
-			render(view: '/404error', model: [message: 'This project does not exist.'])
+			render(view: '/404error', model: [message: 'This campaign does not exist.'])
 		}
 	}
 
@@ -1281,7 +1281,7 @@ class ProjectController {
 		if(title){
 			redirect (action : 'editUpdate', id:params.id, params:['projectTitle':title])
 		}else{
-			render(view: '/404error', model: [message: 'This project does not exist.'])
+			render(view: '/404error', model: [message: 'This campaign does not exist.'])
 		}
 	}
 
@@ -1629,7 +1629,7 @@ class ProjectController {
 			flash.teamdiscardedmessage = "Team Discarded Successfully."
 			redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', params:['projectTitle':title])
 		}else{
-			render view:'404error'
+			render view:'404error', model:[project: project]
 		}
 	}
 

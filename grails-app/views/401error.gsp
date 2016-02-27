@@ -19,7 +19,7 @@
                     <h2 class="error-title-color">We're sorry, looks like something is broken</h2>
                     <h6 class="error-description-font">We know you hate this and so do we! But our geeks will fix this issue in no time.
                         you can continue
-                        Click <a href="${url}" id="previousUrl">here</a> to return to go back to privious page or send us a message.</h6>
+                        Click <a href="${url}" id="previousUrl">here</a> to go back to previous page or send us a message.</h6>
                </div>
         </g:if>
         <g:else>

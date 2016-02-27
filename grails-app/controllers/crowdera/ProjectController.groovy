@@ -164,6 +164,7 @@ class ProjectController {
 		}
 		Project project = projectService.getProjectById(projectId)
         def vanityUsername
+        
 		if (project) {
             username = (params.fr != null) ? userService.getUsernameFromVanityName(params.fr) : project.user.username
             vanityUsername = (params.fr != null) ? params.fr : userService.getVanityNameFromUsername(username, projectId)
@@ -645,8 +646,9 @@ class ProjectController {
         }
 		
         def projectTitle
+        Project project
         if (params.title && params.amount && params.description && params.firstName) {
-            Project project = projectService.getProjectByParams(params)
+            project = projectService.getProjectByParams(params)
             def beneficiary = userService.getBeneficiaryByParams(params)
             def user = userService.getCurrentUser()
             project.draft = true;
@@ -676,10 +678,14 @@ class ProjectController {
                 projectService.getdefaultAdmin(project, user)
                 redirect(action:'redirectCreateNow', params:[title:projectTitle])
             } else {
-                render view:'/project/createerror'
+                def url = "/campaign/create"
+                def previousPage = "create"
+                render view:'/project/create/createerror', model:[project: project, url: url, previousPage: previousPage]
             }
         } else {
-            render view:'/project/createerror'
+            def url = "/campaign/create"
+            def previousPage = "create"
+            render view:'/project/create/createerror', model:[project: project, url: url, previousPage: previousPage]
         }
     }
 	
@@ -757,7 +763,7 @@ class ProjectController {
     def campaignOnDraftAndLaunch() {
         Project project = projectService.getProjectById(params.projectId)
         def vanitytitle
-        if (project) {
+        if (!project) {
             User user = userService.getCurrentUser()
             if (project.user == user) {
                 def currentEnv = Environment.current.getName()
@@ -838,7 +844,7 @@ class ProjectController {
 	    } else {
            
             def previousPage = "create"
-            render (view: 'edit/editerror', model:[project: project, currentEnv:currentEnv, previousPage:previousPage])
+            render (view: '/project/create/createerror', model:[project: project, currentEnv:currentEnv, previousPage:previousPage])
 	    }
 	}
 

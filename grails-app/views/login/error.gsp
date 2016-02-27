@@ -27,7 +27,7 @@
 		     <g:if test="${message}">
 		         ${message}
 		     </g:if>
-		   Click <a href="${url}" id="previousUrl">here</a> to return to go back to privious page or send us a message.</h6>
+		   Click <a href="${url}" id="previousUrl">here</a> to go back to previous page or send us a message.</h6>
 		</div>
     </g:if>
     <g:else>

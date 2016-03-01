@@ -29,10 +29,10 @@
         </div>
     </g:if>
     <g:else>
-		<h1>Error</h1>
-		<div class="alert alert-danger">
-		    Page not found.
-		</div>
+        <h1>Error</h1>
+        <div class="alert alert-danger">
+            Page not found.
+        </div>
     </g:else>
     </div>
 </div>

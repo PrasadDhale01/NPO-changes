@@ -37,10 +37,10 @@
     </div>
 </div>
 <script>
-    $('#previousUrl').click(function(e) {
-        e.preventDefault();
-        window.history.back();
-    });
+	$('#previousUrl').click(function(e) {
+	    e.preventDefault();
+	    window.history.back();
+	});
 </script>
 </body>
 </html>

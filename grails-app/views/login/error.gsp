@@ -13,11 +13,10 @@
     %>
     <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
 		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 mobile-img-error">
-		  <img alt="web-error" src="//s3.amazonaws.com/crowdera/assets/web-image-1.jpg">
+		    <img alt="web-error" src="//s3.amazonaws.com/crowdera/assets/web-image-1.jpg">
 		</div>
 		<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 error-paddingtop">
-		
-		    <h6 class="error-description-font">
+              <h6 class="error-description-font">
 		      <g:if test="${facelogoutmsg}">
 		         ${facelogoutmsg}
 		     </g:if>

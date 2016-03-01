@@ -1092,7 +1092,7 @@ class ProjectController {
 		if(title) {
 			redirect (action:'manageproject', params:['projectTitle':title])
 		} else {
-			render view:'404error'
+			render view:'404error', model:[title:title]
 		}
 	}
 
@@ -1200,7 +1200,7 @@ class ProjectController {
                 render view:'/401error'
             }
 		} else {
-//			flash.prj_mngprj_message = 'Campaign Not Found'
+			flash.prj_mngprj_message = 'Campaign Not Found'
         
             def previousPage = 'manage'
 			render (view: 'manageproject/error', model: [project: project, currentEnv:currentEnv, previousPage:previousPage])

@@ -1539,6 +1539,9 @@ img.how-it-success-img{
     margin-top: 33px;
 }
 .error-img {
-    padding-left: 161px;
+    padding-left: 125px;
     width: 1106px;
+}
+.error-title-color404 a {
+    text-decoration: none;
 }

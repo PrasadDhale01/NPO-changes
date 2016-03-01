@@ -53,7 +53,7 @@ class FundController {
         boolean ended = projectService.isProjectDeadlineCrossed(project)
 
         if (!project) {
-           def previousPage = 'manage'
+           def previousPage = 'campaign details'
            render (view: '/project/manageproject/error', model: [project: project, currentEnv:currentEnv, previousPage:previousPage])
         } else if (fundingAchieved || ended) {
             redirect(controller: 'project', action: 'showCampaign', id: project.id)
@@ -173,10 +173,6 @@ class FundController {
             }
             
             def amount = params.double(('amount'))
-            if (amount < reward.price) {
-                render view: 'error', model: [message: 'Funding amount cannot be smaller than reward price. Please choose a smaller reward, or increase the funding amount.']
-                return
-            }
 
             def totalContribution= contributionService.getTotalContributionForProject(project)
             def contPrice = params.double(('amount'))
@@ -187,7 +183,7 @@ class FundController {
             perk = Reward.get(params.long('rewardId'))
             def vanityUserName = params.fr
 			
-            if(percentage>999) {
+            if(percentage > 999) {
                 flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
                 redirect action: 'fund', params:['fr': vanityUserName, 'rewardId': perk.id, 'projectTitle': vanityTitle]
             } else {
@@ -325,7 +321,8 @@ class FundController {
                     redirect (action:'saveCommentRedirect', controller:'fund', id: params.id, params:[fr: params.fr, projectTitle: params.projectTitle, commentId: projectComment.id])
                 }
             } else {
-                flash.sentmessage = "Something went wrong saving comment. Please try again later."
+                def message = "Something went wrong saving comment. Please try again later."
+                render view: 'error', model: [message: message]
             }
             
         }
@@ -367,7 +364,8 @@ class FundController {
             def teamComment = projectService.getTeamCommentById(params.long('teamCommentId'))
             render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser,projectTitle:params.projectTitle, value: value, comment: projectComment, teamComment:teamComment]
         } else {
-            flash.sentmessage = "Something went wrong saving comment. Please try again later."
+            def message = "Something went wrong saving comment. Please try again later."
+            render view: 'error', model: [message: message]
         }
         
     }

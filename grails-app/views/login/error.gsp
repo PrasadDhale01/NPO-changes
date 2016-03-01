@@ -16,7 +16,7 @@
 		  <img alt="web-error" src="//s3.amazonaws.com/crowdera/assets/web-image-1.jpg">
 		</div>
 		<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 error-paddingtop">
-		    <div class="error-title-color">We're sorry, looks like something is broken</div>
+		
 		    <h6 class="error-description-font">
 		      <g:if test="${facelogoutmsg}">
 		         ${facelogoutmsg}
@@ -25,9 +25,10 @@
 		         ${flash.googlePlusErrorMessage}
 		     </g:if>
 		     <g:if test="${message}">
+<%--		        <div class="error-title-color">We're sorry, looks like something is broken</div>--%>
 		         ${message}
 		     </g:if>
-		     Click <a href="${url}" id="previousUrl">here</a> to go back to previous page or send us a message.</h6>
+		     Click <a href="${url}" id="previousUrl">here</a> to go back to previous page.</h6>
 		</div>
     </g:if>
     <g:else>

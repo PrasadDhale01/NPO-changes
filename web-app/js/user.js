@@ -327,7 +327,6 @@ function campaignsort(){
 	var selectedSortValue = $('#sortByOptions').val();
 	var selectedCountry = $('#countryOpts').val();
 	var grid = $('#adminCampaignGrid');
-	$('#loading-gif').show();
 
 	$.ajax({
 		type: 'post',
@@ -335,10 +334,8 @@ function campaignsort(){
 		data: 'selectedSortValue='+selectedSortValue+'&country='+selectedCountry,
 		success: function(data){
 			$(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
-			$('#loading-gif').hide();
 		}
 	}).error(function(){
-		$('#loading-gif').hide();
 	});
 }
 
@@ -346,7 +343,6 @@ function campaignsortByCountry(){
 	var selectedSortValue = $('#sortByOptions').val();
 	var selectedCountry = $('#countryOpts').val();
 	var grid = $('#adminCampaignGrid');
-	$('#loading-gif').show();
 
 	$.ajax({
 		type: 'post',
@@ -354,47 +350,7 @@ function campaignsortByCountry(){
 		data: 'selectedSortValue='+selectedSortValue+'&country='+selectedCountry,
 		success: function(data){
 			$(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
-			$('#loading-gif').hide();
 		}
 	}).error(function(){
-		$('#loading-gif').hide();
-	});
-}
-
-function getcampaignsort(){
-	var selectedSortValue = $('#sortByOptions').val();
-	var selectedCountry = $('#countryOpts').val();
-	var grid = $('#adminCampaignGrid');
-	$('#loading-gif').show();
-
-	$.ajax({
-		type: 'post',
-		url: $('#baseUrl').val()+'/project/getCampaignsByFilter',
-		data: 'selectedSortValue='+selectedSortValue+'&country='+selectedCountry,
-		success: function(data){
-			$(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
-			$('#loading-gif').hide();
-		}
-	}).error(function(){
-		$('#loading-gif').hide();
-	});
-}
-
-function getcampaignsortByCountry(){
-	var selectedSortValue = $('#sortByOptions').val();
-	var selectedCountry = $('#countryOpts').val();
-	var grid = $('#adminCampaignGrid');
-	$('#loading-gif').show();
-
-	$.ajax({
-		type: 'post',
-		url: $('#baseUrl').val()+'/project/getCampaignsByFilter',
-		data: 'selectedSortValue='+selectedSortValue+'&country='+selectedCountry,
-		success: function(data){
-			$(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
-			$('#loading-gif').hide();
-		}
-	}).error(function(){
-		$('#loading-gif').hide();
 	});
 }

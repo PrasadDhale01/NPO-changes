@@ -12,7 +12,7 @@
     def user = userService.getCurrentUser()
     def username = user.username
     def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
-	def isTeamAdmin = projectService.isTeamAdmin(project)
+	   def isTeamAdmin = projectService.isTeamAdmin(project)
     
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
     def cents
@@ -110,20 +110,20 @@
             </div>
         </g:elseif>
         <g:elseif test="${project.validated}">
-            <g:if test="${iscampaignAdmin}">
+            <g:if test="${isTeamAdmin}">
                 <div class="over user-tile">
                     <img src="//s3.amazonaws.com/crowdera/assets/owner-tag.png" alt="Owner"/>
                 </div>
             </g:if>
-            <g:elseif test="${isTeamAdmin}">
+            <g:else>
                 <div class="over user-tile">
                     <img src="//s3.amazonaws.com/crowdera/assets/Team-tag.png" alt="Team top"/>
                 </div>
-            </g:elseif>
+            </g:else>
         </g:elseif>
     </g:else>
     <div class="blacknwhite tile">
-        <g:if test="${iscampaignAdmin || isAdmin}">
+        <g:if test="${iscampaignAdmin}">
             <g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">
                 <div class="imageWithTag">
                     <div class="under">
@@ -144,7 +144,7 @@
     </div>
 
     <div class="caption project-title project-story-span tile-min-height">
-        <g:if test="${iscampaignAdmin || isAdmin}">
+        <g:if test="${iscampaignAdmin}">
             <g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">
                 ${project.title.toUpperCase()}
             </g:link>
@@ -155,7 +155,6 @@
             </g:link>
         </g:else>
         <div class="campaign-title-margin-bottom"></div>
-        
         <span>${project.description}</span>
     </div>
 
@@ -208,10 +207,9 @@
             </div>
         </div>
     </div>
-    
     <div class="modal-footer tile-footer user-goal user-footer-icon">
         <div class="row">
-            <g:if test="${!project.validated || username.equals('campaignadmin@crowdera.co') || isAdmin}">
+            <g:if test="${!project.validated || username.equals('campaignadmin@crowdera.co') }">
                 <g:form controller="project" action="projectdelete" method="post" id="${project.id}">
                     <button class="projectedit close pull-right" id="projectdelete"
                      onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);">
@@ -233,5 +231,4 @@
             </g:else>
         </div>
     </div>
-    
 </div>

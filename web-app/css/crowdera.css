@@ -1597,7 +1597,12 @@ margin-bottom:4px;
 .btn-facebook {
 color: #fff;
 background-color: #31497B;
-border-color: rgba(0,0,0,0.2);
+border-color: #31497B;
+}
+.btn-google-plus {
+    color: #fff;
+    background-color: #dd4b39;
+    border-color: #dd4b39;
 }
 
 .project-title{

@@ -1495,3 +1495,12 @@ img.how-it-success-img{
 .bootstrap-timepicker-widget table td input {
     width: 40px;
 }
+.footer-logosize {
+    padding-left: 36px;
+}
+button.dropdown-toggle.selectpicker.btn.btn-sm.btn-default {
+    border-color: #e3e3e3;
+}
+button.dropdown-toggle.selectpicker.btn.btn-sm.btn-default:hover {
+    border-color: #e3e3e3;
+}

@@ -539,12 +539,12 @@ hr.footer-hr{
     color: #666666;
     background-color: #666666;
     border-left-width: 25px;
-    margin-left: 27px;
+    margin-left: 11px;
     height: 1px;
     border: #666666;
     float:left;
     margin-top:0px !important;
-    width: 96%;
+    width: 98%;
 }
 .footer-first-section p{
     color:#ffffff;
@@ -586,7 +586,7 @@ p.egle {
     padding-right: 30px;
 }
 .footer-mid-section-menu ul li a{
-    font-size:12px;
+    font-size:13px;
     font-family: "OPEN SANS";
 }
 .footer-mid-section-menu ul li a:hover{
@@ -8485,6 +8485,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     div.hm-media-stript-width {
         width: 750px !important;
+        padding-left: 15px;
+        padding-right: 15px;
     }      
     div.header-scrolled {
         display: none !important;

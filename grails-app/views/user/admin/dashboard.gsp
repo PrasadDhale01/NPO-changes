@@ -73,11 +73,11 @@
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-body text-center">
-                        <i class="glyphicon glyphicon-check"></i> Validate Campaigns here.
+                        <i class="glyphicon glyphicon-check"></i> Manage Campaigns
                     </div>
                     <div class="panel-footer">
-                        <g:link controller="project" action="validateList" class="TW-text-decoration">
-                            <button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-check"></i> Validate Campaigns</button>
+                        <g:link controller="project" action="getCampaignList" class="TW-text-decoration">
+                            <button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-check"></i> Manage Campaigns</button>
                         </g:link>
                     </div>
                 </div>

@@ -780,6 +780,8 @@ div.validate-show-div .show-description {
 }
 .hm-media-stript-width {
     width: 1000px !important;
+    padding-left: 0;
+    padding-right: 0;
 }
 img.hm-img-bottompadding {
 /*     padding-bottom: 15px; */
@@ -790,12 +792,12 @@ img.hm-img-bottompadding {
     padding-left: 29px;
     padding-top: 9px;
 }
-.hm-allimg-padding {
-    padding: 7px 0;
-}
+/* .hm-allimg-padding { */
+/*     padding: 7px 0; */
+/* } */
 hr.hm-line-color{
     border-color: #666666;
-    margin-top: 0;
+    margin-top: 10px;
 /*     margin-bottom: 52px; */
 }
 
@@ -1494,4 +1496,63 @@ img.how-it-success-img{
 }
 .bootstrap-timepicker-widget table td input {
     width: 40px;
+}
+/* .footer-logosize { */
+/*     padding-left: 36px; */
+/* } */
+button.dropdown-toggle.selectpicker.btn.btn-sm.btn-default {
+    border-color: #e3e3e3;
+}
+button.dropdown-toggle.selectpicker.btn.btn-sm.btn-default:hover {
+    border-color: #e3e3e3;
+}
+.success-error-container{
+    width: 1000px;
+}
+.error-paddingtop{
+    padding-top: 70px;
+}
+.error-title-color {
+    color: #D0363E;
+    font-weight: 900;
+    font-size: 27px;
+}
+.error-title-color404{
+	color: #D0363E;
+    font-weight: 900;
+    font-size: 20px;
+    margin-top: 33px;
+}
+.error-description-font {
+    font-size: 16px;
+    font-weight: 900;
+    color: #000;
+}
+.error-heade{
+    font-weight: 900;
+    color: #000;
+}
+.mobile-img-error {
+    padding-bottom: 30px;
+}
+.error-description-font a {
+    text-decoration: none;
+}
+.error-autorizedmsz{
+	color: #000;
+	font-size: 15px;
+	font-weight: 900;
+}
+.error-title-color401{
+    color: #D0363E;
+    font-weight: 900;
+    font-size: 25px;
+    margin-top: 33px;
+}
+.error-img {
+    padding-left: 125px;
+    width: 1106px;
+}
+.error-title-color404 a {
+    text-decoration: none;
 }

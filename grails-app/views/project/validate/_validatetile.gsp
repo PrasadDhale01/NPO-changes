@@ -35,6 +35,12 @@
                 <img src="//s3.amazonaws.com/crowdera/assets/on-hold.png" alt="On Hold">
             </div>
         </g:if>
+        <g:else>
+            <div class="over user-tile">
+                <img src="//s3.amazonaws.com/crowdera/assets/Pending-tag.png" alt="Pending"/>
+            </div>
+        </g:else>
+        
         <div class="blacknwhite">
             <g:link controller="project" action="validateShowCampaign" id="${project.id}" title="${project.title}">
                 <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>

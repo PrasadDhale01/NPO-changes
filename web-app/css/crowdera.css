@@ -101,6 +101,7 @@ text-decoration:none;
 
 .feducontent {
     padding-top: 33px;
+    min-height: 250px;
 }
 .banner-padding{
 	padding-top:32px;
@@ -5603,6 +5604,47 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     input.foot-mobile-margin{
         margin-left: -11px;  
     }
+    div.error-img {
+        padding-left: 0;
+        width: 320px;
+        padding-right: 45px;
+    }
+	div.error-title-color401{
+        font-size: 17px;
+        text-align: center;
+        margin-top: -20px;
+    }
+    h6.error-autorizedmsz {
+        font-size: 12px;
+        font-weight: 900;
+        text-align: center;
+    }
+    div.error-title-color404{
+        letter-spacing: -1px;
+        font-size: 14px;
+        margin-top: -25px;
+        margin-bottom: 55px;
+        text-align: center;
+    }
+    div.error-title-color {
+        font-size: 15px;
+        text-align: center;
+    }
+    h6.error-description-font {
+        font-size: 12px;
+        text-align: center;
+    }
+    div.mobile-img-error img {
+        height: 101px;
+        margin-left: 60px;
+    }
+    div.error-paddingtop {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    div.success-error-container{
+        width: 320px;
+    }
 	div.show-css  div.manage-updateshare{
         padding-left: 60px !important;
     }
@@ -8251,6 +8293,32 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.sm-padding-mobile-footer{
         padding-left: 15px;
         padding-right: 15px;    
+    }
+    div.error-title-color404 {
+        font-size: 19px;
+    }
+    div.error-img {
+        padding-left: 64px;
+        width: 750px;
+    }
+    div.error-title-color401{
+        font-size: 20px;
+        margin-top: 33px;
+    }
+    div.mobile-img-error img {
+        height: 130px;
+    }
+    div.error-paddingtop {
+        padding-top: 35px;
+    }
+    div.error-title-color {
+        font-size: 20px;
+    }
+    h6.error-description-font {
+        font-size: 12px;
+    }
+    div.success-error-container{
+        width: 750px;
     }
     button.manage-deletebtn-width {
         padding-left: 22px;
@@ -14581,6 +14649,47 @@ textarea.textarea-embed-video {
     }
     input.foot-mobile-margin{
         margin-left: -6px;  
+    }
+    div.error-img {
+        padding-left: 0;
+        width: 320px;
+        padding-right: 45px;
+    }
+    div.error-title-color401{
+        font-size: 17px;
+        text-align: center;
+        margin-top: -20px;
+    }
+    h6.error-autorizedmsz {
+        font-size: 12px;
+        font-weight: 900;
+        text-align: center;
+    }
+    div.error-title-color404{
+        letter-spacing: -1px;
+        font-size: 14px;
+        margin-top: -25px;
+        margin-bottom: 55px;
+        text-align: center;
+    }
+    div.error-title-color {
+        font-size: 15px;
+        text-align: center;
+    }
+    h6.error-description-font {
+        font-size: 12px;
+        text-align: center;
+    }
+    div.mobile-img-error img {
+        height: 101px;
+        margin-left: 60px;
+    }
+    div.error-paddingtop {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    div.success-error-container{
+        width: 320px;
     }
     div.show-css  div.manage-updateshare{
         padding-left: 60px !important;

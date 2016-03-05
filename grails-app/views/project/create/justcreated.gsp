@@ -3,9 +3,10 @@
 <meta name="layout" content="main" />
 </head>
 <body>
+<input type="hidden" name="url" value="${currentEnv}" id="currentEnv"/>
 <div class="feducontent">
-    <div class="container">
-	<g:if test="${project}">
+    <div class="container success-error-container">
+	<g:if test="${project.id}">
 	    <div class="wrap">
 	        <h2>
 	        <g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">
@@ -24,8 +25,9 @@
 	    </div>
 	</g:if>
 	<g:else>
-	    <h2>Error</h2>
-	    <div class="alert alert-danger">Oh snap! Looks like that Campaign doesn't exist.</div>
+	    <div class="alert alert-danger">
+               Oh snap! Looks like that Campaign doesn't exist Oh snap! Looks like that Campaign doesn't exist
+	    </div>
 	</g:else>
     </div>
 </div>

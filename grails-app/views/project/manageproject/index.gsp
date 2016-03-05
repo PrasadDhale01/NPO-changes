@@ -15,9 +15,9 @@
 	if (imageUrl) {
 		imageUrl = project.imageUrl[0].getUrl()
 	}
-    def fbShareUrl = base_url+"/campaigns/campaignShare?id="+project.id+"?fr="+username
+    def fbShareUrl = base_url+"/project/campaignShare?id="+project.id+"&fr="+username
    
-    def fbShareUrlupdatePage = base_url+"/campaigns/updateShare?id="+project.id+"&fr="+username
+    def fbShareUrlupdatePage = base_url+"/project/updateShare?id="+project.id+"&fr="+username
    
     def shareUrl = base_url+'/c/'+shortUrl
 

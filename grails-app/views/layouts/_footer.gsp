@@ -59,11 +59,11 @@
 	                <form action="${mailChimpUrl}" method="post" id="mc-embedded-subscribe-form-sm" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 	                    <div class="col-xs-offset-1 newsletter-align">
 	                        <br>
-	                        <div class="col-xs-6 footer-input-align">
+	                        <div class="col-xs-8 footer-input-align foot-margin-mobile">
 	                            <input type="text" class="text-email all-place form-control" name="EMAIL" placeholder="Your email">
 	                        </div>
-	                        <div class="col-xs-6 ">
-	                            <input type="submit" name="subscribe" value="" class="button-signup signup-sm all-place ">
+	                        <div class="col-xs-4 ">
+	                            <input type="submit" name="subscribe" value="" class="button-signup signup-sm all-place foot-mobile-margin">
 	                        </div>
 	                    </div>
 	                </form>
@@ -128,7 +128,7 @@
     </div>
         
     <!-- Footer Design for medium size device -->
-    <div class="visible-sm visible-md show-mobilejs-sm-md">
+    <div class="visible-sm visible-md show-mobilejs-sm-md sm-padding-mobile-footer">
         <div class="row">
         <div class="col-sm-4 footer-logo-padding-left">
             <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a>
@@ -248,7 +248,7 @@
     <div class="visible-lg footer-lg">
             
         <div class="row footer-lg-first-section">
-        <div class="col-md-4">
+        <div class="col-md-4 footer-logosize">
             <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a>
             <div class="col-md-6 footer-mid-section-menu">
             <ul>

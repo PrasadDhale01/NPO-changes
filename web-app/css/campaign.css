@@ -780,6 +780,8 @@ div.validate-show-div .show-description {
 }
 .hm-media-stript-width {
     width: 1000px !important;
+    padding-left: 0;
+    padding-right: 0;
 }
 img.hm-img-bottompadding {
 /*     padding-bottom: 15px; */
@@ -790,12 +792,12 @@ img.hm-img-bottompadding {
     padding-left: 29px;
     padding-top: 9px;
 }
-.hm-allimg-padding {
-    padding: 7px 0;
-}
+/* .hm-allimg-padding { */
+/*     padding: 7px 0; */
+/* } */
 hr.hm-line-color{
     border-color: #666666;
-    margin-top: 0;
+    margin-top: 10px;
 /*     margin-bottom: 52px; */
 }
 
@@ -1494,6 +1496,15 @@ img.how-it-success-img{
 }
 .bootstrap-timepicker-widget table td input {
     width: 40px;
+}
+/* .footer-logosize { */
+/*     padding-left: 36px; */
+/* } */
+button.dropdown-toggle.selectpicker.btn.btn-sm.btn-default {
+    border-color: #e3e3e3;
+}
+button.dropdown-toggle.selectpicker.btn.btn-sm.btn-default:hover {
+    border-color: #e3e3e3;
 }
 .success-error-container{
     width: 1000px;

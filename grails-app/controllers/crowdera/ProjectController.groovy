@@ -523,6 +523,47 @@ class ProjectController {
 		render(view: 'validate/index', model: [projects: projects])
 	}
     
+    @Secured(['ROLE_ADMIN'])
+    def getCampaignList() {
+        def countryOpts = [India: 'INDIA', USA: 'USA']
+        def sortByOptions = projectService.getSortingList()
+        def environment = projectService.getCurrentEnvironment()
+        def projects
+        
+        def isAdmin = userService.isAdmin()
+        
+        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+            projects = projectService.getValidatedProjectsForCampaignAdmin('Pending', 'INDIA')
+        } else {
+            projects = projectService.getValidatedProjectsForCampaignAdmin('Pending', 'USA')
+        }
+        
+        if (flash.prj_validate_message) {
+            flash.prj_validate_message = "Campaign validated successfully"
+        }
+        
+        render (view: 'campaigns/index', model: [projects: projects, environment: environment, countryOpts: countryOpts,
+                                                 sortByOptions: sortByOptions, isAdmin: isAdmin])
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def getCampaignsByFilter() {
+        def projects = projectService.getValidatedProjectsForCampaignAdmin(params.selectedSortValue, params.country)
+        def multiplier = projectService.getCurrencyConverter();
+        def currentEnv = projectService.getCurrentEnvironment()
+        def isAdmin = userService.isAdmin()
+        
+        def model = [projects: projects, multiplier: multiplier, currentEnv: currentEnv, isAdmin: isAdmin]
+        
+        if (request.xhr) {
+            if (params.selectedSortValue == 'Pending') {
+                render(template: "/project/validate/validategrid", model: model)
+            } else {
+                render(template: "/user/user/grid", model: model)
+            }
+        }
+    }
+    
     def comment() {
         User user = userService.getCurrentUser()
         def base_url = grailsApplication.config.crowdera.BASE_URL
@@ -1147,8 +1188,9 @@ class ProjectController {
             def reasons = projectService.getReasonsToFundFromProject(project)
             
             def isDeviceMobileOrTab = isDeviceMobileOrTab();
+            def isAdmin = userService.isAdmin();
 
-			if(project.user==user || isCampaignOwnerOrAdmin){
+			if(project.user==user || isCampaignOwnerOrAdmin || isAdmin){
 				render (view: 'manageproject/index',
 				model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,totalContributions:totalContributions, totalteams: totalteams,
 					discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset, day: day,

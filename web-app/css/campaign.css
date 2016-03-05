@@ -1495,3 +1495,53 @@ img.how-it-success-img{
 .bootstrap-timepicker-widget table td input {
     width: 40px;
 }
+.success-error-container{
+    width: 1000px;
+}
+.error-paddingtop{
+    padding-top: 70px;
+}
+.error-title-color {
+    color: #D0363E;
+    font-weight: 900;
+    font-size: 27px;
+}
+.error-title-color404{
+	color: #D0363E;
+    font-weight: 900;
+    font-size: 20px;
+    margin-top: 33px;
+}
+.error-description-font {
+    font-size: 16px;
+    font-weight: 900;
+    color: #000;
+}
+.error-heade{
+    font-weight: 900;
+    color: #000;
+}
+.mobile-img-error {
+    padding-bottom: 30px;
+}
+.error-description-font a {
+    text-decoration: none;
+}
+.error-autorizedmsz{
+	color: #000;
+	font-size: 15px;
+	font-weight: 900;
+}
+.error-title-color401{
+    color: #D0363E;
+    font-weight: 900;
+    font-size: 25px;
+    margin-top: 33px;
+}
+.error-img {
+    padding-left: 125px;
+    width: 1106px;
+}
+.error-title-color404 a {
+    text-decoration: none;
+}

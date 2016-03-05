@@ -140,7 +140,7 @@ class ProjectController {
 				redirect (action:'show', params:['projectTitle':title,'fr':name])
 			}
 		} else {
-			render(view: '/404error', model: [message: 'This project does not exist.'])
+			render(view: '/404error', model: [message: 'This campaign does not exist.'])
 		}
 	}
 
@@ -164,6 +164,7 @@ class ProjectController {
 		}
 		Project project = projectService.getProjectById(projectId)
         def vanityUsername
+        
 		if (project) {
             username = (params.fr != null) ? userService.getUsernameFromVanityName(params.fr) : project.user.username
             vanityUsername = (params.fr != null) ? params.fr : userService.getVanityNameFromUsername(username, projectId)
@@ -261,7 +262,7 @@ class ProjectController {
                     isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
                     remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList])
 		} else {
-			render(view: '/404error', model: [message: 'This project does not exist.'])
+			render(view: '/404error', model: [message: 'This campaign does not exist.'])
 		}
 	}
     
@@ -410,6 +411,8 @@ class ProjectController {
     def delete() {
         def project = projectService.getProjectById(params.id)
         User user = userService.getCurrentUser()
+        def currentEnv = Environment.current.getName()
+        
         if (project) {
             if (userService.isAdmin()) {
                 project.rejected = true
@@ -424,7 +427,9 @@ class ProjectController {
             }
         } else {
             flash.prj_validate_err_message = 'Campaign Not Found'
-            render (view: 'validate/validateerror', model: [project: project])
+//            render (view: 'validate/validateerror', model: [project: project])
+            def previousPage = "validate"
+            render (view: 'edit/editerror', model:[project: project, currentEnv:currentEnv, previousPage:previousPage])
         }
     }
 
@@ -641,8 +646,9 @@ class ProjectController {
         }
 		
         def projectTitle
+        Project project
         if (params.title && params.amount && params.description && params.firstName) {
-            Project project = projectService.getProjectByParams(params)
+            project = projectService.getProjectByParams(params)
             def beneficiary = userService.getBeneficiaryByParams(params)
             def user = userService.getCurrentUser()
             project.draft = true;
@@ -672,10 +678,14 @@ class ProjectController {
                 projectService.getdefaultAdmin(project, user)
                 redirect(action:'redirectCreateNow', params:[title:projectTitle])
             } else {
-                render view:'/project/createerror'
+                def url = "/campaign/create"
+                def previousPage = "create"
+                render view:'/project/create/createerror', model:[project: project, url: url, previousPage: previousPage]
             }
         } else {
-            render view:'/project/createerror'
+            def url = "/campaign/create"
+            def previousPage = "create"
+            render view:'/project/create/createerror', model:[project: project, url: url, previousPage: previousPage]
         }
     }
 	
@@ -745,7 +755,7 @@ class ProjectController {
                 render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
             }
         } else {
-            render(view: '/404error', model: [message: 'This project does not exist.'])
+            render(view: '/404error', model: [message: 'This campaign does not exist.'])
         }
     }
 	
@@ -806,7 +816,7 @@ class ProjectController {
 				render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
 			}
 		} else {
-			render(view: '/404error', model: [message: 'This project does not exist.'])
+			render(view: '/404error', model: [message: 'This campaign does not exist.'])
 		}
 	}
 	
@@ -815,19 +825,27 @@ class ProjectController {
 		def vanityTitle = params.title
 		def project = projectService. getProjectFromVanityTitle(vanityTitle)
 		def currentEnv = Environment.current.getName()
-		if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-			project.payuStatus = true
-			if (project.fundsRecievedBy == null){
-				project.fundsRecievedBy = "NGO"
-				project.hashtags = project.hashtags + ", #NGO"
-			}
-		} else {
-			if (project.fundsRecievedBy == null){
-				project.fundsRecievedBy = "NON-PROFIT"
-				project.hashtags = project.hashtags + ", #NON-PROFIT"
-			}
-		}
-		render (view: 'create/justcreated', model:[project:project, FORMCONSTANTS: FORMCONSTANTS, vanityTitle: vanityTitle])
+        
+        if(project) {
+    		if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+    			project.payuStatus = true
+    			if (project.fundsRecievedBy == null){
+    				project.fundsRecievedBy = "NGO"
+    				project.hashtags = project.hashtags + ", #NGO"
+    			}
+    		} else {
+    			if (project.fundsRecievedBy == null){
+    				project.fundsRecievedBy = "NON-PROFIT"
+    				project.hashtags = project.hashtags + ", #NON-PROFIT"
+    			}
+    		}
+        
+            render (view: 'create/justcreated', model:[project:project, FORMCONSTANTS: FORMCONSTANTS])
+	    } else {
+           
+            def previousPage = "create"
+            render (view: '/project/create/createerror', model:[project: project, currentEnv:currentEnv, previousPage:previousPage])
+	    }
 	}
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
@@ -836,15 +854,17 @@ class ProjectController {
 		if(title){
 			redirect (action : 'edit', params:['projectTitle':title])
 		}else{
-			render(view: '/404error', model: [message: 'This project does not exist.'])
+			render(view: '/404error', model: [message: 'This campaign does not exist.'])
 		}
 	}
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def edit() {
         Project project = projectService.getProjectFromVanityTitle(params.projectTitle)
+        def currentEnv = Environment.current.getName()
+        def vanityTitle = params.projectTitle
+        
         if (project) {
-            def currentEnv = Environment.current.getName()
             def inDays = projectService.getInDays()
             def categoryOptions
             def spends = project.spend
@@ -854,7 +874,6 @@ class ProjectController {
             } else {
                 categoryOptions = projectService.getCategoryList()
             }
-            def vanityTitle = params.projectTitle
             def user = project.user
             def country = projectService.getCountry()
             def nonProfit = projectService.getRecipientOfFunds()
@@ -899,23 +918,29 @@ class ProjectController {
                 email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3,
                 deductibleStatusList:deductibleStatusList,spendAmountPerList:pieList.spendAmountPerList])
         } else {
+            def previousPage = "manage"
+        
             flash.prj_edit_message = "Campaign not found."
-            render (view: 'edit/editerror', model:[project: project])
+            render (view: 'edit/editerror', model:[project: project, currentEnv:currentEnv, previousPage:previousPage])
         }
     }
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def update() {
 		Project project = projectService.getProjectFromVanityTitle(params.vanityTitle)
+        def vanityTitle = projectService.getProjectUpdateDetails(params, project)
+        def currentEnv = Environment.current.getName()
+        
 		if(project) {
-			def vanityTitle = projectService.getProjectUpdateDetails(params, project)
 			rewardService.saveRewardDetails(params);
 			projectService.saveLastSpendField(params);
 			flash.prj_mngprj_message = "Successfully saved the changes"
 			redirect (action: 'manageproject', params:['projectTitle':vanityTitle])
 		} else {
+            def previousPage = 'edit'
+           
 			flash.prj_edit_message = "Campaign not found."
-			render (view: 'edit/editerror', model:[project: project])
+			render (view: 'edit/editerror', model:[project: project, previousPage:previousPage, currentEnv: currentEnv])
 		}
 	}
 
@@ -1060,122 +1085,6 @@ class ProjectController {
 	}
 
 
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def save() {
-		def environment = Environment.current.getName()
-		Project project
-		Beneficiary beneficiary
-		User user = userService.getCurrentUser()
-		project = projectService.getProjectByParams(params)
-		beneficiary = userService.getBeneficiaryByParams(params)
-		def amount=project.amount
-		def boolPerk=false
-
-		def button = params.isSubmitButton
-		if (button == 'true') {
-			project.draft = true
-		}
-
-		if(environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
-			if(params.payuEmail) {
-				project.payuStatus=true
-			}
-
-			if(params.(FORMCONSTANTS.COUNTRY) != "IN"){
-				beneficiary.stateOrProvince = params.otherstate
-			}
-		} else{
-			if(params.(FORMCONSTANTS.COUNTRY) != "US"){
-				beneficiary.stateOrProvince = params.otherstate
-			}
-		}
-
-		def rewardLength=Integer.parseInt(params.rewardCount)
-		if (rewardLength >= 1) {
-			def rewardTitle = new Object[rewardLength]
-			def rewardPrice = new Object[rewardLength]
-			def rewardDescription = new Object[rewardLength]
-			def mailingAddress = new Object[rewardLength]
-			def emailAddress = new Object[rewardLength]
-			def twitter = new Object[rewardLength]
-			def custom = new Object[rewardLength]
-
-			for(def icount=0; icount< rewardLength; icount++){
-				rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
-				rewardPrice[icount] = params.("rewardPrice"+(icount+1))
-				rewardDescription[icount] = params.("rewardDescription"+(icount+1))
-				mailingAddress[icount] = params.("mailingAddress"+(icount+1))
-				emailAddress[icount] = params.("emailAddress"+(icount+1))
-				twitter[icount] = params.("twitter"+(icount+1))
-				custom[icount] = params.("custom"+(icount+1))
-				if(rewardPrice[icount]==null || Double.parseDouble(rewardPrice[icount])>amount){
-					boolPerk=true;
-				}
-				if (mailingAddress[icount]==null && emailAddress[icount]==null && twitter[icount]==null && custom[icount]==null) {
-					emailAddress[icount]=true
-				}
-			}
-			if(boolPerk==true){
-				flash.prj_mngprj_message = "Enter a perk price less than Campaign amount: ${amount}"
-				render (view: 'manageproject/error')
-				return
-			} else {
-				rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription, mailingAddress, emailAddress, twitter, custom)
-			}
-		}
-
-		def iconFile = request.getFile('iconfile')
-		if(!iconFile.isEmpty()) {
-			def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
-			project.organizationIconUrl = uploadedFileUrl
-		}
-
-		def imageFiles = request.getFiles('thumbnail[]')
-		if (!imageFiles.isEmpty()) {
-			projectService.getMultipleImageUrls(imageFiles, project)
-		}
-
-		String email1 = params.email1
-		String email2 = params.email2
-		String email3 = params.email3
-
-		project.user = user
-
-		def days = params.days
-		projectService.getNumberofDays(days, project)
-
-		project.beneficiary = beneficiary
-
-		if (project.save()) {
-			projectService.getYoutubeUrlChanged(params.videoUrl, project)
-			projectService.getFundRaisersForTeam(project, user)
-			projectService.getdefaultAdmin(project, user)
-			projectService.getAdminForProjects(email1, project, user)
-			projectService.getAdminForProjects(email2, project, user)
-			projectService.getAdminForProjects(email3, project, user)
-			def projectTitle = projectService.getProjectVanityTitle(project)
-			userService.getProjectVanityUsername(user)
-
-			if(button == 'true') {
-				redirect(action:'draftProject', params:['projectTitle': projectTitle])
-			} else {
-				redirect(action:'saveProject', params:['projectTitle': projectTitle])
-			}
-		} else {
-			render (view: 'create/createerror', model: [project: project])
-		}
-	}
-
-	def draftProject() {
-		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
-		render (view: 'create/saveasdraft', model: [project: project])
-	}
-
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def saveProject() {
-		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
-		render (view: 'create/justcreated', model: [project: project])
-	}
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def manageCampaign() {
@@ -1183,7 +1092,7 @@ class ProjectController {
 		if(title) {
 			redirect (action:'manageproject', params:['projectTitle':title])
 		} else {
-			render view:'404error'
+			render view:'404error', model:[title:title]
 		}
 	}
 
@@ -1251,10 +1160,12 @@ class ProjectController {
                     hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags])
 			} else {
 				flash.prj_mngprj_message = 'Campaign Not Found'
-				render (view: 'manageproject/error', model: [project: project])
+                
+                def previousPage = 'manage'
+				render (view: 'manageproject/error', model: [project: project, previousPage: previousPage, currentEnv: currentEnv])
 			}
 		} else {
-			render(view: '/404error', model: [message: 'This project does not exist.'])
+			render(view: '/404error', model: [message: 'This campaign does not exist.'])
 		}
 	}
 
@@ -1267,6 +1178,8 @@ class ProjectController {
 	def projectdelete() {
 		Project project = projectService.getProjectById(params.id)
 		def currentUser= userService.getCurrentUser()
+        def currentEnv = Environment.current.getName()
+        def vanityTitle = projectService.getProjectUpdateDetails(params, project)
         
 		if (project) {
             def isAdminOrBeneficiary = userService.isCampaignBeneficiaryOrAdmin(project, currentUser)
@@ -1288,7 +1201,9 @@ class ProjectController {
             }
 		} else {
 			flash.prj_mngprj_message = 'Campaign Not Found'
-			render (view: 'manageproject/error', model: [project: project])
+        
+            def previousPage = 'manage'
+			render (view: 'manageproject/error', model: [project: project, currentEnv:currentEnv, previousPage:previousPage])
 		}
 	}
 
@@ -1297,6 +1212,7 @@ class ProjectController {
 		def reward = rewardService.getRewardByParams(params)
 		RewardShipping shippingInfo = rewardService.getRewardShippingByParams(params)
 		def title = projectService.getVanityTitleFromId(params.id)
+        def currentEnv = Environment.current.getName()
 
 		if(reward.save()) {
 			def project= projectService.getProjectById(params.id)
@@ -1308,7 +1224,8 @@ class ProjectController {
 			flash.prj_mngprj_message = 'Successfully created a new perk'
 			redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', params:['projectTitle':title])
 		} else {
-			render (view: 'manageproject/error', model: [reward: reward])
+            def previousPage = 'manage'
+			render (view: 'manageproject/error', model: [reward: reward, currentEnv:currentEnv, previousPage: previousPage])
 		}
 	}
 
@@ -1340,18 +1257,21 @@ class ProjectController {
     def projectupdate() {
         def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
         def project = projectService.getProjectById(projectId)
+        
         def currentUser =userService.getCurrentUser()
         def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
         def currentEnv = projectService.getCurrentEnvironment()
         
         if(project) {
             if(!isCampaignOwnerOrAdmin){
-                render view:"manageproject/error", model: [project: project]
+                def previousPage = 'manage'
+                render view:"manageproject/error", model: [project: project, previousPage: previousPage, currentEnv: currentEnv]
             }else{
                 render (view: 'update/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv])
             }
         } else {
-            render (view: 'manageproject/error', model: [project: project])
+            def previousPage = 'manage'
+            render (view: 'manageproject/error', model: [project: project, previousPage: previousPage, currentEnv: currentEnv])
         }
     }
 
@@ -1361,7 +1281,7 @@ class ProjectController {
 		if(title){
 			redirect (action : 'editUpdate', id:params.id, params:['projectTitle':title])
 		}else{
-			render(view: '/404error', model: [message: 'This project does not exist.'])
+			render(view: '/404error', model: [message: 'This campaign does not exist.'])
 		}
 	}
 
@@ -1370,11 +1290,14 @@ class ProjectController {
 		def projectUpdate = projectService.getProjectUpdateById(params.id)
 		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
 		def projectUpdates = project.projectUpdates
+        def currentEnv = Environment.current.getName()
+        
 		if (projectUpdates.contains(projectUpdate)) {
 			flash.editUpdateSuccessMsg = "Campaign Update Edited Successfully"
 			render (view:'editupdate/index', model:[projectUpdate: projectUpdate, project: project, FORMCONSTANTS: FORMCONSTANTS])
 		} else {
-			render (view: 'manageproject/error')
+            def previousPage = 'manage'
+			render (view: 'manageproject/error', model:[project: project, previousPage: previousPage, currentEnv: currentEnv])
 		}
 	}
 
@@ -1405,8 +1328,9 @@ class ProjectController {
 		def project = projectService.getProjectById(params.id)
 		def story = params.story
 		def title = projectService.getVanityTitleFromId(params.id)
+        def currentEnv = Environment.current.getName()
 
-		if(project ) {
+		if(project) {
 			if (params.imageList || !story.isAllWhitespace()) {
                 
                 projectService.saveCampaignUpdate(params, project, story)
@@ -1418,7 +1342,8 @@ class ProjectController {
 				redirect (action: 'manageproject', controller:'project', params:['projectTitle':title], fragment: 'projectupdates')
 			}
 		} else {
-			render (view: 'manageproject/error', model: [project: project])
+            def previousPage = 'update'
+			render (view: 'manageproject/error', model: [project: project, previousPage: previousPage, currentEnv: currentEnv])
 		}
 	}
 
@@ -1704,7 +1629,7 @@ class ProjectController {
 			flash.teamdiscardedmessage = "Team Discarded Successfully."
 			redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', params:['projectTitle':title])
 		}else{
-			render view:'404error'
+			render view:'404error', model:[project: project]
 		}
 	}
 

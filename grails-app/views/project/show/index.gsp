@@ -266,7 +266,7 @@
                    <%-- Mobile share FB--%>
                    <g:if test="${isPreview}">
                        <a class="btn btn-social btn-facebook show-mobilebt-fb mob-show-fb sho-fb-color hidden">
-                           <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOKsss
+                           <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
                        </a>
                    </g:if>
                    <g:else>

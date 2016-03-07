@@ -58,7 +58,7 @@
     </div>
     <g:render template="ace"></g:render>
     
-    <div class="hm-section-top"></div>
+<%--    <div class="hm-section-top"></div>--%>
     <div class="row text-center hm-fontfamily visible-xs">
         <p class="hm-slogn-mobile">Always Free! Instant Disbursal</p>
         <a href="${resource(dir: '/campaign/create')}" class="btn btn-block hm-raisemony-btn">Raise Money Free</a>

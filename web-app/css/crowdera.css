@@ -1010,7 +1010,7 @@ div.abt-imgs .thumbnail img {
 
 .for-greaterseven {
     font-size: 31px;
-    padding-top: 17px;
+/*     padding-top: 17px; */
     display: inline-block;
 }
 
@@ -1866,6 +1866,7 @@ textarea.form-control {
 
 #saveButton {
 	margin-bottom: 5px;
+    border-width: 0;
 }
 
 .org-logo{
@@ -4194,6 +4195,7 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 }
 .cr-btn-alignment-pre{
 	margin-left: 180px;
+    border-width: 0;
 }
 .cr-btn-alignment-lac{
 	margin-right: 204px;
@@ -4627,6 +4629,9 @@ p {
 }
 /*Campaign detail page carousel */
 @media only screen and (min-width: 320px) and (max-width: 479px){
+    .btn-group > .btn:first-child {
+        margin-left: 8px;
+    }
     #carousel-example-generic {
         height: 200px !important;
     }
@@ -4986,6 +4991,7 @@ a.customer-support-a {
     color: #333333;
     background-color: #e7e7e7;
     height:59px;
+    border-width: 0;
 }
 
 .customText::-webkit-input-placeholder{
@@ -5598,6 +5604,17 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    ul.user-dashboard-style > li {
+        width: 33%;
+    }
+    button.cr-bg-xs-edit-btn{
+        margin-left: 65px;
+        border-width: 0;
+        height: 40px;
+    }
+    div.impactassessment .panel-default p {
+        text-align: center;
+    }
     div.foot-margin-mobile{
         margin-left: -11px;   
     }
@@ -5733,6 +5750,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         position: initial;
         margin-top: 10px;
         text-align: center;
+        margin-bottom: 10px;
     }
     div.contact-us-top {
         margin-top: 40px;
@@ -6979,6 +6997,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     button.cr-xs-mobile {
         margin-left: 64px;
+        height: 40px;
+        border-width: 0;
     }
 	label.cr-check-btn-perks{
 	    margin-bottom: 0;
@@ -8290,6 +8310,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    button.sendMailbtn {
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 105px;
+    }
     div.sm-padding-mobile-footer{
         padding-left: 15px;
         padding-right: 15px;    
@@ -13104,6 +13129,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /*Screen resolution 644 x 767 */
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.managecampaignDescription p {
+        text-align: center;
+    }
     span.manage-btn-width-aft-validated {
         font-size: 15px;
         padding-bottom: 4px;
@@ -14641,6 +14669,21 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+   
+    ul.user-dashboard-style > li {
+        width: 33%;
+    }
+    button.cr-xs-mobile {
+        margin-left: 42px;
+        height: 40px;
+        border-width: 0;
+    }
+    div.managecampaignDescription p {
+        text-align: center;
+    }
+    div.impactassessment .panel-default p {
+        text-align: center;
+    }
     input.text-email{
         width:116%;
     }
@@ -14835,6 +14878,7 @@ textarea.textarea-embed-video {
         position: initial;
         margin-top: 10px;
         text-align: center;
+        margin-bottom: 10px;
     }
     div.contact-us-top {
         margin-top: 40px;
@@ -15922,7 +15966,9 @@ textarea.textarea-embed-video {
 	    width: 254px;
 	}
 	button.cr-bg-xs-edit-btn{
-	    margin-left: 65px;
+        margin-left: 65px;
+        border-width: 0;
+        height: 40px;
 	}
 	div.cr-start-dropdown-payment.btn-group.bootstrap-select{
         width: 200px !important;

@@ -35,44 +35,49 @@
 <g:hiddenField name="campaignTitle" value="${project.title}" id="campaignTitle"/>
 <g:hiddenField name="twitterShareUrl" value="${twitterShareUrl}" id="twitterShareUrl"/>
 <div class="feducontent">
-    <div class="container">
+    <div class="container ack-thousands-thankyoupage">
         <div class="row">
-            <div class="col-md-8">
-                <h1>Thank you!</h1>
+            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                <h1><b>Thank you!</b></h1>
                 <p>You have funded this campaign. You will receive your chosen perk soon.</p>
-
-                <h3>Funding confirmation.</h3>
-                <table class="table table-bordered table-hover table-condensed">
+            </div>
+            
+            <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
+                <div class="panel panel-default panel-thankupage ">
+                    <h4 class="ack-funding-panel">Funding confirmation</h4>
+                </div>
+                <table class="table panel panel-default table-hover table-condensed">
+                   
                     <tbody>
-                    <tr>
-                        <td>Campaign</td>
-                        <td><g:link controller="project" action="showCampaign" id="${project.id}">${project.title}</g:link></td>
+                    <tr class="ack-table-color-green">
+                        <td class="ack-table-heading-padding">Campaign</td>
+                        <td class=""><g:link controller="project" action="showCampaign" id="${project.id}">${project.title}</g:link></td>
                     </tr>
                     <tr>
-                        <td>Beneficiary</td>
-                        <td>${beneficiaryName}</td>
+                        <td class="ack-table-heading-padding">Beneficiary</td>
+                        <td class="">${beneficiaryName}</td>
                     </tr>
                     <g:if test="${fundraiser != project.user}">
-                        <tr>
-                            <td>Fundraiser</td>
-                            <td>${fundraiser.firstName} ${fundraiser.lastName}</td>
+                        <tr class="ack-table-color-green">
+                            <td class="ack-table-heading-padding">Fundraiser</td>
+                            <td class="">${fundraiser.firstName} ${fundraiser.lastName}</td>
                         </tr>
                     </g:if>
                     <g:if test ="${contribution.isAnonymous}">
-                        <tr>
-                            <td>Contributor</td>
-                            <td>Anonymous</td>
+                        <tr class="ack-table-color-green">
+                            <td class="ack-table-heading-padding">Contributor</td>
+                            <td class="">Anonymous</td>
                         </tr>
                     </g:if>
                     <g:else>
-                        <tr>
-                            <td>Contributor</td>
-                            <td>${contribution.contributorName}</td>
+                        <tr class="ack-table-color-green">
+                            <td class="ack-table-heading-padding">Contributor</td>
+                            <td class="">${contribution.contributorName}</td>
                         </tr>
                     </g:else>
-                        <tr>
-                            <td>Amount</td>
-                            <td><g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${contribution.amount.round()}</td>
+                        <tr class="ack-table-color-red">
+                            <td class="ack-table-heading-padding">Amount</td>
+                            <td class=""><g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${contribution.amount.round()}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -82,24 +87,24 @@
                     </div><br>
                 </g:if>
                 <g:else>
-                	<div class="alert alert-success">Receipt has been sent over email to ${contribution.contributorEmail}</div><br>
+                	<div class="panel panel-default padding-panel text-center">Receipt has been sent over email to ${contribution.contributorEmail}</div><br>
                 </g:else>
                 <div class="row">
-                    <div class="col-sm-6 shared contributionShare">
+                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 ack-socialmedia-padding shared contributionShare">
                         <div class="shared ack-socialicon pull-left">
                             <span><label>SHARE:</label></span>
                         </div>
-                        <a target="_self" class="fb-like pull-left social fbShareForLargeDevices" href="#" id="fbshare">
+                        <a target="_self" class="fb-like pull-left social fbShareForLargeDevices ack-socialicon-size" href="#" id="fbshare">
                             <img src="//s3.amazonaws.com/crowdera/assets/contribution-fb-share.png" alt="Facebook Share">
                         </a>
-                        <a class="share-mail pull-left social glyphicon glyphicon-envelope glyphicon-design-acknowledge glyphicon-envelope-color" href="#" data-toggle="modal" data-target="#sendmailmodal"></a>
-                        <a class="twitter-share pull-left social" id="twitterShare" target="_blank">
+                        <a class="share-mail pull-left social glyphicon glyphicon-envelope glyphicon-design-acknowledge glyphicon-envelope-color ack-social-mail-icons" href="#" data-toggle="modal" data-target="#sendmailmodal"></a>
+                        <a class="twitter-share pull-left social ack-socialicon-size" id="twitterShare" target="_blank">
                             <img src="//s3.amazonaws.com/crowdera/assets/contribution-twitter-share.png" alt="Twitter Share">
                         </a>
-                        <a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${twitterShareUrl}"  id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                        <a class="social share-linkedin pull-left ack-socialicon-size" href="https://www.linkedin.com/cws/share?url=${twitterShareUrl}"  id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
                             <img src="//s3.amazonaws.com/crowdera/assets/contribution-linked-in-share.png" alt="LinkedIn Share">
                         </a>
-                        <a class="social google-plus-share pull-left" id="googlePlusShare" href="https://plus.google.com/share?url=${twitterShareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                        <a class="social google-plus-share pull-left ack-socialicon-size" id="googlePlusShare" href="https://plus.google.com/share?url=${twitterShareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
                             <img src="//s3.amazonaws.com/crowdera/assets/contribution-google-plus-share.png" alt="Google+ Share">
                         </a> 
                     </div>
@@ -138,7 +143,15 @@
                 		</g:form>
             		</div>
         		</div>
+</div>
 
+ <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 <g:if test="${project.rewards.size()>1 }">acknowledge-tile-tag ack-tile-height</g:if><g:else>ack-panel-tile</g:else>">
+                <g:if test="${project.rewards.size()>1 }">
+                    <g:render template="rewardtile"/>
+                </g:if>
+                <g:render template="fund/fundTile"/>
+<%--<g:render template="/layouts/tile"/>--%>
+            </div>
                 <%
                     def commentId
                     def commentVal
@@ -154,19 +167,21 @@
                     }
                 %>
                 <g:if test="${commentVal == null || value}">
-                    <h4 class="lead">Leave a comment</h4>
-                    <div id="commentBox">
+                    <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12  ack-panel-spacing-mobile">
+                    <h4 class="ack-funding-panel panel panel-default">Leave a comment</h4>
+                </div>
+                    <div id="commentBox" class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
                         <g:form controller="fund" action="saveContributionComent" id="${contribution.id}" params="['fr': fundraiser.id, 'projectTitle':projectTitle]">
                             <g:hiddenField name='commentId' value="${commentId}"/>
                             <g:hiddenField name='teamCommentId' value="${teamCommentId}"/>
-                            <div class="form-group">
-                                <textarea class="form-control" name="comment" rows="4" required><g:if test="${commentVal}">${commentVal}</g:if></textarea>
+                            <div class="form-group ack-textareabottom">
+                                <textarea class="form-control ack-textareaheghit" name="comment" rows="4" required><g:if test="${commentVal}">${commentVal}</g:if></textarea>
                             </div>
                             <g:if test="${commentVal}">
-                                <button type="submit" class="btn btn-primary btn-sm pull-right">Update Comment</button>
+                                <button type="submit" class="btn btn-ackfund btn-sm pull-right">UPDATE COMMENT</button>
                             </g:if>
                             <g:else>
-                                <button type="submit" class="btn btn-primary btn-sm pull-right">Post Comment</button>
+                                <button type="submit" class="btn btn-ackfund btn-sm pull-right">POST COMMENT</button>
                             </g:else>
                             <div class="clear"></div>
                         </g:form>
@@ -176,7 +191,7 @@
                     <%
                         def date = dateFormat.format(new Date())
                      %>
-                    <div class="modal-body show-comments-date TW-ack-commentBox">
+                    <div class="modal-body show-comments-date TW-ack-commentBox col-lg-8 col-sm-8 col-md-8 col-xs-12">
                         <h6>By ${contribution.contributorName}, on ${date}</h6>
                         <p><b>${commentVal}</b></p>
                         <g:link controller="fund" name="deletecomment" action="deleteContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id, 'projectTitle':projectTitle, 'commentId': commentId, 'teamCommentId': teamCommentId]">
@@ -197,14 +212,9 @@
                 </g:else>
 
             </div>
-            <div class="col-md-4 <g:if test="${project.rewards.size()>1 }">acknowledge-tile-tag</g:if>">
-                <g:if test="${project.rewards.size()>1 }">
-                    <g:render template="rewardtile"/>
-                </g:if>
-                <g:render template="/layouts/tile"/>
-            </div>
+           
         </div>
     </div>
-</div>
+
 </body>
 </html>

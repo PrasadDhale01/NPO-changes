@@ -81,14 +81,14 @@
                         </tr>
                     </tbody>
                 </table>
-                <g:if test="${flash.sentmessage}">
-                    <div class="alert alert-success">
-                        ${flash.sentmessage}
-                    </div><br>
-                </g:if>
-                <g:else>
-                	<div class="panel panel-default padding-panel text-center">Receipt has been sent over email to ${contribution.contributorEmail}</div><br>
-                </g:else>
+<%--                <g:if test="${flash.sentmessage}">--%>
+<%--                    <div class="alert alert-success">--%>
+<%--                        ${flash.sentmessage}--%>
+<%--                    </div><br>--%>
+<%--                </g:if>--%>
+<%--                <g:else>--%>
+                	<div class="panel panel-default padding-panel text-center">Receipt has been sent over email to<a href="mailto:${contribution.contributorEmail}" target="_blanck" class="thankyou-textdeco"> ${contribution.contributorEmail}</a></div><br>
+<%--                </g:else>--%>
                 <div class="row">
                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 ack-socialmedia-padding shared contributionShare">
                         <div class="shared ack-socialicon pull-left">
@@ -143,14 +143,14 @@
                 		</g:form>
             		</div>
         		</div>
-</div>
+            </div>
 
- <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 <g:if test="${project.rewards.size()>1 }">acknowledge-tile-tag ack-tile-height</g:if><g:else>ack-panel-tile</g:else>">
+            <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 <g:if test="${project.rewards.size()>1 }">acknowledge-tile-tag ack-tile-height</g:if><g:else>ack-panel-tile</g:else>">
                 <g:if test="${project.rewards.size()>1 }">
                     <g:render template="rewardtile"/>
                 </g:if>
                 <g:render template="fund/fundTile"/>
-<%--<g:render template="/layouts/tile"/>--%>
+                <%--<g:render template="/layouts/tile"/>--%>
             </div>
                 <%
                     def commentId
@@ -191,7 +191,7 @@
                     <%
                         def date = dateFormat.format(new Date())
                      %>
-                    <div class="modal-body show-comments-date TW-ack-commentBox col-lg-8 col-sm-8 col-md-8 col-xs-12">
+                    <div class="modal-body show-comments-date TW-ack-commentBox ack-width-padding col-lg-8 col-sm-8 col-md-8 col-xs-12">
                         <h6>By ${contribution.contributorName}, on ${date}</h6>
                         <p><b>${commentVal}</b></p>
                         <g:link controller="fund" name="deletecomment" action="deleteContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id, 'projectTitle':projectTitle, 'commentId': commentId, 'teamCommentId': teamCommentId]">

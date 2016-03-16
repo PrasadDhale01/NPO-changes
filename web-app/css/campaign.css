@@ -1638,3 +1638,12 @@ button.dropdown-toggle.selectpicker.btn.btn-sm.btn-default:hover {
     margin-top: -4px;
     padding-top: 0;
 }
+.ack-width-padding {
+    margin-left: 13px;
+    padding-bottom: 33px;
+    padding-top: 33px;
+    width: 64%;
+}
+a.thankyou-textdeco {
+    text-decoration: none;
+}

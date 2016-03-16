@@ -87,7 +87,7 @@
 <%--                    </div><br>--%>
 <%--                </g:if>--%>
 <%--                <g:else>--%>
-                	<div class="panel panel-default padding-panel text-center">Receipt has been sent over email to<a href="mailto:${contribution.contributorEmail}" target="_blanck" class="thankyou-textdeco"> ${contribution.contributorEmail}</a></div><br>
+                	<div class="panel panel-default padding-panel text-center">Receipt has been sent over email to<a href="mailto:${contribution.contributorEmail}" class="thankyou-textdeco"> ${contribution.contributorEmail}</a></div><br>
 <%--                </g:else>--%>
                 <div class="row">
                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 ack-socialmedia-padding shared contributionShare">
@@ -111,8 +111,8 @@
                     <!-- Modal -->
                     <div class="modal fade sendmailmodal" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
                         <g:form action="sendemail" controller="fund" id="${project.id}">
-                            <input type="hidden" name="cb" id="${contributionId }" value="${contributionId }" ></input>
-                            <input type="hidden" name="fr" id="${fundraiserId }" value="${fundraiserId }"></input>
+                            <input type="hidden" name="cb" id="${contributionId }" value="${contributionId }" >
+                            <input type="hidden" name="fr" id="${fundraiserId }" value="${fundraiserId }">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -124,7 +124,7 @@
                                         <g:hiddenField name="projectTitle" value="${projectTitle}"/>
                                         <div class="form-group">
                                             <label>Your Name</label>
-                                            <input type="text" class="form-control" name="name" placeholder="Name"></input>
+                                            <input type="text" class="form-control" name="name" placeholder="Name">
                                         </div>
 	                                    <div class="form-group">
 	                                        <label>Email ID's (separated by comma)</label>

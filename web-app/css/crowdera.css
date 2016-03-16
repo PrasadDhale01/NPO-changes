@@ -5337,12 +5337,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .ack-panel-width{
 	width:302px;
 	height:130px;
-    margin-top: 35px;  
+    margin-top: 24px;  
     background-color: rgb(250, 250, 250);  
 }
 .ack-panel-tile{
-    margin-top: 35px; 
-    height: 283px;   
+    margin-top: 24px; 
+    height: 293px;   
 }
 
 /**********************************End of Fund.css*******************************/
@@ -5610,6 +5610,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    a.ack-socialicon-size img {
+        width: 32px !important;
+    }
     div.ack-width-padding {
         margin-left: 13px;
         padding-bottom: 13px;
@@ -5624,7 +5627,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: 6px;
     }
     div.ack-socialmedia-padding {
-        padding-left: 47px;
+        padding-left: 40px;
     }
     div.ack-thousands-thankyoupage {
         width: 320px;
@@ -7944,7 +7947,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     div.ack-panel-width {
         width: 219px;
-        margin-top: 34px;        
+        margin-top: 24px;        
     }
     div.ack-socialmedia-padding {
         padding-left: 130px;
@@ -8356,11 +8359,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 63%;
     }
     div.ack-panel-tile {
-        height: 294px;
-        margin-top: 35px;
+        height: 293px;
+        margin-top: 24px;
     }
     div.ack-tile-height {
-        height: 326px;
+        height: 315px;
     }
     div.ack-thousands-thankyoupage {
         width: 750px;
@@ -11195,7 +11198,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 14px;
     }
     div.ack-panel-spacing-mobile {
-        margin-top: -26px;
+        margin-top: -29px;
     }
     div.ack-panel-width {
         width: 219px;
@@ -14742,6 +14745,9 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    a.ack-socialicon-size img {
+        width: 32px !important;
+    }
     div.ack-width-padding {
         margin-left: 13px;
         padding-bottom: 13px;
@@ -14762,7 +14768,7 @@ textarea.textarea-embed-video {
         margin-top: 0;
     }
     div.ack-socialmedia-padding {
-        padding-left: 50px;
+        padding-left: 40px;
     }
     div.ack-thousands-thankyoupage {
         width: 320px;

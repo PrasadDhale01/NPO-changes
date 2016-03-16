@@ -51,33 +51,33 @@
                     <tbody>
                     <tr class="ack-table-color-green">
                         <td class="ack-table-heading-padding">Campaign</td>
-                        <td class=""><g:link controller="project" action="showCampaign" id="${project.id}">${project.title}</g:link></td>
+                        <td><g:link controller="project" action="showCampaign" id="${project.id}">${project.title}</g:link></td>
                     </tr>
                     <tr>
                         <td class="ack-table-heading-padding">Beneficiary</td>
-                        <td class="">${beneficiaryName}</td>
+                        <td>${beneficiaryName}</td>
                     </tr>
                     <g:if test="${fundraiser != project.user}">
                         <tr class="ack-table-color-green">
                             <td class="ack-table-heading-padding">Fundraiser</td>
-                            <td class="">${fundraiser.firstName} ${fundraiser.lastName}</td>
+                            <td>${fundraiser.firstName} ${fundraiser.lastName}</td>
                         </tr>
                     </g:if>
                     <g:if test ="${contribution.isAnonymous}">
                         <tr class="ack-table-color-green">
                             <td class="ack-table-heading-padding">Contributor</td>
-                            <td class="">Anonymous</td>
+                            <td>Anonymous</td>
                         </tr>
                     </g:if>
                     <g:else>
                         <tr class="ack-table-color-green">
                             <td class="ack-table-heading-padding">Contributor</td>
-                            <td class="">${contribution.contributorName}</td>
+                            <td>${contribution.contributorName}</td>
                         </tr>
                     </g:else>
                         <tr class="ack-table-color-red">
                             <td class="ack-table-heading-padding">Amount</td>
-                            <td class=""><g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${contribution.amount.round()}</td>
+                            <td><g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${contribution.amount.round()}</td>
                         </tr>
                     </tbody>
                 </table>

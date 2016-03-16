@@ -5618,6 +5618,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     div.ack-panel-tile {
         height: auto;
+        margin-top: 6px;
     }
     div.ack-panel-width {
         margin-top: 6px;

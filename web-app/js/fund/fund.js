@@ -117,6 +117,16 @@ $(function() {
             },
             shippingCustom: {
             	required: true
+            },
+            firstname:{
+            	required:true
+            },
+            lastname:{
+            	required:true
+            },
+            email:{
+            	required:true,
+            	email:true
             }
         },
         messages:{

@@ -44,11 +44,8 @@ class Project {
     
     /* More */
     List comments
-    String charitableId
     String organizationName
     String webAddress
-    String paypalEmail
-    String payuEmail 
     String secretKey
     String usedFor
     String fundsRecievedBy
@@ -56,8 +53,15 @@ class Project {
     String partnerInviteCode
     String hashtags
     
+    /* Payment Info */
+    String charitableId
+    String payuEmail
+    String paypalEmail
+    String citrusEmail
     
+    /* For India Platform payuStatus is true*/
     boolean payuStatus=false
+    
     boolean validated = false
     boolean inactive = false
     boolean send_mail = false
@@ -96,6 +100,7 @@ class Project {
         customVanityUrl(nullable:true)
         partnerInviteCode (nullable: true)
         hashtags(nullable:true)
+        citrusEmail (nullable: true)
     }
     
     def beforeInsert() {

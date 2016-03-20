@@ -598,4 +598,17 @@ class ContributionService {
         return Transaction.findByContribution(contribution)
     }
     
+    def getSecuritySignature(String txnID, String secret_key, String access_Key, def amount ) {
+        
+        String data = "merchantAccessKey=" + access_Key + "&transactionId=" + txnID + "&amount=" + amount;
+        
+        javax.crypto.Mac mac = javax.crypto.Mac.getInstance("HmacSHA1");
+        
+        mac.init(new javax.crypto.spec.SecretKeySpec(secret_key.getBytes(), "HmacSHA1"));
+        
+        byte[] hexBytes = new org.apache.commons.codec.binary.Hex().encode(mac.doFinal(data.getBytes()));
+        String securitySignature = new String(hexBytes, "UTF-8");
+        return securitySignature
+    }
+    
 }

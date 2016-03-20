@@ -31,16 +31,16 @@ $(function() {
 
     $('#sendmailmodal').find('form').validate({
         rules: {
-        	name: {
-        		required: true
-        	},
+            name: {
+                required: true
+            },
             emails: {
                 required: true,
                 validateMultipleEmailsCommaSeparated: true
             }
         }
     });
-    
+
     $('#updatesendmailmodal').find('form').validate({
         rules: {
         	name: {
@@ -65,7 +65,7 @@ $(function() {
             }
         }
     });
-    
+
     $('#submitForApprovalSectionbtn').find('form').validate({
         rules: {
         	submitForApprovalcheckbox1 : {
@@ -80,15 +80,15 @@ $(function() {
     });
 
     /*************************Image upload on tinymce made working ***************************/
-    
+
     $(document).on('focusin', function(e) {
         if ($(e.target).closest(".mce-window").length) {
             e.stopImmediatePropagation();
         }
     });
-    
+
     /**********End***************************************************************************/
-    
+
     $('#inviteTeamMember').find('form').validate({
         rules: {
             username: {
@@ -104,7 +104,7 @@ $(function() {
             }
         }
     });
-    
+
     $('#commentForm').find('form').validate({
     	rules: {
     		comment: {
@@ -113,7 +113,7 @@ $(function() {
     		}
     	}
     });
-    
+
     $('#comments').find('#commentBox').find('form').validate({
     	rules: {
     		comment: {
@@ -138,7 +138,7 @@ $(function() {
     		}
     	}
     });
-    
+
     $('#offlineContributionModal').find('form').validate({
         rules: {
             contributorName1: {
@@ -154,7 +154,7 @@ $(function() {
             }
         }
     });
-    
+
     $('.contributionedit').each(function () {
         $(this).find('form').validate({
         	rules: {
@@ -172,7 +172,7 @@ $(function() {
         	}
         });
     });
-    
+
     $('#paymentInfo').find('form').validate({
         rules: {
             beneficiaryName: {
@@ -195,7 +195,7 @@ $(function() {
             }
         }
     });
-    
+
     $('.approvebtn-md, .approvebtn-sm').click(function(event) {
         event.preventDefault();
         var redirectUrl = $(this).attr('href');
@@ -233,52 +233,52 @@ $(function() {
     $('#loadTeamPage').click(function() {
         location.reload(true);
     });
-    
+
     $('.offlineAmount').each(function () {
         $(this).keypress(function (e) {
-            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
                 $(".contributionerrormsg").html("Digits Only").show().fadeOut("slow");
                 return false;
              }
         });
     });
-    
+
     $("#offlineAmount1").keypress(function (e) {
-        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
             $("#errormsg1").html("Digits Only").show().fadeOut("slow");
             return false;
         }
     });
-    
+
     function validateEmail(field) {
         var regex=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
         return (regex.test(field)) ? true : false;
     }
 
-    $.validator.addMethod('validateMultipleEmailsCommaSeparated', function (value, element) {
+    $.validator.addMethod('validateMultipleEmailsCommaSeparated', function (value) {
         var result = value.split(",");
         for(var i = 0;i < result.length;i++)
-        if(!validateEmail(result[i])) 
-                return false;    		
+        if(!validateEmail(result[i]))
+                return false;
         return true;
     },"Please add valid emails only");
-    
 
-    /************************Hide/Show comments********************/ 
+
+    /************************ Hide/Show comments********************/
     $("#uniqueId input[type='checkbox']").click(function(){
-       
-       if($(this).prop("checked") == true){
+
+       if($(this).prop("checked") === true){
             hideShow(this,true);
             hideShowLabel();
-        }                        
-        else if($(this).prop("checked") == false){
+        }
+        else if($(this).prop("checked") === false){
             hideShow(this,false);
             hideShowLabel();
         }
     });
     function hideShowLabel() {
-        $('#uniqueId input[type="checkbox"]').each(function(index, value) {
-            if ($(this).prop("checked") == true) {
+        $('#uniqueId input[type="checkbox"]').each(function(index) {
+            if ($(this).prop("checked") === true) {
                 $('#check'+(index+1)).text(' Show');
             } else {
                 $('#check'+(index+1)).text(' Hide');
@@ -296,40 +296,35 @@ $(function() {
                 $('#test').html(data);
                 }
         }).error(function(){
-            console.log('An error occured');
         });
     }
-    
+
     $('a.show-emailjsid').click(function(){
     	var updateId = $(this).attr('id');
         $('#projectUpdateId').val(updateId);
     });
-    
+
     /***********************Enable or Disable a Team********************************/
-    
+
     $(".teamStatusButton input[type='checkbox']").click(function(){
-        
-        if($(this).prop("checked") == true){
-             enableOrDisableTeam(this,true);
-             changeTeamStatus();
-         }                        
-         else if($(this).prop("checked") == false){
-             enableOrDisableTeam(this,false);
+
+        if($(this).prop("checked") === true || $(this).prop("checked") === false){
+             enableOrDisableTeam(this);
              changeTeamStatus();
          }
      });
-    
+
      function changeTeamStatus() {
-         $('.teamStatusButton input[type="checkbox"]').each(function(index, value) {
-             if ($(this).prop("checked") == true) {
+         $('.teamStatusButton input[type="checkbox"]').each(function(index) {
+             if ($(this).prop("checked") === true) {
                  $('#checkteam'+(index+1)).text(' Enable');
              } else {
                  $('#checkteam'+(index+1)).text(' Disable');
              }
          });
      }
-     
-     function enableOrDisableTeam(checkstat,statusValue) {
+
+     function enableOrDisableTeam(checkstat) {
          var teamId=$(checkstat).val();
          $.ajax({
                  type:'post',
@@ -339,30 +334,31 @@ $(function() {
                  $('#test').html(data);
                  }
          }).error(function(){
-             console.log('An error occured');
          });
      }
 
     /***********************Youtube url********************************/
-     
+
     $('#youtubeVideoUrl').html(function(i, html) {
-    	
+
     	var regExp = /^https?\/\/.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
     	var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
     	var url= html.trim();
     	var match = (url.match(regExp) || url.match(vimeo));
     	$("#youtubeVideoUrl").hide();
-    	if (match && match[2].length == 11) {
-            var value = match[2];
+    	var value;
+
+    	if (match && match[2].length === 11) {
+            value = match[2];
             $('#youtube').html('<iframe width="560" height="315" src="//www.youtube.com/embed/' + value + '" frameborder="0" allowfullscreen></iframe>');
-        } else if (match && match[2].length == 9){
-        	var value = match[2];
+        } else if (match && match[2].length === 9){
+        	value = match[2];
             $('#youtube').html('<iframe width="560" height="315" src="https://player.vimeo.com/video/' + value + '" frameborder="0" allowfullscreen></iframe>');
         }
     });
-    
+
     /**************************************Edit team*******************************************/
-    
+
     var validator = $('#editFundraiser').find('form').validate({
         rules: {
             amount: {
@@ -384,14 +380,14 @@ $(function() {
             }
         },
         errorPlacement: function(error, element) {
-        	if($(element).prop("id") == "projectImageFile") {
+        	if($(element).prop("id") === "projectImageFile") {
         		error.appendTo(document.getElementById("cols-error-placement-team"));
             } else {
         		error.insertAfter(element);
         	}
         }
     });
-    
+
     $('#teamSaveButton').on('click', function() {
         if($('#teamImages').find('#imgdiv').length < 1) {
             $("#projectImageFile").rules( "add", {
@@ -406,8 +402,8 @@ $(function() {
             $('#editFundraiser').find('form').submit();
         }
     });
-    
-    $.validator.addMethod('islessThanProjectAmount', function (value, element) {
+
+    $.validator.addMethod('islessThanProjectAmount', function (value) {
     	var amountRaised = value;
         var projectAmount = $("#projectAmount").val();
         if (parseFloat(amountRaised) > parseFloat(projectAmount)) {
@@ -415,41 +411,41 @@ $(function() {
         }
         return true;
     },"Team goal can not be greater than project goal.");
-    
+
     //called when key is pressed in textbox
     $("#teamamount").keypress(function (e) {
            //if the letter is not digit then display error and don't type anything
-           if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
                //display error message
                $("#errormsg").html("Digits Only").show().fadeOut("slow");
            return false;
-       } 
+       }
     });
-    
-    $.validator.addMethod('isYoutubeVideo', function (value, element) {
-        if(value && value.length !=0){
+
+    $.validator.addMethod('isYoutubeVideo', function (value) {
+        if(value && value.length !== 0){
            var p = /^https?:\/\/(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
            var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
            var youtubematch = value.match(p);
            var vimeomatch = value.match(vimeo);
-           var match
+           var match;
            if (youtubematch)
                match = youtubematch;
-           else if (vimeomatch && vimeomatch[2].length == 9)
+           else if (vimeomatch && vimeomatch[2].length === 9)
                match = vimeomatch;
-           else 
+           else
                match = null;
            return (match) ? true : false;
         }
         return true;
      }, "Please upload a url of Youtube/Vimeo video");
-    
+
     /***************************Multiple Image Selection*************** */
 
     var isvalidsize = false;
-    $('#projectImageFile').change(function(event) {
+    $('#projectImageFile').change(function() {
         var file =this.files[0];
-        if(validateExtension(file.name) == false){
+        if(validateExtension(file.name) === false){
         	$('.pr-thumbnail-div').hide();
             $('#editimg').show();
             $('#editimg').html("Add only PNG or JPG extension images");
@@ -465,17 +461,13 @@ $(function() {
         }else{
             $('#editimg').hide();
             $('#editTeamImg').hide();
-            var files = event.target.files; // FileList object
+            // FileList object
             var fileName;
             var isFileSizeExceeds = false;
-            
-            var file = this.files[0];
-            var filename = file.name;
-                
+
             if(file.size < 1024 * 1024 * 3) {
                 if ($('#teamImages').find('.pr-thumb-div').length <= 4){
                 isvalidsize =  true;
-//                $('#uploadingCampaignUpdateEditImage').show();
                 $('#loading-gif').show();
 
                 var formData = !!window.FormData ? new FormData() : null;
@@ -487,10 +479,10 @@ $(function() {
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', $("#b_url").val()+'/project/uploadTeamImage');
                 xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-                 
+
                 // complete
                 xhr.onreadystatechange = $.proxy(function() {
-                    if (xhr.readyState == 4) {
+                    if (xhr.readyState === 4) {
                         var data = xhr.responseText;
                         data = data.replace(/^\[/, '');
                         data = data.replace(/\]$/, '');
@@ -504,22 +496,21 @@ $(function() {
                         var output = document.getElementById("teamImages");
                         var div = document.createElement("div");
                         div.id = "imgdiv";
-                        div.className = "pr-thumb-div"
+                        div.className = "pr-thumb-div";
                         div.innerHTML = "<img  class='pr-thumbnail' src='"+ json.filelink + "'"+ "title='"
                                         + file.name + "'/><div class=\"deleteicon\"><img onClick=\"deleteTeamImage(this,'"+json.imageId+"','"+teamId+"');\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>";
 
                         output.insertBefore(div, null);
-//                        $('#uploadingCampaignUpdateEditImage').hide();
                         $('#loading-gif').hide();
                     }
                 }, this);
                 xhr.send(formData);
-                
+
                 $('#cols-error-placement-team').find("span").remove();
                 $('#cols-error-placement-team').closest(".form-group").removeClass('has-error');
                 } else {
                 	$('.imageNumValidation').show();
-            	    var delay = 5000; //delayed code, time in milliseconds
+            	    var delay = 5000;
                     setTimeout(function() {
                     	$('.imageNumValidation').hide();
                     }, delay);
@@ -533,35 +524,35 @@ $(function() {
             	$('#editTeamImg').show();
             	isFileSizeExceeds = true;
             }
-            
+
             document.getElementById("editTeamImg").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
             if (isFileSizeExceeds && !isvalidsize) {
                 $('#projectImageFile').val('');
             }
         }
     });
-    
+
     function validateExtension(imgExt) {
           var allowedExtensions = new Array("jpg","JPG","png","PNG");
           for(var imgExtImg=0;imgExtImg<allowedExtensions.length;imgExtImg++)
           {
               imageFile = imgExt.lastIndexOf(allowedExtensions[imgExtImg]);
-              if(imageFile != -1){
+              if(imageFile !== -1){
             	  return true;
               }
           }
           return false;
     }
-    
+
     /*************************Edit video for team*************************/
-    
+
     $('#videoUrl').blur(function(){
     	if (validator.element("#videoUrl")){
            var regExp = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
            var url= $('#videoUrl').val().trim();
            var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
            var match = (url.match(regExp) || url.match(vimeo));
-           if (match && match[2].length == 11) {
+           if (match && match[2].length === 11) {
                $('#ytVideo').show();
                if (url.indexOf("embed/") > -1){
             	   $('#ytVideo').attr('src',url);
@@ -569,110 +560,110 @@ $(function() {
                    var vurl=url.replace("watch?v=", "embed/");
                    $('#ytVideo').attr('src',vurl);
                }
-           } else if (match && match[2].length == 9){
+           } else if (match && match[2].length === 9){
         	   $('#ytVideo').show();
                var vurl=url.replace("https://vimeo.com/", "https://player.vimeo.com/video/");
                $('#ytVideo').attr('src',vurl);
            }
     	}
       });
-    
+
     /*******************************Show-page-share icons hover***************************/
     $('.show-email').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-email-color.png");
     	}).mouseleave(function(){
         $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png");
     });
-    
+
     $('.show-twitter').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-twitter-color.png");
     	}).mouseleave(function(){
         $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png");
     });
-    
+
     $('.show-like').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-like-color.png");
     	}).mouseleave(function(){
         $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-like-gray.png");
     });
-    
+
     $('.show-linkedin').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-linkedin-color.png");
     	}).mouseleave(function(){
         $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png");
     });
-    
+
     $('.show-google').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-google-color.png");
     	}).mouseleave(function(){
         $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-google-gray.png");
     });
-    
+
     $('.show-embedIcon').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/user-images/embedicon.png");
     	}).mouseleave(function(){
         $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/embedicon-grey.png");
     });
-    
+
     /*******************************Description text length*********************/
-        var counter = 1;
         $('#descarea').on('keydown', function(event) {
             event.altKey==true;
             var currentString = $('#descarea').val().length;
+            var text;
             if (currentString <= 140) {
-            	if (currentString == 140) {
-            		var text = currentString;
+            	if (currentString === 140) {
+            		text = currentString;
             	} else {
-            		var text = currentString + 1;
+            		text = currentString + 1;
             	}
             }
             if(currentString >= 4){
                 $('.createDescDiv').find("span").remove();
                 $('.createDescDiv').closest(".form-group").removeClass('has-error');
             }
-            
+
             if (event.keyCode > 31) {
-               if (event.altKey == true) {
+               if (event.altKey === true) {
                    setDescriptionText();
                } else {
                    currentString++;
                    $('#desclength').text(text+'/140');
-               } 
+               }
             } else {
                currentString--;
                 $('#desclength').text(text+'/140');
             }
         }).keyup(function(e) {
-        
-            if(e.altKey==true) {
+
+            if(e.altKey === true) {
                 setDescriptionText();
                 return false;
             }
-    
+
             switch (e.keyCode) {
-    
-                case 13:      //Enter
-                case 8:       //backspace
-                case 46:      //delete
-                case 17:      
-                case 27:      //escape
-                case 10:      //new line
-                case 20:      
-                case 9:       //horizontal TAB
-                case 11:      //vertical tab
-                case 33:      //page up  
-                case 34:      //page  down
-                case 35:      //End 
-                case 36:      //Home
-                case 37:      //Left arrow
-                case 38:      //up arrow
-                case 39:      //Right arrow
-                case 40:      //Down arrow
-                case 45:      //Insert
-                case 12:      //vertical tab
+
+                case 13:
+                case 8:
+                case 46:
+                case 17:
+                case 27:
+                case 10:
+                case 20:
+                case 9:
+                case 11:
+                case 33:
+                case 34:
+                case 35:
+                case 36:
+                case 37:
+                case 38:
+                case 39:
+                case 40:
+                case 45:
+                case 12:
                     setDescriptionText();
                     break;
-                case 16:      //shift
+                case 16:
                     setDescriptionText();
                     break;
            }
@@ -681,18 +672,17 @@ $(function() {
         }).focusout(function(){
             setDescriptionText();
         });
-    
+
         function setDescriptionText(){
-       
+
             var currentString = $('#descarea').val().length;
-            if (currentString == 0) {
+            if (currentString === 0) {
                 $('#desclength').text("0/140");
             } else {
-                currentString = currentString;
                 $('#desclength').text(currentString+'/140');
             }
         }
-        
+
         /**************************************End of Edit team*******************************************/
 
     $("#fbshare").click(function(){
@@ -700,20 +690,20 @@ $(function() {
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
     });
-    
+
     $("#fbshare-mobile, .fbshare-header").click(function(){
         var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent($('#fbShareUrl').val());
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
     });
-    
+
     $(".fbshare-headermangepage").click(function(){
         var fbShareUrl = $('#fbShareUrlupdatePage').val();
         var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent(fbShareUrl);
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
     });
-    
+
     $("a.show-tabs-text").click(function(){
     	$('.choose-error').html('');
     	$(".sh-tabs").find("a.show-tabs-text").removeClass('sh-selected');
@@ -737,7 +727,7 @@ $(function() {
     		$('.comments').addClass('sh-selected');
     		$('.mange-fb-hideshow').hide();
     	}
-    	
+
     	/****manage page*****/
     	if ($(this).hasClass('rewards')){
     		$('.rewards').addClass('sh-selected');
@@ -752,31 +742,33 @@ $(function() {
     		$('.mange-fb-hideshow').hide();
     	}
     });
-    
+
     $(".twitter-share").click(function(){
         var shareUrl = $('#shareUrl').val();
-        if(currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
-            var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.co!"&url='+shareUrl;
+        var url;
+        if(currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'production' || currentEnv === 'staging'){
+            url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.co!"&url='+shareUrl;
         } else {
-            var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.in!"&url='+shareUrl;
+            url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.in!"&url='+shareUrl;
         }
         window.open(url, 'Share on Twitter', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
     });
-    
+
     $(".twitter-share-updatepage").click(function(){
-        var shareUrl = $('#shareUrl').val()
-        if(currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
-            var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.co!"&url='+shareUrl+'%23projectupdates&';
+        var shareUrl = $('#shareUrl').val();
+        var url;
+        if(currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'production' || currentEnv === 'staging'){
+            url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.co!"&url='+shareUrl+'%23projectupdates&';
         } else {
-            var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.in!"&url='+shareUrl+'%23projectupdates&';
+            url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.in!"&url='+shareUrl+'%23projectupdates&';
         }
         window.open(url, 'Share on Twitter', 'left=20,top=20,width=630,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
     });
 
     /***********************Social contacts******************************************/
-    
+
     $('.constantContact').click(function(){
         $('.socialProvider').val("constant");
         $('.divSocialContact').show();
@@ -787,7 +779,7 @@ $(function() {
         	$('.mailchimpContact, .facebookContact, .csvContact, .gmailContact').removeClass('highlightIcon');
         }
     });
-    
+
     $('.gmailContact').click(function(){
         $('.socialProvider').val("google");
         $('.divSocialContact').show();
@@ -808,7 +800,7 @@ $(function() {
         	$('.gmailContact, .facebookContact, .csvContact, .constantContact').removeClass('highlightIcon');
         }
     });
-    
+
     $('.facebookContact').click(function(){
         $('.socialProvider').val("facebook");
         $('.divSocialContact').show();
@@ -819,7 +811,7 @@ $(function() {
         	$('.mailchimpContact, .gmailContact, .csvContact, .constantContact').removeClass('highlightIcon');
         }
     });
-    
+
     $('.csvContact').click(function(){
         $('.socialProvider').val("csv");
         $('.divCSVContacts').show();
@@ -829,22 +821,22 @@ $(function() {
         	$('.mailchimpContact, .facebookContact, .gmailContact, .constantContact').removeClass('highlightIcon');
         }
     });
-    
+
     $('.socialContact').change(function(){
         var regex=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
         var socialContact= $('.socialContact').val();
         var status =(socialContact.match(regex)) ? true : false;
-        if(status==true){
+        if(status === true){
             $('.socialContactDiv').removeClass("has-error");
         }else{
             return false;
         }
     });
-    
+
     $('.btnSocialContacts').click(function(){
         var socialProvider=$('.socialProvider').val();
         var socialContact= $('.socialContact').val();
-        if(socialContact==null || socialContact==""){
+        if(socialContact === null || socialContact === ""){
             $('.socialContactDiv').addClass("has-error");
             $('.socialContact').focus();
         }
@@ -863,32 +855,32 @@ $(function() {
             });
         }
     });
-    
+
     $('.csvbtn').click(function(){
     	var input = $('.csvFile').val();
     	if($('.upload').hasClass('has-error')){
     		return false;
     	}
-    	if(input==''){
+    	if(input === ''){
     		$('.upload').addClass('has-error');
     		return false;
     	}else{
     		$('.upload').removeClass('has-error');
     	}
-    	
+
     	var data = new FormData();
         data.append( 'filecsv', $('.filecsv')[0].files[0] );
-        
+
     	$.ajax({
             type:'post',
             url:$("#b_url").val()+'/project/importDataFromCSV',
             data:data,
-            processData: false,  
+            processData: false,
             contentType: false ,
             success: function(data){
                 if(data){
                 	var list =jQuery.parseJSON(JSON.stringify(data));
-                    if(list.contacts == ''){
+                    if(list.contacts === ''){
                         $('.csv-empty-emails').addClass("csv-empty-emails-error");
                         $('.upload').addClass('has-error');
                         $('.contactlist').val('');
@@ -902,11 +894,9 @@ $(function() {
             }
        });
     });
-    
+
     $('#btnSendInvitation').click(function(){
         var form =$('#inviteTeamMember').find('form');
-        var validation = form.valid();
-        var win = window.opener;
         var error =form.find('div').hasClass('has-error');
         if(error){
             return false;
@@ -917,7 +907,7 @@ $(function() {
             });
         }
     });
-    
+
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {
             $(this).popover('show');
@@ -935,7 +925,7 @@ $(function() {
     .focus(showPopover)
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
-    
+
     $('.show-like').popover({
         content: 'Follow this Campaign',
         trigger: 'manual',
@@ -944,7 +934,7 @@ $(function() {
     .focus(showPopover)
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
-    
+
     $('#submitForApprovalBtn, #submitForApprovalBtnMobile').popover({
         content: 'Sorry, you will not be able to submit your campaign for approval, as you have not filled all the required details. Please fill the details and then proceed with the approval.',
         trigger: 'manual',
@@ -953,7 +943,7 @@ $(function() {
     .focus(showPopover)
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
-    
+
     $('#submitForApprovalBtnright').popover({
         content: 'Sorry, you will not be able to submit your campaign for approval, as you have not filled all the required details. Please fill the details and then proceed with the approval.',
         trigger: 'manual',
@@ -962,7 +952,7 @@ $(function() {
     .focus(showPopover)
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
-    
+
     $('#endedOfflineContribution').popover({
         content: 'Since the campaign has been ended, you cannot contribute offline',
         trigger: 'manual',
@@ -977,7 +967,7 @@ $(function() {
         placement: 'bottom',
         content: $("#popoverConent,.popoverConent").html()
     });
-    
+
     $('.shortUrlglyphiconMob').popover({
         html: true,
         placement: 'left',
@@ -996,32 +986,32 @@ $(function() {
         var popover = $('.shortUrlglyphicon').data('bs.popover');
         if (typeof popover !== "undefined") {
             var $tip = popover.tip();
-          
+
             $tip.find('.close').bind('click', function () {
             	$('.glyphicon-show-link-color').removeClass('glyphicon-show-link-color-hover');
                 popover.hide();
-               
+
             });
         }
     });
-    
+
     $('.shortUrlglyphiconheader').on('shown.bs.popover', function () {
         var popover = $('.shortUrlglyphiconheader').data('bs.popover');
         if (typeof popover !== "undefined") {
             var $tip = popover.tip();
-          
+
             $tip.find('.close').bind('click', function () {
             	$('.glyphicon-show-link-color').removeClass('glyphicon-show-link-color-hover');
                 popover.hide();
-               
+
             });
         }
     });
-  
+
     $('.show-mobilejs').find(function(){
         $('.show-mobilejs').css("margin-bottom","50px");
     });
-    
+
     if(screen.width < 1024){
         $('.show-mobilejs-sm-md').css("margin-bottom","55px");
     }
@@ -1030,10 +1020,11 @@ $(function() {
     	 var toptabs = $(".show-ids-header").offset().top;
     	 window.scrollTo(toptabs,toptabs);
     });
-    
+
+
     $('.show1-Primary').hide();
     $( document ).ready(function() {
-    	
+
     	$(document).on('change', '.btn-file :file', function() {
             var filename =this.files[0].name;
             var input = $(this),
@@ -1042,36 +1033,36 @@ $(function() {
                         input.trigger('fileselect', [fileExt, label]);
   		});
 
-      
+
         $('.btn-file :file').on('fileselect', function(event, fileExt, label) {
-  
+
             var input = $(this).parents('.input-group').find(':text'),
-                        log = (fileExt != 'csv') ?  'Select csv file' : label;
-            if(fileExt=='csv'){
+                        log = (fileExt !== 'csv') ?  'Select csv file' : label;
+            if(fileExt === 'csv'){
                 $('.upload').removeClass('has-error');
             }else{
                 $('.upload').addClass('has-error');
             }
-  
+
             if(input.length ) {
                 input.val(log);
-            } 
+            }
        });
-	  	
+
     	if($('#socialContact').val()){
         	$('.divSocialContact').show();
         }else{
         	$('.divSocialContact').hide();
         }
-    	
+
         function sticky_relocate() {
             var window_top = $(window).scrollTop();
-            
+
             if($("#show-headeridA").length){
-            	var div_top = $("#show-headeridA").offset().top; 
+            	var div_top = $("#show-headeridA").offset().top;
             }
             if($(".show-A-fund").length){
-            	 var top_fund = $(".show-A-fund").offset().top; 
+            	 var top_fund = $(".show-A-fund").offset().top;
             }
             if($('.showfacebooksAA').length){
             	 var topFb = $('.showfacebooksAA').offset().top;
@@ -1079,7 +1070,7 @@ $(function() {
             if($('.show-socials-iconsA').length){
             	var topicons = $('.show-socials-iconsA').offset().top;
             }
-            
+
 //            Manage-Page-Header-code-1...
             if($("#manage-tabs-one").length){
             	var manage_AA = $("#manage-tabs-one").offset().top;
@@ -1093,13 +1084,13 @@ $(function() {
             if($('.mange-btn-submitapproval').length){
             	var manage_sapproval = $('.mange-btn-submitapproval').offset().top;
             }
-            
+
 //		    Top header code
             if (window_top > div_top) {
                 $('.show1-Primary').addClass('sh-primery-header-padding');
                 $('.show1-Primary').show();
                 $('.main-header-gsp').hide();
-		        
+
             } else if(window_top < div_top ){
                 $('.show1-Primary').removeClass('sh-primery-header-padding');
                 $('.show1-Primary').hide();
@@ -1112,13 +1103,13 @@ $(function() {
                 $('.show-btn-js').hide();
                 $('.sh-aproval-btn').hide();
             }
-		    
+
             if(window_top > topFb){
                 $('.sh-shareicons-Fixedtophead').show();
             }else  if(window_top < topFb){
                 $('.sh-shareicons-Fixedtophead').hide();
             }
-            
+
 //            Manage-Page-Header-code...
             if(window_top > manage_AA){
             	$('.manage-headers-A-one').addClass('manage-header-primary-top');
@@ -1128,7 +1119,7 @@ $(function() {
             		$('.main-header-gsp').hide();
             	}
             	$('.manage-headers-A-one').show();
-           	
+
             }else if(window_top < manage_AA){
            	$('.manage-headers-A-one').removeClass('manage-header-primary-top');
             	$('.main-header-gsp').show();
@@ -1148,12 +1139,12 @@ $(function() {
         $(window).scroll(sticky_relocate);
         sticky_relocate();
     });
-    
+
     $('.shortUrlglyphiconMob').on('shown.bs.popover', function () {
         var popover = $('.shortUrlglyphiconMob').data('bs.popover');
         if (typeof popover !== "undefined") {
             var $tip = popover.tip();
-            zindex = $tip.css('z-index');
+            var zindex = $tip.css('z-index');
 
             $tip.find('.close').bind('click', function () {
                 popover.hide();
@@ -1173,8 +1164,8 @@ $(function() {
     });
 
     $(document).ready(function (){
-    	
-    	var classActive
+
+    	var classActive;
     	$('.tab-pane-active').each(function(){
     		if (screen.width >767){
     	        if($(this).hasClass('active')){
@@ -1185,7 +1176,7 @@ $(function() {
     			if($(this).hasClass('active')){
     	    	    classActive = $(this).attr('id');
     	    	    $('.tab-pane-active').siblings().removeClass('active');
-    	    	    if (classActive == 'contributions'){
+    	    	    if (classActive === 'contributions'){
     	    	    	$('.contributionsMob').addClass('sh-selected');
     	    	    	$('#contributions').addClass('active');
     	    	    } else {
@@ -1195,20 +1186,20 @@ $(function() {
     	        }
     		}
     	});
-    	
+
     	$('.manageTeamMob, .contributionsMob').click(function() {
     		$(".sh-tabs").find("a.show-tabs-text").removeClass('sh-selected');
     		$(this).addClass('sh-selected');
     	});
-    	
-    	var activeClass
+
+    	var activeClass;
     	$('.mange-pane-active').each(function(){
     		if($(this).hasClass('active')){
     			activeClass = $(this).attr('id');
 	    	    $('.'+activeClass).addClass('sh-selected');
 	        }
     	});
-    	
+
      /*************************Edit video for team*************************/
         $('.perk-tile').hover(function() {
             $(this).find('.campaignEditDeleteIcon').show();
@@ -1216,7 +1207,7 @@ $(function() {
         $('.perk-tile').mouseleave(function() {
             $(this).find('.campaignEditDeleteIcon').hide();
         });
-        
+
        if(screen.width > 1024 && screen.width < 992)
            $('#screen').val('true');
 
@@ -1225,11 +1216,11 @@ $(function() {
         	var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
     	    var url= $('#videoUrl').val().trim();
     	    var match = (url.match(regExp) || url.match(vimeo));
-            var vurl
-            if (match && match[2].length == 11) {
+            var vurl;
+            if (match && match[2].length === 11) {
                 vurl=url.replace("watch?v=", "embed/");
                 $('#ytVideo').attr('src',vurl);
-            } else if (match && match[2].length == 9) {
+            } else if (match && match[2].length === 9) {
                 vurl=url.replace("https://vimeo.com/", "https://player.vimeo.com/video/");
                 $('#ytVideo').attr('src',vurl);
             }
@@ -1237,26 +1228,26 @@ $(function() {
        }else{
           	$('#ytVideo').hide();
        }
-       
-   	$.ajax( { 
-   		url: 'http://ipinfo.io/json', 
-   		type: 'POST', 
+
+   	$.ajax( {
+   		url: 'http://ipinfo.io/json',
+   		type: 'POST',
    		dataType: 'jsonp',
    		success: function(location) {
    			// If the visitor is browsing from India.
-   			if (location.country == 'IN' && currentEnv == 'test') {
+   			if (location.country === 'IN' && currentEnv === 'test') {
 				$('.info-banner').css('display','block');
 				$('.banner-link').text('test.crowdera.in');
 				$('.banner-link').attr('href','http://test.crowdera.in');
-   			} else if(location.country == 'IN' && currentEnv == 'staging'){
+   			} else if(location.country === 'IN' && currentEnv === 'staging'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('staging.crowdera.in');
    				$('.banner-link').attr('href','http://staging.crowdera.in');
-   			} else if(location.country == 'IN' && currentEnv == 'production'){
+   			} else if(location.country === 'IN' && currentEnv === 'production'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('www.crowdera.in');
    				$('.banner-link').attr('href','http://crowdera.in');
-   			} else if(location.country == 'IN' && currentEnv == 'development'){
+   			} else if(location.country === 'IN' && currentEnv === 'development'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('www.crowdera.in');
    				$('.banner-link').attr('href','http://localhost:8080');
@@ -1271,7 +1262,7 @@ $(function() {
    		$('.home-header-section').removeClass('banner-nav');
    		$('#preview-banner').attr('class','preview-banner-margin');
    	});
-       
+
 
     $('.video-play').click(function() {
     	$('.choose-error').html('');
@@ -1282,21 +1273,21 @@ $(function() {
     var embedTileUrl = $('#embedTileUrl').val();
 
     $('.video-play-sm').click(function (){
-    	var embedCode = '<iframe src="'+embedTileUrl+'" width="480px" height="360px" frameborder="0" scrolling="no"></iframe>'
+    	var embedCode = '<iframe src="'+embedTileUrl+'" width="480px" height="360px" frameborder="0" scrolling="no"></iframe>';
     	$('.textarea-embed-video').val(embedCode);
     	$('.video-play-width').val('480');
     	$('.video-play-height').val('360');
     });
 
     $('.video-play-md').click(function (){
-    	var embedCode = '<iframe src="'+embedTileUrl+'" width="640px" height="480px" frameborder="0" scrolling="no"></iframe>'
+    	var embedCode = '<iframe src="'+embedTileUrl+'" width="640px" height="480px" frameborder="0" scrolling="no"></iframe>';
     	$('.textarea-embed-video').val(embedCode);
     	$('.video-play-width').val('640');
     	$('.video-play-height').val('480');
     });
 
     $('.video-play-lg').click(function (){
-    	var embedCode = '<iframe src="'+embedTileUrl+'" width="800px" height="600px" frameborder="0" scrolling="no"></iframe>'
+    	var embedCode = '<iframe src="'+embedTileUrl+'" width="800px" height="600px" frameborder="0" scrolling="no"></iframe>' ;
     	$('.textarea-embed-video').val(embedCode);
     	$('.video-play-width').val('800');
     	$('.video-play-height').val('600');
@@ -1305,18 +1296,18 @@ $(function() {
     $('.video-play-width').change(function (){
     	var width = $(this).val();
     	var height = $('.video-play-height').val();
-    	var embedCode = '<iframe src="'+embedTileUrl+'" width="'+width+'" height="'+height+'" frameborder="0" scrolling="no"></iframe>'
+    	var embedCode = '<iframe src="'+embedTileUrl+'" width="'+width+'" height="'+height+'" frameborder="0" scrolling="no"></iframe>';
     	$('.textarea-embed-video').val(embedCode);
     });
 
 	$('.video-play-height').change(function (){
 		var width = $('.video-play-width').val();
 		var height = $(this).val();
-    	var embedCode = '<iframe src="'+embedTileUrl+'" width="'+width+'" height="'+height+'" frameborder="0" scrolling="no"></iframe>'
+    	var embedCode = '<iframe src="'+embedTileUrl+'" width="'+width+'" height="'+height+'" frameborder="0" scrolling="no"></iframe>';
     	$('.textarea-embed-video').val(embedCode);
 	});
 
-       
+
    });
 });
 
@@ -1325,7 +1316,7 @@ function showNavigation(){
 	var nav= document.getElementById('navigators');
 	var updateIndicator = document.getElementById('updateindicators');
 	var updateNav= document.getElementById('updatenavigators');
-	
+
 	if(indicator!=null && nav!=null){
 		document.getElementById('indicators').style.display = 'block';
 		document.getElementById('navigators').style.display = 'block';
@@ -1341,14 +1332,14 @@ function hideNavigation(){
 	var nav= document.getElementById('navigators');
 	var updateIndicator = document.getElementById('updateindicators');
 	var updateNav= document.getElementById('updatenavigators');
-	
+
 	if(indicator!=null && nav!=null){
 		document.getElementById('indicators').style.display = 'none';
 		document.getElementById('navigators').style.display = 'none';
 	}
-	
+
 	if(updateIndicator!=null && updateNav!=null){
 		document.getElementById('updateindicators').style.display = 'none';
 		document.getElementById('updatenavigators').style.display = 'none';
-	}	
+    }
 }

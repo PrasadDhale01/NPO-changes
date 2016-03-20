@@ -6,6 +6,7 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 
 import javax.servlet.http.Cookie
+import javax.websocket.Session;
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile
@@ -436,7 +437,7 @@ class ProjectService {
 	}
 
     def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
-        def emailId, twitter,custom, userId,anonymous 
+        def emailId, twitter,custom, userId,anonymous
         def currency
         if (project.payuEmail) {
             currency = 'INR'
@@ -988,9 +989,20 @@ class ProjectService {
     }
 	
 	def getIndiaPaymentGateway() {
-		def payment = [
-			PAYU:'PayUMoney',
-		]
+        def currentEnv = getCurrentEnvironment();
+        
+        def payment;
+        if (currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development') {
+            payment = [
+                PAYU  : 'PayUMoney',
+                CITRUS: 'Citrus'
+            ]
+        } else {
+            payment = [
+                PAYU : 'PayUMoney'
+            ]
+        }
+		
 		return payment
 	}
     
@@ -3306,6 +3318,7 @@ class ProjectService {
 			
             case 'payuEmail':
                 project.payuEmail = varValue;
+                project.citrusEmail = null;
                 isValueChanged = true;
                 break;
 
@@ -3938,7 +3951,13 @@ class ProjectService {
                     isValueChanged = true
                 }
                 break;
-
+                
+            case 'citrusEmail': 
+                project.citrusEmail = varValue
+                project.payuEmail = null
+                isValueChanged = true
+                break;
+                
             default :
                isValueChanged = false;
 
@@ -5351,6 +5370,204 @@ class ProjectService {
         idList = idList.collect { it.trim() }
         mandrillService.sendTaxReceiptToContributors(idList);
     }
+    
+    def getCitrusTransactionDetails(def secret_key, def request, def session, def fundraiser) {
+        
+        String data="";
+        String txnId=request.getParameter("TxId");
+        String txnStatus=request.getParameter("TxStatus");
+        
+        String amount=request.getParameter("amount");
+        String pgTxnId=request.getParameter("pgTxnNo");
+        
+        String issuerRefNo=request.getParameter("issuerRefNo");
+        String authIdCode=request.getParameter("authIdCode");
+        
+        String firstName=request.getParameter("firstName");
+        String lastName=request.getParameter("lastName");
+        
+        String pgRespCode=request.getParameter("pgRespCode");
+        String zipCode=request.getParameter("addressZip");
+        
+        String resSignature=request.getParameter("signature");
+        
+        //Binding all required parameters in one string (i.e. data)
+        if (txnId != null) {
+            data += txnId;
+        }
+        if (txnStatus != null) {
+            data += txnStatus;
+        }
+        if (amount != null) {
+            data += amount;
+        }
+        if (pgTxnId != null) {
+            data += pgTxnId;
+        }
+        if (issuerRefNo != null) {
+            data += issuerRefNo;
+        }
+        if (authIdCode != null) {
+            data += authIdCode;
+        }
+        if (firstName != null) {
+            data += firstName;
+        }
+        if (lastName != null) {
+            data += lastName;
+        }
+        if (pgRespCode != null) {
+            data += pgRespCode;
+        }
+        if (zipCode != null) {
+            data += zipCode;
+        }
+        
+        javax.crypto.Mac mac = javax.crypto.Mac.getInstance("HmacSHA1");
+        mac.init(new javax.crypto.spec.SecretKeySpec(secret_key.getBytes(), "HmacSHA1"));
+        byte[] hexBytes = new org.apache.commons.codec.binary.Hex().encode(mac.doFinal(data.getBytes()));
+        String signature = new String(hexBytes, "UTF-8");
+
+        boolean flag = true;
+        if (resSignature !=null && !resSignature.equalsIgnoreCase("") && !signature.equalsIgnoreCase(resSignature)) {
+            flag = false;
+        }
+        
+        
+        if (flag && txnStatus == 'SUCCESS') {
+            def contributionId = createTransactionIdForCitrus(txnId, request, session, fundraiser)
+            return contributionId
+        } else {
+            return null
+        }
+    }
+    
+    def setCitrusInfo(def session, def params) {
+        session['rewardId']     = params.rewardId
+        session['campaignId']   = params.campaignId
+        session['userId']       = params.userId
+        session['fr']           = params.fr
+        session['anonymous']    = params.anonymous
+        session['tempValue']    = params.tempValue
+        
+        session['email']        = params.email
+        session['addressLine1'] = params.addressLine1
+        session['addressLine2'] = params.addressLine2
+        session['city']         = params.city
+        session['zip']          = params.zip
+        
+        session['shippingEmail'] = params.shippingEmail
+        session['twitterHandle'] = params.twitterHandle
+        session['shippingCustom'] = params.shippingCustom
+        session['projectTitle'] = params.projectTitle
+        def address = getAddress(params)
+        session['address'] = address
+    }
+    
+    
+    def createTransactionIdForCitrus(def transactionId, def request, def session, def fundraiser) {
+        
+        def amount    = Double.parseDouble(request.getParameter('amount'))
+        
+        def emailId   = session.getAttribute('shippingEmail')
+        def twitter   = session.getAttribute('twitterHandle')
+        def custom    = session.getAttribute('shippingCustom')
+        def userId    = session.getAttribute('tempValue')
+        def anonymous = session.getAttribute('anonymous')
+        def address   = session.getAttribute('address')
+        def fr        = session.getAttribute('fr')
+        
+        Project project  = Project.get(session.getAttribute('campaignId'))
+        Reward reward    = rewardService.getRewardById(session.getAttribute('rewardId'));
+        User contributor = userService.getUserForContributors(request.getParameter('email') , session.getAttribute('userId'))
+        
+        if (contributor == null) {
+            contributor = userService.getUserByUsername('anonymous@example.com')
+        }
+        
+        def shippingDetail = checkShippingDetail(emailId,twitter,address, custom)
+        def name
+        def username
+
+        if (userId == null || userId == 'null' || userId.isAllWhitespace()) {
+            name = request.getParameter("firstName") +" "+ request.getParameter("lastName");
+            username = request.getParameter('email')
+        } else {
+            def orgUser = User.get(userId)
+            name = orgUser.firstName + " " + orgUser.lastName
+            username = orgUser.email
+        }
+
+        Contribution contribution = new Contribution(
+            date             : new Date(),
+            user             : contributor,
+            reward           : reward,
+            amount           : amount,
+            email            : shippingDetail.emailid,
+            twitterHandle    : shippingDetail.twitter,
+            custom           : shippingDetail.custom,
+            contributorName  : name,
+            contributorEmail : username,
+            physicalAddress  : shippingDetail.address,
+            currency         : 'INR'
+        )
+        
+        project.addToContributions(contribution).save(failOnError: true)
+         
+        Team team = Team.findByUserAndProject(fundraiser,project)
+        if (team) {
+            contribution.fundRaiser = fundraiser.username
+            team.addToContributions(contribution).save(failOnError: true)
+        }
+        
+        contribution.isAnonymous = anonymous.toBoolean()
+        
+        if (project.payuStatus && project.contributions.size() == 1) {
+            mandrillService.sendEmailToCampaignOwner(project, contribution) //Send Email to Campaign Owner when first contribution is done for INR
+        }
+         
+        userService.contributionEmailToOwnerOrTeam(fundraiser, project, contribution)
+        
+        def totalContribution = contributionService.getTotalContributionForProject(project)
+        
+        if (totalContribution >= project.amount) {
+            
+            if(project.send_mail == false) {
+                List contributorEmails = []
+                def contributors = contributionService.getTotalContributors(project)
+                contributors.each {
+                    def user = User.get(it)
+                    if (user.email != 'anonymous@example.com' && !contributorEmails.contains(user.email)) {
+                        contributorEmails.add(user.email)
+                        mandrillService.sendContributorEmail(user, project)
+                    }
+                }
+                
+                def beneficiaryId = getBeneficiaryId(project)
+                def beneficiary = Beneficiary.get(beneficiaryId)
+                def user = User.findByEmail(beneficiary.email)
+                
+                if (user) {
+                    mandrillService.sendBeneficiaryEmail(user)
+                }
+                
+                project.send_mail = true
+            }
+            
+        }
+        
+        Transaction transaction = new Transaction(
+            transactionId: transactionId,
+            user         : contributor,
+            project      : project,
+            contribution : contribution,
+            currency     : 'INR'
+        )
+        
+        transaction.save(failOnError: true)
+        return contribution.id
+    }
+    
     
     @Transactional
     def bootstrap() {

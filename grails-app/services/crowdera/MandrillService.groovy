@@ -852,6 +852,7 @@ class MandrillService {
         def beneficiary = project.user
         def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:fundRaiserUserName], absolute: true)
         def currentEnv = Environment.current.getName()
+        def fblink = "https://www.facebook.com"
         def currency
         def naamFoundationCampaign
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
@@ -867,6 +868,9 @@ class MandrillService {
         def globalMergeVars = [[
             'name': 'LINK',
             'content': link
+        ],[
+             'name': 'FBLINK',
+             'content': fblink
         ],[
             'name': 'NAME',
             'content': contribution.contributorName

@@ -210,10 +210,10 @@ class ProjectService {
         }
 
         def projectOwner = project.user
-        if (projectOwner != currentUser) {
+        ///if (projectOwner != currentUser) {
             def projectOwnerEmail = projectOwner.getEmail()
             mandrillService.sendUpdateEmailToAdmin(projectOwnerEmail, fullName, project)
-        }
+        //}
 
         if (project.customVanityUrl && project.customVanityUrl != ''){
             vanitytitle = getCustomVanityUrl(project);

@@ -8040,18 +8040,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     span.manage-btn-width-aft-validated {
         width: 88.1%;
-        padding-bottom: 15px;
-        padding-top: 13px;
+        padding-bottom: 14px;
+        padding-top: 14px;
         font-size: 16px;
     }
     @-moz-document url-prefix() { 
         span.mange-size-FBbtn {
-            padding: 18px !important;
+            padding: 16px !important;
             font-size: 15px;
         } 
     }
     span.mange-size-FBbtn {
-        padding: 20px;
+        padding: 16px;
         font-size: 15px;
     }
     button.manage-btn-width-aft-validated {
@@ -8115,7 +8115,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         height: 90px;
     }
     .impactassessment .panel-default p {
-        font-size: 15px;
+        font-size: 16px;
     }
     a.show-btn-sh-fb {
         margin-bottom: 108px;
@@ -8352,6 +8352,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.mange-pagesingleapproval{
+        height: 185px;
+    }
+    div.manage-submit-approvaltileheight {
+        height: 126px;
+    }
     div.ack-width-padding {
         margin-left: 13px;
         padding-bottom: 13px;
@@ -8466,7 +8472,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-top: 12px;
     }
     div.manage-org-height {
-        height: 125px;
+        height: 181px;
     }
     i.manage-fb-padding {
         font-size: 19px;
@@ -11230,7 +11236,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     .impactassessment .panel-default p {
         padding: 3px 0px;
-        font-size: 14px;
+        font-size: 16px;
     }
     div.show-description {
         background-color: #e7e7e7;
@@ -11276,8 +11282,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	span.manage-btn-width-aft-validated {
 /*         margin-left: 15px; */
         width: 88.1%;
-        padding-bottom: 18px;
-        padding-top: 18px;
+        padding-bottom: 14px;
+        padding-top: 12px;
     }
     span.mange-size-FBbtn {
         height: 100%;

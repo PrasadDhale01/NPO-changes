@@ -3,8 +3,8 @@
 <%
     def beneficiary = project.user
 %>
-<div class="panel panel-default TW-org-panel-height manage-org-bottomMargin">
-   	<div class="manage-organization-details text-center manage-org-title manage-org-height">
+<div class="panel panel-default TW-org-panel-height  manage-org-bottomMargin">
+   	<div class="manage-organization-details text-center <g:if test="${!project.touAccepted}"><g:if test="${project.organizationIconUrl}">manage-submit-approvaltileheight</g:if><g:else>mange-pagesingleapproval</g:else></g:if><g:else> manage-org-height </g:else>  manage-org-title">
    		<br><br>
    	    <h4><b class="TW-org-title-font-size-manage">${project.organizationName}</b></h4>
         

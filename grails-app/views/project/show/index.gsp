@@ -123,6 +123,7 @@
         <g:hiddenField name="pieList" value="${pieList}" id="pieList"/>
         <g:hiddenField name="projectamount" value="${project.amount.round()}" id="projectamount"/>
         <g:hiddenField name="fbShareUrlupdatePage" value="${fbShareUrlupdatePage}" id="fbShareUrlupdatePage"/>
+        <g:hiddenField id="payuStatus" name="payuStatus" value="${project.payuStatus}"/>
         
         <g:if test="${project}">
             <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>

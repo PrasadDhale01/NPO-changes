@@ -225,6 +225,11 @@ $(function() {
         var rewardId = $('a.list-group-item.active').attr('id');
         showShippingDetails(rewardId);
     });
+    
+    $(".TW-perk-status").click(function(){
+        var amount = $('.list-group-item.active').data('rewardprice');
+        $(".amount").val(Math.round(amount));
+    });
 
 	function showShippingDetails(rewardId){
 		var anonymous = $('#anonymous').val();
@@ -239,7 +244,7 @@ $(function() {
 		}).error(function(){
 		});
 	}
-
+	
     $('#anonymousUser').click(function(){
     	var projectId = $('#projectId').val();
     	var selectedRewardId = getSelectedRewardId();

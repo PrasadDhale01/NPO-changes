@@ -4,7 +4,7 @@
     def beneficiary = project.user
     def webUrl = projectService.getWebUrl(project)
 %>
-<div class="panel panel-default TW-org-panel-height sh-pan-height">
+<div class="panel panel-default TW-org-panel-height  <g:if test="${project.organizationIconUrl}">sh-pan-height</g:if><g:else>show-priview-orgtile</g:else>">
     <div class="organization-details text-center">
         <div class="col-md-12 show-icons">
             <g:if test="${project.beneficiary.facebookUrl}">

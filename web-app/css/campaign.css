@@ -944,10 +944,10 @@ img.hm-height-width {
     }
 }
 .manage-btn-width-aft-validated{
-	font-size: 20px;
+	font-size: 18px;
     height: 100%;
-    padding-bottom: 25px;
-    padding-top: 25px;
+    padding-bottom: 13px;
+    padding-top: 13px;
     width: 91.2%;
 }
 .manage-edit-left{
@@ -1056,7 +1056,7 @@ label.cr-spend-guide-text{
 	font-size: 14px;
 }
 .manage-org-height {
-    height: 139px;
+    height: 179px;
 }
 .mange-campaigntitle-mobile a{
     color: #000 !important;
@@ -1646,4 +1646,20 @@ button.dropdown-toggle.selectpicker.btn.btn-sm.btn-default:hover {
 }
 a.thankyou-textdeco {
     text-decoration: none;
+}
+.managepage-bottom-margin{
+    margin-bottom: -24px;    
+}
+.manage-submit-approvaltileheight {
+    height: 141px;
+}
+.mange-pagesingleapproval{
+    height: 180px;
+}
+.show-priview-orgtile{
+    height: 177px;
+    margin: 0;
+}
+.reset-password-bottom{
+    padding-bottom: 90px;
 }

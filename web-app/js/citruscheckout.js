@@ -19,16 +19,6 @@ $(function() {
 
     var validator = $('#checkoutgsp').find('form').validate({
         rules: {
-            ccCardValidationNum: {
-                required: true,
-                maxlength: function(){
-                    if (optionChosen === 'AX') {
-                        return 4;
-                    } else {
-                        return 3;
-                    }
-                }
-            },
             agreetoTermsandUse: {
                 required: true
             },
@@ -59,7 +49,7 @@ $(function() {
             },
             citrusCvv: {
                 required: true,
-                maxlength: 3
+                maxlength: 4
             },
             citrusCardHolder: {
                 required: true,

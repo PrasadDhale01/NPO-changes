@@ -7,7 +7,7 @@
     def currentUser = userService.getCurrentUser()
     def isAnonymous = userService.isAnonymous(user)
     def citrusCardTypes = ['credit': 'Credit', 'debit': 'Debit']
-    def citrusSchemes = ['visa': 'VISA', 'mastercard' :'MASTER']
+    def citrusSchemes = ['visa': 'VISA', 'mastercard' :'MASTER', 'maestro':'MAESTRO', 'rupay':'RUPAY']
     def returnURL = 'http://localhost:8080/fund/citrusreturn'
     SimpleDateFormat dateFormat = new SimpleDateFormat("MM/YYYY");
     def currentDate = dateFormat.format(new Date());

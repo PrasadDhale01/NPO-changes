@@ -452,6 +452,7 @@ $(function() {
                       maxlength: 9,
                	      min:100,
                       max: function() {
+                    	  var campaignAmount = $('#projectamount').val();
                           return Number(campaignAmount);
                       },
                       isTotalSpendAmountGreaterThanProjectAmount : true,

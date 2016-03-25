@@ -83,7 +83,7 @@
                                     <div class="form-group fund-inr">
                                         <div class="input-group">
                                             <span class="amount input-group-addon"><g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else><span class="glyphicon glyphicon-usd"></span></g:else></span>
-                                            <input class="amount form-control" id="amount" name="amount" type="text">
+                                            <input class="amount form-control" id="amount" name="amount" type="text" <g:if test="${perk}">value="${perk.price.round()}"</g:if><g:else>value=""</g:else>>
                                         </div>
                                         <span id="errormsg"></span>
                                     </div>
@@ -294,7 +294,7 @@
 									<div class="form-group">
 									   <div class="input-group">
 									       <span class="amount input-group-addon"><span class="glyphicon glyphicon-usd"></span></span>
-								           <input class="amount form-control" <%-- value="${reward.price}" --%> id="amount" name="amount" type="text">
+								           <input class="amount form-control" <g:if test="${perk}">value="${reward.price.round()}"</g:if><g:else>value=""</g:else> id="amount" name="amount" type="text">
 								       </div>
 								       <span id="errormsg"></span>
 							        </div>
@@ -408,7 +408,7 @@
 								<div class="form-group">
 									<div class="input-group">
 										<span class="amount input-group-addon"><span class="glyphicon glyphicon-usd"></span></span>
-										<input class="amount form-control" <%-- value="${reward.price}" --%> id="amount" name="amount" type="text">
+										<input class="amount form-control" <g:if test="${perk}">value="${reward.price.round()}"</g:if><g:else>value=""</g:else> id="amount" name="amount" type="text">
 									</div>
 									<span id="errormsg"></span>
 								</div>

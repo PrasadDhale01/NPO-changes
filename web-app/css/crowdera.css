@@ -1316,7 +1316,7 @@ footer .footerbottomsection {
 
 .organization-details h4 {
     margin-top: 0px;
-    padding-top: 25px;
+    padding-top: 8px;
 }
 
 .manage-organization-details h4 {
@@ -1329,7 +1329,7 @@ footer .footerbottomsection {
 }
 
 .sh-pan-height{
-	height: 144px;
+	height: 169px;
     margin-bottom: 0;
 }
 
@@ -8121,9 +8121,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-bottom: 108px;
     }
     div.organization-details h4 {
-        margin-top: -25px;
+        margin-top: 5px;
+        overflow:hidden;
         padding-bottom: 0;
         padding-top: 0;
+        text-overflow:ellipsis;
+        white-space:nowrap;
     }
     .fund-container{
         width:750px !important ;
@@ -9012,7 +9015,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     button.show-fund-size {
         font-size: 29px;
-        height: 94px;
+        height: 70px;
         margin-top: 0px;
     }
     div.sh-mobprogressbar{
@@ -11378,7 +11381,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 17px;
     }
     div.organization-details h4 {
-        padding-top: 23px;
+        padding-top: 7px;
     }
 	button.show-campaign-sucess-endedbtn{
 	    font-size: 21px;
@@ -11396,7 +11399,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     button.show-fund-size {
         font-size: 30px;
         margin-top: 0px;
-        height: 96px;
+        height: 70px;
     }
     .fund-tile .tile-pad {
         padding: 0px;
@@ -17018,11 +17021,11 @@ textarea.textarea-embed-video {
     padding-right: 27px;
 }
 .show-fund-size {
-	height: 90px;
+	height: 65px;
     font-size: 34px;
     font-family: Ubuntu Condensed;
     padding-left: 25px;
-    padding-top: 12px;
+    padding-top: 8px;
     margin-top: 0;
 }
 

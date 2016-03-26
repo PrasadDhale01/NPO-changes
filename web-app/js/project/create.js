@@ -87,7 +87,7 @@ $(function() {
             	// you get code from Redactor
                 var story = that.code.get();
                 autoSave('story', story);
-            }, 5000);
+            }, 3000);
 
         },focusCallback: function(){
             $(".cr-story-padding .redactor-box .redactor-editor").toggleClass("redactor-animate", true, 100000);
@@ -390,7 +390,7 @@ $(function() {
                 totalSpendAmount = totalSpendAmount + parseInt($(this).val());
             }
         });
-        if(totalSpendAmount < parseInt(projectAmount)) {
+        if(totalSpendAmount <= parseInt(projectAmount)) {
             $('.spendAmount').each(function(){
                 var id = $(this).attr('id');
                 $('#'+id).parent('.form-group').removeClass('has-error');
@@ -422,8 +422,8 @@ $(function() {
 
  		return true;
  	 }, "This Project Title is already in use");
-    
-    
+
+
 
     $('#saveButton, #saveButtonXS').on('click', function() {
     	var storyValue = $('.redactorEditor').redactor('code.get');
@@ -450,7 +450,7 @@ $(function() {
                       required: true,
                       number:true,
                       maxlength: 9,
-               	      min:100,
+               	      min:101,
                       max: function() {
                     	  var campaignAmount = $('#projectamount').val();
                           return Number(campaignAmount);
@@ -460,7 +460,7 @@ $(function() {
                   	     required: 'Required',
                   	     number: 'Digits only',
                   	     maxlength: 'max 9 digits',
-                  	     min:'min 100'
+                  	     min:'Please select a value greater than Rs.100'
                       }
                   });
               });
@@ -474,13 +474,13 @@ $(function() {
                           var campaignAmount = $('#projectamount').val();
                           return Number(campaignAmount);
                       },
-                      min:1,
+                      min: 51,
                       isTotalSpendAmountGreaterThanProjectAmount : true,
                       messages: {
                           required: 'Required',
                           number: 'Digits only',
                           maxlength: 'max 6 digits',
-                          min:'min $1'
+                          min:'Please select a value greater than $50'
                       }
                   });
               });
@@ -790,7 +790,7 @@ $(function() {
 					required: true,
 					number:true,
 					maxlength: 9,
-					min:100,
+					min: 101,
 					max: function() {
 						var campaignAmount = $('#projectamount').val();
 						return Number(campaignAmount);
@@ -800,7 +800,7 @@ $(function() {
 						required: 'Required',
 						number: 'Digits only',
 						maxlength: 'max 9 digits',
-						min	:'min 100'
+						min	:'Please select a value greater than Rs.100'
 					}
 				});
 			});
@@ -814,13 +814,13 @@ $(function() {
 						var campaignAmount = $('#projectamount').val();
 						return Number(campaignAmount);
 					},
-					min:1,
+					min:51,
 					isTotalSpendAmountGreaterThanProjectAmount : true,
 					messages: {
 						required: 'Required',
 						number: 'Digits only',
 						maxlength: 'max 6 digits',
-						min:'min $1'
+						min:'Please select a value greater than $50'
 					}
 				});
 			});
@@ -1666,12 +1666,12 @@ $(function() {
                        $('#signatureIcon').attr('src',json.imageUrl);
                        $('#editsignatureIcon').attr('src', json.imageUrl);
                        $('#signaturediv').show();
-                       
+
                        $('#signaturemsg').hide();
-                       
+
                        $('#editsignatureIcon').show();
                        $('#signatureIcon').show();
-                       
+
                        $('#delsignature').show();
                        $('#deleditsignature').show();
                        $('#loading-gif').hide();
@@ -1815,21 +1815,21 @@ $(function() {
             $('#titleLength').text(text+'/55');
         }
     }).keyup(function(e) {
-    
+
         if(e.altKey==true){
 	        setTitleText();
             return false;
         }
 
         switch (e.keyCode) {
- 
+
             case 13:      //Enter
             case 8:       //backspace
             case 46:      //delete
-            case 17:      
+            case 17:
             case 27:      //escape
             case 10:      //new line
-            case 20:      
+            case 20:
             case 9:       //horizontal TAB
             case 11:      //vertical tab
             case 33:      //page up  
@@ -2469,7 +2469,7 @@ $(function() {
                           required: true,
                           number:true,
                           maxlength: 9,
-                   	      min:100,
+                   	      min:101,
                           max: function() {
                               var campaignAmount = $('#projectamount').val();
                               return Number(campaignAmount);
@@ -2479,7 +2479,7 @@ $(function() {
                       	     required: 'Required',
                       	     number: 'Digits only',
                       	     maxlength: 'max 9 digit',
-                      	     min:'min 100'
+                      	     min:'Please select a value greater than Rs.100'
                           }
                       });
                   });
@@ -2493,13 +2493,13 @@ $(function() {
                               var campaignAmount = $('#projectamount').val();
                               return Number(campaignAmount);
                           },
-                          min:1,
+                          min:51,
                           isTotalSpendAmountGreaterThanProjectAmount : true,
                           messages: {
                               required: 'Required',
                               number: 'Digits only',
                               maxlength: 'max 6 digit',
-                              min:'min $1'
+                              min:'Please select a value greater than $51'
                           }
                       });
                   });

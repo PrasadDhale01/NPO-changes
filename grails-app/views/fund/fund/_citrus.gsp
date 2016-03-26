@@ -11,6 +11,7 @@
     </div>
     <g:form action="citrusCheckout" method="POST" class="checkoutForm">
     
+        <g:hiddenField name="isINR" value="${project.payuStatus}" id="isINR"/>
         <g:hiddenField name="projectId" value="${project.id}" />
         <g:hiddenField name="fr" value="${vanityUsername}" />
         <g:hiddenField name="rewardId" />

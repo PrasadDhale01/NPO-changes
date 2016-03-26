@@ -117,6 +117,16 @@ $(function() {
             },
             shippingCustom: {
             	required: true
+            },
+            firstname:{
+            	required:true
+            },
+            lastname:{
+            	required:true
+            },
+            email:{
+            	required:true,
+            	email:true
             }
         },
         messages:{
@@ -215,6 +225,11 @@ $(function() {
         var rewardId = $('a.list-group-item.active').attr('id');
         showShippingDetails(rewardId);
     });
+    
+    $(".TW-perk-status").click(function(){
+        var amount = $('.list-group-item.active').data('rewardprice');
+        $(".amount").val(Math.round(amount));
+    });
 
 	function showShippingDetails(rewardId){
 		var anonymous = $('#anonymous').val();
@@ -229,7 +244,7 @@ $(function() {
 		}).error(function(){
 		});
 	}
-
+	
     $('#anonymousUser').click(function(){
     	var projectId = $('#projectId').val();
     	var selectedRewardId = getSelectedRewardId();
@@ -286,7 +301,7 @@ $(function() {
     		            $(this).popover({
     		                content: 'As you are keeping your contribution anonymous, this perks which has only Twitter handler will be disabled for you',
     		                trigger: 'manual',
-    		                placement: 'bottom'
+    		                placement: 'auto'
     		            })
     		            .focus(showPopover)
     		            .blur(hidePopover)
@@ -328,7 +343,7 @@ $(function() {
     		            $(this).popover({
     		                content: "As you are keeping your contribution anonymous, Twitter perks will be disabled for you",
     		                trigger: 'manual',
-    		                placement: 'bottom'
+    		                placement: 'auto'
     		            })
     		            .focus(showPopover)
     		            .blur(hidePopover)
@@ -413,7 +428,7 @@ $(function() {
         $('.customField').each(function(){
         	$(this).popover({
         	    trigger: 'manual',
-        	    placement: 'bottom'
+        	    placement: 'auto'
         	})
         	.focus(showPopover)
         	.blur(hidePopover)
@@ -424,7 +439,7 @@ $(function() {
             $(this).popover({
                 content: 'As you are keeping your contribution anonymous, this perks which has only Twitter handler will be disabled for you',
                 trigger: 'manual',
-                placement: 'bottom'
+                placement: 'auto'
             })
             .focus(showPopover)
             .blur(hidePopover)
@@ -435,7 +450,7 @@ $(function() {
             $(this).popover({
                 content: "As you are keeping your contribution anonymous, Twitter perks will be disabled for you",
                 trigger: 'manual',
-                placement: 'bottom'
+                placement: 'auto'
             })
             .focus(showPopover)
             .blur(hidePopover)

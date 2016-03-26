@@ -4,7 +4,7 @@
 </head>
 <body>
 <div class="feducontent">
-    <div class="container">
+    <div class="container reset-password-bottom">
         <g:form class="form-signin" controller="login" action="send_reset_email" role="form">
             <h2 class="form-signin-heading">Reset Password</h2>
 

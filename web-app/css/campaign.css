@@ -944,10 +944,10 @@ img.hm-height-width {
     }
 }
 .manage-btn-width-aft-validated{
-	font-size: 20px;
+	font-size: 18px;
     height: 100%;
-    padding-bottom: 25px;
-    padding-top: 25px;
+    padding-bottom: 13px;
+    padding-top: 13px;
     width: 91.2%;
 }
 .manage-edit-left{
@@ -1056,7 +1056,7 @@ label.cr-spend-guide-text{
 	font-size: 14px;
 }
 .manage-org-height {
-    height: 139px;
+    height: 179px;
 }
 .mange-campaigntitle-mobile a{
     color: #000 !important;
@@ -1555,4 +1555,111 @@ button.dropdown-toggle.selectpicker.btn.btn-sm.btn-default:hover {
 }
 .error-title-color404 a {
     text-decoration: none;
+}
+.ack-thousands-thankyoupage {
+    width: 1000px;
+}
+.panel-thankupage {
+    margin-bottom: -1px;
+    margin-top: 24px;
+}
+.ack-funding-panel {
+    color: #01bbd3;
+    font-weight: 900;
+    padding: 11px;
+    margin-bottom: -1px;
+}
+.ack-table-color-green {
+    background-color: #f7fcff;
+}
+.ack-table-color-red {
+    background-color: #FDF3F2;
+}
+.padding-panel{
+    padding: 20px;
+    margin-top: -1px;
+    margin-bottom: 0;	
+}
+.ack-socialmedia-padding {
+    padding-left: 184px;
+}
+.ack-socialicon-size img {
+    height: 32px;
+}
+.ack-social-mail-icons {
+    font-size: 17px;
+    height: 32px;
+    padding: 7px 8px 4px;
+    width: 32px;
+}
+.ack-social-mail-icons:hover,
+.ack-social-mail-icons:focus {
+    font-size: 17px;
+    height: 32px;
+    padding: 7px 8px 4px;
+    width: 32px;
+}
+.btn-ackfund,
+.btn-ackfund:hover,
+.btn-ackfund:focus {
+    background-color: #01bbd3;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 900;
+    margin-bottom: 30px;
+}
+.ack-panel-reward{
+    padding: 15px;
+}
+.ack-panel-title{
+    color: inherit;
+    font-size: 17px;
+    margin-bottom: 0;
+    margin-top: 0; 
+    font-weight: 900; 
+    color: #01bbd3;      
+}
+.ack-table-heading-padding{
+    padding-left: 18px !important;
+}
+.ack-tile-height{
+    height: 317px;    
+}
+.ack-panel-spacing-mobile {
+    margin-top: -27px;
+}
+.ack-textareaheghit {
+    height: 93px !important;
+}
+.ack-textareabottom{
+    margin-bottom: 7px;
+}
+.ack-panel-perks {
+    margin-top: -4px;
+    padding-top: 0;
+}
+.ack-width-padding {
+    margin-left: 13px;
+    padding-bottom: 33px;
+    padding-top: 33px;
+    width: 64%;
+}
+a.thankyou-textdeco {
+    text-decoration: none;
+}
+.managepage-bottom-margin{
+    margin-bottom: -24px;    
+}
+.manage-submit-approvaltileheight {
+    height: 141px;
+}
+.mange-pagesingleapproval{
+    height: 180px;
+}
+.show-priview-orgtile{
+    height: 177px;
+    margin: 0;
+}
+.reset-password-bottom{
+    padding-bottom: 90px;
 }

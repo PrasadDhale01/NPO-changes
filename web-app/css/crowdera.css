@@ -1010,7 +1010,7 @@ div.abt-imgs .thumbnail img {
 
 .for-greaterseven {
     font-size: 31px;
-    padding-top: 17px;
+/*     padding-top: 17px; */
     display: inline-block;
 }
 
@@ -1316,7 +1316,7 @@ footer .footerbottomsection {
 
 .organization-details h4 {
     margin-top: 0px;
-    padding-top: 25px;
+    padding-top: 8px;
 }
 
 .manage-organization-details h4 {
@@ -1329,7 +1329,7 @@ footer .footerbottomsection {
 }
 
 .sh-pan-height{
-	height: 144px;
+	height: 169px;
     margin-bottom: 0;
 }
 
@@ -1866,6 +1866,7 @@ textarea.form-control {
 
 #saveButton {
 	margin-bottom: 5px;
+    border-width: 0;
 }
 
 .org-logo{
@@ -3395,8 +3396,8 @@ div.campaign-title-margin-bottom{
     width: 50%;
 }
 .contributionShare {
-    margin-top: -15px;
-    padding-bottom: 15px;
+    margin-top: -17px;
+/*     padding-bottom: 15px; */
 }
 .table > thead > tr > td.info, .table > tbody > tr > td.info, .table > tfoot > tr > td.info, .table > thead > tr > th.info, .table > tbody > tr > th.info, .table > tfoot > tr > th.info, .table > thead > tr.info > td, .table > tbody > tr.info > td, .table > tfoot > tr.info > td, .table > thead > tr.info > th, .table > tbody > tr.info > th, .table > tfoot > tr.info > th {
     background-color: #006083 !important;
@@ -4194,6 +4195,7 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 }
 .cr-btn-alignment-pre{
 	margin-left: 180px;
+    border-width: 0;
 }
 .cr-btn-alignment-lac{
 	margin-right: 204px;
@@ -4627,6 +4629,9 @@ p {
 }
 /*Campaign detail page carousel */
 @media only screen and (min-width: 320px) and (max-width: 479px){
+/*     .btn-group > .btn:first-child { */
+/*         margin-left: 8px; */
+/*     } */
     #carousel-example-generic {
         height: 200px !important;
     }
@@ -4986,6 +4991,7 @@ a.customer-support-a {
     color: #333333;
     background-color: #e7e7e7;
     height:59px;
+    border-width: 0;
 }
 
 .customText::-webkit-input-placeholder{
@@ -5329,8 +5335,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	height: auto;
 }
 .ack-panel-width{
-	width:310px;
+	width:302px;
 	height:130px;
+    margin-top: 24px;  
+    background-color: rgb(250, 250, 250);  
+}
+.ack-panel-tile{
+    margin-top: 24px; 
+    height: 293px;   
 }
 
 /**********************************End of Fund.css*******************************/
@@ -5598,6 +5610,39 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    a.ack-socialicon-size img {
+        width: 32px !important;
+    }
+    div.ack-width-padding {
+        margin-left: 13px;
+        padding-bottom: 13px;
+        padding-top: 22px;
+        width: 92%;
+    }
+    div.ack-panel-tile {
+        height: auto;
+        margin-top: 6px;
+    }
+    div.ack-panel-width {
+        margin-top: 6px;
+    }
+    div.ack-socialmedia-padding {
+        padding-left: 40px;
+    }
+    div.ack-thousands-thankyoupage {
+        width: 320px;
+    }
+    ul.user-dashboard-style > li {
+        width: 33%;
+    }
+    button.cr-bg-xs-edit-btn{
+        margin-left: 65px;
+        border-width: 0;
+        height: 40px;
+    }
+    div.impactassessment .panel-default p {
+        text-align: center;
+    }
     div.foot-margin-mobile{
         margin-left: -11px;   
     }
@@ -5733,6 +5778,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         position: initial;
         margin-top: 10px;
         text-align: center;
+        margin-bottom: 10px;
     }
     div.contact-us-top {
         margin-top: 40px;
@@ -6377,7 +6423,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         left: -6px;
     }
     div.tile-pad {
-        width: 310px;
+        width: 292px;
     }
     div.fedu.thumbnail > .modal-footer {
         padding-bottom: 12px;
@@ -6979,6 +7025,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     button.cr-xs-mobile {
         margin-left: 64px;
+        height: 40px;
+        border-width: 0;
     }
 	label.cr-check-btn-perks{
 	    margin-bottom: 0;
@@ -7188,6 +7236,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	 	margin-left:auto;
 	 	margin-right:auto;
 	 	margin-top:21px;
+        width: 292px;
 	}
 	.acknowledge-tile-tag .tile-pad{
 		display:block;
@@ -7890,6 +7939,19 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+    div.ack-panel-perks h4 {
+        font-size: 14px;
+    }
+    div.ack-panel-spacing-mobile {
+        margin-top: -26px;
+    }
+    div.ack-panel-width {
+        width: 219px;
+        margin-top: 24px;        
+    }
+    div.ack-socialmedia-padding {
+        padding-left: 130px;
+    }
     div.show-css  div.manage-updateshare{
         padding-left: 260px !important;
         top: 6px !important;
@@ -7978,18 +8040,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     span.manage-btn-width-aft-validated {
         width: 88.1%;
-        padding-bottom: 15px;
-        padding-top: 13px;
+        padding-bottom: 14px;
+        padding-top: 14px;
         font-size: 16px;
     }
     @-moz-document url-prefix() { 
         span.mange-size-FBbtn {
-            padding: 18px !important;
+            padding: 16px !important;
             font-size: 15px;
         } 
     }
     span.mange-size-FBbtn {
-        padding: 20px;
+        padding: 16px;
         font-size: 15px;
     }
     button.manage-btn-width-aft-validated {
@@ -8053,15 +8115,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         height: 90px;
     }
     .impactassessment .panel-default p {
-        font-size: 15px;
+        font-size: 16px;
     }
     a.show-btn-sh-fb {
         margin-bottom: 108px;
     }
     div.organization-details h4 {
-        margin-top: -25px;
+        margin-top: 5px;
+        overflow:hidden;
         padding-bottom: 0;
         padding-top: 0;
+        text-overflow:ellipsis;
+        white-space:nowrap;
     }
     .fund-container{
         width:750px !important ;
@@ -8290,6 +8355,40 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.reset-password-bottom {
+        padding-bottom: 122px;
+    }
+    div.show-priview-orgtile{
+        height: 181px;
+        margin: 0;
+    }
+    div.mange-pagesingleapproval{
+        height: 185px;
+    }
+    div.manage-submit-approvaltileheight {
+        height: 126px;
+    }
+    div.ack-width-padding {
+        margin-left: 13px;
+        padding-bottom: 13px;
+        padding-top: 22px;
+        width: 63%;
+    }
+    div.ack-panel-tile {
+        height: 293px;
+        margin-top: 24px;
+    }
+    div.ack-tile-height {
+        height: 315px;
+    }
+    div.ack-thousands-thankyoupage {
+        width: 750px;
+    }
+    button.sendMailbtn {
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 105px;
+    }
     div.sm-padding-mobile-footer{
         padding-left: 15px;
         padding-right: 15px;    
@@ -8383,7 +8482,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-top: 12px;
     }
     div.manage-org-height {
-        height: 125px;
+        height: 181px;
     }
     i.manage-fb-padding {
         font-size: 19px;
@@ -8929,7 +9028,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     button.show-fund-size {
         font-size: 29px;
-        height: 94px;
+        height: 70px;
         margin-top: 0px;
     }
     div.sh-mobprogressbar{
@@ -10758,8 +10857,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 
     .glyphicon-design-acknowledge, .glyphicon-design-acknowledge:hover, .glyphicon-design-acknowledge:active, .glyphicon-design-acknowledge:visited, .glyphicon-design-acknowledge:after, .glyphicon-design-acknowledge:focus {
-        padding:6px;
-        font-size:15px;
+        padding:7px;
+        font-size:17px;
     }
 
     input.customVanityUrl{
@@ -11111,6 +11210,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+    div.ack-panel-perks h4 {
+        font-size: 14px;
+    }
+    div.ack-panel-spacing-mobile {
+        margin-top: -29px;
+    }
+    div.ack-panel-width {
+        width: 219px;
+    }
+    div.ack-socialmedia-padding {
+        padding-left: 90px;
+    }
     div.manage-updateshare {
         padding-left: 148px;
         top: 6px !important;
@@ -11135,7 +11246,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     .impactassessment .panel-default p {
         padding: 3px 0px;
-        font-size: 14px;
+        font-size: 16px;
     }
     div.show-description {
         background-color: #e7e7e7;
@@ -11181,8 +11292,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	span.manage-btn-width-aft-validated {
 /*         margin-left: 15px; */
         width: 88.1%;
-        padding-bottom: 18px;
-        padding-top: 18px;
+        padding-bottom: 14px;
+        padding-top: 12px;
     }
     span.mange-size-FBbtn {
         height: 100%;
@@ -11283,7 +11394,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 17px;
     }
     div.organization-details h4 {
-        padding-top: 23px;
+        padding-top: 7px;
     }
 	button.show-campaign-sucess-endedbtn{
 	    font-size: 21px;
@@ -11301,7 +11412,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     button.show-fund-size {
         font-size: 30px;
         margin-top: 0px;
-        height: 96px;
+        height: 70px;
     }
     .fund-tile .tile-pad {
         padding: 0px;
@@ -13104,6 +13215,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /*Screen resolution 644 x 767 */
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.ack-tile-height {
+        height: auto;
+    }
+    div.ack-panel-spacing-mobile {
+        margin-top: 0;
+    }
+    div.managecampaignDescription p {
+        text-align: center;
+    }
     span.manage-btn-width-aft-validated {
         font-size: 15px;
         padding-bottom: 4px;
@@ -14641,6 +14761,48 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    a.ack-socialicon-size img {
+        width: 32px !important;
+    }
+    div.ack-width-padding {
+        margin-left: 13px;
+        padding-bottom: 13px;
+        padding-top: 22px;
+        width: 92%;
+    }
+	div.ack-panel-tile {
+        height: auto;
+        margin-top: 6px;
+    }
+    div.ack-panel-width {
+        margin-top: 6px;
+    }
+    div.ack-tile-height {
+        height: auto;
+    }
+    div.ack-panel-spacing-mobile {
+        margin-top: 0;
+    }
+    div.ack-socialmedia-padding {
+        padding-left: 40px;
+    }
+    div.ack-thousands-thankyoupage {
+        width: 320px;
+    }
+    ul.user-dashboard-style > li {
+        width: 33%;
+    }
+    button.cr-xs-mobile {
+        margin-left: 42px;
+        height: 40px;
+        border-width: 0;
+    }
+    div.managecampaignDescription p {
+        text-align: center;
+    }
+    div.impactassessment .panel-default p {
+        text-align: center;
+    }
     input.text-email{
         width:116%;
     }
@@ -14835,6 +14997,7 @@ textarea.textarea-embed-video {
         position: initial;
         margin-top: 10px;
         text-align: center;
+        margin-bottom: 10px;
     }
     div.contact-us-top {
         margin-top: 40px;
@@ -15922,7 +16085,9 @@ textarea.textarea-embed-video {
 	    width: 254px;
 	}
 	button.cr-bg-xs-edit-btn{
-	    margin-left: 65px;
+        margin-left: 65px;
+        border-width: 0;
+        height: 40px;
 	}
 	div.cr-start-dropdown-payment.btn-group.bootstrap-select{
         width: 200px !important;
@@ -16869,11 +17034,11 @@ textarea.textarea-embed-video {
     padding-right: 27px;
 }
 .show-fund-size {
-	height: 90px;
+	height: 65px;
     font-size: 34px;
     font-family: Ubuntu Condensed;
     padding-left: 25px;
-    padding-top: 12px;
+    padding-top: 8px;
     margin-top: 0;
 }
 

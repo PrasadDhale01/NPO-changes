@@ -123,6 +123,7 @@
         <g:hiddenField name="pieList" value="${pieList}" id="pieList"/>
         <g:hiddenField name="projectamount" value="${project.amount.round()}" id="projectamount"/>
         <g:hiddenField name="fbShareUrlupdatePage" value="${fbShareUrlupdatePage}" id="fbShareUrlupdatePage"/>
+        <g:hiddenField id="payuStatus" name="payuStatus" value="${project.payuStatus}"/>
         
         <g:if test="${project}">
             <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>
@@ -265,12 +266,12 @@
                    
                    <%-- Mobile share FB--%>
                    <g:if test="${isPreview}">
-                       <a class="btn btn-social btn-facebook show-mobilebt-fb mob-show-fb sho-fb-color">
+                       <a class="btn btn-social btn-facebook show-mobilebt-fb mob-show-fb sho-fb-color hidden">
                            <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
                        </a>
                    </g:if>
                    <g:else>
-                        <a class="btn btn-social btn-facebook show-mobilebt-fb mob-show-fb sho-fb-color"  id="fbshare-mobile" href="#">
+                        <a class="btn btn-social btn-facebook show-mobilebt-fb mob-show-fb sho-fb-color hidden"  id="fbshare-mobile" href="#">
                             <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
                         </a>
                    </g:else>

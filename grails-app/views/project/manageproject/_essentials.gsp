@@ -74,7 +74,7 @@
         </span>
     </g:if>
     <g:if test="${project.draft}">
-        <div class="submitForApprovalSectionbtn" id="submitForApprovalSectionbtn">
+        <div class="submitForApprovalSectionbtn managepage-bottom-margin" id="submitForApprovalSectionbtn">
             <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                 <g:form controller="project" action="saveasdraft" id="${project.id}">
                     <g:if test="${!project.touAccepted}">

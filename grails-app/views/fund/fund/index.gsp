@@ -15,7 +15,6 @@
                     <b>Sorry ! You cannot select twitter perk as you are contributing anonymously.</b>
                 </div>
                 
-                
                 <g:if test="${project.payuStatus}">
                     <g:render template="fund/payu"/>
 				</g:if>

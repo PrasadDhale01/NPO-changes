@@ -64,7 +64,7 @@
              <div class="form-group fund-inr">
                  <div class="input-group">
                      <span class="amount input-group-addon"><g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else><span class="glyphicon glyphicon-usd"></span></g:else></span>
-                     <input class="amount form-control" id="amount" name="amount" type="text">
+                     <input class="amount form-control" id="amount" name="amount" type="text" <g:if test="${perk}">value="${perk.price.round()}"</g:if><g:else>value=""</g:else> >
                  </div>
                  <span id="errormsg"></span>
              </div>

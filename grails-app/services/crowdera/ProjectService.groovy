@@ -1530,7 +1530,7 @@ class ProjectService {
 		def currentEnv = Environment.current.getName()
 		def projects
 		if (currentEnv == 'staging' || currentEnv == 'production')
-		   projects = Project.getAll('2c9f84884d094bf3014dbc5347da000d', '2c9f848850ec466601515b0c6efd000d', '2c9f84884fc22f8b014fe7788be40003')
+		   projects = Project.getAll('2c9f84885346fbc901537e4add4d0004', '2c9f84885346fbc90153481739240000', '2c9f84884fc22f8b014fe7788be40003')
 		else
 		   projects = Project.getAll('2c9f84884d094bf3014dbc5347da000d', '2c9f848850ec4666015228cf067d0022', '2c9f8f3b4feeeee0014fefed7fae0001')
 	    return projects

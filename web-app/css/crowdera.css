@@ -1316,12 +1316,12 @@ footer .footerbottomsection {
 
 .organization-details h4 {
     margin-top: 0px;
-    padding-top: 8px;
+    padding-top: 35px;
 }
 
 .manage-organization-details h4 {
     margin-bottom: 0;
-    padding-top: 12px;
+    padding-top: 35px;
 }
 
 .manage-organization-details{
@@ -8121,12 +8121,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-bottom: 108px;
     }
     div.organization-details h4 {
-        margin-top: 5px;
+        margin-top: 0px;
         overflow:hidden;
         padding-bottom: 0;
         padding-top: 0;
-        text-overflow:ellipsis;
-        white-space:nowrap;
     }
     .fund-container{
         width:750px !important ;
@@ -8521,7 +8519,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 0;
     }
     div.manage-org-title h4{
-        margin-top: 0;      
+        margin-top: 30px;      
     }
     div.mange-tabs-font{
         font-size: 12px;
@@ -9773,6 +9771,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 	.text-center {
         line-height: 150%;
+        text-align: center;
+    }
+    .organization-details.text-center {
+        line-height: 100%;
         text-align: center;
     }
     div.crew-icons{
@@ -11394,7 +11396,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 17px;
     }
     div.organization-details h4 {
-        padding-top: 7px;
+        padding-top: 25px;
     }
 	button.show-campaign-sucess-endedbtn{
 	    font-size: 21px;

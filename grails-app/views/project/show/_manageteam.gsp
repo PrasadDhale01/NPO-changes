@@ -54,7 +54,7 @@
     		               </g:if>
 				           </g:if>
 				           <g:else>
-				               <a class="list"><span class="glyphicon glyphicon-user"></span></i> &nbsp;&nbsp;Invite Members</a>
+				               <a class="list"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members</a>
 				           </g:else>
 				       </li>
 				       <g:if test="${!isCrFrCampBenOrAdmin}">

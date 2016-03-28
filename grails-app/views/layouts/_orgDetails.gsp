@@ -18,12 +18,13 @@
                 </a>
             </g:if>
         </div>
+        <br><br>
         <g:if test="${!isPreview}">
             <g:if test="${currentFundraiser != beneficiary}">
-                <div>Fundraiser: ${currentFundraiser.firstName} ${currentFundraiser.lastName}</div>
+                <h4><b class="TW-org-title-font-size">${currentFundraiser.firstName} ${currentFundraiser.lastName}</b></h4>
             </g:if>
         </g:if>
-        <g:if test="${project.organizationName}">
+        <g:if test="${project.organizationName && currentFundraiser == beneficiary}">
             <h4><b class="TW-org-title-font-size">${project.organizationName}</b></h4>
         </g:if>
         <div class="tilesanstitletag">

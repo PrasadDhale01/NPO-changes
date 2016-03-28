@@ -824,38 +824,69 @@ class UserService {
         BankInfo bankInfo = BankInfo.findByProject(project)
         if (bankInfo) {
             boolean isbankInfoChanged = false
-            if (bankInfo.fullName != params.beneficiaryName) {
-                bankInfo.fullName= params.beneficiaryName
+            if (params.fullName != null && bankInfo.fullName != params.fullName) {
+                bankInfo.fullName= params.fullName
                 isbankInfoChanged = true
             }
-            if (bankInfo.branch != params.branch) {
+            if (params.branch != null && bankInfo.branch != params.branch) {
                 bankInfo.branch = params.branch
                 isbankInfoChanged = true
             }
-            if (bankInfo.ifscCode != params.ifscCode) {
+            if (params.ifscCode != null && bankInfo.ifscCode != params.ifscCode) {
                 bankInfo.ifscCode = params.ifscCode
                 isbankInfoChanged = true
             }
-            if (bankInfo.accountType !=  params.accountType) {
+            if (params.accountType != null && bankInfo.accountType !=  params.accountType) {
                 bankInfo.accountType=  params.accountType
                 isbankInfoChanged = true
             }
-            if (bankInfo.accountNumber != params.accountNumber) {
+            if (params.accountNumber != null && bankInfo.accountNumber != params.accountNumber) {
                 bankInfo.accountNumber= params.accountNumber
+                isbankInfoChanged = true
+            }
+            if (params.email != null && bankInfo.email != params.email) {
+                bankInfo.email= params.email
+                isbankInfoChanged = true
+            }
+            if (params.mobile != null && bankInfo.mobile != params.mobile) {
+                bankInfo.mobile= params.mobile
+                isbankInfoChanged = true
+            }
+            if (params.address1 != null && bankInfo.address1 != params.address1) {
+                bankInfo.address1= params.address1
+                isbankInfoChanged = true
+            }
+            if (bankInfo.address2 != params.address2) {
+                bankInfo.address2= params.address2
+                isbankInfoChanged = true
+            }
+            if (params.city != null && bankInfo.city != params.city) {
+                bankInfo.city= params.city
+                isbankInfoChanged = true
+            }
+            if (params.zip != null && bankInfo.zip != params.zip) {
+                bankInfo.zip = params.zip
+                isbankInfoChanged = true
+            }
+            if (params.state != null && bankInfo.state != params.state) {
+                bankInfo.state= params.state
+                isbankInfoChanged = true
+            }
+            if (params.country != null && bankInfo.country != params.country) {
+                bankInfo.country= params.country
+                isbankInfoChanged = true
+            }
+            if (params.payoutmode != null && bankInfo.payoutmode != params.payoutmode) {
+                bankInfo.payoutmode= params.payoutmode
                 isbankInfoChanged = true
             }
             if (isbankInfoChanged) {
                 bankInfo.save()
             }
         } else {
-            new BankInfo(
-                project: project,
-                fullName: params.beneficiaryName,
-                branch: params.branch,
-                ifscCode: params.ifscCode,
-                accountType: params.accountType,
-                accountNumber: params.accountNumber
-            ).save(failOnError: true)
+            bankInfo = new BankInfo(params)
+            bankInfo.project = project
+            bankInfo.save(failOnError: true)
         }
     }
     

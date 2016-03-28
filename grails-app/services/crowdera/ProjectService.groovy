@@ -1100,8 +1100,7 @@ class ProjectService {
 			TR  :   'Tripura',
 			UK  :   'Uttarakhand',
 			UP  :   'Uttar Pradesh',
-			WB  :   'West Bengal',
-			other:  'Other'
+			WB  :   'West Bengal'
 		]
 		return state
 	}

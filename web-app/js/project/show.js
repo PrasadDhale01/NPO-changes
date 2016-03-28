@@ -28,6 +28,11 @@ $(function() {
         var toptabs = $("#scrollToComment").offset().top;
         window.scrollTo(toptabs , toptabs-170);
     });
+    
+    /* Apply selectpicker to selects. */
+    $('.indianstate.selectpicker').selectpicker({
+        style: 'btn btn-sm btn-default'
+    });
 
     $('#sendmailmodal').find('form').validate({
         rules: {
@@ -175,23 +180,72 @@ $(function() {
 
     $('#paymentInfo').find('form').validate({
         rules: {
-            beneficiaryName: {
-                required: true
+        	fullName: {
+                required: true,
+                minlength: 3,
+                maxlength: 50
+            },
+            email: {
+            	required : true,
+            	minlength: 3,
+            	maxlength: 50
             },
             branch: {
-                required: true
+                required: true,
+                minlength: 3,
+                maxlength: 50
             },
             ifscCode: {
             	required: true,
-                minlength: 2
+                minlength: 2,
+                maxlength: 50
             },
             accountType: {
             	required: true,
-                minlength: 2
+                minlength: 2,
+                maxlength: 50
             },
             accountNumber: {
             	required: true,
-                minlength: 2
+                minlength: 2,
+                maxlength: 50,
+                number: true
+            },
+            payoutmode: {
+            	required: true,
+            	minlength: 2,
+            	maxlength: 50
+            },
+            mobile: {
+            	required: true,
+            	minlength: 7,
+            	maxlength: 15
+            },
+            address1: {
+            	required: true,
+            	minlength: 3,
+            	maxlength: 100
+            },
+            address2: {
+            	maxlength: 100
+            },
+            city: {
+            	required: true,
+            	maxlength: 50
+            },
+            zip: {
+            	required: true,
+            	maxlength: 50
+            },
+            state: {
+            	required: true,
+            	maxlength: 50,
+            	minlength: 2
+            },
+            country: {
+            	required: true,
+            	maxlength: 50,
+            	minlength: 2
             }
         }
     });

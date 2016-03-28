@@ -1663,3 +1663,14 @@ a.thankyou-textdeco {
 .reset-password-bottom{
     padding-bottom: 90px;
 }
+
+#indianStates .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 100%;
+    margin-bottom: 0;
+    margin-left: 3px;
+}
+.dateErrorMsg {
+    display: none;
+    color: #f04124;
+}
+

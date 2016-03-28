@@ -133,6 +133,8 @@
                                 <div class="clear"></div>
                             </div>
                             <div class="clear"></div>
+                            <div class="dateErrorMsg">Please select valid date. It should be greater than current date.</div>
+                            <input type="hidden" id="isValidDate" value="true"/>
                         </div>
                     </div>
                 </div><br>

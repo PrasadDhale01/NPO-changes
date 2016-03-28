@@ -103,6 +103,33 @@ $(function() {
             }
         }
     });
+    
+    
+    function dateValidator(value) {
+
+		var today = new Date();
+		var month = today.getMonth() + 1;
+		
+		var expiry = value.replace(/\s+/g, '').replace("/", "");
+		var inputMonth = expiry.substr(0, 2);
+		var inputYear=expiry.slice(-4);
+		var len = expiry.length;
+		var year = today.getFullYear().toString().slice(-4);
+		
+		 if (len == 6) {
+			 if (!(((inputMonth < month && inputYear > year) || (inputMonth >= month && inputYear >= year)) && inputMonth <= 12 && inputYear<=(parseInt(year)+50).toString())) {            
+				 $('.dateErrorMsg').show();
+				 return false;
+			 } else {
+				 $('.dateErrorMsg').hide();
+				 return true;
+			 }
+		 } else {
+			 $('.dateErrorMsg').show();
+		 	 return false;
+		 }
+	}
+    
 
     $('form').submit(function() {
         if($(".payment-form").valid(event)) {
@@ -154,6 +181,8 @@ $(function() {
         var year = $('#ccExpDateYear').val();
         var expiry = month + '/' + year;
         $('#citrusExpiry').val(expiry);
+        var isValidDate = dateValidator(expiry);
+        $('#isValidDate').val(isValidDate);
     });
 
     $('#ccExpDateYear').change(function() {
@@ -161,6 +190,8 @@ $(function() {
         var month = $('#ccExpDateMonth').val();
         var expiry = month + '/' + year;
         $('#citrusExpiry').val(expiry);
+        var isValidDate = dateValidator(expiry);
+        $('#isValidDate').val(isValidDate);
     });
 
     $('#billToState').change(function() {

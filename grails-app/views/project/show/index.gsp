@@ -833,6 +833,22 @@
                           </g:if>
                       </g:if>
                       
+                      <g:if test="${project.hashtags}">
+                          <h3 class="moretags-tabs visible-xs"><b>More tags</b></h3>
+                          <g:if test="${project.validated}">
+                              <p class="moretags-tabs visible-xs">
+                                  <g:each in="${hashtagsList}" var="hashtag">
+                                      <g:link class="searchablehastag" controller="project" action="search" params="['q': hashtag]">${hashtag}</g:link>
+                                  </g:each>
+                              </p>
+                          </g:if>
+                          <g:else>
+                              <p class="moretags-tabs visible-xs">
+                                  ${project.hashtags}
+                              </p>
+                          </g:else>
+                      </g:if>
+                      
                       <g:if test="${reasons && (reasons.reason1 || reasons.reason2 || reasons.reason3)}">
                           <div class="modal-footer tile-footer perks-style reasons-title">
                               <h2 class="rewardsectionheading text-center">3 Reasons to Fund Our Campaign</h2>
@@ -907,21 +923,7 @@
                           </g:if>
                       </div>
                       
-                      <g:if test="${project.hashtags}">
-                          <h3 class="moretags-tabs visible-xs"><b>#Tags</b></h3>
-                          <g:if test="${project.validated}">
-                              <p class="moretags-tabs visible-xs">
-                                  <g:each in="${hashtagsList}" var="hashtag">
-                                      <g:link class="searchablehastag" controller="project" action="search" params="['q': hashtag]">${hashtag}</g:link>
-                                  </g:each>
-                              </p>
-                          </g:if>
-                          <g:else>
-                              <p class="moretags-tabs visible-xs">
-                                  ${project.hashtags}
-                              </p>
-                          </g:else>
-                      </g:if>
+                      
 				      
                       <div class="visible-xs sh-comments-align">
                           <div id="comment-mobile">

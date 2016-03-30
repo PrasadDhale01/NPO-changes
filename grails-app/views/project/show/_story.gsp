@@ -114,6 +114,24 @@
             <p class="campaignStory justify">${raw(project.story)}</p>
         </g:else>
         
+        <div class="show-tags-topbottom">
+	         <g:if test="${!remainingHashTags.isEmpty()}">
+	            <h4 class="moretags-desktop col-lg-3 col-sm-3 col-md-3 tags-managepagewidth"><b>More tags:</b></h4>
+	            <p class="moretags-desktop col-lg-9 col-sm-9 col-md-9">
+	                <g:each in="${remainingHashTags}" var="hashtag">
+	                    <g:link class="searchablehastag" controller="project" action="search" params="['q': hashtag]">${hashtag}</g:link>
+	                </g:each>
+	            </p>
+	        </g:if>
+	        <g:if test="${!remainingHashTagsTab.isEmpty()}">
+	            <h4 class="moretags-tabs col-lg-3 col-sm-3 col-md-3 tags-managepagewidth"><b>More tags:</b></h4>
+	            <p class="moretags-tabs col-lg-9 col-sm-9 col-md-9">
+	                 <g:each in="${remainingHashTagsTab}" var="hashtag">
+	                    <g:link class="searchablehastag" controller="project" action="search" params="['q': hashtag]">${hashtag}</g:link>
+	                </g:each>
+	            </p>
+	        </g:if>
+        </div>
         <g:if test="${spendCauseList && spendAmountPerList}">
              <h4><b>Campaign money will be used as</b></h4>
              <div id="chart-container">
@@ -126,22 +144,7 @@
              <script src="/js/raphel-pie/g.pie.js"></script>
         </g:if>
         
-        <g:if test="${!remainingHashTags.isEmpty()}">
-            <h3 class="moretags-desktop"><b>#Tags</b></h3>
-            <p class="moretags-desktop">
-                <g:each in="${remainingHashTags}" var="hashtag">
-                    <g:link class="searchablehastag" controller="project" action="search" params="['q': hashtag]">${hashtag}</g:link>
-                </g:each>
-            </p>
-        </g:if>
-        <g:if test="${!remainingHashTagsTab.isEmpty()}">
-            <h3 class="moretags-tabs"><b>#Tags</b></h3>
-            <p class="moretags-tabs">
-                 <g:each in="${remainingHashTagsTab}" var="hashtag">
-                    <g:link class="searchablehastag" controller="project" action="search" params="['q': hashtag]">${hashtag}</g:link>
-                </g:each>
-            </p>
-        </g:if>
+       
         
         <br/>
         <g:if test="${!isvalidateShow}">

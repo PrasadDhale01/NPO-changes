@@ -219,7 +219,7 @@ $(function() {
                     if(isIndianCampaign) {
                         return 99999999;
                     } else {
-                        return 100000;
+                        return 200000;
                     }
                 }
             },
@@ -238,7 +238,7 @@ $(function() {
                     if(isIndianCampaign) {
                         return 99999999;
                     } else {
-                        return 100000;
+                        return 200000;
                     }
                 }
             }
@@ -3288,7 +3288,7 @@ $(function() {
         .hover(showPopover, hidePopover);
 
         $('.amountInfo-img').popover({
-            content: 'Maximum $100,000, If you want to raise more contact our Crowdfunding Expert.',
+            content: 'Maximum $200,000, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
             placement: 'bottom'
         })

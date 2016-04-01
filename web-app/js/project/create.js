@@ -2696,10 +2696,16 @@ $(function() {
                 }).error(function(){
                 });
             }else{
+                $(this).val(prjCategory);
+                var dd = $('.cr-start-dropdown-category').find('.selectpicker');
+                dd.prop('title', prjCategory);
+                dd.find('.filter-option').text(prjCategory);
             }
         }else{
+            var selectedCategory = $(this).val();
             var grid = $('.cr-panel-impact-analysis');
             changeHashTags();
+            $.ajax({
                 type:'post',
                 url:$('#b_url').val()+'/project/getImpactText',
                 data:'selectedCategory='+selectedCategory+'&projectId='+projectId,

@@ -74,12 +74,12 @@ $(function() {
                 this.code.set(storyPlaceholder);
             }
 
-            var that = this;
-            setInterval(function() {
+            //var that = this;
+            //setInterval(function() {
             	// you get code from Redactor
-                var story = that.code.get();
-                autoSave('story', story);
-            }, 5000);
+                //var story = that.code.get();
+               // autoSave('story', story);
+            //}, 5000);
 
         },focusCallback: function(){
             $(".cr-story-padding .redactor-box .redactor-editor").toggleClass("redactor-animate", true, 100000);

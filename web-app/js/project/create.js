@@ -2678,18 +2678,37 @@ $(function() {
    });
 
     $('#category').change(function(){
-        var selectedCategory = $(this).val();
-        var grid = $('.cr-panel-impact-analysis');
-        changeHashTags();
-        $.ajax({
-           type:'post',
-           url:$('#b_url').val()+'/project/getImpactText',
-           data:'selectedCategory='+selectedCategory+'&projectId='+projectId,
-           success: function(data){
-               $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
-           }
-       }).error(function(){
-       });
+    	var prjCategory = $('#prjCategory').val();
+        var path = window.location.pathname;
+        if(path.contains('campaign/edit')){
+        	if(confirm("Changing the category will reset your Impact Assessment..! Do you still wish to change it ?")){
+        		var selectedCategory = $(this).val();
+        		$('#prjCategory').val(selectedCategory);
+                var grid = $('.cr-panel-impact-analysis');
+                changeHashTags();
+        		$.ajax({
+                    type:'post',
+                    url:$('#b_url').val()+'/project/getImpactText',
+                    data:'selectedCategory='+selectedCategory+'&projectId='+projectId,
+                    success: function(data){
+                        $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+                    }
+                }).error(function(){
+                });
+            }else{
+            }
+        }else{
+            var grid = $('.cr-panel-impact-analysis');
+            changeHashTags();
+                type:'post',
+                url:$('#b_url').val()+'/project/getImpactText',
+                data:'selectedCategory='+selectedCategory+'&projectId='+projectId,
+                success: function(data){
+                    $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+                }
+            }).error(function(){
+            });
+        }
     });
 
     $('#country').change(function(){
@@ -2706,6 +2725,7 @@ $(function() {
                 url:$("#b_url").val()+'/project/getCountryVal',
                 data:'country='+selectedCountry+'&projectId='+projectId,
                 success: function(data) {
+                	alert(data);
                    $('#selectedCountry').val(data);
                    changeHashTags();
                 }

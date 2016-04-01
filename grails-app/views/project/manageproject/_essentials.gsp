@@ -173,6 +173,25 @@
     </div>
     <p class="campaignStory justify">${raw(project.story)}</p>
     
+    <div class="hidden-xs manage-tags-topbottom">
+        <g:if test="${remainingTagsDesktop}">
+            <h4 class="moretags-desktop col-lg-3 col-sm-3 col-md-3 tags-managepagewidth"><b>More tags:</b></h4>
+            <p class="moretags-desktop col-lg-9 col-sm9 col-md-9">${remainingTagsDesktop}</p>
+        </g:if>
+        <g:if test="${remainingTagsTabs}">
+            <h4 class="moretags-tabs col-lg-3 col-sm-3 col-md-3 tags-managepagewidth"><b>More tags:</b></h4>
+            <p class="moretags-tabs col-lg-9 col-sm-9 col-md-9">${remainingTagsTabs}</p>
+        </g:if>
+    </div>
+   
+    <br>
+    <div class="visible-xs">
+        <g:if test="${project.hashtags}">
+            <h3 class="moretags-tabs"><b>#More tags</b></h3>
+            <p class="moretags-tabs">${project.hashtags}</p>
+        </g:if>
+    </div>
+    
     <g:if test="${spendCauseList && spendAmountPerList}">
         <h4><b>Campaign money will be used as</b></h4>
         <div id="chart-container">
@@ -186,16 +205,7 @@
         <script src="/js/raphel-pie/g.pie.js"></script>
     </g:if>
     
-    <div class="hidden-xs">
-        <g:if test="${remainingTagsDesktop}">
-            <h3 class="moretags-desktop"><b>#Tags</b></h3>
-            <p class="moretags-desktop">${remainingTagsDesktop}</p>
-        </g:if>
-        <g:if test="${remainingTagsTabs}">
-            <h3 class="moretags-tabs"><b>#Tags</b></h3>
-            <p class="moretags-tabs">${remainingTagsTabs}</p>
-        </g:if>
-    </div>
+    
     
 </div>
 
@@ -250,13 +260,7 @@
         </g:if>
     </g:if>
     
-    <br>
-    <div class="visible-xs">
-        <g:if test="${project.hashtags}">
-            <h3 class="moretags-tabs"><b>#Tags</b></h3>
-            <p class="moretags-tabs">${project.hashtags}</p>
-        </g:if>
-    </div>
+    
 </div>
 
 <%--   Embed modal--%>

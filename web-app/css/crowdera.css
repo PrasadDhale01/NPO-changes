@@ -8353,6 +8353,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    h4.tags-managepagewidth {
+        width: 24%;
+    }
     div.reset-password-bottom {
         padding-bottom: 122px;
     }
@@ -9951,6 +9954,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     .moretags-tabs{
         display:block;
+        padding: 0;
     }
     .remaining-hashtags-tabs{
         display:inline;
@@ -10023,6 +10027,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     .moretags-desktop{
         display:block;
+        padding: 0;
     }
     .moretags-tabs{
         display:none;

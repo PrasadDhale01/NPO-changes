@@ -16,6 +16,7 @@
 	}
 	.moretags-desktop{
 	   display:block;
+	   padding: 0;
 	}
 	.moretags-tabs{
 	   display:none;

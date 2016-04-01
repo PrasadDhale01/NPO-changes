@@ -1663,3 +1663,14 @@ a.thankyou-textdeco {
 .reset-password-bottom{
     padding-bottom: 90px;
 }
+.tags-managepagewidth {
+    width: 17%;
+}
+.manage-tags-topbottom {
+    padding-bottom: 42px;
+    padding-top: 10px;
+}
+.show-tags-topbottom{
+    padding-bottom: 65px;
+    padding-top: 10px;
+}

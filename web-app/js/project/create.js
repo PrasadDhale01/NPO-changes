@@ -2731,7 +2731,6 @@ $(function() {
                 url:$("#b_url").val()+'/project/getCountryVal',
                 data:'country='+selectedCountry+'&projectId='+projectId,
                 success: function(data) {
-                	alert(data);
                    $('#selectedCountry').val(data);
                    changeHashTags();
                 }

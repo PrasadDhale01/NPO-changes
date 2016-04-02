@@ -466,7 +466,7 @@ $(function() {
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
         
-        $('form').submit(function(){
+        $('#btnChargeContinue').click(function(){
             if($('.chargeForms').valid()) {
                 $('#btnChargeContinue').attr('disabled','disabled');
             }

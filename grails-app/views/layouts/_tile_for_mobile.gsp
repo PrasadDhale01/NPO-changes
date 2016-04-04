@@ -37,15 +37,21 @@
             <img src="//s3.amazonaws.com/crowdera/assets/ended-tag.png" alt="Ended">
         </div>
     </g:elseif>
-    <div class="blacknwhite tile">
-        <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">
-            <div class="imageWithTag">
-                <div class="under">
-                    <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}">
-                </div>
-            </div>
-        </g:link>
+    
+<%--    <div class="blacknwhite tile">--%>
+<%--        <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">--%>
+<%--            <div class="imageWithTag">--%>
+<%--                <div class="under">--%>
+<%--                    <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}">--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </g:link>--%>
+<%--    </div>--%>
+
+    <div class="blacknwhite campaignupdatedimages pull-left" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
+        <g:render template="/project/manageproject/showmobilecarouselimage" model="['images': projectimages]"/>
     </div>
+    <br>
 
     <div class="caption tile-title-descrp project-title project-story-span tile-min-height">
         <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}">

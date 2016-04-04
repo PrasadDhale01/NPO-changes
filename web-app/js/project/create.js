@@ -2678,18 +2678,43 @@ $(function() {
    });
 
     $('#category').change(function(){
-        var selectedCategory = $(this).val();
-        var grid = $('.cr-panel-impact-analysis');
-        changeHashTags();
-        $.ajax({
-           type:'post',
-           url:$('#b_url').val()+'/project/getImpactText',
-           data:'selectedCategory='+selectedCategory+'&projectId='+projectId,
-           success: function(data){
-               $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
-           }
-       }).error(function(){
-       });
+    	var prjCategory = $('#prjCategory').val();
+        var path = window.location.pathname;
+        if(path.contains('campaign/edit')){
+        	if(confirm("Changing the category will reset your Impact Assessment..! Do you still wish to change it ?")){
+        		var selectedCategory = $(this).val();
+        		$('#prjCategory').val(selectedCategory);
+                var grid = $('.cr-panel-impact-analysis');
+                changeHashTags();
+        		$.ajax({
+                    type:'post',
+                    url:$('#b_url').val()+'/project/getImpactText',
+                    data:'selectedCategory='+selectedCategory+'&projectId='+projectId,
+                    success: function(data){
+                        $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+                    }
+                }).error(function(){
+                });
+            }else{
+                $(this).val(prjCategory);
+                var dd = $('.cr-start-dropdown-category').find('.selectpicker');
+                dd.prop('title', prjCategory);
+                dd.find('.filter-option').text(prjCategory);
+            }
+        }else{
+            var selectedCategory = $(this).val();
+            var grid = $('.cr-panel-impact-analysis');
+            changeHashTags();
+            $.ajax({
+                type:'post',
+                url:$('#b_url').val()+'/project/getImpactText',
+                data:'selectedCategory='+selectedCategory+'&projectId='+projectId,
+                success: function(data){
+                    $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+                }
+            }).error(function(){
+            });
+        }
     });
 
     $('#country').change(function(){

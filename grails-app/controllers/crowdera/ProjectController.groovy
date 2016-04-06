@@ -174,6 +174,7 @@ class ProjectController {
 			def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
 			
             User user = userService.getUserByUsername(username)
+            def projectimages = projectService.getProjectImageLinks(project)
 			def currentUser = userService.getCurrentUser()
 			def currentEnv = projectService.getCurrentEnvironment()
 			def currentFundraiser = userService.getCurrentFundRaiser(user, project)
@@ -260,7 +261,7 @@ class ProjectController {
                     isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier,
                     spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, reasons:reasons,
                     isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
-                    remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList])
+                    remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList, projectimages: projectimages])
 		} else {
 			render(view: '/404error', model: [message: 'This campaign does not exist.'])
 		}
@@ -1285,13 +1286,12 @@ class ProjectController {
     def sendupdateemail() {
         def fundRaiser = params.fr
         def updateId = projectService.getProjectUpdateById(params.projectUpdateId)
-        
         projectService.shareupdateemail(params,fundRaiser,updateId)
         flash.prj_mngprj_message= "Email sent successfully."
         if (params.ismanagepage) {
-            redirect(controller: 'project', action: 'manageproject', params:['projectTitle': params.vanityTitle])
+            redirect(controller: 'project', action: 'manageproject', params:['projectTitle': params.vanityTitle], fragment:'projectupdates')
         } else {
-            redirect (action: 'show', params:[fr: params.vanityUsername, 'projectTitle': params.vanityTitle])
+            redirect (action: 'show', params:[fr: params.vanityUsername, 'projectTitle': params.vanityTitle], fragment:'projectupdates')
         }
     }
 

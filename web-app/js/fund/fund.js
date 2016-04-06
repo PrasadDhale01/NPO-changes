@@ -466,18 +466,18 @@ $(function() {
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
         
-        $('#btnChargeContinue').click(function(){
-            if($('.chargeForms').valid()) {
-                $('#btnChargeContinue').attr('disabled','disabled');
-            }
-        });
-        
-        $('#btnCheckoutContinue').click(function(){
-          if($('.checkoutForm').valid()) {
-              $('#btnCheckoutContinue').attr('disabled','disabled');
-          }
-        });
-       
+//        $('#btnChargeContinue').click(function(){
+//            if($('.chargeForms').valid()) {
+//                $('#btnChargeContinue').attr('disabled','disabled');
+//            }
+//        });
+//        
+//        $('#btnCheckoutContinue').click(function(){
+//          if($('.checkoutForm').valid()) {
+//              $('#btnCheckoutContinue').attr('disabled','disabled');
+//          }
+//        });
+//       
         $("form").on("blur", ".addr1", function () {
         	var address1 = $(this).val();
         	$('#addr1').val(address1);

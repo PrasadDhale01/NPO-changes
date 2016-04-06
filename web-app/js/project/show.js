@@ -1326,6 +1326,14 @@ function showNavigation(){
 	var updateIndicator = document.getElementById('updateindicators');
 	var updateNav= document.getElementById('updatenavigators');
 	
+	var mobileIndicators = document.getElementById('showmobileindicators');
+	var mobileNavigators =document.getElementById('showmobilenavigators');
+	
+	if(mobileIndicators!=null && mobileNavigators!=null){
+		document.getElementById('showmobileindicators').style.display = 'block';
+		document.getElementById('showmobilenavigators').style.display = 'block';
+	}
+	
 	if(indicator!=null && nav!=null){
 		document.getElementById('indicators').style.display = 'block';
 		document.getElementById('navigators').style.display = 'block';
@@ -1342,6 +1350,14 @@ function hideNavigation(){
 	var updateIndicator = document.getElementById('updateindicators');
 	var updateNav= document.getElementById('updatenavigators');
 	
+	var mobileIndicators = document.getElementById('showmobileindicators');
+	var mobileNavigators =document.getElementById('showmobilenavigators');
+	
+	if(mobileIndicators!=null && mobileNavigators!=null){
+		document.getElementById('showmobileindicators').style.display = 'none';
+		document.getElementById('showmobilenavigators').style.display = 'none';
+	}
+	
 	if(indicator!=null && nav!=null){
 		document.getElementById('indicators').style.display = 'none';
 		document.getElementById('navigators').style.display = 'none';
@@ -1350,5 +1366,5 @@ function hideNavigation(){
 	if(updateIndicator!=null && updateNav!=null){
 		document.getElementById('updateindicators').style.display = 'none';
 		document.getElementById('updatenavigators').style.display = 'none';
-	}	
+	}		
 }

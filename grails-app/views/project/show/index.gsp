@@ -177,7 +177,15 @@
                 </g:if>
                 
                 
+                <g:if test="${currentFundraiser != beneficiary}">
+                    <div class="col-xs-12 visible-xs text-center">
+                        <label class="text-center">Fundraiser : </label>
+                            <h5><b class="text-center">${currentFundraiser.firstName} ${currentFundraiser.lastName}</b></h5>
+                    </div>
+                </g:if>
+                
                 <div class="col-xs-12 col-md-4 mobileview-top sh-mobiles-top campaign-tile-xs">
+                  
                     <div class="visible-xs">
                         <g:render model="['project': project]" template="/layouts/tile_for_mobile"></g:render>
                     </div>

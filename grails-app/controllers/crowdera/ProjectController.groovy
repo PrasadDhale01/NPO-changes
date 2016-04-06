@@ -7,6 +7,8 @@ import groovyx.net.http.ContentType
 import groovyx.net.http.HTTPBuilder
 import groovyx.net.http.Method
 
+import java.text.SimpleDateFormat
+
 import javax.servlet.http.Cookie
 
 import org.apache.http.HttpEntity
@@ -16,7 +18,6 @@ import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.util.EntityUtils
-import org.apache.jasper.compiler.Generator.FragmentHelperClass.Fragment;
 import org.apache.poi.ss.usermodel.Workbook
 import org.apache.poi.ss.usermodel.WorkbookFactory
 import org.codehaus.groovy.grails.web.json.JSONObject
@@ -694,6 +695,16 @@ class ProjectController {
             def beneficiary = userService.getBeneficiaryByParams(params)
             def user = userService.getCurrentUser()
             project.draft = true;
+            
+            
+            //Send draft creation email to info@crowdera.co
+            def currentEnv = projectService.getCurrentEnvironment()
+            if(currentEnv == 'production' || currentEnv== 'prodIndia'){
+                def base_url= grailsApplication.config.crowdera.BASE_URL
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                mandrillService.sendDraftInfoEmail(params.title, user, base_url, dateFormat.format(project.created) )
+            }
+            
             project.beneficiary = beneficiary;
             project.beneficiary.email = user.email;
 
@@ -709,7 +720,6 @@ class ProjectController {
 
 		    project.usedFor = params.usedFor;
 
-            def currentEnv = projectService.getCurrentEnvironment()
             if (currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
                 project.payuStatus = true
             }

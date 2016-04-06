@@ -11,7 +11,6 @@
             def url = request.getHeader('referer')
             def currentEnv = projectService.getCurrentEnvironment()
         %>
-        <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 mobile-img-error">
                 <img alt="web-error" src="//s3.amazonaws.com/crowdera/assets/web-image-1.jpg">
             </div>
@@ -19,13 +18,10 @@
                 <div class="error-title-color401">${message}</div>
                 <h6 class="error-autorizedmsz">Click <a href="${url}" id="previousUrl">here</a> to go back to previous page.</h6>
             </div>
-        </g:if>
-        <g:else>
-	        <h1>Error</h1>
-	        <div class="alert alert-danger">
-	            Sorry, you're not authorized to view this page.
-	        </div>
-        </g:else>
+<%--	        <h1>Error</h1>--%>
+<%--	        <div class="alert alert-danger">--%>
+<%--	            Sorry, you're not authorized to view this page.--%>
+<%--	        </div>--%>
     </div>
 </div>
 <script>

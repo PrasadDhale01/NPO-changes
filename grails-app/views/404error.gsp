@@ -13,7 +13,6 @@
         def currentEnv = projectService.getCurrentEnvironment()
     %>
    
-    <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
         <div class="error-img">
 	        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 mobile-img-error">
 	            <img alt="web-error" src="//s3.amazonaws.com/crowdera/assets/web-image-1.jpg">
@@ -27,13 +26,10 @@
                 </g:else>
             </div>
         </div>
-    </g:if>
-    <g:else>
-        <h1>Error</h1>
-        <div class="alert alert-danger">
-            Page not found.
-        </div>
-    </g:else>
+<%--        <h1>Error</h1>--%>
+<%--        <div class="alert alert-danger">--%>
+<%--            Page not found.--%>
+<%--        </div>--%>
     </div>
 </div>
 <script>

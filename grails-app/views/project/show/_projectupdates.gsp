@@ -35,7 +35,6 @@
                     </div>
                     <div class="modal-body">
                         <g:hiddenField name="amount" value="${project.amount}" />
-                        <g:hiddenField name="ismanagepage" value="managepage" />
                         <g:hiddenField name="fr" value="${fundRaiser}" />
                         <g:hiddenField name="vanityTitle" value="${vanityTitle}"/>
                         <g:hiddenField name="projectUpdateId"/>

@@ -32,6 +32,7 @@
                                     <ul class="quicklinks-menu">
                                         <li><a href="${resource(dir: '/')}">Home</a></li>
                                         <li><a href="${resource(dir: '/aboutus')}">About Us</a></li>
+                                        <li><a href="${resource(dir: '/careers')}" >Careers</a></li>
                                         <li><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></li>
                                         <li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
                                         <li><a href="http://gocrowdera.com" target="_blank">Blog</a></li>
@@ -136,6 +137,7 @@
             <ul>
                 <li><a href="${resource(dir: '/')}">Home</a></li>   
                 <li><a href="${resource(dir: '/aboutus')}">About Us</a></li>
+                <li><a href="${resource(dir: '/careers')}" >Careers</a></li>
                 <li><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></li>
                 <li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
                 <li><a href="http://gocrowdera.com" target="_blank">Blog</a></li>
@@ -254,6 +256,7 @@
             <ul>
                 <li><a href="${resource(dir: '/')}">Home</a></li>
                 <li><a href="${resource(dir: '/aboutus')}">About Us</a></li>
+                <li><a href="${resource(dir: '/careers')}" >Careers</a></li>
                 <li><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></li>
                 <li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
                 <li><a href="http://gocrowdera.com" target="_blank">Blog</a></li>

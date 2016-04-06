@@ -5606,6 +5606,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.crew-scripts {
+        color: #fff;
+        margin: 5px auto 0;
+        width: 91%;
+    }
     a.fixCarousel{
         margin-bottom: 166px !important;
         margin-top: 84px !important;

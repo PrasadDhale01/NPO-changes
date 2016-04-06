@@ -1286,13 +1286,12 @@ class ProjectController {
     def sendupdateemail() {
         def fundRaiser = params.fr
         def updateId = projectService.getProjectUpdateById(params.projectUpdateId)
-        
         projectService.shareupdateemail(params,fundRaiser,updateId)
         flash.prj_mngprj_message= "Email sent successfully."
         if (params.ismanagepage) {
-            redirect(controller: 'project', action: 'manageproject', params:['projectTitle': params.vanityTitle])
+            redirect(controller: 'project', action: 'manageproject', params:['projectTitle': params.vanityTitle], fragment:'projectupdates')
         } else {
-            redirect (action: 'show', params:[fr: params.vanityUsername, 'projectTitle': params.vanityTitle])
+            redirect (action: 'show', params:[fr: params.vanityUsername, 'projectTitle': params.vanityTitle], fragment:'projectupdates')
         }
     }
 

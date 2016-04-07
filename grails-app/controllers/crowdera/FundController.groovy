@@ -43,7 +43,7 @@ class FundController {
         if (projectId) {
             project = Project.findById(projectId)
         }
-
+        def team = userService.getTeamByUser(fundraiser, project)
 		def reward = (params.rewardId) ? rewardService.getRewardById(params.long('rewardId')) : rewardService.getNoReward()
 		def perk = rewardService.getRewardById(params.long('rewardId'))
 
@@ -63,9 +63,9 @@ class FundController {
                 def key = grailsApplication.config.crowdera.PAYU.KEY
                 def salt = grailsApplication.config.crowdera.PAYU.SALT
                 def service_provider = "payu_paisa"
-                render view: 'fund/index', model: [project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, key:key, salt:salt, service_provider:service_provider]
+                render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, key:key, salt:salt, service_provider:service_provider]
             } else {
-                render view: 'fund/index', model: [project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo]
+                render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo]
             }
         
         }

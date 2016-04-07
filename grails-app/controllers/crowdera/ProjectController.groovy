@@ -281,7 +281,7 @@ class ProjectController {
                                isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
                                remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList, projectimages: projectimages])
                }else{
-                  render(view: '/404error', model: [message: 'This campaign under process.'])
+                  render(view: '/404error', model: [message: 'This campaign is under process.'])
                }
             } 
 		} else {

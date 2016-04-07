@@ -813,6 +813,11 @@ class MandrillService {
     
     public def sendDraftInfoEmail(def prjTitle, User user, def domainName, def draftDate) {
         def emailList=['info@crowdera.co', 'minal@crowdera.co', 'himanchan@crowdera.co']
+        if(domainName=='production'){
+            domainName='crowdera.co'
+        }else{
+            domainName='crowdera.in'
+        }
         emailList.each{ email ->
             def globalMergeVars = [[
                 'name': 'TITLE',

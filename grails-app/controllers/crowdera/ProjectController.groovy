@@ -249,7 +249,7 @@ class ProjectController {
             def reasons = projectService.getReasonsToFundFromProject(project)
             def isDeviceMobileOrTab = isDeviceMobileOrTab();
             
-            if(currentUser && (project.draft || project.validated==false)){
+            if((currentUser == project.user) && (project.draft || project.validated==false)){
                 render (view: 'show/index',
                 model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, 
                         isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,

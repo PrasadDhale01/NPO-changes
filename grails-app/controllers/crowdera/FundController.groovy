@@ -43,7 +43,8 @@ class FundController {
         if (projectId) {
             project = Project.findById(projectId)
         }
-        def team = userService.getTeamByUser(fundraiser, project)
+        
+          def team = userService.getTeamByUser(fundraiser, project)
 		def reward = (params.rewardId) ? rewardService.getRewardById(params.long('rewardId')) : rewardService.getNoReward()
 		def perk = rewardService.getRewardById(params.long('rewardId'))
 

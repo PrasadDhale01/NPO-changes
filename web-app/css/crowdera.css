@@ -3109,7 +3109,7 @@ ul.menu{
 	margin-bottom:8px;
 }
 .pan{
-	height: 100px;
+	height: 110px;
 	overflow: hidden;
 /* 	display: table-cell; */
 	word-wrap: break-word;
@@ -3299,13 +3299,13 @@ p.anonymous-top {
 }
 .team-caption{
 	background: black;
-	height:45px;
-	padding:15px;
+	height:55px;
+	padding:8px;
 	text-align:center;
 	color:#ffffff;
 	font-family:Open Sans;
 	position:absolute;
-	top:78%;
+	top:73%;
 	left:0px;
 	overflow:hidden;
 	opacity: 0.7;
@@ -5606,6 +5606,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	span.ft-mobiles-padding {
+        padding-left: 53px;
+    }
+    span.ft-mobile-contacts {
+        left: 36px;
+    }
+    div.ft-mobile-contacts {
+        left: 36px;
+    }
     div.crew-scripts {
         color: #fff;
         margin: 5px auto 0;
@@ -7944,6 +7953,29 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+    div.show-fundrasier-namepadding > h5 {
+        font-size: 12px;
+        padding-left: 0;
+        padding-top: 2px;
+        margin-left: 10px;
+    }
+    div.show-tab-imgfundraiser {
+        padding: 0;
+    }
+    div.show-fundrasier-namepadding {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    div.show-team-prfl {
+        top: -20px;
+    }
+    div.ft-payment-img {
+        left: 119px;
+    }
+    div.secure-payment-footer-ft {
+        padding-left: 37px;
+        margin-top: -6px;
+    }
     div.ack-panel-perks h4 {
         font-size: 14px;
     }
@@ -8358,6 +8390,28 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    
+    div.ft-top-tabs-terms{
+        top: 15px;
+    }
+    span.ft-contact-indiafont {
+        font-size: 13px;
+        left: -15px;
+        width: 191px;
+        padding-bottom: 15px;
+    }
+    span.ft-contact-indiafontabs{
+        font-size: 13px;
+        left: -15px;
+        width: 250px;
+        padding-bottom: 15px;
+    }
+    div.contact-details {
+        padding-bottom: 25px;
+    }
+    span.ft-tabs-padding {
+        font-size: 13px;
+    }
     h4.tags-managepagewidth {
         width: 24%;
     }
@@ -11222,6 +11276,28 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	div.show-fundrasier-namepadding > h5 {
+        font-size: 12px;
+        padding-left: 5px;
+        padding-top: 2px;
+    }
+    div.show-tab-imgfundraiser {
+        padding: 0;
+    }
+    div.show-fundrasier-namepadding {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    div.show-team-prfl {
+        top: 14px;
+    }
+	div.ft-payment-img {
+        left: 119px;
+    }
+    div.secure-payment-footer-ft {
+        padding-left: 35px;
+        margin-top: -6px;
+    }
     div.ack-panel-perks h4 {
         font-size: 14px;
     }
@@ -11462,7 +11538,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   width: 50px !important;
 	}
 	b.TW-org-title-font-size{
-		font-size:16px;
+		font-size:12px;
 	}
 /* 	.TW-org-panel-height{ */
 /* 		height:124px; */
@@ -11704,6 +11780,17 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+    span.ft-contact-indiafont {
+        padding-bottom: 15px;
+    }
+    span.ft-contact-indiafontabs{
+        padding-bottom: 15px;
+    }
+    div.secure-payment-footer-ft {
+        left: -103px;
+        padding-left: 0;
+        margin-top: -6px;
+    }
     a.show-tabs-text {
         font-size: 14px;
     }
@@ -13836,6 +13923,10 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (max-width: 479px){
+    button.projectedit.close {
+        margin-left: 15px;
+        padding-right: 12px;
+    }
     .table-xs-left, .btn-xs-width{
         margin-left: 6px;
     }
@@ -14773,6 +14864,15 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    span.ft-mobiles-padding {
+        padding-left: 53px;
+    }
+    span.ft-mobile-contacts {
+        left: 36px;
+    }
+    div.ft-mobile-contacts {
+        left: 36px;
+    }
 	a.fixCarousel{
         margin-bottom: 166px !important;
         margin-top: 84px !important;

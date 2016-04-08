@@ -199,7 +199,7 @@ class ProjectController {
 			List totalContributions = []
 
 			/*Send feedback email before campaign end date */
-			projectService.sendFeedbackEmailToOwners(project, base_url)
+			//projectService.sendFeedbackEmailToOwners(project, base_url)
 
 			if (project.user == currentTeam.user) {
 				def contribution = projectService.getProjectContributions(params, project)
@@ -249,20 +249,41 @@ class ProjectController {
             def reasons = projectService.getReasonsToFundFromProject(project)
             def isDeviceMobileOrTab = isDeviceMobileOrTab();
             
-            render (view: 'show/index',
-            model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, 
-                    isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
-                    totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, 
-                    contributions: contributions, webUrl: webUrl, teamComments: teamComments, totalContributions:totalContributions,
-                    teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, 
-                    CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
-                    isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, 
-                    isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,
-                    isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: vanityUsername, FORMCONSTANTS: FORMCONSTANTS, 
-                    isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier,
-                    spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, reasons:reasons,
-                    isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
-                    remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList, projectimages: projectimages])
+            if((currentUser == project.user) && (project.draft || project.validated==false)){
+                render (view: 'show/index',
+                model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, 
+                        isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
+                        totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, 
+                        contributions: contributions, webUrl: webUrl, teamComments: teamComments, totalContributions:totalContributions,
+                        teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, 
+                        CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
+                        isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, 
+                        isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,
+                        isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: vanityUsername, FORMCONSTANTS: FORMCONSTANTS, 
+                        isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier,
+                        spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, reasons:reasons,
+                        isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
+                        remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList, projectimages: projectimages])
+            }else{
+               if(project.validated){
+                   render (view: 'show/index',
+                       model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate,
+                               isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
+                               totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution,
+                               contributions: contributions, webUrl: webUrl, teamComments: teamComments, totalContributions:totalContributions,
+                               teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day,
+                               CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
+                               isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,
+                               isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,
+                               isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: vanityUsername, FORMCONSTANTS: FORMCONSTANTS,
+                               isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier,
+                               spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, reasons:reasons,
+                               isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
+                               remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList, projectimages: projectimages])
+               }else{
+                  render(view: '/404error', model: [message: 'This campaign is under process.'])
+               }
+            } 
 		} else {
 			render(view: '/404error', model: [message: 'This campaign does not exist.'])
 		}
@@ -702,7 +723,7 @@ class ProjectController {
             if(currentEnv == 'production' || currentEnv== 'prodIndia'){
                 def base_url= grailsApplication.config.crowdera.BASE_URL
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-                mandrillService.sendDraftInfoEmail(params.title, user, base_url, dateFormat.format(project.created) )
+                mandrillService.sendDraftInfoEmail(params.title, user, currentEnv, dateFormat.format(project.created) )
             }
             
             project.beneficiary = beneficiary;

@@ -1674,3 +1674,25 @@ a.thankyou-textdeco {
     padding-bottom: 65px;
     padding-top: 10px;
 }
+.contact-details {
+    padding-bottom: 15px;
+    padding-left: 30px;
+}
+.footer-logopaddin {
+    padding-right: 15px;
+}
+.footer-last-section-links {
+    padding-left: 0;
+}
+.ft-payment-img{
+    left: 223px;
+}
+.show-team-prfl {
+    top: 23px;
+}
+.show-fundrasier-namepadding{
+    padding-top: 7px;
+}
+.show-fundrasier-namepadding > h5 {
+    text-align: left;
+}

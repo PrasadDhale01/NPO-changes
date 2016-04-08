@@ -199,7 +199,7 @@ class ProjectController {
 			List totalContributions = []
 
 			/*Send feedback email before campaign end date */
-			projectService.sendFeedbackEmailToOwners(project, base_url)
+			//projectService.sendFeedbackEmailToOwners(project, base_url)
 
 			if (project.user == currentTeam.user) {
 				def contribution = projectService.getProjectContributions(params, project)

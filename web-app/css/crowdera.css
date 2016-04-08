@@ -3109,7 +3109,7 @@ ul.menu{
 	margin-bottom:8px;
 }
 .pan{
-	height: 100px;
+	height: 110px;
 	overflow: hidden;
 /* 	display: table-cell; */
 	word-wrap: break-word;
@@ -13836,6 +13836,10 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (max-width: 479px){
+    button.projectedit.close {
+        margin-left: 15px;
+        padding-right: 12px;
+    }
     .table-xs-left, .btn-xs-width{
         margin-left: 6px;
     }

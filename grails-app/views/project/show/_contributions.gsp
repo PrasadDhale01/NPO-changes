@@ -167,16 +167,28 @@
                             The offline contributions will be listed under the contribution tab on your campaign. Each cent counts to make a campaign successful! 
                             </p>
                         </div>
-                        <div class="col-sm-8">
-                             <div class="form-group">
-                                 <label class="text" for="title">Display Name</label>
-                                 <input type="text" class="form-control contributioninput" name="contributorName1">
-                             </div>
-                        </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="title" class="text">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
-                                <input type="text" class="form-control contributioninput" name="amount1" id="offlineAmount1">
+                                <label class="text col-sm-3">Display Name</label>
+                                <div class="col-sm-9"> 
+                                <input type="text" class="form-control contributioninput" name="contributorName1"><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="text col-sm-3">Email</label>
+                                <div class="col-sm-9"> 
+                                <input type="email" class="form-control contributioninput" name="contributorEmail1" required><br>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="text col-sm-3">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+                                <div class="col-sm-9"> 
+                                <input type="text" class="form-control contributioninput" name="amount1" id="offlineAmount1"><br>
+                                </div>
                             </div>
                             <div id="errormsg1"></div>
                         </div>

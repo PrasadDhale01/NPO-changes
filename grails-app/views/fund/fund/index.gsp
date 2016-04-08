@@ -97,10 +97,22 @@
                                         <div class="panel-body">
                                             <g:if test="${fundraiser != null}">
                                                 <div class="form-group">
-                                                    <div class="col-sm-12"><b>Fundraiser:</b></div>
-                                                    <div class="col-sm-12">
-                                                        <span>${fundraiser.firstName} ${fundraiser.lastName}</span>
-                                                    </div>
+                                                    <g:if test="${team.user!=project.user }">
+                                                        <div class="col-sm-12"><b>Fundraiser:</b></div>
+                                                        <div class="col-sm-12">
+                                                           <span>${project.organizationName}</span>
+                                                        </div>
+                                                        <div class="col-sm-12"><b>Team:</b></div>
+                                                        <div class="col-sm-12">
+                                                           <span>${fundraiser.firstName} ${fundraiser.lastName}</span>
+                                                        </div>
+                                                    </g:if>
+                                                    <g:else>
+                                                        <div class="col-sm-12"><b>Fundraiser:</b></div>
+                                                        <div class="col-sm-12">
+                                                           <span>${project.organizationName}</span>
+                                                        </div>
+                                                    </g:else>
                                                 </div>
                                             </g:if>
                                         </div>
@@ -312,10 +324,22 @@
 										<div class="panel-body">
 											<g:if test="${fundraiser != null}">
 												<div class="form-group">
-													<div class="col-sm-12"><b>Fundraiser:</b></div>
-													<div class="col-sm-12">
-													<span>${fundraiser.firstName} ${fundraiser.lastName}</span>
-													</div>
+                                                    <g:if test="${team.user!=project.user }">
+                                                        <div class="col-sm-12"><b>Fundraiser:</b></div>
+                                                        <div class="col-sm-12">
+                                                            <span>${project.organizationName}</span>
+                                                        </div>
+                                                        <div class="col-sm-12"><b>Team:</b></div>
+                                                        <div class="col-sm-12">
+                                                            <span>${fundraiser.firstName} ${fundraiser.lastName}</span>
+                                                        </div>
+                                                    </g:if>
+                                                    <g:else>
+                                                        <div class="col-sm-12"><b>Fundraiser:</b></div>
+                                                        <div class="col-sm-12">
+                                                            <span>${project.organizationName}</span>
+                                                        </div>
+                                                    </g:else>
 												</div>
 											</g:if>
 										</div>

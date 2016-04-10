@@ -1311,4 +1311,37 @@ class UserController {
         }
     }
     
+    def manageHomePageCampaigns(){
+        def projects = projectService.getValidatedProjects()
+        def currentEnv = projectService.getCurrentEnvironment()
+        def homePageCampaigns = projectService.getHomePageCampaignByEnv(currentEnv)
+        
+        if(params.campaignOne && params.campaignTwo && params.campaignThree){
+            def campaignOneId = projectService.getProjectFromTitle(params.campaignOne)
+            def campaignTwoId = projectService.getProjectFromTitle(params.campaignTwo)
+            def campaignThreeId = projectService.getProjectFromTitle(params.campaignThree)
+            
+            if(homePageCampaigns){
+                homePageCampaigns.campaignOne = campaignOneId
+                homePageCampaigns.campaignTwo = campaignTwoId
+                homePageCampaigns.campaignThree = campaignThreeId
+                homePageCampaigns.currentEnv = currentEnv
+            }else{
+                new HomePageCampaigns(campaignOne:campaignOneId, campaignTwo:campaignTwoId, campaignThree:campaignThreeId, currentEnv:currentEnv).save()
+            }
+            
+            flash.homemessage ="Home page campaign updated."
+            render view:"/user/homepage_campaigns/index.gsp", model:[projects:projects, campaignOne:homePageCampaigns.campaignOne.title,
+                        campaignTwo:homePageCampaigns.campaignTwo.title, campaignThree:homePageCampaigns.campaignThree.title]  
+        }else{
+        
+            if(homePageCampaigns){
+                render view:"/user/homepage_campaigns/index.gsp", model:[projects:projects, campaignOne:homePageCampaigns.campaignOne.title,
+                        campaignTwo:homePageCampaigns.campaignTwo.title, campaignThree:homePageCampaigns.campaignThree.title]
+            }else{
+                render view:"/user/homepage_campaigns/index.gsp", model:[projects:projects]
+            }
+        }
+    }
+    
 }

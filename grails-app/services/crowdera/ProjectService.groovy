@@ -1,19 +1,20 @@
 package crowdera
 
+import static java.util.Calendar.*
 import grails.transaction.Transactional
+import grails.util.Environment
+
 import java.security.MessageDigest
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 
 import javax.servlet.http.Cookie
 
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
-import org.jets3t.service.security.AWSCredentials
 import org.jets3t.service.model.*
-import grails.util.Environment
-import static java.util.Calendar.*
+import org.jets3t.service.security.AWSCredentials
+import org.springframework.web.multipart.MultipartFile
+import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 class ProjectService {
     def userService
@@ -1526,13 +1527,19 @@ class ProjectService {
         return subFinalList
     }
 
-	def projectOnHomePage() {
-		def currentEnv = Environment.current.getName()
-		def projects
-		if (currentEnv == 'staging' || currentEnv == 'production')
-		   projects = Project.getAll('2c9f84885346fbc901537e4add4d0004', '2c9f84885346fbc90153481739240000', '2c9f848853bed2320153c2c6b0be0001')
+	def projectOnHomePage(def currentEnv) {
+        def projects
+		def homePageCampaigns = HomePageCampaigns.findByCurrentEnv(currentEnv)
+        
+        if(homePageCampaigns == null){
+            return null
+        }
+        
+		if (currentEnv == 'development' || currentEnv == 'production')
+		   projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
 		else
-		   projects = Project.getAll('2c9f848853bed2320153c2c6b0be0001', '2c9f848850ec4666015228cf067d0022', '2c9f8f3b52ea6f6b01533961864a0001')
+		   projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
+           
 	    return projects
 	}
 
@@ -3035,6 +3042,26 @@ class ProjectService {
         return projectId
     }
 
+    def getProjectFromTitle(def title){
+        def projectId
+        def projectTitle = Project.findByTitle(title)
+        
+        if(projectTitle){
+            projectId= projectTitle
+        }
+        
+        return projectId
+    }
+    
+    def getHomePageCampaignByEnv(def currentEnv){
+        def homePageCampaign = HomePageCampaigns.findByCurrentEnv(currentEnv)
+        
+        if(homePageCampaign){
+            return homePageCampaign
+        }
+        return null
+    }
+    
     def getProjectFromVanityTitle(def title){
         def projectId
         def vanitytitle = VanityTitle.findByVanityTitle(title)

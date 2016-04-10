@@ -53,6 +53,8 @@ class Project {
     String partnerInviteCode
     String hashtags
     
+    String sellerId
+    
     /* Payment Info */
     String charitableId
     String payuEmail
@@ -101,6 +103,7 @@ class Project {
         partnerInviteCode (nullable: true)
         hashtags(nullable:true)
         citrusEmail (nullable: true)
+        sellerId (nullable: true)
     }
     
     def beforeInsert() {

@@ -10,11 +10,19 @@ import javax.websocket.Session;
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile
+import org.apache.http.HttpEntity
+import org.apache.http.HttpResponse
+import org.apache.http.client.HttpClient
+import org.apache.http.client.methods.HttpPost
+import org.apache.http.entity.StringEntity
+import org.apache.http.impl.client.DefaultHttpClient
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.security.AWSCredentials
 import org.jets3t.service.model.*
 import grails.util.Environment
+import groovy.json.JsonSlurper
 import static java.util.Calendar.*
+import org.apache.http.util.EntityUtils
 
 class ProjectService {
     def userService
@@ -74,13 +82,10 @@ class ProjectService {
     }
     
     def getCurrentEnvironment() {
-        return Environment.current.getName()
+//        return Environment.current.getName()
+        return 'testIndia'
     }
     
-    def getBankInfoByProject(Project project) {
-        return BankInfo.findByProject(project)
-    }
-
     def getProjectByParams(def projectParams){
          Project project = new Project(projectParams)
 		 Beneficiary beneficiary = new Beneficiary();
@@ -312,9 +317,11 @@ class ProjectService {
 
     def getUpdateValidationDetails(def params){
         def project = Project.get(params.id)
+        def sellerId = contributionService.setSellerId(project)
         if (project) {
             project.created = new Date()
             if(!project.validated){
+                project.sellerId = sellerId
                 project.validated = true
                 project.onHold = false
                 project.save()
@@ -5434,39 +5441,17 @@ class ProjectService {
         
         
         if (flag && txnStatus == 'SUCCESS') {
-            def contributionId = createTransactionIdForCitrus(txnId, request, session, fundraiser)
+            def contributionId = createTransactionIdForCitrus(txnId, request, session, fundraiser, issuerRefNo)
             return contributionId
         } else {
             return null
         }
     }
     
-    def setCitrusInfo(def session, def params) {
-        session['rewardId']     = params.rewardId
-        session['campaignId']   = params.campaignId
-        session['userId']       = params.userId
-        session['fr']           = params.fr
-        session['anonymous']    = params.anonymous
-        session['tempValue']    = params.tempValue
-        
-        session['email']        = params.email
-        session['addressLine1'] = params.addressLine1
-        session['addressLine2'] = params.addressLine2
-        session['city']         = params.city
-        session['zip']          = params.zip
-        
-        session['shippingEmail'] = params.shippingEmail
-        session['twitterHandle'] = params.twitterHandle
-        session['shippingCustom'] = params.shippingCustom
-        session['projectTitle'] = params.projectTitle
-        def address = getAddress(params)
-        session['address'] = address
-    }
-    
-    
-    def createTransactionIdForCitrus(def transactionId, def request, def session, def fundraiser) {
+    def createTransactionIdForCitrus(def transactionId, def request, def session, def fundraiser, def issuerRefNo) {
         
         def amount    = Double.parseDouble(request.getParameter('amount'))
+        def marketplaceTxId = request.getParameter('marketplaceTxId');
         
         def emailId   = session.getAttribute('shippingEmail')
         def twitter   = session.getAttribute('twitterHandle')
@@ -5564,7 +5549,69 @@ class ProjectService {
         )
         
         transaction.save(failOnError: true)
+        getSplitIdForTransactionId(marketplaceTxId, project.sellerId, amount, issuerRefNo) 
+        
         return contribution.id
+    }
+    
+    def getSplitIdForTransactionId(String transactionId, String sellerId, def amount, def issuerRefNo) {
+        def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
+        def url = citrusBaseUrl +"/marketplace/split/"
+        
+        HttpClient httpclient = new DefaultHttpClient()
+        HttpPost httppost = new HttpPost(url)
+        println transactionId
+        def trans_id = transactionId
+        def seller_id = sellerId
+        def merchant_split_ref = issuerRefNo
+        def split_amount = amount * 0.8
+        def fee_amount = amount * 0.2
+        def auto_payout = 1
+
+        StringEntity input = new StringEntity("{\"trans_id\":${trans_id},\"seller_id\":${seller_id},\"merchant_split_ref\":\"${merchant_split_ref}\",\"split_amount\":${split_amount},\"fee_amount\":${fee_amount},\"auto_payout\":${auto_payout}}")
+        input.setContentType("application/json")
+        httppost.setEntity(input)
+
+        def auth_token = contributionService.getAccessTokenForCitrus()
+        httppost.setHeader("auth_token","${auth_token}")
+        HttpResponse httpres = httpclient.execute(httppost)
+        def splitId
+        
+        int status = httpres.getStatusLine().getStatusCode()
+        if (status == 200){
+            HttpEntity entity = httpres.getEntity()
+            if (entity != null){
+                def jsonString = EntityUtils.toString(entity)
+                def slurper = new JsonSlurper()
+                def json = slurper.parseText(jsonString)
+                splitId = json.split_id
+                println json
+            }
+        }
+        
+        println httpres
+    }
+    
+    def setCitrusInfo(def session, def params) {
+        session['rewardId']     = params.rewardId
+        session['campaignId']   = params.campaignId
+        session['userId']       = params.userId
+        session['fr']           = params.fr
+        session['anonymous']    = params.anonymous
+        session['tempValue']    = params.tempValue
+        
+        session['email']        = params.email
+        session['addressLine1'] = params.addressLine1
+        session['addressLine2'] = params.addressLine2
+        session['city']         = params.city
+        session['zip']          = params.zip
+        
+        session['shippingEmail'] = params.shippingEmail
+        session['twitterHandle'] = params.twitterHandle
+        session['shippingCustom'] = params.shippingCustom
+        session['projectTitle'] = params.projectTitle
+        def address = getAddress(params)
+        session['address'] = address
     }
     
     

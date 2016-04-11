@@ -5606,6 +5606,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	
+	.chooseHomePageCampaign .dropdown-toggle.selectpicker.btn.btn-md.btn-default {
+        margin-left: -3px !important;
+    }
+    .chooseHomePageCampaign .dropdown-menu.open {
+        overflow: scroll !important;
+        width: 100%;
+    }
 	span.ft-mobiles-padding {
         padding-left: 53px;
     }
@@ -8391,6 +8399,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
     
+    .chooseHomePageCampaign .dropdown-menu.open {
+        margin-left: -3px;
+    }
     div.ft-top-tabs-terms{
         top: 15px;
     }
@@ -10052,6 +10063,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	
+     .chooseHomePageCampaign .dropdown-menu.open {
+         margin-left: -3px;
+     }
 	 ul.manage-submitapprov-india {
         margin-right: -182px !important;
         margin-top: 3px !important;
@@ -14864,6 +14879,14 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	
+    .chooseHomePageCampaign .dropdown-toggle.selectpicker.btn.btn-md.btn-default {
+        margin-left: -3px !important;
+    }
+    .chooseHomePageCampaign .dropdown-menu.open {
+        overflow: scroll !important;
+        width: 100%;
+    }
     span.ft-mobiles-padding {
         padding-left: 53px;
     }
@@ -18266,3 +18289,7 @@ input[readonly] {
 .col-pr-0 {
     padding-right: 0px;
 }
+.chooseHomePageCampaign .dropdown-menu.open {
+    margin-left: -3px;
+}
+

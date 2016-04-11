@@ -1528,19 +1528,19 @@ class ProjectService {
     }
 
 	def projectOnHomePage(def currentEnv) {
-        def projects
-		def homePageCampaigns = HomePageCampaigns.findByCurrentEnv(currentEnv)
-        
-        if(homePageCampaigns == null){
-            return null
-        }
-        
-		if (currentEnv == 'development' || currentEnv == 'production')
-		   projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
-		else
-		   projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
-           
-	    return projects
+       def projects
+       def homePageCampaigns = HomePageCampaigns.findByCurrentEnv(currentEnv)
+
+       if(homePageCampaigns == null){
+          return null
+       }
+
+       if (currentEnv == 'staging' || currentEnv == 'production')
+           projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
+       else
+           projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
+   
+       return projects
 	}
 
     def getBeneficiaryId(Project project) {

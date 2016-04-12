@@ -431,10 +431,10 @@
                         <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
                             <div class="the-crews thumbnail crew-img-centering">
                                 <img class="img-gray" src="//s3.amazonaws.com/crowdera/assets/Sachin-Sharma.jpg" alt="Sachin Sharma">
-					            <div class="crew-icons icons-manage">
-									<a href="https://www.facebook.com/sachsharma13?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/about-us-facebook-icons.png" alt="facebook"></a>
-									<a href="https://www.linkedin.com/in/sachsharma" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
-					            </div>
+								<div class="crew-icons icons-manage">
+								    <a href="https://www.facebook.com/sachsharma13?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/about-us-facebook-icons.png" alt="facebook"></a>
+								    <a href="https://www.linkedin.com/in/sachsharma" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
+								</div>
 					        </div>
 		                    <div class="caption crew-name-centering text-center abt-name-center">Sachin Sharma</div>
 		                    <div class="clear"></div>

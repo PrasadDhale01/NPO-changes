@@ -51,34 +51,37 @@
                     <div class="clear"></div>
             </div>
         </div>
+        
+        
     </div>
     <div class="row tabs about">
         <div class="row lft hover-cap-4col">
-             <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
-                    <div class="the-crews thumbnail crew-img-centering">
+        
+            <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
+                <div class="the-crews thumbnail crew-img-centering">
 	                <img class="img-gray" src="//s3.amazonaws.com/crowdera/assets/Himanchan-Malhotra.jpg" alt="Himanchan Malhotra">
 	                <div class="crew-icons">
 	                    <a href="https://www.facebook.com/himanchan.malhotra?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/about-us-facebook-icons.png" alt="facebook"></a>
 	                    <a href="//twitter.com/hmalhotra2109" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
 	                    <a href="https://www.linkedin.com/pub/himanchan-malhotra/33/52/9b" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
-		        </div>
+                    </div>
                     </div> 
 	            <div class="caption crew-name-centering text-center abt-name-center">Himanchan Malhotra</div>
 	            <div class="clear"></div>
             </div>
             
-             <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
-                    <div class="the-crews thumbnail crew-img-centering">
-                <img class="img-gray" src="//s3.amazonaws.com/crowdera/assets/kshitij.jpg" alt="Kshitij Ingle">
-                <div class="crew-icons">
-                <a href="https://www.facebook.com/Kshitij.M.Ingle?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/about-us-facebook-icons.png" alt="facebook"></a>
-                <a href="//twitter.com/Kshitij_xtz" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
-                <a href="https://www.linkedin.com/pub/kshitij-ingle/18/b6/9b3" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
-                </div>
-                </div> 
-                    <div class="caption crew-name-centering text-center abt-name-center">Kshitij Ingle</div>
-                    <div class="clear"></div>
-            </div>
+			<div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
+			    <div class="the-crews thumbnail crew-img-centering">
+			        <img class="img-gray" src="//s3.amazonaws.com/crowdera/assets/kshitij.jpg" alt="Kshitij Ingle">
+			        <div class="crew-icons">
+			            <a href="https://www.facebook.com/Kshitij.M.Ingle?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/about-us-facebook-icons.png" alt="facebook"></a>
+			            <a href="//twitter.com/Kshitij_xtz" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
+			            <a href="https://www.linkedin.com/pub/kshitij-ingle/18/b6/9b3" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
+			        </div>
+			    </div> 
+				<div class="caption crew-name-centering text-center abt-name-center">Kshitij Ingle</div>
+				<div class="clear"></div>
+			</div>
             
             <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
                     <div class="the-crews thumbnail crew-img-centering">

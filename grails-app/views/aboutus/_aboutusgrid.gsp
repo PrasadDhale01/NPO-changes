@@ -70,18 +70,18 @@
 	            <div class="clear"></div>
             </div>
             
-			<div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
-			    <div class="the-crews thumbnail crew-img-centering">
-			        <img class="img-gray" src="//s3.amazonaws.com/crowdera/assets/kshitij.jpg" alt="Kshitij Ingle">
-			        <div class="crew-icons">
-			            <a href="https://www.facebook.com/Kshitij.M.Ingle?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/about-us-facebook-icons.png" alt="facebook"></a>
-			            <a href="//twitter.com/Kshitij_xtz" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
-			            <a href="https://www.linkedin.com/pub/kshitij-ingle/18/b6/9b3" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
-			        </div>
-			    </div> 
-				<div class="caption crew-name-centering text-center abt-name-center">Kshitij Ingle</div>
-				<div class="clear"></div>
-			</div>
+            <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
+                <div class="the-crews thumbnail crew-img-centering">
+                    <img class="img-gray" src="//s3.amazonaws.com/crowdera/assets/kshitij.jpg" alt="Kshitij Ingle">
+                    <div class="crew-icons">
+                        <a href="https://www.facebook.com/Kshitij.M.Ingle?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/about-us-facebook-icons.png" alt="facebook"></a>
+                        <a href="//twitter.com/Kshitij_xtz" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
+                        <a href="https://www.linkedin.com/pub/kshitij-ingle/18/b6/9b3" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
+                    </div>
+                </div> 
+                <div class="caption crew-name-centering text-center abt-name-center">Kshitij Ingle</div>
+                <div class="clear"></div>
+            </div>
             
             <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
                     <div class="the-crews thumbnail crew-img-centering">
@@ -110,29 +110,29 @@
             </div>
             
             <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
-                    <div class="the-crews thumbnail crew-img-centering">
-                        <img class="img-gray" src="//s3.amazonaws.com/crowdera/assets/Prasad-Dhale.jpg" alt="Prasad Dhale">
-                <div class="crew-icons abt-img-icons-mobile">
-                    <a href="https://www.facebook.com/prasad.dhale?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/about-us-facebook-icons.png" alt="facebook"></a>
-                <a href="https://twitter.com/PrasadDhale" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
-                <a href="https://www.linkedin.com/pub/prasad-dhale/82/197/17b" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
-               </div>
-                    </div> 
-                    <div class="caption crew-name-centering text-center abt-name-center">Prasad Dhale</div>
-                    <div class="clear"></div>
+                <div class="the-crews thumbnail crew-img-centering">
+                    <img class="img-gray" src="//s3.amazonaws.com/crowdera/assets/Prasad-Dhale.jpg" alt="Prasad Dhale">
+                    <div class="crew-icons abt-img-icons-mobile">
+                        <a href="https://www.facebook.com/prasad.dhale?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/about-us-facebook-icons.png" alt="facebook"></a>
+                        <a href="https://twitter.com/PrasadDhale" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
+                        <a href="https://www.linkedin.com/pub/prasad-dhale/82/197/17b" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
+                    </div>
+                </div> 
+                <div class="caption crew-name-centering text-center abt-name-center">Prasad Dhale</div>
+                <div class="clear"></div>
             </div>
 
             <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
-                    <div class="the-crews thumbnail crew-img-centering">
-                        <img class="img-gray" src="//s3.amazonaws.com/crowdera/assets/prashant.jpg" alt="Prashant Chaware">
-                <div class="crew-icons">
-                    <a href="https://www.facebook.com/profile.php?id=100003661083445&fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/about-us-facebook-icons.png" alt="facebook"></a>
-                <a href="https://twitter.com/pramilcha" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
-                <a href="https://www.linkedin.com/pub/prashant-chaware/a8/9b/1a2" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
-                </div>
+                <div class="the-crews thumbnail crew-img-centering">
+                    <img class="img-gray" src="//s3.amazonaws.com/crowdera/assets/prashant.jpg" alt="Prashant Chaware">
+                    <div class="crew-icons">
+                        <a href="https://www.facebook.com/profile.php?id=100003661083445&fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/about-us-facebook-icons.png" alt="facebook"></a>
+                        <a href="https://twitter.com/pramilcha" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
+                        <a href="https://www.linkedin.com/pub/prashant-chaware/a8/9b/1a2" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
                     </div>
-                    <div class="caption crew-name-centering text-center abt-name-center">Prashant Chaware</div>
-                    <div class="clear"></div>
+                </div>
+                <div class="caption crew-name-centering text-center abt-name-center">Prashant Chaware</div>
+                <div class="clear"></div>
             </div>
             
             <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
@@ -309,17 +309,16 @@
 		<h1 class="text-center abt-mobile-pad">Mentors, Advisors, <br> Investors & Supporters</h1>
 		  <div class="row tabs lft about">
 		        <div class="row hover-cap-4col">
-		             
-		             <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
-                         <div class="the-crews thumbnail crew-img-centering">
-                             <img alt="George Northup" src="//s3.amazonaws.com/crowdera/assets/praveena.jpg" class="img-gray" style="filter: grayscale(1);">
-                             <div class="crew-icons icons-manage">
+                    <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
+                        <div class="the-crews thumbnail crew-img-centering">
+                            <img alt="George Northup" src="//s3.amazonaws.com/crowdera/assets/praveena.jpg" class="img-gray" style="filter: grayscale(1);">
+                            <div class="crew-icons icons-manage">
                                 <a href="https://www.facebook.com/praveena.varadarajan?ref=br_rs_WyJrZXl3b3Jkc19zZWFyY2giXQ%3D%3D" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/about-us-facebook-icons.png" alt="facebook"></a>
                                 <a href="https://www.linkedin.com/in/praveena" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
-                             </div>
-                         </div>
-                         <div class="caption crew-name-centering text-center abt-name-center">Praveena Varadrajan</div>
-                         <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="caption crew-name-centering text-center abt-name-center">Praveena Varadrajan</div>
+                        <div class="clear"></div>
                     </div>
                      
                     <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
@@ -334,7 +333,7 @@
                         <div class="clear"></div>
                     </div>
 		            
-		            <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
+                    <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
                         <div class="the-crews thumbnail crew-img-centering">
                             <img alt="Ratinder Ahuja" src="//s3.amazonaws.com/crowdera/assets/ratinder-ahuja.jpg" class="img-gray" style="filter: grayscale(1);">
                             <div class="crew-icons icons-manage" style="display: none;">
@@ -420,27 +419,27 @@
             
                     <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
                         <div class="the-crews thumbnail crew-img-centering">
-			                <img class="img-gray" src="//s3.amazonaws.com/crowdera/assets/Nisarg-Sheth.jpg" alt="Nisarg Sheth">
-			                <div class="crew-icons icons-manage">
-			                <a href="//twitter.com/shethnisarg" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
-			                <a href="https://www.linkedin.com/in/nisargsheth" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
-			                </div>
-			             </div>
-						<div class="caption crew-name-centering text-center abt-name-center">Nisarg Sheth</div>
-						<div class="clear"></div>
+                            <img class="img-gray" src="//s3.amazonaws.com/crowdera/assets/Nisarg-Sheth.jpg" alt="Nisarg Sheth">
+                            <div class="crew-icons icons-manage">
+                                <a href="//twitter.com/shethnisarg" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
+                                <a href="https://www.linkedin.com/in/nisargsheth" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
+                            </div>
+                        </div>
+                        <div class="caption crew-name-centering text-center abt-name-center">Nisarg Sheth</div>
+                        <div class="clear"></div>
                     </div>
 		    
-		            <div class="about-dasbilly-center col-lg-12">
+                    <div class="about-dasbilly-center col-lg-12">
                         <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">
                             <div class="the-crews thumbnail crew-img-centering">
                                 <img class="img-gray" src="//s3.amazonaws.com/crowdera/assets/Sachin-Sharma.jpg" alt="Sachin Sharma">
-								<div class="crew-icons icons-manage">
-								    <a href="https://www.facebook.com/sachsharma13?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/about-us-facebook-icons.png" alt="facebook"></a>
-								    <a href="https://www.linkedin.com/in/sachsharma" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
-								</div>
-					        </div>
-		                    <div class="caption crew-name-centering text-center abt-name-center">Sachin Sharma</div>
-		                    <div class="clear"></div>
+                                <div class="crew-icons icons-manage">
+                                    <a href="https://www.facebook.com/sachsharma13?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/about-us-facebook-icons.png" alt="facebook"></a>
+                                    <a href="https://www.linkedin.com/in/sachsharma" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
+                                </div>
+                            </div>
+                            <div class="caption crew-name-centering text-center abt-name-center">Sachin Sharma</div>
+                            <div class="clear"></div>
                     </div>
             
                     <div class="col-xs-6 col-sm-3 col-lg-2 position-top abt-imgs">

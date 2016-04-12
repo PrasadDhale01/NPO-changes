@@ -8907,9 +8907,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     div.about-dasbilly-center {
         left: 0;
+        padding: 0;
     }
     div.abt-positions {
         left: 0px;
+        padding: 0;
     }
     div.position-top{
         margin-left:0px;
@@ -10204,6 +10206,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     div.about-dasbilly-center {
         left: 0;
+        padding: 0;
     }
 	.TW-socialicons {
 	   display: block;
@@ -11899,6 +11902,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     div.abt-positions {
         left: 0;
+        padding: 0;
     }
 	.TW-ebook-header.TW-fixed-header {
 	   background-color: #ffffff;
@@ -15510,6 +15514,7 @@ textarea.textarea-embed-video {
     }
     div.about-dasbilly-center {
         left: 0;
+        padding: 0;
     }
     div.abt-positions {
         left: 0px;

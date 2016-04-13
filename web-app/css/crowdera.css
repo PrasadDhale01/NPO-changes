@@ -988,7 +988,7 @@ div.abt-imgs .thumbnail img {
 }
 
 .tile {
-	height: 190px; 
+	height: 200px; 
     overflow: hidden;
 }
 
@@ -1440,7 +1440,7 @@ footer .footerbottomsection {
 	position:absolute;
     top:0;
 /*     max-width:100%; */
-/*     width:100%; */
+    width:100%;
 }
 .over{
     left: 16px;
@@ -1636,8 +1636,8 @@ div.tile-min-height{
 /*     max-height:155px; */
 /*     min-height:155px; */
 /*     width:100%; */
-    max-height: 188px;
-    width: 180%;
+    max-height: 200px;
+    width: 100%
 }
 
 .rewardsection .badge{

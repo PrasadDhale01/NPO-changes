@@ -1527,21 +1527,21 @@ class ProjectService {
         return subFinalList
     }
 
-	def projectOnHomePage(def currentEnv) {
-       def projects
-       def homePageCampaigns = HomePageCampaigns.findByCurrentEnv(currentEnv)
+    def projectOnHomePage(def currentEnv) {
+        def projects
+        def homePageCampaigns = HomePageCampaigns.findByCurrentEnv(currentEnv)
 
-       if(homePageCampaigns == null){
-          return null
-       }
+        if(homePageCampaigns == null){
+           return null
+        }
 
-       if (currentEnv == 'staging' || currentEnv == 'production')
-           projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
-       else
-           projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
+        if (currentEnv == 'staging' || currentEnv == 'production')
+            projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
+        else
+            projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
    
-       return projects
-	}
+        return projects
+    }
 
     def getBeneficiaryId(Project project) {
         return( project.beneficiaryId )

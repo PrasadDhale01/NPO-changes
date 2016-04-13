@@ -6665,7 +6665,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         background-color: #f6bf0b;
         color: black;
         text-decoration: none;
-        width: 105% !important;
+        width: 99% !important;
         color: #fff;
         font-size: 21px;
         font-family: Ubuntu Condensed;
@@ -6686,7 +6686,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
     button.mob-show-sucessend {
 /*         margin-top: -21px; */
-        width: 105%;
+        width: 99%;
         font-family: Ubuntu Condensed;
     }  
     button.mob-show-fund {
@@ -9088,11 +9088,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     button.show-campaign-sucessbtn {
         font-size: 14px;
-        height: 96px;
+        height: 70px;
     }
     button.show-campaign-sucess-endedbtn {
         font-size: 19px;
-        height: 96px;
+        height: 71px;
     }
     button.show-fund-size {
         font-size: 29px;
@@ -11498,12 +11498,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	button.show-campaign-sucess-endedbtn{
 	    font-size: 21px;
 	    padding-left: 14px;
-	    height: 96px;
+	    height: 71px;
 	}
 	button.show-campaign-sucessbtn{
         font-size: 17px;
         padding-left: 10px;
-        height: 96px;
+        height: 71px;
 	}
     div.show-icons {
         left: 35%;
@@ -15969,7 +15969,7 @@ textarea.textarea-embed-video {
 	}
     button.mob-show-sucessend {
 /*         margin-top: -21px; */
-        width: 104%;
+        width: 103%;
         font-family: Ubuntu Condensed;
     }
     button.mob-show-fund {
@@ -17247,12 +17247,12 @@ textarea.textarea-embed-video {
 .show-campaign-sucess-endedbtn {
     font-family: Ubuntu Condensed;
     font-size: 24px;
-    height: 90px;
+    height: 66px;
 }
 .show-campaign-sucessbtn{
 	font-family: Ubuntu Condensed;
     font-size: 21px;
-    height: 90px;
+    height: 66px;
 }
 .sh-submitapproval{
 	height: 56px !important;

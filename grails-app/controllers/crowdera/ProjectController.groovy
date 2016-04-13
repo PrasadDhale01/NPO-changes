@@ -581,8 +581,95 @@ class ProjectController {
         if (request.xhr) {
             if (params.selectedSortValue == 'Pending') {
                 render(template: "/project/validate/validategrid", model: model)
+            }else if(params.selectedSortValue=='Homepage'){
+            
+                if(params.country.equalsIgnoreCase('INDIA')){
+                    currentEnv ="prodIndia"
+                }else{
+                    currentEnv = 'production'
+                }
+                
+                def homePageCampaigns = projectService.getHomePageCampaignByEnv(currentEnv)
+                
+                if(homePageCampaigns){
+                    render(template: "/project/validate/homepage", model: [projects:projects, campaignOne: homePageCampaigns.campaignOne.title,
+                        campaignTwo: homePageCampaigns.campaignTwo.title, campaign: homePageCampaigns.campaignThree.title, currentEnv:currentEnv])
+                }else{
+                    render(template: "/project/validate/homepage", model: [projects:projects, currentEnv:currentEnv])
+                }
+                
+            }else if(params.selectedSortValue=='Deadline'){
+            
+                if(params.country.equalsIgnoreCase('INDIA')){
+                    currentEnv ="prodIndia"
+                }else{
+                    currentEnv = 'production'
+                }
+                
+                render(template: "/project/validate/deadline", model: [projects:projects, currentEnv:currentEnv])
+                
             } else {
                 render(template: "/user/user/grid", model: model)
+            }
+        }
+    }
+    
+    
+    @Secured(['ROLE_ADMIN'])
+    def manageCampaignDeadline(){
+        
+        def project
+        def projects = projectService.getValidatedProjects()
+        
+        if(params.campaignSelection && params.deadline){
+            project = projectService.getProjectFromTitle(params.campaignSelection)
+            
+            if(project){
+                projectService.setCampaignDeadline(project, params.int('deadline'))
+            }
+        }
+        
+        render(template: "/project/validate/deadline", model:[projects: projects, project:project])
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def setCampaignCurrentDays(){
+        def campaign = projectService.getProjectFromTitle(params.campaign)
+        
+        if(campaign){
+            render campaign.days
+        }else{
+            render '0'
+        }
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def manageHomePageCampaigns(){
+        
+        def projects = projectService.getValidatedProjects()
+        def currentEnv = params.currentEnv
+        def homePageCampaigns = projectService.getHomePageCampaignByEnv(currentEnv)
+        
+        if(params.campaignOne && params.campaignTwo && params.campaignThree){
+            def campaignOneId = projectService.getProjectFromTitle(params.campaignOne)
+            def campaignTwoId = projectService.getProjectFromTitle(params.campaignTwo)
+            def campaignThreeId = projectService.getProjectFromTitle(params.campaignThree)
+            
+            if(homePageCampaigns){
+                projectService.setHomePageCampaignByEnv(campaignOneId, campaignTwoId, campaignThreeId, currentEnv )
+            }else{
+                new HomePageCampaigns(campaignOne:campaignOneId, campaignTwo:campaignTwoId, campaignThree:campaignThreeId, currentEnv:currentEnv).save()
+            }
+            
+            render(template: "/project/validate/homepage", model:[projects:projects, campaignOne:campaignOneId, 
+                campaignTwo: campaignTwoId, campaignThree: campaignThreeId])
+        }else{
+        
+            if(homePageCampaigns){
+                render(template: "/project/validate/homepage", model:[projects:projects, campaignOne:campaignOneId,
+                     campaignTwo: campaignTwoId, campaignThree: campaignThreeId])
+            }else{
+                render(template: "/project/validate/homepage", model:[projects:projects])
             }
         }
     }

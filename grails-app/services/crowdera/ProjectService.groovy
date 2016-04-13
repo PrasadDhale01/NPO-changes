@@ -3062,6 +3062,25 @@ class ProjectService {
         return null
     }
     
+    def setHomePageCampaignByEnv(def campaignOne, def campaingTwo, def campaingThree, def currentEnv){
+        def homePageCampaigns = getHomePageCampaignByEnv(currentEnv)
+        
+        if(homePageCampaigns){
+            
+            homePageCampaigns.campaignOne = campaignOne
+            homePageCampaigns.campaignTwo = campaingTwo
+            homePageCampaigns.campaignThree = campaingThree
+            homePageCampaigns.currentEnv = currentEnv
+        }
+    }
+    
+    def setCampaignDeadline(def project, def days){
+        
+        if(project){
+            project.days =days
+        }
+    }
+    
     def getProjectFromVanityTitle(def title){
         def projectId
         def vanitytitle = VanityTitle.findByVanityTitle(title)
@@ -4706,10 +4725,12 @@ class ProjectService {
         List totalProjects = []
         List endedCampaigns = []
         List activeCampaigns = []
-        if (condition == 'Current' || condition == 'Ended') {
+        if (condition == 'Current' || condition == 'Ended' || condition=="Homepage" || condition=='Deadline') {
             if (country == 'INDIA') {
+                
                 totalProjects = Project.findAllWhere(payuStatus: true, validated: true, inactive: false)
             } else if(country == 'USA') {
+                
                 totalProjects = Project.findAllWhere(payuStatus: false, validated: true, inactive: false)
             }
             totalProjects.each { project->
@@ -4734,6 +4755,12 @@ class ProjectService {
                 break;
             case 'Current':
                 projects = activeCampaigns
+                break;
+            case 'Homepage':
+                projects = totalProjects
+                break;
+            case 'Deadline':
+                projects= totalProjects
                 break;
             case 'Draft':
                 if (country == 'INDIA') {
@@ -4784,7 +4811,9 @@ class ProjectService {
             Pending: 'Pending',
             Current: 'Current',
             Ended: 'Ended',
-            Rejected: 'Rejected'
+            Rejected: 'Rejected',
+            Homepage:'Homepage',
+            Deadline: 'Deadline'
         ]
         return sortingOptions
     }

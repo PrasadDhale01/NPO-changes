@@ -18291,5 +18291,14 @@ input[readonly] {
 }
 .chooseHomePageCampaign .dropdown-menu.open {
     margin-left: -3px;
+    max-height: 100px !important;
+    min-height: 100px !important;
+    width: 100%;
+    z-index: 1 !important;
+}
+.chooseHomePageCampaign .dropdown-menu.open ul{
+	max-height: 100px !important;
+    min-height: 100px !important;
+    width:100%;
 }
 

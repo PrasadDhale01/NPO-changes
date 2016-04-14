@@ -1271,8 +1271,13 @@ img.how-it-success-img{
     color: #5a6771;
     font-weight: 900;
     font-family: sans-serif;
-    font-size: 19px;
-    margin: 0 0 0px
+    font-size: 16px;
+    margin: 0 0 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    line-height: 36px;
 }
 .managecampaignDescription .panel-body {
     padding: 5px;

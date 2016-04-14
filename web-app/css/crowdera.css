@@ -988,7 +988,7 @@ div.abt-imgs .thumbnail img {
 }
 
 .tile {
-	height: 155px; 
+	height: 190px; 
     overflow: hidden;
 }
 
@@ -1439,8 +1439,8 @@ footer .footerbottomsection {
 .under{
 	position:absolute;
     top:0;
-    max-width:100%;
-    width:100%;
+/*     max-width:100%; */
+/*     width:100%; */
 }
 .over{
     left: 16px;
@@ -1633,9 +1633,11 @@ div.tile-min-height{
 	min-height:106px !important;
 }
 .project-img {
-    max-height:155px;
-    min-height:155px;
-    width:100%;
+/*     max-height:155px; */
+/*     min-height:155px; */
+/*     width:100%; */
+    max-height: 188px;
+    width: 180%;
 }
 
 .rewardsection .badge{
@@ -4614,7 +4616,7 @@ ul.personalDetailClasses, menu, dir {
 }
 .campaignDescription {
 	font-weight: 600;
-	font-size: 18px;
+	font-size: 17px;
 	word-wrap: break-word;
 }
 p {
@@ -8158,9 +8160,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.show-description {
         margin-top: 9px;
         height: 90px;
+        line-height: 26px;
     }
     .impactassessment .panel-default p {
-        font-size: 16px;
+        font-size: 15px;
+        line-height: 26px;
     }
     a.show-btn-sh-fb {
         margin-bottom: 108px;
@@ -9066,6 +9070,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     p.campaignDescription {
         font-size: 14px;
+        line-height: 26px;
+        padding-top: 1px;
     }
     h2.sh-fundclosed-mobile{
         font-size: 20px !important;
@@ -11349,16 +11355,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     .impactassessment .panel-default p {
         padding: 3px 0px;
-        font-size: 16px;
+        font-size: 15px;
+        line-height: 26px;
     }
     div.show-description {
         background-color: #e7e7e7;
-        height: 81px;
-        margin-top: 24px;
+        height: 89px;
+        margin-top: 33px;
         padding-bottom: 9px;
         padding-left: 9px;
-        padding-top: 10px;
+        padding-top: 6px;
         color: #000;
+        line-height: 26px;
     }
 	.partner-show-tile {
         width: 220px;
@@ -13329,6 +13337,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /*Screen resolution 644 x 767 */
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.impactassessment .panel-default p {
+        font-size: 15px;
+    }
     div.ack-tile-height {
         height: auto;
     }
@@ -14886,6 +14897,9 @@ textarea.textarea-embed-video {
     .chooseHomePageCampaign .dropdown-menu.open {
         overflow: scroll !important;
         width: 100%;
+    }
+    div.impactassessment .panel-default p {
+        font-size: 15px;
     }
     span.ft-mobiles-padding {
         padding-left: 53px;
@@ -17278,11 +17292,13 @@ textarea.textarea-embed-video {
 .show-description {
     background-color: #e7e7e7;
     height: 90px;
-    margin-top: 21px;
+    margin-top: 22px;
     padding-bottom: 9px;
-    padding-left: 9px;
-    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 9px;
     color: #5a6771;
+    line-height: 36px;
 }
 .sh-contrialignment{
 	margin-top: -19px;

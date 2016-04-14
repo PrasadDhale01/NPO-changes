@@ -593,7 +593,7 @@ class ProjectController {
                 
                 if(homePageCampaigns){
                     render(template: "/project/validate/homepage", model: [projects:projects, campaignOne: homePageCampaigns.campaignOne.title,
-                        campaignTwo: homePageCampaigns.campaignTwo.title, campaign: homePageCampaigns.campaignThree.title, currentEnv:currentEnv])
+                        campaignTwo: homePageCampaigns.campaignTwo.title, campaignThree: homePageCampaigns.campaignThree.title, currentEnv:currentEnv])
                 }else{
                     render(template: "/project/validate/homepage", model: [projects:projects, currentEnv:currentEnv])
                 }

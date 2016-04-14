@@ -1,4 +1,4 @@
-    <div class="bg-color-white">
+    <div class="bg-color-white homepagTempHeight">
         <div class="col-sm-12">
             <div class="question-list">
                 <g:form action="manageHomePageCampaigns" controller="project" method="POST" class="homepage-form">

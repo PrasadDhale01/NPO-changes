@@ -4361,7 +4361,8 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 }
 .TW-ack-commentBox{
 	background-color:#f5f5f5;
-	margin-bottom:40px;
+    margin-bottom: 100px;
+    margin-top: 30px;
 }
 a.hm-back-width{
 	font-family:verdana;
@@ -5333,7 +5334,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	height: auto;
 }
 .ack-panel-width{
-	width:302px;
+	width:293px;
 	height:130px;
     margin-top: 24px;  
     background-color: rgb(250, 250, 250);  
@@ -5630,10 +5631,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 32px !important;
     }
     div.ack-width-padding {
-        margin-left: 13px;
-        padding-bottom: 13px;
+/*         margin-left: 13px; */
+        padding-bottom: 40px;
         padding-top: 22px;
-        width: 92%;
+        width: 100%;
     }
     div.ack-panel-tile {
         height: auto;
@@ -5643,7 +5644,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: 6px;
     }
     div.ack-socialmedia-padding {
-        padding-left: 40px;
+        padding-left: 24px;
     }
     div.ack-thousands-thankyoupage {
         width: 320px;
@@ -7252,7 +7253,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	 	margin-left:auto;
 	 	margin-right:auto;
 	 	margin-top:21px;
-        width: 292px;
+        width: 259px;
 	}
 	.acknowledge-tile-tag .tile-pad{
 		display:block;
@@ -7985,7 +7986,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: -26px;
     }
     div.ack-panel-width {
-        width: 219px;
+        width: 210px;
         margin-top: 24px;        
     }
     div.ack-socialmedia-padding {
@@ -8433,10 +8434,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         height: 126px;
     }
     div.ack-width-padding {
-        margin-left: 13px;
-        padding-bottom: 13px;
+/*         margin-left: 13px; */
+        padding-bottom: 40px;
         padding-top: 22px;
-        width: 63%;
+        width: 100%;
     }
     div.ack-panel-tile {
         height: 293px;
@@ -11314,7 +11315,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: -29px;
     }
     div.ack-panel-width {
-        width: 219px;
+        width: 209px;
     }
     div.ack-socialmedia-padding {
         padding-left: 90px;
@@ -13326,6 +13327,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /*Screen resolution 644 x 767 */
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.TW-ack-commentBox {
+        margin-bottom: 55px;
+        margin-top: 30px;
+    }
     div.impactassessment .panel-default p {
         font-size: 15px;
     }
@@ -14879,6 +14884,10 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	h1.dashboard-validatetie-mobile {
+        font-size: 17px;
+        margin-left: -22px;
+    }
     div.impactassessment .panel-default p {
         font-size: 15px;
     }
@@ -14899,10 +14908,10 @@ textarea.textarea-embed-video {
         width: 32px !important;
     }
     div.ack-width-padding {
-        margin-left: 13px;
-        padding-bottom: 13px;
+/*         margin-left: 13px; */
+        padding-bottom: 40px;
         padding-top: 22px;
-        width: 92%;
+        width: 100%;
     }
 	div.ack-panel-tile {
         height: auto;
@@ -14918,7 +14927,7 @@ textarea.textarea-embed-video {
         margin-top: 0;
     }
     div.ack-socialmedia-padding {
-        padding-left: 40px;
+        padding-left: 24px;
     }
     div.ack-thousands-thankyoupage {
         width: 320px;
@@ -16511,7 +16520,7 @@ textarea.textarea-embed-video {
 	 	margin-left:auto;
 	 	margin-right:auto;
 	 	margin-top:21px;
-		width:291px;
+		width:258px;
 	}
 	.acknowledge-tile-tag .tile-pad{
 		display:block;

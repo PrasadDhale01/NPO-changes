@@ -36,13 +36,12 @@
 <g:hiddenField name="twitterShareUrl" value="${twitterShareUrl}" id="twitterShareUrl"/>
 <div class="feducontent">
     <div class="container ack-thousands-thankyoupage">
-        <div class="row">
             <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                 <h1><b>Thank you!</b></h1>
                 <p>You have funded this campaign. You will receive your chosen perk soon.</p>
             </div>
             
-            <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
+            <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 thankyou-margin">
                 <div class="panel panel-default panel-thankupage ">
                     <h4 class="ack-funding-panel">Funding confirmation</h4>
                 </div>
@@ -143,16 +142,16 @@
                 		</g:form>
             		</div>
         		</div>
-            </div>
-
-            <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 <g:if test="${project.rewards.size()>1 }">acknowledge-tile-tag ack-tile-height</g:if><g:else>ack-panel-tile</g:else>">
-                <g:if test="${project.rewards.size()>1 }">
-                    <g:render template="rewardtile"/>
-                </g:if>
-                <g:render template="fund/fundTile"/>
-                <%--<g:render template="/layouts/tile"/>--%>
-            </div>
-                <%
+        		
+        		<div class=" visible-xs <g:if test="${project.rewards.size()>1 }">acknowledge-tile-tag ack-tile-height</g:if><g:else>ack-panel-tile</g:else>">
+                    <g:if test="${project.rewards.size()>1 }">
+                        <g:render template="rewardtile"/>
+                    </g:if>
+                    <g:render template="fund/fundTile"/>
+                    <%--<g:render template="/layouts/tile"/>--%>
+                </div>
+        		
+        		<%
                     def commentId
                     def commentVal
                     def teamCommentId
@@ -166,32 +165,30 @@
                         commentVal = teamComment.comment
                     }
                 %>
-                <g:if test="${commentVal == null || value}">
-                    <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12  ack-panel-spacing-mobile">
-                    <h4 class="ack-funding-panel panel panel-default">Leave a comment</h4>
-                </div>
-                    <div id="commentBox" class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
-                        <g:form controller="fund" action="saveContributionComent" id="${contribution.id}" params="['fr': fundraiser.id, 'projectTitle':projectTitle]">
-                            <g:hiddenField name='commentId' value="${commentId}"/>
-                            <g:hiddenField name='teamCommentId' value="${teamCommentId}"/>
-                            <div class="form-group ack-textareabottom">
-                                <textarea class="form-control ack-textareaheghit" name="comment" rows="4" required><g:if test="${commentVal}">${commentVal}</g:if></textarea>
-                            </div>
-                            <g:if test="${commentVal}">
-                                <button type="submit" class="btn btn-ackfund btn-sm pull-right">UPDATE COMMENT</button>
-                            </g:if>
-                            <g:else>
-                                <button type="submit" class="btn btn-ackfund btn-sm pull-right">POST COMMENT</button>
-                            </g:else>
-                            <div class="clear"></div>
-                        </g:form>
-                    </div>
+                
+               <div id="commentBox" class="thanku-comnt-top">
+                 <g:if test="${commentVal == null || value}">
+                     <h4 class="ack-funding-panel panel panel-default">Leave a comment</h4>
+                     <g:form controller="fund" action="saveContributionComent" id="${contribution.id}" params="['fr': fundraiser.id, 'projectTitle':projectTitle]">
+                         <g:hiddenField name='commentId' value="${commentId}"/>
+                         <g:hiddenField name='teamCommentId' value="${teamCommentId}"/>
+                         <div class="form-group ack-textareabottom">
+                             <textarea class="form-control ack-textareaheghit" name="comment" rows="4" required><g:if test="${commentVal}">${commentVal}</g:if></textarea>
+                         </div>
+                         <g:if test="${commentVal}">
+                             <button type="submit" class="btn btn-ackfund btn-sm pull-right">UPDATE COMMENT</button>
+                         </g:if>
+                         <g:else>
+                             <button type="submit" class="btn btn-ackfund btn-sm pull-right">POST COMMENT</button>
+                         </g:else>
+                         <div class="clear"></div>
+                     </g:form>
                 </g:if>
                 <g:else>
                     <%
                         def date = dateFormat.format(new Date())
                      %>
-                    <div class="modal-body show-comments-date TW-ack-commentBox ack-width-padding col-lg-8 col-sm-8 col-md-8 col-xs-12">
+                    <div class="modal-body show-comments-date <g:if test="${project.rewards.size()>1 }">TW-ack-commentBox</g:if><g:else>thank-ack-cmmentBox</g:else> ack-width-padding">
                         <h6>By ${contribution.contributorName}, on ${date}</h6>
                         <p><b>${commentVal}</b></p>
                         <g:link controller="fund" name="deletecomment" action="deleteContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id, 'projectTitle':projectTitle, 'commentId': commentId, 'teamCommentId': teamCommentId]">
@@ -207,14 +204,19 @@
                                 <i class="glyphicon glyphicon-edit glyphicon-lg projectedit"></i>
                             </button>
                         </g:form>
-                        <div class="clear"></div>
                     </div>
                 </g:else>
-
             </div>
-           
-        </div>
+       </div>
+            <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 hidden-xs <g:if test="${project.rewards.size()>1 }">acknowledge-tile-tag ack-tile-height</g:if><g:else>ack-panel-tile</g:else>">
+                <g:if test="${project.rewards.size()>1 }">
+                    <g:render template="rewardtile"/>
+                </g:if>
+                <g:render template="fund/fundTile"/>
+                <%--<g:render template="/layouts/tile"/>--%>
+            </div>
+                
     </div>
-
+</div>
 </body>
 </html>

@@ -1634,7 +1634,7 @@ button.dropdown-toggle.selectpicker.btn.btn-sm.btn-default:hover {
     margin-top: -27px;
 }
 .ack-textareaheghit {
-    height: 93px !important;
+    height: 145px !important;
 }
 .ack-textareabottom{
     margin-bottom: 7px;
@@ -1644,10 +1644,10 @@ button.dropdown-toggle.selectpicker.btn.btn-sm.btn-default:hover {
     padding-top: 0;
 }
 .ack-width-padding {
-    margin-left: 13px;
+/*     margin-left: 13px; */
     padding-bottom: 33px;
     padding-top: 33px;
-    width: 64%;
+    width: 100%;
 }
 a.thankyou-textdeco {
     text-decoration: none;
@@ -1700,4 +1700,12 @@ a.thankyou-textdeco {
 }
 .show-fundrasier-namepadding > h5 {
     text-align: left;
+}
+.thank-ack-cmmentBox {
+    background-color: #f5f5f5;
+    margin-bottom: 30px;
+    margin-top: 6px;
+}
+.thanku-comnt-top {
+    margin-top: 6px;
 }

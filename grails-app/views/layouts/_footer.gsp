@@ -25,7 +25,7 @@
             <div class="visible-xs show-mobilejs">
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="crowdera-title"><a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a></div>
+                        <div class="crowdera-title"><a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-nw.png" alt="Crowdera"></a></div>
                         <div class="crowdera-menu">
                             <div class="col-xs-6 footer-mid-section-menu-mobile footer-menu-align">
                                 <div class="quicklinks-menu-div">
@@ -75,7 +75,7 @@
                     <div class="col-xs-12 footer-mid-section footer-p-text-align">
                         <br>
                         <div class="socialicon">
-                            <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="blog"></a>
+                            <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/wordpress-gray.png" alt="blog"></a>
                             <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>
                             <a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
                             <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>
@@ -132,7 +132,7 @@
     <div class="visible-sm visible-md show-mobilejs-sm-md sm-padding-mobile-footer">
         <div class="row">
         <div class="col-sm-4 footer-logo-padding-left">
-            <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a>
+            <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-nw.png" alt="Crowdera"></a>
             <div class="col-sm-6 footer-mid-section-menu tab-menu-padding">
             <ul>
                 <li><a href="${resource(dir: '/')}">Home</a></li>   
@@ -165,7 +165,7 @@
         <div class="col-sm-4 socialiconlinks footer-mid-section">
             <br>
            <div class="socialicon pull-right">
-            <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="blog"></a>
+            <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/wordpress-gray.png" alt="blog"></a>
             <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>
             <a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
             <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>
@@ -251,7 +251,7 @@
             
         <div class="row footer-lg-first-section">
         <div class="col-md-4 footer-logosize">
-            <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a>
+            <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-nw.png" alt="Crowdera"></a>
             <div class="col-md-6 footer-mid-section-menu">
             <ul>
                 <li><a href="${resource(dir: '/')}">Home</a></li>
@@ -285,7 +285,7 @@
         <div class="col-md-4 socialiconlinks footer-mid-section">
             <br>
             <div class="socialicon pull-right">
-            <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="blog"></a>
+            <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/wordpress-gray.png" alt="blog"></a>
             <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>   
             <a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
             <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>

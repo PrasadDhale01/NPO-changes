@@ -451,14 +451,14 @@ footer {
 	margin-top:-14px;
 }
 .blogsocialicon{
-	background-image:url("https://s3.amazonaws.com/crowdera/assets/blog-footer.png");
+	background-image:url("https://s3.amazonaws.com/crowdera/assets/wordpress-gray.png");
 	background-repeat:no-repeat;
 	display: block;
 	height:42px;
 	width:41px;
 }
 .blogsocialicon:hover{
-	background-image:url("https://s3.amazonaws.com/crowdera/assets/Hover-Blog-footer.png");
+	background-image:url("https://s3.amazonaws.com/crowdera/assets/wordpress-new-colorrrrs.png");
 	height:42px;
 	width:41px;
 	
@@ -5823,7 +5823,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         float:none;
     }
     div.explorebtn {
-        margin-bottom: 0;
+        margin-bottom: -1px;
         margin-left: 10px;
         margin-top: 20px;
     }
@@ -12962,7 +12962,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		margin-Top: -33px !important;
         }
         .arrow-mobile-css {
-		margin-right: -35px;
+		margin-right: -14px;
 	}
 	.arrow-mobile {
 		margin-left: -40px !important;
@@ -15169,7 +15169,7 @@ textarea.textarea-embed-video {
     }
     div.explorebtn {
         margin-top: 20px;
-        margin-bottom: 0;
+        margin-bottom: -1px;
         margin-left: -13px;
     }
 	div .validatetile .show-tile-text-size {
@@ -16925,7 +16925,7 @@ textarea.textarea-embed-video {
 	margin-right: -21px;
     }
     .arrow-mobile {
-	margin-left: -17px !important;
+	margin-left: 9px !important;
     }
     .tips h2 {
 	    padding-left: 72px !important;

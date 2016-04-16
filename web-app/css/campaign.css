@@ -763,7 +763,7 @@ div.validate-show-div .show-description {
 
 .media-stript-container{
     background-color: #323232 !important;
-    border-top: 2px solid #01bbd2 !important;
+/*     border-top: 2px solid #01bbd2 !important; */
 }
 .hm-media-title h3{
     color: #fff;

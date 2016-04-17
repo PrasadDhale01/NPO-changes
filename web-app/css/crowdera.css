@@ -451,14 +451,14 @@ footer {
 	margin-top:-14px;
 }
 .blogsocialicon{
-	background-image:url("https://s3.amazonaws.com/crowdera/assets/blog-footer.png");
+	background-image:url("https://s3.amazonaws.com/crowdera/assets/wordpress-gray.png");
 	background-repeat:no-repeat;
 	display: block;
 	height:42px;
 	width:41px;
 }
 .blogsocialicon:hover{
-	background-image:url("https://s3.amazonaws.com/crowdera/assets/Hover-Blog-footer.png");
+	background-image:url("https://s3.amazonaws.com/crowdera/assets/wordpress-new-colorrrrs.png");
 	height:42px;
 	width:41px;
 	
@@ -988,7 +988,7 @@ div.abt-imgs .thumbnail img {
 }
 
 .tile {
-	height: 190px; 
+	height: 200px; 
     overflow: hidden;
 }
 
@@ -1440,7 +1440,7 @@ footer .footerbottomsection {
 	position:absolute;
     top:0;
 /*     max-width:100%; */
-/*     width:100%; */
+    width:100%;
 }
 .over{
     left: 16px;
@@ -1636,8 +1636,8 @@ div.tile-min-height{
 /*     max-height:155px; */
 /*     min-height:155px; */
 /*     width:100%; */
-    max-height: 188px;
-    width: 180%;
+    max-height: 200px;
+    width: 100%
 }
 
 .rewardsection .badge{
@@ -4361,7 +4361,8 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 }
 .TW-ack-commentBox{
 	background-color:#f5f5f5;
-	margin-bottom:40px;
+    margin-bottom: 100px;
+    margin-top: 30px;
 }
 a.hm-back-width{
 	font-family:verdana;
@@ -5333,7 +5334,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	height: auto;
 }
 .ack-panel-width{
-	width:302px;
+	width:293px;
 	height:130px;
     margin-top: 24px;  
     background-color: rgb(250, 250, 250);  
@@ -5646,10 +5647,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 32px !important;
     }
     div.ack-width-padding {
-        margin-left: 13px;
-        padding-bottom: 13px;
+/*         margin-left: 13px; */
+        padding-bottom: 40px;
         padding-top: 22px;
-        width: 92%;
+        width: 100%;
     }
     div.ack-panel-tile {
         height: auto;
@@ -5659,7 +5660,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: 6px;
     }
     div.ack-socialmedia-padding {
-        padding-left: 40px;
+        padding-left: 24px;
     }
     div.ack-thousands-thankyoupage {
         width: 320px;
@@ -5838,7 +5839,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         float:none;
     }
     div.explorebtn {
-        margin-bottom: 0;
+        margin-bottom: -1px;
         margin-left: 10px;
         margin-top: 20px;
     }
@@ -6681,7 +6682,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         background-color: #f6bf0b;
         color: black;
         text-decoration: none;
-        width: 105% !important;
+        width: 99% !important;
         color: #fff;
         font-size: 21px;
         font-family: Ubuntu Condensed;
@@ -6702,7 +6703,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
     button.mob-show-sucessend {
 /*         margin-top: -21px; */
-        width: 105%;
+        width: 99%;
         font-family: Ubuntu Condensed;
     }  
     button.mob-show-fund {
@@ -7268,7 +7269,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	 	margin-left:auto;
 	 	margin-right:auto;
 	 	margin-top:21px;
-        width: 292px;
+        width: 259px;
 	}
 	.acknowledge-tile-tag .tile-pad{
 		display:block;
@@ -8001,7 +8002,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: -26px;
     }
     div.ack-panel-width {
-        width: 219px;
+        width: 210px;
         margin-top: 24px;        
     }
     div.ack-socialmedia-padding {
@@ -8452,10 +8453,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         height: 126px;
     }
     div.ack-width-padding {
-        margin-left: 13px;
-        padding-bottom: 13px;
+/*         margin-left: 13px; */
+        padding-bottom: 40px;
         padding-top: 22px;
-        width: 63%;
+        width: 100%;
     }
     div.ack-panel-tile {
         height: 293px;
@@ -8926,9 +8927,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     div.about-dasbilly-center {
         left: 0;
+        padding: 0;
     }
     div.abt-positions {
         left: 0px;
+        padding: 0;
     }
     div.position-top{
         margin-left:0px;
@@ -9105,11 +9108,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     button.show-campaign-sucessbtn {
         font-size: 14px;
-        height: 96px;
+        height: 70px;
     }
     button.show-campaign-sucess-endedbtn {
         font-size: 19px;
-        height: 96px;
+        height: 71px;
     }
     button.show-fund-size {
         font-size: 29px;
@@ -10227,6 +10230,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     div.about-dasbilly-center {
         left: 0;
+        padding: 0;
     }
 	.TW-socialicons {
 	   display: block;
@@ -11343,7 +11347,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: -29px;
     }
     div.ack-panel-width {
-        width: 219px;
+        width: 209px;
     }
     div.ack-socialmedia-padding {
         padding-left: 90px;
@@ -11527,12 +11531,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	button.show-campaign-sucess-endedbtn{
 	    font-size: 21px;
 	    padding-left: 14px;
-	    height: 96px;
+	    height: 71px;
 	}
 	button.show-campaign-sucessbtn{
         font-size: 17px;
         padding-left: 10px;
-        height: 96px;
+        height: 71px;
 	}
     div.show-icons {
         left: 35%;
@@ -11931,6 +11935,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     div.abt-positions {
         left: 0;
+        padding: 0;
     }
 	.TW-ebook-header.TW-fixed-header {
 	   background-color: #ffffff;
@@ -12989,7 +12994,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		margin-Top: -33px !important;
         }
         .arrow-mobile-css {
-		margin-right: -35px;
+		margin-right: -14px;
 	}
 	.arrow-mobile {
 		margin-left: -40px !important;
@@ -13354,6 +13359,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /*Screen resolution 644 x 767 */
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.TW-ack-commentBox {
+        margin-bottom: 55px;
+        margin-top: 30px;
+    }
     div.impactassessment .panel-default p {
         font-size: 15px;
     }
@@ -14923,6 +14932,10 @@ textarea.textarea-embed-video {
         overflow: scroll !important;
         width: 100%;
     }
+	h1.dashboard-validatetie-mobile {
+        font-size: 17px;
+        margin-left: -22px;
+    }
     div.impactassessment .panel-default p {
         font-size: 15px;
     }
@@ -14943,10 +14956,10 @@ textarea.textarea-embed-video {
         width: 32px !important;
     }
     div.ack-width-padding {
-        margin-left: 13px;
-        padding-bottom: 13px;
+/*         margin-left: 13px; */
+        padding-bottom: 40px;
         padding-top: 22px;
-        width: 92%;
+        width: 100%;
     }
 	div.ack-panel-tile {
         height: auto;
@@ -14962,7 +14975,7 @@ textarea.textarea-embed-video {
         margin-top: 0;
     }
     div.ack-socialmedia-padding {
-        padding-left: 40px;
+        padding-left: 24px;
     }
     div.ack-thousands-thankyoupage {
         width: 320px;
@@ -15204,7 +15217,7 @@ textarea.textarea-embed-video {
     }
     div.explorebtn {
         margin-top: 20px;
-        margin-bottom: 0;
+        margin-bottom: -1px;
         margin-left: -13px;
     }
 	div .validatetile .show-tile-text-size {
@@ -15558,6 +15571,7 @@ textarea.textarea-embed-video {
     }
     div.about-dasbilly-center {
         left: 0;
+        padding: 0;
     }
     div.abt-positions {
         left: 0px;
@@ -16012,7 +16026,7 @@ textarea.textarea-embed-video {
 	}
     button.mob-show-sucessend {
 /*         margin-top: -21px; */
-        width: 104%;
+        width: 103%;
         font-family: Ubuntu Condensed;
     }
     button.mob-show-fund {
@@ -16554,7 +16568,7 @@ textarea.textarea-embed-video {
 	 	margin-left:auto;
 	 	margin-right:auto;
 	 	margin-top:21px;
-		width:291px;
+		width:258px;
 	}
 	.acknowledge-tile-tag .tile-pad{
 		display:block;
@@ -16959,7 +16973,7 @@ textarea.textarea-embed-video {
 	margin-right: -21px;
     }
     .arrow-mobile {
-	margin-left: -17px !important;
+	margin-left: 9px !important;
     }
     .tips h2 {
 	    padding-left: 72px !important;
@@ -17290,12 +17304,12 @@ textarea.textarea-embed-video {
 .show-campaign-sucess-endedbtn {
     font-family: Ubuntu Condensed;
     font-size: 24px;
-    height: 90px;
+    height: 66px;
 }
 .show-campaign-sucessbtn{
 	font-family: Ubuntu Condensed;
     font-size: 21px;
-    height: 90px;
+    height: 66px;
 }
 .sh-submitapproval{
 	height: 56px !important;

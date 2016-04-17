@@ -772,7 +772,7 @@ class FundController {
         }
     }
     
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['ROLE_USER'])
     def moveContributions(){
             
             def project = Project.get(params.id) 

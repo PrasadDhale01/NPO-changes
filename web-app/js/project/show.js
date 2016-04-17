@@ -1209,6 +1209,22 @@ $(function() {
 	        }
     	});
     	
+    	
+    	$('.contributorName').change(function(){
+    		var fundraiser=$('.contributionFR').val();
+    		var contributor = $(this).val();
+    		$.ajax({
+                type:'post',
+                url:$("#b_url").val()+'/project/getContributionAmount',
+                data:'fundraiser='+fundraiser+'&contributor='+contributor,
+                success: function(data){
+                    $('#contributionAmt').val(data);
+                }
+    		}).error(function(){
+               console.log('An error occured');
+            });
+    	});
+    	
      /*************************Edit video for team*************************/
         $('.perk-tile').hover(function() {
             $(this).find('.campaignEditDeleteIcon').show();

@@ -29,6 +29,9 @@
                 </a>
             </g:elseif>
             <g:if test="${!totalContributions.empty}">
+                <a href="#" class="btn btn-primary btn-sm btn-circle pull-right mngReportCls mange-contributionreport-mobile" data-toggle="modal" data-target="#moveContributionModal">
+                    Move
+                </a>
                 <a href="#" class="btn btn-primary btn-sm btn-circle pull-right mngReportCls mange-contributionreport-mobile" data-toggle="modal" data-target="#reportModal">
                     Report
                 </a>
@@ -217,3 +220,51 @@
     </div><%--  /.modal-content --%>
     </g:form>
 </div><%-- /.modal --%>
+
+    
+
+ <!-- Modal HTML -->
+    <div id="moveContributionModal" class="modal fade">
+        <div class="modal-dialog">
+            <g:form action="moveContributions" controller="fund" method="post" id="${project.id}">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title heading"><b>Move Contribution</b></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="text col-sm-3">Fundraiser</label>
+                                <div class="col-sm-9"> 
+                                    <div></div>
+                                <g:select from="${contributions.contributorName.unique()}" class="form-control contributionFR" name="contributionFR"/><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="text col-sm-3">Contributor</label>
+                                <div class="col-sm-9"> 
+                                <g:select from="${contributions.contributorName.unique() }" class="form-control contributorName" name="contributorName" /><br>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="text col-sm-3">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+                                <div class="col-sm-9"> 
+                                <input type="text" class="form-control contributionAmount" name="contributionAmount" id=contributionAmt><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        <button  class="btn btn-primary " id="btnMove">Move</button>
+                    </div>
+                </div>
+            </g:form>
+        </div>
+    </div>

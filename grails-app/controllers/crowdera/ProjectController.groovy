@@ -614,6 +614,18 @@ class ProjectController {
         }
     }
     
+    def getContributionAmount(){
+        def fundraiser = params.fundraiser
+        def contributor = params.contributor
+        def amount =  contributionService.getContributionAmount(fundraiser, contributor)
+        
+        if(amount){
+            render amount
+        }else{
+            render 0
+        }
+    }
+    
     
     @Secured(['ROLE_ADMIN'])
     def manageCampaignDeadline(){

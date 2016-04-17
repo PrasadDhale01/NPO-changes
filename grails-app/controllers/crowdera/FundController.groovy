@@ -772,4 +772,31 @@ class FundController {
         }
     }
     
+    @Secured(['ROLE_ADMIN'])
+    def moveContributions(){
+            
+            def project = Project.get(params.id) 
+            def title = projectService.getVanityTitleFromId(params.id)
+            def fundraiser = params.contributionFR
+            def contributor= params.contributorName
+            def amount= params.double('contributionAmount')
+            
+            def contribution1 = Contribution.findByContributorName(fundraiser)
+            def teamFundraiser = Team.findByUser(contribution11.user)
+            
+            
+            def contribution12 = Contribution.findByContributorName(contributor)
+            def teamContributor  = Team.findByUser(contribution12.user)
+            
+            def contribution = contributionService.getContributionForMoving(contributor, amount)
+            
+            if(teamFundraiser && teamContributor){
+                teamFundraiser.removeFromContributions(contribution)
+                teamContributor.addToContributions(contribution)
+                redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
+            }
+            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
+            
+    }
+    
 }

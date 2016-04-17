@@ -2234,8 +2234,10 @@ class ProjectService {
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
         
-            def tempFile = new File("${iconFile.getOriginalFilename()}")
-            def key = "${folder}/${iconFile.getOriginalFilename()}"
+            def fileName = UUID.randomUUID().toString()
+            
+            def tempFile = new File("${fileName}")
+            def key = "${folder}/${fileName}"
             key = key.toLowerCase()
             iconFile.transferTo(tempFile)
             def object = new S3Object(tempFile)

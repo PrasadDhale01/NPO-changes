@@ -27,7 +27,7 @@
 	                    <h3 class="modal-title"><b>Tax Receipt</b></h3>
 	                </div>
 	                <div class="modal-body">
-	                    <g:link controller="user" action="exportTaxReceiptpdf" id="${contribution.id}" class="btn btn-primary btn-sm pull-right">Download Receipt</g:link><br>
+	                    <g:link controller="user" action="exportTaxReceiptPdf" params="['id': contribution.id]" class="btn btn-primary btn-sm pull-right">Download Receipt</g:link><br>
 	                    <g:render template="user/taxReceipt" model="['taxReciept': taxReciept, 'transaction': transaction, 'amountInWords': amountInWords, 'contribution': contribution, 'project': contribution.project, 'ismodal': 'true']"></g:render>
 	                </div>
 	            </div>

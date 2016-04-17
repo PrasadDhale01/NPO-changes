@@ -18,11 +18,14 @@ import org.apache.http.client.entity.UrlEncodedFormEntity
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.message.BasicNameValuePair
+import org.codehaus.groovy.grails.plugins.jasper.JasperReportDef
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.model.*
 import org.jets3t.service.security.AWSCredentials
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 import java.text.DecimalFormat;
+
+import org.codehaus.groovy.grails.plugins.jasper.JasperExportFormat
 
 class UserService {
 
@@ -33,6 +36,7 @@ class UserService {
     def grailsApplication
 	def contributionService
     def projectService
+    def grailsLinkGenerator
 
     def getNumberOfUsers() {
         return User.count()
@@ -90,8 +94,10 @@ class UserService {
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
 
-            def file = new File("${imageFile.getOriginalFilename()}")
-            def key = "${folder}/${imageFile.getOriginalFilename()}"
+            def fileName = UUID.randomUUID().toString()
+            
+            def file = new File("${fileName}")
+            def key = "${folder}/${fileName}"
             key = key.toLowerCase()
 
             imageFile.transferTo(file)
@@ -1815,6 +1821,69 @@ class UserService {
         }
         return user
     }
+    
+    def generateTaxreceiptPdf(Contribution contribution) {
+        TaxReciept taxReciept = projectService.getTaxRecieptOfProject(contribution.project)
+        Transaction transaction = contributionService.getTransactionByContribution(contribution)
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d/MM/YYYY");
+        
+        String orgLogo;
+        if (contribution.project.organizationIconUrl) {
+            if (contribution.project.organizationIconUrl.startsWith('http') || contribution.project.organizationIconUrl.startsWith('https')) {
+                orgLogo = contribution.project.organizationIconUrl
+            } else {
+                orgLogo = "https:"+contribution.project.organizationIconUrl
+            }
+        }
+        
+        Map reportParams = [:]
+        reportParams.put("orgName", contribution.project.organizationName);
+        reportParams.put("orgLogo", orgLogo);
+        
+        reportParams.put("orgAddress", (taxReciept.addressLine1 ? taxReciept.addressLine1 : "") +" "+
+                                       (taxReciept.addressLine2 ? taxReciept.addressLine2 : "") +" "+
+                                       (taxReciept.city ? taxReciept.city : "") +" "+ 
+                                       (taxReciept.zip ? taxReciept.zip : "")+" "+
+                                       (taxReciept.taxRecieptHolderState ? taxReciept.taxRecieptHolderState : "") +", India")
+        
+        reportParams.put("contributiondate", dateFormat.format(contribution.date));
+        
+        reportParams.put("signatureUrl", (taxReciept.signatureUrl ? "https:"+taxReciept.signatureUrl
+                                                                  : "https://s3.amazonaws.com/crowdera/project-icon/csr.jpg"));
+                                  
+        
+        reportParams.put("authorizedPerson", taxReciept.name);
+        
+        reportParams.put("regDate", dateFormat.format(taxReciept.regDate).toString());
+        reportParams.put("exemptionPer", taxReciept.deductibleStatus ? taxReciept.deductibleStatus : " ");
+        
+        def reportDef
+        
+        if (contribution.project.payuStatus) {
+            reportParams.put("amountInNo", "INR "+contribution.amount.round().toString());
+            reportParams.put("orgStatus", "INR "+taxReciept.taxRecieptHolderState);
+            reportParams.put("panNumber", taxReciept.panCardNumber);
+            reportParams.put("panOfContributor", "");
+            reportParams.put("receiptNo", transaction.transactionId);
+            
+            reportDef = new JasperReportDef(name:'taxreceiptIndia.jasper',fileFormat:JasperExportFormat.PDF_FORMAT,
+                parameters: reportParams)
+        } else {
+            reportParams.put("amountInNo", "USD "+ contribution.amount.round().toString());
+            reportParams.put("amountInWord", "USD "+convert((long)contribution.amount));
+            reportParams.put("contributorName", contribution.contributorName)
+            reportParams.put("perk", contribution.reward.title)
+            reportParams.put("email", contribution.contributorEmail)
+            reportParams.put("federalId", taxReciept.ein)
+            reportParams.put("phone", taxReciept.phone)
+            reportDef = new JasperReportDef(name:'taxreceiptUSA.jasper',fileFormat:JasperExportFormat.PDF_FORMAT,
+                parameters: reportParams)
+        }
+        
+        return reportDef;
+    }
+    
+    
 
     @Transactional
     def bootstrap() {

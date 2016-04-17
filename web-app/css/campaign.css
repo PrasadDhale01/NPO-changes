@@ -763,7 +763,7 @@ div.validate-show-div .show-description {
 
 .media-stript-container{
     background-color: #323232 !important;
-    border-top: 2px solid #01bbd2 !important;
+/*     border-top: 2px solid #01bbd2 !important; */
 }
 .hm-media-title h3{
     color: #fff;
@@ -1271,8 +1271,13 @@ img.how-it-success-img{
     color: #5a6771;
     font-weight: 900;
     font-family: sans-serif;
-    font-size: 19px;
-    margin: 0 0 0px
+    font-size: 16px;
+    margin: 0 0 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    line-height: 36px;
 }
 .managecampaignDescription .panel-body {
     padding: 5px;
@@ -1418,7 +1423,7 @@ img.how-it-success-img{
     margin-bottom: 20px;
 }
 .modal-body .taxreceiptcontainer {
-    width: auto;
+    width: 800px;
 }
 .taxreceiptbgcolor {
     background-color: #F4F4F4;
@@ -1629,7 +1634,7 @@ button.dropdown-toggle.selectpicker.btn.btn-sm.btn-default:hover {
     margin-top: -27px;
 }
 .ack-textareaheghit {
-    height: 93px !important;
+    height: 145px !important;
 }
 .ack-textareabottom{
     margin-bottom: 7px;
@@ -1639,10 +1644,10 @@ button.dropdown-toggle.selectpicker.btn.btn-sm.btn-default:hover {
     padding-top: 0;
 }
 .ack-width-padding {
-    margin-left: 13px;
+/*     margin-left: 13px; */
     padding-bottom: 33px;
     padding-top: 33px;
-    width: 64%;
+    width: 100%;
 }
 a.thankyou-textdeco {
     text-decoration: none;
@@ -1695,4 +1700,16 @@ a.thankyou-textdeco {
 }
 .show-fundrasier-namepadding > h5 {
     text-align: left;
+}
+.thank-ack-cmmentBox {
+    background-color: #f5f5f5;
+    margin-bottom: 30px;
+    margin-top: 6px;
+}
+.thanku-comnt-top {
+    margin-top: 6px;
+}
+
+.taxreceiptmodalbody.modal-body {
+	overflow-x: scroll;
 }

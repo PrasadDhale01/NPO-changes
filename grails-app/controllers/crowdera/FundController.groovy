@@ -775,28 +775,40 @@ class FundController {
     @Secured(['ROLE_USER'])
     def moveContributions(){
             
-            def project = Project.get(params.id) 
-            def title = projectService.getVanityTitleFromId(params.id)
-            def fundraiser = params.contributionFR
-            def contributor= params.contributorName
-            def amount= params.double('contributionAmount')
-            
-            def contribution1 = Contribution.findByContributorName(fundraiser)
-            def teamFundraiser = Team.findByUser(contribution11.user)
-            
-            
-            def contribution12 = Contribution.findByContributorName(contributor)
-            def teamContributor  = Team.findByUser(contribution12.user)
-            
-            def contribution = contributionService.getContributionForMoving(contributor, amount)
-            
-            if(teamFundraiser && teamContributor){
-                teamFundraiser.removeFromContributions(contribution)
-                teamContributor.addToContributions(contribution)
-                redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
-            }
+        def project = Project.get(params.id)
+        def title = projectService.getVanityTitleFromId(params.id)
+        def fundraiser = params.contributionFR //from
+        def contributor= params.contributorName // to
+        def amount= params.double('contributionAmount')
+        def teamFundraiser
+        def teamContributor
+
+        def fundRaiserUserName = projectService.getFundraiserByFirstnameAndLastName(fundraiser, project.teams)
+        def contributorUserName = projectService.getFundraiserByFirstnameAndLastName(contributor, project.teams)
+        def contribution = contributionService.getContributionForMoving(fundRaiserUserName, amount,contributorUserName)
+
+        if(contribution==null){
             redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
-            
+        }
+
+
+        if(fundRaiserUserName){
+            teamFundraiser = projectService.getTeamByUsername(fundRaiserUserName)
+        }
+
+
+        if(contributorUserName){
+            teamContributor = projectService.getTeamByUsername(contributorUserName)
+        }
+
+        if(teamFundraiser!=teamContributor){
+            teamFundraiser.removeFromContributions(contribution) //from
+            teamContributor.addToContributions(contribution)  //to
+            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
+        }else{
+            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
+        }
+        
     }
-    
+
 }

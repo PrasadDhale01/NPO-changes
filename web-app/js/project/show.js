@@ -1210,7 +1210,7 @@ $(function() {
     	});
     	
     	
-    	$('.contributorName').change(function(){
+    	$('.contributorNames').change(function(){
     		var fundraiser=$('.contributionFR').val();
     		var contributor = $(this).val();
     		$.ajax({

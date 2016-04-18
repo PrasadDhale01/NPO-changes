@@ -235,18 +235,17 @@
                     <div class="modal-body">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label class="text col-sm-3">Fundraiser</label>
+                                <label class="text col-sm-3">From</label>
                                 <div class="col-sm-9"> 
-                                    <div></div>
-                                <g:select from="${contributions.contributorName.unique()}" class="form-control contributionFR" name="contributionFR"/><br>
+                                     <g:select from="${teamNames}" class="form-control contributionFR" name="contributionFR"/><br>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label class="text col-sm-3">Contributor</label>
+                                <label class="text col-sm-3">To</label>
                                 <div class="col-sm-9"> 
-                                <g:select from="${contributions.contributorName.unique() }" class="form-control contributorName" name="contributorName" /><br>
+                                <g:select from="${teamNames}" class="form-control contributorName" name="contributorName" /><br>
                                </div>
                             </div>
                         </div>

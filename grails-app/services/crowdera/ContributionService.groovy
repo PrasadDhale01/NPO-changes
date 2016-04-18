@@ -38,14 +38,20 @@ class ContributionService {
         return totalContribution
     }
 	 
-    def getContributionForMoving(def cn, def contributionAmt){
-        def contribution = Contribution.findWhere(contributorName:cn, amount:contributionAmt)
+    def getContributionForMoving(def fundraiser, def contributionAmt,def contributor){
+        def contribution = Contribution.findWhere(fundRaiser:fundraiser, amount:contributionAmt)
+
+        if(contribution){
+            contribution.fundRaiser = contributor
+        }
+        
         return contribution
     }
     
     def getContributionAmount(def fundraiser, def contributor){
         def contribution = Contribution.findByContributorName(contributor)
         def amount = contribution.amount.round()
+        
         if(amount){
             return amount
         }

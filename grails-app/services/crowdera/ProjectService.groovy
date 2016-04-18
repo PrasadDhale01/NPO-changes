@@ -62,6 +62,28 @@ class ProjectService {
         def team = Team.findByUserAndProject(user, project)
         return team
     }
+    
+    def getTeamByUsername(def username){
+         def user = User.findByUsername(username)
+         def team= Team.findByUser(user)
+
+         if(team){
+             return team
+         }
+         
+         return null
+    }
+    
+    def getTeamFirstNameAndLastName(def team){
+        def teamNameList = []
+        if(team){
+            team.each{
+                teamNameList.add(it.user.firstName +' ' + it.user.lastName)
+            }
+        }
+        
+        return teamNameList
+    }
 
     def getProjectAdminByEmail(def email){
         return ProjectAdmin.findByEmail(email)
@@ -2394,6 +2416,21 @@ class ProjectService {
 			}
 			return list
         }
+    }
+    
+    def getFundraiserByFirstnameAndLastName(def username, def teams){
+        def fundraiser = null
+        
+        if(username && teams){
+            teams.each{
+                def name = it.user.firstName+" " + it.user.lastName
+                if(name.equalsIgnoreCase(username)){
+                    fundraiser = it.user.username
+                }
+            }
+        }
+        
+        return fundraiser
     }
     
     def getFundRaisersForTeam(Project project, User user) {

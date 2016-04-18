@@ -25,7 +25,7 @@
             <div class="visible-xs show-mobilejs">
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="crowdera-title"><a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-nw.png" alt="Crowdera"></a></div>
+                        <div class="crowdera-title"><a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/crowdera-footer-logo-cdra.png" class="cdra-ft-clogo" alt="Crowdera"></a></div>
                         <div class="crowdera-menu">
                             <div class="col-xs-6 footer-mid-section-menu-mobile footer-menu-align">
                                 <div class="quicklinks-menu-div">
@@ -92,13 +92,32 @@
                         
                         
                         <div class="row">
+                        
+                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development'}">
+		                    <div class="col-xs-12 footer-first-section-mobile footer-text-align footer-mobile-startcampaign">
+		                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+		                            <span class="cdra-ft-cutomercnt col-xs-12">Customer support:</span>
+		                            <span class="cdr-ft-contactnum-in col-xs-12">+91 721 970 2234 <span class="cdra-ft-us">India</span></span>
+		                            <span class="cdra-ft-contactmail col-xs-12">support@crowdera.co</span>
+		                        </g:if>
+		                        <g:else>
+		                            <span class="cdra-ft-cutomercnt col-xs-12">Customer support:</span>
+		                            <span class="cdr-ft-contactnum col-xs-12">+1 (650) 6902 234  <span class="cdra-ft-us">US</span></span>
+		                            <span class="cdra-ft-contactmail col-xs-12">support@crowdera.co</span>
+		                        </g:else>
+		                    </div>
+                        </g:if>
+                        <g:else>
+                        
                             <div class="col-xs-12 footer-first-section-mobile footer-text-align footer-mobile-startcampaign">
 <%--                        <p>Hands up for a Better World. See how you can make a difference with Crowdera.</p>--%>
                             <div class="footer-first-section-mobile footer-img-align">
 <%--                            <img src="//s3.amazonaws.com/crowdera/assets/hand-image-mobile.png" alt="Crowdera">--%>
                                 <g:link controller="project" action="create"><img src="//s3.amazonaws.com/crowdera/assets/start-a-campaign-mobile.png" alt="Crowdera"></g:link>
                             </div>
+			           
                         </div>
+                        </g:else>
                     </div>
                         
                 </div>
@@ -132,7 +151,7 @@
     <div class="visible-sm visible-md show-mobilejs-sm-md sm-padding-mobile-footer">
         <div class="row">
         <div class="col-sm-4 footer-logo-padding-left">
-            <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-nw.png" alt="Crowdera"></a>
+            <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/crowdera-footer-logo-cdra.png" class="cdra-ft-clogo" alt="Crowdera"></a>
             <div class="col-sm-6 footer-mid-section-menu tab-menu-padding">
             <ul>
                 <li><a href="${resource(dir: '/')}">Home</a></li>   
@@ -155,13 +174,30 @@
             </ul>
             </div>
         </div>
-        <div class="col-sm-4 footer-hands-image-top">
-            <div class="footer-mid-section-img">
-            <br>
-            <img src="//s3.amazonaws.com/crowdera/assets/Hands-image-footer.png" alt="Crowdera" class="footer-hands-img">
-            <a href="#" class="display-footer-text"><img class="footer-start-cmpg-img" src="//s3.amazonaws.com/crowdera/assets/Hands-up-for-a-better - button.jpg" alt="Crowdera"></a>
+        
+        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development'}">
+            <div class="col-md-4 col-sm-4 cdra-ft-top">
+                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                    <p class="cdra-ft-cutomercnt">Customer support:</p>
+                    <p class="cdr-ft-contactnum">+91 721 970 2234 <span class="cdra-ft-us">India<span></p>
+                    <p class="cdra-ft-contactmail">support@crowdera.co</p>
+                </g:if>
+                <g:else>
+                    <p class="cdra-ft-cutomercnt">Customer support:</p>
+                    <p class="cdr-ft-contactnum">+1 (650) 6902 234  <span class="cdra-ft-us">US</span></p>
+                    <p class="cdra-ft-contactmail">support@crowdera.co</p>
+                </g:else>
             </div>
-        </div>
+        </g:if>
+        <g:else>
+	        <div class="col-sm-4 footer-hands-image-top">
+	            <div class="footer-mid-section-img">
+	            <br>
+	            <img src="//s3.amazonaws.com/crowdera/assets/Hands-image-footer.png" alt="Crowdera" class="footer-hands-img">
+	            <a href="#" class="display-footer-text"><img class="footer-start-cmpg-img" src="//s3.amazonaws.com/crowdera/assets/Hands-up-for-a-better - button.jpg" alt="Crowdera"></a>
+	            </div>
+	        </div>
+        </g:else>
         <div class="col-sm-4 socialiconlinks footer-mid-section">
             <br>
            <div class="socialicon pull-right">
@@ -251,7 +287,7 @@
             
         <div class="row footer-lg-first-section">
         <div class="col-md-4 footer-logosize">
-            <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-nw.png" alt="Crowdera"></a>
+            <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/crowdera-footer-logo-cdra.png" class="cdra-ft-clogo" alt="Crowdera"></a>
             <div class="col-md-6 footer-mid-section-menu">
             <ul>
                 <li><a href="${resource(dir: '/')}">Home</a></li>
@@ -275,13 +311,33 @@
         
             </div>
         </div>
-        <div class="col-md-4 footer-hands-image-top ">
-            <div class="footer-mid-section-img">
-            <br>
-            <img src="//s3.amazonaws.com/crowdera/assets/Hands-image-footer.png" alt="Crowdera" class="footer-hands-img">
-                <a href="#" class="display-footer-text"><img class="footer-start-cmpg-img" src="//s3.amazonaws.com/crowdera/assets/Hands-up-for-a-better - button.jpg" alt="Crowdera"></a>
+        
+        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development'}">
+            <div class="col-md-4 cdra-ft-top">
+                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                    <p class="cdra-ft-cutomercnt">Customer support:</p>
+                    <p class="cdr-ft-contactnum">+91 721 970 2234 <span class="cdra-ft-us">India<span></p>
+                    <p class="cdra-ft-contactmail">support@crowdera.co</p>
+                </g:if>
+                <g:else>
+                    <p class="cdra-ft-cutomercnt">Customer support:</p>
+                    <p class="cdr-ft-contactnum">+1 (650) 6902 234  <span class="cdra-ft-us">US</span></p>
+                    <p class="cdra-ft-contactmail">support@crowdera.co</p>
+                </g:else>
             </div>
-        </div>
+        </g:if>
+        <g:else>
+            <div class="col-md-4 footer-hands-image-top ">
+                <div class="footer-mid-section-img">
+                <br>
+                <img src="//s3.amazonaws.com/crowdera/assets/Hands-image-footer.png" alt="Crowdera" class="footer-hands-img">
+                    <a href="#" class="display-footer-text"><img class="footer-start-cmpg-img" src="//s3.amazonaws.com/crowdera/assets/Hands-up-for-a-better - button.jpg" alt="Crowdera"></a>
+                </div>
+            </div>
+        </g:else>
+        
+        
+        
         <div class="col-md-4 socialiconlinks footer-mid-section">
             <br>
             <div class="socialicon pull-right">

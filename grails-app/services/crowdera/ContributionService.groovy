@@ -48,14 +48,18 @@ class ContributionService {
         return contribution
     }
     
-    def getContributionAmount(def fundraiser, def contributor){
-        def contribution = Contribution.findByContributorName(contributor)
-        def amount = contribution.amount.round()
+    def getContributionAmount(def fundraiser){
         
-        if(amount){
-            return amount
+        def amount = []
+        def contribution = Contribution.findAllByFundRaiser(fundraiser)
+        
+        if(contribution){
+            contribution.each{
+                amount.add(it.amount.round())
+            }
         }
-        return null
+        
+        return amount
     }
     
     

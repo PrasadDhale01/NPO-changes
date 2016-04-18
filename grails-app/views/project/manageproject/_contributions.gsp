@@ -231,6 +231,7 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title heading"><b>Move Contribution</b></h4>
+                        <g:hiddenField name="projectId" class="projectId" id="projectId" value="${projectId}"/>
                     </div>
                     <div class="modal-body">
                         <div class="col-sm-12">
@@ -252,8 +253,8 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label class="text col-sm-3">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
-                                <div class="col-sm-9"> 
-                                <input type="text" class="form-control contributionAmount" name="contributionAmount" id=contributionAmt><br>
+                                <div class="col-sm-9">
+                                    <g:select from="" class="form-control contributionAmount" name="contributionAmount" id="contributionAmt"/><br>
                                 </div>
                             </div>
                         </div>

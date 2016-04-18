@@ -614,13 +614,19 @@ class ProjectController {
         }
     }
     
+    @Secured(['ROLE_USER'])
     def getContributionAmount(){
+        def amount
         def fundraiser = params.fundraiser
-        def contributor = params.contributor
-        def amount =  contributionService.getContributionAmount(fundraiser, contributor)
+        def project = Project.get(params.projectId)
+        def fundraiserName = projectService.getFundraiserByFirstnameAndLastName(fundraiser, project.teams)
+        
+        if(fundraiserName){
+            amount= contributionService.getContributionAmount(fundraiserName)
+        }
         
         if(amount){
-            render amount
+            render(contentType: 'text/json') {['data': amount]}
         }else{
             render 0
         }
@@ -2651,6 +2657,7 @@ class ProjectController {
         }else{
             contacts =projectService.getDataFromImportedCSV(params.filecsv, user)
             render(contentType: 'text/json') {['contacts': contacts]}
+            jQuery.parseJSON(JSON.stringify(data));
         }  
     }
     

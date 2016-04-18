@@ -1219,15 +1219,28 @@ $(function() {
     	});
     	
     	
-    	$('.contributorNames').change(function(){
+    	$('.contributionFR').change(function(){
     		var fundraiser=$('.contributionFR').val();
-    		var contributor = $(this).val();
+    		var projectId = $('#projectId').val();
+    		var formData = new FormData();
+    		formData.append('fundraiser',fundraiser);
+    		formData.append('projectId', projectId);
     		$.ajax({
                 type:'post',
                 url:$("#b_url").val()+'/project/getContributionAmount',
-                data:'fundraiser='+fundraiser+'&contributor='+contributor,
+                data:formData,
+                processData: false,  
+                contentType: false ,
                 success: function(data){
-                    $('#contributionAmt').val(data);
+                	var jsonData = jQuery.parseJSON(JSON.stringify(data)).data;
+                	
+            		if($('#contributionAmt').val()){
+            			$('#contributionAmt option').remove();
+            		}
+            		
+        			$.each(jsonData, function(index, value){
+        				$('#contributionAmt').append('<option>'+value+'</option>');
+        			});
                 }
     		}).error(function(){
                console.log('An error occured');

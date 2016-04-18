@@ -20,8 +20,13 @@ class HomeController {
             def projects = projectService.showProjects(currentEnv)
             return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv, contributorEmail:contributorEmail]
         } else {
-            def projects = projectService.projectOnHomePage()
-            return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv, contributorEmail:contributorEmail]
+            def projects = projectService.projectOnHomePage(currentEnv)
+            if(projects){
+                return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv, contributorEmail:contributorEmail]
+            }else{
+                projects = projectService.showProjects(currentEnv)
+                return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv, contributorEmail:contributorEmail]
+            }
         }
     }
 

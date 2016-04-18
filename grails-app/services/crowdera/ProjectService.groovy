@@ -1,19 +1,20 @@
 package crowdera
 
+import static java.util.Calendar.*
 import grails.transaction.Transactional
+import grails.util.Environment
+
 import java.security.MessageDigest
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 
 import javax.servlet.http.Cookie
 
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
-import org.jets3t.service.security.AWSCredentials
 import org.jets3t.service.model.*
-import grails.util.Environment
-import static java.util.Calendar.*
+import org.jets3t.service.security.AWSCredentials
+import org.springframework.web.multipart.MultipartFile
+import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 class ProjectService {
     def userService
@@ -60,6 +61,28 @@ class ProjectService {
     def getTeamByUserAndProject(def project, def user){
         def team = Team.findByUserAndProject(user, project)
         return team
+    }
+    
+    def getTeamByUsername(def username){
+         def user = User.findByUsername(username)
+         def team= Team.findByUser(user)
+
+         if(team){
+             return team
+         }
+         
+         return null
+    }
+    
+    def getTeamFirstNameAndLastName(def team){
+        def teamNameList = []
+        if(team){
+            team.each{
+                teamNameList.add(it.user.firstName +' ' + it.user.lastName)
+            }
+        }
+        
+        return teamNameList
     }
 
     def getProjectAdminByEmail(def email){
@@ -1526,15 +1549,21 @@ class ProjectService {
         return subFinalList
     }
 
-	def projectOnHomePage() {
-		def currentEnv = Environment.current.getName()
-		def projects
-		if (currentEnv == 'staging' || currentEnv == 'production')
-		   projects = Project.getAll('2c9f84885346fbc901537e4add4d0004', '2c9f84885346fbc90153481739240000', '2c9f848853bed2320153c2c6b0be0001')
-		else
-		   projects = Project.getAll('2c9f848853bed2320153c2c6b0be0001', '2c9f848850ec4666015228cf067d0022', '2c9f8f3b52ea6f6b01533961864a0001')
-	    return projects
-	}
+    def projectOnHomePage(def currentEnv) {
+        def projects
+        def homePageCampaigns = HomePageCampaigns.findByCurrentEnv(currentEnv)
+
+        if(homePageCampaigns == null){
+           return null
+        }
+
+        if (currentEnv == 'staging' || currentEnv == 'production')
+            projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
+        else
+            projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
+   
+        return projects
+    }
 
     def getBeneficiaryId(Project project) {
         return( project.beneficiaryId )
@@ -2391,6 +2420,21 @@ class ProjectService {
         }
     }
     
+    def getFundraiserByFirstnameAndLastName(def username, def teams){
+        def fundraiser = null
+        
+        if(username && teams){
+            teams.each{
+                def name = it.user.firstName+" " + it.user.lastName
+                if(name.equalsIgnoreCase(username)){
+                    fundraiser = it.user.username
+                }
+            }
+        }
+        
+        return fundraiser
+    }
+    
     def getFundRaisersForTeam(Project project, User user) {
         def teams = project.teams
 	    def amount = project.amount
@@ -3037,6 +3081,45 @@ class ProjectService {
         return projectId
     }
 
+    def getProjectFromTitle(def title){
+        def projectId
+        def projectTitle = Project.findByTitle(title)
+        
+        if(projectTitle){
+            projectId= projectTitle
+        }
+        
+        return projectId
+    }
+    
+    def getHomePageCampaignByEnv(def currentEnv){
+        def homePageCampaign = HomePageCampaigns.findByCurrentEnv(currentEnv)
+        
+        if(homePageCampaign){
+            return homePageCampaign
+        }
+        return null
+    }
+    
+    def setHomePageCampaignByEnv(def campaignOne, def campaingTwo, def campaingThree, def currentEnv){
+        def homePageCampaigns = getHomePageCampaignByEnv(currentEnv)
+        
+        if(homePageCampaigns){
+            
+            homePageCampaigns.campaignOne = campaignOne
+            homePageCampaigns.campaignTwo = campaingTwo
+            homePageCampaigns.campaignThree = campaingThree
+            homePageCampaigns.currentEnv = currentEnv
+        }
+    }
+    
+    def setCampaignDeadline(def project, def days){
+        
+        if(project){
+            project.days =days
+        }
+    }
+    
     def getProjectFromVanityTitle(def title){
         def projectId
         def vanitytitle = VanityTitle.findByVanityTitle(title)
@@ -4681,10 +4764,12 @@ class ProjectService {
         List totalProjects = []
         List endedCampaigns = []
         List activeCampaigns = []
-        if (condition == 'Current' || condition == 'Ended') {
+        if (condition == 'Current' || condition == 'Ended' || condition=="Homepage" || condition=='Deadline') {
             if (country == 'INDIA') {
+                
                 totalProjects = Project.findAllWhere(payuStatus: true, validated: true, inactive: false)
             } else if(country == 'USA') {
+                
                 totalProjects = Project.findAllWhere(payuStatus: false, validated: true, inactive: false)
             }
             totalProjects.each { project->
@@ -4709,6 +4794,12 @@ class ProjectService {
                 break;
             case 'Current':
                 projects = activeCampaigns
+                break;
+            case 'Homepage':
+                projects = totalProjects
+                break;
+            case 'Deadline':
+                projects= totalProjects
                 break;
             case 'Draft':
                 if (country == 'INDIA') {
@@ -4759,7 +4850,9 @@ class ProjectService {
             Pending: 'Pending',
             Current: 'Current',
             Ended: 'Ended',
-            Rejected: 'Rejected'
+            Rejected: 'Rejected',
+            Homepage:'Homepage',
+            Deadline: 'Deadline'
         ]
         return sortingOptions
     }

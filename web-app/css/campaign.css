@@ -1423,7 +1423,7 @@ img.how-it-success-img{
     margin-bottom: 20px;
 }
 .modal-body .taxreceiptcontainer {
-    width: auto;
+    width: 800px;
 }
 .taxreceiptbgcolor {
     background-color: #F4F4F4;
@@ -1708,4 +1708,8 @@ a.thankyou-textdeco {
 }
 .thanku-comnt-top {
     margin-top: 6px;
+}
+
+.taxreceiptmodalbody.modal-body {
+	overflow-x: scroll;
 }

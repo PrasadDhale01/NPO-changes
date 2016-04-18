@@ -1405,7 +1405,7 @@ class MandrillService {
         def link;
         idList.each{
             contribution = Contribution.get(it);
-            link = grailsLinkGenerator.link(controller: 'user', action: 'exportTaxReceiptpdf', id: contribution.id, absolute: true);
+            link = grailsLinkGenerator.link(controller: 'user', action: 'exportTaxReceiptPdf', id: contribution.id, absolute: true);
             def globalMergeVars = [[
                 'name': 'NAME',
                 'content': contribution.contributorName

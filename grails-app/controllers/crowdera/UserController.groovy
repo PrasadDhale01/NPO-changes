@@ -1,9 +1,11 @@
 package crowdera
 
 import grails.plugin.springsecurity.annotation.Secured
+import org.codehaus.groovy.grails.plugins.jasper.JasperReportDef
 import org.springframework.security.core.context.SecurityContextHolder;
 import grails.util.Environment
 import javax.servlet.http.Cookie
+import org.codehaus.groovy.grails.plugins.jasper.JasperExportFormat
 
 class UserController {
     def userService
@@ -12,6 +14,7 @@ class UserController {
     def contributionService
     def rewardService
     def roleService
+    def jasperService
 
     @Secured(['ROLE_ADMIN'])
     def admindashboard() {
@@ -1011,20 +1014,21 @@ class UserController {
         }
     }
 
-    def exportTaxReceiptpdf() {
+    
+    def exportTaxReceiptPdf() {
         def contribution = Contribution.get(params.id)
         
         if (contribution) {
             def title = contribution.project.organizationName
-            def taxReciept = projectService.getTaxRecieptOfProject(contribution.project)
-            def transaction = contributionService.getTransactionByContribution(contribution)
-            def amountInWords = userService.convert((long)contribution.amount)
+            def reportDef = userService.generateTaxreceiptPdf(contribution);
+            ByteArrayOutputStream bytes = jasperService.generateReport(reportDef)
+            response.setHeader("Content-Disposition", 'attachment; filename="taxreceipt-"'+title+'".pdf"');
             response.setContentType("application/pdf")
-            response.setHeader("Content-Disposition", "attachment; filename=taxreceipt-"+title+".pdf")
-            renderPdf( template :"/user/user/taxReceipt", 
-                       model:[pdfRendering:true, contribution:contribution, taxReciept: taxReciept, transaction: transaction,project: contribution.project, amountInWords: amountInWords])
+            response.outputStream << bytes.toByteArray()
+        
         }
     }
+    
     
     def export() {
         def contribution = Contribution.get(params.id)

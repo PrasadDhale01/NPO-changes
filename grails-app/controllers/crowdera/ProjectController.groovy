@@ -614,6 +614,24 @@ class ProjectController {
         }
     }
     
+    @Secured(['ROLE_USER'])
+    def getContributionAmount(){
+        def amount
+        def fundraiser = params.fundraiser
+        def project = Project.get(params.projectId)
+        def fundraiserName = projectService.getFundraiserByFirstnameAndLastName(fundraiser, project.teams)
+        
+        if(fundraiserName){
+            amount= contributionService.getContributionAmount(fundraiserName)
+        }
+        
+        if(amount){
+            render(contentType: 'text/json') {['data': amount]}
+        }else{
+            render 0
+        }
+    }
+    
     
     @Secured(['ROLE_ADMIN'])
     def manageCampaignDeadline(){
@@ -1275,6 +1293,7 @@ class ProjectController {
 			def teamOffset = teamObj.maxrange
 			def validatedTeam = teamObj.teamList
 			def totalteams = teamObj.teams
+            def teamNamesList = projectService.getTeamFirstNameAndLastName(validatedTeam)
 
 			def unValidatedTeam = projectService.getTeamToBeValidated(project)
 			def discardedTeam = projectService.getDiscardedTeams(project)
@@ -1318,7 +1337,7 @@ class ProjectController {
 					tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier, reasons: reasons,
                     spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, isDeviceMobileOrTab: isDeviceMobileOrTab,
                     hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
-                    hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags])
+                    hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, teamNames: teamNamesList])
 			} else {
 				flash.prj_mngprj_message = 'Campaign Not Found'
                 
@@ -2638,6 +2657,7 @@ class ProjectController {
         }else{
             contacts =projectService.getDataFromImportedCSV(params.filecsv, user)
             render(contentType: 'text/json') {['contacts': contacts]}
+            jQuery.parseJSON(JSON.stringify(data));
         }  
     }
     

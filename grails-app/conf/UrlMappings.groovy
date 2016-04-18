@@ -138,5 +138,8 @@ class UrlMappings {
         "/partnering-with-crowdera"(controller:'user', action:'partnerFaq')
         "/partner/new"(controller:'user', action:'createpartner')
         "/partner/edit"(controller:'user', action:'editpartner')
+        
+        /*Tax Receipt*/
+        "/user/exportTaxReceiptPdf/$id" (controller:'user', action:'exportTaxReceiptPdf')
     }
 }

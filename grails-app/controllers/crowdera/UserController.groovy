@@ -1314,5 +1314,4 @@ class UserController {
             render view:'/404error'
         }
     }
-    
 }

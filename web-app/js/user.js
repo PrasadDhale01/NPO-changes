@@ -342,6 +342,25 @@ function campaignsort(){
 	});
 }
 
+function setCampaignCurrentDays(){
+    var campaign = $('#campaignSelection').val();
+    $('#loading-gif').show();
+
+    $.ajax({
+        type: 'post',
+        url: $('#baseUrl').val()+'/project/setCampaignCurrentDays',
+        data: 'campaign='+campaign,
+        success: function(data){
+            if(data){
+                $('#deadline').val(data);
+                $('#loading-gif').hide();
+            }
+        }
+    }).error(function(){
+        $('#loading-gif').hide();
+    });
+}
+
 function campaignsortByCountry(){
 	var selectedSortValue = $('#sortByOptions').val();
 	var selectedCountry = $('#countryOpts').val();

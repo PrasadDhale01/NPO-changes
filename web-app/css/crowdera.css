@@ -5618,6 +5618,22 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	img.cdra-ft-clogo {
         padding-right: 16px;
         padding-left: 0;
+	}
+	
+	.bg-color-white.homepagTempHeight {
+        height: 340px;
+     }
+    .chooseHomePageCampaign .dropdown-menu.open ul {
+        /* max-height: 0px !important; */
+        min-height: 100px !important;
+        width: 105%;
+    }
+	.chooseHomePageCampaign .dropdown-toggle.selectpicker.btn.btn-md.btn-default {
+        margin-left: -3px !important;
+    }
+    .chooseHomePageCampaign .dropdown-menu.open {
+        overflow: scroll !important;
+        width: 100%;
     }
 	span.ft-mobiles-padding {
         padding-left: 53px;
@@ -8411,6 +8427,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     p.cdr-ft-contactnum {
         font-size: 22px;
     }
+    
+    .chooseHomePageCampaign .dropdown-menu.open {
+        margin-left: -3px;
+    }
     div.ft-top-tabs-terms{
         top: 15px;
     }
@@ -10076,6 +10096,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	
+     .chooseHomePageCampaign .dropdown-menu.open {
+         margin-left: -3px;
+     }
 	 ul.manage-submitapprov-india {
         margin-right: -182px !important;
         margin-top: 3px !important;
@@ -11121,6 +11145,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width: 1281px) and (max-width: 1344px){
+	
     div.manage-alltabs {
         padding-left: 0;
     }
@@ -11161,6 +11186,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 @media only screen and (min-width: 1025px) and (max-width: 1920px){
 	
+    .chooseHomePageCampaign .dropdown-menu.open ul{
+        max-height: 100px !important;
+        min-height: 100px !important;
+        width:100%;
+    }
+	.homepagTempHeight{
+       height:210px;
+    }
 	.feduoutercontent {
 	   margin-top: 48px !important;
 	}
@@ -14909,6 +14942,22 @@ textarea.textarea-embed-video {
         padding-right: 28px;
         padding-left: 0;
     }
+	
+     .bg-color-white.homepagTempHeight {
+        height: 340px;
+     }
+    .chooseHomePageCampaign .dropdown-menu.open ul {
+        /* max-height: 0px !important; */
+        min-height: 100px !important;
+        width: 105%;
+    }
+    .chooseHomePageCampaign .dropdown-toggle.selectpicker.btn.btn-md.btn-default {
+        margin-left: -3px !important;
+    }
+    .chooseHomePageCampaign .dropdown-menu.open {
+        overflow: scroll !important;
+        width: 100%;
+    }
 	h1.dashboard-validatetie-mobile {
         font-size: 17px;
         margin-left: -22px;
@@ -18320,4 +18369,11 @@ input[readonly] {
 }
 .col-pr-0 {
     padding-right: 0px;
+}
+.chooseHomePageCampaign .dropdown-menu.open {
+    margin-left: -3px;
+    max-height: 100px !important;
+    min-height: 100px !important;
+    width: 100%;
+    z-index: 1 !important;
 }

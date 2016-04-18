@@ -787,11 +787,6 @@ class FundController {
         def contributorUserName = projectService.getFundraiserByFirstnameAndLastName(contributor, project.teams)
         def contribution = contributionService.getContributionForMoving(fundRaiserUserName, amount,contributorUserName)
 
-        if(contribution==null){
-            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
-        }
-
-
         if(fundRaiserUserName){
             teamFundraiser = projectService.getTeamByUsername(fundRaiserUserName)
         }
@@ -801,7 +796,7 @@ class FundController {
             teamContributor = projectService.getTeamByUsername(contributorUserName)
         }
 
-        if(teamFundraiser!=teamContributor){
+        if((teamFundraiser!=teamContributor) && (contribution!=null)){
             teamFundraiser.removeFromContributions(contribution) //from
             teamContributor.addToContributions(contribution)  //to
             redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])

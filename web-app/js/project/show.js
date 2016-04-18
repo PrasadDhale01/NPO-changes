@@ -155,6 +155,15 @@ $(function() {
         }
     });
     
+    $('#moveContributionModal').find('form').validate({
+        rules: {
+        	contributionAmount: {
+                required: true,
+                number: true
+            }
+        }
+    });
+    
     $('.contributionedit').each(function () {
         $(this).find('form').validate({
         	rules: {

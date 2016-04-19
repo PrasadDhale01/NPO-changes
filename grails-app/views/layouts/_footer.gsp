@@ -97,12 +97,12 @@
 		                    <div class="col-xs-12 footer-first-section-mobile footer-text-align footer-mobile-startcampaign">
 		                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 		                            <span class="cdra-ft-cutomercnt col-xs-12">Customer support:</span>
-		                            <span class="cdr-ft-contactnum-in col-xs-12">+91 721 970 2234 <span class="cdra-ft-us">India</span></span>
+		                            <span class="cdr-ft-contactnum-in col-xs-12">+91 721 970 2234</span>
 		                            <span class="cdra-ft-contactmail col-xs-12">support@crowdera.co</span>
 		                        </g:if>
 		                        <g:else>
 		                            <span class="cdra-ft-cutomercnt col-xs-12">Customer support:</span>
-		                            <span class="cdr-ft-contactnum col-xs-12">+1 (650) 6902 234  <span class="cdra-ft-us">US</span></span>
+		                            <span class="cdr-ft-contactnum col-xs-12">+1 (650) 6902 234</span>
 		                            <span class="cdra-ft-contactmail col-xs-12">support@crowdera.co</span>
 		                        </g:else>
 		                    </div>
@@ -179,12 +179,12 @@
             <div class="col-md-4 col-sm-4 cdra-ft-top">
                 <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                     <p class="cdra-ft-cutomercnt">Customer support:</p>
-                    <p class="cdr-ft-contactnum">+91 721 970 2234 <span class="cdra-ft-us">India<span></p>
+                    <p class="cdr-ft-contactnum">+91 721 970 2234</p>
                     <p class="cdra-ft-contactmail">support@crowdera.co</p>
                 </g:if>
                 <g:else>
                     <p class="cdra-ft-cutomercnt">Customer support:</p>
-                    <p class="cdr-ft-contactnum">+1 (650) 6902 234  <span class="cdra-ft-us">US</span></p>
+                    <p class="cdr-ft-contactnum">+1 (650) 6902 234</p>
                     <p class="cdra-ft-contactmail">support@crowdera.co</p>
                 </g:else>
             </div>
@@ -316,12 +316,12 @@
             <div class="col-md-4 cdra-ft-top">
                 <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                     <p class="cdra-ft-cutomercnt">Customer support:</p>
-                    <p class="cdr-ft-contactnum">+91 721 970 2234 <span class="cdra-ft-us">India<span></p>
+                    <p class="cdr-ft-contactnum">+91 721 970 2234</p>
                     <p class="cdra-ft-contactmail">support@crowdera.co</p>
                 </g:if>
                 <g:else>
                     <p class="cdra-ft-cutomercnt">Customer support:</p>
-                    <p class="cdr-ft-contactnum">+1 (650) 6902 234  <span class="cdra-ft-us">US</span></p>
+                    <p class="cdr-ft-contactnum">+1 (650) 6902 234 </p>
                     <p class="cdra-ft-contactmail">support@crowdera.co</p>
                 </g:else>
             </div>

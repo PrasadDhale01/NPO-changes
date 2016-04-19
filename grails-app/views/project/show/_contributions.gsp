@@ -14,28 +14,38 @@
     }
     def projectId = project.id
 %>
+ <g:hiddenField name="isIndianCampaign" value="${project.payuStatus}" id="isIndianCampaign"/>
 <g:if test="${totalContributions.empty}">
     <div class="alert alert-info sh-mobilecontibutionpadding">No contributions yet. Yours can be the first one.</div>
 </g:if>
 <g:if test="${user && !isCrUserCampBenOrAdmin && CurrentUserTeam}">
     <g:if test="${team.user == user}">
+    <div class="dropdown pull-right">
+        
+            <button class="btn btn-default dropdown-toggle" type="button" 
+            id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Manage contribution
+            <span class="caret"></span></button>
+         
+        <ul class="dropdown-menu cdra-mng-dropwidth" aria-labelleby="dropdownMenu1">   
         <g:if test="${!ended}">
-            <a href="#" class="btn btn-primary btn-sm pull-right offlinecontributionbtn" data-toggle="modal" data-target="#offlineContributionModal">
+           <li> <a href="#" data-toggle="modal" data-target="#offlineContributionModal">
                 Manage Offline Contribution
-            </a>
+            </a></li>
         </g:if>
         <g:elseif test="${ended}">
-           <a href="#" class="btn btn-primary btn-sm pull-right offlinecontributionbtn" id="endedOfflineContribution">
+           <li><a href="#"  id="endedOfflineContribution">
                Manage Offline Contribution
-           </a>
+           </a></li>
         </g:elseif>
         <!-- Button trigger modal -->
         <g:if test="${!totalContributions.empty}">
-            <button class="btn btn-primary btn-sm btn-circle pull-right reportCls" data-toggle="modal" data-target="#reportModal">
+          <li>  <a  data-toggle="modal" data-target="#reportModal">
                 Report
-            </button>
+            </a></li>
         </g:if>
-        
+        </ul>
+    </div>    
         <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
             <g:form controller="project" action="generateCSV">
                 <div class="modal-dialog">

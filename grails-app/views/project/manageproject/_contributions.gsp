@@ -236,25 +236,33 @@
                     <div class="modal-body">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label class="text col-sm-3">From</label>
+                                <label class="text col-sm-3 moveContribution">From</label>
                                 <div class="col-sm-9"> 
-                                     <g:select from="${teamNames}" class="form-control contributionFR" name="contributionFR"/><br>
+                                     <g:select from="${teamNames}" class="form-control contributionFR" name="contributionFR" noSelection="['':'Move contribution from']"/><br>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label class="text col-sm-3">To</label>
+                                <label class="text col-sm-3 moveContribution">To</label>
                                 <div class="col-sm-9"> 
-                                <g:select from="${teamNames}" class="form-control contributorName" name="contributorName" /><br>
+                                <g:select from="${teamNames}" class="form-control contributorFR2" name="contributorFR2" noSelection="['':'Move contribution to']"/><br>
                                </div>
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label class="text col-sm-3">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+                                <label class="text col-sm-3 moveContribution">Contriubutor</label>
+                                <div class="col-sm-9"> 
+                                 <g:select from="" class="form-control contributorName" name="contributorName" id="contributorName" noSelection="['':'Contributor Name']"/><br>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="text col-sm-3 moveContribution">Contribution(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
                                 <div class="col-sm-9">
-                                    <g:select from="" class="form-control contributionAmount" name="contributionAmount" id="contributionAmt"/><br>
+                                    <g:select from="" class="form-control contributionAmount" name="contributionAmount" id="contributionAmt" noSelection="['':'Contribution']"/><br>
                                 </div>
                             </div>
                         </div>

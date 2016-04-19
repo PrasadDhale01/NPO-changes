@@ -18351,3 +18351,9 @@ input[readonly] {
     width: 100%;
     z-index: 1 !important;
 }
+
+.moveContribution{
+	font-size: 14px;
+    line-height: 34px;
+    text-align:right;
+}

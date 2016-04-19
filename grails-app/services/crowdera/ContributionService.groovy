@@ -38,8 +38,8 @@ class ContributionService {
         return totalContribution
     }
 	 
-    def getContributionForMoving(def fundraiser, def contributionAmt,def contributor){
-        def contribution = Contribution.findWhere(fundRaiser:fundraiser, amount:contributionAmt)
+    def getContributionForMoving(def donorName, def fundraiser, def contributionAmt,def contributor, def project){
+        def contribution = Contribution.findWhere(contributorName: donorName, fundRaiser:fundraiser, amount:contributionAmt, project: project)
 
         if(contribution){
             contribution.fundRaiser = contributor
@@ -48,18 +48,35 @@ class ContributionService {
         return contribution
     }
     
-    def getContributionAmount(def fundraiser){
-        
-        def amount = []
-        def contribution = Contribution.findAllByFundRaiser(fundraiser)
+    def getContributorNames(def fundraiser, def project){
+        def contributorNames=[]
+        def contribution =Contribution.findAllByProject(project)
         
         if(contribution){
             contribution.each{
-                amount.add(it.amount.round())
+                if(it.fundRaiser.equalsIgnoreCase(fundraiser)){
+                    contributorNames.add(it.contributorName)
+                }
             }
         }
         
-        return amount
+        return contributorNames.unique()
+    }
+    
+    def getContributionAmount(def fundraiser, def contributor, def project){
+        
+        def amountList = []
+        def contribution = Contribution.findAllByProject(project)
+        
+        if(contribution){
+            contribution.each {
+                if(it.fundRaiser.equalsIgnoreCase(fundraiser) && it.contributorName.equalsIgnoreCase(contributor)){
+                    amountList.add(it.amount.round())
+                }
+            }
+        }
+        
+        return amountList
     }
     
     

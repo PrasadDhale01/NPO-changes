@@ -60,7 +60,7 @@
     
     <meta property="og:site_name" content="Crowdera" />
     <meta property="og:type" content="Crowdera:Campaign" />
-    <meta property="og:title" content="Click here to support ${project.title} by ${project.beneficiary.firstName}" />
+    <meta property="og:title" content="Support ${project.title} by ${project.beneficiary.firstName}" />
     <g:if test="${project.description}">
         <meta property="og:description" content="${project.description} Crowdfunding is a practical and inspiring way to support the fundraising needs of a cause or community. Do some good. Make a Contribution Today!" />
     </g:if>

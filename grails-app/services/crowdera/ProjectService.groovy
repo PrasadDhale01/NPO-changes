@@ -63,9 +63,9 @@ class ProjectService {
         return team
     }
     
-    def getTeamByUsername(def username){
+    def getTeamByUsernameAndProject(def username, def project){
          def user = User.findByUsername(username)
-         def team= Team.findByUser(user)
+         def team= Team.findByUserAndProject(user, project)
 
          if(team){
              return team

@@ -6,6 +6,7 @@ $(function() {
     $('#editTeamImg').hide();
 
     var currentEnv=$('#currentEnv').val();
+    var isIndianCampaign = ($('#isIndianCampaign').val() === 'true') ? true : false;
 
     var hash = window.location.hash;
     hash && $('ul.nav a[href="' + hash + '"]').tab('show');
@@ -150,7 +151,13 @@ $(function() {
                 required: true,
                 number: true,
                 maxlength: 6,
-                min: 1
+                min: function(){
+                	if(isIndianCampaign){
+                		return	100;
+                	} else {
+                		return	1;
+                	}
+                }
             }
         }
     });
@@ -176,7 +183,13 @@ $(function() {
                     required: true,
                     number: true,
                     maxlength: 6,
-                    min: 1
+                    min: function(){
+                        if(isIndianCampaign){
+                           return 100;
+                        } else {
+                           return	1;
+                        }
+                    }
                 }
         	}
         });
@@ -423,7 +436,7 @@ $(function() {
         	 return (parseFloat(amountRaised) <= parseFloat(projectAmount)) ? amountRaised : false;
         }
         return true;
-    },"Team goal can not be greater than project goal.");
+    },"Team goal can not be greater than campaign goal.");
     
     //called when key is pressed in textbox
     $("#teamamount").keypress(function (e) {
@@ -1225,17 +1238,52 @@ $(function() {
     		var formData = new FormData();
     		formData.append('fundraiser',fundraiser);
     		formData.append('projectId', projectId);
+    		
     		$.ajax({
                 type:'post',
-                url:$("#b_url").val()+'/project/getContributionAmount',
+                url:$("#b_url").val()+'/project/ContributorNames',
+                data:formData,
+                processData: false,  
+                contentType: false ,
+                success: function(data){
+                	var jsonData = jQuery.parseJSON(JSON.stringify(data)).data;
+                	$("#contributionAmt option:first").prop('selected','selected');
+                	
+            		if($('#contributorName').length > 0){
+            			$('#contributorName option:gt(0)').remove();
+            		}
+            		
+        			$.each(jsonData, function(index, value){
+        				$('#contributorName').append('<option>'+value+'</option>');
+        			});
+                }
+    		}).error(function(){
+               console.log('An error occured');
+            });
+    	});
+    	
+    	
+    	$('.contributorName').change(function(){
+    		var fundraiser = $('.contributionFR').val();
+    		var contributor=$('.contributorName').val();
+    		var projectId = $('#projectId').val();
+    		
+    		var formData = new FormData();
+    		formData.append('projectId', projectId);
+    		formData.append('fundraiser',fundraiser);
+    		formData.append('contributor',contributor);
+    		
+    		$.ajax({
+                type:'post',
+                url:$("#b_url").val()+'/project/ContributedAmounts',
                 data:formData,
                 processData: false,  
                 contentType: false ,
                 success: function(data){
                 	var jsonData = jQuery.parseJSON(JSON.stringify(data)).data;
                 	
-            		if($('#contributionAmt').val()){
-            			$('#contributionAmt option').remove();
+            		if($('#contributionAmt').length > 0){
+            			$('#contributionAmt option:gt(0)').remove();
             		}
             		
         			$.each(jsonData, function(index, value){

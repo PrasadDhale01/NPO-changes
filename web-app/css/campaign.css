@@ -1739,3 +1739,9 @@ a.thankyou-textdeco {
 .cdra-ft-top{
     top: 52px;
 }
+.cdra-mng-dropwidth{
+    width: 100%;
+}
+.cdra-mng-ftpadding{
+    padding-bottom: 60px;
+}

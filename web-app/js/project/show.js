@@ -6,6 +6,7 @@ $(function() {
     $('#editTeamImg').hide();
 
     var currentEnv=$('#currentEnv').val();
+    var isIndianCampaign = ($('#isIndianCampaign').val() === 'true') ? true : false;
 
     var hash = window.location.hash;
     hash && $('ul.nav a[href="' + hash + '"]').tab('show');
@@ -150,7 +151,13 @@ $(function() {
                 required: true,
                 number: true,
                 maxlength: 6,
-                min: 1
+                min: function(){
+                	if(isIndianCampaign){
+                		return	100;
+                	} else {
+                		return	1;
+                	}
+                }
             }
         }
     });
@@ -176,7 +183,13 @@ $(function() {
                     required: true,
                     number: true,
                     maxlength: 6,
-                    min: 1
+                    min: function(){
+                        if(isIndianCampaign){
+                           return 100;
+                        } else {
+                           return	1;
+                        }
+                    }
                 }
         	}
         });
@@ -423,7 +436,7 @@ $(function() {
         	 return (parseFloat(amountRaised) <= parseFloat(projectAmount)) ? amountRaised : false;
         }
         return true;
-    },"Team goal can not be greater than project goal.");
+    },"Team goal can not be greater than campaign goal.");
     
     //called when key is pressed in textbox
     $("#teamamount").keypress(function (e) {

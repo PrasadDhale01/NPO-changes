@@ -1713,3 +1713,35 @@ a.thankyou-textdeco {
 .taxreceiptmodalbody.modal-body {
 	overflow-x: scroll;
 }
+.cdra-ft-clogo{
+    margin-bottom: 30px;
+    padding-left: 10px;
+}
+.cdra-ft-cutomercnt {
+    color: #fff;
+    margin-bottom: 25px;
+    text-align: center;
+}
+.cdr-ft-contactnum {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 900;
+    text-align: center;
+}
+.cdra-ft-contactmail {
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+}
+.cdra-ft-us {
+    font-size: 40%;
+}
+.cdra-ft-top{
+    top: 52px;
+}
+.cdra-mng-dropwidth{
+    width: 100%;
+}
+.cdra-mng-ftpadding{
+    padding-bottom: 60px;
+}

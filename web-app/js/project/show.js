@@ -167,6 +167,15 @@ $(function() {
         	contributionAmount: {
                 required: true,
                 number: true
+            },
+            contributionFR:{
+            	required:true
+            },
+            contributorFR2:{
+            	required:true
+            },
+            contributorName:{
+            	required:true
             }
         }
     });
@@ -1231,13 +1240,30 @@ $(function() {
 	        }
     	});
     	
+    	function disableMoveBtn(from, to){
+    		if(from == to){
+    			$('#btnMove').prop('disabled',true);
+    		}else{
+    			$('#btnMove').prop('disabled', false);
+    		}
+    	}
+    	
+    	$('#contributorFR2').change(function(){
+    		var from = $('.contributionFR').val();
+    		var to = $(this).val();
+    		disableMoveBtn(from, to);
+    	});
     	
     	$('.contributionFR').change(function(){
     		var fundraiser=$('.contributionFR').val();
     		var projectId = $('#projectId').val();
+    		var fundraiser2= $('#contributorFR2').val();
+    		
     		var formData = new FormData();
     		formData.append('fundraiser',fundraiser);
     		formData.append('projectId', projectId);
+    		
+    		disableMoveBtn(fundraiser, fundraiser2);
     		
     		$.ajax({
                 type:'post',

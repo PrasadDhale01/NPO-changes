@@ -209,7 +209,13 @@ $(function() {
             amount: {
                 required: true,
                 number: true,
-                min: 500,
+                min: function() {
+                	if(isIndianCampaign){
+                		return 100;
+                	} else {
+                		return 1;
+                	}
+                },
                 maxlength: function() {
                     if(isIndianCampaign) {
                         return 8;
@@ -228,7 +234,13 @@ $(function() {
             amount1: {
                 required: true,
                 number: true,
-                min: 500,
+                min: function() {
+                	if(isIndianCampaign){
+                		return 100;
+                	} else {
+                		return 1;
+                	}
+                },
                 maxlength: function() {
                     if(isIndianCampaign) {
                         return 8;

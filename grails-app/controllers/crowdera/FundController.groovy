@@ -778,22 +778,22 @@ class FundController {
         def project = Project.get(params.id)
         def title = projectService.getVanityTitleFromId(params.id)
         def fundraiser = params.contributionFR //from
-        def contributor= params.contributorName // to
+        def contributor= params.contributorFR2 // to
+        def contributorName = params.contributorName
         def amount= params.double('contributionAmount')
         def teamFundraiser
         def teamContributor
 
         def fundRaiserUserName = projectService.getFundraiserByFirstnameAndLastName(fundraiser, project.teams)
         def contributorUserName = projectService.getFundraiserByFirstnameAndLastName(contributor, project.teams)
-        def contribution = contributionService.getContributionForMoving(fundRaiserUserName, amount,contributorUserName)
-
+        def contribution = contributionService.getContributionForMoving(contributorName, fundRaiserUserName, amount,contributorUserName, project)
+        
         if(fundRaiserUserName){
-            teamFundraiser = projectService.getTeamByUsername(fundRaiserUserName)
+            teamFundraiser = projectService.getTeamByUsernameAndProject(fundRaiserUserName, project)
         }
 
-
         if(contributorUserName){
-            teamContributor = projectService.getTeamByUsername(contributorUserName)
+            teamContributor = projectService.getTeamByUsernameAndProject(contributorUserName, project)
         }
 
         if((teamFundraiser!=teamContributor) && (contribution!=null)){

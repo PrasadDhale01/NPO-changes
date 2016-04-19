@@ -46,7 +46,6 @@
                  	    <%
                             def contributorEmail = contribution.contributorEmail
                         %>
-                        <g:link controller="user" action="viewUserProfile" id="${contribution.user.id}" params="[amount:amount, contributorEmail: contributorEmail]" target="_blank">
                         
                             <div <g:if test='${contribution.isAnonymous}'>class ="pan alphabet-A"</g:if><g:else>class ="pan ${alphabet}"</g:else>>
                                 <div class ="col-sm-4 col-xs-4 img-panel">
@@ -113,7 +112,6 @@
                                 
                                 </div>
                             </div>
-                	    </g:link>
                 	
                 	</g:if>
                 	<g:else>
@@ -188,7 +186,6 @@
                 <%
                     def contributorEmail = contribution.contributorEmail
                 %>
-                <g:link controller="user" action="viewUserProfile" id="${contribution.user.id}" params="[amount:amount, contributorEmail: contributorEmail]" target="_blank">
                     <div class="col-sm-6 col-lg-6 col-md-6 top-pan">
                         <div class ="pan ${alphabet}">
                             <div class ="col-sm-4 col-xs-4 img-panel">
@@ -269,7 +266,6 @@
                         </div>
                     
                     </div>
-                </g:link>
                 
             </g:else>
             

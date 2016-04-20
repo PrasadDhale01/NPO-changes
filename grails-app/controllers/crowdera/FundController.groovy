@@ -528,9 +528,10 @@ class FundController {
     def paypalSecondCall(String str,String timestamp){
         //After fetching response paykey will be fetched by this method
         def json = new JsonSlurper().parseText(str)
-
-        ack = json.responseEnvelope.ack
-        paykey = json.payKey
+        if(json){
+            ack = json.responseEnvelope.ack
+            paykey = json.payKey
+        }
         
         PaykeyTemp paykeytemp = new PaykeyTemp(
                 timestamp: timestamp,

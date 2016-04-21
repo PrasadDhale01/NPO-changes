@@ -206,8 +206,8 @@ class ProjectController {
 				contributions = contribution?.contributions
 			} else {
 				def contribution = projectService.getTeamContributions(params, currentTeam)
-                 totalContributions = contribution?.totalContributions
-                 contributions = contribution?.contributions
+                totalContributions = contribution?.totalContributions
+                contributions = contribution?.contributions
 			}
 
 			if (currentUser) {

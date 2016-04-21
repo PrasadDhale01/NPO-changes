@@ -60,7 +60,7 @@
     
     <meta property="og:site_name" content="Crowdera" />
     <meta property="og:type" content="Crowdera:Campaign" />
-    <meta property="og:title" content="Click here to support ${project.title} by ${project.beneficiary.firstName}" />
+    <meta property="og:title" content="Support ${project.title} by ${project.beneficiary.firstName}" />
     <g:if test="${project.description}">
         <meta property="og:description" content="${project.description} Crowdfunding is a practical and inspiring way to support the fundraising needs of a cause or community. Do some good. Make a Contribution Today!" />
     </g:if>
@@ -177,7 +177,15 @@
                 </g:if>
                 
                 
+                <g:if test="${currentFundraiser != beneficiary}">
+                    <div class="col-xs-12 visible-xs text-center">
+                        <label class="text-center">Fundraiser : </label>
+                            <h5><b class="text-center">${currentFundraiser.firstName} ${currentFundraiser.lastName}</b></h5>
+                    </div>
+                </g:if>
+                
                 <div class="col-xs-12 col-md-4 mobileview-top sh-mobiles-top campaign-tile-xs">
+                  
                     <div class="visible-xs">
                         <g:render model="['project': project]" template="/layouts/tile_for_mobile"></g:render>
                     </div>
@@ -833,6 +841,22 @@
                           </g:if>
                       </g:if>
                       
+                      <g:if test="${project.hashtags}">
+                          <h3 class="moretags-tabs visible-xs"><b>More tags</b></h3>
+                          <g:if test="${project.validated}">
+                              <p class="moretags-tabs visible-xs">
+                                  <g:each in="${hashtagsList}" var="hashtag">
+                                      <g:link class="searchablehastag" controller="project" action="search" params="['q': hashtag]">${hashtag}</g:link>
+                                  </g:each>
+                              </p>
+                          </g:if>
+                          <g:else>
+                              <p class="moretags-tabs visible-xs">
+                                  ${project.hashtags}
+                              </p>
+                          </g:else>
+                      </g:if>
+                      
                       <g:if test="${reasons && (reasons.reason1 || reasons.reason2 || reasons.reason3)}">
                           <div class="modal-footer tile-footer perks-style reasons-title">
                               <h2 class="rewardsectionheading text-center">3 Reasons to Fund Our Campaign</h2>
@@ -907,21 +931,7 @@
                           </g:if>
                       </div>
                       
-                      <g:if test="${project.hashtags}">
-                          <h3 class="moretags-tabs visible-xs"><b>#Tags</b></h3>
-                          <g:if test="${project.validated}">
-                              <p class="moretags-tabs visible-xs">
-                                  <g:each in="${hashtagsList}" var="hashtag">
-                                      <g:link class="searchablehastag" controller="project" action="search" params="['q': hashtag]">${hashtag}</g:link>
-                                  </g:each>
-                              </p>
-                          </g:if>
-                          <g:else>
-                              <p class="moretags-tabs visible-xs">
-                                  ${project.hashtags}
-                              </p>
-                          </g:else>
-                      </g:if>
+                      
 				      
                       <div class="visible-xs sh-comments-align">
                           <div id="comment-mobile">

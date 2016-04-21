@@ -1917,7 +1917,7 @@
                     <div id="collapseTwentyOne" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">
-                                The maximum funding goal is $100,000. If you would like to raise
+                                The maximum funding goal is $200,000. If you would like to raise
                                 more, you may have to go through rigorous approval process so we
                                 understand your need better and help you to be successful. In such
                                 case, please reach out to one of our crowdfunding experts from the

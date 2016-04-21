@@ -45,8 +45,9 @@ class FundController {
             project = Project.findById(projectId)
         }
 
-        def reward = (params.rewardId) ? rewardService.getRewardById(params.long('rewardId')) : rewardService.getNoReward()
-        def perk = rewardService.getRewardById(params.long('rewardId'))
+        def team = userService.getTeamByUser(fundraiser, project)
+		def reward = (params.rewardId) ? rewardService.getRewardById(params.long('rewardId')) : rewardService.getNoReward()
+		def perk = rewardService.getRewardById(params.long('rewardId'))
 
         def shippingInfo = rewardService.getShippingInfo(reward)
 
@@ -68,13 +69,9 @@ class FundController {
                 def salt = grailsApplication.config.crowdera.PAYU.SALT
                 def service_provider = "payu_paisa"
                 
-                render view: 'fund/index', 
-                       model: [project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, base_url:base_url,
-                               fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, key:key, salt:salt, service_provider:service_provider]
+                render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, key:key, salt:salt, service_provider:service_provider]
             } else {
-                render view: 'fund/index', 
-                       model: [project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser,
-                              vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, base_url: base_url, shippingInfo:shippingInfo]
+                render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo]
             }
         
         }
@@ -1096,4 +1093,38 @@ class FundController {
         render message
     }
     
+    @Secured(['ROLE_USER'])
+    def moveContributions(){
+            
+        def project = Project.get(params.id)
+        def title = projectService.getVanityTitleFromId(params.id)
+        def fundraiser = params.contributionFR //from
+        def contributor= params.contributorFR2 // to
+        def contributorName = params.contributorName
+        def amount= params.double('contributionAmount')
+        def teamFundraiser
+        def teamContributor
+
+        def fundRaiserUserName = projectService.getFundraiserByFirstnameAndLastName(fundraiser, project.teams)
+        def contributorUserName = projectService.getFundraiserByFirstnameAndLastName(contributor, project.teams)
+        def contribution = contributionService.getContributionForMoving(contributorName, fundRaiserUserName, amount,contributorUserName, project)
+        
+        if(fundRaiserUserName){
+            teamFundraiser = projectService.getTeamByUsernameAndProject(fundRaiserUserName, project)
+        }
+
+        if(contributorUserName){
+            teamContributor = projectService.getTeamByUsernameAndProject(contributorUserName, project)
+        }
+
+        if((teamFundraiser!=teamContributor) && (contribution!=null)){
+            teamFundraiser.removeFromContributions(contribution) //from
+            teamContributor.addToContributions(contribution)  //to
+            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
+        }else{
+            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
+        }
+        
+    }
+
 }

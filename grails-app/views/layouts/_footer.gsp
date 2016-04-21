@@ -25,13 +25,14 @@
             <div class="visible-xs show-mobilejs">
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="crowdera-title"><a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a></div>
+                        <div class="crowdera-title"><a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/crowdera-footer-logo-cdra.png" class="cdra-ft-clogo" alt="Crowdera"></a></div>
                         <div class="crowdera-menu">
                             <div class="col-xs-6 footer-mid-section-menu-mobile footer-menu-align">
                                 <div class="quicklinks-menu-div">
                                     <ul class="quicklinks-menu">
                                         <li><a href="${resource(dir: '/')}">Home</a></li>
                                         <li><a href="${resource(dir: '/aboutus')}">About Us</a></li>
+                                        <li><a href="${resource(dir: '/careers')}" >Careers</a></li>
                                         <li><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></li>
                                         <li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
                                         <li><a href="http://gocrowdera.com" target="_blank">Blog</a></li>
@@ -74,7 +75,7 @@
                     <div class="col-xs-12 footer-mid-section footer-p-text-align">
                         <br>
                         <div class="socialicon">
-                            <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="blog"></a>
+                            <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/wordpress-gray.png" alt="blog"></a>
                             <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>
                             <a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
                             <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>
@@ -91,13 +92,19 @@
                         
                         
                         <div class="row">
-                            <div class="col-xs-12 footer-first-section-mobile footer-text-align footer-mobile-startcampaign">
-<%--                        <p>Hands up for a Better World. See how you can make a difference with Crowdera.</p>--%>
-                            <div class="footer-first-section-mobile footer-img-align">
-<%--                            <img src="//s3.amazonaws.com/crowdera/assets/hand-image-mobile.png" alt="Crowdera">--%>
-                                <g:link controller="project" action="create"><img src="//s3.amazonaws.com/crowdera/assets/start-a-campaign-mobile.png" alt="Crowdera"></g:link>
-                            </div>
-                        </div>
+                        
+		                    <div class="col-xs-12 footer-first-section-mobile footer-text-align footer-mobile-startcampaign">
+		                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+		                            <span class="cdra-ft-cutomercnt col-xs-12">Customer support:</span>
+		                            <span class="cdr-ft-contactnum-in col-xs-12">+91 721 970 2234</span>
+		                            <span class="cdra-ft-contactmail col-xs-12">support@crowdera.co</span>
+		                        </g:if>
+		                        <g:else>
+		                            <span class="cdra-ft-cutomercnt col-xs-12">Customer support:</span>
+		                            <span class="cdr-ft-contactnum col-xs-12">+1 (650) 6902 234</span>
+		                            <span class="cdra-ft-contactmail col-xs-12">support@crowdera.co</span>
+		                        </g:else>
+		                    </div>
                     </div>
                         
                 </div>
@@ -131,11 +138,12 @@
     <div class="visible-sm visible-md show-mobilejs-sm-md sm-padding-mobile-footer">
         <div class="row">
         <div class="col-sm-4 footer-logo-padding-left">
-            <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a>
+            <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/crowdera-footer-logo-cdra.png" class="cdra-ft-clogo" alt="Crowdera"></a>
             <div class="col-sm-6 footer-mid-section-menu tab-menu-padding">
             <ul>
                 <li><a href="${resource(dir: '/')}">Home</a></li>   
                 <li><a href="${resource(dir: '/aboutus')}">About Us</a></li>
+                <li><a href="${resource(dir: '/careers')}" >Careers</a></li>
                 <li><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></li>
                 <li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
                 <li><a href="http://gocrowdera.com" target="_blank">Blog</a></li>
@@ -153,17 +161,23 @@
             </ul>
             </div>
         </div>
-        <div class="col-sm-4 footer-hands-image-top">
-            <div class="footer-mid-section-img">
-            <br>
-            <img src="//s3.amazonaws.com/crowdera/assets/Hands-image-footer.png" alt="Crowdera" class="footer-hands-img">
-            <a href="#" class="display-footer-text"><img class="footer-start-cmpg-img" src="//s3.amazonaws.com/crowdera/assets/Hands-up-for-a-better - button.jpg" alt="Crowdera"></a>
+        
+            <div class="col-md-4 col-sm-4 cdra-ft-top">
+                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                    <p class="cdra-ft-cutomercnt">Customer support:</p>
+                    <p class="cdr-ft-contactnum">+91 721 970 2234</p>
+                    <p class="cdra-ft-contactmail">support@crowdera.co</p>
+                </g:if>
+                <g:else>
+                    <p class="cdra-ft-cutomercnt">Customer support:</p>
+                    <p class="cdr-ft-contactnum">+1 (650) 6902 234</p>
+                    <p class="cdra-ft-contactmail">support@crowdera.co</p>
+                </g:else>
             </div>
-        </div>
         <div class="col-sm-4 socialiconlinks footer-mid-section">
             <br>
            <div class="socialicon pull-right">
-            <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="blog"></a>
+            <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/wordpress-gray.png" alt="blog"></a>
             <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>
             <a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
             <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>
@@ -249,11 +263,12 @@
             
         <div class="row footer-lg-first-section">
         <div class="col-md-4 footer-logosize">
-            <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a>
+            <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/crowdera-footer-logo-cdra.png" class="cdra-ft-clogo" alt="Crowdera"></a>
             <div class="col-md-6 footer-mid-section-menu">
             <ul>
                 <li><a href="${resource(dir: '/')}">Home</a></li>
                 <li><a href="${resource(dir: '/aboutus')}">About Us</a></li>
+                <li><a href="${resource(dir: '/careers')}" >Careers</a></li>
                 <li><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></li>
                 <li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
                 <li><a href="http://gocrowdera.com" target="_blank">Blog</a></li>
@@ -272,17 +287,24 @@
         
             </div>
         </div>
-        <div class="col-md-4 footer-hands-image-top ">
-            <div class="footer-mid-section-img">
-            <br>
-            <img src="//s3.amazonaws.com/crowdera/assets/Hands-image-footer.png" alt="Crowdera" class="footer-hands-img">
-                <a href="#" class="display-footer-text"><img class="footer-start-cmpg-img" src="//s3.amazonaws.com/crowdera/assets/Hands-up-for-a-better - button.jpg" alt="Crowdera"></a>
+        
+            <div class="col-md-4 cdra-ft-top">
+                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                    <p class="cdra-ft-cutomercnt">Customer support:</p>
+                    <p class="cdr-ft-contactnum">+91 721 970 2234</p>
+                    <p class="cdra-ft-contactmail">support@crowdera.co</p>
+                </g:if>
+                <g:else>
+                    <p class="cdra-ft-cutomercnt">Customer support:</p>
+                    <p class="cdr-ft-contactnum">+1 (650) 6902 234 </p>
+                    <p class="cdra-ft-contactmail">support@crowdera.co</p>
+                </g:else>
             </div>
-        </div>
+        
         <div class="col-md-4 socialiconlinks footer-mid-section">
             <br>
             <div class="socialicon pull-right">
-            <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="blog"></a>
+            <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/wordpress-gray.png" alt="blog"></a>
             <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>   
             <a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
             <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>

@@ -7,6 +7,7 @@
     def username = user.username
     def userImageUrl = user.userImageUrl
     def userName = user.firstName
+    def userLastName = user.lastName
     def goal
     if (team.user == project.user) {
         goal = project.amount.round()
@@ -126,7 +127,7 @@
                         <div class="under">
                             <img src="//s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="project-img" alt="Upload Photo">
                             <div class="team-caption">
-                                <p>${userName.toUpperCase()}</p>
+                                <p>${userName.toUpperCase()}<br>${userLastName.toUpperCase()}</p>
                             </div>
                         </div>
                     </div>
@@ -134,7 +135,7 @@
             </g:link>
         </g:else>
         <div class="team-caption">
-            <p>${userName.toUpperCase()}</p>
+            <p>${userName.toUpperCase()}<br>${userLastName.toUpperCase()}</p>
         </div>
     </div>
 

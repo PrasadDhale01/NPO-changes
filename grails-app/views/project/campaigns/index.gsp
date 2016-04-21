@@ -37,6 +37,7 @@
                         </div>
                     </g:if>
                 </div>
+                <div class="clear"></div>
                 <div class="col-md-12">
                     <div id="adminCampaignGrid">
                         <g:render template="validate/validategrid" model="['projects': projects]"></g:render>

@@ -12,27 +12,41 @@
     def projectId = project.id
 %>
 <g:if test="${project.validated}">
-<div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
+<div class="col-md-12 col-md-12 col-sm-12 col-xs-12 cdra-mng-ftpadding">
+    <g:hiddenField name="isIndianCampaign" value="${project.payuStatus}" id="isIndianCampaign"/>
     <g:if test="${totalContributions.empty}">
         <div class="alert alert-info">No contributions yet.</div>
     </g:if>
     <g:if test="${project.validated}">
         <div class="manage-report-offline-lft">
+        <div class="dropdown pull-right">
+        
+            <button class="btn btn-default dropdown-toggle" type="button" 
+            id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Manage contribution
+            <span class="caret"></span></button>
+            
+            <ul class="dropdown-menu cdra-mng-dropwidth" aria-labelleby="dropdownMenu1">
             <g:if test="${!ended}">
-                <a href="#" class="btn btn-primary btn-sm pull-right managecontribution mange-contribution-mobile" data-toggle="modal" data-target="#offlineContributionModal">
+               <li> <a href="#" class="" data-toggle="modal" data-target="#offlineContributionModal">
                     Manage Offline Contribution
-                </a>
+                </a></li>
             </g:if>
             <g:elseif test="${ended}">
-                <a href="#" class="btn btn-primary btn-sm pull-right managecontribution mange-contribution-mobile" id="endedOfflineContribution">
+               <li> <a href="#" class="" id="endedOfflineContribution">
                     Manage Offline Contribution
-                </a>
+                </a></li>
             </g:elseif>
             <g:if test="${!totalContributions.empty}">
-                <a href="#" class="btn btn-primary btn-sm btn-circle pull-right mngReportCls mange-contributionreport-mobile" data-toggle="modal" data-target="#reportModal">
-                    Report
-                </a>
+                <li><a href="#" class="" data-toggle="modal" data-target="#moveContributionModal">
+                    Move Contributions
+                </a></li>
+             <li>   <a href="#" class="" data-toggle="modal" data-target="#reportModal">
+                    Transaction Report
+                </a></li>
             </g:if>
+            </ul>
+        </div>
         </div>
     </g:if>
     <div class="clear"></div>
@@ -217,3 +231,59 @@
     </div><%--  /.modal-content --%>
     </g:form>
 </div><%-- /.modal --%>
+
+    
+
+ <!-- Modal HTML -->
+    <div id="moveContributionModal" class="modal fade">
+        <div class="modal-dialog">
+            <g:form action="moveContributions" controller="fund" method="post" id="${project.id}">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title heading"><b>Move Contribution</b></h4>
+                        <g:hiddenField name="projectId" class="projectId" id="projectId" value="${projectId}"/>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="text col-sm-3 moveContribution">From</label>
+                                <div class="col-sm-9"> 
+                                     <g:select from="${teamNames}" class="form-control contributionFR" name="contributionFR" noSelection="['':'Move contribution from']"/><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="text col-sm-3 moveContribution">To</label>
+                                <div class="col-sm-9"> 
+                                <g:select from="${teamNames}" class="form-control contributorFR2" name="contributorFR2" noSelection="['':'Move contribution to']"/><br>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="text col-sm-3 moveContribution">Contriubutor</label>
+                                <div class="col-sm-9"> 
+                                 <g:select from="" class="form-control contributorName" name="contributorName" id="contributorName" noSelection="['':'Contributor Name']"/><br>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="text col-sm-3 moveContribution">Contribution(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+                                <div class="col-sm-9">
+                                    <g:select from="" class="form-control contributionAmount" name="contributionAmount" id="contributionAmt" noSelection="['':'Contribution']"/><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        <button  class="btn btn-primary " id="btnMove">Move</button>
+                    </div>
+                </div>
+            </g:form>
+        </div>
+    </div>

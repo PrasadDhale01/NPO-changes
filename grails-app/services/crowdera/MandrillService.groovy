@@ -810,6 +810,34 @@ class MandrillService {
 
         sendTemplate(user, 'new_user_confirmation', globalMergeVars, tags)
     } 
+    
+    public def sendDraftInfoEmail(def prjTitle, User user, def domainName, def draftDate) {
+        def emailList=['info@crowdera.co', 'minal@crowdera.co', 'himanchan@crowdera.co']
+        if(domainName=='production'){
+            domainName='crowdera.co'
+        }else{
+            domainName='crowdera.in'
+        }
+        emailList.each{ email ->
+            def globalMergeVars = [[
+                'name': 'TITLE',
+                'content': prjTitle
+            ], [
+                'name': 'OWNER',
+                'content': user.firstName + ' ' + user.lastName
+            ], [
+                'name': 'WEBSITE',
+                'content': domainName
+            ], [
+                'name': 'CMPDATE',
+                'content': draftDate
+            ]]
+    
+            def tags = ['draft-info']
+    
+            inviteToShare(email, 'draft-info', globalMergeVars, tags)
+        }
+    }
 	
     public def reSendConfirmationMail(User user) {
 	def link = grailsLinkGenerator.link(controller: 'login', action: 'confirm', id: user.confirmCode, absolute: true)
@@ -1377,7 +1405,7 @@ class MandrillService {
         def link;
         idList.each{
             contribution = Contribution.get(it);
-            link = grailsLinkGenerator.link(controller: 'user', action: 'exportTaxReceiptpdf', id: contribution.id, absolute: true);
+            link = grailsLinkGenerator.link(controller: 'user', action: 'exportTaxReceiptPdf', id: contribution.id, absolute: true);
             def globalMergeVars = [[
                 'name': 'NAME',
                 'content': contribution.contributorName

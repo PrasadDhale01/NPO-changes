@@ -451,14 +451,14 @@ footer {
 	margin-top:-14px;
 }
 .blogsocialicon{
-	background-image:url("https://s3.amazonaws.com/crowdera/assets/blog-footer.png");
+	background-image:url("https://s3.amazonaws.com/crowdera/assets/wordpress-gray.png");
 	background-repeat:no-repeat;
 	display: block;
 	height:42px;
 	width:41px;
 }
 .blogsocialicon:hover{
-	background-image:url("https://s3.amazonaws.com/crowdera/assets/Hover-Blog-footer.png");
+	background-image:url("https://s3.amazonaws.com/crowdera/assets/wordpress-new-colorrrrs.png");
 	height:42px;
 	width:41px;
 	
@@ -988,7 +988,7 @@ div.abt-imgs .thumbnail img {
 }
 
 .tile {
-	height: 155px; 
+	height: 200px; 
     overflow: hidden;
 }
 
@@ -1316,12 +1316,12 @@ footer .footerbottomsection {
 
 .organization-details h4 {
     margin-top: 0px;
-    padding-top: 8px;
+    padding-top: 35px;
 }
 
 .manage-organization-details h4 {
     margin-bottom: 0;
-    padding-top: 12px;
+    padding-top: 35px;
 }
 
 .manage-organization-details{
@@ -1439,7 +1439,7 @@ footer .footerbottomsection {
 .under{
 	position:absolute;
     top:0;
-    max-width:100%;
+/*     max-width:100%; */
     width:100%;
 }
 .over{
@@ -1633,9 +1633,11 @@ div.tile-min-height{
 	min-height:106px !important;
 }
 .project-img {
-    max-height:155px;
-    min-height:155px;
-    width:100%;
+/*     max-height:155px; */
+/*     min-height:155px; */
+/*     width:100%; */
+    max-height: 200px;
+    width: 100%
 }
 
 .rewardsection .badge{
@@ -3109,7 +3111,7 @@ ul.menu{
 	margin-bottom:8px;
 }
 .pan{
-	height: 100px;
+	height: 110px;
 	overflow: hidden;
 /* 	display: table-cell; */
 	word-wrap: break-word;
@@ -3299,13 +3301,13 @@ p.anonymous-top {
 }
 .team-caption{
 	background: black;
-	height:45px;
-	padding:15px;
+	height:55px;
+	padding:8px;
 	text-align:center;
 	color:#ffffff;
 	font-family:Open Sans;
 	position:absolute;
-	top:78%;
+	top:73%;
 	left:0px;
 	overflow:hidden;
 	opacity: 0.7;
@@ -4359,7 +4361,8 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 }
 .TW-ack-commentBox{
 	background-color:#f5f5f5;
-	margin-bottom:40px;
+    margin-bottom: 100px;
+    margin-top: 30px;
 }
 a.hm-back-width{
 	font-family:verdana;
@@ -4614,7 +4617,7 @@ ul.personalDetailClasses, menu, dir {
 }
 .campaignDescription {
 	font-weight: 600;
-	font-size: 18px;
+	font-size: 17px;
 	word-wrap: break-word;
 }
 p {
@@ -4634,10 +4637,6 @@ p {
 /*     } */
     #carousel-example-generic {
         height: 200px !important;
-    }
-    .fixCarousel{
-        margin-bottom: 166px !important;
-        margin-top: 84px !important;
     }
 }
 .rewardsection-row:hover {
@@ -5335,7 +5334,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	height: auto;
 }
 .ack-panel-width{
-	width:302px;
+	width:293px;
 	height:130px;
     margin-top: 24px;  
     background-color: rgb(250, 250, 250);  
@@ -5610,14 +5609,58 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	span.cdr-ft-contactnum-in{
+        color: #fff;
+        font-size: 28px;
+        font-weight: 900;
+        text-align: center;
+    }
+	img.cdra-ft-clogo {
+        padding-right: 16px;
+        padding-left: 0;
+	}
+	
+	.bg-color-white.homepagTempHeight {
+        height: 340px;
+     }
+    .chooseHomePageCampaign .dropdown-menu.open ul {
+        /* max-height: 0px !important; */
+        min-height: 100px !important;
+        width: 105%;
+    }
+	.chooseHomePageCampaign .dropdown-toggle.selectpicker.btn.btn-md.btn-default {
+        margin-left: -3px !important;
+    }
+    .chooseHomePageCampaign .dropdown-menu.open {
+        overflow: scroll !important;
+        width: 100%;
+    }
+	span.ft-mobiles-padding {
+        padding-left: 53px;
+    }
+    span.ft-mobile-contacts {
+        left: 36px;
+    }
+    div.ft-mobile-contacts {
+        left: 36px;
+    }
+    div.crew-scripts {
+        color: #fff;
+        margin: 5px auto 0;
+        width: 91%;
+    }
+    a.fixCarousel{
+        margin-bottom: 166px !important;
+        margin-top: 84px !important;
+    }
     a.ack-socialicon-size img {
         width: 32px !important;
     }
     div.ack-width-padding {
-        margin-left: 13px;
-        padding-bottom: 13px;
+/*         margin-left: 13px; */
+        padding-bottom: 40px;
         padding-top: 22px;
-        width: 92%;
+        width: 100%;
     }
     div.ack-panel-tile {
         height: auto;
@@ -5627,7 +5670,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: 6px;
     }
     div.ack-socialmedia-padding {
-        padding-left: 40px;
+        padding-left: 24px;
     }
     div.ack-thousands-thankyoupage {
         width: 320px;
@@ -5806,7 +5849,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         float:none;
     }
     div.explorebtn {
-        margin-bottom: 0;
+        margin-bottom: -1px;
         margin-left: 10px;
         margin-top: 20px;
     }
@@ -6649,7 +6692,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         background-color: #f6bf0b;
         color: black;
         text-decoration: none;
-        width: 105% !important;
+        width: 99% !important;
         color: #fff;
         font-size: 21px;
         font-family: Ubuntu Condensed;
@@ -6666,11 +6709,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    padding-left: 7px;
         padding-right: 7px;
         border: 1px solid #e3e3e3;
-        width: 105%;
+        width: 99%;
 	}
     button.mob-show-sucessend {
 /*         margin-top: -21px; */
-        width: 105%;
+        width: 99%;
         font-family: Ubuntu Condensed;
     }  
     button.mob-show-fund {
@@ -7236,7 +7279,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	 	margin-left:auto;
 	 	margin-right:auto;
 	 	margin-top:21px;
-        width: 292px;
+        width: 259px;
 	}
 	.acknowledge-tile-tag .tile-pad{
 		display:block;
@@ -7939,6 +7982,29 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+    div.show-fundrasier-namepadding > h5 {
+        font-size: 12px;
+        padding-left: 0;
+        padding-top: 2px;
+        margin-left: 10px;
+    }
+    div.show-tab-imgfundraiser {
+        padding: 0;
+    }
+    div.show-fundrasier-namepadding {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    div.show-team-prfl {
+        top: -20px;
+    }
+    div.ft-payment-img {
+        left: 119px;
+    }
+    div.secure-payment-footer-ft {
+        padding-left: 37px;
+        margin-top: -6px;
+    }
     div.ack-panel-perks h4 {
         font-size: 14px;
     }
@@ -7946,7 +8012,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: -26px;
     }
     div.ack-panel-width {
-        width: 219px;
+        width: 210px;
         margin-top: 24px;        
     }
     div.ack-socialmedia-padding {
@@ -8113,20 +8179,20 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.show-description {
         margin-top: 9px;
         height: 90px;
+        line-height: 26px;
     }
     .impactassessment .panel-default p {
-        font-size: 16px;
+        font-size: 15px;
+        line-height: 26px;
     }
     a.show-btn-sh-fb {
         margin-bottom: 108px;
     }
     div.organization-details h4 {
-        margin-top: 5px;
+        margin-top: 0px;
         overflow:hidden;
         padding-bottom: 0;
         padding-top: 0;
-        text-overflow:ellipsis;
-        white-space:nowrap;
     }
     .fund-container{
         width:750px !important ;
@@ -8355,6 +8421,40 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.cdra-ft-top{
+        top: 70px;
+    }
+    p.cdr-ft-contactnum {
+        font-size: 22px;
+    }
+    
+    .chooseHomePageCampaign .dropdown-menu.open {
+        margin-left: -3px;
+    }
+    div.ft-top-tabs-terms{
+        top: 15px;
+    }
+    span.ft-contact-indiafont {
+        font-size: 13px;
+        left: -15px;
+        width: 191px;
+        padding-bottom: 15px;
+    }
+    span.ft-contact-indiafontabs{
+        font-size: 13px;
+        left: -15px;
+        width: 250px;
+        padding-bottom: 15px;
+    }
+    div.contact-details {
+        padding-bottom: 25px;
+    }
+    span.ft-tabs-padding {
+        font-size: 13px;
+    }
+    h4.tags-managepagewidth {
+        width: 24%;
+    }
     div.reset-password-bottom {
         padding-bottom: 122px;
     }
@@ -8369,10 +8469,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         height: 126px;
     }
     div.ack-width-padding {
-        margin-left: 13px;
-        padding-bottom: 13px;
+/*         margin-left: 13px; */
+        padding-bottom: 40px;
         padding-top: 22px;
-        width: 63%;
+        width: 100%;
     }
     div.ack-panel-tile {
         height: 293px;
@@ -8521,7 +8621,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 0;
     }
     div.manage-org-title h4{
-        margin-top: 0;      
+        margin-top: 30px;      
     }
     div.mange-tabs-font{
         font-size: 12px;
@@ -8843,9 +8943,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     div.about-dasbilly-center {
         left: 0;
+        padding: 0;
     }
     div.abt-positions {
         left: 0px;
+        padding: 0;
     }
     div.position-top{
         margin-left:0px;
@@ -8995,6 +9097,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     p.campaignDescription {
         font-size: 14px;
+        line-height: 26px;
+        padding-top: 1px;
     }
     h2.sh-fundclosed-mobile{
         font-size: 20px !important;
@@ -9020,11 +9124,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     button.show-campaign-sucessbtn {
         font-size: 14px;
-        height: 96px;
+        height: 70px;
     }
     button.show-campaign-sucess-endedbtn {
         font-size: 19px;
-        height: 96px;
+        height: 71px;
     }
     button.show-fund-size {
         font-size: 29px;
@@ -9775,6 +9879,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         line-height: 150%;
         text-align: center;
     }
+    .organization-details.text-center {
+        line-height: 100%;
+        text-align: center;
+    }
     div.crew-icons{
 	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
 	color: #fff !important;
@@ -9949,6 +10057,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     .moretags-tabs{
         display:block;
+        padding: 0;
     }
     .remaining-hashtags-tabs{
         display:inline;
@@ -9987,6 +10096,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	
+     .chooseHomePageCampaign .dropdown-menu.open {
+         margin-left: -3px;
+     }
 	 ul.manage-submitapprov-india {
         margin-right: -182px !important;
         margin-top: 3px !important;
@@ -10021,6 +10134,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     .moretags-desktop{
         display:block;
+        padding: 0;
     }
     .moretags-tabs{
         display:none;
@@ -10132,6 +10246,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     div.about-dasbilly-center {
         left: 0;
+        padding: 0;
     }
 	.TW-socialicons {
 	   display: block;
@@ -11030,6 +11145,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width: 1281px) and (max-width: 1344px){
+	
     div.manage-alltabs {
         padding-left: 0;
     }
@@ -11070,6 +11186,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 @media only screen and (min-width: 1025px) and (max-width: 1920px){
 	
+    .chooseHomePageCampaign .dropdown-menu.open ul{
+        max-height: 100px !important;
+        min-height: 100px !important;
+        width:100%;
+    }
+	.homepagTempHeight{
+       height:210px;
+    }
 	.feduoutercontent {
 	   margin-top: 48px !important;
 	}
@@ -11167,7 +11291,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	color: #e3e3e3;
 	font-family: "OPEN SANS";
 	font-size: 12px !important;
-	margin-left: 7px !important;
+	margin-left: 18px !important;
 	text-align: center;
     }
 }
@@ -11210,6 +11334,28 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	div.show-fundrasier-namepadding > h5 {
+        font-size: 12px;
+        padding-left: 5px;
+        padding-top: 2px;
+    }
+    div.show-tab-imgfundraiser {
+        padding: 0;
+    }
+    div.show-fundrasier-namepadding {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    div.show-team-prfl {
+        top: 14px;
+    }
+	div.ft-payment-img {
+        left: 119px;
+    }
+    div.secure-payment-footer-ft {
+        padding-left: 35px;
+        margin-top: -6px;
+    }
     div.ack-panel-perks h4 {
         font-size: 14px;
     }
@@ -11217,7 +11363,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: -29px;
     }
     div.ack-panel-width {
-        width: 219px;
+        width: 209px;
     }
     div.ack-socialmedia-padding {
         padding-left: 90px;
@@ -11246,16 +11392,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     .impactassessment .panel-default p {
         padding: 3px 0px;
-        font-size: 16px;
+        font-size: 15px;
+        line-height: 26px;
     }
     div.show-description {
         background-color: #e7e7e7;
-        height: 81px;
-        margin-top: 24px;
+        height: 89px;
+        margin-top: 33px;
         padding-bottom: 9px;
         padding-left: 9px;
-        padding-top: 10px;
+        padding-top: 6px;
         color: #000;
+        line-height: 26px;
     }
 	.partner-show-tile {
         width: 220px;
@@ -11394,17 +11542,17 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 17px;
     }
     div.organization-details h4 {
-        padding-top: 7px;
+        padding-top: 25px;
     }
 	button.show-campaign-sucess-endedbtn{
 	    font-size: 21px;
 	    padding-left: 14px;
-	    height: 96px;
+	    height: 71px;
 	}
 	button.show-campaign-sucessbtn{
         font-size: 17px;
         padding-left: 10px;
-        height: 96px;
+        height: 71px;
 	}
     div.show-icons {
         left: 35%;
@@ -11450,7 +11598,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   width: 50px !important;
 	}
 	b.TW-org-title-font-size{
-		font-size:16px;
+		font-size:12px;
 	}
 /* 	.TW-org-panel-height{ */
 /* 		height:124px; */
@@ -11692,6 +11840,17 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+    span.ft-contact-indiafont {
+        padding-bottom: 15px;
+    }
+    span.ft-contact-indiafontabs{
+        padding-bottom: 15px;
+    }
+    div.secure-payment-footer-ft {
+        left: -103px;
+        padding-left: 0;
+        margin-top: -6px;
+    }
     a.show-tabs-text {
         font-size: 14px;
     }
@@ -11792,6 +11951,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     div.abt-positions {
         left: 0;
+        padding: 0;
     }
 	.TW-ebook-header.TW-fixed-header {
 	   background-color: #ffffff;
@@ -12850,7 +13010,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		margin-Top: -33px !important;
         }
         .arrow-mobile-css {
-		margin-right: -35px;
+		margin-right: -14px;
 	}
 	.arrow-mobile {
 		margin-left: -40px !important;
@@ -13215,6 +13375,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /*Screen resolution 644 x 767 */
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.TW-ack-commentBox {
+        margin-bottom: 55px;
+        margin-top: 30px;
+    }
+    div.impactassessment .panel-default p {
+        font-size: 15px;
+    }
     div.ack-tile-height {
         height: auto;
     }
@@ -13765,7 +13932,7 @@ textarea.textarea-embed-video {
         padding-right: 9px;
     }
 	.top-pan {
-        margin-top: 20px;
+        margin-top: 35px;
         margin-bottom: 14px;
     }
     div.edits {
@@ -13824,6 +13991,10 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (max-width: 479px){
+    button.projectedit.close {
+        margin-left: 15px;
+        padding-right: 12px;
+    }
     .table-xs-left, .btn-xs-width{
         margin-left: 6px;
     }
@@ -14761,14 +14932,60 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	span.cdr-ft-contactnum-in{
+        color: #fff;
+        font-size: 28px;
+        font-weight: 900;
+        text-align: center;
+	}
+    img.cdra-ft-clogo {
+        padding-right: 28px;
+        padding-left: 0;
+    }
+	
+     .bg-color-white.homepagTempHeight {
+        height: 340px;
+     }
+    .chooseHomePageCampaign .dropdown-menu.open ul {
+        /* max-height: 0px !important; */
+        min-height: 100px !important;
+        width: 105%;
+    }
+    .chooseHomePageCampaign .dropdown-toggle.selectpicker.btn.btn-md.btn-default {
+        margin-left: -3px !important;
+    }
+    .chooseHomePageCampaign .dropdown-menu.open {
+        overflow: scroll !important;
+        width: 100%;
+    }
+	h1.dashboard-validatetie-mobile {
+        font-size: 17px;
+        margin-left: -22px;
+    }
+    div.impactassessment .panel-default p {
+        font-size: 15px;
+    }
+    span.ft-mobiles-padding {
+        padding-left: 53px;
+    }
+    span.ft-mobile-contacts {
+        left: 36px;
+    }
+    div.ft-mobile-contacts {
+        left: 36px;
+    }
+	a.fixCarousel{
+        margin-bottom: 166px !important;
+        margin-top: 84px !important;
+    }
     a.ack-socialicon-size img {
         width: 32px !important;
     }
     div.ack-width-padding {
-        margin-left: 13px;
-        padding-bottom: 13px;
+/*         margin-left: 13px; */
+        padding-bottom: 40px;
         padding-top: 22px;
-        width: 92%;
+        width: 100%;
     }
 	div.ack-panel-tile {
         height: auto;
@@ -14784,7 +15001,7 @@ textarea.textarea-embed-video {
         margin-top: 0;
     }
     div.ack-socialmedia-padding {
-        padding-left: 40px;
+        padding-left: 24px;
     }
     div.ack-thousands-thankyoupage {
         width: 320px;
@@ -15026,7 +15243,7 @@ textarea.textarea-embed-video {
     }
     div.explorebtn {
         margin-top: 20px;
-        margin-bottom: 0;
+        margin-bottom: -1px;
         margin-left: -13px;
     }
 	div .validatetile .show-tile-text-size {
@@ -15380,6 +15597,7 @@ textarea.textarea-embed-video {
     }
     div.about-dasbilly-center {
         left: 0;
+        padding: 0;
     }
     div.abt-positions {
         left: 0px;
@@ -15834,7 +16052,7 @@ textarea.textarea-embed-video {
 	}
     button.mob-show-sucessend {
 /*         margin-top: -21px; */
-        width: 104%;
+        width: 103%;
         font-family: Ubuntu Condensed;
     }
     button.mob-show-fund {
@@ -16376,7 +16594,7 @@ textarea.textarea-embed-video {
 	 	margin-left:auto;
 	 	margin-right:auto;
 	 	margin-top:21px;
-		width:291px;
+		width:258px;
 	}
 	.acknowledge-tile-tag .tile-pad{
 		display:block;
@@ -16541,7 +16759,7 @@ textarea.textarea-embed-video {
 	    margin-top: 5px;
     }
 	.top-pan {
-        margin-top: 20px;
+        margin-top: 35px;
         margin-bottom: 14px;
     }
 	.amount-centering {
@@ -16781,7 +16999,7 @@ textarea.textarea-embed-video {
 	margin-right: -21px;
     }
     .arrow-mobile {
-	margin-left: -17px !important;
+	margin-left: 9px !important;
     }
     .tips h2 {
 	    padding-left: 72px !important;
@@ -17112,12 +17330,12 @@ textarea.textarea-embed-video {
 .show-campaign-sucess-endedbtn {
     font-family: Ubuntu Condensed;
     font-size: 24px;
-    height: 90px;
+    height: 66px;
 }
 .show-campaign-sucessbtn{
 	font-family: Ubuntu Condensed;
     font-size: 21px;
-    height: 90px;
+    height: 66px;
 }
 .sh-submitapproval{
 	height: 56px !important;
@@ -17139,11 +17357,13 @@ textarea.textarea-embed-video {
 .show-description {
     background-color: #e7e7e7;
     height: 90px;
-    margin-top: 21px;
+    margin-top: 22px;
     padding-bottom: 9px;
-    padding-left: 9px;
-    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 9px;
     color: #5a6771;
+    line-height: 36px;
 }
 .sh-contrialignment{
 	margin-top: -19px;
@@ -18149,4 +18369,17 @@ input[readonly] {
 }
 .col-pr-0 {
     padding-right: 0px;
+}
+.chooseHomePageCampaign .dropdown-menu.open {
+    margin-left: -3px;
+    max-height: 100px !important;
+    min-height: 100px !important;
+    width: 100%;
+    z-index: 1 !important;
+}
+
+.moveContribution{
+	font-size: 14px;
+    line-height: 34px;
+    text-align:right;
 }

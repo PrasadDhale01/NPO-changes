@@ -6,6 +6,7 @@ $(function() {
     $('#editTeamImg').hide();
 
     var currentEnv=$('#currentEnv').val();
+    var isIndianCampaign = ($('#isIndianCampaign').val() === 'true') ? true : false;
 
     var hash = window.location.hash;
     hash && $('ul.nav a[href="' + hash + '"]').tab('show');
@@ -155,7 +156,31 @@ $(function() {
                 required: true,
                 number: true,
                 maxlength: 6,
-                min: 1
+                min: function(){
+                	if(isIndianCampaign){
+                		return	100;
+                	} else {
+                		return	1;
+                	}
+                }
+            }
+        }
+    });
+    
+    $('#moveContributionModal').find('form').validate({
+        rules: {
+        	contributionAmount: {
+                required: true,
+                number: true
+            },
+            contributionFR:{
+            	required:true
+            },
+            contributorFR2:{
+            	required:true
+            },
+            contributorName:{
+            	required:true
             }
         }
     });
@@ -172,7 +197,13 @@ $(function() {
                     required: true,
                     number: true,
                     maxlength: 6,
-                    min: 1
+                    min: function(){
+                        if(isIndianCampaign){
+                           return 100;
+                        } else {
+                           return	1;
+                        }
+                    }
                 }
         	}
         });
@@ -465,6 +496,7 @@ $(function() {
         }
         return true;
     },"Team goal can not be greater than project goal.");
+    
 
     //called when key is pressed in textbox
     $("#teamamount").keypress(function (e) {
@@ -1253,7 +1285,90 @@ $(function() {
 	    	    $('.'+activeClass).addClass('sh-selected');
 	        }
     	});
-
+    	
+    	
+    	function disableMoveBtn(from, to){
+    		if(from == to){
+    			$('#btnMove').prop('disabled',true);
+    		}else{
+    			$('#btnMove').prop('disabled', false);
+    		}
+    	}
+    	
+    	$('#contributorFR2').change(function(){
+    		var from = $('.contributionFR').val();
+    		var to = $(this).val();
+    		disableMoveBtn(from, to);
+    	});
+    	
+    	$('.contributionFR').change(function(){
+    		var fundraiser=$('.contributionFR').val();
+    		var projectId = $('#projectId').val();
+    		var fundraiser2= $('#contributorFR2').val();
+    		
+    		var formData = new FormData();
+    		formData.append('fundraiser',fundraiser);
+    		formData.append('projectId', projectId);
+    		
+    		disableMoveBtn(fundraiser, fundraiser2);
+    		
+    		$.ajax({
+                type:'post',
+                url:$("#b_url").val()+'/project/ContributorNames',
+                data:formData,
+                processData: false,  
+                contentType: false ,
+                success: function(data){
+                	var jsonData = jQuery.parseJSON(JSON.stringify(data)).data;
+                	$("#contributionAmt option:first").prop('selected','selected');
+                	
+            		if($('#contributorName').length > 0){
+            			$('#contributorName option:gt(0)').remove();
+            		}
+            		
+        			$.each(jsonData, function(index, value){
+        				$('#contributorName').append('<option>'+value+'</option>');
+        			});
+                }
+    		}).error(function(){
+               console.log('An error occured');
+            });
+    	});
+    	
+    	
+    	$('.contributorName').change(function(){
+    		var fundraiser = $('.contributionFR').val();
+    		var contributor=$('.contributorName').val();
+    		var projectId = $('#projectId').val();
+    		
+    		var formData = new FormData();
+    		formData.append('projectId', projectId);
+    		formData.append('fundraiser',fundraiser);
+    		formData.append('contributor',contributor);
+    		
+    		$.ajax({
+                type:'post',
+                url:$("#b_url").val()+'/project/ContributedAmounts',
+                data:formData,
+                processData: false,  
+                contentType: false ,
+                success: function(data){
+                	var jsonData = jQuery.parseJSON(JSON.stringify(data)).data;
+                	
+            		if($('#contributionAmt').length > 0){
+            			$('#contributionAmt option:gt(0)').remove();
+            		}
+            		
+        			$.each(jsonData, function(index, value){
+        				$('#contributionAmt').append('<option>'+value+'</option>');
+        			});
+                }
+    		}).error(function(){
+               console.log('An error occured');
+            });
+    	});
+    	
+    	
      /*************************Edit video for team*************************/
         $('.perk-tile').hover(function() {
             $(this).find('.campaignEditDeleteIcon').show();
@@ -1371,6 +1486,14 @@ function showNavigation(){
 	var updateIndicator = document.getElementById('updateindicators');
 	var updateNav= document.getElementById('updatenavigators');
 
+	var mobileIndicators = document.getElementById('showmobileindicators');
+	var mobileNavigators =document.getElementById('showmobilenavigators');
+	
+	if(mobileIndicators!=null && mobileNavigators!=null){
+		document.getElementById('showmobileindicators').style.display = 'block';
+		document.getElementById('showmobilenavigators').style.display = 'block';
+	}
+	
 	if(indicator!=null && nav!=null){
 		document.getElementById('indicators').style.display = 'block';
 		document.getElementById('navigators').style.display = 'block';
@@ -1381,18 +1504,26 @@ function showNavigation(){
 	}
 }
 
-function hideNavigation(){
+function hideNavigation() {
 	var indicator = document.getElementById('indicators');
 	var nav= document.getElementById('navigators');
 	var updateIndicator = document.getElementById('updateindicators');
 	var updateNav= document.getElementById('updatenavigators');
 
-	if(indicator!=null && nav!=null){
+	var mobileIndicators = document.getElementById('showmobileindicators');
+	var mobileNavigators =document.getElementById('showmobilenavigators');
+	
+	if(mobileIndicators!=null && mobileNavigators!=null) {
+		document.getElementById('showmobileindicators').style.display = 'none';
+		document.getElementById('showmobilenavigators').style.display = 'none';
+	}
+	
+	if(indicator!=null && nav!=null) {
 		document.getElementById('indicators').style.display = 'none';
 		document.getElementById('navigators').style.display = 'none';
 	}
 
-	if(updateIndicator!=null && updateNav!=null){
+	if(updateIndicator!=null && updateNav!=null) {
 		document.getElementById('updateindicators').style.display = 'none';
 		document.getElementById('updatenavigators').style.display = 'none';
     }

@@ -7,6 +7,8 @@ import groovyx.net.http.ContentType
 import groovyx.net.http.HTTPBuilder
 import groovyx.net.http.Method
 
+import java.text.SimpleDateFormat
+
 import javax.servlet.http.Cookie
 
 import org.apache.http.HttpEntity
@@ -16,7 +18,6 @@ import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.util.EntityUtils
-import org.apache.jasper.compiler.Generator.FragmentHelperClass.Fragment;
 import org.apache.poi.ss.usermodel.Workbook
 import org.apache.poi.ss.usermodel.WorkbookFactory
 import org.codehaus.groovy.grails.web.json.JSONObject
@@ -175,6 +176,7 @@ class ProjectController {
 			def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
 			
             User user = userService.getUserByUsername(username)
+            def projectimages = projectService.getProjectImageLinks(project)
 			def currentUser = userService.getCurrentUser()
 			def currentEnv = projectService.getCurrentEnvironment()
 			def currentFundraiser = userService.getCurrentFundRaiser(user, project)
@@ -198,7 +200,7 @@ class ProjectController {
 			List totalContributions = []
 
 			/*Send feedback email before campaign end date */
-			projectService.sendFeedbackEmailToOwners(project, base_url)
+			//projectService.sendFeedbackEmailToOwners(project, base_url)
 
 			if (project.user == currentTeam.user) {
 				def contribution = projectService.getProjectContributions(params, project)
@@ -248,20 +250,41 @@ class ProjectController {
             def reasons = projectService.getReasonsToFundFromProject(project)
             def isDeviceMobileOrTab = isDeviceMobileOrTab();
             
-            render (view: 'show/index',
-            model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, 
-                    isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
-                    totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, 
-                    contributions: contributions, webUrl: webUrl, teamComments: teamComments, totalContributions:totalContributions,
-                    teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, 
-                    CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
-                    isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, 
-                    isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,
-                    isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: vanityUsername, FORMCONSTANTS: FORMCONSTANTS, 
-                    isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier,
-                    spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, reasons:reasons,
-                    isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
-                    remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList])
+            if((currentUser == project.user) && (project.draft || project.validated==false)){
+                render (view: 'show/index',
+                model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, 
+                        isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
+                        totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, 
+                        contributions: contributions, webUrl: webUrl, teamComments: teamComments, totalContributions:totalContributions,
+                        teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, 
+                        CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
+                        isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, 
+                        isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,
+                        isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: vanityUsername, FORMCONSTANTS: FORMCONSTANTS, 
+                        isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier,
+                        spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, reasons:reasons,
+                        isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
+                        remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList, projectimages: projectimages])
+            }else{
+               if(project.validated){
+                   render (view: 'show/index',
+                       model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate,
+                               isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
+                               totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution,
+                               contributions: contributions, webUrl: webUrl, teamComments: teamComments, totalContributions:totalContributions,
+                               teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day,
+                               CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
+                               isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,
+                               isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,
+                               isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: vanityUsername, FORMCONSTANTS: FORMCONSTANTS,
+                               isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier,
+                               spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, reasons:reasons,
+                               isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
+                               remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList, projectimages: projectimages])
+               }else{
+                  render(view: '/404error', model: [message: 'This campaign is under process.'])
+               }
+            } 
 		} else {
 			render(view: '/404error', model: [message: 'This campaign does not exist.'])
 		}
@@ -559,8 +582,128 @@ class ProjectController {
         if (request.xhr) {
             if (params.selectedSortValue == 'Pending') {
                 render(template: "/project/validate/validategrid", model: model)
+            }else if(params.selectedSortValue=='Homepage'){
+            
+                if(params.country.equalsIgnoreCase('INDIA')){
+                    currentEnv ="prodIndia"
+                }else{
+                    currentEnv = 'production'
+                }
+                
+                def homePageCampaigns = projectService.getHomePageCampaignByEnv(currentEnv)
+                
+                if(homePageCampaigns){
+                    render(template: "/project/validate/homepage", model: [projects:projects, campaignOne: homePageCampaigns.campaignOne.title,
+                        campaignTwo: homePageCampaigns.campaignTwo.title, campaignThree: homePageCampaigns.campaignThree.title, currentEnv:currentEnv])
+                }else{
+                    render(template: "/project/validate/homepage", model: [projects:projects, currentEnv:currentEnv])
+                }
+                
+            }else if(params.selectedSortValue=='Deadline'){
+            
+                if(params.country.equalsIgnoreCase('INDIA')){
+                    currentEnv ="prodIndia"
+                }else{
+                    currentEnv = 'production'
+                }
+                
+                render(template: "/project/validate/deadline", model: [projects:projects, currentEnv:currentEnv])
+                
             } else {
                 render(template: "/user/user/grid", model: model)
+            }
+        }
+    }
+    
+    @Secured(['ROLE_USER'])
+    def ContributedAmounts(){
+        def amount
+        def fundraiser = params.fundraiser
+        def contributor = params.contributor
+        def project = Project.get(params.projectId)
+        def fundraiserName = projectService.getFundraiserByFirstnameAndLastName(fundraiser, project.teams)
+        
+        if(fundraiserName){
+            amount= contributionService.getContributionAmount(fundraiserName, contributor, project)
+        }
+        
+        if(amount){
+            render(contentType: 'text/json') {['data': amount]}
+        }else{
+            render(contentType: 'text/json') {['data': 0]}
+        }
+    }
+    
+    @Secured(['ROLE_USER'])
+    def ContributorNames(){
+        def fundraiser = params.fundraiser
+        def project = Project.get(params.projectId)
+        def fundraiserName = projectService.getFundraiserByFirstnameAndLastName(fundraiser, project.teams)
+        def contributorNames = contributionService.getContributorNames(fundraiserName, project)
+        
+        if(contributorNames){
+            render(contentType: 'text/json') {['data': contributorNames]}
+        }else{
+            render(contentType: 'text/json') {['data': '']}
+        }
+    }
+    
+    
+    @Secured(['ROLE_ADMIN'])
+    def manageCampaignDeadline(){
+        
+        def project
+        def projects = projectService.getValidatedProjects()
+        
+        if(params.campaignSelection && params.deadline){
+            project = projectService.getProjectFromTitle(params.campaignSelection)
+            
+            if(project){
+                projectService.setCampaignDeadline(project, params.int('deadline'))
+            }
+        }
+        
+        render(template: "/project/validate/deadline", model:[projects: projects, project:project])
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def setCampaignCurrentDays(){
+        def campaign = projectService.getProjectFromTitle(params.campaign)
+        
+        if(campaign){
+            render campaign.days
+        }else{
+            render '0'
+        }
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def manageHomePageCampaigns(){
+        
+        def projects = projectService.getValidatedProjects()
+        def currentEnv = params.currentEnv
+        def homePageCampaigns = projectService.getHomePageCampaignByEnv(currentEnv)
+        
+        if(params.campaignOne && params.campaignTwo && params.campaignThree){
+            def campaignOneId = projectService.getProjectFromTitle(params.campaignOne)
+            def campaignTwoId = projectService.getProjectFromTitle(params.campaignTwo)
+            def campaignThreeId = projectService.getProjectFromTitle(params.campaignThree)
+            
+            if(homePageCampaigns){
+                projectService.setHomePageCampaignByEnv(campaignOneId, campaignTwoId, campaignThreeId, currentEnv )
+            }else{
+                new HomePageCampaigns(campaignOne:campaignOneId, campaignTwo:campaignTwoId, campaignThree:campaignThreeId, currentEnv:currentEnv).save()
+            }
+            
+            render(template: "/project/validate/homepage", model:[projects:projects, campaignOne:campaignOneId, 
+                campaignTwo: campaignTwoId, campaignThree: campaignThreeId])
+        }else{
+        
+            if(homePageCampaigns){
+                render(template: "/project/validate/homepage", model:[projects:projects, campaignOne:campaignOneId,
+                     campaignTwo: campaignTwoId, campaignThree: campaignThreeId])
+            }else{
+                render(template: "/project/validate/homepage", model:[projects:projects])
             }
         }
     }
@@ -694,6 +837,16 @@ class ProjectController {
             def beneficiary = userService.getBeneficiaryByParams(params)
             def user = userService.getCurrentUser()
             project.draft = true;
+            
+            
+            //Send draft creation email to info@crowdera.co
+            def currentEnv = projectService.getCurrentEnvironment()
+            if(currentEnv == 'production' || currentEnv== 'prodIndia'){
+                def base_url= grailsApplication.config.crowdera.BASE_URL
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                mandrillService.sendDraftInfoEmail(params.title, user, currentEnv, dateFormat.format(project.created) )
+            }
+            
             project.beneficiary = beneficiary;
             project.beneficiary.email = user.email;
 
@@ -709,7 +862,6 @@ class ProjectController {
 
 		    project.usedFor = params.usedFor;
 
-            def currentEnv = projectService.getCurrentEnvironment()
             if (currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
                 project.payuStatus = true
             }
@@ -1157,6 +1309,7 @@ class ProjectController {
 			def teamOffset = teamObj.maxrange
 			def validatedTeam = teamObj.teamList
 			def totalteams = teamObj.teams
+            def teamNamesList = projectService.getTeamFirstNameAndLastName(validatedTeam)
 
 			def unValidatedTeam = projectService.getTeamToBeValidated(project)
 			def discardedTeam = projectService.getDiscardedTeams(project)
@@ -1200,7 +1353,7 @@ class ProjectController {
 					tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier, reasons: reasons,
                     spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, isDeviceMobileOrTab: isDeviceMobileOrTab,
                     hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
-                    hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags])
+                    hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, teamNames: teamNamesList])
 			} else {
 				flash.prj_mngprj_message = 'Campaign Not Found'
                 
@@ -1286,13 +1439,12 @@ class ProjectController {
     def sendupdateemail() {
         def fundRaiser = params.fr
         def updateId = projectService.getProjectUpdateById(params.projectUpdateId)
-        
         projectService.shareupdateemail(params,fundRaiser,updateId)
         flash.prj_mngprj_message= "Email sent successfully."
         if (params.ismanagepage) {
-            redirect(controller: 'project', action: 'manageproject', params:['projectTitle': params.vanityTitle])
+            redirect(controller: 'project', action: 'manageproject', params:['projectTitle': params.vanityTitle], fragment:'projectupdates')
         } else {
-            redirect (action: 'show', params:[fr: params.vanityUsername, 'projectTitle': params.vanityTitle])
+            redirect (action: 'show', params:[fr: params.vanityUsername, 'projectTitle': params.vanityTitle], fragment:'projectupdates')
         }
     }
 
@@ -2521,6 +2673,7 @@ class ProjectController {
         }else{
             contacts =projectService.getDataFromImportedCSV(params.filecsv, user)
             render(contentType: 'text/json') {['contacts': contacts]}
+            jQuery.parseJSON(JSON.stringify(data));
         }  
     }
     

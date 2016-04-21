@@ -61,6 +61,7 @@
     
     <g:hiddenField name="isIndianCampaign" value="${project.payuStatus}" id="isIndianCampaign"/>
     <g:hiddenField name="titleUniqueStatus" value="true" id="titleUniqueStatus"/>
+    <g:hiddenField name="prjCategory" value="${project.category }" id="prjCategory"/>
     
 
     <div class="edit-container">

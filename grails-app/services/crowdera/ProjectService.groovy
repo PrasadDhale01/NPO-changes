@@ -1,13 +1,15 @@
 package crowdera
 
+import static java.util.Calendar.*
 import grails.transaction.Transactional
+import grails.util.Environment
+
 import java.security.MessageDigest
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 
 import javax.servlet.http.Cookie
 import javax.websocket.Session;
-
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 import org.apache.http.HttpEntity
@@ -17,12 +19,12 @@ import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
-import org.jets3t.service.security.AWSCredentials
 import org.jets3t.service.model.*
 import grails.util.Environment
 import groovy.json.JsonSlurper
 import static java.util.Calendar.*
 import org.apache.http.util.EntityUtils
+import org.jets3t.service.security.AWSCredentials
 
 class ProjectService {
     def userService
@@ -69,6 +71,28 @@ class ProjectService {
     def getTeamByUserAndProject(def project, def user){
         def team = Team.findByUserAndProject(user, project)
         return team
+    }
+    
+    def getTeamByUsernameAndProject(def username, def project){
+         def user = User.findByUsername(username)
+         def team= Team.findByUserAndProject(user, project)
+
+         if(team){
+             return team
+         }
+         
+         return null
+    }
+    
+    def getTeamFirstNameAndLastName(def team){
+        def teamNameList = []
+        if(team){
+            team.each{
+                teamNameList.add(it.user.firstName +' ' + it.user.lastName)
+            }
+        }
+        
+        return teamNameList
     }
 
     def getProjectAdminByEmail(def email){
@@ -1544,15 +1568,21 @@ class ProjectService {
         return subFinalList
     }
 
-	def projectOnHomePage() {
-		def currentEnv = Environment.current.getName()
-		def projects
-		if (currentEnv == 'staging' || currentEnv == 'production')
-		   projects = Project.getAll('2c9f84884d094bf3014dbc5347da000d', '2c9f848850ec466601515b0c6efd000d', '2c9f84884fc22f8b014fe7788be40003')
-		else
-		   projects = Project.getAll('2c9f84884d094bf3014dbc5347da000d', '2c9f848850ec4666015228cf067d0022', '2c9f8f3b4feeeee0014fefed7fae0001')
-	    return projects
-	}
+    def projectOnHomePage(def currentEnv) {
+        def projects
+        def homePageCampaigns = HomePageCampaigns.findByCurrentEnv(currentEnv)
+
+        if(homePageCampaigns == null){
+           return null
+        }
+
+        if (currentEnv == 'staging' || currentEnv == 'production')
+            projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
+        else
+            projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
+   
+        return projects
+    }
 
     def getBeneficiaryId(Project project) {
         return( project.beneficiaryId )
@@ -2252,8 +2282,10 @@ class ProjectService {
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
         
-            def tempFile = new File("${iconFile.getOriginalFilename()}")
-            def key = "${folder}/${iconFile.getOriginalFilename()}"
+            def fileName = UUID.randomUUID().toString()
+            
+            def tempFile = new File("${fileName}")
+            def key = "${folder}/${fileName}"
             key = key.toLowerCase()
             iconFile.transferTo(tempFile)
             def object = new S3Object(tempFile)
@@ -2405,6 +2437,21 @@ class ProjectService {
 			}
 			return list
         }
+    }
+    
+    def getFundraiserByFirstnameAndLastName(def username, def teams){
+        def fundraiser = null
+        
+        if(username && teams){
+            teams.each{
+                def name = it.user.firstName+" " + it.user.lastName
+                if(name.equalsIgnoreCase(username)){
+                    fundraiser = it.user.username
+                }
+            }
+        }
+        
+        return fundraiser
     }
     
     def getFundRaisersForTeam(Project project, User user) {
@@ -3053,6 +3100,45 @@ class ProjectService {
         return projectId
     }
 
+    def getProjectFromTitle(def title){
+        def projectId
+        def projectTitle = Project.findByTitle(title)
+        
+        if(projectTitle){
+            projectId= projectTitle
+        }
+        
+        return projectId
+    }
+    
+    def getHomePageCampaignByEnv(def currentEnv){
+        def homePageCampaign = HomePageCampaigns.findByCurrentEnv(currentEnv)
+        
+        if(homePageCampaign){
+            return homePageCampaign
+        }
+        return null
+    }
+    
+    def setHomePageCampaignByEnv(def campaignOne, def campaingTwo, def campaingThree, def currentEnv){
+        def homePageCampaigns = getHomePageCampaignByEnv(currentEnv)
+        
+        if(homePageCampaigns){
+            
+            homePageCampaigns.campaignOne = campaignOne
+            homePageCampaigns.campaignTwo = campaingTwo
+            homePageCampaigns.campaignThree = campaingThree
+            homePageCampaigns.currentEnv = currentEnv
+        }
+    }
+    
+    def setCampaignDeadline(def project, def days){
+        
+        if(project){
+            project.days =days
+        }
+    }
+    
     def getProjectFromVanityTitle(def title){
         def projectId
         def vanitytitle = VanityTitle.findByVanityTitle(title)
@@ -4704,10 +4790,12 @@ class ProjectService {
         List totalProjects = []
         List endedCampaigns = []
         List activeCampaigns = []
-        if (condition == 'Current' || condition == 'Ended') {
+        if (condition == 'Current' || condition == 'Ended' || condition=="Homepage" || condition=='Deadline') {
             if (country == 'INDIA') {
+                
                 totalProjects = Project.findAllWhere(payuStatus: true, validated: true, inactive: false)
             } else if(country == 'USA') {
+                
                 totalProjects = Project.findAllWhere(payuStatus: false, validated: true, inactive: false)
             }
             totalProjects.each { project->
@@ -4732,6 +4820,12 @@ class ProjectService {
                 break;
             case 'Current':
                 projects = activeCampaigns
+                break;
+            case 'Homepage':
+                projects = totalProjects
+                break;
+            case 'Deadline':
+                projects= totalProjects
                 break;
             case 'Draft':
                 if (country == 'INDIA') {
@@ -4782,7 +4876,9 @@ class ProjectService {
             Pending: 'Pending',
             Current: 'Current',
             Ended: 'Ended',
-            Rejected: 'Rejected'
+            Rejected: 'Rejected',
+            Homepage:'Homepage',
+            Deadline: 'Deadline'
         ]
         return sortingOptions
     }

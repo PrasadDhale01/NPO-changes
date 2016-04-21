@@ -1,4 +1,4 @@
-<h1 class="text-center"><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-validated.png" alt="Campaigns to be validated"/> Campaigns to be validated</h1><br>
+<h1 class="text-center dashboard-validatetie-mobile"><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-validated.png" alt="Campaigns to be validated"/> Campaigns to be validated</h1><br>
 <div class="row">
     <ul class="thumbnails list-unstyled">
         <g:each in="${projects}" var="project">

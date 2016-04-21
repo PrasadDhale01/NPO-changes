@@ -3,6 +3,9 @@
 <% 
     def beneficiary = project.user
     def webUrl = projectService.getWebUrl(project)
+    
+    alphabet = userService.getCurrentUserImage(user.firstName)
+
 %>
 <div class="panel panel-default TW-org-panel-height  <g:if test="${project.organizationIconUrl}">sh-pan-height</g:if><g:else>show-priview-orgtile</g:else>">
     <div class="organization-details text-center">
@@ -18,12 +21,25 @@
                 </a>
             </g:if>
         </div>
+        <br><br>
         <g:if test="${!isPreview}">
             <g:if test="${currentFundraiser != beneficiary}">
-                <div>Fundraiser: ${currentFundraiser.firstName} ${currentFundraiser.lastName}</div>
+                <div class="col-lg-12 show-team-prfl">
+                   <div class="col-sm-2 col-md-2 col-lg-2 show-tab-imgfundraiser">
+                      <g:if test="${currentFundraiser.userImageUrl==null}">
+                          <img class="user-img-header" src="${alphabet.userImage}">
+                      </g:if>
+                      <g:else>
+                          <img class="user-img-header" src="${currentFundraiser.userImageUrl}">
+                      </g:else>
+                  </div>
+                  <div class="col-sm-10 col-lg-10 col-md-10 show-fundrasier-namepadding">
+                      <h5><b class="TW-org-title-font-size">${currentFundraiser.firstName} ${currentFundraiser.lastName}</b></h5>
+                  </div>		            
+		        </div>
             </g:if>
         </g:if>
-        <g:if test="${project.organizationName}">
+        <g:if test="${project.organizationName && currentFundraiser == beneficiary}">
             <h4><b class="TW-org-title-font-size">${project.organizationName}</b></h4>
         </g:if>
         <div class="tilesanstitletag">

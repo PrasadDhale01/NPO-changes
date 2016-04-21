@@ -14,28 +14,38 @@
     }
     def projectId = project.id
 %>
+ <g:hiddenField name="isIndianCampaign" value="${project.payuStatus}" id="isIndianCampaign"/>
 <g:if test="${totalContributions.empty}">
     <div class="alert alert-info sh-mobilecontibutionpadding">No contributions yet. Yours can be the first one.</div>
 </g:if>
 <g:if test="${user && !isCrUserCampBenOrAdmin && CurrentUserTeam}">
     <g:if test="${team.user == user}">
+    <div class="dropdown pull-right">
+        
+            <button class="btn btn-default dropdown-toggle" type="button" 
+            id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Manage contribution
+            <span class="caret"></span></button>
+         
+        <ul class="dropdown-menu cdra-mng-dropwidth" aria-labelleby="dropdownMenu1">   
         <g:if test="${!ended}">
-            <a href="#" class="btn btn-primary btn-sm pull-right offlinecontributionbtn" data-toggle="modal" data-target="#offlineContributionModal">
+           <li> <a href="#" data-toggle="modal" data-target="#offlineContributionModal">
                 Manage Offline Contribution
-            </a>
+            </a></li>
         </g:if>
         <g:elseif test="${ended}">
-           <a href="#" class="btn btn-primary btn-sm pull-right offlinecontributionbtn" id="endedOfflineContribution">
+           <li><a href="#"  id="endedOfflineContribution">
                Manage Offline Contribution
-           </a>
+           </a></li>
         </g:elseif>
         <!-- Button trigger modal -->
         <g:if test="${!totalContributions.empty}">
-            <button class="btn btn-primary btn-sm btn-circle pull-right reportCls" data-toggle="modal" data-target="#reportModal">
+          <li>  <a  data-toggle="modal" data-target="#reportModal">
                 Report
-            </button>
+            </a></li>
         </g:if>
-        
+        </ul>
+    </div>    
         <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
             <g:form controller="project" action="generateCSV">
                 <div class="modal-dialog">
@@ -167,16 +177,28 @@
                             The offline contributions will be listed under the contribution tab on your campaign. Each cent counts to make a campaign successful! 
                             </p>
                         </div>
-                        <div class="col-sm-8">
-                             <div class="form-group">
-                                 <label class="text" for="title">Display Name</label>
-                                 <input type="text" class="form-control contributioninput" name="contributorName1">
-                             </div>
-                        </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="title" class="text">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
-                                <input type="text" class="form-control contributioninput" name="amount1" id="offlineAmount1">
+                                <label class="text col-sm-3">Display Name</label>
+                                <div class="col-sm-9"> 
+                                <input type="text" class="form-control contributioninput" name="contributorName1"><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="text col-sm-3">Email</label>
+                                <div class="col-sm-9"> 
+                                <input type="email" class="form-control contributioninput" name="contributorEmail1" required><br>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="text col-sm-3">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+                                <div class="col-sm-9"> 
+                                <input type="text" class="form-control contributioninput" name="amount1" id="offlineAmount1"><br>
+                                </div>
                             </div>
                             <div id="errormsg1"></div>
                         </div>

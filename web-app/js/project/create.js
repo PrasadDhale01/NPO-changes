@@ -74,24 +74,26 @@ $(function() {
         imageUpload:'/project/getRedactorImage',
 //        autosave: '/project/saveStory/?projectId='+projectId,
         imageResizable: true,
-        initCallback: function(){
+        initCallback: function() {
             var projectHasStory = $('#projectHasStory').val();
-            if (projectHasStory && projectHasStory !== ''){
+            if (projectHasStory && projectHasStory !== '') {
                 this.code.set(projectHasStory);
             } else {
                 this.code.set(storyPlaceholder);
             }
 
-            var that = this;
-            setInterval(function() {
-            	// you get code from Redactor
-                var story = that.code.get();
-                autoSave('story', story);
-            }, 3000);
+            //var that = this;
+            //setInterval(function() {
+            // you get code from Redactor
+            //var story = that.code.get();
+            // autoSave('story', story);
+            //}, 5000);
 
         },focusCallback: function(){
+            autoSave('story', this.code.get());
             $(".cr-story-padding .redactor-box .redactor-editor").toggleClass("redactor-animate", true, 100000);
         },blurCallback: function() {
+            autoSave('story', this.code.get());
             $(".cr-story-padding .redactor-box .redactor-editor").toggleClass("redactor-animate", false, 100000);
         },
         plugins: ['video','fontsize','fontfamily','fontcolor'],
@@ -215,7 +217,13 @@ $(function() {
             amount: {
                 required: true,
                 number: true,
-                min: 500,
+                min: function() {
+                	if(isIndianCampaign){
+                		return 100;
+                	} else {
+                		return 1;
+                	}
+                },
                 maxlength: function() {
                     if(isIndianCampaign) {
                         return 8;
@@ -227,14 +235,20 @@ $(function() {
                     if(isIndianCampaign) {
                         return 99999999;
                     } else {
-                        return 100000;
+                        return 200000;
                     }
                 }
             },
             amount1: {
                 required: true,
                 number: true,
-                min: 500,
+                min: function() {
+                	if(isIndianCampaign){
+                		return 100;
+                	} else {
+                		return 1;
+                	}
+                },
                 maxlength: function() {
                     if(isIndianCampaign) {
                         return 8;
@@ -246,7 +260,7 @@ $(function() {
                     if(isIndianCampaign) {
                         return 99999999;
                     } else {
-                        return 100000;
+                        return 200000;
                     }
                 }
             }
@@ -2703,18 +2717,43 @@ $(function() {
    });
 
     $('#category').change(function(){
-        var selectedCategory = $(this).val();
-        var grid = $('.cr-panel-impact-analysis');
-        changeHashTags();
-        $.ajax({
-           type:'post',
-           url:$('#b_url').val()+'/project/getImpactText',
-           data:'selectedCategory='+selectedCategory+'&projectId='+projectId,
-           success: function(data){
-               $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
-           }
-       }).error(function(){
-       });
+    	var prjCategory = $('#prjCategory').val();
+        var path = window.location.pathname;
+        if(path.contains('campaign/edit')){
+        	if(confirm("Changing the category will reset your Impact Assessment..! Do you still wish to change it ?")){
+        		var selectedCategory = $(this).val();
+        		$('#prjCategory').val(selectedCategory);
+                var grid = $('.cr-panel-impact-analysis');
+                changeHashTags();
+        		$.ajax({
+                    type:'post',
+                    url:$('#b_url').val()+'/project/getImpactText',
+                    data:'selectedCategory='+selectedCategory+'&projectId='+projectId,
+                    success: function(data){
+                        $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+                    }
+                }).error(function(){
+                });
+            }else{
+                $(this).val(prjCategory);
+                var dd = $('.cr-start-dropdown-category').find('.selectpicker');
+                dd.prop('title', prjCategory);
+                dd.find('.filter-option').text(prjCategory);
+            }
+        }else{
+            var selectedCategory = $(this).val();
+            var grid = $('.cr-panel-impact-analysis');
+            changeHashTags();
+            $.ajax({
+                type:'post',
+                url:$('#b_url').val()+'/project/getImpactText',
+                data:'selectedCategory='+selectedCategory+'&projectId='+projectId,
+                success: function(data){
+                    $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+                }
+            }).error(function(){
+            });
+        }
     });
 
     $('#country').change(function(){
@@ -3322,7 +3361,7 @@ $(function() {
         .hover(showPopover, hidePopover);
 
         $('.amountInfo-img').popover({
-            content: 'Maximum $100,000, If you want to raise more contact our Crowdfunding Expert.',
+            content: 'Maximum $200,000, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
             placement: 'bottom'
         })

@@ -183,9 +183,8 @@ class ProjectController {
 			def totalContribution = contributionService.getTotalContributionForProject(project)
 			def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
 
-			def teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
+			def teamContribution = contributionService.getTotalContributionForUser(currentTeam?.contributions)
 			def teamPercentage = contributionService.getPercentageContributionForTeam(teamContribution, currentTeam)
-
 			def isCrFrCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)
 			def isCampaignAdmin = userService.isCampaignAdmin(project, username)
 			def isEnabledTeamExist = userService.isTeamEnabled(project, currentFundraiser)
@@ -203,12 +202,12 @@ class ProjectController {
 
 			if (project.user == currentTeam.user) {
 				def contribution = projectService.getProjectContributions(params, project)
-				totalContributions = contribution.totalContributions
-				contributions = contribution.contributions
+				totalContributions = contribution?.totalContributions
+				contributions = contribution?.contributions
 			} else {
 				def contribution = projectService.getTeamContributions(params, currentTeam)
-				totalContributions = contribution.totalContributions
-				contributions = contribution.contributions
+                 totalContributions = contribution?.totalContributions
+                 contributions = contribution?.contributions
 			}
 
 			if (currentUser) {
@@ -218,9 +217,9 @@ class ProjectController {
 			}
 
 			def teamObj = projectService.getEnabledAndValidatedTeamsForCampaign(project, params)
-			def teamOffset = teamObj.maxrange
-			def teams = teamObj.teamList
-			def totalteams = teamObj.teams
+			def teamOffset = teamObj?.maxrange
+			def teams = teamObj?.teamList
+			def totalteams = teamObj?.teams
 
 			boolean ended = projectService.isProjectDeadlineCrossed(project)
 			boolean isFundingOpen = projectService.isFundingOpen(project)

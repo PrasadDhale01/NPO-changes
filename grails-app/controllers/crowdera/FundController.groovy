@@ -206,24 +206,25 @@ class FundController {
 
     def acknowledge() {
         Contribution contribution = contributionService.getContributionById(params.long('cb'))
-        def project = contribution.project
-        def reward = contribution.reward
-        def user = contribution.user
+        
+        def project = contribution?.project
+        def reward = contribution?.reward
+        def user = contribution?.user
         def fundraiser = userService.getUserById(params.long('fr'))
         def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
         if (userService.getCurrentUser()){
-            def vanityusername = userService.getVanityNameFromUsername(fundraiser.username, project.id)
-            def shortUrl = projectService.getShortenUrl(project.id, vanityusername)
+            def vanityusername = userService.getVanityNameFromUsername(fundraiser?.username, project?.id)
+            def shortUrl = projectService.getShortenUrl(project?.id, vanityusername)
             def twitterShareUrl = base_url+"/c"+shortUrl
             mandrillService.sendThankYouMailToContributors(contribution, project, contribution.amount, fundraiser)
             render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser, projectTitle:params.projectTitle, twitterShareUrl:twitterShareUrl]
         } else {
             def reqUrl = base_url+"/fund/sendEmail?cb=${params.cb}&fr=${params.fr}&projectTitle=${params.projectTitle}"
             def loginSignUpCookie = projectService.setLoginSignUpCookie()
-            def campaignNameCookie = projectService.setCampaignNameCookie(project.title)
-            def fundingAmountCookie = projectService.setFundingAmountCookie(contribution.amount)
-            def contributorNameCookie = projectService.setContributorName(contribution.contributorName)
+            def campaignNameCookie = projectService.setCampaignNameCookie(project?.title)
+            def fundingAmountCookie = projectService.setFundingAmountCookie(contribution?.amount)
+            def contributorNameCookie = projectService.setContributorName(contribution?.contributorName)
             def setRequestUrlCookie = projectService.setRequestUrlCookie(reqUrl)
 
             if(setRequestUrlCookie){
@@ -297,9 +298,13 @@ class FundController {
         def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
         def project = projectService.getProjectById(projectId)
         def fundRaiser = userService.getUserById(params.long('fr'))
-
-        def user = contribution.user
-        def reward = contribution.reward
+        
+        if(contribution == null ){
+           return false
+        }
+        
+        def user = contribution?.user
+        def reward = contribution?.reward
 
         if (projectComment || teamComment) {
             if (projectComment) {
@@ -335,9 +340,9 @@ class FundController {
         def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
         def project = projectService.getProjectById(projectId)
         def fundRaiser = userService.getUserById(params.long('fr'))
-
-        def user = contribution.user
-        def reward = contribution.reward
+        
+        def user = contribution?.user
+        def reward = contribution?.reward
         render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundRaiser,projectTitle:params.projectTitle, comment: projectComment]
     }
     
@@ -355,10 +360,15 @@ class FundController {
     
     def editContributionComment(){
         Contribution contribution = contributionService.getContributionById(params.long('id'))
+        
+        if(contribution ==null){
+            return false    
+        }
+        
         if(Contribution){
-            def project = contribution.project
-            def reward = contribution.reward
-            def user = contribution.user
+            def project = contribution?.project
+            def reward = contribution?.reward
+            def user = contribution?.user
             def fundraiser = userService.getUserById(params.long('fr'))
             def value = 'value'
             def projectComment = projectService.getProjectCommentById(params.long('commentId'))
@@ -528,15 +538,16 @@ class FundController {
     def paypalSecondCall(String str,String timestamp){
         //After fetching response paykey will be fetched by this method
         def json = new JsonSlurper().parseText(str)
-
-        ack = json.responseEnvelope.ack
-        paykey = json.payKey
+        if(json){
+            ack = json?.responseEnvelope?.ack
+            paykey = json?.payKey
         
-        PaykeyTemp paykeytemp = new PaykeyTemp(
+            PaykeyTemp paykeytemp = new PaykeyTemp(
                 timestamp: timestamp,
                 paykey:paykey,
                 )
-        paykeytemp.save(failOnError: true)
+           paykeytemp.save(failOnError: true)
+        }
     }
 
     def userContribution(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address){
@@ -587,7 +598,7 @@ class FundController {
         Reward reward = rewardService.getRewardById(rewardId)
 
         def paykeytemp = projectService.getpayKeytempObject(timestamp)
-        def payKey = paykeytemp.paykey
+        def payKey = paykeytemp?.paykey
         paykeytemp.delete()
         
         if (result) {

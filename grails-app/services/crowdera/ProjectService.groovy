@@ -561,7 +561,9 @@ class ProjectService {
      
      def getpayKeytempObject(def timestamp){
          PaykeyTemp paykeytemp = PaykeyTemp.findByTimestamp(timestamp)
-         return paykeytemp
+         if(paykeytemp){
+             return paykeytemp
+         }
      }
 	 
 	 def generateCSV(def response, def params){

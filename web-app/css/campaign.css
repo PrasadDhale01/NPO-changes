@@ -1745,3 +1745,17 @@ a.thankyou-textdeco {
 .cdra-mng-ftpadding{
     padding-bottom: 60px;
 }
+.mange-story-imgs {
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 26px;
+    letter-spacing: 0;
+    word-wrap: break-word;
+}
+.show-textstorylinespec{
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 26px;
+    letter-spacing: 0;
+    word-wrap: break-word;
+}

@@ -933,7 +933,7 @@ div#redactor-droparea-placeholder input {
 .redactor-editor blockquote,
 .redactor-editor pre {
   font-size: 14px;
-  line-height: 1.6em;
+  line-height: 26px;
 }
 .redactor-editor a {
   color: #15c;

@@ -94,7 +94,7 @@
         </g:else>
     </div>
     <div class="clear"></div>
-    <div class="col-xs-12 show-pageDiscription col-plr-0">
+    <div class="col-xs-12 show-pageDiscription show-textstorylinespec col-plr-0">
 		<g:if test="${isCrFrCampBenOrAdmin}">
 			<div class="show-description">
 	            <p class="campaignDescription justify">${raw(project.description)}</p>

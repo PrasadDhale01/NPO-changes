@@ -143,10 +143,14 @@ class ContributionService {
         }
 
         double total = 0
-        project.contributions.each { contribution ->
-            total += contribution.amount
+        if(project.contributions){
+            project.contributions.each { contribution ->
+                total += contribution.amount
+            }
+            return total.round()
+        }else{
+            return 0
         }
-        return total.round()
     }
 
     def getBackersForProjectByReward(Project project, Reward reward) {

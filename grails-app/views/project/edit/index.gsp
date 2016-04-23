@@ -550,9 +550,9 @@
                              <label class="col-sm-9 col-xs-12 cr-panel-spend-matrix-guide cr-reasons-guide">Let your contributors know why they should fund your campaign.</label>
                         </div>
                         <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-body">
-                             <p class="reasons-p form-group">1. <input type="text" name="reason1" class="reasons reason1 form-control" value="${r1}"></p>
-                             <p class="reasons-p form-group">2. <input type="text" name="reason2" class="reasons reason2 form-control" value="${r2}"></p>
-                             <p class="reasons-p form-group">3. <input type="text" name="reason3" class="reasons reason3 form-control" value="${r3}"></p>
+                             <p class="reasons-p form-group">1. <input type="text" name="reason1" class="reasons reason1 form-control" value="${r1}" maxLength="140"></p>
+                             <p class="reasons-p form-group">2. <input type="text" name="reason2" class="reasons reason2 form-control" value="${r2}" maxLength="140"></p>
+                             <p class="reasons-p form-group">3. <input type="text" name="reason3" class="reasons reason3 form-control" value="${r3}" maxLength="140"></p>
                         </div>
                     </div>
 

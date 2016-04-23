@@ -1308,8 +1308,8 @@ class ProjectController {
 			def teamOffset = teamObj.maxrange
 			def validatedTeam = teamObj.teamList
 			def totalteams = teamObj.teams
-            def enableTeamNamesList = projectService.getEnableTeamFirstNameAndLastName(validatedTeam)
-            def teamNameList=projectService.getTeamFirstNameAndLastName(validatedTeam)
+              def enableTeamNamesList = projectService.getEnableTeamFirstNameAndLastName(validatedTeam)
+              def teamNameList=projectService.getTeamFirstNameAndLastName(validatedTeam)
 
 			def unValidatedTeam = projectService.getTeamToBeValidated(project)
 			def discardedTeam = projectService.getDiscardedTeams(project)

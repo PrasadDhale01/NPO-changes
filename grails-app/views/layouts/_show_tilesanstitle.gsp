@@ -8,11 +8,11 @@
     if (project.user == currentFundraiser){
         percent = percentage
         contributedSoFar = totalContribution
-        amount = project.amount.round()
+        amount = project?.amount.round()
     } else {
         percent = teamPercentage
         contributedSoFar = teamContribution
-        amount = currentTeamAmount.round()
+        amount = currentTeamAmount?.round()
     }
     
     def cents

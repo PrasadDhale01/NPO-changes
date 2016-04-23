@@ -102,16 +102,16 @@
 		</g:if>
 		<g:else>
 			<div class="show-description">
-	            <p class="campaignDescription justify">${raw(currentTeam.description)}</p>
+	            <p class="campaignDescription justify">${raw(currentTeam?.description)}</p>
 			</div>
 		</g:else>
         
         <g:if test="${isCrFrCampBenOrAdmin}">
-            <p class="campaignStory justify">${raw(project.story)}</p>
+            <p class="campaignStory justify">${raw(project?.story)}</p>
         </g:if>
         <g:else>
-            <p class="campaignStory justify">${raw(currentTeam.story)}</p>
-            <p class="campaignStory justify">${raw(project.story)}</p>
+            <p class="campaignStory justify">${raw(currentTeam?.story)}</p>
+            <p class="campaignStory justify">${raw(project?.story)}</p>
         </g:else>
         
         <div class="show-tags-topbottom">

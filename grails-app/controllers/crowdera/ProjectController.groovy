@@ -158,19 +158,19 @@ class ProjectController {
 	def show() {
 		def projectId
 		def username
-		if (params.projectTitle){
-			projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+		if (params?.projectTitle){
+			projectId = projectService.getProjectIdFromVanityTitle(params?.projectTitle)
 		} else {
-			projectId = params.id
+			projectId = params?.id
 		}
 		Project project = projectService.getProjectById(projectId)
         def vanityUsername
         
 		if (project) {
-            username = (params.fr != null) ? userService.getUsernameFromVanityName(params.fr) : project.user.username
-            vanityUsername = (params.fr != null) ? params.fr : userService.getVanityNameFromUsername(username, projectId)
+            username = (params?.fr != null) ? userService.getUsernameFromVanityName(params?.fr) : project?.user?.username
+            vanityUsername = (params.fr != null) ? params?.fr : userService.getVanityNameFromUsername(username, projectId)
             
-			def shortUrl = projectService.getShortenUrl(project.id, params.fr)
+			def shortUrl = projectService.getShortenUrl(project.id, params?.fr)
 			def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 			def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
 			
@@ -200,7 +200,7 @@ class ProjectController {
 			/*Send feedback email before campaign end date */
 			//projectService.sendFeedbackEmailToOwners(project, base_url)
 
-			if (project.user == currentTeam.user) {
+			if (project?.user == currentTeam?.user) {
 				def contribution = projectService.getProjectContributions(params, project)
 				totalContributions = contribution?.totalContributions
 				contributions = contribution?.contributions
@@ -228,10 +228,10 @@ class ProjectController {
 			def endDate = projectService.getProjectEndDate(project)
 			def webUrl = projectService.getWebUrl(project)
 
-			if (params.commentId) {
+			if (params?.commentId) {
 				projectComment = projectService.getProjectCommentById(params.long('commentId'))
 			}
-			if (params.teamCommentId) {
+			if (params?.teamCommentId) {
 				teamcomment = projectService.getTeamCommentById(params.long('teamCommentId'))
 			}
 
@@ -258,8 +258,8 @@ class ProjectController {
                         CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
                         isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, 
                         isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,
-                        isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: vanityUsername, FORMCONSTANTS: FORMCONSTANTS, 
-                        isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier,
+                        isTeamExist: isTeamExist, vanityTitle: params?.projectTitle, vanityUsername: vanityUsername, FORMCONSTANTS: FORMCONSTANTS, 
+                        isPreview:params?.isPreview, tile:params?.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier,
                         spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, reasons:reasons,
                         isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
                         remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList, projectimages: projectimages])
@@ -1043,6 +1043,7 @@ class ProjectController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def editCampaign(){
 		def title = projectService.getVanityTitleFromId(params.id)
+        
 		if(title){
 			redirect (action : 'edit', params:['projectTitle':title])
 		}else{
@@ -1307,7 +1308,8 @@ class ProjectController {
 			def teamOffset = teamObj.maxrange
 			def validatedTeam = teamObj.teamList
 			def totalteams = teamObj.teams
-            def teamNamesList = projectService.getTeamFirstNameAndLastName(validatedTeam)
+            def enableTeamNamesList = projectService.getEnableTeamFirstNameAndLastName(validatedTeam)
+            def teamNameList=projectService.getTeamFirstNameAndLastName(validatedTeam)
 
 			def unValidatedTeam = projectService.getTeamToBeValidated(project)
 			def discardedTeam = projectService.getDiscardedTeams(project)
@@ -1351,7 +1353,7 @@ class ProjectController {
 					tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier, reasons: reasons,
                     spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, isDeviceMobileOrTab: isDeviceMobileOrTab,
                     hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
-                    hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, teamNames: teamNamesList])
+                    hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, enableTeamNames: enableTeamNamesList, teamNames:teamNameList])
 			} else {
 				flash.prj_mngprj_message = 'Campaign Not Found'
                 
@@ -2352,9 +2354,9 @@ class ProjectController {
 	}
 
 	def getCampaignFromShortUrl(){
-		def url = params.url
+		def url = params?.url
 		def projectDetails = projectService.getCampaignFromUrl(url)
-		redirect (action:'show', params:[projectTitle:projectDetails.projectTitle, fr: projectDetails.fr])
+		redirect (action:'show', params:[projectTitle:projectDetails?.projectTitle, fr: projectDetails?.fr])
 	}
 
 	def embedTile(){

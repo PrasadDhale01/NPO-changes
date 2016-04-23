@@ -265,7 +265,7 @@
                                     crowdera.co/campaigns/
                                 </g:else>
                             </div>
-                            <input class="form-control form-control-no-border editsweb-margin-mobile  cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd customVanityUrl" name="customVanityUrl" maxlength="55" value="${project.customVanityUrl}" id="customVanityUrl" placeholder="Your-Campaign-web-url" <g:if test="${project.validated && project.customVanityUrl}">readonly</g:if>>
+                            <input class="form-control form-control-no-border editsweb-margin-mobile  cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd customVanityUrl" name="customVanityUrl" maxlength="55" value="${project?.customVanityUrl}" id="customVanityUrl" placeholder="Your-Campaign-web-url" <g:if test="${project?.validated && project?.customVanityUrl}">readonly</g:if>>
                         </div>
                         <div class="clear" id="vanityUrlClear"></div>
                         <label class="pull-right" id="vanityUrlLength"></label>
@@ -817,7 +817,7 @@
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <g:if test="${project.payuStatus}">
+                                    <g:if test="${project?.payuStatus}">
                                         <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
                                         <input type="text" placeholder="Amount" name="rewardPrice${reward.rewardCount}" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${reward.rewardCount}" value="${price}">
                                     </g:if>
@@ -856,25 +856,25 @@
                             <div class="form-group">
                                 <div class="btn-group col-sm-12" data-toggle="buttons">
                                     <label class="panel-body col-sm-2 col-xs-12 cr-check-btn-perks text-center">Mode of <br> Delivery</label>
-                                    <g:if test="${shippingInfo.address}">
+                                    <g:if test="${shippingInfo?.address}">
                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingAddress lblmail${reward.rewardCount} active"><input type="checkbox" checked="checked" name="mailingAddress${reward.rewardCount}" value="true" id="mailaddcheckbox${reward.rewardCount}">Mailing <br> address</label>
                                     </g:if>
                                     <g:else>
                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingAddress lblmail${reward.rewardCount}"><input type="checkbox" name="mailingAddress${reward.rewardCount}" value="true" id="mailaddcheckbox${reward.rewardCount}">Mailing <br> address</label>
                                     </g:else>
-                                    <g:if test="${shippingInfo.email}">
+                                    <g:if test="${shippingInfo?.email}">
                                      <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingEmail lblemail${reward.rewardCount} active"><input type="checkbox" checked="checked" name="emailAddress${reward.rewardCount}" value="true" id="emailcheckbox${reward.rewardCount}">Email <br> address</label>
                                     </g:if>
                                     <g:else>
                                      <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingEmail lblemail${reward.rewardCount}"><input type="checkbox" name="emailAddress${reward.rewardCount}" value="true" id="emailcheckbox${reward.rewardCount}">Email <br> address</label>
                                     </g:else>
-                                    <g:if test="${shippingInfo.twitter}">
+                                    <g:if test="${shippingInfo?.twitter}">
                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingTwitter lbltwitter${reward.rewardCount} active"><input type="checkbox" checked="checked" name="twitter${reward.rewardCount}" value="true" id="twittercheckbox${reward.rewardCount}">Twitter <br> handle</label>
                                     </g:if>
                                     <g:else>
                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingTwitter lbltwitter${reward.rewardCount}"><input type="checkbox" name="twitter${reward.rewardCount}" value="true" id="twittercheckbox${reward.rewardCount}">Twitter <br> handle</label>
                                     </g:else>
-                                    <input type="text" name="custom${reward.rewardCount}" id="customcheckbox${reward.rewardCount}" class="customText form-control-no-border text-color cr-custom-place cr-customchrome-place cr-perks-back-color col-sm-4 col-xs-12" placeholder="Custom" value="${shippingInfo.custom}">
+                                    <input type="text" name="custom${reward.rewardCount}" id="customcheckbox${reward.rewardCount}" class="customText form-control-no-border text-color cr-custom-place cr-customchrome-place cr-perks-back-color col-sm-4 col-xs-12" placeholder="Custom" value="${shippingInfo?.custom}">
                                 </div>
                             </div>
                         </div>
@@ -1097,7 +1097,7 @@
 			                                    </g:else>
 			                                </div>
 			                                <div class="col-sm-12 form-group form-group-tax-reciept">
-			                                    <input type="text" class="form-control addressLine1" placeholder="AddressLine 1" name="addressLine1" value="${taxReciept.addressLine1}">
+			                                    <input type="text" class="form-control addressLine1" placeholder="AddressLine 1" name="addressLine1" value="${taxReciept?.addressLine1}">
 			                                </div>
 			                                <div class="col-sm-12 form-group form-group-tax-reciept">
 			                                    <input type="text" class="form-control zip" placeholder="ZIP" name="zip"  value="${taxReciept.zip}">

@@ -5,12 +5,12 @@
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
     def fundRaiser
     def team
-    def beneficiary = project.user 
+    def beneficiary = project?.user 
     if (user) {
-        fundRaiser = user.username
+        fundRaiser = user?.username
         team = userService.getTeamByUser(user, project)
     } else {
-        fundRaiser = beneficiary.username
+        fundRaiser = beneficiary?.username
         team = userService.getTeamByUser(beneficiary, project)
     }
 
@@ -25,11 +25,11 @@
     def commentId
     if(projectComment) {
         commentval = projectComment.comment
-        commentId = projectComment.id
+        commentId = projectComment?.id
     }
     if(teamcomment) {
         commentval = teamcomment.comment
-        teamCommentId = teamcomment.id
+        teamCommentId = teamcomment?.id
     }
 %>
 

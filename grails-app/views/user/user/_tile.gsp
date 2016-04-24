@@ -10,7 +10,7 @@
     def amount = projectService.getDataType(project.amount)
 
     def user = userService.getCurrentUser()
-    def username = user.username
+    def username = user?.username
     def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
 	def isTeamAdmin = projectService.isTeamAdmin(project)
     
@@ -219,7 +219,7 @@
                     </button>
                 </g:form>
             </g:if>
-            <g:if test="${isTeamAdmin || (user==project.user)}">
+            <g:if test="${isTeamAdmin || (user==project?.user)}">
                 <g:link controller="project" action="editCampaign" method="post" id="${project.id}">
                     <button class="projectedit close pull-right" id="editproject"><i class="glyphicon glyphicon-edit"></i></button>
                 </g:link>

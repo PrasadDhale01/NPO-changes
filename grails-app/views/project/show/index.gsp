@@ -30,7 +30,7 @@
     def fbShareUrl = base_url+"/project/campaignShare?id="+project.id+"&fr="+username
     def fbShareUrlupdatePage = base_url+"/project/updateShare?id="+project.id+"&fr="+username
     
-    def currentTeamAmount = currentTeam.amount
+    def currentTeamAmount = currentTeam?.amount
     def shareUrl = base_url+'/c/'+shortUrl
     
     def vimeoInt
@@ -121,7 +121,7 @@
 
         <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
         <g:hiddenField name="pieList" value="${pieList}" id="pieList"/>
-        <g:hiddenField name="projectamount" value="${project.amount.round()}" id="projectamount"/>
+        <g:hiddenField name="projectamount" value="${project?.amount.round()}" id="projectamount"/>
         <g:hiddenField name="fbShareUrlupdatePage" value="${fbShareUrlupdatePage}" id="fbShareUrlupdatePage"/>
         <g:hiddenField id="payuStatus" name="payuStatus" value="${project.payuStatus}"/>
         
@@ -291,7 +291,7 @@
                    </g:if>
                    
                    <div class="hidden-xs">
-                       <g:if test="${(project.rewards.size()>1 && !isPreview) || (project.rewards.size()>1 && project.validated) }">
+                       <g:if test="${(project?.rewards?.size()>1 && !isPreview) || (project?.rewards?.size()>1 && project.validated) }">
                            <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
                                <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
                            </g:if>
@@ -322,7 +322,7 @@
 	                                        <span class="tab-text sh-tabs-font hidden-xs"> UPDATES</span> 
 	                                    </a>
 	                                    <span class="show-tabs-count hidden-xs">
-	                                        <g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if>
+	                                        <g:if test="${project?.projectUpdates?.size() > 0}">${project?.projectUpdates?.size()}</g:if>
 	                                    </span>
 	                                </span>
 	                            </li>
@@ -338,7 +338,7 @@
 	                                    <span class="tab-text sh-tabs-font"> CONTRIBUTIONS</span>
 	                                </a>
 	                                <span class="show-tabs-count hidden-xs">
-	                                    <g:if test="${totalContributions.size() > 0}">${totalContributions.size()}</g:if>
+	                                    <g:if test="${totalContributions?.size() > 0}">${totalContributions?.size()}</g:if>
 	                                </span>
 	                            </span>
 	                        </li>
@@ -537,7 +537,7 @@
                                         <span class="tab-text hidden-xs"> UPDATES</span> 
                                     </a>
                                     <span class="show-tabs-count hidden-xs">
-                                        <g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if>
+                                        <g:if test="${project.projectUpdates?.size() > 0}">${project?.projectUpdates?.size()}</g:if>
                                     </span>
                                     <span class="show-ids-header"></span>
                                 </span>
@@ -555,7 +555,7 @@
                                     <span class="tab-text"> CONTRIBUTIONS</span>
                                 </a>
                                 <span class="show-tabs-count hidden-xs">
-                                    <g:if test="${totalContributions.size() > 0 && screen == 'false'}">${totalContributions.size()}</g:if>
+                                    <g:if test="${totalContributions?.size() > 0 && screen == 'false'}">${totalContributions?.size()}</g:if>
                                 </span>
                                 <span class="show-ids-header"></span>
                             </span>
@@ -617,7 +617,7 @@
                                             <h4 class="modal-title">Recipient Email ID's</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <g:hiddenField name="amount" value="${project.amount}" id="campaign-amount"/>
+                                            <g:hiddenField name="amount" value="${project?.amount}" id="campaign-amount"/>
                                             <g:hiddenField name="vanityTitle" value="${vanityTitle}" id="campaign-vanityTitle"/>
                                             <g:hiddenField name="vanityUsername" value="${vanityUsername}" id="campaign-vanityUsername"/>
                                             <div class="form-group">
@@ -645,7 +645,7 @@
                 
                 <%--Embed modal--%>
                 <div class="modal fade embedTilemodal" id="embedTilemodal" tabindex="-1" role="dialog" aria-hidden="true">
-                    <g:if test="${project.videoUrl}">
+                    <g:if test="${project?.videoUrl}">
                         <div class="modal-dialog modal-embed-with-video">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -739,9 +739,9 @@
                     
                       <g:if test="${isPreview && !project.validated}">
                           <div class="submitForApprovalSectionbtn" id="submitForApprovalSectionbtn">
-                              <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                              <g:if test="${project?.organizationIconUrl && project?.webAddress && (project?.charitableId || project?.paypalEmail || project?.payuEmail) && (!project?.imageUrl.isEmpty()) && project?.organizationName && project?.beneficiary?.country && (projectService.getRemainingDay(project) > 0)}">
                                   <g:form controller="project" action="saveasdraft" id="${project.id}">
-                                      <g:if test="${!project.touAccepted}">
+                                      <g:if test="${!project?.touAccepted}">
                                           <div class="form-group show-submit-margin hidden-xs">
                                               <input type="checkbox" name="submitForApprovalcheckbox1">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
                                           </div>
@@ -834,7 +834,7 @@
                       </g:if>
                       
                       <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
-                          <g:if test="${project.impactNumber > 0 && project.impactAmount > 0}">
+                          <g:if test="${project.impactNumber > 0 && project?.impactAmount > 0}">
                               <div class="impactassessment">
                                   <g:render template="show/impactstatement"/>
                               </div>
@@ -901,7 +901,7 @@
                       
                       <g:if test="${isPreview && !project.validated}">
                           <div class="hidden-xs">
-                              <g:if test="${project.rewards.size()>1}">
+                              <g:if test="${project?.rewards?.size()>1}">
                                   <div class="sh-perks-preview">
                                       <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
                                   </div>
@@ -915,7 +915,7 @@
                       
                       <div class="visible-xs sh-mobperks">
                           <g:if test="${isPreview && !project.validated}">
-                              <g:if test="${project.rewards.size()>1}">
+                              <g:if test="${project?.rewards?.size()>1}">
                                   <div class="sh-perks-preview">
                                       <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
                                   </div>
@@ -924,7 +924,7 @@
                       </div>
                     
                       <div class="sh-mobperks">    
-                          <g:if test="${(project.rewards.size()>1 && !isPreview) || (project.rewards.size()>1 && project.validated) }">
+                          <g:if test="${(project?.rewards?.size()>1 && !isPreview) || (project?.rewards?.size()>1 && project?.validated) }">
                               <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
                                   <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
                               </g:if>

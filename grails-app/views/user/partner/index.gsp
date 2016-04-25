@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Crowdera- Partner</title>
+    <title>Crowdera- Manage Partner</title>
     <meta name="layout" content="main" />
     <r:require module="userjs"/>
 </head>

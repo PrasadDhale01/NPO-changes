@@ -7,6 +7,7 @@
 %>
 <html>
 <head>
+    <title>Crowdera- Campaign update</title>
 	<meta name="layout" content="main" />
 	<r:require modules="projecteditjs"/>
 	<link rel="stylesheet" href="/css/datepicker.css">

@@ -249,7 +249,7 @@
                             <div class="form-group">
                                 <label class="text col-sm-3 moveContribution">From</label>
                                 <div class="col-sm-9"> 
-                                     <g:select from="${teamNames}" class="form-control contributionFR" name="contributionFR" noSelection="['':'Move contribution from']"/><br>
+                                     <g:select from="${enableTeamNames}" class="form-control contributionFR" name="contributionFR" noSelection="['':'Move contribution from']"/><br>
                                 </div>
                             </div>
                         </div>
@@ -263,7 +263,7 @@
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label class="text col-sm-3 moveContribution">Contriubutor</label>
+                                <label class="text col-sm-3 moveContribution">Contributor</label>
                                 <div class="col-sm-9"> 
                                  <g:select from="" class="form-control contributorName" name="contributorName" id="contributorName" noSelection="['':'Contributor Name']"/><br>
                                </div>

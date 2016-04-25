@@ -67,11 +67,11 @@
 	        <div id="read-story-mobile" class="panel-collapse collapse faq-panel-height">
 		        <div class="panel-body sh-tilmobileIframe sh-tilemobileIframP">
 		            <g:if test="${isCrFrCampBenOrAdmin}">
-		                <p class="campaignStory justify">${raw(project.story)}</p>
+		                <p class="campaignStory justify">${raw(project?.story)}</p>
 		            </g:if>
 		            <g:else>
-		                <p class="campaignStory justify">${raw(currentTeam.story)}</p>
-		                <p class="campaignStory justify">${raw(project.story)}</p>
+		                <p class="campaignStory justify">${raw(currentTeam?.story)}</p>
+		                <p class="campaignStory justify">${raw(project?.story)}</p>
 		            </g:else>
 		        </div>
 	        </div>
@@ -98,7 +98,7 @@
         <div class="row tilepadding">
             <div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center">
                 <span class="text-center tile-goal">
-                    <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead">${amount}</span>
+                    <g:if test="${project?.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead">${amount}</span>
                 </span>
             </div>
             <g:if test="${ended}">

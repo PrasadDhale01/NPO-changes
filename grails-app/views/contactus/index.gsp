@@ -4,6 +4,7 @@
 %>
 <head>
 <meta name="layout" content="main" />
+<title>Crowdera- Contact us</title>
 <style type="text/css" media="screen">
     @import url(https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.css); 
 </style> 

@@ -11,6 +11,7 @@
 %>
 <html>
 <head>
+    <title>Crowdera- Validate campaign</title>
     <meta name="layout" content="main"/>
     <r:require modules="projectshowjs"/>
     <r:require modules="rewardjs"/>

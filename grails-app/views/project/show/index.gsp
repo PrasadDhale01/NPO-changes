@@ -5,18 +5,18 @@
 <%
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
     def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-    def beneficiary = project.user
-    def beneficiaryUserName = beneficiary.username
+    def beneficiary = project?.user
+    def beneficiaryUserName = beneficiary?.username
     def fundRaiserName
     if(currentFundraiser.email == project.beneficiary.email){
-        if (project.beneficiary.lastName)
-            fundRaiserName = (project.beneficiary.firstName + " " + project.beneficiary.lastName).toUpperCase()
+        if (project.beneficiary?.lastName)
+            fundRaiserName = (project.beneficiary?.firstName + " " + project.beneficiary?.lastName).toUpperCase()
         else 
-            fundRaiserName = (project.beneficiary.firstName).toUpperCase()
+            fundRaiserName = (project.beneficiary?.firstName).toUpperCase()
     } else {
-        fundRaiserName = (currentFundraiser.firstName + " " + currentFundraiser.lastName).toUpperCase()
+        fundRaiserName = (currentFundraiser?.firstName + " " + currentFundraiser?.lastName).toUpperCase()
     }
-    def username = currentFundraiser.username
+    def username = currentFundraiser?.username
     
     def projectTitle = project.title
     if (projectTitle) {
@@ -30,7 +30,7 @@
     def fbShareUrl = base_url+"/project/campaignShare?id="+project.id+"&fr="+username
     def fbShareUrlupdatePage = base_url+"/project/updateShare?id="+project.id+"&fr="+username
     
-    def currentTeamAmount = currentTeam.amount
+    def currentTeamAmount = currentTeam?.amount
     def shareUrl = base_url+'/c/'+shortUrl
     
     def vimeoInt
@@ -52,6 +52,7 @@
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
+    <title>Crowdera- ${project.title}</title>
     <meta name="title" content="${project.title} - Crowdera" />
     <g:if test="${project.description}">
         <meta name="description" content="${project.description}" />
@@ -60,7 +61,7 @@
     
     <meta property="og:site_name" content="Crowdera" />
     <meta property="og:type" content="Crowdera:Campaign" />
-    <meta property="og:title" content="${project.title} by ${project.beneficiary.firstName}" />
+    <meta property="og:title" content="${project.title} by ${project?.beneficiary?.firstName}" />
     <g:if test="${project.description}">
         <meta property="og:description" content="${project.description} Crowdfunding is a practical and inspiring way to support the fundraising needs of a cause or community. Do some good. Make a Contribution Today!" />
     </g:if>
@@ -121,7 +122,7 @@
 
         <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
         <g:hiddenField name="pieList" value="${pieList}" id="pieList"/>
-        <g:hiddenField name="projectamount" value="${project.amount.round()}" id="projectamount"/>
+        <g:hiddenField name="projectamount" value="${project?.amount.round()}" id="projectamount"/>
         <g:hiddenField name="fbShareUrlupdatePage" value="${fbShareUrlupdatePage}" id="fbShareUrlupdatePage"/>
         <g:hiddenField id="payuStatus" name="payuStatus" value="${project.payuStatus}"/>
         
@@ -180,7 +181,7 @@
                 <g:if test="${currentFundraiser != beneficiary}">
                     <div class="col-xs-12 visible-xs text-center">
                         <label class="text-center">Fundraiser : </label>
-                            <h5><b class="text-center">${currentFundraiser.firstName} ${currentFundraiser.lastName}</b></h5>
+                            <h5><b class="text-center">${currentFundraiser?.firstName} ${currentFundraiser?.lastName}</b></h5>
                     </div>
                 </g:if>
                 
@@ -316,13 +317,13 @@
 	                                </a>
 	                            </span>
 	                        </li>
-	                        <g:if test="${!project.projectUpdates.isEmpty() }">
+	                        <g:if test="${!project?.projectUpdates.isEmpty() }">
 	                            <li><span class="show-tbs-right-borders hidden-xs">
 	                                    <a href="#projectupdates" data-toggle="tab"  class="show-tabs-text projectupdates show-all-icons-header-tabs">
 	                                        <span class="tab-text sh-tabs-font hidden-xs"> UPDATES</span> 
 	                                    </a>
 	                                    <span class="show-tabs-count hidden-xs">
-	                                        <g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if>
+	                                        <g:if test="${project?.projectUpdates?.size() > 0}">${project?.projectUpdates?.size()}</g:if>
 	                                    </span>
 	                                </span>
 	                            </li>
@@ -338,7 +339,7 @@
 	                                    <span class="tab-text sh-tabs-font"> CONTRIBUTIONS</span>
 	                                </a>
 	                                <span class="show-tabs-count hidden-xs">
-	                                    <g:if test="${totalContributions.size() > 0}">${totalContributions.size()}</g:if>
+	                                    <g:if test="${totalContributions?.size() > 0}">${totalContributions?.size()}</g:if>
 	                                </span>
 	                            </span>
 	                        </li>
@@ -406,7 +407,7 @@
                     
                <div class="show-socialheads">
                    <div class="navbar navbar-default col-lg-12 hidden-sm col-md-12 sh-tabs hidden-xs sh-shareicons-Fixedtophead">
-                       <div class="col-lg-6 col-lg-push-3 col-sm-6 col-md-push-3 col-md-6 <g:if test="${project.projectUpdates}">show-share-headerpadding</g:if><g:else>show-headered-without-update</g:else> show-headers-icons">
+                       <div class="col-lg-6 col-lg-push-3 col-sm-6 col-md-push-3 col-md-6 <g:if test="${project?.projectUpdates}">show-share-headerpadding</g:if><g:else>show-headered-without-update</g:else> show-headers-icons">
                        
                            <%-- Social features --%>
                            <g:if test="${isPreview}">
@@ -522,7 +523,7 @@
                     <ul class="nav nav-pills">
                           <li id="show-headeridA"></li> 
                     </ul>
-                    <ul class="nav nav-pills nav-justified nav-justi show-marginbottoms sh-tabs mng-safari-mobile show-new-tabs-alignments<g:if test="${!project.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
+                    <ul class="nav nav-pills nav-justified nav-justi show-marginbottoms sh-tabs mng-safari-mobile show-new-tabs-alignments<g:if test="${!project?.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
                         
                         <li class="show-tabs"><span class="active show-tbs-right-borders  hidden-xs">
                                 <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials">
@@ -531,13 +532,13 @@
                                 <span class="show-ids-header"></span>
                             </span>
                         </li>
-                        <g:if test="${!project.projectUpdates.isEmpty() }">
+                        <g:if test="${!project?.projectUpdates.isEmpty() }">
                             <li><span class="show-tbs-right-borders hidden-xs">
                                     <a href="#projectupdates" data-toggle="tab" class="show-tabs-text projectupdates">
                                         <span class="tab-text hidden-xs"> UPDATES</span> 
                                     </a>
                                     <span class="show-tabs-count hidden-xs">
-                                        <g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if>
+                                        <g:if test="${project?.projectUpdates?.size() > 0}">${project?.projectUpdates?.size()}</g:if>
                                     </span>
                                     <span class="show-ids-header"></span>
                                 </span>
@@ -555,7 +556,7 @@
                                     <span class="tab-text"> CONTRIBUTIONS</span>
                                 </a>
                                 <span class="show-tabs-count hidden-xs">
-                                    <g:if test="${totalContributions.size() > 0 && screen == 'false'}">${totalContributions.size()}</g:if>
+                                    <g:if test="${totalContributions?.size() > 0 && screen == 'false'}">${totalContributions?.size()}</g:if>
                                 </span>
                                 <span class="show-ids-header"></span>
                             </span>
@@ -617,7 +618,7 @@
                                             <h4 class="modal-title">Recipient Email ID's</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <g:hiddenField name="amount" value="${project.amount}" id="campaign-amount"/>
+                                            <g:hiddenField name="amount" value="${project?.amount}" id="campaign-amount"/>
                                             <g:hiddenField name="vanityTitle" value="${vanityTitle}" id="campaign-vanityTitle"/>
                                             <g:hiddenField name="vanityUsername" value="${vanityUsername}" id="campaign-vanityUsername"/>
                                             <div class="form-group">
@@ -645,7 +646,7 @@
                 
                 <%--Embed modal--%>
                 <div class="modal fade embedTilemodal" id="embedTilemodal" tabindex="-1" role="dialog" aria-hidden="true">
-                    <g:if test="${project.videoUrl}">
+                    <g:if test="${project?.videoUrl}">
                         <div class="modal-dialog modal-embed-with-video">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -741,7 +742,7 @@
                           <div class="submitForApprovalSectionbtn" id="submitForApprovalSectionbtn">
                               <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail || project.citrusEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                                   <g:form controller="project" action="saveasdraft" id="${project.id}">
-                                      <g:if test="${!project.touAccepted}">
+                                      <g:if test="${!project?.touAccepted}">
                                           <div class="form-group show-submit-margin hidden-xs">
                                               <input type="checkbox" name="submitForApprovalcheckbox1">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
                                           </div>
@@ -834,7 +835,7 @@
                       </g:if>
                       
                       <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
-                          <g:if test="${project.impactNumber > 0 && project.impactAmount > 0}">
+                          <g:if test="${project.impactNumber > 0 && project?.impactAmount > 0}">
                               <div class="impactassessment">
                                   <g:render template="show/impactstatement"/>
                               </div>
@@ -901,7 +902,7 @@
                       
                       <g:if test="${isPreview && !project.validated}">
                           <div class="hidden-xs">
-                              <g:if test="${project.rewards.size()>1}">
+                              <g:if test="${project?.rewards?.size()>1}">
                                   <div class="sh-perks-preview">
                                       <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
                                   </div>
@@ -915,7 +916,7 @@
                       
                       <div class="visible-xs sh-mobperks">
                           <g:if test="${isPreview && !project.validated}">
-                              <g:if test="${project.rewards.size()>1}">
+                              <g:if test="${project?.rewards?.size()>1}">
                                   <div class="sh-perks-preview">
                                       <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
                                   </div>

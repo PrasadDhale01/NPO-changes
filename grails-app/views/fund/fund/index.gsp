@@ -2,9 +2,10 @@
 <g:set var="projectService" bean="projectService"/>
 <html>
 <head>
-    <meta name="layout" content="main" />
-    <r:require modules="fundjs" />
-    <r:require modules="fundcss" />
+	<meta name="layout" content="main" />
+	<r:require modules="fundjs" />
+	<r:require modules="fundcss" />
+	<title>Crowdera- Contribute</title>
 </head>
 <body>
     <div class="feducontent">

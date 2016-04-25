@@ -84,11 +84,25 @@ class ProjectService {
          return null
     }
     
-    def getTeamFirstNameAndLastName(def team){
+    def getEnableTeamFirstNameAndLastName(def team){
         def teamNameList = []
         if(team){
             team.each{
-                teamNameList.add(it.user.firstName +' ' + it.user.lastName)
+                if(it?.enable && it?.contributions){
+                    teamNameList.add(it?.user?.firstName +' ' + it?.user?.lastName)
+                }
+            }
+        }
+        
+        return teamNameList
+    }
+    
+    def getTeamFirstNameAndLastName(def team){
+        def teamNameList=[]
+        
+        if(team){
+            team.each{
+                teamNameList.add(it?.user?.firstName +' ' + it?.user?.lastName)
             }
         }
         
@@ -193,10 +207,10 @@ class ProjectService {
     def getProjectUpdateDetails(def params, def project){
         def vanitytitle
         User currentUser = userService.getCurrentUser()
-        def fullName = currentUser.firstName + ' ' + currentUser.lastName
+        def fullName = currentUser?.firstName + ' ' + currentUser?.lastName
         def currentEnv = Environment.current.getName()
-        project.story = params.story
-        if (project.draft) {
+        project.story = params?.story
+        if (project?.draft) {
             project.paypalEmail = params.paypalEmail
             project.charitableId = params.charitableId
             project.organizationName = params.organizationName
@@ -230,11 +244,11 @@ class ProjectService {
             }
         }
         
-        def projectAdmins = project.projectAdmins
+        def projectAdmins = project?.projectAdmins
         
         projectAdmins.each { projectAdmin ->
-            def email = projectAdmin.email
-            if (currentUser.email != email) {
+            def email = projectAdmin?.email
+            if (currentUser?.email != email) {
                 mandrillService.sendUpdateEmailToAdmin(email, fullName, project)
             }
         }
@@ -1895,7 +1909,7 @@ class ProjectService {
 	
 	def getTeamImageLinks(Team team, Project project) {
 		def imageUrls = []
-        if(team.videoUrl){
+        if(team?.videoUrl){
             def regex =/^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
             def teamVideoUrl=team.getVideoUrl()
             def match = teamVideoUrl.matches(regex);
@@ -1910,7 +1924,7 @@ class ProjectService {
                imageUrls.add(vurl)     
             }
 		}
-		for (imgUrl in team.imageUrl) {
+		for (imgUrl in team?.imageUrl) {
 			if (imgUrl) {
 				if (imgUrl.getUrl().startsWith('http')) {
 					imageUrls.add(imgUrl.getUrl())
@@ -3023,13 +3037,13 @@ class ProjectService {
     }
 	
     def getProjectVanityTitle(Project project) {
-        def projectTitle = project.title.trim()
+        def projectTitle = project?.title.trim()
         def title = projectTitle.replaceAll("[^a-zA-Z0-9]", "-")
         def list = VanityTitle.list()
         List result = []
         def vanitytitle
         list.each{
-            if (it.title.equalsIgnoreCase(title)) {
+            if (it?.title.equalsIgnoreCase(title)) {
                 result.add(it)
             }
         }
@@ -3073,18 +3087,18 @@ class ProjectService {
 		def title
         if(project){
             def status = false
-            if (project.customVanityUrl){
-                VanityTitle vanitytitle = VanityTitle.findByVanityTitle(project.customVanityUrl.trim())
-                title = (vanitytitle) ? project.customVanityUrl.trim() : project.title.trim()
+            if (project?.customVanityUrl){
+                VanityTitle vanitytitle = VanityTitle.findByVanityTitle(project?.customVanityUrl.trim())
+                title = (vanitytitle) ? project?.customVanityUrl.trim() : project?.title.trim()
             } else {
-                title = project.title.trim()
+                title = project?.title.trim()
             }
-            vanity_title= title.replaceAll("[^a-zA-Z0-9]", "-")
+            vanity_title= title?.replaceAll("[^a-zA-Z0-9]", "-")
             def vanity = VanityTitle.findAllWhere(project:project)
             vanity.each{
-                if (it.title.equals(vanity_title)){
+                if (it?.title.equals(vanity_title)){
                     status = true
-                    vanity_title = it.vanityTitle
+                    vanity_title = it?.vanityTitle
                 }
             }
             if (!status)
@@ -3097,7 +3111,7 @@ class ProjectService {
         def projectId
         def vanitytitle = VanityTitle.findByVanityTitle(title)
         if (vanitytitle)
-            projectId = vanitytitle.project.id
+            projectId = vanitytitle?.project?.id
 
         return projectId
     }
@@ -3145,7 +3159,7 @@ class ProjectService {
         def projectId
         def vanitytitle = VanityTitle.findByVanityTitle(title)
         if (vanitytitle)
-            projectId = vanitytitle.project.id
+            projectId = vanitytitle?.project?.id
 
         def project = Project.get(projectId)
         return project
@@ -3265,9 +3279,9 @@ class ProjectService {
 	def getProjectAdminEmailList(Project project) {
 		List emailList = []
 		project.projectAdmins.each { projectAdmin ->
-			emailList.add(projectAdmin.email)
+			emailList.add(projectAdmin?.email)
 		}
-		emailList.add(project.user.email)
+		emailList.add(project?.user?.email)
 		return emailList
 	}
 
@@ -4131,14 +4145,14 @@ class ProjectService {
 		def email2
 		def email3
 		admins.each{
-			if (it.adminCount == 1){
-				email1 = it.email
+			if (it?.adminCount == 1){
+				email1 = it?.email
 			}
-			if (it.adminCount == 2){
-				email2 = it.email
+			if (it?.adminCount == 2){
+				email2 = it?.email
 			}
-			if (it.adminCount == 3){
-				email3 = it.email
+			if (it?.adminCount == 3){
+				email3 = it?.email
 			}
 		}
 		
@@ -4648,8 +4662,8 @@ class ProjectService {
         def details
         def urlShortener = UrlShortener.findByShortenUrl(url)
         if (urlShortener){
-            projectId = urlShortener.projectId
-            username = urlShortener.username
+            projectId = urlShortener?.projectId
+            username = urlShortener?.username
             if (projectId){
                 vanityTitle = getVanityTitleFromId(projectId)
             }

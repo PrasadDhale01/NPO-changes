@@ -8,6 +8,7 @@
 <head>
     <meta name="layout" content="main" />
     <r:require module="projectlistjs"/>
+    <title>Crowdera- Fundraising Campaigns</title>
 </head>
 <body>
     <div class="bg-color" id="TW-discover-banner-padding">

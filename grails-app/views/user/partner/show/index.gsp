@@ -1,6 +1,7 @@
 <g:set var="projectService" bean="projectService"/>
 <html>
 <head>
+    <title>Crowdera- Partner</title>
     <meta name="layout" content="main" />
 </head>
 <body>

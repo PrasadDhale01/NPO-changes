@@ -39,6 +39,7 @@
 %>
 <html>
 <head>
+<title>Crowdera- Create campaign</title>
 <meta name="layout" content="main" />
 <r:require modules="projectcreatejs" />
 

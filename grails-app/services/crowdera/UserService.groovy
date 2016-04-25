@@ -286,14 +286,14 @@ class UserService {
     }
 
     def isCampaignBeneficiaryOrAdmin(def project, def user) {
-        def projectAdmins = project.projectAdmins
+        def projectAdmins = project?.projectAdmins
         def isAdmin = false
         projectAdmins.each { projectAdmin ->
-            if(user.email == projectAdmin.email) {
+            if(user?.email == projectAdmin?.email) {
                 isAdmin = true
             }
         }
-        if (project.user == user) {
+        if (project?.user == user) {
             isAdmin = true
         }
         return isAdmin
@@ -540,16 +540,16 @@ class UserService {
         def firstname
         def vanityname
         def vanity_username
-        if (user.firstName) {
-            firstname = user.firstName.trim()
+        if (user?.firstName) {
+            firstname = user?.firstName.trim()
             if (firstname) {
-                vanityname = firstname.replaceAll("[^a-zA-Z0-9]", "-")+"-"+user.id
+                vanityname = firstname.replaceAll("[^a-zA-Z0-9]", "-")+"-"+user?.id
             }
             vanity_username = VanityUsername.findAllWhere(vanityUsername:vanityname)
             if (!vanity_username) {
                 new VanityUsername(
                     user:user,
-                    username:user.username,
+                    username:user?.username,
                     vanityUsername:vanityname
                 ).save(failOnError: true)
             }
@@ -568,17 +568,17 @@ class UserService {
             user = User.findByUsername(username)
         } else {
             if (project) {
-                user = User.findByUsername(project.user.username)
+                user = User.findByUsername(project?.user?.username)
             }
         }
         if (user) {
-            vanityName = user.firstName.trim()
+            vanityName = user?.firstName.trim()
             if (vanityName) {
-                vanityUsername = vanityName.replaceAll("[^a-zA-Z0-9]", "-")+"-"+user.id
+                vanityUsername = vanityName.replaceAll("[^a-zA-Z0-9]", "-")+"-"+user?.id
             }
             def vanity = VanityUsername.findAllWhere(user:user)
             vanity.each {
-                if (vanityUsername == it.vanityUsername){
+                if (vanityUsername == it?.vanityUsername){
                     status = true
                 }
             }

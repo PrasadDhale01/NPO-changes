@@ -44,6 +44,7 @@
     <meta name="layout" content="main" />
     <r:require modules="projectcreatejs" />
     <link rel="stylesheet" href="/css/datepicker.css">
+    <title>Crowdera- Campaign edit</title>
 </head>
 <body>
     <input type="hidden" id="b_url" value="<%=base_url%>" /> 
@@ -268,7 +269,7 @@
                                     crowdera.co/campaigns/
                                 </g:else>
                             </div>
-                            <input class="form-control form-control-no-border editsweb-margin-mobile  cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd customVanityUrl" name="customVanityUrl" maxlength="55" value="${project.customVanityUrl}" id="customVanityUrl" placeholder="Your-Campaign-web-url" <g:if test="${project.validated && project.customVanityUrl}">readonly</g:if>>
+                            <input class="form-control form-control-no-border editsweb-margin-mobile  cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd customVanityUrl" name="customVanityUrl" maxlength="55" value="${project?.customVanityUrl}" id="customVanityUrl" placeholder="Your-Campaign-web-url" <g:if test="${project?.validated && project?.customVanityUrl}">readonly</g:if>>
                         </div>
                         <div class="clear" id="vanityUrlClear"></div>
                         <label class="pull-right" id="vanityUrlLength"></label>
@@ -820,7 +821,7 @@
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <g:if test="${project.payuStatus}">
+                                    <g:if test="${project?.payuStatus}">
                                         <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
                                         <input type="text" placeholder="Amount" name="rewardPrice${reward.rewardCount}" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${reward.rewardCount}" value="${price}">
                                     </g:if>
@@ -859,25 +860,25 @@
                             <div class="form-group">
                                 <div class="btn-group col-sm-12" data-toggle="buttons">
                                     <label class="panel-body col-sm-2 col-xs-12 cr-check-btn-perks text-center">Mode of <br> Delivery</label>
-                                    <g:if test="${shippingInfo.address}">
+                                    <g:if test="${shippingInfo?.address}">
                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingAddress lblmail${reward.rewardCount} active"><input type="checkbox" checked="checked" name="mailingAddress${reward.rewardCount}" value="true" id="mailaddcheckbox${reward.rewardCount}">Mailing <br> address</label>
                                     </g:if>
                                     <g:else>
                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingAddress lblmail${reward.rewardCount}"><input type="checkbox" name="mailingAddress${reward.rewardCount}" value="true" id="mailaddcheckbox${reward.rewardCount}">Mailing <br> address</label>
                                     </g:else>
-                                    <g:if test="${shippingInfo.email}">
+                                    <g:if test="${shippingInfo?.email}">
                                      <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingEmail lblemail${reward.rewardCount} active"><input type="checkbox" checked="checked" name="emailAddress${reward.rewardCount}" value="true" id="emailcheckbox${reward.rewardCount}">Email <br> address</label>
                                     </g:if>
                                     <g:else>
                                      <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingEmail lblemail${reward.rewardCount}"><input type="checkbox" name="emailAddress${reward.rewardCount}" value="true" id="emailcheckbox${reward.rewardCount}">Email <br> address</label>
                                     </g:else>
-                                    <g:if test="${shippingInfo.twitter}">
+                                    <g:if test="${shippingInfo?.twitter}">
                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingTwitter lbltwitter${reward.rewardCount} active"><input type="checkbox" checked="checked" name="twitter${reward.rewardCount}" value="true" id="twittercheckbox${reward.rewardCount}">Twitter <br> handle</label>
                                     </g:if>
                                     <g:else>
                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingTwitter lbltwitter${reward.rewardCount}"><input type="checkbox" name="twitter${reward.rewardCount}" value="true" id="twittercheckbox${reward.rewardCount}">Twitter <br> handle</label>
                                     </g:else>
-                                    <input type="text" name="custom${reward.rewardCount}" id="customcheckbox${reward.rewardCount}" class="customText form-control-no-border text-color cr-custom-place cr-customchrome-place cr-perks-back-color col-sm-4 col-xs-12" placeholder="Custom" value="${shippingInfo.custom}">
+                                    <input type="text" name="custom${reward.rewardCount}" id="customcheckbox${reward.rewardCount}" class="customText form-control-no-border text-color cr-custom-place cr-customchrome-place cr-perks-back-color col-sm-4 col-xs-12" placeholder="Custom" value="${shippingInfo?.custom}">
                                 </div>
                             </div>
                         </div>
@@ -1100,90 +1101,90 @@
                             <g:if test="${project.payuStatus}">
                                 <g:if test="${taxReciept}">
                                     <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                 <input type="text" placeholder="Registered Name" class="form-control tax-reciept-holder-name" name="tax-reciept-holder-name" value="${taxReciept.name}">
-                                            </div>
-                                            <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                <g:if test="${dateFormat.format(taxReciept.regDate) == dateFormat.format(currentDate)}">
-                                                    <input type="text" class="form-control datepicker-reg text-date" placeholder="Registration Date" name="reg-date">
-                                                </g:if>
-                                                <g:else>
-                                                    <input type="text" class="form-control datepicker-reg text-date" placeholder="Registration Date" name="reg-date" value="${dateFormat.format(taxReciept.regDate)}">
-                                                </g:else>
-                                            </div>
-                                            <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                <input type="text" class="form-control addressLine1" placeholder="AddressLine 1" name="addressLine1" value="${taxReciept.addressLine1}">
-                                            </div>
-                                            <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                <input type="text" class="form-control zip" placeholder="ZIP" name="zip"  value="${taxReciept.zip}">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                <input type="text" placeholder="Registration Number" class="form-control tax-reciept-registration-num" name="tax-reciept-registration-num" value="${taxReciept.regNum}">
-                                            </div>
-                                            <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                <g:if test="${dateFormat.format(taxReciept.expiryDate) == dateFormat.format(currentDate)}">
-                                                    <input type="text" class="form-control datepicker-expiry text-date" placeholder="Expiry Date" name="expiry-date">
-                                                </g:if>
-                                                <g:else>
-                                                    <input type="text" class="form-control datepicker-expiry text-date" placeholder="Expiry Date" name="expiry-date" value="${dateFormat.format(taxReciept.expiryDate)}">
-                                                </g:else>
-                                            </div>
-                                             <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                <input type="text" class="form-control addressLine2" placeholder="AddressLine 2" name="addressLine2" value="${taxReciept.addressLine2}">
-                                            </div>
-                                            <div class="col-sm-12 form-group form-group-tax-reciept form-group-selectpicker form-group-dropdown">
-                                                <g:select class="selectpicker form-control selectpicker-state tax-reciept-dropdown-menu" name="tax-reciept-holder-state" from="${stateInd}" optionKey="value" optionValue="value" value="${taxReciept.taxRecieptHolderState}" noSelection="['OTHER':'State']"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                <input type="text" placeholder="PAN Card Number" class="form-control tax-reciept-holder-pan-card" name="tax-reciept-holder-pan-card" value="${taxReciept.panCardNumber}">
-                                            </div>
-                                            <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                <input type="text" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone" value="${taxReciept.phone}" >
-                                            </div>
-                                            <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                <input type="text" class="form-control tax-reciept-holder-city" placeholder="City" name="tax-reciept-holder-city" value="${taxReciept.city}">
-                                            </div>
-                                            <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                <input type="text" class="form-control country" placeholder="Country" name="country" value="India" readonly>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-sm-12 col-xs-12 col-xs-pl-0 rowseperator">
-                                            <div class="form-group col-sm-8 col-xs-12">
-                                                <div class="col-sm-5 col-md-4 col-xs-9 col-plr-0">
-                                                    <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
-                                                        Add Digital Signature
-                                                        <input type="file" class="upload" id="digitalSign" name="digitalSign" accept="image/jpeg, image/png">
-                                                    </div>
-                                                </div>
-                                                
-                                                <g:if test="${taxReciept.signatureUrl}">
-                                                    <div class="pr-icon-thumbnail-div edit-image-mobile col-sm-4 col-xs-3">
-                                                        <img id="editsignatureIcon" alt="cross" class="pr-icon-thumbnail" src="${taxReciept.signatureUrl}">
-                                                        <div class="deleteicon orgicon-css-styles">
-                                                            <img alt="cross" id="deleditsignature" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
-                                                        </div>
-                                                    </div>
-                                                </g:if>
-                                                <g:else>
-                                                    <div id="signaturediv" class="pr-icon-thumbnail-div cr-image-mobile col-sm-4 col-xs-3">
-                                                        <img id="signatureIcon" alt="cross" class="pr-icon-thumbnail">
-                                                        <div class="deleteicon orgicon-css-styles">
-                                                            <img alt="cross" id="delsignature" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
-                                                        </div>
-                                                    </div>
-                                                </g:else>
-                                                
-                                                <div class="clear"></div>
-                                                <label class="docfile-orglogo-css" id="signaturemsg">Please select image file.</label>
-                                                <label class="docfile-orglogo-css" id="signaturemsgsize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
-                                            </div>
-                                        </div>
+			                            <div class="col-sm-4">
+			                                <div class="col-sm-12 form-group form-group-tax-reciept">
+			                                     <input type="text" placeholder="Registered Name" class="form-control tax-reciept-holder-name" name="tax-reciept-holder-name" value="${taxReciept.name}">
+			                                </div>
+			                                <div class="col-sm-12 form-group form-group-tax-reciept">
+			                                    <g:if test="${dateFormat.format(taxReciept.regDate) == dateFormat.format(currentDate)}">
+			                                        <input type="text" class="form-control datepicker-reg text-date" placeholder="Registration Date" name="reg-date">
+			                                    </g:if>
+			                                    <g:else>
+			                                        <input type="text" class="form-control datepicker-reg text-date" placeholder="Registration Date" name="reg-date" value="${dateFormat.format(taxReciept.regDate)}">
+			                                    </g:else>
+			                                </div>
+			                                <div class="col-sm-12 form-group form-group-tax-reciept">
+			                                    <input type="text" class="form-control addressLine1" placeholder="AddressLine 1" name="addressLine1" value="${taxReciept?.addressLine1}">
+			                                </div>
+			                                <div class="col-sm-12 form-group form-group-tax-reciept">
+			                                    <input type="text" class="form-control zip" placeholder="ZIP" name="zip"  value="${taxReciept.zip}">
+			                                </div>
+			                            </div>
+			                            <div class="col-sm-4">
+			                                <div class="col-sm-12 form-group form-group-tax-reciept">
+			                                    <input type="text" placeholder="Registration Number" class="form-control tax-reciept-registration-num" name="tax-reciept-registration-num" value="${taxReciept.regNum}">
+			                                </div>
+			                                <div class="col-sm-12 form-group form-group-tax-reciept">
+			                                    <g:if test="${dateFormat.format(taxReciept.expiryDate) == dateFormat.format(currentDate)}">
+			                                        <input type="text" class="form-control datepicker-expiry text-date" placeholder="Expiry Date" name="expiry-date">
+			                                    </g:if>
+			                                    <g:else>
+			                                        <input type="text" class="form-control datepicker-expiry text-date" placeholder="Expiry Date" name="expiry-date" value="${dateFormat.format(taxReciept.expiryDate)}">
+			                                    </g:else>
+			                                </div>
+			                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+			                                    <input type="text" class="form-control addressLine2" placeholder="AddressLine 2" name="addressLine2" value="${taxReciept.addressLine2}">
+			                                </div>
+			                                <div class="col-sm-12 form-group form-group-tax-reciept form-group-selectpicker form-group-dropdown">
+			                                    <g:select class="selectpicker form-control selectpicker-state tax-reciept-dropdown-menu" name="tax-reciept-holder-state" from="${stateInd}" optionKey="value" optionValue="value" value="${taxReciept.taxRecieptHolderState}" noSelection="['OTHER':'State']"/>
+			                                </div>
+			                            </div>
+			                            <div class="col-sm-4">
+			                                <div class="col-sm-12 form-group form-group-tax-reciept">
+			                                    <input type="text" placeholder="PAN Card Number" class="form-control tax-reciept-holder-pan-card" name="tax-reciept-holder-pan-card" value="${taxReciept.panCardNumber}">
+			                                </div>
+			                                <div class="col-sm-12 form-group form-group-tax-reciept">
+			                                    <input type="text" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone" value="${taxReciept.phone}" >
+			                                </div>
+			                                <div class="col-sm-12 form-group form-group-tax-reciept">
+			                                    <input type="text" class="form-control tax-reciept-holder-city" placeholder="City" name="tax-reciept-holder-city" value="${taxReciept.city}">
+			                                </div>
+			                                <div class="col-sm-12 form-group form-group-tax-reciept">
+			                                    <input type="text" class="form-control country" placeholder="Country" name="country" value="India" readonly>
+			                                </div>
+			                            </div>
+			                            
+			                            <div class="col-sm-12 col-xs-12 col-xs-pl-0 rowseperator">
+		                                    <div class="form-group col-sm-8 col-xs-12">
+		                                        <div class="col-sm-5 col-md-4 col-xs-9 col-plr-0">
+		                                            <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
+		                                                Add Digital Signature
+		                                                <input type="file" class="upload" id="digitalSign" name="digitalSign" accept="image/jpeg, image/png">
+		                                            </div>
+		                                        </div>
+		                                        
+		                                        <g:if test="${taxReciept.signatureUrl}">
+		                                            <div class="pr-icon-thumbnail-div edit-image-mobile col-sm-4 col-xs-3">
+		                                                <img id="editsignatureIcon" alt="cross" class="pr-icon-thumbnail" src="${taxReciept.signatureUrl}">
+		                                                <div class="deleteicon orgicon-css-styles">
+		                                                    <img alt="cross" id="deleditsignature" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
+		                                                </div>
+		                                            </div>
+		                                        </g:if>
+		                                        <g:else>
+		                                            <div id="signaturediv" class="pr-icon-thumbnail-div cr-image-mobile col-sm-4 col-xs-3">
+		                                                <img id="signatureIcon" alt="cross" class="pr-icon-thumbnail">
+		                                                <div class="deleteicon orgicon-css-styles">
+		                                                    <img alt="cross" id="delsignature" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
+		                                                </div>
+		                                            </div>
+		                                        </g:else>
+		                                        
+		                                        <div class="clear"></div>
+		                                        <label class="docfile-orglogo-css" id="signaturemsg">Please select image file.</label>
+		                                        <label class="docfile-orglogo-css" id="signaturemsgsize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
+		                                    </div>
+		                                </div>
                                      
                                     </div>
                                     

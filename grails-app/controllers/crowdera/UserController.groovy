@@ -88,7 +88,17 @@ class UserController {
                 } else {
                     project = projectService.getValidatedProjectsForCampaignAdmin('Pending', 'USA')
                 }
-                sortByOptions = projectService.getSortingList()
+                
+                def sortingList =projectService.getSortingList()
+                
+                sortingList.each {
+                    
+                    if(it.value!="Homepage"){
+                        if(it.value!="Deadline")
+                            sortByOptions.add(it.value)
+                    }
+                }
+                
             } else {
                 projects = projectService.getAllProjectByUser(user, environment)
                 projectAdmins = projectService.getProjectAdminEmail(user)

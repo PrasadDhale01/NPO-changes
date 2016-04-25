@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta name="layout" content="main" />
+<title>Crowdera- Terms of use</title>
 </head>
 
 <body>

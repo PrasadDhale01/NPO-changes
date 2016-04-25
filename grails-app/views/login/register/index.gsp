@@ -6,6 +6,7 @@
 %>
 <html>
 <head>
+    <title>Crowdera- Registration</title>
     <meta name="layout" content="main" />
     <r:require modules="bootstrapsocialcss, registrationjs"/>
 </head>

@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta name="layout" content="main" />
+<title>Crowdera- Privacy policy</title>
 </head>
 <body>
 <div class="container policy-container">

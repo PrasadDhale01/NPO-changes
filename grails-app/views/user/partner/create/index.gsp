@@ -1,5 +1,6 @@
 <html>
 <head>
+    <title>Crowdera- Create partner</title>
     <meta name="layout" content="main" />
     <r:require module="createpartnerjs"/>
 </head>

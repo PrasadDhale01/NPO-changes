@@ -8,6 +8,7 @@
 	def contributorNameCookieValue = g.cookie(name: 'contributorNameCookie')
 %>
 <head>
+    <title>Crowdera- Login</title>
     <meta name='layout' content='main'/>
     <r:require modules="bootstrapsocialcss, loginjs, registrationjs"/>
 </head>

@@ -44,6 +44,7 @@
     <meta name="layout" content="main" />
     <r:require modules="projectcreatejs" />
     <link rel="stylesheet" href="/css/datepicker.css">
+    <title>Crowdera- Campaign edit</title>
 </head>
 <body>
     <input type="hidden" id="b_url" value="<%=base_url%>" /> 

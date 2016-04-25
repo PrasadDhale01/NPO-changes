@@ -3,6 +3,7 @@
 <g:set var="userService" bean="userService"/>
 
 <head>
+    <title>Crowdera- Metrics</title>
 	<meta name="layout" content="main" />
 	<r:require modules="userjs"/>
 </head>

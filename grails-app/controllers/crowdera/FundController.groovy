@@ -480,7 +480,6 @@ class FundController {
             // response handler for a success response code
             response.success = { resp, reader ->
                 result = true
-                //TODO: fix this logic
                 def responseXML
                 reader.each{ key, value ->
                     if(reader[key]) {
@@ -1010,10 +1009,10 @@ class FundController {
     }
     
     
-    def seller() {
+    def getseller() {
         def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
-        String id = "623"
-        def url = citrusBaseUrl +"/marketplace/seller/${id}"
+        String sellerId = params.sellerId
+        def url = citrusBaseUrl +"/marketplace/seller/${sellerId}"
         HttpClient httpclient = new DefaultHttpClient()
         HttpGet httpGet = new HttpGet(url)
         def auth_token = contributionService.getAccessTokenForCitrus()
@@ -1029,6 +1028,31 @@ class FundController {
                 def slurper = new JsonSlurper()
                 def json = slurper.parseText(jsonString)
                 seller = json
+            }
+        }
+        render seller
+    }
+    
+    def getSellerAccountBalance() {
+        def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
+        String sellerId = params.sellerId
+        def url = citrusBaseUrl +"/marketplace/seller/getbalance/${sellerId}"
+        HttpClient httpclient = new DefaultHttpClient()
+        HttpGet httpGet = new HttpGet(url)
+        def auth_token = contributionService.getAccessTokenForCitrus()
+        def seller
+        httpGet.setHeader("auth_token","${auth_token}")
+        HttpResponse httpres = httpclient.execute(httpGet)
+        
+        int status = httpres.getStatusLine().getStatusCode()
+        if (status == 200) {
+            HttpEntity entity = httpres.getEntity();
+            if (entity != null){
+                def jsonString = EntityUtils.toString(entity)
+                def slurper = new JsonSlurper()
+                def json = slurper.parseText(jsonString)
+                seller = json.account_balance
+//                json.account_id
             }
         }
         render seller
@@ -1065,7 +1089,6 @@ class FundController {
                 def slurper = new JsonSlurper()
                 def json = slurper.parseText(jsonString)
                 splitId = json.split_id
-                println json
             }
         }
         

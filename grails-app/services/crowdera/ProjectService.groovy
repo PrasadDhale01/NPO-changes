@@ -5558,6 +5558,7 @@ class ProjectService {
         def anonymous = session.getAttribute('anonymous')
         def address   = session.getAttribute('address')
         def fr        = session.getAttribute('fr')
+        def panNumber = session.getAttribute('panNumber')
         
         Project project  = Project.get(session.getAttribute('campaignId'))
         Reward reward    = rewardService.getRewardById(session.getAttribute('rewardId'));
@@ -5579,6 +5580,9 @@ class ProjectService {
             name = orgUser.firstName + " " + orgUser.lastName
             username = orgUser.email
         }
+        
+        
+        String splitId = getSplitIdForTransactionId(marketplaceTxId, project.sellerId, amount, issuerRefNo) 
 
         Contribution contribution = new Contribution(
             date             : new Date(),
@@ -5591,7 +5595,11 @@ class ProjectService {
             contributorName  : name,
             contributorEmail : username,
             physicalAddress  : shippingDetail.address,
-            currency         : 'INR'
+            currency         : 'INR',
+            panNumber        : panNumber,
+            merchantTxId     : marketplaceTxId,
+            splitRef         : issuerRefNo,
+            splitId          : splitId
         )
         
         project.addToContributions(contribution).save(failOnError: true)
@@ -5647,7 +5655,7 @@ class ProjectService {
         )
         
         transaction.save(failOnError: true)
-        getSplitIdForTransactionId(marketplaceTxId, project.sellerId, amount, issuerRefNo) 
+        
         
         return contribution.id
     }
@@ -5658,7 +5666,6 @@ class ProjectService {
         
         HttpClient httpclient = new DefaultHttpClient()
         HttpPost httppost = new HttpPost(url)
-        println transactionId
         def trans_id = transactionId
         def seller_id = sellerId
         def merchant_split_ref = issuerRefNo
@@ -5683,11 +5690,9 @@ class ProjectService {
                 def slurper = new JsonSlurper()
                 def json = slurper.parseText(jsonString)
                 splitId = json.split_id
-                println json
             }
         }
-        
-        println httpres
+        return splitId
     }
     
     def setCitrusInfo(def session, def params) {

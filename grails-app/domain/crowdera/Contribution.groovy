@@ -20,6 +20,10 @@ class Contribution {
     String fundRaiser
     String contributorEmail
     String comments
+    String panNumber
+    String merchantTxId
+    String splitRef
+    String splitId
     
     String currency = 'USD'
     
@@ -39,6 +43,10 @@ class Contribution {
         contributorName nullable: true
         contributorEmail nullable: true
         fundRaiser nullable: true
+        panNumber nullable: true
+        merchantTxId nullable: true
+        splitRef nullable: true
+        splitId nullable: true
     }
 
     def beforeValidate() {

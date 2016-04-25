@@ -101,7 +101,7 @@
 		                        </g:if>
 		                        <g:else>
 		                            <span class="cdra-ft-cutomercnt col-xs-12">Customer support:</span>
-		                            <span class="cdr-ft-contactnum col-xs-12">+1 650 690 2234</span>
+		                            <span class="cdr-ft-contactnum col-xs-12">+1 (650) 690 2234</span>
 		                            <span class="cdra-ft-contactmail col-xs-12">support@crowdera.co</span>
 		                        </g:else>
 		                    </div>
@@ -170,7 +170,7 @@
                 </g:if>
                 <g:else>
                     <p class="cdra-ft-cutomercnt">Customer support:</p>
-                    <p class="cdr-ft-contactnum">+1 650 690 2234</p>
+                    <p class="cdr-ft-contactnum">+1 (650) 690 2234</p>
                     <p class="cdra-ft-contactmail">support@crowdera.co</p>
                 </g:else>
             </div>
@@ -296,7 +296,7 @@
                 </g:if>
                 <g:else>
                     <p class="cdra-ft-cutomercnt">Customer support:</p>
-                    <p class="cdr-ft-contactnum">+1 650 690 2234</p>
+                    <p class="cdr-ft-contactnum">+1 (650) 690 2234</p>
                     <p class="cdra-ft-contactmail">support@crowdera.co</p>
                 </g:else>
             </div>

@@ -1,5 +1,6 @@
 <html>
 <head>
+    <title>Crowdera- Dashboard</title>
     <meta name="layout" content="main" />
 </head>
 <body>

@@ -1,5 +1,6 @@
 <html>
 <head>
+    <title>Crowdera- Transaction list</title>
     <meta name="layout" content="main" />
     <r:require modules="checkoutjs"/>
 </head>

@@ -6,12 +6,13 @@
 %>
 <html>
 <head>
+    <title>Crowdera- Dashboard</title>
     <meta name="layout" content="main" />
     <r:require modules="timelinecss, bootstrapsocialcss"/>
     <r:require modules="userjs"/>
 </head>
 <body>
-<g:if test="${user.email == 'campaignadmin@crowdera.co'}">
+<g:if test="${user?.email == 'campaignadmin@crowdera.co'}">
     <div class="feducontent">
         <div class="container">
             <g:hiddenField name='currentEnv' value='${environment}' id='currentEnv'/>

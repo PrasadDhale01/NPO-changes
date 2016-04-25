@@ -1,5 +1,6 @@
 <html>
 <head>
+    <title>Crowdera- User list</title>
     <meta name="layout" content="main" />
     <r:require modules="projectcreatejs"/>
 </head>

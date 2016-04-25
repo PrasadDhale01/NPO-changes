@@ -13,6 +13,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
 	<meta name="layout" content="main"/>
 	<r:require modules="ebookjs"/>
+	<title>Crowdera- Crowdfunding ebook</title>
 </head>
 <body>
 	<div class="TW-ebook-body">

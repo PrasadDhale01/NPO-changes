@@ -1,6 +1,7 @@
 <html>
 <head>
     <meta name="layout" content="main" />
+    <title>Crowdera- FAQ</title>
 </head>
 <body>
 <div class="feducontent">

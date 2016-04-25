@@ -1,5 +1,6 @@
 <html>
 <head>
+    <title>Crowdera- Forgot password</title>
     <meta name="layout" content="main" />
     <r:require modules="registrationjs"/>
 </head>

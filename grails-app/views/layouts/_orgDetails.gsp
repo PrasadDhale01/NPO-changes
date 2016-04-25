@@ -1,21 +1,21 @@
 <g:set var="projectService" bean="projectService"/>
 <g:set var="userService" bean="userService"/>
 <% 
-    def beneficiary = project.user
+    def beneficiary = project?.user
     def webUrl = projectService.getWebUrl(project)
     
-    alphabet = userService.getCurrentUserImage(user.firstName)
+    alphabet = userService.getCurrentUserImage(user?.firstName)
 
 %>
 <div class="panel panel-default TW-org-panel-height  <g:if test="${project.organizationIconUrl}">sh-pan-height</g:if><g:else>show-priview-orgtile</g:else>">
     <div class="organization-details text-center">
         <div class="col-md-12 show-icons">
-            <g:if test="${project.beneficiary.facebookUrl}">
-                <a href="${project.beneficiary.facebookUrl}" target="_blank">
+            <g:if test="${project.beneficiary?.facebookUrl}">
+                <a href="${project.beneficiary?.facebookUrl}" target="_blank">
                     <img src="//s3.amazonaws.com/crowdera/assets/facebook-icon.png" alt="fb-icons">
                 </a>
             </g:if>
-            <g:if test="${project.webAddress}">
+            <g:if test="${project?.webAddress}">
                 <a href="${webUrl}" target="_blank">
                     <img src="//s3.amazonaws.com/crowdera/assets/show-online-original-icon.png" alt="fb-icons">
                 </a>
@@ -34,13 +34,13 @@
                       </g:else>
                   </div>
                   <div class="col-sm-10 col-lg-10 col-md-10 show-fundrasier-namepadding">
-                      <h5><b class="TW-org-title-font-size">${currentFundraiser.firstName} ${currentFundraiser.lastName}</b></h5>
+                      <h5><b class="TW-org-title-font-size">${currentFundraiser?.firstName} ${currentFundraiser?.lastName}</b></h5>
                   </div>		            
 		        </div>
             </g:if>
         </g:if>
         <g:if test="${project.organizationName && currentFundraiser == beneficiary}">
-            <h4><b class="TW-org-title-font-size">${project.organizationName}</b></h4>
+            <h4><b class="TW-org-title-font-size">${project?.organizationName}</b></h4>
         </g:if>
         <div class="tilesanstitletag">
             <g:if test="${project.draft}">

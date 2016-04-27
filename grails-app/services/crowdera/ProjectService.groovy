@@ -124,6 +124,10 @@ class ProjectService {
         return 'testIndia'
     }
     
+    def getBankInfoByProject(Project project) {
+        return BankInfo.findByProject(project)
+    }
+    
     def getProjectByParams(def projectParams){
          Project project = new Project(projectParams)
 		 Beneficiary beneficiary = new Beneficiary();

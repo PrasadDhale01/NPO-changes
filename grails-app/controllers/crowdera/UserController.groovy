@@ -1324,4 +1324,10 @@ class UserController {
             render view:'/404error'
         }
     }
+    
+    @Secured(['ROLE_ADMIN'])
+    def managedisbursement() {
+        List projects = projectService.getCitrusCampaigns()
+    }
+    
 }

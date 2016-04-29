@@ -1,4 +1,4 @@
-    <div class="feedback-container homepagTempHeight">
+    <div class="feedback-container homepagTempHeight" id="deadlinecalculation">
         <div class="col-sm-12 ">
             <g:form action="manageCampaignDeadline" controller="project" method="POST" class="deadline-form">
                 <div class="row">
@@ -9,10 +9,17 @@
                                 onchange="setCampaignCurrentDays()"/>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         <div class="form-group">
                              <div class="chooseHomePageCampaign"> 
-                                 <input type="text" id="deadline" name="deadline"  class="input-lg" placeholder="days"/>
+                                 <input type="number" id="deadline" name="deadline"  class="input-lg" placeholder="Days" readonly min="0"/>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                             <div class="chooseHomePageCampaign"> 
+                                 <input type="number" id="daysLeft" name="daysLeft"  class="input-lg" placeholder="Days Left" max="90" min="0"/>
                              </div>
                         </div>
                     </div>
@@ -37,21 +44,37 @@
                 var data = new FormData();
                 data.append('campaignSelection', $('#campaignSelection').val());
                 data.append('deadline', $('#deadline').val());
-         
-                $('#loading-gif').show();
+                data.append('daysLeft', $('#daysLeft').val());
 
-                $.ajax({
-                    type: 'post',
-                    url: $('#baseUrl').val()+'/project/manageCampaignDeadline',
-                    data: data,
-                    processData:false,
-                    contentType:false,
-                    success: function(data){
-                        $('#loading-gif').hide();
-                    }
-                }).error(function(){
-                    $('#loading-gif').hide();
-                })
+                if ($('#deadlinecalculation').find('form').valid()) {
+	                $('#loading-gif').show();
+	
+	                $.ajax({
+	                    type: 'post',
+	                    url: $('#baseUrl').val()+'/project/manageCampaignDeadline',
+	                    data: data,
+	                    processData:false,
+	                    contentType:false,
+	                    success: function(data){
+	                        $('#loading-gif').hide();
+	                    }
+	                }).error(function(){
+	                    $('#loading-gif').hide();
+	                })
+                }
            });
+        });
+
+        $('#deadlinecalculation').find('form').validate({
+            rules: {
+                deadline: {
+                    required: true
+                },
+                daysLeft: {
+                    required: true,
+                    number: true,
+                    min: 0
+                }
+            }
         });
 </script>

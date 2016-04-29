@@ -352,7 +352,8 @@ function setCampaignCurrentDays(){
         data: 'campaign='+campaign,
         success: function(data){
             if(data){
-                $('#deadline').val(data);
+                $('#deadline').val(data.days);
+                $('#daysLeft').val(data.daysLeft);
                 $('#loading-gif').hide();
             }
         }

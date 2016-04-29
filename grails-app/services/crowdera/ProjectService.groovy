@@ -126,7 +126,7 @@ class ProjectService {
          User user = userService.getCurrentUser()
          project.user = user
          return project
-    }
+    } 
 
     def getListOfValidatedProjects() {
         List projects = Project.findAllWhere(validated: true)
@@ -3129,10 +3129,23 @@ class ProjectService {
         }
     }
     
-    def setCampaignDeadline(def project, def days){
+    def setCampaignDeadline(Project project, int days, int daysLeft) {
         
-        if(project){
-            project.days =days
+        if(project) {
+            def created = project.created.toCalendar();
+            def remainingDays = getRemainingDay(project);
+            
+            if (remainingDays > 0) {
+                if (daysLeft > remainingDays) {
+                    project.days = (Calendar.instance - created) + daysLeft
+                } else {
+                    project.days = days - (remainingDays - daysLeft)
+                }
+            } else {
+                def difference = (Calendar.instance - created)
+                project.days = difference + daysLeft
+            }
+            project.save();
         }
     }
     

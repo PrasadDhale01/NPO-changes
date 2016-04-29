@@ -3132,15 +3132,17 @@ class ProjectService {
     def setCampaignDeadline(Project project, int days, int daysLeft) {
         
         if(project) {
+            def created = project.created.toCalendar();
             def remainingDays = getRemainingDay(project);
+            
             if (remainingDays > 0) {
                 if (daysLeft > remainingDays) {
-                    project.days = (Calendar.instance - project.created) + daysLeft
+                    project.days = (Calendar.instance - created) + daysLeft
                 } else {
                     project.days = days - (remainingDays - daysLeft)
                 }
             } else {
-                def difference = (Calendar.instance - project.created)
+                def difference = (Calendar.instance - created)
                 project.days = difference + daysLeft
             }
             project.save();

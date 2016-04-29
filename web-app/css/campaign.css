@@ -1759,3 +1759,7 @@ a.thankyou-textdeco {
     letter-spacing: 0;
     word-wrap: break-word;
 }
+#deadline.input-lg,
+#daysLeft.input-lg {
+    width: 100%;
+}

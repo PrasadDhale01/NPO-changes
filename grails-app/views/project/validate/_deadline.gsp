@@ -9,10 +9,17 @@
                                 onchange="setCampaignCurrentDays()"/>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         <div class="form-group">
                              <div class="chooseHomePageCampaign"> 
-                                 <input type="text" id="deadline" name="deadline"  class="input-lg" placeholder="days"/>
+                                 <input type="text" id="deadline" name="deadline"  class="input-lg" placeholder="Days" readonly/>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                             <div class="chooseHomePageCampaign"> 
+                                 <input type="text" id="daysLeft" name="daysLeft"  class="input-lg" placeholder="Days Left" maxlength="90" min="0"/>
                              </div>
                         </div>
                     </div>
@@ -37,6 +44,7 @@
                 var data = new FormData();
                 data.append('campaignSelection', $('#campaignSelection').val());
                 data.append('deadline', $('#deadline').val());
+                data.append('daysLeft', $('#daysLeft').val());
          
                 $('#loading-gif').show();
 

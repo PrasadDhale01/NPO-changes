@@ -35,7 +35,8 @@
                 <img src="//s3.amazonaws.com/crowdera/assets/midday-white-samll-1.png" alt="mid-day" class="hm-img-bottompadding hm-renderingimg hm-media-7"></a></span><br>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 col-xs-6 text-center hm-log-width hm-tabs-leftsps2 hm-js-hover8 hm-radio-space">
-                <span><img src="//s3.amazonaws.com/crowdera/assets/radio-mirch1-white.png" alt="radio mirchi" class="hm-img-bottompadding hm-media-8"></span><br>
+                <span><a href="http://social.yourstory.com/2016/04/crowdera/" target="_blank">
+                <img src="//s3.amazonaws.com/crowdera/assets/media-your-story-gray-small-size.png" alt="radio mirchi" class="hm-yourstory hm-media-8"></a></span><br>
             </div>
         </div>    
     </div>

@@ -25,7 +25,14 @@
             <div class="visible-xs show-mobilejs">
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="crowdera-title"><a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/crowdera-footer-logo-cdra.png" class="cdra-ft-clogo" alt="Crowdera"></a></div>
+                        <div class="crowdera-title"><a href="${resource(dir: '/')}">
+                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development'}">
+                                <img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera">
+                            </g:if>
+                            <g:else>
+                                <img src="//s3.amazonaws.com/crowdera/assets/crowdera-footer-logo-cdra.png" class="cdra-ft-clogo" alt="Crowdera">
+                            </g:else>
+                        </a></div>
                         <div class="crowdera-menu">
                             <div class="col-xs-6 footer-mid-section-menu-mobile footer-menu-align">
                                 <div class="quicklinks-menu-div">
@@ -76,6 +83,7 @@
                         <br>
                         <div class="socialicon">
                             <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/wordpress-gray.png" alt="blog"></a>
+                            <a href="https://plus.google.com/102697810290030135564"  target="_blank"><img class="googleplussocial" src="//s3.amazonaws.com/crowdera/assets/googleplus-gray.png.png" alt="googlepluse"></a>
                             <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>
                             <a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
                             <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>
@@ -138,7 +146,14 @@
     <div class="visible-sm visible-md show-mobilejs-sm-md sm-padding-mobile-footer">
         <div class="row">
         <div class="col-sm-4 footer-logo-padding-left">
-            <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/crowdera-footer-logo-cdra.png" class="cdra-ft-clogo" alt="Crowdera"></a>
+            <a href="${resource(dir: '/')}">
+                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development'}">
+                    <img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera">
+                </g:if>
+                <g:else>
+                    <img src="//s3.amazonaws.com/crowdera/assets/crowdera-footer-logo-cdra.png" class="cdra-ft-clogo" alt="Crowdera">
+                </g:else>
+            </a>
             <div class="col-sm-6 footer-mid-section-menu tab-menu-padding">
             <ul>
                 <li><a href="${resource(dir: '/')}">Home</a></li>   
@@ -176,8 +191,9 @@
             </div>
         <div class="col-sm-4 socialiconlinks footer-mid-section">
             <br>
-           <div class="socialicon pull-right">
+           <div class="socialicon pull-right hm-tab-ft-social">
             <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/wordpress-gray.png" alt="blog"></a>
+            <a href="https://plus.google.com/102697810290030135564"  target="_blank"><img class="googleplussocial" src="//s3.amazonaws.com/crowdera/assets/googleplus-gray.png.png" alt="googlepluse"></a>
             <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>
             <a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
             <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>
@@ -188,7 +204,7 @@
             <div class="footer-newsletter">
             <form action="${mailChimpUrl}" method="post" id="mc-embedded-subscribe-form-md" name="mc-embedded-subscribe-form" class="validate" target="_blank">
                 <div class="newsletter-alignment col-sm-12 col-md-12">
-                    <div class="newsletter-input col-sm-10 col-md-10">
+                    <div class="newsletter-input ft-singup-tab col-sm-10 col-md-10">
                     <input type="text" class="all-place form-control subscriberEmail" name="EMAIL" value="" placeholder="Your email">
                 </div>
                 <div class="newsletter-button footer-signup-margin col-sm-2 col-md-2">
@@ -263,7 +279,14 @@
             
         <div class="row footer-lg-first-section">
         <div class="col-md-4 footer-logosize">
-            <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/crowdera-footer-logo-cdra.png" class="cdra-ft-clogo" alt="Crowdera"></a>
+            <a href="${resource(dir: '/')}">
+                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development'}">
+                    <img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera">
+                </g:if>
+                <g:else>
+                    <img src="//s3.amazonaws.com/crowdera/assets/crowdera-footer-logo-cdra.png" class="cdra-ft-clogo" alt="Crowdera">
+                </g:else>
+            </a>
             <div class="col-md-6 footer-mid-section-menu">
             <ul>
                 <li><a href="${resource(dir: '/')}">Home</a></li>
@@ -305,10 +328,12 @@
             <br>
             <div class="socialicon pull-right">
             <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/wordpress-gray.png" alt="blog"></a>
+            <a href="https://plus.google.com/102697810290030135564"  target="_blank"><img class="googleplussocial" src="//s3.amazonaws.com/crowdera/assets/googleplus-gray.png.png" alt="googlepluse"></a>
             <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>   
             <a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
             <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>
             <a href="https://instagram.com/gocrowdera"  target="_blank"><img class="instagram-footer" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="instagram"></a>
+            
             <br><br>
             </div>
             <br><br>

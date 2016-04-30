@@ -658,7 +658,7 @@ class ProjectController {
             project = projectService.getProjectFromTitle(params.campaignSelection)
             
             if(project){
-                projectService.setCampaignDeadline(project, params.int('deadline'))
+                projectService.setCampaignDeadline(project, params.int('deadline'), params.int('daysLeft'))
             }
         }
         
@@ -670,9 +670,11 @@ class ProjectController {
         def campaign = projectService.getProjectFromTitle(params.campaign)
         
         if(campaign){
-            render campaign.days
+            def daysLeft = projectService.getRemainingDay(campaign);
+            def days= campaign.days
+            render (contentType: 'text/json') {['daysLeft': daysLeft, 'days': days]}
         }else{
-            render '0'
+            render (contentType: 'text/json') {['daysLeft': 0, 'days': 0]}
         }
     }
     

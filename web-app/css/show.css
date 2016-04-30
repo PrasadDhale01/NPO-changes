@@ -1,5 +1,5 @@
 .reasonsToFund {
-    border: 5px solid rgba(231, 231, 231, 0.73);
+    border: 5px solid #f7f7f7;
     margin-top: 4px;
     margin-bottom: 4px;
     text-align: left;
@@ -28,8 +28,8 @@
     padding: 5px;
 }
 .impactassessment .panel-default {
-    border: #e7e7e7;
-    background-color: #e7e7e7;
+    border: #f7f7f7;
+    background-color: #f7f7f7;
     height: 90px;
     margin-top: -3px
 }

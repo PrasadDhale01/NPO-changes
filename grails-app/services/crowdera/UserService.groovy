@@ -345,9 +345,11 @@ class UserService {
             def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
-
-            def file = new File("${attachedFile.getOriginalFilename()}")
-            def key = "${folder}/${attachedFile.getOriginalFilename()}"
+            
+            def fileName =  UUID.randomUUID().toString();
+            
+            def file = new File("${fileName}")
+            def key = "${folder}/${fileName}"
             key = key.toLowerCase()
             attachedFile.transferTo(file)
             def object = new S3Object(file)
@@ -383,9 +385,11 @@ class UserService {
             def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
+            
+            def fileName = UUID.randomUUID().toString()
 
-            def file = new File("${attachedFile.getOriginalFilename()}")
-            def key = "${folder}/${attachedFile.getOriginalFilename()}"
+            def file = new File("${fileName}")
+            def key = "${folder}/${fileName}"
             key = key.toLowerCase()
             attachedFile.transferTo(file)
             def object = new S3Object(file)
@@ -1356,9 +1360,11 @@ class UserService {
             def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
+            
+            def fileName = UUID.randomUUID().toString()
 
-            def file = new File("${document.getOriginalFilename()}")
-            def key = "${folder}/${document.getOriginalFilename()}"
+            def file = new File("${fileName}")
+            def key = "${folder}/${fileName}"
             key = key.toLowerCase()
 
             document.transferTo(file)

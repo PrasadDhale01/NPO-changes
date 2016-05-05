@@ -1759,6 +1759,9 @@ a.thankyou-textdeco {
     letter-spacing: 0;
     word-wrap: break-word;
 }
+.hm-yourstory {
+    padding-top: 8px;
+}
 #deadline.input-lg,
 #daysLeft.input-lg {
     width: 100%;

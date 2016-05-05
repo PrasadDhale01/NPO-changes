@@ -6,7 +6,7 @@
                         <div class="chooseHomePageCampaign">
                             <g:select class="selectpicker form-control input-lg "
                                 name="campaignSelection" from="${projects.title}" id="campaignSelection"  optionValue="value" value="${campaignOne}"
-                                onchange="setCampaignCurrentDays()"/>
+                                onchange="setCampaignCurrentDays()" noSelection="['': 'Please Select Campaign']"/>
                         </div>
                     </div>
                     <div class="col-sm-2">

@@ -1328,6 +1328,15 @@ class UserController {
     @Secured(['ROLE_ADMIN'])
     def managedisbursement() {
         List projects = projectService.getCitrusCampaigns()
+        
+        render view:'/user/disbursement/index', model:[projects: projects]
+    }
+    
+    def getcontribution() {
+        if (request.xhr) {
+            List contributions = projectService.getContributionsListByProjectId(params.projectId);
+            render template:'/user/disbursement/contributions', model:[contributions: contributions, sellerId: params.sellerId]
+        }
     }
     
 }

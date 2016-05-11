@@ -1034,6 +1034,7 @@ class FundController {
     }
     
     def getSellerAccountBalance() {
+        println params.sellerId
         def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
         String sellerId = params.sellerId
         def url = citrusBaseUrl +"/marketplace/seller/getbalance/${sellerId}"
@@ -1097,20 +1098,87 @@ class FundController {
     
     def releaseFundToSeller() {
         def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
-        def url = citrusBaseUrl +"marketplace/funds/release/"
+        def url = citrusBaseUrl +"/marketplace/funds/release/"
         HttpClient httpclient = new DefaultHttpClient()
         HttpPost httppost = new HttpPost(url)
         
-        def splitId
+        def splitId = params.splitId
 
-        StringEntity input = new StringEntity("{\"split_id\":\"${splitId}\"}")
-        
+        StringEntity input = new StringEntity("{\"split_id\":${splitId}}")
         input.setContentType("application/json")
         httppost.setEntity(input)
 
+        def auth_token = contributionService.getAccessTokenForCitrus()
+        httppost.setHeader("auth_token","${auth_token}")
+        
         HttpResponse httpres = httpclient.execute(httppost)
         def releaseFundRef
         def payout
+        int status = httpres.getStatusLine().getStatusCode()
+        def json
+        if (status == 200) {
+            HttpEntity entity = httpres.getEntity();
+            if (entity != null){
+                def jsonString = EntityUtils.toString(entity)
+                def slurper = new JsonSlurper()
+                json = slurper.parseText(jsonString)
+                releaseFundRef = json.releasefund_ref
+                payout = json.payout
+                
+                println payout;
+                
+            }
+        }
+        
+        render json
+    }
+    
+    def getTransactionsSplit() {
+        
+        def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
+        
+        def splitId = params.splitId
+        def url = citrusBaseUrl +"/marketplace/split/${splitId}"
+        HttpClient httpclient = new DefaultHttpClient()
+        HttpGet httpGet = new HttpGet(url)
+        
+        def auth_token = contributionService.getAccessTokenForCitrus()
+        httpGet.setHeader("auth_token","${auth_token}")
+        
+        HttpResponse httpres = httpclient.execute(httpGet)
+        int status = httpres.getStatusLine().getStatusCode()
+        def json
+        if (status == 200) {
+            HttpEntity entity = httpres.getEntity();
+            if (entity != null){
+                def jsonString = EntityUtils.toString(entity)
+                def slurper = new JsonSlurper()
+                json = slurper.parseText(jsonString)
+                
+            }
+        }
+        
+        render json
+        
+    }
+    
+    def settleMent() {
+        def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
+        def url = citrusBaseUrl +"/marketplace/pgsettlement/"
+        HttpClient httpclient = new DefaultHttpClient()
+        HttpPost httppost = new HttpPost(url)
+        
+        def settlementDate = "2016-05-11 08:33:00"
+
+        StringEntity input = new StringEntity("{\"trans_id\": 9651,\"settlement_ref\": \"Ref#CIT613182732967\" ,\"trans_source\": \"CITRUS\",\"settlement_amount\": 103.2,\"fee_amount\": 25.8,\"settlement_date_time\":\"${settlementDate}\"}")
+        input.setContentType("application/json")
+        httppost.setEntity(input)
+
+        def auth_token = contributionService.getAccessTokenForCitrus()
+        httppost.setHeader("auth_token","${auth_token}")
+        HttpResponse httpres = httpclient.execute(httppost)
+        
+        def json
         int status = httpres.getStatusLine().getStatusCode()
         
         if (status == 200) {
@@ -1118,13 +1186,12 @@ class FundController {
             if (entity != null){
                 def jsonString = EntityUtils.toString(entity)
                 def slurper = new JsonSlurper()
-                def json = slurper.parseText(jsonString)
-                releaseFundRef = json.releasefund_ref
-                payout = json.payout
+                json = slurper.parseText(jsonString)
+                
             }
         }
         
-        render message
+        render json
     }
     
     @Secured(['ROLE_USER'])

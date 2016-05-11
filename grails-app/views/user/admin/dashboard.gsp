@@ -132,27 +132,27 @@
                     </div>
                 </div>
             </div>
-            <!--  
+            
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-body text-center">
-                        <i class="fa fa-credit-card"></i> Manage Payments
+                        <i class="fa fa-credit-card"></i>  Manage Payment Disbursement
                     </div>
                     <div class="panel-footer">
-                        <g:form controller="fund" action="payments">
-                            <button class="btn btn-block btn-primary btn-text-alignment"><i class="fa fa-credit-card"></i> Manage Transactions</button>
+                        <g:form controller="user" action="managedisbursement">
+                            <button class="btn btn-block btn-primary btn-text-alignment"><i class="fa fa-credit-card"></i> Manage Payment Disbursement</button>
                         </g:form>
                     </div>
                 </div>
             </div>
-            -->
+            
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-body text-center">
                         <i class="fa fa-user"></i> Manage User Questions
                     </div>
                     <div class="panel-footer">
-                        <g:link controller="user" action="managedisbursement" class="TW-text-decoration">
+                        <g:link controller="home" action="customerSupport" class="TW-text-decoration">
                             <button class="btn btn-block btn-primary btn-text-alignment"><i class="fa fa-user"></i> Manage User Questions</button>
                         </g:link>
                     </div>

@@ -5749,6 +5749,62 @@ class ProjectService {
     }
     
     
+    
+    public List<Project> getCitrusCampaigns() {
+        def criteria = Project.createCriteria();
+        
+        def result = criteria.list{
+            resultTransformer(org.hibernate.transform.Transformers.ALIAS_TO_ENTITY_MAP)
+            createAlias('user', 'user')
+            projections {
+                property('id', 'id')
+                property('title', 'title')
+                property('amount', 'amount')
+                property('citrusEmail', 'citrusEmail')
+                property('description', 'description')
+                property('user.username', 'username')
+                property('days', 'days')
+                property('created', 'created')
+                property('sellerId', 'sellerId')
+            }
+            eq("payuStatus", true)
+            eq("validated", true)
+            eq("draft", false)
+            eq("rejected", false)
+            eq("inactive", false)
+        }
+        
+        def raised;
+        def daysleft;
+        List<Project> projectList = new ArrayList<>();
+        
+        result.each{  project ->
+            if (project.citrusEmail) {
+                raised = Contribution.createCriteria().get {
+                    createAlias('project', 'project')
+                    projections {
+                        sum "amount"
+                    }
+                    eq("project.id", project.id)
+                }
+                
+                daysleft = project.days - (Calendar.instance - project.created.toCalendar());
+                project["daysleft"] = daysleft;
+                project["raised"] = raised;
+                projectList.add(project);
+            }
+        }
+        return projectList;
+        
+    }
+    
+    
+    List<Contribution> getContributionsListByProjectId(String projectId) {
+        List<Contribution> contributionList = new ArrayList<>();
+        contributionList = Contribution.createCriteria().list{ 
+            eq("project.id", projectId)}
+    }
+    
     @Transactional
     def bootstrap() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")

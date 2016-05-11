@@ -84,6 +84,5 @@
   </g:link>
   <div class="campaign-title-margin-bottom"></div>
      <span>${project.description}</span>
-     ${amount}
     </div>
 </div>

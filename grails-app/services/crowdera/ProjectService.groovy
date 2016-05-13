@@ -214,11 +214,13 @@ class ProjectService {
         def fullName = currentUser?.firstName + ' ' + currentUser?.lastName
         def currentEnv = Environment.current.getName()
         project.story = params?.story
+        
         if (project?.draft) {
             project.paypalEmail = params.paypalEmail
             project.charitableId = params.charitableId
             project.organizationName = params.organizationName
         }
+        
         def taxReciept = TaxReciept.findByProject(project)
         if (project.beneficiary.country == 'null') {
             if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {

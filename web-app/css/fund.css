@@ -98,3 +98,44 @@ div#checkoutgsp button.btn-default:focus{
 	background-color: #333333;
 	border-color: #333333;
 }
+
+
+
+.easyWizardSteps {
+    list-style: none;
+    width:100%;
+    overflow:hidden;
+    margin:0;
+    padding:0;
+    border: 1px solid #efefef;
+    background-color: #efefef;
+    margin-bottom:20px;
+}
+.easyWizardSteps li {
+    font-size:18px;
+    display:inline-block;
+    padding:10px;
+    color:#B0B1B3;
+    margin-right:20px;
+}
+.easyWizardSteps li span {
+    font-size:24px;
+}
+.easyWizardSteps li.current {
+    color:#000;
+}
+.easyWizardButtons {
+	overflow:hidden;
+	padding:10px;
+}
+.easyWizardButtons button, .easyWizardButtons .submit {
+	cursor:pointer;
+}
+.easyWizardButtons .prev {
+	float:left;
+}
+.easyWizardButtons .next, .easyWizardButtons .submit {
+	float:right;
+}
+
+        

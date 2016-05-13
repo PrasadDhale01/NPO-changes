@@ -45,6 +45,16 @@ modules = {
         resource url: 'tablecloth/js/jquery.tablesorter.js'
         resource url: 'tablecloth/js/jquery.tablecloth.js'
     }
+    /* DataTable Js*/
+    datatablejs {
+        dependsOn 'corejs'
+        resource url: 'js/external/jquery.dataTables.min.js'
+        resource url: 'js/external/dataTables.bootstrap.min.js'
+    }
+    easywizardjs {
+        resource url: 'js/jquery.easyWizard.js'
+        dependsOn 'corejs'
+    }
 
     /* Page-specific JS */
     /* Home */
@@ -127,13 +137,6 @@ modules = {
         resource url: 'js/user.js'
     }
     
-    /* DataTable Js*/
-    datatablejs {
-        dependsOn 'corejs'
-        resource url: 'js/external/jquery.dataTables.min.js'
-        resource url: 'js/external/dataTables.bootstrap.min.js'
-    }
-    
 	/* Survey/Feedback*/
 	feedbackjs{
 		dependsOn 'crowderajs'
@@ -168,7 +171,12 @@ modules = {
         resource url: 'js/disbursement.js'
         dependsOn 'crowderajs','datatablejs'
     }
-
+    
+    citrusfundjs {
+        resource url: 'js/fund/citrusfund.js'
+        dependsOn 'underscorejs', 'crowderajs', 'easywizardjs'
+    }
+    
     /* CSS */
     datatablecss {
         resource url: 'css/dataTables.bootstrap.min.css', attrs: [media: 'screen']

@@ -65,18 +65,40 @@ class FundController {
             def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
             
             if (project.payuStatus){
-                def key = grailsApplication.config.crowdera.PAYU.KEY
-                def salt = grailsApplication.config.crowdera.PAYU.SALT
-                def service_provider = "payu_paisa"
                 
-                render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, key:key, salt:salt, service_provider:service_provider]
+                if (project.payuEmail) {
+                    def key = grailsApplication.config.crowdera.PAYU.KEY
+                    def salt = grailsApplication.config.crowdera.PAYU.SALT
+                    def service_provider = "payu_paisa"
+                    
+                    
+                    render view: 'fund/index', model: [team:team, project: project, state:state, country:country,
+                        perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
+                        vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, key:key, salt:salt,
+                        service_provider:service_provider]
+                } else if (project.citrusEmail) {
+                
+                    def cardTypes = projectService.getcardtypes()
+                    def title = projectService.getTitle()
+                    def month = contributionService.getMonth()
+                    def year = contributionService.getYear()
+                    def defaultCountry = 'US'
+                
+                    render view: 'fund/citruscheckout', model: [team:team, project: project, state:state, country:country,
+                        perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
+                        vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, cardTypes: cardTypes, title: title,
+                        month: month, year: year, defaultCountry: defaultCountry]
+                    
+                } 
+                
             } else {
                 render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo]
             }
         
         }
     }
-
+    
+    
     def checkout() {
         Project project
         Reward reward

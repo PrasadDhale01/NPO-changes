@@ -2715,14 +2715,13 @@ class ProjectController {
         TaxReciept taxReciept = projectService.getTaxRecieptOfProject(project)
         
         def imageUrl = userService.getImageUrl(params.file)
-        
         if (imageUrl) {
             if (taxReciept){
                 taxReciept.signatureUrl = imageUrl
                 taxReciept.save(failOnError:true);
             } else {
                 TaxReciept taxreciept = new TaxReciept()
-                taxReciept.signatureUrl = imageUrl
+                taxreciept.signatureUrl = imageUrl
                 taxreciept.project = project
                 taxreciept.save(failOnError:true);
             }

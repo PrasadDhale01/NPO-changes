@@ -418,7 +418,7 @@ class ProjectController {
                 projectService.getUpdateValidationDetails(params)
             }
             flash.prj_validate_message= "Campaign validated successfully"
-            redirect (action:'validateList')
+            redirect (action:'getCampaignList')
         } else if (userService.isPartner()) {
             if (params.id) {
                 projectService.getUpdateValidationDetails(params)
@@ -440,7 +440,7 @@ class ProjectController {
             if (userService.isAdmin()) {
                 project.rejected = true
                 flash.prj_validate_message= "Campaign discarded successfully!"
-                redirect (action:'validateList')
+                redirect (action:'getCampaignList')
             } else if (userService.isPartner() && userService.isPartnerValidated(user)) {
                 project.rejected = true
                 flash.prj_validate_message= "Campaign discarded successfully!"
@@ -2693,7 +2693,7 @@ class ProjectController {
             if (userService.isAdmin()) {
                 project.onHold = true
                 project.save()
-                redirect (action:'validateList')
+                redirect (action:'getCampaignList')
             } else if (userService.isPartner()) {
                 project.onHold = true
                 project.save()
@@ -2716,14 +2716,13 @@ class ProjectController {
         TaxReciept taxReciept = projectService.getTaxRecieptOfProject(project)
         
         def imageUrl = userService.getImageUrl(params.file)
-        
         if (imageUrl) {
             if (taxReciept){
                 taxReciept.signatureUrl = imageUrl
                 taxReciept.save(failOnError:true);
             } else {
                 TaxReciept taxreciept = new TaxReciept()
-                taxReciept.signatureUrl = imageUrl
+                taxreciept.signatureUrl = imageUrl
                 taxreciept.project = project
                 taxreciept.save(failOnError:true);
             }

@@ -463,6 +463,19 @@ footer {
 	width:41px;
 	
 }
+.googleplussocial{
+    background-image:url("https://s3.amazonaws.com/crowdera/assets/googleplus-gray.png.png");
+    background-repeat:no-repeat;
+    display: block;
+    height:42px;
+    width:41px;
+}
+.googleplussocial:hover{
+    background-image:url("https://s3.amazonaws.com/crowdera/assets/googleplus.png.png");
+    height:42px;
+    width:41px;
+    
+}
 .facebooklink{
 	background-image:url("https://s3.amazonaws.com/crowdera/assets/facebook-footer.png");
 	background-repeat:no-repeat;
@@ -533,8 +546,8 @@ footer input.subscriberEmail{
     font-size:13px;
     font-weight:normal;
     height:30px;
-    width:173px;
-    margin-left: 28px;
+    width:202px;
+/*     margin-left: 28px; */
 }
 hr.footer-hr{
     color: #666666;
@@ -7580,11 +7593,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	top: 90px;
 	width: 119px;
     }
-    .socialicon{
+    div.socialicon{
 		display:block;
 		margin-left:auto;
-		margin-right:auto;
-		width:236px;
+/* 		margin-right:auto; */
+		width:289px;
     }
     div.about {
         padding-left: 20%;
@@ -8421,6 +8434,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.newsletter-input {
+        margin-left: -46px;
+    }
+    div.hm-tab-ft-social {
+        width: 274px;
+    }
     div.cdra-ft-top{
         top: 70px;
     }
@@ -9968,10 +9987,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	font-weight: normal;
 	height: 30px;
 	margin-left:-23px;
-	width: 150px;  
+	width: 190px;  
    }
 	input.signup-lg {
-		margin-left:-47px;
+		margin-left:0;
 		height:30px;
 		width:75px;
 	}
@@ -16889,11 +16908,11 @@ textarea.textarea-embed-video {
 		margin-left:auto;
 		margin-right:auto;
 	}
-	.socialicon{
+	div.socialicon{
 		display:block;
 		margin-left:auto;
-		margin-right:auto;
-		width:236px;
+/* 		margin-right:auto; */
+		width:289px;
     }
 	.socialicon img {
     	margin-left:auto !important;

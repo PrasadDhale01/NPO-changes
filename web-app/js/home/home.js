@@ -242,9 +242,9 @@ $('.hm-js-hover7').hover(function(){
     $('.hm-media-7').attr('src',"//s3.amazonaws.com/crowdera/assets/midday-white-samll-1.png");
 });
 $('.hm-js-hover8').hover(function(){
-    $('.hm-media-8').attr('src',"//s3.amazonaws.com/crowdera/assets/radio-mirch2-colour.png");
+    $('.hm-media-8').attr('src',"//s3.amazonaws.com/crowdera/assets/media-your-story-colour-small-size.png");
     }).mouseleave(function(){
-    $('.hm-media-8').attr('src',"//s3.amazonaws.com/crowdera/assets/radio-mirch1-white.png");
+    $('.hm-media-8').attr('src',"//s3.amazonaws.com/crowdera/assets/media-your-story-gray-small-size.png");
 });
 
 $(window).load(function() {

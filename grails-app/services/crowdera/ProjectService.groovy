@@ -1952,7 +1952,9 @@ class ProjectService {
         
         if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
             try {
-                def fileName =  UUID.randomUUID().toString();
+                int index = imageFile.getOriginalFilename().lastIndexOf(".")
+                String extName = imageFile.getOriginalFilename().substring(index);
+                def fileName =  UUID.randomUUID().toString() + extName
                 
                 def file= new File("${fileName}")
                 def key = "${Folder}/${fileName}"
@@ -1996,7 +1998,10 @@ class ProjectService {
         def fileUrl = new ImageUrl()
         if (!taxfile?.empty && taxfile.size < 1024 * 1024 * 3) {
             try{
-                def fileName =  UUID.randomUUID().toString();
+                int index = taxfile.getOriginalFilename().lastIndexOf(".")
+                String extName = taxfile.getOriginalFilename().substring(index);
+                def fileName =  UUID.randomUUID().toString() + extName
+                
                 def file= new File("${fileName}")
                 def key = "${Folder}/${fileName}"
                 key = key.toLowerCase()
@@ -2036,7 +2041,10 @@ class ProjectService {
         def imageUrl = new ImageUrl()
         if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
             try{
-                def fileName =  UUID.randomUUID().toString();
+                
+                int index = imageFile.getOriginalFilename().lastIndexOf(".")
+                String extName = imageFile.getOriginalFilename().substring(index);
+                def fileName =  UUID.randomUUID().toString() + extName
                 
                 def file= new File("${fileName}")
                 def key = "${Folder}/${fileName}"
@@ -2181,7 +2189,10 @@ class ProjectService {
         def tempImageUrl
 
         if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
-            def fileName =  UUID.randomUUID().toString();
+            int index = imageFile.getOriginalFilename().lastIndexOf(".")
+            String extName = imageFile.getOriginalFilename().substring(index);
+            def fileName =  UUID.randomUUID().toString() + extName
+            
             def file= new File("${fileName}")
             def key = "${Folder}/${fileName}"
             key = key.toLowerCase()
@@ -2212,7 +2223,10 @@ class ProjectService {
         def imageUrl = new ImageUrl()
 
         if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
-            def fileName =  UUID.randomUUID().toString();
+            
+            int index = imageFile.getOriginalFilename().lastIndexOf(".")
+            String extName = imageFile.getOriginalFilename().substring(index);
+            def fileName =  UUID.randomUUID().toString() + extName
             
             def file= new File("${fileName}")
             def key = "${Folder}/${fileName}"
@@ -2287,7 +2301,9 @@ class ProjectService {
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
         
-            def fileName = UUID.randomUUID().toString()
+            int index = iconFile.getOriginalFilename().lastIndexOf(".")
+            String extName = iconFile.getOriginalFilename().substring(index);
+            def fileName =  UUID.randomUUID().toString() + extName
             
             def tempFile = new File("${fileName}")
             def key = "${folder}/${fileName}"
@@ -2328,7 +2344,9 @@ class ProjectService {
                 
                 if (VALID_IMG_TYPES.contains(imageFile.getContentType())) {
                     try{
-                        def fileName =  UUID.randomUUID().toString();
+                        int index = imageFile.getOriginalFilename().lastIndexOf(".")
+                        String extName = imageFile.getOriginalFilename().substring(index);
+                        def fileName =  UUID.randomUUID().toString() + extName
                         
                         def file= new File("${fileName}")
                         def key = "${Folder}/${fileName}"
@@ -2564,7 +2582,10 @@ class ProjectService {
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
 
-            def fileName =  UUID.randomUUID().toString();
+            int index = resume.getOriginalFilename().lastIndexOf(".")
+            String extName = resume.getOriginalFilename().substring(index);
+            def fileName =  UUID.randomUUID().toString() + extName
+            
             def tempFile = new File("${fileName}")
             def key = "${folder}/${fileName}"
             key = key.toLowerCase()
@@ -2599,7 +2620,10 @@ class ProjectService {
             
             if (!attachedFile?.empty && attachedFile.size < 1024 * 1024 * 3) {
                 try{
-                    def fileName =  UUID.randomUUID().toString();
+                    int index = attachedFile.getOriginalFilename().lastIndexOf(".")
+                    String extName = attachedFile.getOriginalFilename().substring(index);
+                    def fileName =  UUID.randomUUID().toString() + extName
+                    
                     def file= new File("${fileName}")
                     def key = "${Folder}/${fileName}"
                     key = key.toLowerCase()
@@ -3245,7 +3269,10 @@ class ProjectService {
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
             
-            def fileName =  UUID.randomUUID().toString();
+            int index = imageFile.getOriginalFilename().lastIndexOf(".")
+            String extName = imageFile.getOriginalFilename().substring(index);
+            def fileName =  UUID.randomUUID().toString() + extName
+            
             def tempFile = new File("{fileName}")
             def key = "${folder}/${fileName}"
             key = key.toLowerCase()

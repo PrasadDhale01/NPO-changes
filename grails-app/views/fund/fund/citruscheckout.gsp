@@ -1,5 +1,6 @@
 <%@page import="org.codehaus.groovy.grails.commons.GrailsApplication"%>
 <g:set var="projectService" bean="projectService"/>
+<%@ page import="java.text.SimpleDateFormat" %>
 <html>
 <head>
     <meta name="layout" content="main" />
@@ -7,24 +8,29 @@
     <r:require modules="fundcss" />
     <title>Crowdera- Contribute</title>
     
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"> </script>
+    <script src="/js/citrus.js"></script>
 </head>
 <body>
     <div class="feducontent">
         <div class="container fund-sm-container footer-container">
         
-            <div class="row" id="fundindex">
+            <div class="row citrusfundbody" id="fundindex">
                 <div class="alert alert-info" id="perkForAnonymousUser">
                     <b>Sorry ! You cannot select twitter perk as you are contributing anonymously.</b>
                 </div>
-                
                 
                 <%
 				    def citrusCardTypes = ['credit': 'Credit', 'debit': 'Debit']
 				    def citrusSchemes = ['visa': 'VISA', 'mastercard' :'MASTER', 'maestro':'MAESTRO', 'rupay':'RUPAY']
                     def citrus = true;
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/YYYY");
+                    def currentDate = dateFormat.format(new Date());
+                    def citrusAvailableOptions = ['CID002':'AXIS Bank', 'CID019':'Bank of India']
+                    def returnURL = 'http://localhost:8080/fund/citrusreturn'
 				%>
 				<div id="myWizard">
-				    <g:form action="citrusCheckout" method="POST" class="checkoutForm">
+				    <g:form action="charge" method="POST" class="payment-form" id="payment-form" name="payment-form">
 				        <section class="step" data-step-title="Transaction Amount">
 				            <div class="col-md-4">
 				                <g:if test="${flash.amt_message}">
@@ -39,6 +45,14 @@
 				                </div>
 				        
 				        
+				                <g:if test="${user}">
+				                    <g:hiddenField name="tempValue" value="${user.id}"/>
+				                     <g:hiddenField name="userId"  id="userId" value="${user.id}"/>
+				                </g:if>
+				                <g:else>
+				                    <g:hiddenField name="tempValue"/>
+				                </g:else>
+                
 				                <g:hiddenField name="isINR" value="${project.payuStatus}" id="isINR"/>
 				                <g:hiddenField name="projectId" value="${project.id}" />
 				                <g:hiddenField name="fr" value="${vanityUsername}" />
@@ -46,8 +60,19 @@
 				                <g:hiddenField name="url" value="${base_url}" id="url"/>
 				                <g:hiddenField name="anonymous" value="false" id="anonymous"/>
 				                <g:hiddenField name="projectTitle" value="${vanityTitle}"/>
-				            
-				    
+				                
+                                <g:hiddenField type="hidden" name="projectTitle" value="${projectTitle}"/>
+                                
+                                <!--   Citrus Transaction details -->
+                
+				                <input type="hidden" name="citrusAmount" id="citrusAmount"/>
+				                <input type="hidden" name="citrusMerchantTxnId" id="citrusMerchantTxnId"/>
+				                <input type="hidden" name="citrusSignature" id="citrusSignature"/>
+				                <input type="hidden" name="citrusReturnUrl" id="citrusReturnUrl" value="${returnURL}" />
+				                <input type="hidden" name="citrusNotifyUrl" id="citrusNotifyUrl" value="http://localhost:8080/fund/citrusnotify" />
+				                
+				                <input type="hidden" name="citrusExpiry" id="citrusExpiry" value="${currentDate}" />
+				                
 				                <div class="row">
 				                    <div class="col-md-12 col-sm-12 col-xs-12">
 				                    <div class="form-group">
@@ -62,286 +87,220 @@
 				            
 				                <div class="row">
 				                    <div class="col-md-12 col-sm-12 col-xs-12">
-				                        <g:if test="${user != null}">
-				                            <g:hiddenField name="tempValue" id="tempValue" value="${user.id}"/>
-				                            <g:hiddenField name="userId"  id="userId" value="${user.id}"/>
-				                        </g:if>
 				                        <label class="checkbox">
 				                            <input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
 				                        </label>
 				                    </div>
 				                </div>
-				            
+				                
 				                <div class="row">
 				                    <div class="col-md-12 col-sm-12 col-xs-12">
-				                        <div  class="amount-button"><button type="submit" class="btn btn-primary btn-lg" id="btnCheckoutContinue">Continue</button></div>
+				                        <div  class="amount-button"><button type="button" class="btn btn-info btn-md btn-block" id="btnCheckoutContinue">Continue</button></div>
 				                    </div>
 				                </div>
 				            
 				            </div>
-				        
+				            
 				            <div class="col-md-8">
 				                <g:if test="${project.rewards.size()>1}">
 				                    <g:render template="fund/rewards" model="[user:user, citrus: citrus]" />
 				                </g:if>
 				            </div>
 				        </section>
-				    
+				        
 				        <section class="step" data-step-title="Billing Information">
-				            <div class="panel panel-default">
-				                <div class="panel-heading">
+				            <div class="panel panel-primary billing-panel">
+				                <div class="panel-heading shipping-heading">
 				                    <h3 class="panel-title">Billing Information <g:if test="${currentUser == null}">(Your contact details are used to send a receipt)</g:if></h3>
 				                </div>
 				                <div class="panel-body">  
-				                    <div class="row">
 				                    
-				                        <div class="col-md-6">
-				                            <g:if test="${!isAnonymous}">
-				                                <div class="form-group">
-				                                    <div class="input-group col-md-12">
-				                                        <input class="form-control all-place" type="text" placeholder="First Name" name="citrusFirstName" id="citrusFirstName">
-				                                    </div>
-				                                </div>
-				                                <div class="form-group">
-				                                    <div class="input-group col-md-12">
-				                                        <input class="form-control all-place" type="text" placeholder="Last Name" name="citrusLastName" id="citrusLastName">
-				                                    </div>
-				                                </div>
-				                                <div class="form-group">
-				                                    <div class="input-group col-md-12">
-				                                        <input class="form-control all-place" type="text" placeholder="Email" name="citrusEmail" id="citrusEmail">
-				                                    </div>
-				                                </div>
-				                            </g:if>
-				                            <g:else>
-				                                <div class="form-group">
-				                                    <div class="input-group col-md-12">
-				                                        <input class="form-control all-place" type="text" placeholder="First Name" name="citrusFirstName" id="citrusFirstName" value="${user.firstName}">
-				                                    </div>
-				                                </div>
-				                                <div class="form-group">
-				                                    <div class="input-group col-md-12">
-				                                        <input class="form-control all-place" type="text" placeholder="Last Name" name="citrusLastName" id="citrusLastName" value="${user.lastName}">
-				                                    </div>
-				                                </div>
-				                                <div class="form-group">
-				                                    <div class="input-group col-md-12">
-				                                        <input class="form-control all-place" type="text" placeholder="Email" name="citrusEmail" id="citrusEmail" value="${user.email}">
-				                                    </div>
-				                                </div>
-				                            </g:else>
-				                            <div class="form-group">
-				                                <div class="input-group col-md-12">
-				                                    <input class="form-control all-place" type="text" placeholder="Phone Number" name="citrusMobile" id="citrusMobile">
-				                                </div>
-				                            </div>
-				                            <div class="clear"></div>
-				                        </div>
-				
-				                        <div class="col-md-6">
-				                            <div class="form-group">
-				                                <div class="input-group col-md-12">
-				                                    <input class="form-control all-place" type="text" placeholder="Address Line 1" name="citrusStreet1" id="citrusStreet1">
-				                                </div>
-				                            </div>
-				                            <div class="form-group">
-				                                <div class="input-group col-md-12">
-				                                    <input class="form-control all-place" type="text" placeholder="Address Line 2" name="citrusStreet2" id="citrusStreet2">
-				                                </div>
-				                            </div>
-				
-				                            <div class="form-group">
-				                                <div class="input-group col-md-12">
-				                                    <div class="row">
-				                                        <div class="col-sm-6">
-				                                            <input class="form-control TW-city-margin all-place" type="text" placeholder="City" name="citrusCity" id="citrusCity" id="billToCity">
-				                                        </div>
-				                                        <div class="col-sm-6">
-				                                            <input class="form-control all-place" type="text" placeholder="Zip" name="citrusZip" id="citrusZip"> 
-				                                        </div>
-				                                    </div>
-				                                </div>
-				                            </div>
-				
-				                            <div class="form-group">
-				                                <div class="input-group col-md-12">
-				                                    <g:select class="selectpicker" name="billToState" id="billToState" from="${state}" optionKey="key" optionValue="value"/>
-				                                </div>
-				                            </div>
-				                            <input type="hidden" name="citrusState" id="citrusState" value="">
-				                            
-				                            <div class="form-group" id="otherState">
-				                                <div class="input-group col-md-12">
-				                                    <input class="form-control all-place" type="text" placeholder="Other State" name="otherState" id="os">
-				                                </div>
-				                            </div>
-				                            
-				                            <div class="form-group">
-				                                <div class="input-group col-md-12">
-				                                    <g:select class="selectpicker" name="citrusCountry" id="citrusCountry" from="${country}" value="${defaultCountry}" optionKey="key" optionValue="value"/>
-				                                </div>
-				                            </div>
-				                            
-				                        </div>
+			                        <div class="col-md-6">
+			                            <g:if test="${user == null}">
+			                                <div class="form-group">
+			                                    <div class="input-group col-md-12">
+			                                        <input class="form-control all-place" type="text" placeholder="First Name" name="citrusFirstName" id="citrusFirstName">
+			                                    </div>
+			                                </div>
+			                                <div class="form-group">
+			                                    <div class="input-group col-md-12">
+			                                        <input class="form-control all-place" type="text" placeholder="Last Name" name="citrusLastName" id="citrusLastName">
+			                                    </div>
+			                                </div>
+			                                <div class="form-group">
+			                                    <div class="input-group col-md-12">
+			                                        <input class="form-control all-place" type="text" placeholder="Email" name="citrusEmail" id="citrusEmail">
+			                                    </div>
+			                                </div>
+			                            </g:if>
+			                            <g:else>
+			                                <div class="form-group">
+			                                    <div class="input-group col-md-12">
+			                                        <input class="form-control all-place" type="text" placeholder="First Name" name="citrusFirstName" id="citrusFirstName" value="${user.firstName}">
+			                                    </div>
+			                                </div>
+			                                <div class="form-group">
+			                                    <div class="input-group col-md-12">
+			                                        <input class="form-control all-place" type="text" placeholder="Last Name" name="citrusLastName" id="citrusLastName" value="${user.lastName}">
+			                                    </div>
+			                                </div>
+			                                <div class="form-group">
+			                                    <div class="input-group col-md-12">
+			                                        <input class="form-control all-place" type="text" placeholder="Email" name="citrusEmail" id="citrusEmail" value="${user.email}">
+			                                    </div>
+			                                </div>
+			                            </g:else>
+			                            
+			                            <div class="form-group">
+			                                <div class="input-group col-md-12">
+			                                    <input class="form-control all-place" type="text" placeholder="Phone Number" name="citrusMobile" id="citrusMobile">
+			                                </div>
+			                            </div>
+			                            <div class="clear"></div>
+			                        </div>
+			
+			                        <div class="col-md-6">
+			                            <div class="form-group">
+			                                <div class="input-group col-md-12">
+			                                    <input class="form-control all-place" type="text" placeholder="Address Line 1" name="citrusStreet1" id="citrusStreet1">
+			                                </div>
+			                            </div>
+			                            <div class="form-group">
+			                                <div class="input-group col-md-12">
+			                                    <input class="form-control all-place" type="text" placeholder="Address Line 2" name="citrusStreet2" id="citrusStreet2">
+			                                </div>
+			                            </div>
+			
+			                            <div class="form-group">
+			                                <div class="input-group col-md-12">
+			                                    <div class="row">
+			                                        <div class="col-sm-6">
+			                                            <input class="form-control TW-city-margin all-place" type="text" placeholder="City" name="citrusCity" id="citrusCity" id="billToCity">
+			                                        </div>
+			                                        <div class="col-sm-6">
+			                                            <input class="form-control all-place" type="text" placeholder="Zip" name="citrusZip" id="citrusZip"> 
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                            </div>
+			
+			                            <div class="form-group">
+			                                <div class="input-group col-md-12">
+			                                    <g:select class="selectpicker" name="billToState" id="billToState" from="${state}" optionKey="key" optionValue="value"/>
+			                                </div>
+			                            </div>
+			                            <input type="hidden" name="citrusState" id="citrusState" value="">
+			                            
+			                            <div class="form-group" id="otherState">
+			                                <div class="input-group col-md-12">
+			                                    <input class="form-control all-place" type="text" placeholder="Other State" name="otherState" id="os">
+			                                </div>
+			                            </div>
+			                            
+			                            <div class="form-group">
+			                                <div class="input-group col-md-12">
+			                                    <g:select class="selectpicker" name="citrusCountry" id="citrusCountry" from="${country}" value="${defaultCountry}" optionKey="key" optionValue="value"/>
+			                                </div>
+			                            </div>
+			                            
+			                        </div>
 				                        
-				                    </div>
 				                </div>
 				            </div>
+				            
+				            <div id="perkShippingInfo">
 				                
-				            <g:if test="${shippingInfo}">
-				                <g:if test="${shippingInfo.address != null || shippingInfo.email  != null || (shippingInfo.twitter  != null && anonymous == 'false') || (shippingInfo.custom  != null && shippingInfo.custom  != '')}">
-				                    <div class="panel panel-default">
-				                        <div class="panel-heading">
-				                            <h3 class="panel-title">Shipping Information Required to Fulfill a Perk</h3>
-				                        </div>
-				                        <div class="panel-body">
-				                            <g:if test="${shippingInfo.address != null}">
-				                                <label class="checkbox control-label">
-				                                   <input type="checkbox" name="checkAddress" id="checkAddress" > Address same as above.
-				                                </label>
-				                                <div class="col-md-6" id="physicalAddress">
-				                                    <div class="form-group">
-				                                        <div class="input-group col-md-12">
-				                                            <input class="form-control all-place" type="text" placeholder="AddressLine1" name="addressLine1" id="addressLine1">
-				                                        </div>
-				                                    </div>
-				                                    <div class="form-group">
-				                                        <div class="input-group col-md-12">
-				                                            <input class="form-control all-place" type="text" placeholder="AddressLine2" name="addressLine2" id="addressLine2">
-				                                        </div>
-				                                    </div>
-				                                    <div class="form-group">
-				                                        <div class="input-group col-md-12">
-				                                            <div class="row">
-				                                                <div class="col-sm-6">
-				                                                    <input class="form-control all-place" type="text" placeholder="City" name="city" id="city">
-				                                                </div>
-				                                                <div class="col-sm-6">
-				                                                    <input class="form-control all-place" type="text" placeholder="Zip" name="zip" id="zip"> 
-				                                                </div>
-				                                            </div>
-				                                        </div>
-				                                    </div>
-				                                </div>
-				                                <div class="col-md-6">
-				                                    <div class="form-group">
-				                                        <div class="input-group col-md-12">
-				                                            <g:select class="selectpicker state" name="state" id="state" from="${state}" optionKey="key" optionValue="value"/>
-				                                        </div>
-				                                    </div>
-				                                    <div class="form-group" id="other">
-				                                        <div class="input-group col-md-12">
-				                                            <input class="form-control all-place" type="text" placeholder="Other State" name="otherstate1" id="otherstate1">
-				                                        </div>
-				                                    </div>
-				                                    <div class="form-group">
-				                                        <div class="input-group col-md-12">
-				                                            <g:select class="selectpicker" name="country" id="country" from="${country}" value="US" optionKey="key" optionValue="value"/>
-				                                        </div>
-				                                    </div>
-				                                </div>
-				                                
-				                                <div class="clear"></div>
-				                                <g:if test="${shippingInfo.email  != null || (shippingInfo.twitter  != null && anonymous == 'false') || shippingInfo.custom  != null}">
-				                                    <hr>
-				                                </g:if>
-				                            </g:if>
-				                            <g:if test="${shippingInfo.email  != null}">
-				                                <div class="col-md-6">
-				                                    <div class="form-group">
-				                                        <div class="input-group col-md-12">
-				                                            <input class="form-control all-place" type="text" placeholder="Email" name="shippingEmail">
-				                                        </div>
-				                                    </div>
-				                                </div>
-				                            </g:if>
-				                            <g:if test="${shippingInfo.twitter  != null && anonymous == 'false'}">
-				                                <div class="col-md-6">
-				                                    <div class="form-group">
-				                                        <div class="input-group col-md-12">
-				                                            <input class="form-control all-place" type="text" placeholder="Twitter Handle" name="twitterHandle">
-				                                        </div>
-				                                    </div>
-				                                </div>
-				                            </g:if>
-				                            <g:if test="${shippingInfo.custom != null && shippingInfo.custom != ''}">
-				                                <g:hiddenField name="customField" id="customField" value="${shippingInfo.custom}"/>
-				                                <div class="col-md-6">
-				                                    <div class="form-group">
-				                                        <div class="input-group col-md-12">
-				                                            <input class="form-control all-place" type="text" id="customShippingInfo" name="shippingCustom">
-				                                        </div>
-				                                    </div>
-				                                </div>
-				                            </g:if>
-				                            
-				                        </div>
-				                    </div>
-				                </g:if>
-				            </g:if>
+				            </div>
+				            
+                            <div class="col-xs-12">
+                                <div class="col-sm-offset-8 col-sm-4 col-xs-offset-0 col-xs-12">
+                                    <div class="amount-button"><button type="button" class="btn btn-info btn-md btn-block" id="btnShippingContinue">Continue</button></div>
+                                </div>
+                            </div>
 				        
 				        </section>
 				    
 				        <section class="step" data-step-title="Card Details">
-				            <div class="panel panel-default">
-				                <div class="panel-heading">
+				            <div class="panel panel-primary billing-panel">
+				                <div class="panel-heading shipping-heading">
 				                    <h3 class="panel-title">Card Details</h3>
 				                </div>
 				                <div class="panel-body">
-				                    <div class="form-group">
-				                        <div class="leftcard-column">
-				                            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
-				                            <input type="text" class="card-number form-control all-place" placeholder="Card Holder Name" name="citrusCardHolder" id="citrusCardHolder" required>
-				                            <div class="clear-both"></div>
-				                        </div>
-				                        <div class="rightcard-column">
-				                            <span class="input-group-addon card-details"><span class="glyphicon glyphicon-credit-card"></span> </span>
-				                            <g:select class="selectpicker card-number card-number-width" name="citrusCardType" id="citrusCardType" from="${citrusCardTypes}" optionKey="key" optionValue="value"/>
-				                            <div class="clear-both"></div>
-				                        </div>
-				                        <div class="clear-both"></div>
-				                    </div>
-				                    
-				                    <div class="clear"></div>
-				                    
-				                    <div class="form-group">
-				                        <div class="leftcard-column">
-				                            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
-				                            <input type="text" class="card-number form-control all-place" placeholder="Card Number" name="citrusNumber" id="citrusNumber" data-stripe="number" required>
-				                            <div class="clear-both"></div>
-				                        </div>
-				                        <div class="rightcard-column">
-				                            <span class="input-group-addon card-details"><span class="glyphicon glyphicon-credit-card"></span> </span>
-				                            <g:select class="selectpicker card-number card-number-width" name="citrusScheme" id="citrusScheme" from="${citrusSchemes}" optionKey="key" optionValue="value"/>
-				                            <div class="clear-both"></div>
-				                        </div>
-				                        <div class="clear-both"></div>
-				                    </div>
-				                    
-				                    <div class="clear"></div>
-				                    
-				                    <div class="form-group cvc-width">
-				                        <div class="leftcard-column-one">
-				                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </span>
-				                                <input class="form-control all-place" type="text" placeholder="CVV" data-stripe="cvc" name="citrusCvv" id="citrusCvv" required>
-				                            <div class="clear"></div>       
-				                        </div>
-				                        <div class="leftcard-column-two">
-				                        <span class="input-group-addon card-details"><span class="glyphicon glyphicon-calendar"></span> </span>
-				                                <g:select class="selectpicker card-number-width" name="ccExpDateMonth" id="ccExpDateMonth" from="${month}" optionKey="key" data-stripe="exp-month" optionValue="value"/>
-				                            <div class="clear"></div>   
-				                        </div>
-				                        <div class="leftcard-column-three">
-				                        <span class="input-group-addon card-details"><span class="glyphicon glyphicon-calendar"></span> </span>
-				                                <g:select class="selectpicker card-number-width" name="ccExpDateYear" id="ccExpDateYear" from="${year}" optionKey="key" data-stripe="exp-year" optionValue="value"/>
-				                            <div class="clear"></div>
-				                        </div>
-				                        <div class="clear"></div>
-				                        <div class="dateErrorMsg">Please select valid date. It should be greater than current date.</div>
-				                        <input type="hidden" id="isValidDate" value="true"/>
-				                    </div>
-				                </div>
-				            </div><br>
+					                <div class="col-sm-offset-1 col-sm-10">
+					                    <div class="form-group">
+					                        <div class="leftcard-column">
+					                            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
+					                            <input type="text" class="card-number form-control all-place" placeholder="Card Holder Name" name="citrusCardHolder" id="citrusCardHolder" required>
+					                            <div class="clear-both"></div>
+					                        </div>
+					                        <div class="rightcard-column">
+					                            <span class="input-group-addon card-details"><span class="glyphicon glyphicon-credit-card"></span> </span>
+					                            <g:select class="selectpicker card-number card-number-width" name="citrusCardType" id="citrusCardType" from="${citrusCardTypes}" optionKey="key" optionValue="value"/>
+					                            <div class="clear-both"></div>
+					                        </div>
+					                        <div class="clear-both"></div>
+					                    </div>
+					                    
+					                    <div class="clear"></div>
+					                    
+					                    <div class="form-group">
+					                        <div class="leftcard-column">
+					                            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
+					                            <input type="text" class="card-number form-control all-place" placeholder="Card Number" name="citrusNumber" id="citrusNumber" data-stripe="number" required>
+					                            <div class="clear-both"></div>
+					                        </div>
+					                        <div class="rightcard-column">
+					                            <span class="input-group-addon card-details"><span class="glyphicon glyphicon-credit-card"></span> </span>
+					                            <g:select class="selectpicker card-number card-number-width" name="citrusScheme" id="citrusScheme" from="${citrusSchemes}" optionKey="key" optionValue="value"/>
+					                            <div class="clear-both"></div>
+					                        </div>
+					                        <div class="clear-both"></div>
+					                    </div>
+					                    
+					                    <div class="clear"></div>
+					                    
+					                    <div class="form-group cvc-width">
+					                        <div class="leftcard-column-one">
+					                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </span>
+					                                <input class="form-control all-place" type="text" placeholder="CVV" data-stripe="cvc" name="citrusCvv" id="citrusCvv" required>
+					                            <div class="clear"></div>       
+					                        </div>
+					                        <div class="leftcard-column-two">
+					                        <span class="input-group-addon card-details"><span class="glyphicon glyphicon-calendar"></span> </span>
+					                                <g:select class="selectpicker card-number-width" name="ccExpDateMonth" id="ccExpDateMonth" from="${month}" optionKey="key" data-stripe="exp-month" optionValue="value"/>
+					                            <div class="clear"></div>   
+					                        </div>
+					                        <div class="leftcard-column-three">
+					                        <span class="input-group-addon card-details"><span class="glyphicon glyphicon-calendar"></span> </span>
+					                                <g:select class="selectpicker card-number-width" name="ccExpDateYear" id="ccExpDateYear" from="${year}" optionKey="key" data-stripe="exp-year" optionValue="value"/>
+					                            <div class="clear"></div>
+					                        </div>
+					                        <div class="clear"></div>
+					                        <div class="dateErrorMsg">Please select valid date. It should be greater than current date.</div>
+					                        <input type="hidden" id="isValidDate" value="true"/>
+					                    </div>
+					                    
+					                    
+					                    <div class="col-xsl-0 col-md-4 col-xs-12 box fund-campaign-tile-center-align">
+					                    
+	                                        <div class="form-group term-of-use-center-alignment">
+	                                            <label class="checkbox control-label">
+	                                                <input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse">By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
+	                                            </label>
+	                                        </div>
+	                                        
+	                                        <div class="center-fund">
+	                                            <button type="submit" class="btn btn-info btn-block btn-lg citruscheckoutsubmitbtn" name="fund-button" id="submitButton">Fund this Campaign</button>
+	                                            <button type="button" class="btn btn-info btn-block btn-lg hidden citruscheckoutsubmitbtn" name="fund-button" id="citrusCardPayButton"></button>
+	                                        </div>
+	                                    </div>
+                                    <g:select class="selectpicker hidden" name="citrusAvailableOptions" id="citrusAvailableOptions" from="${citrusAvailableOptions}" optionKey="key" optionValue="value"/>
+					                </div>
+					                
+					            </div><br>
+					            
+					        </div>
+				            
 				        </section>
 				    
 				    </g:form>
@@ -351,5 +310,51 @@
         </div>
         
     </div>
+    
+    <script type="text/javascript">
+	    var $jq = jQuery.noConflict();
+	
+	    CitrusPay.Merchant.Config = {
+	        // Merchant details
+	        Merchant: {
+	            accessKey: 'VVXKH02XVEWHUGWJHAMI', //Replace with your access key
+	            vanityUrl: '8wqhvmq506'  //Replace with your vanity URL
+	        }
+	    };
+	
+	    fetchPaymentOptions();
+	
+	    function handleCitrusPaymentOptions(citrusPaymentOptions) {
+	        if (citrusPaymentOptions.netBanking != null)
+	        for (i = 0; i < citrusPaymentOptions.netBanking.length; i++) {
+	            var obj = document.getElementById("citrusAvailableOptions");
+	            var option = document.createElement("option");
+	            option.text = citrusPaymentOptions.netBanking[i].bankName;
+	            option.value = citrusPaymentOptions.netBanking[i].issuerCode;
+	            obj.add(option);
+	        }
+	    }
+	
+	    //Net Banking
+	    $jq('#citrusNetbankingButton').on("click", function () { 
+	        alert('vffvfvf');
+	        makePayment("netbanking") });
+	    //Card Payment
+	    $jq("#citrusCardPayButton").on("click", function () { 
+	        alert('vffvfvf');
+	        makePayment("card"); });
+	
+	
+	    function citrusServerErrorMsg(errorResponse) {
+	        console.log(errorResponse);
+	    }
+	
+	    function citrusClientErrMsg(errorResponse) {
+	        console.log(errorResponse);
+	    }
+	
+	</script>
+
 </body>
+
 </html>

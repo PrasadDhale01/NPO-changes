@@ -1249,5 +1249,32 @@ class FundController {
         }
         
     }
+    
+    
+    def getBillingInfo() {
+        
+        def anonymous = request.getParameter('anonymous')
+        def reward = rewardService.getRewardById(params.long('rewardId'));
+        def shippingInfo = rewardService.getShippingInfo(reward);
+        def state = projectService.getState()
+        def country = projectService.getCountry()
+        if(request.xhr){
+            render(template: "fund/shippinginfo", model:[shippingInfo:shippingInfo, anonymous:anonymous, state:state, country:country])
+        }
+    }
+    
+    def getCitrusSignature() {
+        
+        String txnID = String.valueOf(System.currentTimeMillis());
+        String secret_key = grailsApplication.config.crowdera.CITRUS.SECRETE_KEY
+        String access_Key = grailsApplication.config.crowdera.CITRUS.ACCESS_KEY
+        def citrusAmount = params.amount
+        def securitySignature = contributionService.getSecuritySignature(txnID, secret_key, access_Key, citrusAmount)
+        def model = [txnID: txnID, securitySignature: securitySignature];
+        JSONObject json = new JSONObject();
+        json.put('txnID',txnID)
+        json.put('securitySignature',securitySignature)
+        render json
+    }
 
 }

@@ -120,8 +120,7 @@ class ProjectService {
     }
     
     def getCurrentEnvironment() {
-//        return Environment.current.getName()
-        return 'testIndia'
+        return Environment.current.getName()
     }
     
     def getBankInfoByProject(Project project) {

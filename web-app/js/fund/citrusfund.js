@@ -9,36 +9,14 @@ $(function() {
     }
     
     $('#myWizard').easyWizard({
-//    	showSteps: false,
-//        showButtons: false,
-//        submitButton: false
+        showButtons: false,
+        submitButton: false
     });
     
     $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
     });
     
-
-    $('#commentBox').find('form').validate({
-        rules: {
-        	comment: {
-        		required: true
-        	}
-        }
-    });
-
-    $('.sendmailmodal').find('form').validate({
-        rules: {
-        	name: {
-                required: true
-            },
-        	emails: {
-        		required: true,
-                validateMultipleEmailsCommaSeparated: true
-            }
-        }
-    });
-
     $("form").on("change", ".states", function () {
     	var option = $(this).val();
     	$('#stateField').val(option);
@@ -48,34 +26,8 @@ $(function() {
     		$(".ostate").hide();
     	}
     });
-
-    $.validator.addMethod('validateMultipleEmailsCommaSeparated', function (value) {
-        var result = value.split(",");
-        for(var i = 0;i < result.length; i++)
-            if(!validateEmail(result[i]))
-                return false;
-        return true;
-    },"Please add valid emails only");
-
-    function validateEmail(field) {
-        var regex=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
-        return (regex.test(field)) ? true : false;
-    }
-
+    
     var validator = $('#fundindex').find('form').validate({
-        submitHandler: function(form) {
-            if (getSelectedRewardId() === undefined) {
-            	var rewardId = 1;
-                $('form input[name="rewardId"]').val(rewardId);
-
-                form.submit();
-            } else {
-                var rewardId = getSelectedRewardId();
-                $('form input[name="rewardId"]').val(rewardId);
-
-                form.submit();
-            }
-        },
         rules: {
             amount: {
                 required: true,
@@ -138,6 +90,54 @@ $(function() {
             email:{
             	required:true,
             	email:true
+            },
+            citrusNumber: {
+                required: true
+            },
+            citrusCardType: {
+                required: true
+            },
+            citrusCvv: {
+                required: true,
+                maxlength: 4
+            },
+            citrusCardHolder: {
+                required: true,
+                minlength: 2,
+                maxlength: 100
+            },
+            citrusFirstName: {
+                required: true,
+                maxlength:100
+            },
+            citrusLastName: {
+                required: true,
+                maxlength:100
+            },
+            citrusEmail: {
+                required: true,
+                email: true,
+                maxlength: 100
+            },
+            citrusMobile: {
+            	required: true,
+                number: true,
+                maxlength: 20
+            },
+            citrusStreet1: {
+                required: true,
+                maxlength:255
+            },
+            citrusStreet2: {
+                maxlength:255
+            },
+            citrusCity: {
+                required: true,
+                maxlength:35
+            },
+            citrusZip: {
+                required: true,
+                maxlength: 20
             }
         },
         messages:{
@@ -168,18 +168,87 @@ $(function() {
         return true;
     }, "Please enter a valid fullname");
 
-    $(document).ready(function (){
-        //called when key is pressed in textbox
+    
+    $(document).ready(function () {
+    	
         $("#amount").keypress(function (e) {
-            //if the letter is not digit then display error and don't type anything
             if (e.which != 8 && e.which != 0 && e.which !=13 && (e.which < 48 || e.which > 57)) {
-                //display error message
                 $("#errormsg").html("Digits Only").show().fadeOut("slow");
-            return false;
-        }
-     });
-   });
+                return false;
+            }
+        });
+        
+        $('#btnCheckoutContinue').click(function() {
+            if($('#amount').valid()) {
+            	var rewardId = getSelectedRewardId();
+            	if (rewardId === undefined) {
+                	rewardId = 1;
+                    $('form input[name="rewardId"]').val(rewardId);
+                } else {
+                    rewardId = getSelectedRewardId();
+                    $('form input[name="rewardId"]').val(rewardId);
+                }
+            	
+            	var anonymous = $('#anonymous').val();
+        		var grid = $('#perkShippingInfo');
+        		$.ajax({
+        			type : 'post',
+        			url  : $('#url').val()+'/fund/getBillingInfo',
+        			data : 'rewardId='+rewardId+'&anonymous='+anonymous,
+        			async: false,
+        			success: function(data){
+        				$(grid).html(data);
+        				$('#myWizard').easyWizard('goToStep', 2);
+        			}
+        		}).error(function(){
+        		});
+            	
+            }
+        });
+        
+        $('#btnShippingContinue').click(function() {
+        	if (validateshippingInfo()) {
+        		$.ajax({
+        			type : 'post',
+        			url  : $('#url').val()+'/fund/getCitrusSignature',
+        			data : 'amount=' + $('#amount').val(), 
+        			async: false,
+        			success: function(response){
+        				var data;
+                        data = response.replace(/^\[/, '');
+                        data = response.replace(/\]$/, '');
 
+                        var json;
+                        try {
+                            json = (typeof data === 'string' ? $.parseJSON(data) : data);
+                        } catch(err) {
+                            json = { error: true };
+                        }
+        				$('#citrusMerchantTxnId').val(json.txnID);
+        				$('#citrusSignature').val(json.securitySignature);
+        				$('#citrusAmount').val($('#amount').val());
+        				$('#myWizard').easyWizard('goToStep', 3);
+        			}
+        		}).error(function(){
+        		});
+        		
+        	}
+        });
+        
+        $('.easyWizardSteps li').click(function(e) {
+        	var data = $(this).data('step');
+        	var currentData = $('.easyWizardSteps').find('li.current').data('step');
+        	
+        	if (currentData == 3) {
+        		$('#myWizard').easyWizard('goToStep', data);
+        	} else if (currentData == 2 && data == 1) {
+        		$('#myWizard').easyWizard('goToStep', data);
+        	} 
+        })
+        
+    });
+
+    
     $('a.list-group-item').click(function() {
     	$('.choose-error').html('');
         $('.list-group.twitterHandler').find('a.list-group-item').removeClass('active');
@@ -195,11 +264,12 @@ $(function() {
 
 	function showShippingDetails(rewardId){
 		var anonymous = $('#anonymous').val();
-		var grid = $('#perkShippingInfo, #perkShippingInfo-sm');
+		var grid = $('#perkShippingInfo');
 		$.ajax({
-			type:'post',
-			url:$('#url').val()+'/fund/getRewardShippingDetails',
-			data:'rewardId='+rewardId+'&anonymous='+anonymous,
+			type : 'post',
+			url  : $('#url').val()+'/fund/getBillingInfo',
+			data : 'rewardId='+rewardId+'&anonymous='+anonymous,
+			async: false,
 			success: function(data){
 				$(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
 			}
@@ -214,16 +284,18 @@ $(function() {
     	if($(this).prop("checked") === true) {
     		$('#anonymous').val(true);
             $('#twitterPerk').hide();
+            
     		$.ajax({
-    			type:'post',
-    			url:$('#url').val()+'/fund/getOnlyTwitterHandlerRewards',
-    			data:'projectId='+projectId,
-    			success: function(data){
+    			type : 'post',
+    			url  : $('#url').val()+'/fund/getOnlyTwitterHandlerRewards',
+    			data : 'projectId='+projectId,
+    			async: false,
+    			success: function(data) {
     				var list = data.split("[");
     				var list1 = list[1].split("]");
     				var list2 = list1[0].split(",");
     				var s= [];
-    				for(var i=0;i<list2.length;i++){
+    				for(var i=0;i<list2.length;i++) {
     		    		var a = '#'+list2[i].trim();
     		    		var x = $(a).attr("data-rewardprice");
     		    		s.push(x);
@@ -236,7 +308,7 @@ $(function() {
     		    		});
     		    		//$(a).attr('class','list-group-item');
     				}
-    				for(var i=0;i<list2.length;i++){
+    				for(var i=0;i<list2.length;i++) {
     					var idval = list2[i].trim();
 					    var k = 0;
 					    $('.onlyTwitterReward').each(function () {
@@ -259,7 +331,7 @@ $(function() {
                         showShippingDetails(rewardId);
     	    	    });
 
-    				$('.onlyTwitterReward').each(function(){
+    				$('.onlyTwitterReward').each(function() {
     		            $(this).popover({
     		                content: 'As you are keeping your contribution anonymous, this perks which has only Twitter handler will be disabled for you',
     		                trigger: 'manual',
@@ -270,17 +342,18 @@ $(function() {
     		            .hover(showPopover, hidePopover);
     		        });
 
-    				if($('#'+selectedRewardId).hasClass('onlyTwitterReward')){
+    				if($('#'+selectedRewardId).hasClass('onlyTwitterReward')) {
     	    			$('#perkForAnonymousUser').show();
     	    		}
     			}
-    		}).error(function(){
+    		}).error(function() {
     		});
 
     		$.ajax({
                 type:'post',
                 url:$("#url").val()+'/fund/getRewardsHavingTwitterHandler',
                 data:'projectId='+projectId,
+                async: false,
                 success: function(data){
                 	var list = data.split("[");
     				var list1 = list[1].split("]");
@@ -301,7 +374,7 @@ $(function() {
 
     				$('#'+selectedRewardId).addClass('active');
 
-    				$('.twitterReward').each(function(){
+    				$('.twitterReward').each(function() {
     		            $(this).popover({
     		                content: "As you are keeping your contribution anonymous, Twitter perks will be disabled for you",
     		                trigger: 'manual',
@@ -363,21 +436,10 @@ $(function() {
         });
     }
     });
+    
+    
 
     var beneficiaryName = $('#beneficiaryName').val();
-    $("#fbshare").click(function(){
-        var url = "http://www.facebook.com/sharer.php?p[url]="+ encodeURIComponent($('#fbShareUrl').val());
-        window.open(url, "Share on FaceBook", 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
-        return false;
-    });
-
-    $("#twitterShare").click(function(){
-    	var campaignTitle = $('#campaignTitle').val();
-    	var twitterShareUrl = $('#twitterShareUrl').val();
-        var url = "https://twitter.com/intent/tweet?text="+campaignTitle+" on @gocrowdera&url="+twitterShareUrl;
-        window.open(url, "Share on Twitter", 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
-        return false;
-    });
 
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {
@@ -422,24 +484,13 @@ $(function() {
         $("#anonymousUser").popover({
             content: 'If checked, your name will only be visible to campiagn owner, for public you will be anonymous contributor.',
             trigger: 'manual',
-            placement: 'top'
+            placement: 'right'
         })
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
         
-//        $('#btnChargeContinue').click(function(){
-//            if($('.chargeForms').valid()) {
-//                $('#btnChargeContinue').attr('disabled','disabled');
-//            }
-//        });
-//        
-//        $('#btnCheckoutContinue').click(function(){
-//          if($('.checkoutForm').valid()) {
-//              $('#btnCheckoutContinue').attr('disabled','disabled');
-//          }
-//        });
-//       
+
         $("form").on("blur", ".addr1", function () {
         	var address1 = $(this).val();
         	$('#addr1').val(address1);
@@ -484,4 +535,256 @@ $(function() {
         	var other = $(this).val();
         	$('#otherField').val(other);
         });
+        
+        
+        
+        $('form').submit(function() {
+            if($(".payment-form").valid(event)) {
+            	
+                event.preventDefault();
+                needToConfirm = false;
+
+                var formData = {
+                    'anonymous'     : $('input[name= anonymous]').val(),
+                    'userId'        : $('input[name= userId]').val(),
+                    'rewardId'      : $('input[name= rewardId]').val(),
+                    'fr'            : $('input[name= fr]').val(),
+                    'tempValue'     : $('input[name= tempValue]').val(),
+                    'email'         : $('input[name= email]').val(),
+                    'campaignId'    : $('input[name= projectId]').val(),
+                    'addressLine1'  : $('input[name= addressLine1]').val(),
+                    'addressLine2'  : $('input[name= addressLine2]').val(),
+                    'city'          : $('input[name= city]').val(),
+                    'zip'           : $('input[name= zip]').val(),
+                    'country'       : $('input[name= country]').val(),
+                    'state'         : $('input[name= state]').val(),
+                    'otherstate'    : $('input[name= otherstate1]').val(),
+                    'shippingEmail' : $('input[name= shippingEmail]').val(),
+                    'twitterHandle' : $('input[name= twitterHandle]').val(),
+                    'shippingCustom': $('input[name= shippingCustom]').val(),
+                    'projectTitle'  : $('input[name= projectTitle]').val()
+                };
+
+                $.ajax({
+                    type    :'post',
+                    url     : $("#b_url").val()+'/fund/setCitrusInfo',
+                    data    : formData,
+                    async: false,
+                    success : function(){
+                    	$('#citrusCardPayButton').click();
+                    }
+                }).error(function(){
+                });
+
+            }
+        });
+
+        $('.citruscheckoutsubmitbtn').click(function() {
+            if(validator.form()) {
+            	needToConfirm = false;
+            }
+        });
+
+        $('#ccExpDateMonth').change(function() {
+            var month = $(this).val();
+            var year = $('#ccExpDateYear').val();
+            var expiry = month + '/' + year;
+            $('#citrusExpiry').val(expiry);
+            var isValidDate = dateValidator(expiry);
+            $('#isValidDate').val(isValidDate);
+        });
+
+        $('#ccExpDateYear').change(function() {
+            var year = $(this).val();
+            var month = $('#ccExpDateMonth').val();
+            var expiry = month + '/' + year;
+            $('#citrusExpiry').val(expiry);
+            var isValidDate = dateValidator(expiry);
+            $('#isValidDate').val(isValidDate);
+        });
+
+        $('#billToState').change(function() {
+            var state = $(this).val();
+            if (state === 'other') {
+            	$('#otherState').show();
+            } else {
+            	$('#otherState').hide();
+            	$('#otherState').val('');
+            	$('#citrusState').val(state);
+            }
+        });
+
+        $('#os').blur(function() {
+        	var state = $(this).val();
+        	$('#citrusState').val(state);
+        });
+
+        var showPopover = function () {
+            $(this).popover('show');
+        },
+        hidePopover = function () {
+            $(this).popover('hide');
+        };
+
+        var custom = $('#customField').val();
+
+        $('#customShippingInfo').popover({
+            content: custom,
+            trigger: 'manual',
+            placement: 'bottom'
+        })
+        .focus(showPopover)
+        .blur(hidePopover)
+        .hover(showPopover, hidePopover);
+
+        $('.sendContributorEmail').popover({
+        	content:'This will make non-registered contributor user and will send them email with their username and password',
+        	trigger: 'manual',
+            placement: 'bottom'
+        })
+        .focus(showPopover)
+        .blur(hidePopover)
+        .hover(showPopover, hidePopover);
+
 });
+
+function reloadjs() {
+	
+	$('.selectpicker').selectpicker({
+	    style: 'btn btn-sm btn-default'
+	});
+	
+	$('.customField').each(function(){
+	    $(this).popover({
+	        trigger: 'manual',
+	        placement: 'bottom'
+	    })
+	    .focus(showPopover)
+	    .blur(hidePopover)
+	    .hover(showPopover, hidePopover);
+	});
+	
+	/* Show pop-over tooltip on hover for some fields. */
+	var showPopover = function () {
+	    $(this).popover('show');
+	},
+	hidePopover = function () {
+	    $(this).popover('hide');
+	};
+	
+	$('#otherState').hide();
+	$('#otherstate1').hide();
+	
+	$('#checkAddress').click(function(){
+    	if($(this).prop("checked") === true){
+    		var addressLine1 = $('#citrusStreet1').val();
+    		var addressLine2 = $('#citrusStreet2').val();
+    		var city = $('#citrusCity').val();
+    		var zip = $('#citrusZip').val();
+    		var state = $("#billToState").val();
+    		var country = $("#citrusCountry option:selected").val();
+    		$('#addressLine1').val(addressLine1);
+    		$('#addressLine2').val(addressLine2);
+    		$('#city').val(city);
+    		$('#zip').val(zip);
+    		$('#state').val(state);
+    		$("#state").selectpicker('refresh');
+    		$('#country').val(country);
+    		$("#country").selectpicker('refresh');
+    		if (state === 'other'){
+    			$("#other").show();
+    			var otherState = $('#os').val();
+    			$("#otherstate").val(otherState);
+    		}
+    	} else if($(this).prop("checked") === false){
+    		$('#addressLine1').val("");
+    		$('#addressLine2').val("");
+    		$('#city').val("");
+    		$('#zip').val("");
+    		$('#state').val("AL");
+    		$("#state").selectpicker('refresh');
+    		$('#country').val("US");
+    		$("#country").selectpicker('refresh');
+    		$("#other").hide();
+    		$("#otherstate").val("");
+    	}
+    });
+}
+
+function validateshippingInfo() {
+	var status = true;
+	
+	if ($('#addressLine1').length) {
+		$('#addressLine1').valid() ? '' : status= false; 
+	}
+	if ($('#receiptName').length) {
+		$('#receiptName').valid() ?  '' : status= false; 
+	}
+	if ($('#receiptEmail').length) {
+		$('#receiptEmail').valid() ? '' : status= false; 
+	}
+	if ($('#city').length) {
+		$('#city').valid() ? '' : status= false; 
+	}
+	if ($('#zip').length) {
+		$('#zip').valid() ? '' : status= false; 
+	}
+	if ($('#shippingEail').length) {
+		$('#shippingmEmail').valid() ? '' : status= false;
+	}
+	if ($('#twitterHandle').length) {
+		$('#twitterHandle').valid() ? '' : status= false;
+	}
+	if ($('#shippingCustom').length) {
+		$('#shippingCustom').valid() ? ' ' : status= false;
+	}
+	if ($('#citrusFirstName').length) {
+		$('#citrusFirstName	').valid() ? '' : status= false;
+	}
+	if ($('#citrusLastName').length) {
+		$('#citrusLastName').valid() ? ' ': status= false;
+	}
+	if ($('#citrusEmail').length) {
+		$('#citrusEmail').valid() ? ' ': status= false;
+	}
+	if ($('#shippingEmail').length) {
+		$('#shippingEmail').valid() ? ' ': status= false;
+	}
+	if ($('#citrusMobile').length) {
+		$('#citrusMobile').valid() ? ' ': status= false;
+	}
+	if ($('#citrusStreet1').length) {
+		$('#citrusStreet1').valid() ? ' ': status= false;
+	}
+	if ($('#citrusZip').length) {
+		$('#citrusZip').valid() ? ' ': status= false;
+	}
+	return status;
+}
+
+
+function dateValidator(value) {
+
+	var today = new Date();
+	var month = today.getMonth() + 1;
+	
+	var expiry = value.replace(/\s+/g, '').replace("/", "");
+	var inputMonth = expiry.substr(0, 2);
+	var inputYear=expiry.slice(-4);
+	var len = expiry.length;
+	var year = today.getFullYear().toString().slice(-4);
+	
+	 if (len == 6) {
+		 if (!(((inputMonth < month && inputYear > year) || (inputMonth >= month && inputYear >= year)) && inputMonth <= 12 && inputYear<=(parseInt(year)+50).toString())) {            
+			 $('.dateErrorMsg').show();
+			 return false;
+		 } else {
+			 $('.dateErrorMsg').hide();
+			 return true;
+		 }
+	 } else {
+		 $('.dateErrorMsg').show();
+	 	 return false;
+	 }
+}
+

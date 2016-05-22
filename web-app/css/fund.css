@@ -100,7 +100,6 @@ div#checkoutgsp button.btn-default:focus{
 }
 
 
-
 .easyWizardSteps {
     list-style: none;
     width:100%;
@@ -110,19 +109,21 @@ div#checkoutgsp button.btn-default:focus{
     border: 1px solid #efefef;
     background-color: #efefef;
     margin-bottom:20px;
+    box-shadow: 0px 0px 10px;
 }
 .easyWizardSteps li {
-    font-size:18px;
+    font-size:16px;
     display:inline-block;
     padding:10px;
     color:#B0B1B3;
     margin-right:20px;
+    font-weight: 600;
 }
 .easyWizardSteps li span {
     font-size:24px;
 }
 .easyWizardSteps li.current {
-    color:#000;
+    color: #5A6771;
 }
 .easyWizardButtons {
 	overflow:hidden;
@@ -137,5 +138,58 @@ div#checkoutgsp button.btn-default:focus{
 .easyWizardButtons .next, .easyWizardButtons .submit {
 	float:right;
 }
+.shipping-heading {
+    box-shadow: 2px 2px 8px rgba(83, 86, 83, 0.61);
+}
+.billing-panel.panel-primary {
+	border-color: #fff;
+}
+.billing-panel .panel-title {
+	font-size: 16px;
+    font-weight: 600;
+}
+.billing-panel.panel-primary > .panel-heading {
+    height: 46px;
+    padding: 15px 15px;
+}
 
-        
+.panel-primary.billing-panel {
+	margin-bottom: 0px;
+}
+
+.citrusfundbody {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px 0px;
+    padding: 5px;
+    margin-bottom: 30px;
+}
+
+div.citrusfundbody .bootstrap-select > button,
+div.citrusfundbody .bootstrap-select > button:hover,
+div.citrusfundbody .bootstrap-select > button:active,
+div.citrusfundbody .bootstrap-select > button:focus,
+div.citrusfundbody .bootstrap-select.dropup > button,
+div.citrusfundbody .open > .dropdown-toggle.btn-default {
+    background-color: #5A6771 !important;
+    color: #ffffff !important;
+}
+
+div.citrusfundbody .dropdown-menu.open {
+    margin-left: -0.8%;
+}
+
+div.citrusfundbody .bootstrap-select.btn-group .dropdown-menu {
+    height: 156px;
+}
+
+div.citrusfundbody div.dropdown-menu{
+	max-height: 155px;
+}
+.billing-panel .panel-body {
+	padding-top: 30px;
+}
+.col-xsl-0  {
+	padding-left: 0px;
+}
+div.citrusfundbody .btn.btn-info {
+	box-shadow: 2px 2px 2px rgba(136, 136, 136, 0.88);
+}

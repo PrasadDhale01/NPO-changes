@@ -491,53 +491,6 @@ $(function() {
         .hover(showPopover, hidePopover);
         
 
-        $("form").on("blur", ".addr1", function () {
-        	var address1 = $(this).val();
-        	$('#addr1').val(address1);
-        });
-        
-        $("form").on("blur", ".addr2", function () {
-        	var address2 = $(this).val();
-        	$('#addr2').val(address2);
-        });
-        
-        $("form").on("blur", ".cityField", function () {
-        	var city = $(this).val();
-        	$('#cityField').val(city);
-        });
-        
-        $("form").on("blur", ".twitterField", function () {
-        	var twitter = $(this).val();
-        	$('#twitterField').val(twitter);
-        });
-        
-        $("form").on("blur", ".customField", function () {
-        	var custom = $(this).val();
-        	$('#customField').val(custom);
-        });
-        
-        $("form").on("blur", ".emailField", function () {
-        	var email = $(this).val();
-        	$('#emailField').val(email);
-        });
-        
-        $("form").on("change", ".countryField", function () {
-        	var country = $(this).val();
-        	$('#countryField').val(country);
-        });
-
-        $("form").on("blur", ".zipField", function () {
-        	var zip = $(this).val();
-        	$('#zipField').val(zip);
-        });
-
-        $("form").on("blur", ".otherField", function () {
-        	var other = $(this).val();
-        	$('#otherField').val(other);
-        });
-        
-        
-        
         $('form').submit(function() {
             if($(".payment-form").valid(event)) {
             	
@@ -626,25 +579,16 @@ $(function() {
             $(this).popover('hide');
         };
 
-        var custom = $('#customField').val();
-
-        $('#customShippingInfo').popover({
-            content: custom,
-            trigger: 'manual',
-            placement: 'bottom'
-        })
-        .focus(showPopover)
-        .blur(hidePopover)
-        .hover(showPopover, hidePopover);
-
-        $('.sendContributorEmail').popover({
-        	content:'This will make non-registered contributor user and will send them email with their username and password',
-        	trigger: 'manual',
-            placement: 'bottom'
-        })
-        .focus(showPopover)
-        .blur(hidePopover)
-        .hover(showPopover, hidePopover);
+//        var custom = $('#customField').val();
+//
+//        $('#customShippingInfo').popover({
+//            content: custom,
+//            trigger: 'manual',
+//            placement: 'bottom'
+//        })
+//        .focus(showPopover)
+//        .blur(hidePopover)
+//        .hover(showPopover, hidePopover);
 
 });
 
@@ -654,16 +598,6 @@ function reloadjs() {
 	    style: 'btn btn-sm btn-default'
 	});
 	
-	$('.customField').each(function(){
-	    $(this).popover({
-	        trigger: 'manual',
-	        placement: 'bottom'
-	    })
-	    .focus(showPopover)
-	    .blur(hidePopover)
-	    .hover(showPopover, hidePopover);
-	});
-	
 	/* Show pop-over tooltip on hover for some fields. */
 	var showPopover = function () {
 	    $(this).popover('show');
@@ -671,6 +605,17 @@ function reloadjs() {
 	hidePopover = function () {
 	    $(this).popover('hide');
 	};
+	
+	var custom = $('#customField').val();
+
+    $('#customShippingInfo').popover({
+        content: custom,
+        trigger: 'manual',
+        placement: 'top'
+    })
+    .focus(showPopover)
+    .blur(hidePopover)
+    .hover(showPopover, hidePopover);
 	
 	$('#otherState').hide();
 	$('#otherstate1').hide();

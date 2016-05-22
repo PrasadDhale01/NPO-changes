@@ -11,7 +11,7 @@
 	                      <input type="checkbox" name="checkAddress" id="checkAddress" > Address same as above.
 	                   </label>
                    </div>
-                   <div class="col-md-6" id="physicalAddress">
+                   <div class="col-md-6 col-sm-6" id="physicalAddress">
                        <div class="form-group">
                            <div class="input-group col-md-12">
                                <input class="form-control all-place" type="text" placeholder="AddressLine1" name="addressLine1" id="addressLine1">
@@ -35,7 +35,7 @@
                            </div>
                        </div>
                    </div>
-                   <div class="col-md-6">
+                   <div class="col-md-6 col-sm-6">
                        <div class="form-group">
                            <div class="input-group col-md-12">
                                <g:select class="selectpicker state" name="state" id="state" from="${state}" optionKey="key" optionValue="value"/>
@@ -59,7 +59,7 @@
                    </g:if>
                </g:if>
                <g:if test="${shippingInfo.email  != null}">
-                   <div class="col-md-6">
+                   <div class="col-md-6 col-sm-6">
                        <div class="form-group">
                            <div class="input-group col-md-12">
                                <input class="form-control all-place" type="text" placeholder="Email" name="shippingEmail" id="shippingEmail">
@@ -68,7 +68,7 @@
                    </div>
                </g:if>
                <g:if test="${shippingInfo.twitter  != null && anonymous == 'false'}">
-                   <div class="col-md-6">
+                   <div class="col-md-6 col-sm-6">
                        <div class="form-group">
                            <div class="input-group col-md-12">
                                <input class="form-control all-place" type="text" placeholder="Twitter Handle" name="twitterHandle">
@@ -78,7 +78,7 @@
                </g:if>
                <g:if test="${shippingInfo.custom != null && shippingInfo.custom != ''}">
                    <g:hiddenField name="customField" id="customField" value="${shippingInfo.custom}"/>
-                   <div class="col-md-6">
+                   <div class="col-md-6 col-sm-6">
                        <div class="form-group">
                            <div class="input-group col-md-12">
                                <input class="form-control all-place" type="text" id="customShippingInfo" name="shippingCustom">

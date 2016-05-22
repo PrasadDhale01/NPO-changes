@@ -31,7 +31,7 @@
 				%>
 				<div id="myWizard">
 				    <g:form action="charge" method="POST" class="payment-form" id="payment-form" name="payment-form">
-				        <section class="step" data-step-title="Transaction Amount">
+				        <div class="step" data-step-title="Transaction Amount">
 				            <div class="col-md-4">
 				                <g:if test="${flash.amt_message}">
 				                    <div class="alert alert-danger">
@@ -101,21 +101,21 @@
 				            
 				            </div>
 				            
-				            <div class="col-md-8">
+				            <div class="col-md-8 col-sm-12">
 				                <g:if test="${project.rewards.size()>1}">
 				                    <g:render template="fund/rewards" model="[user:user, citrus: citrus]" />
 				                </g:if>
 				            </div>
-				        </section>
+				        </div>
 				        
-				        <section class="step" data-step-title="Billing Information">
+				        <div class="step" data-step-title="Billing Information">
 				            <div class="panel panel-primary billing-panel">
 				                <div class="panel-heading shipping-heading">
 				                    <h3 class="panel-title">Billing Information <g:if test="${currentUser == null}">(Your contact details are used to send a receipt)</g:if></h3>
 				                </div>
 				                <div class="panel-body">  
 				                    
-			                        <div class="col-md-6">
+			                        <div class="col-md-6 col-sm-6">
 			                            <g:if test="${user == null}">
 			                                <div class="form-group">
 			                                    <div class="input-group col-md-12">
@@ -159,7 +159,7 @@
 			                            <div class="clear"></div>
 			                        </div>
 			
-			                        <div class="col-md-6">
+			                        <div class="col-md-6 col-sm-6">
 			                            <div class="form-group">
 			                                <div class="input-group col-md-12">
 			                                    <input class="form-control all-place" type="text" placeholder="Address Line 1" name="citrusStreet1" id="citrusStreet1">
@@ -218,15 +218,15 @@
                                 </div>
                             </div>
 				        
-				        </section>
+				        </div>
 				    
-				        <section class="step" data-step-title="Card Details">
+				        <div class="step" data-step-title="Card Details">
 				            <div class="panel panel-primary billing-panel">
 				                <div class="panel-heading shipping-heading">
 				                    <h3 class="panel-title">Card Details</h3>
 				                </div>
 				                <div class="panel-body">
-					                <div class="col-sm-offset-1 col-sm-10">
+					                <div class="col-md-offset-1 col-md-10 col-sm-offset-0 col-sm-12">
 					                    <div class="form-group">
 					                        <div class="leftcard-column">
 					                            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
@@ -301,7 +301,7 @@
 					            
 					        </div>
 				            
-				        </section>
+				        </div>
 				    
 				    </g:form>
 				</div>

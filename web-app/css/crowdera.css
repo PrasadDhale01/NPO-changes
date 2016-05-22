@@ -13570,6 +13570,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }
 @media only screen and (max-width: 767px){
+	
+	.billing-panel.panel-primary > .panel-heading {
+        height: 60px;
+	}
 
 	div.col-x-plf-0 {
 	    padding-left: 0;

@@ -16,12 +16,17 @@
     def contributionamount = projectService.getDataType(contributedSoFar)
    
     def goal
-    if (currentTeam.user == project.user) {
-        goal = project.amount.round()
-    } else {
-        goal = currentTeam.amount.round()
+    def contributedAmount
+    if (currentTeam) {
+	    if (currentTeam.user == project.user) {
+	        goal = project.amount.round()
+	    } else {
+	        goal = currentTeam.amount.round()
+	    }
+        
+        contributedAmount = contributionService.getTotalContributionForUser(currentTeam.contributions)
     }
-    def contributedAmount = contributionService.getTotalContributionForUser(currentTeam.contributions)
+    
     def amount = projectService.getDataType(contributedAmount)
     
     def username = project.user.username

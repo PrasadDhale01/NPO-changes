@@ -32,7 +32,7 @@
 				<div id="myWizard">
 				    <g:form action="charge" method="POST" class="payment-form" id="payment-form" name="payment-form">
 				        <div class="step" data-step-title="Transaction Amount">
-				            <div class="col-md-4">
+				            <div class="col-md-5">
 				                <g:if test="${flash.amt_message}">
 				                    <div class="alert alert-danger">
 				                        ${flash.amt_message}
@@ -101,7 +101,7 @@
 				            
 				            </div>
 				            
-				            <div class="col-md-8 col-sm-12">
+				            <div class="col-md-offset-1 col-md-6 col-sm-offset-0 col-sm-12">
 				                <g:if test="${project.rewards.size()>1}">
 				                    <g:render template="fund/rewards" model="[user:user, citrus: citrus]" />
 				                </g:if>

@@ -599,7 +599,7 @@ class FundController {
 
         def paykeytemp = projectService.getpayKeytempObject(timestamp)
         def payKey = paykeytemp?.paykey
-        paykeytemp.delete()
+        paykeytemp?.delete()
         
         if (result) {
             userContribution(project,reward,amount,payKey,user,fundraiser,request,address)

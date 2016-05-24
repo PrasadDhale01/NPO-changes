@@ -4209,7 +4209,10 @@ class ProjectService {
 
         def furl = base_url + "/error"
         def txnid = generateTransId()
-        String hashstring = key + "|" + txnid + "|" + amount + "|" + productinfo + "|" + firstname + "|" + email + "|||||||||||" + salt;
+        StringBuilder sb = new StringBuilder()
+        sb.append(key).append("|").append(txnid).append("|").append(amount).append("|").append(productinfo).append("|").append(firstname).append("|").append(email).append("|||||||||||").append(salt)
+        
+        String hashstring = sb.toString()
         def hash = generateHash("SHA-512",hashstring)
 
         return [txnid:txnid, hash:hash, furl:furl, surl:surl]
@@ -4250,7 +4253,7 @@ class ProjectService {
 	}
 
 	def setFundingAmountCookie(def amount){
-		Cookie cookie = new Cookie("fundingAmountCookie", amount.round().toString())
+		Cookie cookie = new Cookie("fundingAmountCookie", amount?.round().toString())
 		cookie.path = '/'
 		cookie.maxAge= 3600
 		return cookie

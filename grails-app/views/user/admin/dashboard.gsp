@@ -133,18 +133,20 @@
                 </div>
             </div>
             
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="panel panel-default">
-                    <div class="panel-body text-center">
-                        <i class="fa fa-credit-card"></i>  Manage Payment Disbursement
-                    </div>
-                    <div class="panel-footer">
-                        <g:form controller="user" action="managedisbursement">
-                            <button class="btn btn-block btn-primary btn-text-alignment"><i class="fa fa-credit-card"></i> Manage Payment Disbursement</button>
-                        </g:form>
-                    </div>
-                </div>
-            </div>
+            <g:if test="${environment == 'testIndia' || environment == 'test' || environment == 'development'}">
+	            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+	                <div class="panel panel-default">
+	                    <div class="panel-body text-center">
+	                        <i class="fa fa-credit-card"></i>  Manage Payment Disbursement
+	                    </div>
+	                    <div class="panel-footer">
+	                        <g:form controller="user" action="managedisbursement">
+	                            <button class="btn btn-block btn-primary btn-text-alignment"><i class="fa fa-credit-card"></i> Manage Payment Disbursement</button>
+	                        </g:form>
+	                    </div>
+	                </div>
+	            </div>
+            </g:if>
             
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="panel panel-default">

@@ -177,6 +177,11 @@ modules = {
         dependsOn 'underscorejs', 'crowderajs', 'easywizardjs'
     }
     
+    userlistjs {
+        resource url: 'js/userlist.js'
+        dependsOn 'crowderajs','datatablejs'
+    }
+    
     /* CSS */
     datatablecss {
         resource url: 'css/dataTables.bootstrap.min.css', attrs: [media: 'screen']

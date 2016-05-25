@@ -2,7 +2,8 @@
 <head>
     <title>Crowdera- User list</title>
     <meta name="layout" content="main" />
-    <r:require modules="projectcreatejs"/>
+    <r:require modules="projectcreatejs, userlistjs"/>
+    <r:require module="datatablecss"/>
 </head>
 <body>
 <div class="feducontent">
@@ -29,9 +30,9 @@
             </g:link><br>
             <h4>Verified Users</h4>
             <div class="table table-responsive">
-            	<table class="table table-bordered">
+            	<table class="table table-bordered table-striped" id="verifiedUserList">
             	    <thead>
-                	<tr class="alert alert-title">
+                	<tr class="">
                    	    <th>Id</th>
                    	    <th class="col-sm-2 text-center">Email</th>
                    	    <th class="col-sm-2 text-center">First Name</th>
@@ -56,9 +57,9 @@
                 </div>
             </div>
             <div class="table table-responsive">
-            	<table class="table table-bordered">
+            	<table class="table table-bordered table-striped" id="unVerifiedUserList">
             	    <thead>
-                	<tr class="alert alert-title">
+                	<tr class="">
                    	    <th>Id</th>
                    	    <th class="col-sm-2 text-center">Email</th>
                    	    <th class="col-sm-2 text-center">First Name</th>

@@ -302,7 +302,7 @@ class ProjectController {
 
     def isDeviceMobileOrTab(){
         String userAgent = request.getHeader("User-Agent");
-        if (userAgent.contains('Mobile') || userAgent.contains('Android') || userAgent.contains('iPod')){
+        if (userAgent?.contains('Mobile') || userAgent?.contains('Android') || userAgent?.contains('iPod')){
             return true
         } else {
             return false

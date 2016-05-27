@@ -207,27 +207,33 @@ class FundController {
     def acknowledge() {
         Contribution contribution = contributionService.getContributionById(params.long('cb'))
         
-        def project = contribution?.project
-        def reward = contribution?.reward
-        def user = contribution?.user
-        def fundraiser = userService.getUserById(params.long('fr'))
-        def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-        def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+        Project project = contribution?.project
+        Reward reward = contribution?.reward
+        User user = contribution?.user
+        User fundraiser = userService.getUserById(params.long('fr'))
+        
+        String request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+        String base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+        
         if (userService.getCurrentUser()){
+        
             def vanityusername = userService.getVanityNameFromUsername(fundraiser?.username, project?.id)
             def shortUrl = projectService.getShortenUrl(project?.id, vanityusername)
             def twitterShareUrl = base_url+"/c"+shortUrl
             mandrillService.sendThankYouMailToContributors(contribution, project, contribution.amount, fundraiser)
             render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser, projectTitle:params.projectTitle, twitterShareUrl:twitterShareUrl]
+        
         } else {
+            
             def reqUrl = base_url+"/fund/sendEmail?cb=${params.cb}&fr=${params.fr}&projectTitle=${params.projectTitle}"
+            
             def loginSignUpCookie = projectService.setLoginSignUpCookie()
             def campaignNameCookie = projectService.setCampaignNameCookie(project?.title)
             def fundingAmountCookie = projectService.setFundingAmountCookie(contribution?.amount)
             def contributorNameCookie = projectService.setContributorName(contribution?.contributorName)
             def setRequestUrlCookie = projectService.setRequestUrlCookie(reqUrl)
 
-            if(setRequestUrlCookie){
+            if(setRequestUrlCookie) {
                 response.addCookie(setRequestUrlCookie)
             }
             if (loginSignUpCookie) {
@@ -551,16 +557,25 @@ class FundController {
     }
 
     def userContribution(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address){
-		def contributionId = projectService.getUserContributionDetails(project, reward, amount, transactionId, users, fundraiser, params,  address, request)
-		conId = contributionId
-		frId = fundraiser.id
-        def projectTitle
+        String projectTitle;
         if (project.charitableId) {
             projectTitle = params.projectTitle
         } else {
             projectTitle = request.getParameter('projectTitle')
         }
-		redirect(controller: 'fund', action: 'acknowledge' , params: [cb: contributionId, fr:fundraiser.id, projectTitle: projectTitle])
+        
+        Transaction transaction = contributionService.getTransactionByTransactionId(transactionId)
+        if (transaction) {
+            conId = transaction.contribution.id
+            frId = fundraiser.id
+            redirect(controller: 'fund', action: 'acknowledge' , params: [cb: transaction.contribution.id, fr:fundraiser.id, projectTitle: projectTitle])
+        } else {
+            def contributionId = projectService.getUserContributionDetails(project, reward, amount, transactionId, users, fundraiser, params,  address, request)
+            conId = contributionId
+            frId = fundraiser.id
+            redirect(controller: 'fund', action: 'acknowledge' , params: [cb: contributionId, fr:fundraiser.id, projectTitle: projectTitle])
+        }
+        
     }
 
     def paypalurl(def params, User fundraiser, User user){

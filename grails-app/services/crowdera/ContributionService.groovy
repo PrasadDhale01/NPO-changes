@@ -1,6 +1,10 @@
 package crowdera
 
 class ContributionService {
+    
+    Transaction getTransactionByTransactionId(String transactionId) {
+        return Transaction.findByTransactionId(transactionId)
+    }
 
     def getTotalContribution() {
         def c = Contribution.createCriteria()

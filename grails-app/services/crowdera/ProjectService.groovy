@@ -1573,10 +1573,11 @@ class ProjectService {
            return null
         }
 
-        if (currentEnv == 'staging' || currentEnv == 'production')
+        if (currentEnv == 'staging' || currentEnv == 'production'){
             projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
-        else
+        }else{
             projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
+        }
    
         return projects
     }
@@ -5513,7 +5514,6 @@ class ProjectService {
     }
     
     def sendTaxReceiptToContributors(def params){
-        def list = [];
         def idList = params.list.split(",");
         idList = idList.collect { it.trim() }
         mandrillService.sendTaxReceiptToContributors(idList);

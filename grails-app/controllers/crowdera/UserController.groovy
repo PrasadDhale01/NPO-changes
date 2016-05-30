@@ -1,11 +1,9 @@
 package crowdera
 
 import grails.plugin.springsecurity.annotation.Secured
-import org.codehaus.groovy.grails.plugins.jasper.JasperReportDef
 import org.springframework.security.core.context.SecurityContextHolder;
 import grails.util.Environment
 import javax.servlet.http.Cookie
-import org.codehaus.groovy.grails.plugins.jasper.JasperExportFormat
 
 class UserController {
     def userService

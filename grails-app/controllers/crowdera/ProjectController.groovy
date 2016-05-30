@@ -842,7 +842,6 @@ class ProjectController {
             //Send draft creation email to info@crowdera.co
             def currentEnv = projectService.getCurrentEnvironment()
             if(currentEnv == 'production' || currentEnv== 'prodIndia'){
-                def base_url= grailsApplication.config.crowdera.BASE_URL
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
                 mandrillService.sendDraftInfoEmail(params.title, user, currentEnv, dateFormat.format(project.created) )
             }

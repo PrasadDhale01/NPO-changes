@@ -801,7 +801,7 @@ class FundController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def moveContributions(){
         def title = projectService.getVanityTitleFromId(params.id)
-        boolean flag = contributionService.moveContribution(params, userService.getCurrentUser());
+        contributionService.moveContribution(params, userService.getCurrentUser());
         redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
     }
 

@@ -51,24 +51,8 @@ class ContributionService {
         
         Contribution contribution = Contribution.get(params.long("contributiondetailId"));
         if (contribution && (moveFrom?.id != moveTo?.id)) {
-            println "moveFrom?. ===== "+ moveFrom?.id
-            println "moveTO?. ===== "+ moveTo?.id
-        
-//            if (moveFrom) {
-                moveFrom?.removeFromContributions(contribution)
-//            } else {
-//                if (userService.isAdmin() || userService.isCampaignAdmin(project, user.username)) {
-//                    moveFrom?.removeFromContributions(contribution)
-//                } else {
-//                    Team ownerTeam = Team.FindByUserAndProject(project.user, project)
-//                    ownerTeam?.removeFromContributions(contribution)
-//                }
-//                
-//            }
+            moveFrom?.removeFromContributions(contribution)
             moveTo?.addToContributions(contribution)
-            return true;
-        } else {
-            return false;
         }
     }
     

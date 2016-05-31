@@ -32,7 +32,6 @@ class ProjectController {
 	def mandrillService
 	def contributionService
 	def socialAuthService
-    def sessionServiceProxy
 
 	def FORMCONSTANTS = [
 		/* Beneficiary */

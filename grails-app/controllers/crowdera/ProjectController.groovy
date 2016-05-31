@@ -32,6 +32,7 @@ class ProjectController {
 	def mandrillService
 	def contributionService
 	def socialAuthService
+    def sessionServiceProxy
 
 	def FORMCONSTANTS = [
 		/* Beneficiary */
@@ -632,20 +633,16 @@ class ProjectController {
         }
     }
     
-    @Secured(['ROLE_USER'])
-    def ContributorNames(){
-        def fundraiser = params.fundraiser
-        def project = Project.get(params.projectId)
-        def fundraiserName = projectService.getFundraiserByFirstnameAndLastName(fundraiser, project.teams)
-        def contributorNames = contributionService.getContributorNames(fundraiserName, project)
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def ContributorNames() {
+        def teamContributionList = contributionService.getContributionListByTeamId(params.long('teamId'))
         
-        if(contributorNames){
-            render(contentType: 'text/json') {['data': contributorNames]}
-        }else{
+        if(teamContributionList.isEmpty()){
             render(contentType: 'text/json') {['data': '']}
+        } else{
+            render(contentType: 'text/json') {['data': teamContributionList]}
         }
     }
-    
     
     @Secured(['ROLE_ADMIN'])
     def manageCampaignDeadline(){
@@ -1310,8 +1307,9 @@ class ProjectController {
 			def teamOffset = teamObj.maxrange
 			def validatedTeam = teamObj.teamList
 			def totalteams = teamObj.teams
-              def enableTeamNamesList = projectService.getEnableTeamFirstNameAndLastName(validatedTeam)
-              def teamNameList=projectService.getTeamFirstNameAndLastName(validatedTeam)
+            
+            def enableTeamNamesList = projectService.getEnableTeamFirstNameAndLastName(validatedTeam)
+            def teamNameList = projectService.getTeamFirstNameAndLastName(validatedTeam)
 
 			def unValidatedTeam = projectService.getTeamToBeValidated(project)
 			def discardedTeam = projectService.getDiscardedTeams(project)

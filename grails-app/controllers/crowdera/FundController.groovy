@@ -798,38 +798,11 @@ class FundController {
         }
     }
     
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def moveContributions(){
-            
-        def project = Project.get(params.id)
         def title = projectService.getVanityTitleFromId(params.id)
-        def fundraiser = params.contributionFR //from
-        def contributor= params.contributorFR2 // to
-        def contributorName = params.contributorName
-        def amount= params.double('contributionAmount')
-        def teamFundraiser
-        def teamContributor
-
-        def fundRaiserUserName = projectService.getFundraiserByFirstnameAndLastName(fundraiser, project.teams)
-        def contributorUserName = projectService.getFundraiserByFirstnameAndLastName(contributor, project.teams)
-        def contribution = contributionService.getContributionForMoving(contributorName, fundRaiserUserName, amount,contributorUserName, project)
-        
-        if(fundRaiserUserName){
-            teamFundraiser = projectService.getTeamByUsernameAndProject(fundRaiserUserName, project)
-        }
-
-        if(contributorUserName){
-            teamContributor = projectService.getTeamByUsernameAndProject(contributorUserName, project)
-        }
-
-        if((teamFundraiser!=teamContributor) && (contribution!=null)){
-            teamFundraiser.removeFromContributions(contribution) //from
-            teamContributor.addToContributions(contribution)  //to
-            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
-        }else{
-            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
-        }
-        
+        boolean flag = contributionService.moveContribution(params, userService.getCurrentUser());
+        redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
     }
 
 }

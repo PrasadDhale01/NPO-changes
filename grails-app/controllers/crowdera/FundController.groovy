@@ -173,8 +173,6 @@ class FundController {
                 reward = rewardService.getNoReward()
             }
             
-            def amount = params.double(('amount'))
-
             def totalContribution= contributionService.getTotalContributionForProject(project)
             def contPrice = params.double(('amount'))
             def amt =project.amount

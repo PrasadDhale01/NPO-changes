@@ -61,11 +61,11 @@
                             <h4 class="heading">ENTER OFFLINE CONTRIBUTION</h4>
                         </div>
                         <div class="col-sm-12 margin">
-	                        <p class="justify text-paragraph">We understand that not all your friends will contribute online.
-	                         Give your offline contributors due credit by listing their name and contribution amount below. 
-	                         The offline contributions will be listed under the contribution tab on your campaign.
-	                          Each cent counts to make a campaign successful! 
-	                        </p>
+                            <p class="justify text-paragraph">We understand that not all your friends will contribute online.
+                             Give your offline contributors due credit by listing their name and contribution amount below. 
+                             The offline contributions will be listed under the contribution tab on your campaign.
+                              Each cent counts to make a campaign successful! 
+                            </p>
                         </div>
                         <g:hiddenField name="manageCampaign" value="${manageCampaign}"></g:hiddenField>
                         <div class="col-sm-12">
@@ -235,55 +235,55 @@
     
 
  <!-- Modal HTML -->
-    <div id="moveContributionModal" class="modal fade">
-        <div class="modal-dialog">
-            <g:form action="moveContributions" controller="fund" method="post" id="${project.id}">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title heading"><b>Move Contribution</b></h4>
-                        <g:hiddenField name="projectId" class="projectId" id="projectId" value="${projectId}"/>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="text col-sm-3 moveContribution">From</label>
-                                <div class="col-sm-9"> 
-                                     <g:select from="${enableTeamNames}" class="form-control contributionFR" name="contributionFR" noSelection="['':'Move contribution from']"/><br>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="text col-sm-3 moveContribution">To</label>
-                                <div class="col-sm-9"> 
-                                <g:select from="${teamNames}" class="form-control contributorFR2" name="contributorFR2" noSelection="['':'Move contribution to']"/><br>
-                               </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="text col-sm-3 moveContribution">Contributor</label>
-                                <div class="col-sm-9"> 
-                                 <g:select from="" class="form-control contributorName" name="contributorName" id="contributorName" noSelection="['':'Contributor Name']"/><br>
-                               </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="text col-sm-3 moveContribution">Contribution(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
-                                <div class="col-sm-9">
-                                    <g:select from="" class="form-control contributionAmount" name="contributionAmount" id="contributionAmt" noSelection="['':'Contribution']"/><br>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                        <button  class="btn btn-primary " id="btnMove">Move</button>
-                    </div>
+<div id="moveContributionModal" class="modal fade">
+    <div class="modal-dialog">
+        <g:form action="moveContributions" controller="fund" method="post" id="${project.id}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title heading"><b>Move Contribution</b></h4>
                 </div>
-            </g:form>
-        </div>
+                <div class="modal-body">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="text col-sm-3 moveContribution"><b>From:</b></label>
+                            <div class="col-sm-9"> 
+                                 <g:select from="${enableTeamNames}" class="form-control fundRaiserTeam" name="fundRaiserTeam" noSelection="['':'Move contribution from']" optionKey="key" optionValue="value"/><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="text col-sm-3 moveContribution"><b>To:</b></label>
+                            <div class="col-sm-9"> 
+                            <g:select from="${teamNames}" class="form-control fundRaiserTeam2" name="fundRaiserTeam2" noSelection="['':'Move contribution to']" optionKey="key" optionValue="value"/><br>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="text col-sm-3 moveContribution"><b>Contribution:</b></label>
+                            <div class="col-sm-9"> 
+                             <g:select from="" class="form-control" name="contributiondetailId" id="contributiondetailId" noSelection="['':'Select Contribution Detail']"/><br>
+                           </div>
+                        </div>
+                    </div>
+                    <%--<div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="text col-sm-3 moveContribution">Contribution(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+                            <div class="col-sm-9">
+                                <g:select from="" class="form-control contributionAmount" name="contributionAmount" id="contributionAmt" noSelection="['':'Contribution']"/><br>
+                            </div>
+                        </div>
+                    </div>
+                    --%>
+                    <div class="clear"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-md" data-dismiss="modal">Close</button>
+                    <button  class="btn btn-primary btn-md" id="btnMove">Move</button>
+                </div>
+            </div>
+        </g:form>
     </div>
+</div>

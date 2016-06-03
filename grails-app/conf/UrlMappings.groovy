@@ -74,7 +74,7 @@ class UrlMappings {
         "/campaigns-widget"(controller:'project', action:'listwidget')
         
 //        "/campaigns/$id"(controller:'project', action:'showCampaign')
-        "/campaigns/$projectTitle/$fr?"(controller:'project', action:'show')
+        "/campaigns/$projectTitle?/$fr?"(controller:'project', action:'show')
 		"/campaigns/$projectTitle/$fr/$teamCommentId"(controller:'project', action:'show')
 		"/campaigns/$projectTitle/$fr/$commentId"(controller:'project', action:'show')
         

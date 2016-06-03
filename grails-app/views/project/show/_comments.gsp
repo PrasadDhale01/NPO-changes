@@ -15,7 +15,7 @@
     }
 
     List listcomment=[]
-    if(project.user==team.user){
+    if(project?.user==team?.user){
         listcomment= projectComments
     }else{
         listcomment= teamComments
@@ -55,7 +55,7 @@
     </g:if>
 	<g:else>
 	     <div id="commentBox">
-	         <g:if test="${team.user!=project.user}">
+	         <g:if test="${team?.user!=project?.user}">
 	             <g:form controller="project" action="teamcomment"  id="${project.id}" params="['fr': fundRaiser]">
 	                 <div class="form-group">
 	                     <textarea class="form-control" name="comment" rows="4" placeholder="Leave a comment" required></textarea>
@@ -88,19 +88,19 @@
                 <g:each in="${listcomment}" var="comment">
                     <%
                         def date = dateFormat.format(comment.date)
-                        def isAnonymous = userService.isAnonymous(comment.user)
+                        def isAnonymous = userService.isAnonymous(comment?.user)
                     %>
-                    <g:if test="${user== project.user}">
+                    <g:if test="${user== project?.user}">
                         <g:if test="${!comment.status}">
                             <div class="modal-body tile-footer show-comments-date">
 				                <g:if test="${isAnonymous}">
-                                    <dt>By ${comment.userName}, on ${date}</dt>
+                                    <dt>By ${comment?.userName}, on ${date}</dt>
                                 </g:if>
                                 <g:else>
-                                    <dt>By ${userService.getFriendlyFullName(comment.user)}, on ${date}</dt>
+                                    <dt>By ${userService.getFriendlyFullName(comment?.user)}, on ${date}</dt>
                                 </g:else>
 				                <dd>${comment.comment}</dd>
-                                <g:if test="${comment.user == currentUser || project.user == currentUser}">
+                                <g:if test="${comment?.user == currentUser || project?.user == currentUser}">
                                     <div class="editAndDeleteBtn deleteComment">
                                         <g:form controller="project" action="commentdelete" method="post" params="['projectId':projectId, 'fr': fundRaiser]">
                                             <g:hiddenField name='commentId' value="${comment.id}"></g:hiddenField>
@@ -108,7 +108,7 @@
                                             <i class="glyphicon glyphicon-trash"></i>
                                             </button>
                                         </g:form>
-                                        <g:if test="${comment.user == currentUser}">
+                                        <g:if test="${comment?.user == currentUser}">
                                             <g:form controller="project" name="editComment" action="editComment" method="post" params="['projectTitle': vanityTitle, 'fr': fundRaiser]">
                                                 <g:hiddenField name='commentId' value="${comment.id}"></g:hiddenField>
                                                 <button type="submit" class="projectedit close" id="projectedit">
@@ -124,14 +124,14 @@
                     <g:else>
                         <div class="modal-body tile-footer show-comments-date">
                             <g:if test="${isAnonymous}">
-                                <dt>By ${comment.userName}, on ${date}</dt>
+                                <dt>By ${comment?.userName}, on ${date}</dt>
                             </g:if>
                             <g:else>
-                                <dt>By ${userService.getFriendlyFullName(comment.user)}, on ${date}</dt>
+                                <dt>By ${userService.getFriendlyFullName(comment?.user)}, on ${date}</dt>
                             </g:else>
                             <dd>${comment.comment}</dd>
-                            <g:if test="${team.user!=project.user || comment.user == currentUser}">
-                                <g:if test="${team.user == currentUser || comment.user == currentUser}">
+                            <g:if test="${team?.user!=project?.user || comment?.user == currentUser}">
+                                <g:if test="${team?.user == currentUser || comment?.user == currentUser}">
                                     <div class="editAndDeleteBtn deleteComment">
                                         <g:form controller="project" action="commentdelete" method="post" params="['projectId':projectId, 'fr': fundRaiser]">
                                             <g:hiddenField name='teamCommentId' value="${comment.id}"></g:hiddenField>
@@ -139,7 +139,7 @@
                                             <i class="glyphicon glyphicon-trash"></i>
                                             </button>
                                         </g:form>
-                                        <g:if test="${comment.user == currentUser}">
+                                        <g:if test="${comment?.user == currentUser}">
                                             <g:form controller="project" name="editcomment" action="editComment" method="post" params="['projectTitle': vanityTitle, 'fr': fundRaiser]">
                                                 <g:hiddenField name='teamCommentId' value="${comment.id}"></g:hiddenField>
                                                     <button type="submit" class="projectedit close pull-right" id="projectedit">

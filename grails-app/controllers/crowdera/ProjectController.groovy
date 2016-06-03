@@ -839,7 +839,7 @@ class ProjectController {
             def currentEnv = projectService.getCurrentEnvironment()
             if(currentEnv == 'production' || currentEnv== 'prodIndia'){
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-                mandrillService.sendDraftInfoEmail(params.title, user, currentEnv, dateFormat.format(project.created) )
+                mandrillService.sendDraftInfoEmail(params.title, user, currentEnv, dateFormat.format(project.created), project.beneficiary.telephone )
             }
             
             project.beneficiary = beneficiary;

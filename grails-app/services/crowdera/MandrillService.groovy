@@ -895,8 +895,9 @@ class MandrillService {
         sendTemplate(user, 'new_user_confirmation', globalMergeVars, tags)
     } 
     
-    public def sendDraftInfoEmail(def prjTitle, User user, def domainName, def draftDate) {
+    public def sendDraftInfoEmail(def prjTitle, User user, def domainName, def draftDate, def userContact) {
         def emailList=['info@crowdera.co', 'minal@crowdera.co', 'himanchan@crowdera.co']
+        
         if(domainName=='production'){
             domainName='crowdera.co'
         }else{
@@ -915,6 +916,12 @@ class MandrillService {
             ], [
                 'name': 'CMPDATE',
                 'content': draftDate
+            ], [
+                'name' : 'EMAIL_ID',
+                'content':user.username
+            ], [
+                'name' : 'CONTACT',
+                'content' : userContact?userContact:"NA"
             ]]
     
             def tags = ['draft-info']

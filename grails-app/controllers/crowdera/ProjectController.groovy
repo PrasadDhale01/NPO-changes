@@ -840,7 +840,7 @@ class ProjectController {
             if(currentEnv == 'production' || currentEnv== 'prodIndia'){
                 def base_url= grailsApplication.config.crowdera.BASE_URL
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-                mandrillService.sendDraftInfoEmail(params.title, user, currentEnv, dateFormat.format(project.created) )
+                mandrillService.sendDraftInfoEmail(params.title, user, currentEnv, dateFormat.format(project.created), project.beneficiary.telephone )
             }
             
             project.beneficiary = beneficiary;

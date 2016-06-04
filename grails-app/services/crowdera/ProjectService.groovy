@@ -84,29 +84,28 @@ class ProjectService {
          return null
     }
     
-    def getEnableTeamFirstNameAndLastName(def team){
-        def teamNameList = []
-        if(team){
-            team.each{
-                if(it?.enable && it?.contributions){
-                    teamNameList.add(it?.user?.firstName +' ' + it?.user?.lastName)
-                }
+    def getEnableTeamFirstNameAndLastName(def teams) {
+        Map teamNameMap = [:]
+        
+        teams.each { team->
+            if(team.enable && team.contributions.size() > 0){
+                teamNameMap.put(team.id, team.user.firstName +' ' + team.user.lastName)
             }
         }
         
-        return teamNameList
+//        sessionServiceProxy.addKeyToPageAttribute('', );
+        return teamNameMap
     }
     
-    def getTeamFirstNameAndLastName(def team){
-        def teamNameList=[]
+    def getTeamFirstNameAndLastName(def teams){
+        Map teamNameMap = [:]
         
-        if(team){
-            team.each{
-                teamNameList.add(it?.user?.firstName +' ' + it?.user?.lastName)
+        teams.each { team ->
+            if(team.enable) {
+                teamNameMap.put(team.id, team.user.firstName +' ' + team.user.lastName)
             }
         }
-        
-        return teamNameList
+        return teamNameMap
     }
 
     def getProjectAdminByEmail(def email){
@@ -646,7 +645,7 @@ class ProjectService {
 		 def user = createUserForNonRegisteredContributors(contributorName, contributorEmail1)
 		 def reward = rewardService.getNoReward()
 		 
-         def fundRaiser = userService.getCurrentUser()
+         User fundRaiser = userService.getCurrentUser()
 		 def username = fundRaiser.username
 		 
          def currency
@@ -670,12 +669,17 @@ class ProjectService {
 			 )
 			 project.addToContributions(contribution).save(failOnError: true)
  
-			 if(project.teams) {
-				 Team team = Team.findByUserAndProject(fundRaiser,project)
-				 if (team) {
-					 team.addToContributions(contribution).save(failOnError: true)
-				 }
-			 }
+			 Team team = Team.findByUserAndProject(fundRaiser,project)
+			 if (team) {
+				 team.addToContributions(contribution).save(failOnError: true)
+			 } else {
+                 
+                 if (userService.isAdmin() || userService.isCampaignAdmin(project, username)) {
+                     team = Team.findByUserAndProject(project.user , project);
+                     team.addToContributions(contribution).save(failOnError: true)
+                 }
+             }
+             
 		 }
          
 	 }
@@ -1597,10 +1601,11 @@ class ProjectService {
            return null
         }
 
-        if (currentEnv == 'staging' || currentEnv == 'production')
+        if (currentEnv == 'staging' || currentEnv == 'production'){
             projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
-        else
+        }else{
             projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
+        }
    
         return projects
     }
@@ -2488,20 +2493,20 @@ class ProjectService {
         }
     }
     
-    def getFundraiserByFirstnameAndLastName(def username, def teams){
-        def fundraiser = null
-        
-        if(username && teams){
-            teams.each{
-                def name = it.user.firstName+" " + it.user.lastName
-                if(name.equalsIgnoreCase(username)){
-                    fundraiser = it.user.username
-                }
-            }
-        }
-        
-        return fundraiser
-    }
+//    def getFundraiserByFirstnameAndLastName(def username, def teams){
+//        def fundraiser = null
+//        
+//        if(username && teams){
+//            teams.each{
+//                def name = it.user.firstName+" " + it.user.lastName
+//                if(name.equalsIgnoreCase(username)){
+//                    fundraiser = it.user.username
+//                }
+//            }
+//        }
+//        
+//        return fundraiser
+//    }
     
     def getFundRaisersForTeam(Project project, User user) {
         def teams = project.teams
@@ -5544,7 +5549,6 @@ class ProjectService {
     }
     
     def sendTaxReceiptToContributors(def params){
-        def list = [];
         def idList = params.list.split(",");
         idList = idList.collect { it.trim() }
         mandrillService.sendTaxReceiptToContributors(idList);

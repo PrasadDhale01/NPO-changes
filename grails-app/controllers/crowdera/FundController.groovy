@@ -200,7 +200,7 @@ class FundController {
             } else {
                 reward = rewardService.getNoReward()
             }
-
+            
             def amount = params.double(('amount'))
 
             def totalContribution= contributionService.getTotalContributionForProject(project)

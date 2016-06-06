@@ -1,6 +1,7 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
+<g:set var="userService" bean="userService"/>
 <%
     def isFundingAchieved = contributionService.isFundingAchievedForProject(project)
     def percentage = contributionService.getPercentageContributionForProject(project)
@@ -12,7 +13,21 @@
     def isFundingOpen = projectService.isFundingOpen(project)
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
     def contribution = projectService.getDataType(contributedSoFar)
-    def amount = projectService.getDataType(project.amount)
+    def contributionamount = projectService.getDataType(contributedSoFar)
+   
+    def goal
+    def contributedAmount
+    if (currentTeam) {
+        if (currentTeam.user == project.user) {
+            goal = project.amount.round()
+        } else {
+            goal = currentTeam.amount.round()
+        }
+         
+        contributedAmount = contributionService.getTotalContributionForUser(currentTeam.contributions)
+    }
+    def amount = projectService.getDataType(contributedAmount)
+    
     def username = project.user.username
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
     def cents
@@ -29,7 +44,7 @@
    <div class="imageWithTag">
     <div class="under">
      <div class="days-left-caption">
-      Days left 
+      Days left
       <g:if test="${projectService.getRemainingDay(project) > 0 && projectService.getRemainingDay(project) < 10}">
           0${projectService.getRemainingDay(project)}
       </g:if>
@@ -37,15 +52,17 @@
           ${projectService.getRemainingDay(project)}
       </g:else>
      </div>
+  
      <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}" />
+     
      <div class="amount-caption">
       <span class="pull-left">
-          Raised 
+          Raised
           <g:if test="${project.payuStatus}">
               <span class="fa fa-inr"></span>
           </g:if>
           <g:else>$</g:else>
-             ${contribution}
+             ${amount}
       </span>
       <span class="pull-right">
           Goal
@@ -53,7 +70,7 @@
               <span class="fa fa-inr"></span>
           </g:if>
           <g:else>$</g:else>
-          ${amount}
+          ${goal}
       </span>
      </div>
     </div>

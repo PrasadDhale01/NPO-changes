@@ -1262,8 +1262,8 @@ img.how-it-success-img{
     width: 100%;
 }
 .managecampaignDescription {
-    border: #e7e7e7;
-    background-color: #e7e7e7;
+    border:#f7f7f7;
+    background-color: #f7f7f7;
     height: 90px;
     margin-top: -3px
 }
@@ -1758,4 +1758,11 @@ a.thankyou-textdeco {
     line-height: 26px;
     letter-spacing: 0;
     word-wrap: break-word;
+}
+.hm-yourstory {
+    padding-top: 8px;
+}
+#deadline.input-lg,
+#daysLeft.input-lg {
+    width: 100%;
 }

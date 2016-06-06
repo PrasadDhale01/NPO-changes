@@ -173,8 +173,6 @@ class FundController {
                 reward = rewardService.getNoReward()
             }
             
-            def amount = params.double(('amount'))
-
             def totalContribution= contributionService.getTotalContributionForProject(project)
             def contPrice = params.double(('amount'))
             def amt =project.amount
@@ -207,27 +205,33 @@ class FundController {
     def acknowledge() {
         Contribution contribution = contributionService.getContributionById(params.long('cb'))
         
-        def project = contribution?.project
-        def reward = contribution?.reward
-        def user = contribution?.user
-        def fundraiser = userService.getUserById(params.long('fr'))
-        def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-        def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+        Project project = contribution?.project
+        Reward reward = contribution?.reward
+        User user = contribution?.user
+        User fundraiser = userService.getUserById(params.long('fr'))
+        
+        String request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+        String base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+        
         if (userService.getCurrentUser()){
+        
             def vanityusername = userService.getVanityNameFromUsername(fundraiser?.username, project?.id)
             def shortUrl = projectService.getShortenUrl(project?.id, vanityusername)
             def twitterShareUrl = base_url+"/c"+shortUrl
             mandrillService.sendThankYouMailToContributors(contribution, project, contribution.amount, fundraiser)
             render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser, projectTitle:params.projectTitle, twitterShareUrl:twitterShareUrl]
+        
         } else {
+            
             def reqUrl = base_url+"/fund/sendEmail?cb=${params.cb}&fr=${params.fr}&projectTitle=${params.projectTitle}"
+            
             def loginSignUpCookie = projectService.setLoginSignUpCookie()
             def campaignNameCookie = projectService.setCampaignNameCookie(project?.title)
             def fundingAmountCookie = projectService.setFundingAmountCookie(contribution?.amount)
             def contributorNameCookie = projectService.setContributorName(contribution?.contributorName)
             def setRequestUrlCookie = projectService.setRequestUrlCookie(reqUrl)
 
-            if(setRequestUrlCookie){
+            if(setRequestUrlCookie) {
                 response.addCookie(setRequestUrlCookie)
             }
             if (loginSignUpCookie) {
@@ -551,16 +555,25 @@ class FundController {
     }
 
     def userContribution(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address){
-		def contributionId = projectService.getUserContributionDetails(project, reward, amount, transactionId, users, fundraiser, params,  address, request)
-		conId = contributionId
-		frId = fundraiser.id
-        def projectTitle
+        String projectTitle;
         if (project.charitableId) {
             projectTitle = params.projectTitle
         } else {
             projectTitle = request.getParameter('projectTitle')
         }
-		redirect(controller: 'fund', action: 'acknowledge' , params: [cb: contributionId, fr:fundraiser.id, projectTitle: projectTitle])
+        
+        Transaction transaction = contributionService.getTransactionByTransactionId(transactionId)
+        if (transaction) {
+            conId = transaction.contribution.id
+            frId = fundraiser.id
+            redirect(controller: 'fund', action: 'acknowledge' , params: [cb: transaction.contribution.id, fr:fundraiser.id, projectTitle: projectTitle])
+        } else {
+            def contributionId = projectService.getUserContributionDetails(project, reward, amount, transactionId, users, fundraiser, params,  address, request)
+            conId = contributionId
+            frId = fundraiser.id
+            redirect(controller: 'fund', action: 'acknowledge' , params: [cb: contributionId, fr:fundraiser.id, projectTitle: projectTitle])
+        }
+        
     }
 
     def paypalurl(def params, User fundraiser, User user){
@@ -599,7 +612,7 @@ class FundController {
 
         def paykeytemp = projectService.getpayKeytempObject(timestamp)
         def payKey = paykeytemp?.paykey
-        paykeytemp.delete()
+        paykeytemp?.delete()
         
         if (result) {
             userContribution(project,reward,amount,payKey,user,fundraiser,request,address)
@@ -783,38 +796,11 @@ class FundController {
         }
     }
     
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def moveContributions(){
-            
-        def project = Project.get(params.id)
         def title = projectService.getVanityTitleFromId(params.id)
-        def fundraiser = params.contributionFR //from
-        def contributor= params.contributorFR2 // to
-        def contributorName = params.contributorName
-        def amount= params.double('contributionAmount')
-        def teamFundraiser
-        def teamContributor
-
-        def fundRaiserUserName = projectService.getFundraiserByFirstnameAndLastName(fundraiser, project.teams)
-        def contributorUserName = projectService.getFundraiserByFirstnameAndLastName(contributor, project.teams)
-        def contribution = contributionService.getContributionForMoving(contributorName, fundRaiserUserName, amount,contributorUserName, project)
-        
-        if(fundRaiserUserName){
-            teamFundraiser = projectService.getTeamByUsernameAndProject(fundRaiserUserName, project)
-        }
-
-        if(contributorUserName){
-            teamContributor = projectService.getTeamByUsernameAndProject(contributorUserName, project)
-        }
-
-        if((teamFundraiser!=teamContributor) && (contribution!=null)){
-            teamFundraiser.removeFromContributions(contribution) //from
-            teamContributor.addToContributions(contribution)  //to
-            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
-        }else{
-            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
-        }
-        
+        contributionService.moveContribution(params, userService.getCurrentUser());
+        redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
     }
 
 }

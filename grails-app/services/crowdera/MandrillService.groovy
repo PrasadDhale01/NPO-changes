@@ -11,7 +11,19 @@ class MandrillService {
     def grailsLinkGenerator
 
     def BASE_URL = "https://mandrillapp.com/api/1.0/"
-
+    
+    def getCdraDomain(def crowderaDomain){
+        def currentEnv
+        
+        if(crowderaDomain == 'testIndia' || crowderaDomain == 'stagingIndia' || crowderaDomain == 'prodIndia'){
+            currentEnv = 'http://www.crowdera.in'
+        } else {
+            currentEnv = 'https://crowdera.co'
+        }
+        
+        return currentEnv
+    }
+    
     def sendTemplate(User user, String templateName, List globalMergeVars, List tags) {
         def query =  [
             key: grailsApplication.config.mandrill.apiKey,
@@ -117,7 +129,9 @@ class MandrillService {
 
     def sendBeneficiaryEmail(User user) {
         def link = grailsLinkGenerator.link(controller: 'project', action: 'create', absolute: true)
-
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
+        
         def globalMergeVars = [
             [
                 'name': 'LINK',
@@ -130,6 +144,10 @@ class MandrillService {
             [
                 'name': 'EMAIL',
                 'content': user.email
+            ],
+            [
+                'name': 'CDRADOMAIN',
+                'content': cdraDomain
             ]
         ]
 
@@ -142,7 +160,9 @@ class MandrillService {
     def sendContributorEmail(User user, Project project){
 
         def link = grailsLinkGenerator.link(controller: 'fund', action: 'thankingContributors',id:project.id ,absolute: true)
-
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
+        
         def globalMergeVars = [
             [
                 'name': 'LINK',
@@ -156,10 +176,14 @@ class MandrillService {
                 'name': 'EMAIL',
                 'content': user.email
             ],
-	    [
-		'name':'TITLE',
-		'content':project.title
-	    ]
+	        [
+                'name':'TITLE',
+                'content':project.title
+            ],
+            [
+                'name':'CDRADOMAIN',
+                'content': cdraDomain
+            ]
         ]
 
         def tags = ['thanking-contributors']
@@ -169,9 +193,11 @@ class MandrillService {
 
    def sendResetPassword(User user) {
         def link = grailsLinkGenerator.link(controller: 'login', action: 'confirm_reset', id: user.resetCode, absolute: true)
-	def createButton = grailsLinkGenerator.link(controller: 'project', action: 'create',absolute: true)
-	def home = grailsLinkGenerator.link(controller: 'home', action: 'index', absolute: true)
-
+        def createButton = grailsLinkGenerator.link(controller: 'project', action: 'create',absolute: true)
+        def home = grailsLinkGenerator.link(controller: 'home', action: 'index', absolute: true)
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
+        
         def globalMergeVars = [
             [
                 'name': 'LINK',
@@ -185,10 +211,14 @@ class MandrillService {
                 'name': 'NAME',
                 'content': user.firstName 
             ],
-	    [
-	        'name': 'HOME',
-		'content': home
-	    ]
+	        [
+                'name': 'HOME',
+                'content': home
+            ],
+            [
+                'name': 'CDRADOMAIN',
+                'content': cdraDomain
+            ]
 	]
 
         def tags = ['reset-password']
@@ -246,6 +276,8 @@ class MandrillService {
 			    projectImageUrl = "https:"+imageUrl
 			}
         }
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
         emailList.each { email ->
             def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id,params:[fr:fundRaiser], absolute: true)
             def globalMergeVars = [
@@ -272,6 +304,10 @@ class MandrillService {
                 [
                     'name': 'IMAGEURL',
                     'content': projectImageUrl
+                ],
+                [
+                    'name': 'CDRADOMAIN',
+                    'content': cdraDomain
                 ]
             ]
 
@@ -335,6 +371,8 @@ class MandrillService {
 
     def shareContribution(def emailList, String name, String message, Project project, User fundraiser) {
         def imageUrl = project.imageUrl
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
         def projectImageUrl
         if (imageUrl) {
             imageUrl = project.imageUrl[0].getUrl()
@@ -370,6 +408,10 @@ class MandrillService {
                 [
                     'name': 'IMAGEURL',
                     'content': projectImageUrl
+                ],
+                [
+                    'name': 'CDRADOMAIN',
+                    'content': cdraDomain
                 ]
             ]
 
@@ -423,6 +465,8 @@ class MandrillService {
         def registerLink = grailsLinkGenerator.link(controller: 'login', action: 'register', id: project.id, absolute: true)
         def imageUrl = project.imageUrl
 		def blogUrl = "http://crowdera.tumblr.com"
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
 		def projectImageUrl
         if (imageUrl) {
             imageUrl = project.imageUrl[0].getUrl()
@@ -464,6 +508,10 @@ class MandrillService {
             [
                 'name': 'IMAGEURL',
                 'content': projectImageUrl
+            ],
+            [
+                'name': 'CDRADOMAIN',
+                'content': cdraDomain
             ]
         ]
 
@@ -485,6 +533,9 @@ class MandrillService {
                 projectImageUrl = "https:"+imageUrl
             }
         }
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
+        
         def globalMergeVars = [[
             'name': 'LINK',
             'content': link
@@ -506,6 +557,9 @@ class MandrillService {
         ], [
             'name': 'IMAGEURL',
             'content': projectImageUrl
+        ], [
+            'name': 'CDRADOMAIN',
+            'content': cdraDomain
         ]]
 
         def tags = ['project-update-email']
@@ -549,6 +603,8 @@ class MandrillService {
     def sendUpdateEmails(def name, def email, Project project, ProjectUpdate projectUpdate,User currentUser, def title) {
         def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, absolute: true)
         List imageUrls = projectUpdate.imageUrls
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
         def projectImageUrl
         def url
         if(imageUrls) {
@@ -583,6 +639,9 @@ class MandrillService {
          ],[
              'name': 'UPDATETITLE',
              'content': title
+         ],[
+             'name': 'CDRADOMAIN',
+             'content': cdraDomain
          ]]
          
          def tags = ['campaign-update']
@@ -591,6 +650,8 @@ class MandrillService {
     }
 	
 	def sendCampaignDeleteEmailsToOwner(List emailList, Project project,User currentUser) {
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
 		emailList.each{email ->
 			if(email!=null){
 				def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, absolute: true)
@@ -606,7 +667,10 @@ class MandrillService {
 				], [
 				 	'name': 'TITLE',
 					 'content': project.title
-				]]
+				],[
+                     'name': 'CDRADOMAIN',
+                     'content': cdraDomain
+                ]]
 			 
 				def tags = ['campaign-delete']
 			 
@@ -628,6 +692,8 @@ class MandrillService {
 					projectImageUrl = "https:"+imageUrl
 				}
             }
+            def currentEnv = Environment.current.getName()
+            def cdraDomain = getCdraDomain(currentEnv)
             def globalMergeVars = [
                 [
                     'name': 'LINK',
@@ -647,6 +713,9 @@ class MandrillService {
                 ],[
                     'name': 'IMAGEURL',
                     'content': projectImageUrl
+                ],[
+                    'name': 'CDRADOMAIN',
+                    'content': cdraDomain
                 ]
             ]
 
@@ -662,6 +731,8 @@ class MandrillService {
         def link = base_url+"/howitworks"
         def blogUrl = "http://crowdera.tumblr.com"
         def date = new Date()
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
         def globalMergeVars = [
             [
                 'name': 'LINK',
@@ -681,6 +752,9 @@ class MandrillService {
             ],[
                 'name': 'DATE',
                 'content': date.format("YYYY-MM-DD HH:mm:ss")
+            ],[
+                'name': 'CDRADOMAIN',
+                'content': cdraDomain
             ]
         ]
         
@@ -717,6 +791,8 @@ class MandrillService {
         def url = base_url+"/howitworks"
         def link = grailsLinkGenerator.link(controller: 'project', action: 'list', absolute: true)
         def create_url = grailsLinkGenerator.link(controller: 'project', action: 'create', absolute: true)
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
         def globalMergeVars = [
             [
                 'name': 'LINK',
@@ -745,6 +821,9 @@ class MandrillService {
             ],[
                 'name': 'ATTACHMENTURL',
                 'content': attachmentUrl
+            ],[
+                'name': 'CDRADOMAIN',
+                'content': cdraDomain
             ]
         ]
 
@@ -794,7 +873,9 @@ class MandrillService {
     
     public def sendMandrillEmail(User user) {
         def link = grailsLinkGenerator.link(controller: 'login', action: 'confirm', id: user.confirmCode, absolute: true)
-
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
+        
         def globalMergeVars = [[
             'name': 'LINK',
             'content': link
@@ -804,15 +885,19 @@ class MandrillService {
         ], [
             'name': 'EMAIL',
             'content': user.email
-        ]]
+        ], [
+            'name': 'CDRADOMAIN',
+            'content': cdraDomain
+        ]  ]
 
         def tags = ['registration']
 
         sendTemplate(user, 'new_user_confirmation', globalMergeVars, tags)
     } 
     
-    public def sendDraftInfoEmail(def prjTitle, User user, def domainName, def draftDate) {
+    public def sendDraftInfoEmail(def prjTitle, User user, def domainName, def draftDate, def userContact) {
         def emailList=['info@crowdera.co', 'minal@crowdera.co', 'himanchan@crowdera.co']
+        
         if(domainName=='production'){
             domainName='crowdera.co'
         }else{
@@ -831,6 +916,12 @@ class MandrillService {
             ], [
                 'name': 'CMPDATE',
                 'content': draftDate
+            ], [
+                'name' : 'EMAIL_ID',
+                'content':user.username
+            ], [
+                'name' : 'CONTACT',
+                'content' : userContact?userContact:"NA"
             ]]
     
             def tags = ['draft-info']
@@ -841,6 +932,8 @@ class MandrillService {
 	
     public def reSendConfirmationMail(User user) {
 	def link = grailsLinkGenerator.link(controller: 'login', action: 'confirm', id: user.confirmCode, absolute: true)
+    def currentEnv = Environment.current.getName()
+    def cdraDomain = getCdraDomain(currentEnv)
 
 	def globalMergeVars = [[
             'name': 'LINK',
@@ -854,7 +947,10 @@ class MandrillService {
 	], [
 	    'name':'DATE',
 	    'content': user.dateCreated
-	]]
+	], [
+        'name':'CDRADOMAIN',
+        'content': cdraDomain
+    ]]
 
 	def tags = ['resend-confirmation-mail']
 
@@ -880,6 +976,7 @@ class MandrillService {
         def beneficiary = project.user
         def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:fundRaiserUserName], absolute: true)
         def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
         def fblink = "https://www.facebook.com"
         def currency
         def naamFoundationCampaign
@@ -920,6 +1017,9 @@ class MandrillService {
         ], [
             'name' : 'NAAM_FOUNDATION_PROJECT',
             'content' : naamFoundationCampaign
+        ], [
+            'name' : 'CDRADOMAIN',
+            'content': cdraDomain
         ]
 	]
 
@@ -995,6 +1095,7 @@ class MandrillService {
             link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:username], absolute: true, fragment: 'contributions')
         }
         def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
         def currency
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
             currency = 'INR'
@@ -1020,6 +1121,9 @@ class MandrillService {
             ], [
                 'name': 'CURRENCY',
                 'content': currency
+            ], [
+                'name': 'CDRADOMAIN',
+                'content': cdraDomain
             ]
         ]
 
@@ -1032,7 +1136,9 @@ class MandrillService {
         def user = project.user
         def username = user.username
         def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', id: project.id, params:[fr:username], absolute: true, fragment: 'manageTeam')
-
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
+        
         def globalMergeVars = [
             [
                 'name': 'LINK',
@@ -1046,6 +1152,9 @@ class MandrillService {
             ],[
                 'name': 'TITLE',
                 'content': project.title
+            ],[
+                'name': 'CDRADOMAIN',
+                'content': cdraDomain
             ]
         ]
 
@@ -1066,6 +1175,8 @@ class MandrillService {
 				projectImageUrl = "https:"+imageUrl
 			}
 		}
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
 		
         def globalMergeVars = [
             [
@@ -1080,6 +1191,9 @@ class MandrillService {
             ],[
                 'name': 'TITLE',
                 'content': project.title
+            ],[
+                'name': 'CDRADOMAIN',
+                'content': cdraDomain
             ]
         ]
 
@@ -1101,7 +1215,9 @@ class MandrillService {
 				projectImageUrl = "https:"+imageUrl
 			}
 		}
-		
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
+        
         def globalMergeVars = [
             [
                 'name': 'LINK',
@@ -1118,6 +1234,9 @@ class MandrillService {
             ],[
                 'name': 'OWNER',
                 'content': project.user.firstName +' '+ project.user.lastName
+            ], [
+                'name': 'CDRADOMAIN',
+                'content': cdraDomain
             ]
         ]
 
@@ -1135,6 +1254,7 @@ class MandrillService {
         }
         def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', fragment:'payments', id: project.id, absolute: true)
         def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
         def currency
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
             currency = 'INR'
@@ -1163,6 +1283,9 @@ class MandrillService {
             ], [
                 'name': 'CURRENCY',
                 'content': currency
+            ], [
+                'name': 'CDRADOMAIN',
+                'content': cdraDomain
             ]
         ]
         
@@ -1178,7 +1301,9 @@ class MandrillService {
 		def goodImgLink = "https://s3.amazonaws.com/crowdera/assets/good.png"
 		def badImgLink = "https://s3.amazonaws.com/crowdera/assets/sad.png"
 		def awesomeImgLink = "https://s3.amazonaws.com/crowdera/assets/awesome.png"
-		
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
+        
 		def globalMergeVars = [
 		    [
 		        'name': 'GOODLINK',
@@ -1207,7 +1332,11 @@ class MandrillService {
 		   [
 		      'name': 'NAME',
 		      'content': owner.firstName + ' ' + owner.lastName
-		  ]
+		  ],
+          [
+              'name': 'CDRADOMAIN',
+              'content': cdraDomain
+          ]
 		]
 
         def tags = ['feedback-email']
@@ -1252,7 +1381,7 @@ class MandrillService {
     }
 	
     def sendValidationEmailToOWnerAndAdmins(Project project){
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', id: project.id, absolute: true)
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, absolute: true)
         def registerLink = grailsLinkGenerator.link(controller: 'login', action: 'register', id: project.id, absolute: true)
         List emailMemberList = []
         emailMemberList.add(project.user)
@@ -1272,6 +1401,8 @@ class MandrillService {
                 projectImageUrl = "https:"+imageUrl
             }
         }
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
 
         emailMemberList.each{
 
@@ -1291,6 +1422,9 @@ class MandrillService {
             ],[
                  'name':'REGISTER_LINK',
                  'content':registerLink
+            ],[
+                 'name':'CDRADOMAIN',
+                 'content': cdraDomain
             ] ]
 
             if (it.email == project.user.email){
@@ -1306,7 +1440,9 @@ class MandrillService {
     
     public def sendEmailToPartner(User user, Partner partner, def password) {
         def link = grailsLinkGenerator.link(controller: 'user', action: 'confirmPartner', id: partner.confirmCode, absolute: true)
-
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
+        
         def globalMergeVars = [[
             'name': 'LINK',
             'content': link
@@ -1319,7 +1455,10 @@ class MandrillService {
         ], [
             'name': 'PASSWORD',
             'content': password
-        ]]
+        ], [
+            'name':'CDRADOMAIN',
+            'content': cdraDomain
+        ]  ]
 
         def tags = ['partner-invitation']
 
@@ -1488,6 +1627,8 @@ class MandrillService {
     
     def sendEmailOnValidation(def environment, def emails, Project project) {
         def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:project.user.username], absolute: true)
+        def currentEnv = Environment.current.getName()
+        def cdraDomain = getCdraDomain(currentEnv)
         
         if (environment != 'development') {
             emails.each { email ->
@@ -1504,6 +1645,9 @@ class MandrillService {
                         ], [
                             'name':'LINK',
                             'content' : link
+                        ], [
+                            'name': 'CDRADOMAIN',
+                            'content': cdraDomain
                         ]
                     ]
     

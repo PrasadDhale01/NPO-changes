@@ -1,6 +1,12 @@
 package crowdera
 
 class ContributionService {
+    
+    private UserService userService;
+    
+    Transaction getTransactionByTransactionId(String transactionId) {
+        return Transaction.findByTransactionId(transactionId)
+    }
 
     def getTotalContribution() {
         def c = Contribution.createCriteria()
@@ -37,48 +43,33 @@ class ContributionService {
         }
         return totalContribution
     }
-	 
-    def getContributionForMoving(def donorName, def fundraiser, def contributionAmt,def contributor, def project){
-        def contribution = Contribution.findWhere(contributorName: donorName, fundRaiser:fundraiser, amount:contributionAmt, project: project)
-
-        if(contribution){
-            contribution.fundRaiser = contributor
-        }
+	
+    def moveContribution(params, User user){
+        Team moveFrom = Team.get(params.long("fundRaiserTeam"));
+        Team moveTo = Team.get(params.long("fundRaiserTeam2"));
+        Project project = Project.get(params.id);
         
-        return contribution
+        Contribution contribution = Contribution.get(params.long("contributiondetailId"));
+        if (contribution && (moveFrom?.id != moveTo?.id)) {
+            moveFrom?.removeFromContributions(contribution)
+            moveTo?.addToContributions(contribution)
+        }
     }
     
-    def getContributorNames(def fundraiser, def project){
-        def contributorNames=[]
-        def contribution =Contribution.findAllByProject(project)
-        
-        if(contribution){
-            contribution.each{
-                if(it.fundRaiser.equalsIgnoreCase(fundraiser)){
-                    contributorNames.add(it.contributorName)
-                }
-            }
+    def getContributionListByTeamId(def teamId) {
+        Team team = Team.get(teamId);
+        def contributiondetails = []
+        def teamContributions = team?.contributions
+        teamContributions.each {
+            def infoList = [];
+            infoList.add(it.id);
+            infoList.add(it.contributorName+" :: Amount: "+it.amount?.round())
+            
+            contributiondetails.add(infoList);
         }
         
-        return contributorNames.unique()
+        return contributiondetails
     }
-    
-    def getContributionAmount(def fundraiser, def contributor, def project){
-        
-        def amountList = []
-        def contribution = Contribution.findAllByProject(project)
-        
-        if(contribution){
-            contribution.each {
-                if(it.fundRaiser.equalsIgnoreCase(fundraiser) && it.contributorName.equalsIgnoreCase(contributor)){
-                    amountList.add(it.amount.round())
-                }
-            }
-        }
-        
-        return amountList
-    }
-    
     
     def getContributionById(def contributionId){
         if (contributionId) {

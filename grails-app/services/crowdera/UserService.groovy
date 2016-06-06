@@ -93,8 +93,12 @@ class UserService {
             def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
+            
+            
+            int index = imageFile.getOriginalFilename().lastIndexOf(".")
+            String extName = imageFile.getOriginalFilename().substring(index);
 
-            def fileName = UUID.randomUUID().toString()
+            def fileName = UUID.randomUUID().toString() + extName
             
             def file = new File("${fileName}")
             def key = "${folder}/${fileName}"
@@ -345,9 +349,14 @@ class UserService {
             def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
+            
+            int index = attachedFile.getOriginalFilename().lastIndexOf(".")
+            String extName = attachedFile.getOriginalFilename().substring(index);
 
-            def file = new File("${attachedFile.getOriginalFilename()}")
-            def key = "${folder}/${attachedFile.getOriginalFilename()}"
+            def fileName =  UUID.randomUUID().toString() + extName
+            
+            def file = new File("${fileName}")
+            def key = "${folder}/${fileName}"
             key = key.toLowerCase()
             attachedFile.transferTo(file)
             def object = new S3Object(file)
@@ -383,9 +392,14 @@ class UserService {
             def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
+            
+            int index = attachedFile.getOriginalFilename().lastIndexOf(".")
+            String extName = attachedFile.getOriginalFilename().substring(index);
 
-            def file = new File("${attachedFile.getOriginalFilename()}")
-            def key = "${folder}/${attachedFile.getOriginalFilename()}"
+            def fileName =  UUID.randomUUID().toString() + extName
+            
+            def file = new File("${fileName}")
+            def key = "${folder}/${fileName}"
             key = key.toLowerCase()
             attachedFile.transferTo(file)
             def object = new S3Object(file)
@@ -1356,9 +1370,14 @@ class UserService {
             def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
+            
+            int index = document.getOriginalFilename().lastIndexOf(".")
+            String extName = document.getOriginalFilename().substring(index);
 
-            def file = new File("${document.getOriginalFilename()}")
-            def key = "${folder}/${document.getOriginalFilename()}"
+            def fileName =  UUID.randomUUID().toString() + extName
+
+            def file = new File("${fileName}")
+            def key = "${folder}/${fileName}"
             key = key.toLowerCase()
 
             document.transferTo(file)

@@ -164,17 +164,13 @@ $(function() {
     
     $('#moveContributionModal').find('form').validate({
         rules: {
-        	contributionAmount: {
-                required: true,
-                number: true
-            },
-            contributionFR:{
+            fundRaiserTeam:{
             	required:true
             },
-            contributorFR2:{
+            fundRaiserTeam2:{
             	required:true
             },
-            contributorName:{
+            contributiondetailId:{
             	required:true
             }
         }
@@ -1240,47 +1236,45 @@ $(function() {
 	        }
     	});
     	
-    	function disableMoveBtn(from, to){
-    		if(from == to){
+    	function disableMoveBtn(){
+    		var teamId1 = $('.fundRaiserTeam').val();
+    		var teamId2 = $('#fundRaiserTeam2').val();
+    		
+    		if(teamId1 == teamId2){
     			$('#btnMove').prop('disabled',true);
     		}else{
     			$('#btnMove').prop('disabled', false);
     		}
     	}
     	
-    	$('#contributorFR2').change(function(){
-    		var from = $('.contributionFR').val();
-    		var to = $(this).val();
-    		disableMoveBtn(from, to);
+    	$('#fundRaiserTeam2').change(function(){
+    		disableMoveBtn();
     	});
     	
-    	$('.contributionFR').change(function(){
-    		var fundraiser=$('.contributionFR').val();
+    	$('.fundRaiserTeam').change(function() {
+    		var teamId1 = $('.fundRaiserTeam').val();
     		var projectId = $('#projectId').val();
-    		var fundraiser2= $('#contributorFR2').val();
+    		var teamId2 = $('#fundRaiserTeam2').val();
     		
     		var formData = new FormData();
-    		formData.append('fundraiser',fundraiser);
+    		formData.append('teamId', teamId1);
     		formData.append('projectId', projectId);
     		
-    		disableMoveBtn(fundraiser, fundraiser2);
+    		disableMoveBtn();
     		
     		$.ajax({
-                type:'post',
-                url:$("#b_url").val()+'/project/ContributorNames',
-                data:formData,
-                processData: false,  
-                contentType: false ,
-                success: function(data){
+                type        :'post',
+                url         :$("#b_url").val()+'/project/ContributorNames',
+                data        :formData,
+                processData : false,  
+                contentType : false ,
+                success     : function(data) {
                 	var jsonData = jQuery.parseJSON(JSON.stringify(data)).data;
-                	$("#contributionAmt option:first").prop('selected','selected');
-                	
-            		if($('#contributorName').length > 0){
-            			$('#contributorName option:gt(0)').remove();
+            		if($('#contributiondetailId').length > 0) {
+            			$('#contributiondetailId option:gt(0)').remove();
             		}
-            		
         			$.each(jsonData, function(index, value){
-        				$('#contributorName').append('<option>'+value+'</option>');
+        				$('#contributiondetailId').append('<option value="'+value[0]+'">'+value[1]+'</option>');
         			});
                 }
     		}).error(function(){
@@ -1288,38 +1282,6 @@ $(function() {
             });
     	});
     	
-    	
-    	$('.contributorName').change(function(){
-    		var fundraiser = $('.contributionFR').val();
-    		var contributor=$('.contributorName').val();
-    		var projectId = $('#projectId').val();
-    		
-    		var formData = new FormData();
-    		formData.append('projectId', projectId);
-    		formData.append('fundraiser',fundraiser);
-    		formData.append('contributor',contributor);
-    		
-    		$.ajax({
-                type:'post',
-                url:$("#b_url").val()+'/project/ContributedAmounts',
-                data:formData,
-                processData: false,  
-                contentType: false ,
-                success: function(data){
-                	var jsonData = jQuery.parseJSON(JSON.stringify(data)).data;
-                	
-            		if($('#contributionAmt').length > 0){
-            			$('#contributionAmt option:gt(0)').remove();
-            		}
-            		
-        			$.each(jsonData, function(index, value){
-        				$('#contributionAmt').append('<option>'+value+'</option>');
-        			});
-                }
-    		}).error(function(){
-               console.log('An error occured');
-            });
-    	});
     	
      /*************************Edit video for team*************************/
         $('.perk-tile').hover(function() {

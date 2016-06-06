@@ -302,7 +302,7 @@ class ProjectController {
 
     def isDeviceMobileOrTab(){
         String userAgent = request.getHeader("User-Agent");
-        if (userAgent.contains('Mobile') || userAgent.contains('Android') || userAgent.contains('iPod')){
+        if (userAgent?.contains('Mobile') || userAgent?.contains('Android') || userAgent?.contains('iPod')){
             return true
         } else {
             return false
@@ -417,7 +417,7 @@ class ProjectController {
                 projectService.getUpdateValidationDetails(params)
             }
             flash.prj_validate_message= "Campaign validated successfully"
-            redirect (action:'validateList')
+            redirect (action:'getCampaignList')
         } else if (userService.isPartner()) {
             if (params.id) {
                 projectService.getUpdateValidationDetails(params)
@@ -439,7 +439,7 @@ class ProjectController {
             if (userService.isAdmin()) {
                 project.rejected = true
                 flash.prj_validate_message= "Campaign discarded successfully!"
-                redirect (action:'validateList')
+                redirect (action:'getCampaignList')
             } else if (userService.isPartner() && userService.isPartnerValidated(user)) {
                 project.rejected = true
                 flash.prj_validate_message= "Campaign discarded successfully!"
@@ -632,20 +632,16 @@ class ProjectController {
         }
     }
     
-    @Secured(['ROLE_USER'])
-    def ContributorNames(){
-        def fundraiser = params.fundraiser
-        def project = Project.get(params.projectId)
-        def fundraiserName = projectService.getFundraiserByFirstnameAndLastName(fundraiser, project.teams)
-        def contributorNames = contributionService.getContributorNames(fundraiserName, project)
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def ContributorNames() {
+        def teamContributionList = contributionService.getContributionListByTeamId(params.long('teamId'))
         
-        if(contributorNames){
-            render(contentType: 'text/json') {['data': contributorNames]}
-        }else{
+        if(teamContributionList.isEmpty()){
             render(contentType: 'text/json') {['data': '']}
+        } else{
+            render(contentType: 'text/json') {['data': teamContributionList]}
         }
     }
-    
     
     @Secured(['ROLE_ADMIN'])
     def manageCampaignDeadline(){
@@ -657,7 +653,7 @@ class ProjectController {
             project = projectService.getProjectFromTitle(params.campaignSelection)
             
             if(project){
-                projectService.setCampaignDeadline(project, params.int('deadline'))
+                projectService.setCampaignDeadline(project, params.int('deadline'), params.int('daysLeft'))
             }
         }
         
@@ -669,9 +665,11 @@ class ProjectController {
         def campaign = projectService.getProjectFromTitle(params.campaign)
         
         if(campaign){
-            render campaign.days
+            def daysLeft = projectService.getRemainingDay(campaign);
+            def days= campaign.days
+            render (contentType: 'text/json') {['daysLeft': daysLeft, 'days': days]}
         }else{
-            render '0'
+            render (contentType: 'text/json') {['daysLeft': 0, 'days': 0]}
         }
     }
     
@@ -840,9 +838,8 @@ class ProjectController {
             //Send draft creation email to info@crowdera.co
             def currentEnv = projectService.getCurrentEnvironment()
             if(currentEnv == 'production' || currentEnv== 'prodIndia'){
-                def base_url= grailsApplication.config.crowdera.BASE_URL
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-                mandrillService.sendDraftInfoEmail(params.title, user, currentEnv, dateFormat.format(project.created) )
+                mandrillService.sendDraftInfoEmail(params.title, user, currentEnv, dateFormat.format(project.created), project.beneficiary.telephone )
             }
             
             project.beneficiary = beneficiary;
@@ -1308,8 +1305,9 @@ class ProjectController {
 			def teamOffset = teamObj.maxrange
 			def validatedTeam = teamObj.teamList
 			def totalteams = teamObj.teams
-              def enableTeamNamesList = projectService.getEnableTeamFirstNameAndLastName(validatedTeam)
-              def teamNameList=projectService.getTeamFirstNameAndLastName(validatedTeam)
+            
+            def enableTeamNamesList = projectService.getEnableTeamFirstNameAndLastName(validatedTeam)
+            def teamNameList = projectService.getTeamFirstNameAndLastName(validatedTeam)
 
 			def unValidatedTeam = projectService.getTeamToBeValidated(project)
 			def discardedTeam = projectService.getDiscardedTeams(project)
@@ -2690,7 +2688,7 @@ class ProjectController {
             if (userService.isAdmin()) {
                 project.onHold = true
                 project.save()
-                redirect (action:'validateList')
+                redirect (action:'getCampaignList')
             } else if (userService.isPartner()) {
                 project.onHold = true
                 project.save()
@@ -2713,14 +2711,13 @@ class ProjectController {
         TaxReciept taxReciept = projectService.getTaxRecieptOfProject(project)
         
         def imageUrl = userService.getImageUrl(params.file)
-        
         if (imageUrl) {
             if (taxReciept){
                 taxReciept.signatureUrl = imageUrl
                 taxReciept.save(failOnError:true);
             } else {
                 TaxReciept taxreciept = new TaxReciept()
-                taxReciept.signatureUrl = imageUrl
+                taxreciept.signatureUrl = imageUrl
                 taxreciept.project = project
                 taxreciept.save(failOnError:true);
             }

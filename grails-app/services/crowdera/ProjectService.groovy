@@ -74,29 +74,28 @@ class ProjectService {
          return null
     }
     
-    def getEnableTeamFirstNameAndLastName(def team){
-        def teamNameList = []
-        if(team){
-            team.each{
-                if(it?.enable && it?.contributions){
-                    teamNameList.add(it?.user?.firstName +' ' + it?.user?.lastName)
-                }
+    def getEnableTeamFirstNameAndLastName(def teams) {
+        Map teamNameMap = [:]
+        
+        teams.each { team->
+            if(team.enable && team.contributions.size() > 0){
+                teamNameMap.put(team.id, team.user.firstName +' ' + team.user.lastName)
             }
         }
         
-        return teamNameList
+//        sessionServiceProxy.addKeyToPageAttribute('', );
+        return teamNameMap
     }
     
-    def getTeamFirstNameAndLastName(def team){
-        def teamNameList=[]
+    def getTeamFirstNameAndLastName(def teams){
+        Map teamNameMap = [:]
         
-        if(team){
-            team.each{
-                teamNameList.add(it?.user?.firstName +' ' + it?.user?.lastName)
+        teams.each { team ->
+            if(team.enable) {
+                teamNameMap.put(team.id, team.user.firstName +' ' + team.user.lastName)
             }
         }
-        
-        return teamNameList
+        return teamNameMap
     }
 
     def getProjectAdminByEmail(def email){
@@ -126,7 +125,7 @@ class ProjectService {
          User user = userService.getCurrentUser()
          project.user = user
          return project
-    }
+    } 
 
     def getListOfValidatedProjects() {
         List projects = Project.findAllWhere(validated: true)
@@ -632,7 +631,7 @@ class ProjectService {
 		 def user = createUserForNonRegisteredContributors(contributorName, contributorEmail1)
 		 def reward = rewardService.getNoReward()
 		 
-         def fundRaiser = userService.getCurrentUser()
+         User fundRaiser = userService.getCurrentUser()
 		 def username = fundRaiser.username
 		 
          def currency
@@ -656,12 +655,17 @@ class ProjectService {
 			 )
 			 project.addToContributions(contribution).save(failOnError: true)
  
-			 if(project.teams) {
-				 Team team = Team.findByUserAndProject(fundRaiser,project)
-				 if (team) {
-					 team.addToContributions(contribution).save(failOnError: true)
-				 }
-			 }
+			 Team team = Team.findByUserAndProject(fundRaiser,project)
+			 if (team) {
+				 team.addToContributions(contribution).save(failOnError: true)
+			 } else {
+                 
+                 if (userService.isAdmin() || userService.isCampaignAdmin(project, username)) {
+                     team = Team.findByUserAndProject(project.user , project);
+                     team.addToContributions(contribution).save(failOnError: true)
+                 }
+             }
+             
 		 }
          
 	 }
@@ -1573,10 +1577,11 @@ class ProjectService {
            return null
         }
 
-        if (currentEnv == 'staging' || currentEnv == 'production')
+        if (currentEnv == 'staging' || currentEnv == 'production'){
             projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
-        else
+        }else{
             projects = Project.getAll(homePageCampaigns.campaignOne.id, homePageCampaigns.campaignTwo.id, homePageCampaigns.campaignThree.id)
+        }
    
         return projects
     }
@@ -1952,8 +1957,12 @@ class ProjectService {
         
         if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
             try {
-                def file= new File("${imageFile.getOriginalFilename()}")
-                def key = "${Folder}/${imageFile.getOriginalFilename()}"
+                int index = imageFile.getOriginalFilename().lastIndexOf(".")
+                String extName = imageFile.getOriginalFilename().substring(index);
+                def fileName =  UUID.randomUUID().toString() + extName
+                
+                def file= new File("${fileName}")
+                def key = "${Folder}/${fileName}"
                 key = key.toLowerCase()
                 imageFile.transferTo(file)
                 def object=new S3Object(file)
@@ -1994,8 +2003,12 @@ class ProjectService {
         def fileUrl = new ImageUrl()
         if (!taxfile?.empty && taxfile.size < 1024 * 1024 * 3) {
             try{
-                def file= new File("${taxfile.getOriginalFilename()}")
-                def key = "${Folder}/${taxfile.getOriginalFilename()}"
+                int index = taxfile.getOriginalFilename().lastIndexOf(".")
+                String extName = taxfile.getOriginalFilename().substring(index);
+                def fileName =  UUID.randomUUID().toString() + extName
+                
+                def file= new File("${fileName}")
+                def key = "${Folder}/${fileName}"
                 key = key.toLowerCase()
                 taxfile.transferTo(file)
                 def object=new S3Object(file)
@@ -2033,8 +2046,13 @@ class ProjectService {
         def imageUrl = new ImageUrl()
         if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
             try{
-                def file= new File("${imageFile.getOriginalFilename()}")
-                def key = "${Folder}/${imageFile.getOriginalFilename()}"
+                
+                int index = imageFile.getOriginalFilename().lastIndexOf(".")
+                String extName = imageFile.getOriginalFilename().substring(index);
+                def fileName =  UUID.randomUUID().toString() + extName
+                
+                def file= new File("${fileName}")
+                def key = "${Folder}/${fileName}"
                 key = key.toLowerCase()
                 imageFile.transferTo(file)
                 def object=new S3Object(file)
@@ -2176,8 +2194,12 @@ class ProjectService {
         def tempImageUrl
 
         if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
-            def file= new File("${imageFile.getOriginalFilename()}")
-            def key = "${Folder}/${imageFile.getOriginalFilename()}"
+            int index = imageFile.getOriginalFilename().lastIndexOf(".")
+            String extName = imageFile.getOriginalFilename().substring(index);
+            def fileName =  UUID.randomUUID().toString() + extName
+            
+            def file= new File("${fileName}")
+            def key = "${Folder}/${fileName}"
             key = key.toLowerCase()
             imageFile.transferTo(file)
             def object=new S3Object(file)
@@ -2206,8 +2228,13 @@ class ProjectService {
         def imageUrl = new ImageUrl()
 
         if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
-            def file= new File("${imageFile.getOriginalFilename()}")
-            def key = "${Folder}/${imageFile.getOriginalFilename()}"
+            
+            int index = imageFile.getOriginalFilename().lastIndexOf(".")
+            String extName = imageFile.getOriginalFilename().substring(index);
+            def fileName =  UUID.randomUUID().toString() + extName
+            
+            def file= new File("${fileName}")
+            def key = "${Folder}/${fileName}"
             key = key.toLowerCase()
             imageFile.transferTo(file)
             def object=new S3Object(file)
@@ -2279,7 +2306,9 @@ class ProjectService {
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
         
-            def fileName = UUID.randomUUID().toString()
+            int index = iconFile.getOriginalFilename().lastIndexOf(".")
+            String extName = iconFile.getOriginalFilename().substring(index);
+            def fileName =  UUID.randomUUID().toString() + extName
             
             def tempFile = new File("${fileName}")
             def key = "${folder}/${fileName}"
@@ -2320,8 +2349,12 @@ class ProjectService {
                 
                 if (VALID_IMG_TYPES.contains(imageFile.getContentType())) {
                     try{
-                        def file= new File("${imageFile.getOriginalFilename()}")
-                        def key = "${Folder}/${it.getOriginalFilename()}"
+                        int index = imageFile.getOriginalFilename().lastIndexOf(".")
+                        String extName = imageFile.getOriginalFilename().substring(index);
+                        def fileName =  UUID.randomUUID().toString() + extName
+                        
+                        def file= new File("${fileName}")
+                        def key = "${Folder}/${fileName}"
                         key = key.toLowerCase()
                         imageFile.transferTo(file)
                         def object=new S3Object(file)
@@ -2436,20 +2469,20 @@ class ProjectService {
         }
     }
     
-    def getFundraiserByFirstnameAndLastName(def username, def teams){
-        def fundraiser = null
-        
-        if(username && teams){
-            teams.each{
-                def name = it.user.firstName+" " + it.user.lastName
-                if(name.equalsIgnoreCase(username)){
-                    fundraiser = it.user.username
-                }
-            }
-        }
-        
-        return fundraiser
-    }
+//    def getFundraiserByFirstnameAndLastName(def username, def teams){
+//        def fundraiser = null
+//        
+//        if(username && teams){
+//            teams.each{
+//                def name = it.user.firstName+" " + it.user.lastName
+//                if(name.equalsIgnoreCase(username)){
+//                    fundraiser = it.user.username
+//                }
+//            }
+//        }
+//        
+//        return fundraiser
+//    }
     
     def getFundRaisersForTeam(Project project, User user) {
         def teams = project.teams
@@ -2554,8 +2587,12 @@ class ProjectService {
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
 
-            def tempFile = new File("${resume.getOriginalFilename()}")
-            def key = "${folder}/${resume.getOriginalFilename()}"
+            int index = resume.getOriginalFilename().lastIndexOf(".")
+            String extName = resume.getOriginalFilename().substring(index);
+            def fileName =  UUID.randomUUID().toString() + extName
+            
+            def tempFile = new File("${fileName}")
+            def key = "${folder}/${fileName}"
             key = key.toLowerCase()
             resume.transferTo(tempFile)
             def object = new S3Object(tempFile)
@@ -2588,8 +2625,12 @@ class ProjectService {
             
             if (!attachedFile?.empty && attachedFile.size < 1024 * 1024 * 3) {
                 try{
-                    def file= new File("${attachedFile.getOriginalFilename()}")
-                    def key = "${Folder}/${it.getOriginalFilename()}"
+                    int index = attachedFile.getOriginalFilename().lastIndexOf(".")
+                    String extName = attachedFile.getOriginalFilename().substring(index);
+                    def fileName =  UUID.randomUUID().toString() + extName
+                    
+                    def file= new File("${fileName}")
+                    def key = "${Folder}/${fileName}"
                     key = key.toLowerCase()
                     attachedFile.transferTo(file)
                     def object=new S3Object(file)
@@ -3129,10 +3170,23 @@ class ProjectService {
         }
     }
     
-    def setCampaignDeadline(def project, def days){
+    def setCampaignDeadline(Project project, int days, int daysLeft) {
         
-        if(project){
-            project.days =days
+        if(project) {
+            def created = project.created.toCalendar();
+            def remainingDays = getRemainingDay(project);
+            
+            if (remainingDays > 0) {
+                if (daysLeft > remainingDays) {
+                    project.days = (Calendar.instance - created) + daysLeft
+                } else {
+                    project.days = days - (remainingDays - daysLeft)
+                }
+            } else {
+                def difference = (Calendar.instance - created)
+                project.days = difference + daysLeft
+            }
+            project.save();
         }
     }
     
@@ -3219,9 +3273,13 @@ class ProjectService {
             def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
-
-            def tempFile = new File("${imageFile.getOriginalFilename()}")
-            def key = "${folder}/${imageFile.getOriginalFilename()}"
+            
+            int index = imageFile.getOriginalFilename().lastIndexOf(".")
+            String extName = imageFile.getOriginalFilename().substring(index);
+            def fileName =  UUID.randomUUID().toString() + extName
+            
+            def tempFile = new File("{fileName}")
+            def key = "${folder}/${fileName}"
             key = key.toLowerCase()
             imageFile.transferTo(tempFile)
             def object = new S3Object(tempFile)
@@ -4156,7 +4214,10 @@ class ProjectService {
 
         def furl = base_url + "/error"
         def txnid = generateTransId()
-        String hashstring = key + "|" + txnid + "|" + amount + "|" + productinfo + "|" + firstname + "|" + email + "|||||||||||" + salt;
+        StringBuilder sb = new StringBuilder()
+        sb.append(key).append("|").append(txnid).append("|").append(amount).append("|").append(productinfo).append("|").append(firstname).append("|").append(email).append("|||||||||||").append(salt)
+        
+        String hashstring = sb.toString()
         def hash = generateHash("SHA-512",hashstring)
 
         return [txnid:txnid, hash:hash, furl:furl, surl:surl]
@@ -4197,7 +4258,7 @@ class ProjectService {
 	}
 
 	def setFundingAmountCookie(def amount){
-		Cookie cookie = new Cookie("fundingAmountCookie", amount.round().toString())
+		Cookie cookie = new Cookie("fundingAmountCookie", amount?.round().toString())
 		cookie.path = '/'
 		cookie.maxAge= 3600
 		return cookie
@@ -5457,7 +5518,6 @@ class ProjectService {
     }
     
     def sendTaxReceiptToContributors(def params){
-        def list = [];
         def idList = params.list.split(",");
         idList = idList.collect { it.trim() }
         mandrillService.sendTaxReceiptToContributors(idList);

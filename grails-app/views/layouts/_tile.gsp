@@ -31,20 +31,24 @@
             <img src="//s3.amazonaws.com/crowdera/assets/Funded-Tag.png" alt="Funded"/>
         </div>
     </g:if>
-    <div class="blacknwhite tile">
-        <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">
+    <div class="blacknwhite tile" id="campaignTileId">
+        <g:form controller="project" action="showCampaign" title="${project.title}" name="${project.title}" novalidate="novalidate">
+            <g:hiddenField name="fr" value="${username }" id="fr:${project.id}"/>
+            <g:hiddenField name="id" value="${project.id}" id="id:${project.id}"/>
             <div class="imageWithTag">
                 <div class="under">
-                    <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
+                    <a href="javascript:void(0)" onclick="submitCampaignShowForm('show', '${project.id}','${username }');">
+                      <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
+                    </a>
                 </div>
             </div>
-        </g:link>
+        </g:form>
     </div>
 
     <div class="caption tile-title-descrp project-title project-story-span tile-min-height">
-        <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}">
+        <a href="javascript:void(0)" onclick="submitCampaignShowForm('show','${project.id}','${username }');">
             ${project.title.toUpperCase()}
-        </g:link>
+        </a>
         <div class="campaign-title-margin-bottom"></div>
             <span>${project.description}</span>
         </div>

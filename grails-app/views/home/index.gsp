@@ -36,6 +36,20 @@
 <style type="text/css" media="screen">
     @import url(https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.css);
 </style>
+<script>
+    function submitCampaignShowForm(pkey, projectId, fr){
+        $.ajax({
+            type    :'post',
+            url     : $("#b_url").val()+'/project/urlBuilder',
+            data    : "projectId="+projectId+"&fr="+fr+"&pkey="+pkey,
+            success : function(response){
+                $(location).attr('href', response);
+            }
+        }).error(function(){
+            console.log("Error in redirecting");
+        });
+    }
+</script>
 </head>
 <body>
 	<g:hiddenField id="b_url" name="b_url" value="${base_Url}" />

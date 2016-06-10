@@ -5523,6 +5523,39 @@ class ProjectService {
         mandrillService.sendTaxReceiptToContributors(idList);
     }
     
+    StringBuilder getBuildURL(String pkey, String title, String name){
+        
+        StringBuilder builder = new StringBuilder()
+        
+        if('manage'.equalsIgnoreCase(pkey)){
+            
+            builder.append(grailsApplication.config.crowdera.BASE_URL)
+            .append("/campaign/managecampaign/")
+            .append(title)
+            
+        }else if('edit'.equalsIgnoreCase(pkey)){
+        
+            builder.append(grailsApplication.config.crowdera.BASE_URL)
+            .append("/campaign/edit/")
+            .append(title)
+            
+        }else if('usrPrfl'.equalsIgnoreCase(pkey)){
+        
+            builder.append(grailsApplication.config.crowdera.BASE_URL)
+            .append("/campaigns/")
+            .append(title).append("#contributions")
+            
+        }else{
+        
+            builder.append(grailsApplication.config.crowdera.BASE_URL)
+            .append("/campaigns/")
+            .append(title+"/").append(name)
+            
+        }
+        
+        return builder
+    }
+    
     @Transactional
     def bootstrap() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")

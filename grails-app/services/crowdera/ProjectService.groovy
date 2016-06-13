@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat
 
 import javax.servlet.http.Cookie
 
+import org.hibernate.Session
+import org.hibernate.SessionFactory;
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.model.*
 import org.jets3t.service.security.AWSCredentials
@@ -27,6 +29,8 @@ class ProjectService {
     def grailsApplication
     def socialAuthService
     def roleService
+    
+    SessionFactory sessionFactory;
 
     def getProjectById(def projectId){
         if (projectId) {
@@ -5521,6 +5525,79 @@ class ProjectService {
         def idList = params.list.split(",");
         idList = idList.collect { it.trim() }
         mandrillService.sendTaxReceiptToContributors(idList);
+    }
+    
+    @Transactional
+    def rescheduleUpdates() {
+        def currentEnv = getCurrentEnvironment();
+        List<ProjectUpdate> projectUpdates = []
+        
+        Session session = sessionFactory.getCurrentSession();
+        if (currentEnv == "testIndia" || currentEnv == "stagingIndia" || currentEnv == "prodIndia") {
+             projectUpdates = session.createSQLQuery("select * from project_update join project on project_update.project_id = project.id where payu_status=1 and islive=0 and is_scheduled=1")
+                             .addEntity(ProjectUpdate.class).list();
+        } else {
+             projectUpdates = session.createSQLQuery("select * from project_update join project on project_update.project_id = project.id where payu_status=0 and islive=0 and is_scheduled=1")
+                             .addEntity(ProjectUpdate.class).list();
+        }
+        
+        projectUpdates.each { projectUpdate ->
+            def cronExp
+            def cronExpBeforeAnHour
+            def isIntimationRequired = true
+            Date scheduledate = projectUpdate.scheduledDate
+            Date today = new Date();
+            
+            def calender = scheduledate.toCalendar()
+            def calenderInstance = today.toCalendar()
+            def delay = scheduledate - today
+            def month = calender[MONTH] + 1
+            
+            def hourDiff = calender[HOUR_OF_DAY] - calenderInstance[HOUR_OF_DAY]
+            def minDiff = 0
+            if (hourDiff == 0) {
+                minDiff = calender[MINUTE] - calenderInstance[MINUTE]
+            }
+            
+            // Cron Expression to schedule an Update
+            cronExp = '0 '+calender[MINUTE]+' '+ calender[HOUR_OF_DAY] +' ' +calender[DATE] + ' '+ month + ' ? '+calender[YEAR]
+            
+            calender.set(Calendar.HOUR_OF_DAY , (calender.get(Calendar.HOUR_OF_DAY) - 1))
+            
+            if (delay > 0 ) {
+                // Cron Expression to schedule an Update before an Hour
+                cronExpBeforeAnHour = '0 '+calender[MINUTE]+' '+ calender[HOUR_OF_DAY] +' ' +calender[DATE] + ' '+ month + ' ? '+calender[YEAR]
+                
+            } else if (delay < 0) {
+                projectUpdate.islive = true;
+                projectUpdate.save();
+                
+            } else {
+            
+                if (hourDiff < 0 || (hourDiff == 0 && minDiff < 0)) {
+                    projectUpdate.islive = true;
+                    projectUpdate.save();
+                    
+                    //mandrillService.sendUpdateEmailsToContributors(projectUpdate.project, projectUpdate, projectUpdate.user, projectUpdate.title)
+                } else if ((hourDiff == 0 && minDiff > 5) || hourDiff == 1 ) {
+                    isIntimationRequired = false
+                } else if (hourDiff >= 2)  {
+                    isIntimationRequired = true
+                    // Cron Expression to schedule an Update before an Hour
+                    cronExpBeforeAnHour = '0 '+calender[MINUTE]+' '+ calender[HOUR_OF_DAY] +' ' +calender[DATE] + ' '+ month + ' ? '+calender[YEAR]
+    
+                } else {
+                    isIntimationRequired = false
+                }
+            }
+            if (projectUpdate.islive == false) {
+                if (isIntimationRequired) {
+                    SendUpdateLiveJob.schedule(cronExpBeforeAnHour, [id: projectUpdate.id, isIntimationRequired: true])
+                }
+                SendUpdateLiveJob.schedule(cronExp, [id: projectUpdate.id, isIntimationRequired: false])
+            } 
+            
+        }
     }
     
     @Transactional

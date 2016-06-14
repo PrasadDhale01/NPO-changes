@@ -13,7 +13,19 @@ $(function() {
 	
 	if(screen.width < 768){
 		$('#scrolltrigger').attr('src','//s3.amazonaws.com/crowdera/assets/search-icon-white-1a.png');
+		
+		$.post("/mobile_campaigns", function(data){
+		 	   $('#campaignsId').html(data);
+	    });
 	}
+	
+    if(screen.width > 768){
+        $.post("/desktop_campaigns", function(data){
+            $('#campaignsId').html(data);
+        });
+    }
+	
+	
 	
 	var validator = $('#contactUs').find('form').validate({
         rules: {

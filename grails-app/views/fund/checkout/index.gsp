@@ -34,6 +34,21 @@
 	        }
 	    }
     </script>
+    <script>
+        function submitCampaignShowForm(pkey, projectId, fr){
+            $.ajax({
+                type    :'post',
+                url     : $("#b_url").val()+'/project/urlBuilder',
+                data    : "projectId="+projectId+"&fr="+fr+"&pkey="+pkey,
+                success : function(response){
+                    $(location).attr('href', response);
+                }
+            }).error(function(){
+                console.log("Error in redirecting");
+            });
+
+        }
+    </script>
 </head>
 <body>
 <div class="feducontent">

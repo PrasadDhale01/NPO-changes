@@ -28,6 +28,20 @@
     <meta property="og:type" content="website" />
     <meta name="layout" content="main" />
     <r:require modules="fundjs" />
+    <script>
+        function submitCampaignShowForm(pkey, projectId, fr){
+            $.ajax({
+                type    :'post',
+                url     : $("#b_url").val()+'/project/urlBuilder',
+                data    : "projectId="+projectId+"&fr="+fr+"&pkey="+pkey,
+                success : function(response){
+                    $(location).attr('href', response);
+                }
+            }).error(function(){
+                console.log("Error in redirecting");
+            });
+         }
+    </script>
 </head>
 <body>
 <g:hiddenField name="fbShareUrl" value="${fbShareUrl}" id="fbShareUrl"/>
@@ -50,7 +64,7 @@
                     <tbody>
                     <tr class="ack-table-color-green">
                         <td class="ack-table-heading-padding">Campaign</td>
-                        <td><g:link controller="project" action="showCampaign" id="${project.id}">${project.title}</g:link></td>
+                        <td><a href="javascript:void(0)" onclick="submitCampaignShowForm('show','${project.id}','${fundraiser.username}');" >${project.title}</a></td>
                     </tr>
                     <tr>
                         <td class="ack-table-heading-padding">Beneficiary</td>

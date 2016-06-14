@@ -116,6 +116,21 @@
             });
        });
     </g:javascript>
+    <script>
+        function submitCampaignShowForm(key,projectId, fr){
+            $.ajax({
+                type    :'post',
+                url     : $("#b_url").val()+'/project/urlBuilder',
+                data    : "projectId="+projectId+"&fr="+fr+"&pkey="+key,
+                success : function(response){
+                         $(location).attr('href', response);
+                }
+            }).error(function(){
+                console.log("Error in redirecting");
+            });
+        }
+    </script>
+    
 </head>
 <body>
 <div class="feducontent">
@@ -173,9 +188,9 @@
                 </g:if>
                 <g:else>
                 <div class="col-md-12 green-heading campaignTitle text-center hidden-xs">
-                    <h1><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': beneficiaryUserName]">
+                    <h1><a href="javascript:void(0)">
                          ${projectTitle}
-                    </g:link></h1>
+                    </a></h1>
                 </div>
                 </g:else>
                 <g:if test="${user || beneficiary}">

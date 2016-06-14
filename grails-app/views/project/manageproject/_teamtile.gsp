@@ -106,7 +106,7 @@
             </g:else>
         </g:if>
         <g:elseif test="${!ismanagepage || !isAdminOrBeneficiary}">
-            <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]">
+            <a href="javascript:void(0)"  id="${project.id}" onclick="submitCampaignShowForm('show','${project.id}','${username}');">
                 <g:if test="${userImageUrl != null}">
                     <img alt="${userName}" class="project-img" src="${userImageUrl}">
                 </g:if>
@@ -115,10 +115,10 @@
                         <img src="//s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="project-img" alt="Upload Photo">
                     </div>
                 </g:else>
-            </g:link>
+            </a>
         </g:elseif>
         <g:else>
-            <g:link controller="project" action="manageCampaign" id="${project.id}">
+            <a href="javascript:void(0)" onclick="submitCampaignShowForm('manage','${project.id}','${username}');"id="${project.id}">
                 <g:if test="${userImageUrl != null}">
                     <img alt="${userName}" class="project-img" src="${userImageUrl}">
                 </g:if>
@@ -132,7 +132,7 @@
                         </div>
                     </div>
                 </g:else>
-            </g:link>
+            </a>
         </g:else>
         <div class="team-caption">
             <p>${userName.toUpperCase()}<br>${userLastName.toUpperCase()}</p>

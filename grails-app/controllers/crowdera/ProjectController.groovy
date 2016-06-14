@@ -2737,4 +2737,12 @@ class ProjectController {
         render ''
     }
     
+    def urlBuilder(){
+        
+        String title = projectService.getVanityTitleFromId(params?.projectId)
+        String name = userService.getVanityNameFromUsername(params?.fr, params?.projectId)
+        StringBuilder url = projectService.getBuildURL(params?.pkey, title, name)
+        
+        render url?url:''
+    }
 }

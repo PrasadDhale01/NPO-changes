@@ -4228,6 +4228,12 @@ class ProjectService {
         def mapValue =  countries.getAt(country)
         return mapValue
     }
+    
+    def getCountryKey(def country){
+        Map countries = getCountry()
+        def mapKey = countries.find { it.value == country }?.key
+        return mapKey
+    }
 
     def setCookie(def requestUrl) {
         Cookie cookie = new Cookie("requestUrl", requestUrl)

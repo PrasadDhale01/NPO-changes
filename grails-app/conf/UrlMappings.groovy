@@ -32,6 +32,10 @@ class UrlMappings {
 
         /* How it Works */
         "/howitworks"(view:'/howitworks/index')
+        
+        /*****Home page campaigns******/
+        "/desktop_campaigns"(view:'/home/desktop_campaigns')
+        "/mobile_campaigns"(view:'/home/mobile_campaigns')
 
         /*Terms of Use*/
         "/termsofuse"(view:'/termsofuse/index')

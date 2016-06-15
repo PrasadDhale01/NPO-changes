@@ -80,9 +80,7 @@
     </div>
     
     <div class="greycolorbg hmmobile-back-color">
-        <div onmouseover="showNavigation()" onmouseleave="hideNavigation()">
-    	    <g:render template="projects"></g:render>
-    	</div>
+        <div id="campaignsId" onmouseover="showNavigation()" onmouseleave="hideNavigation()"></div>
     </div>
     <div class="row visible-xs">
         <div class="text-center explorebtn">

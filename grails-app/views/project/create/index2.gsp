@@ -1412,6 +1412,23 @@
         <img src="//s3.amazonaws.com/crowdera/documents/loading.gif" alt="'loadingImage'" id="loading-gif-img">
     </div>
     
+    
+    <!-- Required field modal -->
+        <div class="modal fade" id="requiredField" tabindex="-1" role="dialog" aria-hidden="true">
+             <div class="modal-dialog modal-xs">
+                 <div class="modal-content">
+                     <div class="modal-header video-modal">
+                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                         <h3 class="modal-title text-center"><b>Warning!</b></h3>
+                     </div>
+                     <div class="modal-body requireFieldBody">
+                         <h4 class="requiredFieldHeading"><span id="requiredFieldMessage"></span></h4>
+                     </div>
+                     
+                 </div>
+             </div>
+         </div>
+    
     <script src="/js/main.js"></script>
     <script src="/js/bootstrap-datepicker.js"></script>
     <script>

@@ -3,6 +3,7 @@ package crowdera
 import static java.util.Calendar.*
 import grails.transaction.Transactional
 import grails.util.Environment
+import groovy.json.JsonSlurper
 
 import java.security.MessageDigest
 import java.text.DateFormat
@@ -996,6 +997,56 @@ class ProjectService {
            ZW:'Zimbabwe',
         ]
         return country
+    }
+    
+    Map<String, String> getRequiredFields(){
+        Map<String, String> requiredFields =[
+            "spendCause":"Please fill spend matrix field(s).",
+            "spendAmount":"Please fill spend matrix field(s).",
+            "reason1":"Please fill reason to fund field(s).",
+            "reason2":"Please fill reason to fund field(s).",
+            "reason3":"Please fill reason to fund field(s).",
+            "city":"Please fill city.",
+            "organizationname":"Please fill organization name.",
+            "telephone":"Please fill phone field.",
+            "webAddress":"Please fill web address.",
+            "ans1":"Please select 'Your contributors want to know' option(s).",
+            "ansText":"Please fill 'Your contributors want to know' field(s).",
+            "ans3":"Please select 'Your contributors want to know' option(s).",
+            "ans4":"Please select 'Your contributors want to know' option(s).",
+            "projectImageFile":"Please upload aleast one image.",
+            "impactAmount":"Please fill impact assessment field(s).",
+            "impactNumber":"Please fill impact assessment field(s).",
+            "checkbox":"Please check 'Terms of use and privacy policy' checkbox.",
+            "paypalEmailId":"Please fill Paypal email id.",
+            "iconfile":"Please upload display picture.",
+            "answer":"Please select perk option.",
+            "rewardTitle":"Please fill perk title.",
+            "rewardDesc":"Please fill perk description.",
+            "rewardNumberAvailable":"Please fill available perk number.",
+            "rewardPrice":"Please fill perk price."
+        ]
+        return requiredFields
+    }
+    
+    def requiredFieldsService(def params){
+        
+        def jsonData = new JsonSlurper().parseText(params.data)
+        Map fieldKeyAndValue = getRequiredFields()
+        Map sortedfieldMessages = [:]
+        
+        jsonData.each{requestKey ->
+            fieldKeyAndValue.each{responseKey ->
+                
+                if(requestKey.key.contains(responseKey.key)){
+                    sortedfieldMessages.put(responseKey.key , responseKey.value)
+                }
+                
+            }
+        }
+        
+       return sortedfieldMessages
+        
     }
 
     def getRecipientOfFunds() {

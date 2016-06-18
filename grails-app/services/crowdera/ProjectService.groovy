@@ -1001,30 +1001,43 @@ class ProjectService {
     
     Map<String, String> getRequiredFields(){
         Map<String, String> requiredFields =[
-            "spendCause":"Please fill spend matrix field(s).",
-            "spendAmount":"Please fill spend matrix field(s).",
-            "reason1":"Please fill reason to fund field(s).",
-            "reason2":"Please fill reason to fund field(s).",
-            "reason3":"Please fill reason to fund field(s).",
+            "spendCause":"Please fill spend matrix cause.",
+            "spendAmount":"Please fill spend matrix amount.",
+            "reason1":"Please fill reason one field in 'reason to fund'.",
+            "reason2":"Please fill reason two field in 'reason to fund'.",
+            "reason3":"Please fill reason three field in 'reason to fund'.",
             "city":"Please fill city.",
             "organizationname":"Please fill organization name.",
-            "telephone":"Please fill phone field.",
+            "telephone":"Please fill phone field in 'update personal information' section.",
             "webAddress":"Please fill web address.",
             "ans1":"Please select 'Your contributors want to know' option(s).",
             "ansText":"Please fill 'Your contributors want to know' field(s).",
             "ans3":"Please select 'Your contributors want to know' option(s).",
             "ans4":"Please select 'Your contributors want to know' option(s).",
             "projectImageFile":"Please upload aleast one image.",
-            "impactAmount":"Please fill impact assessment field(s).",
-            "impactNumber":"Please fill impact assessment field(s).",
-            "checkbox":"Please check 'Terms of use and privacy policy' checkbox.",
+            "impactAmount":"Please fill impact assessment amount.",
+            "impactNumber":"Please fill impact assessment number.",
+            "checkBox":"Please check 'Terms of use and privacy policy' checkbox.",
             "paypalEmailId":"Please fill Paypal email id.",
             "iconfile":"Please upload display picture.",
             "answer":"Please select perk option.",
             "rewardTitle":"Please fill perk title.",
             "rewardDesc":"Please fill perk description.",
             "rewardNumberAvailable":"Please fill available perk number.",
-            "rewardPrice":"Please fill perk price."
+            "rewardPrice":"Please fill perk price.",
+            "ein":"Please fill ein field in tax receipt section",
+            "tax-reciept-holder-name":"Please fill name field in tax receipt section",
+            "addressLine1":"Please fill address field in tax receipt section.",
+            "tax-reciept-holder-city":"Please fill city field in tax receipt section.",
+            "zip":"Please fill zip field in tax receipt section.",
+            "tax-reciept-holder-state":"Please fill state field in tax receipt section.",
+            "tax-reciept-holder-phone":"Please fill phone number in tax receipt section.",
+            "digitalSign":"Please upload digital signature in tax-receipt section.",
+            "payuemail":"Please fill PayU email.",
+            "reg-date":"Please fill registration date in tax-receipt section",
+            "tax-reciept-registration-num":"Please fill registration number in tax-receipt section.",
+            "expiry-date":"Please fill expiry date in tax-receipt section.",
+            "tax-reciept-holder-pan-card":"Please fill pan-card number in tax-receipt section"
         ]
         return requiredFields
     }
@@ -1036,12 +1049,18 @@ class ProjectService {
         Map sortedfieldMessages = [:]
         
         jsonData.each{requestKey ->
+            
             fieldKeyAndValue.each{responseKey ->
                 
-                if(requestKey.key.contains(responseKey.key)){
-                    sortedfieldMessages.put(responseKey.key , responseKey.value)
-                }
-                
+                if(requestKey.key ==~ /.*[^0-9]/){
+                    if(requestKey.key.equalsIgnoreCase(responseKey.key)){
+                        sortedfieldMessages.put(responseKey.key , responseKey.value)
+                    }
+                }else if(requestKey.key ==~ /.*[0-9]/){
+                    if(requestKey.key.contains(responseKey.key)){
+                        sortedfieldMessages.put(responseKey.key , responseKey.value)
+                    }
+                }  
             }
         }
         

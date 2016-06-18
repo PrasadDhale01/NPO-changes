@@ -1107,7 +1107,9 @@ $(function() {
             $('#previewButtonXS').attr('disabled','disabled');
     	}
 	     
-    	requiredFieldMessages();
+    	if(!validator.form()){
+    	    requiredFieldMessages();
+    	}
     	  
     });
     

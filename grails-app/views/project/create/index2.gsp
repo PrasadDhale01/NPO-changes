@@ -1419,7 +1419,7 @@
                  <div class="modal-content">
                      <div class="modal-header video-modal">
                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                         <h3 class="modal-title text-center"><b>Warning!</b></h3>
+                         <h3 class="modal-title text-center"><b>Information!</b></h3>
                      </div>
                      <div class="modal-body requireFieldBody">
                          <h4 class="requiredFieldHeading"><span id="requiredFieldMessage"></span></h4>

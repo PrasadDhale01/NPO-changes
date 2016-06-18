@@ -1037,7 +1037,8 @@ class ProjectService {
             "reg-date":"Please fill registration date in tax-receipt section",
             "tax-reciept-registration-num":"Please fill registration number in tax-receipt section.",
             "expiry-date":"Please fill expiry date in tax-receipt section.",
-            "tax-reciept-holder-pan-card":"Please fill pan-card number in tax-receipt section"
+            "tax-reciept-holder-pan-card":"Please fill pan-card number in tax-receipt section",
+            "hiddencharId":"Please select organization for charitable id."
         ]
         return requiredFields
     }

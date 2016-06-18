@@ -18402,3 +18402,10 @@ input[readonly] {
     line-height: 34px;
     text-align:right;
 }
+
+.requireFieldBody{
+	overflow:scroll;
+}
+.requiredFieldHeading span#requiredFieldMessage{
+	color: #f04124;
+}

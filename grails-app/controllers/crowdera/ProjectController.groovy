@@ -2745,4 +2745,12 @@ class ProjectController {
         
         render url?url:''
     }
+    
+    def requiredFields(){
+        
+        if(request.method=="POST"){
+            def requiredFieldMessage = projectService.requiredFieldsService(params) 
+            render  new JSONObject(requiredFieldMessage)
+        }
+    }
 }

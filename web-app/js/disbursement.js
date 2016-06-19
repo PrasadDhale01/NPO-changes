@@ -7,8 +7,10 @@ $(function() {
 	    	"aLengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
 	    });
 	    
-        $('.contributions').click(function(event) {
-            event.preventDefault();
+	    $("#disbursementDiv").on('click','.contributions', function(event) {
+	    	event.preventDefault();
+        	$("#loading-gif").show();
+            
             var url = $(this).attr('href');
             var grid = $('#contributionList');
             
@@ -17,6 +19,10 @@ $(function() {
                 url: url,
                 success: function(data) {
                     $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+                    $("#loading-gif").hide();
+                },
+                error: function() {
+                	$("#loading-gif").hide();
                 }
             });
         });

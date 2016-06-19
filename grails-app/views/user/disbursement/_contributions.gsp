@@ -14,7 +14,7 @@
             <th class="col-sm-1 text-center">SPLIT_ID</th>
             <th class="col-sm-2 text-center">SPLIT_REFERENCE</th>
             <th class="col-sm-2 text-center">MERCHANT_TRANSACTION_ID</th>
-            <th class="col-sm-1 text-center">DISBURSE</th>
+            <th class="col-sm-1 text-center">ACTION</th>
         </tr>
         </thead>
         <tbody>
@@ -37,7 +37,17 @@
                 <td class="text-center col-sm-2"> ${contribution.merchantTxId} </td>
                 
                 <td class="text-center col-sm-1"> 
-                    <g:link action="paymentDisburse" controller="user" class="btn btn-primary btn-xs">Disburse</g:link>
+                    <g:if test="${contribution.payout}">
+                        <button type="button" class="btn btn-success btn-xs contributionreleased">Released</button>
+                    </g:if>
+                    <g:else>
+                        <g:if test="${contribution.settlementId}">
+                            <g:link action="paymentDisburse" controller="user" class="btn btn-primary btn-xs disburseContribution" data-contributionid="${contribution.id}" data-splitid="${contribution.splitId}">Disburse</g:link>
+                        </g:if>
+                        <g:else>
+                            <g:link action="paymentDisburse" controller="user" class="btn btn-default btn-xs contributionSettlement" data-contributionid="${contribution.id}" data-splitid="${contribution.splitId}">Settlement</g:link>
+                        </g:else>
+                    </g:else>
                 </td>
                 
             </tr>
@@ -71,6 +81,7 @@
 	});
 
 	$('.checkbalance').click(function() {
+		$("#loading-gif").show();
 		var url = "/fund/getSellerAccountBalance"
         
         $.ajax({

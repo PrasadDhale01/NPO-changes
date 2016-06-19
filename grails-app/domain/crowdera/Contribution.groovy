@@ -21,10 +21,14 @@ class Contribution {
     String contributorEmail
     String comments
     String panNumber
+    
+    // Citrus Related Information
     String merchantTxId
     String splitRef
     String splitId
-    String settleMentId
+    String settlementId
+    String settlementDate
+    String releaseFundRef
     
     String currency = 'USD'
     
@@ -32,9 +36,9 @@ class Contribution {
     boolean isContributionOffline = false
     boolean isAnonymous = false
     boolean receiptSent = false
-    boolean payout = false
     
-    // payout = true means fund has been release to campaign owners 
+    // payout = true means fund has been release to campaign owners
+    boolean payout = false
 
     static constraints = {
         credit nullable: true
@@ -51,7 +55,9 @@ class Contribution {
         merchantTxId nullable: true
         splitRef nullable: true
         splitId nullable: true
-        settleMentId nullable: true
+        settlementId nullable: true
+        settlementDate nullable: true
+        releaseFundRef nullable: true
     }
 
     def beforeValidate() {

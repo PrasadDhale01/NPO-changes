@@ -943,14 +943,15 @@ class FundController {
         projectService.setCitrusInfo(session, params)
         render ''
     }
-    
+
     def getBillingInfo() {
-        
+
         def anonymous = request.getParameter('anonymous')
         def reward = rewardService.getRewardById(params.long('rewardId'));
         def shippingInfo = rewardService.getShippingInfo(reward);
         def state = projectService.getState()
         def country = projectService.getCountry()
+
         if(request.xhr){
             render(template: "fund/shippinginfo", model:[shippingInfo:shippingInfo, anonymous:anonymous, state:state, country:country])
         }
@@ -960,9 +961,11 @@ class FundController {
         String txnID = String.valueOf(System.currentTimeMillis());
         String secret_key = grailsApplication.config.crowdera.CITRUS.SECRETE_KEY
         String access_Key = grailsApplication.config.crowdera.CITRUS.ACCESS_KEY
+        
         def citrusAmount = params.amount
         def securitySignature = contributionService.getSecuritySignature(txnID, secret_key, access_Key, citrusAmount)
         def model = [txnID: txnID, securitySignature: securitySignature];
+        
         JSONObject json = new JSONObject();
         json.put('txnID',txnID)
         json.put('securitySignature',securitySignature)
@@ -1050,10 +1053,12 @@ class FundController {
         def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
         String sellerId = params.sellerId
         def url = citrusBaseUrl +"/marketplace/seller/${sellerId}"
+        
         HttpClient httpclient = new DefaultHttpClient()
         HttpGet httpGet = new HttpGet(url)
         def auth_token = contributionService.getAccessTokenForCitrus()
         def seller
+        
         httpGet.setHeader("auth_token","${auth_token}")
         HttpResponse httpres = httpclient.execute(httpGet)
 
@@ -1074,10 +1079,12 @@ class FundController {
         def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
         String sellerId = params.sellerId
         def url = citrusBaseUrl +"/marketplace/seller/getbalance/${sellerId}"
+        
         HttpClient httpclient = new DefaultHttpClient()
         HttpGet httpGet = new HttpGet(url)
         def auth_token = contributionService.getAccessTokenForCitrus()
         def seller
+        
         httpGet.setHeader("auth_token","${auth_token}")
         HttpResponse httpres = httpclient.execute(httpGet)
 
@@ -1126,108 +1133,126 @@ class FundController {
      render httpres.toString()
      }*/
 
-    def releaseFundToSeller() {
-        def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
-        def url = citrusBaseUrl +"/marketplace/funds/release/"
-        HttpClient httpclient = new DefaultHttpClient()
-        HttpPost httppost = new HttpPost(url)
-
-        def splitId = params.splitId
-
-        StringEntity input = new StringEntity("{\"split_id\":${splitId}}")
-        input.setContentType("application/json")
-        httppost.setEntity(input)
-
-        def auth_token = contributionService.getAccessTokenForCitrus()
-        httppost.setHeader("auth_token","${auth_token}")
-
-        HttpResponse httpres = httpclient.execute(httppost)
-
-        def releaseFundRef
-        def payout;
-        int status = httpres.getStatusLine().getStatusCode()
-        def json
-
-        if (status == 200) {
-            HttpEntity entity = httpres.getEntity();
-            if (entity != null){
-                def jsonString = EntityUtils.toString(entity)
-                def slurper = new JsonSlurper()
-                json = slurper.parseText(jsonString)
-                releaseFundRef = json.releasefund_ref
-                payout = json.payout
-                println payout;
-            }
-        }
-
-        render json
-    }
-
-    def getTransactionsSplit() {
-
-        def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
-
-        def splitId = params.splitId
-        def url = citrusBaseUrl +"/marketplace/split/${splitId}"
-        HttpClient httpclient = new DefaultHttpClient()
-        HttpGet httpGet = new HttpGet(url)
-
-        def auth_token = contributionService.getAccessTokenForCitrus()
-        httpGet.setHeader("auth_token","${auth_token}")
-
-        HttpResponse httpres = httpclient.execute(httpGet)
-        int status = httpres.getStatusLine().getStatusCode()
-        def json
-        
-        if (status == 200) {
-            HttpEntity entity = httpres.getEntity();
-            if (entity != null){
-                def jsonString = EntityUtils.toString(entity)
-                def slurper = new JsonSlurper()
-                json = slurper.parseText(jsonString)
-            }
-        }
-
-        render json
-    }
+    /*def getTransactionsSplit() {
+     def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
+     def splitId = params.splitId
+     def url = citrusBaseUrl +"/marketplace/split/${splitId}"
+     HttpClient httpclient = new DefaultHttpClient()
+     HttpGet httpGet = new HttpGet(url)
+     def auth_token = contributionService.getAccessTokenForCitrus()
+     httpGet.setHeader("auth_token","${auth_token}")
+     HttpResponse httpres = httpclient.execute(httpGet)
+     int status = httpres.getStatusLine().getStatusCode()
+     def json
+     if (status == 200) {
+     HttpEntity entity = httpres.getEntity();
+     if (entity != null){
+     def jsonString = EntityUtils.toString(entity)
+     def slurper = new JsonSlurper()
+     json = slurper.parseText(jsonString)
+     }
+     }
+     render json
+     }*/
 
     def settleMent() {
-        def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
-        def url = citrusBaseUrl +"/marketplace/pgsettlement/"
-        HttpClient httpclient = new DefaultHttpClient()
-        HttpPost httppost = new HttpPost(url)
-        Date date = new Date();
-        
-        def settlementDate = date.format("YYYY-MM-DD HH:mm:ss") /*"2016-06-18 17:18:00"*/
+
         Contribution contribution = contributionService.getContributionById(params.long("contributionId"));
-        def merchantTxId = contribution?.merchantTxId
-        def settlementRef = contribution?.splitRef
-        def settlementAmount = contribution?.amount * 0.955
-        def feeAmount = contribution?.amount * 0.045
-        
-        // Ref#CIT615829206695
-        StringEntity input = new StringEntity("{\"trans_id\": ${merchantTxId},\"settlement_ref\": \"${settlementRef}\" ,\"trans_source\": \"CITRUS\",\"settlement_amount\": ${settlementAmount},\"fee_amount\": ${feeAmount},\"settlement_date_time\":\"${settlementDate}\"}")
-        input.setContentType("application/json")
-        httppost.setEntity(input)
+        boolean flag = false;
+        if (contribution && contribution.splitId == params.splitId) {
 
-        def auth_token = contributionService.getAccessTokenForCitrus()
-        httppost.setHeader("auth_token","${auth_token}")
-        HttpResponse httpres = httpclient.execute(httppost)
+            def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
+            def url = citrusBaseUrl +"/marketplace/pgsettlement/"
+            HttpClient httpclient = new DefaultHttpClient()
+            HttpPost httppost = new HttpPost(url)
+            Date date = new Date();
 
-        def json
-        int status = httpres.getStatusLine().getStatusCode()
-        def settlementId;
-        if (status == 200) {
-            HttpEntity entity = httpres.getEntity();
-            if (entity != null){
-                def jsonString = EntityUtils.toString(entity)
-                def slurper = new JsonSlurper()
-                json = slurper.parseText(jsonString)
-                settlementId = json.settlement_id;
+            def settlementDate = date.format("yyyy-MM-dd HH:mm:ss") /*"2016-06-18 17:18:00"*/
+            println "settlementDate ===== "+ settlementDate
+            def merchantTxId = Integer.parseInt(contribution?.merchantTxId)
+            def settlementRef = contribution?.splitRef
+            def settlementAmount = (contribution?.amount * 0.955).round(2)
+            def feeAmount = (contribution?.amount - settlementAmount).round(2)
+            
+            println "settlementAmount =====  "+ settlementAmount+ "   feeAmount ====== "+ feeAmount
+
+            // Ref#CIT615829206695 Ref#CIT61153280367
+            StringEntity input = new StringEntity("{\"trans_id\": ${merchantTxId},\"settlement_ref\": \"${settlementRef}\" ,\"trans_source\": \"CITRUS\",\"settlement_amount\": ${settlementAmount},\"fee_amount\": ${feeAmount},\"settlement_date_time\":\"${settlementDate}\"}")
+            input.setContentType("application/json")
+            httppost.setEntity(input)
+
+            def auth_token = contributionService.getAccessTokenForCitrus()
+            httppost.setHeader("auth_token","${auth_token}")
+            HttpResponse httpres = httpclient.execute(httppost)
+
+            def json
+            int status = httpres.getStatusLine().getStatusCode()
+            def settlementId;
+            
+            if (status == 200) {
+                HttpEntity entity = httpres.getEntity();
+                if (entity != null){
+                    def jsonString = EntityUtils.toString(entity)
+                    def slurper = new JsonSlurper()
+                    json = slurper.parseText(jsonString)
+                    settlementId = json.settlement_id;
+                    println "result  ===== "+ json
+                    if (settlementId != null) {
+                        flag = true;
+                        contribution.settlementId = settlementId;
+                        contribution.settlementDate = settlementDate;
+                        contribution.save();
+                    }
+                }
             }
-        }
+            println "status  == "+ status
+            println "settlementId  === "+ settlementId
 
-        render json
+        } 
+        render flag
+    }
+
+    def releaseFundToSeller() {
+        Contribution contribution = contributionService.getContributionById(params.long("contributionId"));
+        def payout = false;
+
+        if (contribution && contribution.splitId == params.splitId) {
+            def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
+            def url = citrusBaseUrl +"/marketplace/funds/release/"
+            HttpClient httpclient = new DefaultHttpClient()
+            HttpPost httppost = new HttpPost(url)
+
+            def splitId = contribution.splitId
+
+            StringEntity input = new StringEntity("{\"split_id\":${splitId}}")
+            input.setContentType("application/json")
+            httppost.setEntity(input)
+
+            def auth_token = contributionService.getAccessTokenForCitrus()
+            httppost.setHeader("auth_token","${auth_token}")
+
+            HttpResponse httpres = httpclient.execute(httppost)
+            int status = httpres.getStatusLine().getStatusCode()
+
+            if (status == 200) {
+                HttpEntity entity = httpres.getEntity();
+                if (entity != null){
+                    def jsonString = EntityUtils.toString(entity)
+                    def slurper = new JsonSlurper()
+                    def json = slurper.parseText(jsonString)
+                    
+                    payout = json.payout
+                    println "result ====== "+ json
+                    if (payout == true || payout == "true") {
+                        contribution.payout = true;
+                        contribution.releaseFundRef = json.releasefund_ref
+                        contribution.save();
+                    }
+                }
+            }
+
+        } 
+        render payout;
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])

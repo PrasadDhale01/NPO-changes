@@ -10,7 +10,7 @@
 <body>
 <div class="feducontent">
 
-    <div class="container">
+    <div class="container" id="disbursementDiv">
         <div class="row">
             <h2 class="text-center"><b>Campaigns List</b></h2>
             
@@ -26,7 +26,7 @@
                         <th class="col-sm-1 text-center">DAYS_LEFT</th>
                         <th class="col-sm-1 text-center">CITRUS EMAIL</th>
                         <th class="col-sm-1 text-center">SELLER_ID</th>
-                        <th class="col-sm-1 text-center">DISBURSEMENT</th>
+                        <th class="col-sm-1 text-center">ACTION</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -77,6 +77,11 @@
     </div>
     <br/>
 </div>
+
+<div class="loadinggif text-center" id="loading-gif">
+    <img src="//s3.amazonaws.com/crowdera/documents/loading.gif" alt="'loadingImage'" id="loading-gif-img">
+</div>
+    
 </body>
 
 </html>

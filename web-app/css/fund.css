@@ -197,3 +197,16 @@ div.citrusfundbody .btn.btn-info {
 .margin_top {
 	margin-top: 20px;
 }
+
+.contributionSettlement.btn-default {
+    color: white;
+    background-color: #005f84;
+    border-color: #005f84;
+}
+.disburseContribution,
+.contributionreleased,
+.contributionSettlement {
+	padding: 6px 28px;
+	font-weight: 600;
+	font-size: 13px;
+}

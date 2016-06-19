@@ -5844,7 +5844,11 @@ class ProjectService {
                     eq("project.id", project.id)
                 }
                 
-                daysleft = project.days - (Calendar.instance - project.created.toCalendar());
+                if (project.days > (Calendar.instance - project.created.toCalendar()) ) {
+                    daysleft = project.days - (Calendar.instance - project.created.toCalendar());
+                } else {
+                    daysleft =  (Calendar.instance - project.created.toCalendar()) - project.days;
+                }
                 project["daysleft"] = daysleft;
                 project["raised"] = raised;
                 projectList.add(project);

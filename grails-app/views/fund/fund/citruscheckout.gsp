@@ -337,11 +337,9 @@
 	
 	    //Net Banking
 	    $jq('#citrusNetbankingButton').on("click", function () { 
-	        alert('vffvfvf');
 	        makePayment("netbanking") });
 	    //Card Payment
 	    $jq("#citrusCardPayButton").on("click", function () { 
-	        alert('vffvfvf');
 	        makePayment("card"); });
 	
 	

@@ -18,6 +18,9 @@ import org.apache.http.client.HttpClient
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
+
+import org.hibernate.Session
+import org.hibernate.SessionFactory;
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.model.*
 import grails.util.Environment
@@ -37,6 +40,8 @@ class ProjectService {
     def grailsApplication
     def socialAuthService
     def roleService
+    
+    SessionFactory sessionFactory;
 
     def getProjectById(def projectId){
         if (projectId) {
@@ -2458,8 +2463,6 @@ class ProjectService {
 				String strSocialCategory = it.usedFor
 				String strNonProfit = "NON_PROFITS"
 				String strSocialGood = "Social_Innovation"
-				Map countries = getCountry()
-				String strCountryCategory = countries.getAt(it.beneficiary.country)
 				
 				if (str.equalsIgnoreCase(categories)){
 					if(strSocialGood.equalsIgnoreCase(categories.replace("Innovation","Needs")) && strSocialCategory !=null){
@@ -2474,7 +2477,7 @@ class ProjectService {
 					if(strNonProfitCat !=null && strNonProfitCat.equalsIgnoreCase(categories.replace('_','-'))){
 						list.add(it)
 					}
-				}else if(strCountryCategory !=null && strCountryCategory.equalsIgnoreCase(categories.replace('-',' '))){
+				}else if(it?.beneficiary?.country !=null && (it?.beneficiary?.country == categories.replace('-',' '))){
 					list.add(it)
 				}else if(strSocialCategory !=null){
 				 	if(strSocialGood.equalsIgnoreCase(categories) && strSocialCategory !=null){
@@ -4259,6 +4262,12 @@ class ProjectService {
         def mapValue =  countries.getAt(country)
         return mapValue
     }
+    
+    def getCountryKey(def country){
+        Map countries = getCountry()
+        def mapKey = countries.find { it.value == country }?.key
+        return mapKey
+    }
 
     def setCookie(def requestUrl) {
         Cookie cookie = new Cookie("requestUrl", requestUrl)
@@ -5748,8 +5757,8 @@ class ProjectService {
         def trans_id = transactionId
         def seller_id = sellerId
         def merchant_split_ref = issuerRefNo
-        def split_amount = amount * 0.8
-        def fee_amount = amount * 0.2
+        def split_amount = amount * 0.955
+        def fee_amount = amount * 0.045
         def auto_payout = 1
 
         StringEntity input = new StringEntity("{\"trans_id\":${trans_id},\"seller_id\":${seller_id},\"merchant_split_ref\":\"${merchant_split_ref}\",\"split_amount\":${split_amount},\"fee_amount\":${fee_amount},\"auto_payout\":${auto_payout}}")
@@ -5795,7 +5804,6 @@ class ProjectService {
         def address = getAddress(params)
         session['address'] = address
     }
-    
     
     
     public List<Project> getCitrusCampaigns() {
@@ -5851,6 +5859,112 @@ class ProjectService {
         List<Contribution> contributionList = new ArrayList<>();
         contributionList = Contribution.createCriteria().list{ 
             eq("project.id", projectId)}
+    }
+    
+    StringBuilder getBuildURL(String pkey, String title, String name) {
+        
+        StringBuilder builder = new StringBuilder()
+        
+        if('manage'.equalsIgnoreCase(pkey)){
+            
+            builder.append(grailsApplication.config.crowdera.BASE_URL)
+            .append("/campaign/managecampaign/")
+            .append(title)
+            
+        }else if('edit'.equalsIgnoreCase(pkey)){
+        
+            builder.append(grailsApplication.config.crowdera.BASE_URL)
+            .append("/campaign/edit/")
+            .append(title)
+            
+        }else if('usrPrfl'.equalsIgnoreCase(pkey)){
+        
+            builder.append(grailsApplication.config.crowdera.BASE_URL)
+            .append("/campaigns/")
+            .append(title).append("#contributions")
+            
+        }else{
+        
+            builder.append(grailsApplication.config.crowdera.BASE_URL)
+            .append("/campaigns/")
+            .append(title+"/").append(name)
+            
+        }
+        
+        return builder
+    }
+    
+    @Transactional
+    def rescheduleUpdates() {
+        def currentEnv = getCurrentEnvironment();
+        List<ProjectUpdate> projectUpdates = []
+        
+        Session session = sessionFactory.getCurrentSession();
+        if (currentEnv == "testIndia" || currentEnv == "stagingIndia" || currentEnv == "prodIndia") {
+             projectUpdates = session.createSQLQuery("select * from project_update join project on project_update.project_id = project.id where payu_status=1 and islive=0 and is_scheduled=1")
+                             .addEntity(ProjectUpdate.class).list();
+        } else {
+             projectUpdates = session.createSQLQuery("select * from project_update join project on project_update.project_id = project.id where payu_status=0 and islive=0 and is_scheduled=1")
+                             .addEntity(ProjectUpdate.class).list();
+        }
+        
+        projectUpdates.each { projectUpdate ->
+            def cronExp
+            def cronExpBeforeAnHour
+            def isIntimationRequired = true
+            Date scheduledate = projectUpdate.scheduledDate
+            Date today = new Date();
+            
+            def calender = scheduledate.toCalendar()
+            def calenderInstance = today.toCalendar()
+            def delay = scheduledate - today
+            def month = calender[MONTH] + 1
+            
+            def hourDiff = calender[HOUR_OF_DAY] - calenderInstance[HOUR_OF_DAY]
+            def minDiff = 0
+            if (hourDiff == 0) {
+                minDiff = calender[MINUTE] - calenderInstance[MINUTE]
+            }
+            
+            // Cron Expression to schedule an Update
+            cronExp = '0 '+calender[MINUTE]+' '+ calender[HOUR_OF_DAY] +' ' +calender[DATE] + ' '+ month + ' ? '+calender[YEAR]
+            
+            calender.set(Calendar.HOUR_OF_DAY , (calender.get(Calendar.HOUR_OF_DAY) - 1))
+            
+            if (delay > 0 ) {
+                // Cron Expression to schedule an Update before an Hour
+                cronExpBeforeAnHour = '0 '+calender[MINUTE]+' '+ calender[HOUR_OF_DAY] +' ' +calender[DATE] + ' '+ month + ' ? '+calender[YEAR]
+                
+            } else if (delay < 0) {
+                projectUpdate.islive = true;
+                projectUpdate.save();
+                
+            } else {
+            
+                if (hourDiff < 0 || (hourDiff == 0 && minDiff < 0)) {
+                    projectUpdate.islive = true;
+                    projectUpdate.save();
+                    
+                    //mandrillService.sendUpdateEmailsToContributors(projectUpdate.project, projectUpdate, projectUpdate.user, projectUpdate.title)
+                } else if ((hourDiff == 0 && minDiff > 5) || hourDiff == 1 ) {
+                    isIntimationRequired = false
+                } else if (hourDiff >= 2)  {
+                    isIntimationRequired = true
+                    // Cron Expression to schedule an Update before an Hour
+                    cronExpBeforeAnHour = '0 '+calender[MINUTE]+' '+ calender[HOUR_OF_DAY] +' ' +calender[DATE] + ' '+ month + ' ? '+calender[YEAR]
+    
+                } else {
+                    isIntimationRequired = false
+                }
+            }
+            if (projectUpdate.islive == false) {
+                if (isIntimationRequired) {
+                    SendUpdateLiveJob.schedule(cronExpBeforeAnHour, [id: projectUpdate.id, isIntimationRequired: true])
+                }
+                SendUpdateLiveJob.schedule(cronExp, [id: projectUpdate.id, isIntimationRequired: false])
+            }
+            
+        }
     }
     
     @Transactional

@@ -36,6 +36,20 @@
 <style type="text/css" media="screen">
     @import url(https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.css);
 </style>
+<script>
+    function submitCampaignShowForm(pkey, projectId, fr){
+        $.ajax({
+            type    :'post',
+            url     : $("#b_url").val()+'/project/urlBuilder',
+            data    : "projectId="+projectId+"&fr="+fr+"&pkey="+pkey,
+            success : function(response){
+                $(location).attr('href', response);
+            }
+        }).error(function(){
+            console.log("Error in redirecting");
+        });
+    }
+</script>
 </head>
 <body>
 	<g:hiddenField id="b_url" name="b_url" value="${base_Url}" />
@@ -66,9 +80,7 @@
     </div>
     
     <div class="greycolorbg hmmobile-back-color">
-        <div onmouseover="showNavigation()" onmouseleave="hideNavigation()">
-    	    <g:render template="projects"></g:render>
-    	</div>
+        <div id="campaignsId" onmouseover="showNavigation()" onmouseleave="hideNavigation()"></div>
     </div>
     <div class="row visible-xs">
         <div class="text-center explorebtn">

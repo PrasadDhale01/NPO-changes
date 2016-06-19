@@ -24,6 +24,7 @@ class Contribution {
     String merchantTxId
     String splitRef
     String splitId
+    String settleMentId
     
     String currency = 'USD'
     
@@ -31,6 +32,9 @@ class Contribution {
     boolean isContributionOffline = false
     boolean isAnonymous = false
     boolean receiptSent = false
+    boolean payout = false
+    
+    // payout = true means fund has been release to campaign owners 
 
     static constraints = {
         credit nullable: true
@@ -47,6 +51,7 @@ class Contribution {
         merchantTxId nullable: true
         splitRef nullable: true
         splitId nullable: true
+        settleMentId nullable: true
     }
 
     def beforeValidate() {

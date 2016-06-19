@@ -1090,7 +1090,7 @@ class ProjectController {
             } else {
                 payOpts = projectService.getPayment()
             }
-            def selectedCountry = (project.beneficiary.country) ? projectService.getCountryValue(project.beneficiary.country) : null;
+            def selectedCountry = (project.beneficiary.country) ? projectService.getCountryKey(project.beneficiary.country) : null;
         
             def beneficiary = project.beneficiary
             def reasonsToFund = projectService.getProjectReasonsToFund(project)
@@ -2738,4 +2738,12 @@ class ProjectController {
         render ''
     }
     
+    def urlBuilder(){
+        
+        String title = projectService.getVanityTitleFromId(params?.projectId)
+        String name = userService.getVanityNameFromUsername(params?.fr, params?.projectId)
+        StringBuilder url = projectService.getBuildURL(params?.pkey, title, name)
+        
+        render url?url:''
+    }
 }

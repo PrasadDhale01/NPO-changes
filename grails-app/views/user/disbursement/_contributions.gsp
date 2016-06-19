@@ -47,7 +47,7 @@
     </table>
 </div>
 
-<div class="panel panel-primary">
+<div class="panel panel-default margin_top">
     <div class="panel-heading">
         Check Campaign Owner Account Balance (Seller Account Balance)
     </div>

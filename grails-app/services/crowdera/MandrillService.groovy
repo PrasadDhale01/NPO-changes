@@ -1381,7 +1381,7 @@ class MandrillService {
     }
 	
     def sendValidationEmailToOWnerAndAdmins(Project project){
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', id: project.id, absolute: true)
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, absolute: true)
         def registerLink = grailsLinkGenerator.link(controller: 'login', action: 'register', id: project.id, absolute: true)
         List emailMemberList = []
         emailMemberList.add(project.user)

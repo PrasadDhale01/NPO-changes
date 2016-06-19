@@ -35,7 +35,7 @@
 	   </div>
 	</g:elseif>
 	<div class="blacknwhite tile">
-		<g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">
+		<a href="javascript:void(0)" onclick="submitCampaignShowForm('show','${project.id}','${username}');" >
 			<div class="imageWithTag">
 				<div class="under">
 					<div class="days-left-caption">
@@ -68,7 +68,7 @@
 					</div>
 				</div>
 			</div>
-		</g:link>
+		</a>
 	</div>
 	<div class="progress progress-striped active">
 		<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage}%;">
@@ -76,9 +76,9 @@
 		</div>
 	</div>
 	<div class="caption tile-title-descrp project-title project-story-span tile-min-height">
-		<g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}">
+		<a  href="javascript:void(0)" onclick="submitCampaignShowForm('show','${project.id}','${username}');" >
 		    ${project.title.toUpperCase()}
-		</g:link>
+		</a>
 		<div class="campaign-title-margin-bottom"></div>
 	    <span>${project.description}</span>
     </div>

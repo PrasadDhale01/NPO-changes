@@ -46,7 +46,7 @@
                         </small></p>
                     </div>
                     <div class="timeline-body">
-                        <g:link controller="project" action="showCampaign" id="${contribution.project.id}"  params="['fr':contribution.fundRaiser]" fragment="contributions" target="_blank">
+                        <a href="javascript:void(0)"  id="${contribution.project.id}" onclick="submitCampaignShowForm('usrPrfl','${contribution.project.id}','${user.username }');">
                             <div class="row userprfl-cmpgn-container">
                                 <div class="col-xs-4 usrPrfl-cmpgn-img">
                                     <img class="img-responsive" src="${projectService.getProjectImageLink(contribution.project)}" alt="Campaign Image" >
@@ -55,7 +55,7 @@
                                     <p>${contribution.project.title}</p>
                                 </div>
                             </div>
-                        </g:link>
+                        </a>
                     </div>
                 </div>
             </li>

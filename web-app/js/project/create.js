@@ -161,7 +161,7 @@ $(function() {
                 email: true
             },
             telephone: {
-                required: false,
+                required: true,
                 isValidTelephoneNumber: true,
                 maxlength: 20
             },
@@ -1156,7 +1156,7 @@ $(function() {
              return (value.match(reg)) ? RegExp.$1 : false;
          }
          return true;
-     }, "Please provide valid Telephone number");
+     }, "Please provide valid contact number");
 
      $.validator.addMethod('isWebUrl', function(value){
     	 if(value && value.length !== 0){

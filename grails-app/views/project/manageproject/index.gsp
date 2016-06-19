@@ -53,6 +53,20 @@
 	<r:require modules="projectshowjs" />
 	<r:require modules="rewardjs" />
 	
+	<script>
+        function submitCampaignShowForm(key,projectId, fr){
+            $.ajax({
+                type    :'post',
+                url     : $("#b_url").val()+'/project/urlBuilder',
+                data    : "projectId="+projectId+"&fr="+fr+"&pkey="+key,
+                success : function(response){
+                  $(location).attr('href', response);
+                }
+            }).error(function(){
+            });
+        }
+    </script>
+	
 </head>
 <body>
     <g:hiddenField id="projectamount" name="projectamount" value="${project.amount.round()}"/>
@@ -98,12 +112,12 @@
                     <div class="col-md-12">
                         <g:if test="${!project.validated}">
                             <div class="mange-campaigntitle-mobile">
-                                <h1 class="green-heading text-center"><g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">${projectTitle}</g:link></h1>
+                                <h1 class="green-heading text-center"><a href="javascript:void(0)">${projectTitle}</a></h1>
                             </div>
                         </g:if>
                         <g:else>
                             <div class="mange-campaigntitle-mobile">
-                                <h1 class="green-heading text-center"><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}</g:link></h1>
+                                <h1 class="green-heading text-center"><a href="javascript:void(0)">${project.title}</a></h1>
                             </div>
                         </g:else>
 					</div>

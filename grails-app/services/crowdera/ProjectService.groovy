@@ -649,17 +649,17 @@ class ProjectService {
          
 		 if (amount && contributorFirstName && contributorEmail1 && contributorLastName) {
 			 Contribution contribution = new Contribution(
-				 date: new Date(),
-				 user: user,
-				 reward: reward,
-				 amount: amount,
-                 contributorFirstName: contributorFirstName,
-                 contributorLastName: contributorLastName,
-				 contributorName: contributorFirstName +" "  + contributorLastName,
-                 contributorEmail: contributorEmail1,
-				 isContributionOffline: true,
-				 fundRaiser: username,
-                 currency:currency
+                    date: new Date(),
+                    user: user,
+                    reward: reward,
+                    amount: amount,
+                    contributorFirstName: contributorFirstName,
+                    contributorLastName: contributorLastName,
+                    contributorName: contributorFirstName +" "  + contributorLastName,
+                    contributorEmail: contributorEmail1,
+                    isContributionOffline: true,
+                    fundRaiser: username,
+                    currency:currency
 			 )
 			 project.addToContributions(contribution).save(failOnError: true)
  

@@ -628,13 +628,19 @@ class ProjectService {
 
 	 def getOfflineDetails(def params) {
 		 def project = Project.get(params.id)
-         
+         boolean userExist =false
          def contributorEmail1 = params.contributorEmail1
          def contributorFirstName = params.contributorName1
          def amount = params.amount1
          def contributorLastName = params.contributorLastName
          
 		 def user = createUserForNonRegisteredContributors(contributorFirstName, contributorEmail1, contributorLastName)
+         
+         if(user==true){
+             user =User.findByUsername(contributorEmail1.trim())
+             userExist =true
+         }
+         
 		 def reward = rewardService.getNoReward()
 		 
          User fundRaiser = userService.getCurrentUser()
@@ -674,6 +680,9 @@ class ProjectService {
                  }
              }
              
+             if(userExist==false){
+                 sendEmailToOfflineContributor(contribution,user)
+             }
 		 }
          
 	 }
@@ -5411,7 +5420,7 @@ class ProjectService {
         user = User.findByEmail(contributorEmail)
         
         if (user) {
-            return user
+            return true
         } else {
             password = getAlphaNumbericRandomUrl()
             user = new User(
@@ -5426,6 +5435,13 @@ class ProjectService {
             userService.createUserRole(user, roleService)
             
             return user
+        }
+    }
+    
+    def sendEmailToOfflineContributor(Contribution contribution, User user){
+        if(contribution && user){
+            def password = getAlphaNumbericRandomUrl()
+            mandrillService.sendEmailToContributors(contribution, password)
         }
     }
     

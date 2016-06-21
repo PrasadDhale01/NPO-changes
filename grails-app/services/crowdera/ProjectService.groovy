@@ -656,7 +656,7 @@ class ProjectService {
 		 if (amount && contributorFirstName && contributorEmail1 && contributorLastName) {
 			 Contribution contribution = new Contribution(
                     date: new Date(),
-                    user: user,
+                    user: user.user,
                     reward: reward,
                     amount: amount,
                     contributorFirstName: contributorFirstName,
@@ -681,7 +681,7 @@ class ProjectService {
              }
              
              if(userExist==false){
-                 sendEmailToOfflineContributor(contribution,user)
+                 mandrillService.sendEmailToContributors(contribution, user.password)
              }
 		 }
          
@@ -5434,14 +5434,7 @@ class ProjectService {
             
             userService.createUserRole(user, roleService)
             
-            return user
-        }
-    }
-    
-    def sendEmailToOfflineContributor(Contribution contribution, User user){
-        if(contribution && user){
-            def password = getAlphaNumbericRandomUrl()
-            mandrillService.sendEmailToContributors(contribution, password)
+            return [user:user, password:password]
         }
     }
     

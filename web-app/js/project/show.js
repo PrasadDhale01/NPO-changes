@@ -147,6 +147,11 @@ $(function() {
                 minlength: 3,
                 maxlength: 50
             },
+            contributorLastName: {
+            	required: true,
+            	minlength: 3,
+            	maxlength: 50
+            },
             amount1: {
                 required: true,
                 number: true,
@@ -183,6 +188,11 @@ $(function() {
                     required: true,
                     minlength: 3,
                     maxlength: 50
+                },
+                contributorLastName:{
+                	required: true,
+                	minlength: 3,
+                	maxlength: 50
                 },
                 amount: {
                     required: true,

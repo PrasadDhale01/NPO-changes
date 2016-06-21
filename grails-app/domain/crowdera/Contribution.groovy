@@ -17,6 +17,8 @@ class Contribution {
     String custom
     String physicalAddress
     String contributorName
+    String contributorFirstName
+    String contributorLastName
     String fundRaiser
     String contributorEmail
     String comments
@@ -39,6 +41,8 @@ class Contribution {
         contributorName nullable: true
         contributorEmail nullable: true
         fundRaiser nullable: true
+        contributorFirstName nullable: true
+        contributorLastName nullable: true
     }
 
     def beforeValidate() {

@@ -308,7 +308,7 @@ class ProjectService {
             if(it.isContributionOffline){
                 payMode="offline"
                 contributorName= it.contributorName
-                contributorEmail= "-"
+                contributorEmail= it.contributorEmail?it.contributorEmail:'-'
                 shippingDetails="No Perk Selected"
             }else{
                 payMode="Online"
@@ -628,12 +628,19 @@ class ProjectService {
 
 	 def getOfflineDetails(def params) {
 		 def project = Project.get(params.id)
-         
+         boolean userExist =false
          def contributorEmail1 = params.contributorEmail1
-         def contributorName = params.contributorName1
+         def contributorFirstName = params.contributorName1
          def amount = params.amount1
+         def contributorLastName = params.contributorLastName
          
-		 def user = createUserForNonRegisteredContributors(contributorName, contributorEmail1)
+		 def user = createUserForNonRegisteredContributors(contributorFirstName, contributorEmail1, contributorLastName)
+         
+         if(user==true){
+             user =User.findByUsername(contributorEmail1.trim())
+             userExist =true
+         }
+         
 		 def reward = rewardService.getNoReward()
 		 
          User fundRaiser = userService.getCurrentUser()
@@ -646,17 +653,19 @@ class ProjectService {
              currency = 'USD'
          }
          
-		 if (amount && contributorName && contributorEmail1) {
+		 if (amount && contributorFirstName && contributorEmail1 && contributorLastName) {
 			 Contribution contribution = new Contribution(
-				 date: new Date(),
-				 user: user,
-				 reward: reward,
-				 amount: amount,
-				 contributorName: contributorName,
-                 contributorEmail: contributorEmail1,
-				 isContributionOffline: true,
-				 fundRaiser: username,
-                 currency:currency
+                    date: new Date(),
+                    user: user.user,
+                    reward: reward,
+                    amount: amount,
+                    contributorFirstName: contributorFirstName,
+                    contributorLastName: contributorLastName,
+                    contributorName: contributorFirstName +" "  + contributorLastName,
+                    contributorEmail: contributorEmail1,
+                    isContributionOffline: true,
+                    fundRaiser: username,
+                    currency:currency
 			 )
 			 project.addToContributions(contribution).save(failOnError: true)
  
@@ -671,6 +680,9 @@ class ProjectService {
                  }
              }
              
+             if(userExist==false){
+                 mandrillService.sendEmailToContributors(contribution, user.password)
+             }
 		 }
          
 	 }
@@ -700,7 +712,9 @@ class ProjectService {
 
     def getContributionEditedDetails(def params){
         def contribution = Contribution.get(params.long('id'))
-        contribution.contributorName = params.contributorName
+        contribution.contributorFirstName= params.contributorName
+        contribution.contributorLastName = params.contributorLastName
+        contribution.contributorName = params.contributorName+" "+params.contributorLastName
         contribution.amount = Double.parseDouble(params.amount)
         contribution.contributorEmail = params.contributorEmail
         contribution.save()
@@ -5399,18 +5413,19 @@ class ProjectService {
         }
     }
     
-    def createUserForNonRegisteredContributors(String contributorName, String contributorEmail1){
+    def createUserForNonRegisteredContributors(String contributorFirstName, String contributorEmail1, String contributorLastName){
         User user
         def password
         def contributorEmail = contributorEmail1.trim()
         user = User.findByEmail(contributorEmail)
         
         if (user) {
-            return user
+            return true
         } else {
             password = getAlphaNumbericRandomUrl()
             user = new User(
-                firstName : contributorName,
+                firstName : contributorFirstName,
+                lastName : contributorLastName,
                 username : contributorEmail,
                 email : contributorEmail,
                 password : password,
@@ -5419,7 +5434,7 @@ class ProjectService {
             
             userService.createUserRole(user, roleService)
             
-            return user
+            return [user:user, password:password]
         }
     }
     

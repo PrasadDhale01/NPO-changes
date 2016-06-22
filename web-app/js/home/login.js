@@ -14,6 +14,16 @@ $(function() {
         }
     });
     
+    $('.reset-password-bottom').find('form').validate({
+        rules: {
+        	username: {
+        		minlength: 2,
+        		required: true,
+        		email: true
+        	}
+        }
+    });
+    
     $('#submit').click(function() {
     	if($('[name="loginForm"]').valid()) {
     		$('[name="loginForm"]').submit();

@@ -61,9 +61,16 @@
 	        <div class="form-group">
 	            <input type="text" id="accountNumber" class="form-control" name="accountNumber" value="${accountNumber}" placeholder="Account number">
 	        </div>
-	        <div class="form-group">
-	            <input type="text" id="payoutmode" class="form-control" name="payoutmode" value="${payoutmode}" placeholder="Payoutmode">
-	        </div>
+	        <g:if test="${payoutmode}">
+		        <div class="form-group">
+	                <input type="text" id="payoutmode" class="form-control" name="payoutmode" value="${payoutmode}" placeholder="Payoutmode" readonly>
+	            </div>
+            </g:if>
+            <g:else>
+                <div class="form-group">
+                    <input type="text" id="payoutmode" class="form-control" name="payoutmode" value="WALLET" placeholder="Payoutmode" readonly>
+                </div>
+            </g:else>
 	    </div>
 	    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
 	        <div class="form-group">

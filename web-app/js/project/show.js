@@ -251,12 +251,12 @@ $(function() {
             payoutmode: {
             	required: true,
             	minlength: 2,
-            	maxlength: 50
+            	maxlength: 10
             },
             mobile: {
             	required: true,
-            	minlength: 7,
-            	maxlength: 15
+            	minlength: 10,
+            	maxlength: 10
             },
             address1: {
             	required: true,
@@ -272,7 +272,8 @@ $(function() {
             },
             zip: {
             	required: true,
-            	maxlength: 50
+            	maxlength: 6,
+            	minlength: 6
             },
             state: {
             	required: true,

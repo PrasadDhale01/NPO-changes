@@ -709,9 +709,14 @@ class ContributionService {
                     def slurper = new JsonSlurper()
                     def json = slurper.parseText(jsonString)
                     sellerId = json.sellerid
+                    
+                    if (sellerId != null) {
+                        new Seller(email: selleremail, sellerId: sellerId).save();
+                    }
                 }
+                
             }
-            new Seller(email: selleremail, sellerId: sellerId).save();
+            
             return sellerId
         }
     }

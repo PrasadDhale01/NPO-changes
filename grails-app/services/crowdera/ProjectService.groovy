@@ -3,6 +3,7 @@ package crowdera
 import static java.util.Calendar.*
 import grails.transaction.Transactional
 import grails.util.Environment
+import groovy.json.JsonSlurper
 
 import java.security.MessageDigest
 import java.text.DateFormat
@@ -320,7 +321,7 @@ class ProjectService {
             if(it.isContributionOffline){
                 payMode="offline"
                 contributorName= it.contributorName
-                contributorEmail= "-"
+                contributorEmail= it.contributorEmail?it.contributorEmail:'-'
                 shippingDetails="No Perk Selected"
             }else{
                 payMode="Online"
@@ -642,12 +643,19 @@ class ProjectService {
 
 	 def getOfflineDetails(def params) {
 		 def project = Project.get(params.id)
-         
+         boolean userExist =false
          def contributorEmail1 = params.contributorEmail1
-         def contributorName = params.contributorName1
+         def contributorFirstName = params.contributorName1
          def amount = params.amount1
+         def contributorLastName = params.contributorLastName
          
-		 def user = createUserForNonRegisteredContributors(contributorName, contributorEmail1)
+		 def user = createUserForNonRegisteredContributors(contributorFirstName, contributorEmail1, contributorLastName)
+         
+         if(user==true){
+             user =User.findByUsername(contributorEmail1.trim())
+             userExist =true
+         }
+         
 		 def reward = rewardService.getNoReward()
 		 
          User fundRaiser = userService.getCurrentUser()
@@ -660,17 +668,19 @@ class ProjectService {
              currency = 'USD'
          }
          
-		 if (amount && contributorName && contributorEmail1) {
+		 if (amount && contributorFirstName && contributorEmail1 && contributorLastName) {
 			 Contribution contribution = new Contribution(
-				 date: new Date(),
-				 user: user,
-				 reward: reward,
-				 amount: amount,
-				 contributorName: contributorName,
-                 contributorEmail: contributorEmail1,
-				 isContributionOffline: true,
-				 fundRaiser: username,
-                 currency:currency
+                    date: new Date(),
+                    user: user.user,
+                    reward: reward,
+                    amount: amount,
+                    contributorFirstName: contributorFirstName,
+                    contributorLastName: contributorLastName,
+                    contributorName: contributorFirstName +" "  + contributorLastName,
+                    contributorEmail: contributorEmail1,
+                    isContributionOffline: true,
+                    fundRaiser: username,
+                    currency:currency
 			 )
 			 project.addToContributions(contribution).save(failOnError: true)
  
@@ -685,6 +695,9 @@ class ProjectService {
                  }
              }
              
+             if(userExist==false){
+                 mandrillService.sendEmailToContributors(contribution, user.password)
+             }
 		 }
          
 	 }
@@ -714,7 +727,9 @@ class ProjectService {
 
     def getContributionEditedDetails(def params){
         def contribution = Contribution.get(params.long('id'))
-        contribution.contributorName = params.contributorName
+        contribution.contributorFirstName= params.contributorName
+        contribution.contributorLastName = params.contributorLastName
+        contribution.contributorName = params.contributorName+" "+params.contributorLastName
         contribution.amount = Double.parseDouble(params.amount)
         contribution.contributorEmail = params.contributorEmail
         contribution.save()
@@ -1011,6 +1026,76 @@ class ProjectService {
            ZW:'Zimbabwe',
         ]
         return country
+    }
+    
+    Map<String, String> getRequiredFields(){
+        Map<String, String> requiredFields =[
+            "spendCause":"Please fill spend matrix cause.",
+            "spendAmount":"Please fill spend matrix amount.",
+            "reason1":"Please fill reason one field in 'reason to fund'.",
+            "reason2":"Please fill reason two field in 'reason to fund'.",
+            "reason3":"Please fill reason three field in 'reason to fund'.",
+            "city":"Please fill city.",
+            "organizationname":"Please fill organization name.",
+            "telephone":"Please fill phone field in 'update personal information' section.",
+            "webAddress":"Please fill web address.",
+            "ans1":"Please select 'Your contributors want to know' option(s).",
+            "ansText":"Please fill 'Your contributors want to know' field(s).",
+            "ans3":"Please select 'Your contributors want to know' option(s).",
+            "ans4":"Please select 'Your contributors want to know' option(s).",
+            "projectImageFile":"Please upload aleast one image.",
+            "impactAmount":"Please fill impact assessment amount.",
+            "impactNumber":"Please fill impact assessment number.",
+            "checkBox":"Please check 'Terms of use and privacy policy' checkbox.",
+            "paypalEmailId":"Please fill Paypal email id.",
+            "iconfile":"Please upload display picture.",
+            "answer":"Please select perk option.",
+            "rewardTitle":"Please fill perk title.",
+            "rewardDesc":"Please fill perk description.",
+            "rewardNumberAvailable":"Please fill available perk number.",
+            "rewardPrice":"Please fill perk price.",
+            "ein":"Please fill ein field in tax receipt section",
+            "tax-reciept-holder-name":"Please fill name field in tax receipt section",
+            "addressLine1":"Please fill address field in tax receipt section.",
+            "tax-reciept-holder-city":"Please fill city field in tax receipt section.",
+            "zip":"Please fill zip field in tax receipt section.",
+            "tax-reciept-holder-state":"Please fill state field in tax receipt section.",
+            "tax-reciept-holder-phone":"Please fill phone number in tax receipt section.",
+            "digitalSign":"Please upload digital signature in tax-receipt section.",
+            "payuemail":"Please fill PayU email.",
+            "reg-date":"Please fill registration date in tax-receipt section",
+            "tax-reciept-registration-num":"Please fill registration number in tax-receipt section.",
+            "expiry-date":"Please fill expiry date in tax-receipt section.",
+            "tax-reciept-holder-pan-card":"Please fill pan-card number in tax-receipt section",
+            "hiddencharId":"Please select organization for charitable id."
+        ]
+        return requiredFields
+    }
+    
+    def requiredFieldsService(def params){
+        
+        def jsonData = new JsonSlurper().parseText(params.data)
+        Map fieldKeyAndValue = getRequiredFields()
+        Map sortedfieldMessages = [:]
+        
+        jsonData.each{requestKey ->
+            
+            fieldKeyAndValue.each{responseKey ->
+                
+                if(requestKey.key ==~ /.*[^0-9]/){
+                    if(requestKey.key.equalsIgnoreCase(responseKey.key)){
+                        sortedfieldMessages.put(responseKey.key , responseKey.value)
+                    }
+                }else if(requestKey.key ==~ /.*[0-9]/){
+                    if(requestKey.key.contains(responseKey.key)){
+                        sortedfieldMessages.put(responseKey.key , responseKey.value)
+                    }
+                }  
+            }
+        }
+        
+       return sortedfieldMessages
+        
     }
 
     def getRecipientOfFunds() {
@@ -5360,18 +5445,19 @@ class ProjectService {
         }
     }
     
-    def createUserForNonRegisteredContributors(String contributorName, String contributorEmail1){
+    def createUserForNonRegisteredContributors(String contributorFirstName, String contributorEmail1, String contributorLastName){
         User user
         def password
         def contributorEmail = contributorEmail1.trim()
         user = User.findByEmail(contributorEmail)
         
         if (user) {
-            return user
+            return true
         } else {
             password = getAlphaNumbericRandomUrl()
             user = new User(
-                firstName : contributorName,
+                firstName : contributorFirstName,
+                lastName : contributorLastName,
                 username : contributorEmail,
                 email : contributorEmail,
                 password : password,
@@ -5380,7 +5466,7 @@ class ProjectService {
             
             userService.createUserRole(user, roleService)
             
-            return user
+            return [user:user, password:password]
         }
     }
     

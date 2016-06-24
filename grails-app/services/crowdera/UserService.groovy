@@ -1937,9 +1937,9 @@ class UserService {
 
     @Transactional
     def bootstrap() {
-        def admin = User.findByUsername('admin@fedu.org')
+        def admin = User.findByUsername('superadmin@crowdera.co')
         if (!admin) {
-            admin = new User(username: 'admin@fedu.org', password: 'P@$$w0rd',firstName: 'adminFirstName', lastName:'adminLastName').save(failOnError: true)
+            admin = new User(username: 'superadmin@crowdera.co', password: 'P@$$w0rd',firstName: 'adminFirstName', lastName:'adminLastName', email: 'superadmin@crowdera.co').save(failOnError: true)
         }
         UserRole.findOrSaveByUserAndRole(admin, roleService.adminRole())
 

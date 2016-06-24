@@ -1129,7 +1129,41 @@ $(function() {
             $('#submitProjectXS').attr('disabled','disabled');
             $('#previewButtonXS').attr('disabled','disabled');
     	}
+	     
+    	if(!validator.form()){
+    	    requiredFieldMessages();
+    	}
+    	  
     });
+    
+    function requiredFieldMessages(){
+	      var str="{";
+	      var messages='';
+	      
+	  	  $('.help-block:visible').each(function(i,e){
+	  			if($(this).attr('for') !== undefined){
+	  				str +='"'+$(this).attr('for')+'":'+ '"'+$(this).attr('for')+'", ';
+	  			}
+	  	  });
+	  	  
+	  	  
+	  	  if($('[name="telephone"').val()==='' || $('[name="telephone"').val()===undefined){
+	  		  str +='"telephone":"telephone"}';
+	  	  }else{
+	  		  str+="}";
+	  	  }
+	  	  
+	  	  $.post( $("#b_url").val()+'/project/requiredFields',{data:str}, function(data) {
+	  		  var messageJSON =$.parseJSON(data);
+	  		  
+	  		  $.each(messageJSON, function(index, value){
+	  			  messages+=value +"<br>";
+	  		  });
+	  		  
+	  		  $('#requiredFieldMessage').html(messages);
+	  		  $('#requiredField').modal("show");
+	  	  });
+    }
 
      $.validator.addMethod('isYoutubeVideo', function (value) {
         if(value && value.length !== 0){

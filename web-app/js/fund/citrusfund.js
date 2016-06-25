@@ -122,7 +122,8 @@ $(function() {
             citrusMobile: {
             	required: true,
                 number: true,
-                maxlength: 20
+                maxlength: 14,
+                minlength: 10
             },
             citrusStreet1: {
                 required: true,

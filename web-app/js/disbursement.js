@@ -26,6 +26,78 @@ $(function() {
                 }
             });
         });
+	    
+	    $("#disbursementDiv").on('click','.checkbalance', function(e) {
+			$("#loading-gif").show();
+			var url = "/fund/getSellerAccountBalance"
+	        
+	        $.ajax({
+	            type: 'POST',
+	            url: url,
+	            data: 'sellerId='+ $('#sellerId').val(),
+	            success: function(data) {
+	                $('#selleramount').val(data);
+	                $("#loading-gif").hide();
+	            },
+	            error: function() {
+	                $("#loading-gif").hide();
+	            }
+	        });
+		});
+
+		$("#disbursementDiv").on('click','.contributionSettlement', function(e) {
+			e.preventDefault();
+			$("#loading-gif").show();
+			
+			var contribution = this;
+			var url = "/fund/settleMent/"
+			var contributionId = $(this).data("contributionid");
+			var splitId = $(this).data("splitid");
+			
+	        $.ajax({
+	            type: 'POST',
+	            url: url,
+	            data: 'contributionId='+ contributionId+'&splitId='+splitId,
+	            success: function(data) {
+	                if (data == true || data == "true") {
+	                	$(contribution).removeClass("contributionSettlement");
+	                	$(contribution).removeClass("btn-default");
+	                	$(contribution).addClass("btn-primary");
+	                	$(contribution).addClass("disburseContribution");
+	                    $(contribution).text("Disburse");
+	                }
+	                $("#loading-gif").hide();
+	            },
+	            error: function() {
+	                $("#loading-gif").hide();
+	            }
+	        });
+		});
+
+		$("#disbursementDiv").on('click','.disburseContribution', function(e) {
+	        e.preventDefault();
+	        $("#loading-gif").show();
+	        
+	        var contribution = this;
+	        var url = "/fund/releaseFundToSeller"
+	        var contributionId = $(this).data("contributionid");
+	        var splitId = $(this).data("splitid");
+	        
+	        $.ajax({
+	            type: 'POST',
+	            url: url,
+	            data: 'contributionId='+ contributionId+'&splitId='+splitId,
+	            success: function(data) {
+	                if (data == true || data == "true") {
+	                	$(contribution).replaceWith('<button type="button" class="btn btn-success btn-xs contributionreleased">Released</button>')
+	                }
+	                $("#loading-gif").hide();
+	            },
+	            error: function() {
+	            	$("#loading-gif").hide();
+	            }
+	        });
+	    });
         
     });
 	

@@ -10,9 +10,8 @@
             <th class="col-sm-2 text-center">CONTRIBUTOR_NAME</th>
             <th class="col-sm-2 text-center">CONTRIBUTOR_EMAIL</th>
             <th class="col-sm-1 text-center">AMOUNT</th>
-            <th class="col-sm-1 text-center">DATE</th>
+            <th class="col-sm-2 text-center">DATE</th>
             <th class="col-sm-1 text-center">SPLIT_ID</th>
-            <th class="col-sm-2 text-center">SPLIT_REFERENCE</th>
             <th class="col-sm-2 text-center">MERCHANT_TRANSACTION_ID</th>
             <th class="col-sm-1 text-center">ACTION</th>
         </tr>
@@ -31,9 +30,8 @@
                         ${contribution.amount.round()}
                     </g:if>
                 </td>
-                <td class="text-center col-sm-1"></td>
+                <td class="text-center col-sm-2">${contribution.date}</td>
                 <td class="text-center col-sm-1"> ${contribution.splitId} </td>
-                <td class="text-center col-sm-1"> ${contribution.splitRef} </td>
                 <td class="text-center col-sm-2"> ${contribution.merchantTxId} </td>
                 
                 <td class="text-center col-sm-1"> 
@@ -80,76 +78,4 @@
 	    "aLengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
 	});
 
-	$('.checkbalance').click(function() {
-		$("#loading-gif").show();
-		var url = "/fund/getSellerAccountBalance"
-        
-        $.ajax({
-            type: 'POST',
-            url: url,
-            data: 'sellerId='+ $('#sellerId').val(),
-            success: function(data) {
-                $('#selleramount').val(data);
-                $("#loading-gif").hide();
-            },
-            error: function() {
-                $("#loading-gif").hide();
-            }
-        });
-	});
-
-	$("#disbursementDiv").on('click','.contributionSettlement', function(e) {
-		e.preventDefault();
-		$("#loading-gif").show();
-		
-		var contribution = this;
-		var url = "/fund/settleMent/"
-		var contributionId = $(this).data("contributionid");
-		var splitId = $(this).data("splitid");
-		
-        $.ajax({
-            type: 'POST',
-            url: url,
-            data: 'contributionId='+ contributionId+'&splitId='+splitId,
-            success: function(data) {
-                if (data == true || data == "true") {
-                	$(contribution).removeClass("contributionSettlement");
-                	$(contribution).removeClass("btn-default");
-                	$(contribution).addClass("btn-primary");
-                	$(contribution).addClass("disburseContribution");
-                    $(contribution).text("Disburse");
-                }
-                $("#loading-gif").hide();
-            },
-            error: function() {
-                $("#loading-gif").hide();
-            }
-        });
-	});
-
-	$("#disbursementDiv").on('click','.disburseContribution', function(e) {
-        e.preventDefault();
-        $("#loading-gif").show();
-        
-        var contribution = this;
-        var url = "/fund/releaseFundToSeller"
-        var contributionId = $(this).data("contributionid");
-        var splitId = $(this).data("splitid");
-        
-        $.ajax({
-            type: 'POST',
-            url: url,
-            data: 'contributionId='+ contributionId+'&splitId='+splitId,
-            success: function(data) {
-                if (data == true || data == "true") {
-                	$(contribution).replaceWith('<button type="button" class="btn btn-success btn-xs contributionreleased">Released</button>')
-                }
-                $("#loading-gif").hide();
-            },
-            error: function() {
-            	$("#loading-gif").hide();
-            }
-        });
-    });
-	
 </script>

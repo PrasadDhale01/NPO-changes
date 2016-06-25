@@ -361,15 +361,19 @@ class ProjectService {
             }
         }
         return result
-     }
+    }
 
     def getUpdateValidationDetails(def params){
         def project = Project.get(params.id)
-        def sellerId = contributionService.setSellerId(project)
+        
         if (project) {
             project.created = new Date()
-            if(!project.validated){
-                project.sellerId = sellerId
+            if(!project.validated) {
+                if (project.citrusEmail != null && project.payuStatus) {
+                    def sellerId = contributionService.setSellerId(project)
+                    project.sellerId = sellerId
+                }
+                
                 project.validated = true
                 project.onHold = false
                 project.save()

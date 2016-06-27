@@ -21,17 +21,17 @@
                 </div>
                 
                 <%
-				    def citrusCardTypes = ['credit': 'Credit', 'debit': 'Debit']
-				    def citrusSchemes = ['visa': 'VISA', 'mastercard' :'MASTER', 'maestro':'MAESTRO', 'rupay':'RUPAY']
-                    def citrus = true;
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/YYYY");
-                    def currentDate = dateFormat.format(new Date());
-                    def citrusAvailableOptions = ['CID002':'AXIS Bank', 'CID019':'Bank of India']
-                    def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-                    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-                    
-                    def returnURL = base_url + '/fund/citrusreturn'
-				%>
+					def citrusCardTypes = ['credit': 'Credit', 'debit': 'Debit']
+					def citrusSchemes = ['visa': 'VISA', 'mastercard' :'MASTER', 'maestro':'MAESTRO', 'rupay':'RUPAY']
+					def citrus = true;
+					SimpleDateFormat dateFormat = new SimpleDateFormat("MM/YYYY");
+					def currentDate = dateFormat.format(new Date());
+					def citrusAvailableOptions = ['CID002':'AXIS Bank', 'CID019':'Bank of India']
+					def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+					def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+					
+					def returnURL = base_url + '/fund/citrusreturn'
+                %>
 				<div id="myWizard">
 				    <g:form action="charge" method="POST" class="payment-form" id="payment-form" name="payment-form">
 				        <div class="step" data-step-title="Transaction Amount">

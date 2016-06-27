@@ -62,10 +62,6 @@ modules = {
         dependsOn 'crowderajs', 'blacknwhitejs'
         resource url: 'js/home/home.js'
     }
-    citruscheckoutjs {
-        dependsOn 'crowderajs'
-        resource url: 'js/citruscheckout.js'
-    }
     /* Login */
     loginjs {
         dependsOn 'crowderajs'

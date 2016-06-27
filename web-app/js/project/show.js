@@ -1339,38 +1339,6 @@ $(function() {
             });
     	});
     	
-    	$('.contributorName').change(function(){
-    		var fundraiser = $('.contributionFR').val();
-    		var contributor=$('.contributorName').val();
-    		var projectId = $('#projectId').val();
-    		
-    		var formData = new FormData();
-    		formData.append('projectId', projectId);
-    		formData.append('fundraiser',fundraiser);
-    		formData.append('contributor',contributor);
-    		
-    		$.ajax({
-                type:'post',
-                url:$("#b_url").val()+'/project/ContributedAmounts',
-                data:formData,
-                processData: false,  
-                contentType: false ,
-                success: function(data){
-                	var jsonData = jQuery.parseJSON(JSON.stringify(data)).data;
-                	
-            		if($('#contributionAmt').length > 0){
-            			$('#contributionAmt option:gt(0)').remove();
-            		}
-            		
-        			$.each(jsonData, function(index, value){
-        				$('#contributionAmt').append('<option>'+value+'</option>');
-        			});
-                }
-    		}).error(function(){
-               console.log('An error occured');
-            });
-    	});
-    	
     	
      /*************************Edit video for team*************************/
         $('.perk-tile').hover(function() {

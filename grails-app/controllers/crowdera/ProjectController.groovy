@@ -614,25 +614,6 @@ class ProjectController {
         }
     }
     
-    @Secured(['ROLE_USER'])
-    def ContributedAmounts(){
-        def amount
-        def fundraiser = params.fundraiser
-        def contributor = params.contributor
-        def project = Project.get(params.projectId)
-        def fundraiserName = projectService.getFundraiserByFirstnameAndLastName(fundraiser, project.teams)
-        
-        if(fundraiserName){
-            amount= contributionService.getContributionAmount(fundraiserName, contributor, project)
-        }
-        
-        if(amount){
-            render(contentType: 'text/json') {['data': amount]}
-        }else{
-            render(contentType: 'text/json') {['data': 0]}
-        }
-    }
-    
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def ContributorNames() {
         def teamContributionList = contributionService.getContributionListByTeamId(params.long('teamId'))

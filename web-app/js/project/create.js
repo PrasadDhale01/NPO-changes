@@ -22,14 +22,17 @@ $(function() {
     var projectId = $('#projectId').val();
     var isIndianCampaign = ($('#isIndianCampaign').val() === 'true') ? true : false;
     
-    if ($('#citrusemail').val()) {
-    	$('#CitrusPay').show();
-    	$('#PayUMoney').hide();
-    } else {
-    	$('#CitrusPay').hide();
-    	$('#PayUMoney').show();
+    var currentEnv = $("#currentEnv").val();
+    
+    if (currentEnv == "testIndia") {
+	    if ($('#citrusemail').val()) {
+	    	$('#CitrusPay').show();
+	    	$('#PayUMoney').hide();
+	    } else {
+	    	$('#CitrusPay').hide();
+	    	$('#PayUMoney').show();
+	    }
     }
-
 
     var storyPlaceholder = "<p><h3>Introduce Your Campaign</h3></p>"+
     	"<p>Contributors want to know all about your cause and the details related to your organization, so think of this section as an executive summary to get your audience introduced to your campaign! Here are some essential components of a campaign introduction:</p>"+ 
@@ -620,11 +623,13 @@ $(function() {
                 maxlength: 50
             });
             
-            $( '[name="citrusEmail"]' ).rules( "add", {
-                required: true,
-                email:true,
-                maxlength: 50
-            });
+            if (currentEnv == "testIndia") {
+	            $( '[name="citrusEmail"]' ).rules( "add", {
+	                required: true,
+	                email:true,
+	                maxlength: 50
+	            });
+            }
 
             $('[name="impactAmount"]').rules( "add", {
                 required: true,
@@ -955,12 +960,13 @@ $(function() {
                 maxlength: 50
             });
             
-            $( '[name="citrusEmail"]' ).rules( "add", {
-                required: true,
-                email:true,
-                maxlength: 50
-            });
-
+            if (currentEnv == "testIndia") {
+	            $( '[name="citrusEmail"]' ).rules( "add", {
+	                required: true,
+	                email:true,
+	                maxlength: 50
+	            });
+            }
             $('[name="impactAmount"]').rules( "add", {
                 required: true,
                 number:true,
@@ -1483,12 +1489,18 @@ $(function() {
 
      $('#paymentOpt').change(function(){
     	 var payind = $('#paymentOpt').val();
-    	 if(payind === 'PAYU'){
-    		 $('#PayUMoney').show();
-    		 $('#CitrusPay').hide();
-    	 } else if (payind === 'CITRUS') {
-    		 $('#CitrusPay').show();
-    		 $('#PayUMoney').hide();
+    	 if (currentEnv == "testIndia") {
+	    	 if(payind === 'PAYU'){
+	    		 $('#PayUMoney').show();
+	    		 $('#CitrusPay').hide();
+	    	 } else if (payind === 'CITRUS') {
+	    		 $('#CitrusPay').show();
+	    		 $('#PayUMoney').hide();
+	    	 }
+    	 } else {
+    		 if(payind === 'PAYU'){
+	    		 $('#PayUMoney').show();
+	    	 }
     	 }
      });
 
@@ -2997,12 +3009,14 @@ $(function() {
         }
     });
     
-    $('#citrusemail').blur(function (){
-        var citrusEmail = $(this).val();
-        if (validator.element( "#citrusemail")) {
-            autoSave('citrusEmail', citrusEmail);
-        }
-    });
+    if (currentEnv == "testIndia") {
+	    $('#citrusemail').blur(function (){
+	        var citrusEmail = $(this).val();
+	        if (validator.element( "#citrusemail")) {
+	            autoSave('citrusEmail', citrusEmail);
+	        }
+	    });
+    }
 
     $('#secretKey').blur(function (){
         var secretKey = $(this).val();
@@ -3320,9 +3334,15 @@ $(function() {
 
      $('#previewButton, #previewButtonXS').on('click', function(){
       	$('#isSubmitButton').val(false);
-       	$('[name="pay"], [name="digitalSign"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name="citrusEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactAmount"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
-             $(this).rules('remove');
-         });
+      	if (currentEnv == "testIndia") {
+	       	$('[name="pay"], [name="digitalSign"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name="citrusEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactAmount"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
+	             $(this).rules('remove');
+	        });
+      	} else {
+      		$('[name="pay"], [name="digitalSign"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactAmount"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
+	             $(this).rules('remove');
+	        });
+      	}
 
 
         $('.spendAmount').each(function () {
@@ -3334,11 +3354,17 @@ $(function() {
         });
 
        	$( "#projectImageFile" ).rules("remove");
-
-       	$('[name="pay"], [name="digitalSign"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name="citrusEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactAmount"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
-             $(this).closest('.form-group').removeClass('has-error');
-         });
-
+       	
+       	if (currentEnv == "testIndia") {
+	       	$('[name="pay"], [name="digitalSign"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name="citrusEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactAmount"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
+	             $(this).closest('.form-group').removeClass('has-error');
+	        });
+       	} else {
+       		$('[name="pay"], [name="digitalSign"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactAmount"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
+	             $(this).closest('.form-group').removeClass('has-error');
+	        });
+       	}
+       	
        	$('.rewardNumberAvailable').each(function () {
             $(this).rules("remove");
         });

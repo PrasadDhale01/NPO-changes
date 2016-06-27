@@ -369,7 +369,7 @@ class ProjectService {
         if (project) {
             project.created = new Date()
             if(!project.validated) {
-                if (project.citrusEmail != null && project.payuStatus) {
+                if (project.citrusEmail != null && project.payuStatus && getCurrentEnvironment() == "testIndia") {
                     def sellerId = contributionService.setSellerId(project)
                     project.sellerId = sellerId
                 }
@@ -1142,7 +1142,7 @@ class ProjectService {
         def currentEnv = getCurrentEnvironment();
         
         def payment;
-        if (currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development') {
+        if (currentEnv == 'testIndia') {
             payment = [
                 PAYU  : 'PayUMoney',
                 CITRUS: 'Citrus'

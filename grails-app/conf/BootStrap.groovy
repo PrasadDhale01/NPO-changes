@@ -33,6 +33,9 @@ class BootStrap {
             projectService.bootstrap()
         }
         */
+        
+        // reSchedule the updates on Server startup
+        projectService.rescheduleUpdates();
 
         // Bootstrap communities.
         communityService.bootstrap()

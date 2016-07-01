@@ -53,6 +53,20 @@
 	<r:require modules="projectshowjs" />
 	<r:require modules="rewardjs" />
 	
+	<script>
+        function submitCampaignShowForm(key,projectId, fr){
+            $.ajax({
+                type    :'post',
+                url     : $("#b_url").val()+'/project/urlBuilder',
+                data    : "projectId="+projectId+"&fr="+fr+"&pkey="+key,
+                success : function(response){
+                  $(location).attr('href', response);
+                }
+            }).error(function(){
+            });
+        }
+    </script>
+	
 </head>
 <body>
     <g:hiddenField id="projectamount" name="projectamount" value="${project.amount.round()}"/>
@@ -98,12 +112,12 @@
                     <div class="col-md-12">
                         <g:if test="${!project.validated}">
                             <div class="mange-campaigntitle-mobile">
-                                <h1 class="green-heading text-center"><g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">${projectTitle}</g:link></h1>
+                                <h1 class="green-heading text-center"><a href="javascript:void(0)">${projectTitle}</a></h1>
                             </div>
                         </g:if>
                         <g:else>
                             <div class="mange-campaigntitle-mobile">
-                                <h1 class="green-heading text-center"><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}</g:link></h1>
+                                <h1 class="green-heading text-center"><a href="javascript:void(0)">${project.title}</a></h1>
                             </div>
                         </g:else>
 					</div>
@@ -169,7 +183,7 @@
                             <ul class="nav navbar-nav navbar-right col-lg-6 col-md-6 <g:if test="${project.payuStatus}">hidden-sm manage-submitapprov-india</g:if><g:else>col-sm-6 manage-submitapprove-edit</g:else>">
                                 <li>
                                     <div class="submitForApprovalSectionbtn">
-                                        <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                                        <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail || project.citrusEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                                             <g:form controller="project" action="saveasdraft" id="${project.id}">
                                                 <button class="btn btn-block btn-primary manage-submitaprroval mange-btnsubmitapprov-size"><i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL</button>
                                             </g:form>

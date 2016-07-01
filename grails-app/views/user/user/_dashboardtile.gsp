@@ -22,7 +22,7 @@
     <div class="fedu thumbnail grow userdashboard-tiles">
         <g:hiddenField name="projectId" class="projectId" id="projectId" value="${project.id}"/>
         <div class="blacknwhite dashboardtileheight">
-            <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">
+            <a href="javascript:void(0)" onclick="submitCampaignShowForm('show','${project.id}','${username}');" id="${project.id}" >
                 <div class="dashboard-imageWithTag">
                     <div class="under">
                         <img alt="${project.title}" class="dashboard-project-img" src="${projectService.getProjectImageLink(project)}">
@@ -37,13 +37,13 @@
                         </div>
                     </div>
                 </div>
-            </g:link>
+            </a>
         </div>
     
         <div class="tile-title-descrp project-title project-story-span">
-            <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}">
+            <a href="javascript:void(0)" onclick="submitCampaignShowForm('show','${project.id}','${username}');" id="${project.id}">
                 ${project.title.toUpperCase()}
-            </g:link>
+            </a>
             <div class="campaign-title-margin-bottom"></div>
         </div>
         

@@ -127,27 +127,27 @@
                     </g:else>
                 </div>
                 <g:if test="${iscampaignAdmin}">
-                    <g:link controller="project" action="manageCampaign" id="${campaign.id}" title="${campaign.title}">
+                    <a href="javascript:void(0);" onclick="submitCampaignShowForm('manage','${campaign.id}','${username}');">
                         <img alt="${campaign.title}" class="campaign-img" src="${projectService.getProjectImageLink(campaign)}">
-                    </g:link>
+                    </a>
                 </g:if>
                 <g:else>
-                    <g:link controller="project" action="showCampaign" id="${campaign.id}" params="['fr': username]" title="${campaign.title}">
+                    <a href="javascript:void(0);" onclick="submitCampaignShowForm('show','${campaign.id}','${username}');" id="${campaign.id}">
                         <img alt="${campaign.title}" class="campaign-img" src="${projectService.getProjectImageLink(campaign)}">
-                    </g:link>
+                    </a>
                 </g:else>
             </div>
             <div class="campaign-tile-content">
                 <div class="campaign-title-padding">
                     <g:if test="${iscampaignAdmin}">
-                        <g:link controller="project" action="manageCampaign" id="${campaign.id}" title="${campaign.title}">
+                        <a href="javascript:void(0)" onclick="submitCampaignShowForm('manage','${campaign.id}','${username}');" id="${campaign.id}" >
                             ${campaign.title.toUpperCase()}
-                        </g:link>
+                        </a>
                     </g:if>
                     <g:else>
-                        <g:link controller="project" action="showCampaign" id="${campaign.id}" params="['fr': username]" title="${campaign.title}">
+                        <a href="javascript:void(0)" onclick="submitCampaignShowForm('show','${campaign.id}','${username}');" id="${campaign.id}">
                             ${campaign.title.toUpperCase()}
-                        </g:link>
+                        </a>
                     </g:else>
                 </div>
                 <g:if test="${isFundingOpen}">

@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="feducontent">
-    <div class="container">
+    <div class="container" id="registration-form">
         <g:form class="form-signin" controller="login" action="reset_password" id="${code}" role="form">
             <h2 class="form-signin-heading">Reset Password</h2>
             <div class="form-group">

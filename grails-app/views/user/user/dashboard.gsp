@@ -10,6 +10,20 @@
     <meta name="layout" content="main" />
     <r:require modules="timelinecss, bootstrapsocialcss"/>
     <r:require modules="userjs"/>
+    <script>
+        function submitCampaignShowForm(key,projectId, fr){
+            $.ajax({
+                type    :'post',
+                url     : $("#b_url").val()+'/project/urlBuilder',
+                data    : "projectId="+projectId+"&fr="+fr+"&pkey="+key,
+                success : function(response){
+                    $(location).attr('href', response);
+                }
+            }).error(function(){
+                console.log("Error in redirecting");
+            });
+        }
+    </script>
 </head>
 <body>
 <g:if test="${user?.email == 'campaignadmin@crowdera.co'}">

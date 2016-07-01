@@ -70,9 +70,17 @@
                         <g:hiddenField name="manageCampaign" value="${manageCampaign}"></g:hiddenField>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label class="text col-sm-3">Display Name</label>
+                                <label class="text col-sm-3">First Name</label>
                                 <div class="col-sm-9"> 
                                 <input type="text" class="form-control contributioninput" name="contributorName1"><br>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="text col-sm-3">Last Name</label>
+                                <div class="col-sm-9"> 
+                                <input type="text" class="form-control contributioninput" name="contributorLastName"><br>
                                 </div>
                             </div>
                         </div>

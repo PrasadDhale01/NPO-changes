@@ -791,6 +791,15 @@ $(function() {
     });
 
     $(".fbshare-headermangepage").click(function(){
+    	if(currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia') {
+    	    var title = $("#title").val();
+    	    var story = $("#story").val();
+            //var image = $("#image").val();
+    	    $("meta[property='og:title']").attr("content", title);
+    	    $("meta[property='og:description']").attr("content", story);
+    	   // $("meta[property='og:image']").attr("content", image);
+    	}
+    	
         var fbShareUrl = $('#fbShareUrlupdatePage').val();
         var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent(fbShareUrl);
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
@@ -849,12 +858,20 @@ $(function() {
     });
 
     $(".twitter-share-updatepage").click(function(){
-        var shareUrl = $('#shareUrl').val();
-        var url;
-        if(currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'production' || currentEnv === 'staging'){
-            url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.co!"&url='+shareUrl+'%23projectupdates&';
+    	if(currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia') {
+            var title = $("#title").val();
+            var story = $("#story").val();
+           // var image = $("#image").val();
+    	    $("meta[name='twitter:title']").attr("content", title);
+    	    $("meta[name='twitter:description']").attr("content", story);
+    	    //$("meta[property='twitter:image']").attr("content", image);
+    	}
+    	
+        var shareUrl = $('#shareUrl').val()
+        if(currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
+            var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.co!"&url='+shareUrl+'%23projectupdates&';
         } else {
-            url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.in!"&url='+shareUrl+'%23projectupdates&';
+            var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.in!"&url='+shareUrl+'%23projectupdates&';
         }
         window.open(url, 'Share on Twitter', 'left=20,top=20,width=630,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;

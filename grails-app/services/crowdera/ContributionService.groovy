@@ -669,55 +669,60 @@ class ContributionService {
         def url = citrusBaseUrl +"/marketplace/seller/"
         
         BankInfo bankInfo = getBankInfoByProject(project)
-        def sellername = bankInfo.fullName
-        def selleremail = bankInfo.email
         
-        def seller = getSellerIdByEmail(selleremail)
-        def sellerId
-        if (seller) {
-            return seller.sellerId
-        } else {
-            def address1 = bankInfo.address1
-            def address2 = bankInfo.address2
-            def city = bankInfo.city
-            def state = bankInfo.state
-            def country = bankInfo.country
-            def zip = bankInfo.zip
-            def businessurl = project.webAddress
-            def sellermobile = bankInfo.mobile
+        if (bankInfo != null) {
+            def sellername = bankInfo.fullName
+            def selleremail = bankInfo.email
             
-            def ifsccode = bankInfo.ifscCode
-            def payoutmode = bankInfo.payoutmode
-            def accountnumber = bankInfo.accountNumber
-            
-            def auth_token = getAccessTokenForCitrus()
-            HttpClient httpclient = new DefaultHttpClient()
-            HttpPost httppost = new HttpPost(url)
-            httppost.setHeader("auth_token","${auth_token}")
-            
-            StringEntity input = new StringEntity("{\"seller_name\":\"${sellername}\",\"seller_add1\":\"${address1}\",\"seller_add2\":\"${address2}\",\"seller_city\":\"${city}\",\"seller_state\":\"${state}\",\"seller_country\":\"${country}\",\"zip\":\"${zip}\",\"businessurl\":\"${businessurl}\",\"seller_mobile\":\"${sellermobile}\",\"seller_ifsc_code\":\"${ifsccode}\",\"selleremail\":\"${selleremail}\",\"payoutmode\":\"${payoutmode}\",\"seller_acc_num\":\"${accountnumber}\",\"active\":1}")
-            input.setContentType("application/json")
-            httppost.setEntity(input)
-    
-            HttpResponse httpres = httpclient.execute(httppost)
-            
-            int status = httpres.getStatusLine().getStatusCode()
-            if (status == 200){
-                HttpEntity entity = httpres.getEntity()
-                if (entity != null){
-                    def jsonString = EntityUtils.toString(entity)
-                    def slurper = new JsonSlurper()
-                    def json = slurper.parseText(jsonString)
-                    sellerId = json.sellerid
-                    
-                    if (sellerId != null) {
-                        new Seller(email: selleremail, sellerId: sellerId).save();
+            def seller = getSellerIdByEmail(selleremail)
+            def sellerId
+            if (seller) {
+                return seller.sellerId
+            } else {
+                def address1 = bankInfo.address1
+                def address2 = bankInfo.address2
+                def city = bankInfo.city
+                def state = bankInfo.state
+                def country = bankInfo.country
+                def zip = bankInfo.zip
+                def businessurl = project.webAddress
+                def sellermobile = bankInfo.mobile
+                
+                def ifsccode = bankInfo.ifscCode
+                def payoutmode = bankInfo.payoutmode
+                def accountnumber = bankInfo.accountNumber
+                
+                def auth_token = getAccessTokenForCitrus()
+                HttpClient httpclient = new DefaultHttpClient()
+                HttpPost httppost = new HttpPost(url)
+                httppost.setHeader("auth_token","${auth_token}")
+                
+                StringEntity input = new StringEntity("{\"seller_name\":\"${sellername}\",\"seller_add1\":\"${address1}\",\"seller_add2\":\"${address2}\",\"seller_city\":\"${city}\",\"seller_state\":\"${state}\",\"seller_country\":\"${country}\",\"zip\":\"${zip}\",\"businessurl\":\"${businessurl}\",\"seller_mobile\":\"${sellermobile}\",\"seller_ifsc_code\":\"${ifsccode}\",\"selleremail\":\"${selleremail}\",\"payoutmode\":\"${payoutmode}\",\"seller_acc_num\":\"${accountnumber}\",\"active\":1}")
+                input.setContentType("application/json")
+                httppost.setEntity(input)
+        
+                HttpResponse httpres = httpclient.execute(httppost)
+                
+                int status = httpres.getStatusLine().getStatusCode()
+                if (status == 200){
+                    HttpEntity entity = httpres.getEntity()
+                    if (entity != null){
+                        def jsonString = EntityUtils.toString(entity)
+                        def slurper = new JsonSlurper()
+                        def json = slurper.parseText(jsonString)
+                        sellerId = json.sellerid
+                        
+                        if (sellerId != null) {
+                            new Seller(email: selleremail, sellerId: sellerId).save();
+                        }
                     }
+                    
                 }
                 
+                return sellerId
             }
-            
-            return sellerId
+        } else {
+            return null;
         }
     }
     

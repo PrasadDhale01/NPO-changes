@@ -18,7 +18,7 @@ class UserController {
     def admindashboard() {
         User user = (User)userService.getCurrentUser()
         def totalContribution
-        def environment = Environment.current.getName()
+        def environment = projectService.getCurrentEnvironment()
         if ( environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
             totalContribution = contributionService.getTotalINRContributions()
             render view: 'admin/dashboard', model: [user: user, currency:'INR', amount:totalContribution, environment: environment]
@@ -64,7 +64,7 @@ class UserController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def userprofile(String userViews, String activeTab){
         User user = (User)userService.getCurrentUser()
-        def environment = Environment.current.getName()
+        def environment = projectService.getCurrentEnvironment()
 
         if (flash.prj_validate_message) {
             flash.prj_validate_message= "Campaign Discarded Successfully"
@@ -371,7 +371,7 @@ class UserController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def campaignpagination() {
         User user = userService.getCurrentUser()
-        def environment = Environment.current.getName()
+        def environment = projectService.getCurrentEnvironment()
         def projects = projectService.getAllProjectByUser(user, environment)
         def projectAdmins = projectService.getProjectAdminEmail(user)
         def teams = projectService.getEnabledAndValidatedTeam(user)
@@ -390,7 +390,7 @@ class UserController {
     def contributionspagination() {
         User user = userService.getUserById(params.int('userId'))
         if (user) {
-            def environment = Environment.current.getName()
+            def environment = projectService.getCurrentEnvironment()
             def max = Math.min(params.int('max') ?: 6, 100)
             def campaignsSupported = projectService.getPaginatedCampaignsContributedByUser(user, environment,params, max)
             def multiplier = projectService.getCurrencyConverter();
@@ -597,7 +597,7 @@ class UserController {
     def getSortedCampaigns() {
         def projects = projectService.getValidatedProjectsForCampaignAdmin(params.selectedSortValue, params.country)
         def multiplier = projectService.getCurrencyConverter();
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
         def model = [projects: projects, multiplier: multiplier]
         if (request.xhr) {
             render(template: "/user/user/grid", model: model, currentEnv: currentEnv)
@@ -1322,4 +1322,19 @@ class UserController {
             render view:'/404error'
         }
     }
+    
+    @Secured(['ROLE_ADMIN'])
+    def managedisbursement() {
+        List projects = projectService.getCitrusCampaigns()
+        
+        render view:'/user/disbursement/index', model:[projects: projects]
+    }
+    
+    def getcontribution() {
+        if (request.xhr) {
+            List contributions = projectService.getContributionsListByProjectId(params.projectId);
+            render template:'/user/disbursement/contributions', model:[contributions: contributions, sellerId: params.sellerId]
+        }
+    }
+    
 }

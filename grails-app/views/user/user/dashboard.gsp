@@ -207,7 +207,7 @@
                     </li>
                     <g:if test="${partner && ispartnerdraft}">
                         <li>
-                            <a href="${resource(dir: '/partner/edit')}" class="active">Edit Partner Page</a>
+                            <g:link action="editpartner" controller="user" params="['partnerId': partner.id]">Edit Partner Page</g:link>
                         </li>
                     </g:if>
                     <g:if test="${environment == 'testIndia' || environment == 'test' || environment == 'development'}">
@@ -314,7 +314,7 @@
                         </div>
                     </div>
                 </g:if>
-				
+                
                 <div class="col-md-12 col-sm-12 col-lg-12" id="vitalseperator">
                     <hr>
                 </div>

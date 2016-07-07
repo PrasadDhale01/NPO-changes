@@ -2032,8 +2032,9 @@ class ProjectController {
 			}
 
 			def multiplier = projectService.getCurrencyConverter();
+             def currentEnv = projectService.getCurrentEnvironment()
 			def model = [totalContributions : totalContributions, CurrentUserTeam: CurrentUserTeam,isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, contributions: contributions, project: project,
-				team: currentTeam, multiplier: multiplier, vanityUsername:params.fr, currentUser: currentUser]
+				team: currentTeam, multiplier: multiplier, vanityUsername:params.fr, currentUser: currentUser, currentEnv: currentEnv]
 			if (request.xhr) {
 				render(template: "show/contributionlist", model: model)
 			}

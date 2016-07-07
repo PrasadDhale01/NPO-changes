@@ -380,4 +380,7 @@ $( document ).ready(function() {
 		$('.info-banner').css('display','none');
 		$('.home-header-section').removeClass('banner-nav');
 	});
+	
+	$("#homepage-carousel").load('/us/carousel_images');
+	
 });

@@ -1071,6 +1071,8 @@ $(function() {
     $('.show1-Primary').hide();
     $( document ).ready(function() {
     	
+    	/**************************Sets text on file selection*************************/
+    	
     	$(document).on('change', '.btn-file :file', function() {
             var filename =this.files[0].name;
             var input = $(this),
@@ -1402,6 +1404,23 @@ $(function() {
 
        
    });
+    
+	/**Restore rejected campaign**/
+	$('#restoreCampaign').one("click", function(){
+	   var projectId = $('#prjId').val();
+	   $.ajax({
+	        type    :'post',
+	        url     : $("#b_url").val()+'/project/restoreCampaign',
+	        data    : "projectId="+projectId,
+	        success : function(response){
+	          if(response =="true"){
+	        	  alert('Campaign restored.');
+	          }
+	        }
+	    }).error(function(){
+	 	   console.log('Campaign not restored');
+	    });
+	});
 });
 
 function showNavigation(){

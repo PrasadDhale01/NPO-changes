@@ -1,6 +1,11 @@
 package crowdera
+import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 import grails.util.Environment
+
 import javax.servlet.http.Cookie
+
+import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 class HomeController {
 	def projectService
@@ -28,6 +33,8 @@ class HomeController {
                 return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv, contributorEmail:contributorEmail]
             }
         }
+        
+        
     }
 
     def crowderacustomerhelp() {
@@ -74,4 +81,34 @@ class HomeController {
             redirect(view:'/error')
         }
     }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def manageHomePageCarousel(){
+        
+        String status
+        switch(params?.carouselOption){
+            case 'delete':
+                status = projectService.deleteHomeCarouselImage(params?.carouselImage, params?.country)
+            break;
+            case 'update':
+                CommonsMultipartFile file = params?.uploadFile
+                def iconUrl = projectService.setImageUrl(params?.uploadFile, "home-carousel")
+                status = projectService.updateHomeCarouselImage(params?.carouselImage, file.getOriginalFilename(), iconUrl, params.country)
+            break;
+            case 'upload':
+                CommonsMultipartFile file = params?.uploadFile
+                def iconUrl = projectService.setImageUrl(params?.uploadFile, "home-carousel")
+                status = projectService.setHomePageCarouselImage(iconUrl, file.getOriginalFilename(), params?.country)
+            break;
+            
+        }
+        render status
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def getHomePageCarouselImage(){
+        def carousel = projectService.getHomePageCarouselImage(params?.country, params?.data)
+        render carousel as JSON
+    }
+    
 }

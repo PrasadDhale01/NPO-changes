@@ -1902,6 +1902,13 @@ class UserService {
         return reportDef;
     }
     
+    def getUserSettingList(){
+        def settingList = [
+            Profile:'Profile',
+            Contribution:'Contribution'
+        ]
+        return settingList
+    } 
     
 
     @Transactional

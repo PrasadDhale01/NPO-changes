@@ -59,14 +59,8 @@
 	<g:hiddenField name='currentEnv' value='${currentEnv}' id='currentEnv'/>
 	<g:hiddenField name="contributorEmail" value="${contributorEmail}" id="contributorEmail"/>
     
-       <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-           <img class="img-responsive home-img-large-size" src="//s3.amazonaws.com/crowdera/assets/slider-home-page-india-slider.jpg" alt="india-slide">
-           <div class="hm-image-header"></div>          
-       </g:if>
-       <g:else>
-           <img class="img-responsive home-img-large-size" src="//s3.amazonaws.com/crowdera/assets/slider-home-page-united-state-slider.jpg" alt="india-slide">
-           <div class="hm-image-header"></div>  
-       </g:else>
+     <div id="homepage-carousel"></div>
+     <div class="hm-image-header"></div>  
     <div class="hidden-xs">
        <g:render template="banner"></g:render>
     </div>

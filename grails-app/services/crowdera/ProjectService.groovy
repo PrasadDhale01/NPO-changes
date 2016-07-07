@@ -2302,6 +2302,38 @@ class ProjectService {
         return tempImageUrl
     }
     
+    def setImageUrl(CommonsMultipartFile imageFile, String imgFolder) {
+        def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+        def awsSecretKey = "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"
+
+        def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+        def s3Service = new RestS3Service(awsCredentials);
+
+        def bucketName = "crowdera"
+        def s3Bucket = new S3Bucket(bucketName)
+        def Folder = imgFolder
+
+        def tempImageUrl
+
+        if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
+            int index = imageFile.getOriginalFilename().lastIndexOf(".")
+            String extName = imageFile.getOriginalFilename().substring(index);
+            def fileName =  UUID.randomUUID().toString() + extName
+            
+            def file= new File("${fileName}")
+            def key = "${Folder}/${fileName}"
+            key = key.toLowerCase()
+            imageFile.transferTo(file)
+            def object=new S3Object(file)
+            object.key=key
+
+            tempImageUrl = "//s3.amazonaws.com/crowdera/${key}"
+            s3Service.putObject(s3Bucket, object)
+            file.delete()
+        }
+
+        return tempImageUrl
+    }
     def getUpdatEditImageUrls(CommonsMultipartFile imageFile, ProjectUpdate projectUpdate){
         def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
         def awsSecretKey = "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"
@@ -4930,11 +4962,12 @@ class ProjectService {
     }
 
     def getValidatedProjectsForCampaignAdmin(def condition, def country) {
+        
         List projects = []
         List totalProjects = []
         List endedCampaigns = []
         List activeCampaigns = []
-        if (condition == 'Current' || condition == 'Ended' || condition=="Homepage" || condition=='Deadline') {
+        if (condition == 'Live' || condition == 'Ended' || condition=="Homepage" || condition=='Deadline') {
             if (country == 'INDIA') {
                 
                 totalProjects = Project.findAllWhere(payuStatus: true, validated: true, inactive: false)
@@ -4958,24 +4991,28 @@ class ProjectService {
             case 'Pending':
                 if (country == 'INDIA') {
                     projects = Project.findAllWhere(payuStatus: true, draft: false, inactive: false, rejected: false, validated: false)
+                    checkProjectExistence(projects)
                 } else if(country == 'USA') {
                     projects = Project.findAllWhere(payuStatus: false, draft: false, inactive: false, rejected: false, validated: false)
+                    checkProjectExistence(projects)
                 }
                 break;
-            case 'Current':
+            case 'Live':
                 projects = activeCampaigns
                 break;
             case 'Homepage':
-                projects = totalProjects
+                projects = totalProjects.title.sort{it.toLowerCase()}
                 break;
             case 'Deadline':
-                projects= totalProjects
+                projects= totalProjects.title.sort{it.toLowerCase()}
                 break;
             case 'Draft':
                 if (country == 'INDIA') {
                     projects = Project.findAllWhere(payuStatus: true, draft: true, inactive: false, rejected: false)
+                    checkProjectExistence(projects)
                 } else if(country == 'USA') {
                     projects = Project.findAllWhere(payuStatus: false, draft: true, inactive: false, rejected: false)
+                    checkProjectExistence(projects)
                 }
                 break;
             case 'Rejected':
@@ -4985,11 +5022,30 @@ class ProjectService {
                     projects = Project.findAllWhere(payuStatus: false, rejected: true)
                 }
                 break;
+            case 'Deleted':
+                if(country == "INDIA"){
+                    def projectList = Project.findAllWhere(payuStatus: true, inactive: true)
+                    projects = projectList.title.sort{it.toLowerCase()}
+                }else if( country == 'USA'){
+                    def projectList = Project.findAllWhere(payuStatus: false, inactive: true)
+                    projects = projectList.title.sort{it.toLowerCase()}
+                }
+            break;
             default :
                projects = []
         }
         
         return projects
+    }
+    
+    private static void checkProjectExistence(def projects){
+        Date currentDate = new Date()
+        projects.each{project ->
+            def dateDifference = currentDate - project.created
+            if(dateDifference > 90){
+                project.rejected = true
+            }
+        }
     }
     
     def getPartnerCampaigns(User user, def params) {
@@ -5018,11 +5074,13 @@ class ProjectService {
         def sortingOptions = [
             Draft: 'Draft',
             Pending: 'Pending',
-            Current: 'Current',
+            Live: 'Live',
             Ended: 'Ended',
             Rejected: 'Rejected',
+            Deleted: 'Deleted',
             Homepage:'Homepage',
-            Deadline: 'Deadline'
+            Deadline: 'Deadline',
+            Carousel: 'Carousel'
         ]
         return sortingOptions
     }
@@ -5648,6 +5706,122 @@ class ProjectService {
         }
         
         return builder
+    }
+    
+    def setCampaignActive(Project project, String status){
+        if(project){
+            switch(status){
+                case 'deleted':
+                    project.inactive=false
+                break;
+                case 'rejected':
+                    project.rejected=false
+                break;
+            }
+            return true
+        }else{
+            return false
+        }
+     }
+    
+    def setHomePageCarouselImage(String imageUrl, String imageName, String currentEnv){
+        
+        String environment = null
+        
+        if('USA'.equalsIgnoreCase(currentEnv) || 'development'.equalsIgnoreCase(currentEnv) || 'production'.equalsIgnoreCase(currentEnv) || 'staging'.equalsIgnoreCase(currentEnv) || 'test'.equalsIgnoreCase(currentEnv)){
+            
+            environment = 'production'
+            
+        }else if('INDIA'.equalsIgnoreCase(currentEnv) || 'prodIndia'.equalsIgnoreCase(currentEnv) || 'stagingIndia'.equalsIgnoreCase(currentEnv) || 'testIndia'.equalsIgnoreCase(currentEnv)){
+        
+             environment = 'prodIndia'
+        }
+        
+        HomePageCarousel carousel = new HomePageCarousel()
+        carousel.setImageUrl(imageUrl)
+        carousel.setCurrentEnv(environment)
+        carousel.setImageName(imageName)
+        
+        if(carousel.save()){
+            return true
+        }
+        
+        return false
+    }
+    
+    def getHomePageCarouselImage(String currentEnv, String data){
+        
+        String environment = null
+        def carousel
+        
+        if('USA'.equalsIgnoreCase(currentEnv) || 'development'.equalsIgnoreCase(currentEnv) || 'production'.equalsIgnoreCase(currentEnv) || 'staging'.equalsIgnoreCase(currentEnv) || 'test'.equalsIgnoreCase(currentEnv)){
+            
+            environment = 'production'
+            
+        }else if('INDIA'.equalsIgnoreCase(currentEnv) || 'prodIndia'.equalsIgnoreCase(currentEnv) || 'stagingIndia'.equalsIgnoreCase(currentEnv) || 'testIndia'.equalsIgnoreCase(currentEnv)){
+        
+             environment = 'prodIndia'
+        }
+        
+        if("link".equalsIgnoreCase(data)){
+            
+            carousel = HomePageCarousel.findAllByCurrentEnv(environment)?.imageUrl
+            
+        }else if('name'.equalsIgnoreCase(data)){
+        
+            carousel= HomePageCarousel.findAllByCurrentEnv(environment)?.imageName
+        }
+        
+        return carousel
+    }
+    
+    
+    def deleteHomeCarouselImage(String imageName, String currentEnv){
+        
+        String environment = null
+        
+        if('USA'.equalsIgnoreCase(currentEnv) || 'development'.equalsIgnoreCase(currentEnv) || 'production'.equalsIgnoreCase(currentEnv) || 'staging'.equalsIgnoreCase(currentEnv) || 'test'.equalsIgnoreCase(currentEnv)){
+            
+            environment = 'production'
+            
+        }else if('INDIA'.equalsIgnoreCase(currentEnv) || 'prodIndia'.equalsIgnoreCase(currentEnv) || 'stagingIndia'.equalsIgnoreCase(currentEnv) || 'testIndia'.equalsIgnoreCase(currentEnv)){
+        
+             environment = 'prodIndia'
+        }
+        
+        if(imageName){
+            
+           def deleteImage = HomePageCarousel.findByImageNameAndCurrentEnv(imageName, environment)
+           deleteImage.delete()
+           return true
+        }
+        
+        return false
+        
+    }
+    
+    def updateHomeCarouselImage(String oldImage,String newImage, String imageUrl, String currentEnv){
+        
+        String environment = null
+        
+        if('USA'.equalsIgnoreCase(currentEnv) || 'development'.equalsIgnoreCase(currentEnv) || 'production'.equalsIgnoreCase(currentEnv) || 'staging'.equalsIgnoreCase(currentEnv) || 'test'.equalsIgnoreCase(currentEnv)){
+            
+            environment = 'production'
+            
+        }else if('INDIA'.equalsIgnoreCase(currentEnv) || 'prodIndia'.equalsIgnoreCase(currentEnv) || 'stagingIndia'.equalsIgnoreCase(currentEnv) || 'testIndia'.equalsIgnoreCase(currentEnv)){
+        
+             environment = 'prodIndia'
+        }
+        
+        if(oldImage && imageUrl && environment){
+            
+            def carouselImage = HomePageCarousel.findByImageNameAndCurrentEnv(oldImage, environment)
+            carouselImage.imageName = newImage
+            carouselImage.imageUrl = imageUrl
+            return true
+        }
+        
+        return false
     }
     
     @Transactional

@@ -9,7 +9,7 @@
 	def fbUser = userService.isFacebookUser()
 	def googlePlusUser = userService.isGooglePlusUser()
 %>
-
+<br>
 <div class="col-sm-6">
 	<div class="form-signin">
 	    <g:if test="${imageUrl != null}">

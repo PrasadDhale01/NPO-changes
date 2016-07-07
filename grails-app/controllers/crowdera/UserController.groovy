@@ -1,9 +1,11 @@
 package crowdera
 
 import grails.plugin.springsecurity.annotation.Secured
-import org.springframework.security.core.context.SecurityContextHolder;
 import grails.util.Environment
+
 import javax.servlet.http.Cookie
+
+import org.springframework.security.core.context.SecurityContextHolder
 
 class UserController {
     def userService
@@ -79,7 +81,7 @@ class UserController {
             def projectAdmins
             def teams
             def project = []
-            def sortByOptions = []
+            def sortByOptions
             if (user.email == 'campaignadmin@crowdera.co') {
                 if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
                     project = projectService.getValidatedProjectsForCampaignAdmin('Pending', 'INDIA')
@@ -87,15 +89,7 @@ class UserController {
                     project = projectService.getValidatedProjectsForCampaignAdmin('Pending', 'USA')
                 }
                 
-                def sortingList =projectService.getSortingList()
-                
-                sortingList.each {
-                    
-                    if(it.value!="Homepage"){
-                        if(it.value!="Deadline")
-                            sortByOptions.add(it.value)
-                    }
-                }
+                sortByOptions =projectService.getSortingList()
                 
             } else {
                 projects = projectService.getAllProjectByUser(user, environment)
@@ -150,6 +144,7 @@ class UserController {
             }
             
             def partner = userService.getPartnerByUser(user)
+            def settingList = userService.getUserSettingList()
                 
             render view: userViews, model: [user: user, totalprojects: project, totalCampaings: totalCampaings,country: country, fundRaised: fundRaised, 
                                             state: state, activeTab:activeTab, environment: environment, contributedAmount: contributedAmount, 
@@ -160,7 +155,7 @@ class UserController {
                                             contributorListForProject:contributorListForProject, totalContributions:totalContributions, sortList:sortList,
                                             userHasContributedToNonProfitOrNgo:userHasContributedToNonProfitOrNgo, vanityTitle:vanityTitle,
                                             contributionList:contributionList, totalTaxReceiptContributions:taxReceiptRecievedList.totalTaxReceiptContributions,
-                                            taxReceiptContribution:taxReceiptRecievedList.taxReceiptList, campaign: campaign]
+                                            taxReceiptContribution:taxReceiptRecievedList.taxReceiptList, campaign: campaign, settingList:settingList]
         }
     }
 
@@ -595,12 +590,33 @@ class UserController {
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def getSortedCampaigns() {
+        
         def projects = projectService.getValidatedProjectsForCampaignAdmin(params.selectedSortValue, params.country)
         def multiplier = projectService.getCurrencyConverter();
         def currentEnv = Environment.current.getName()
         def model = [projects: projects, multiplier: multiplier]
-        if (request.xhr) {
-            render(template: "/user/user/grid", model: model, currentEnv: currentEnv)
+        switch (params.selectedSortValue){
+            case 'Pending':
+            case 'Draft':
+            case 'Ended':
+            case 'Live':
+            case 'Rejected':
+                render(template: "/user/user/grid", model: model, currentEnv: currentEnv)
+            break;
+            case 'Deadline':
+                def deadlinDays = projectService.getInDays()
+                render(template: "/project/validate/deadline", model: [projects: projects, multiplier: multiplier,
+                     deadlinDays:deadlinDays, extendDays:params.extendDays], currentEnv: currentEnv)
+            break;
+            case 'Homepage':
+                render(template: "/project/validate/homepage", model: model, currentEnv: currentEnv)
+            break;
+            case 'Deleted':
+                render(template: "/project/validate/deletedCampaigns", model: model, currentEnv: currentEnv)
+            break;
+            case 'Carousel':
+                render(template: "/project/validate/homepagecarousel", model: model, currentEnv: currentEnv)
+            break;
         }
     }
 	
@@ -1321,5 +1337,16 @@ class UserController {
         } else {
             render view:'/404error'
         }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def settingOption(){
+        if("Profile".equalsIgnoreCase(params.option)){
+            def user = userService.getCurrentUser()
+            render (template:"common/accountsettings", model:[user:user])
+        }else{
+            userprofile('/user/user/mycontribution', null)
+        }
+        
     }
 }

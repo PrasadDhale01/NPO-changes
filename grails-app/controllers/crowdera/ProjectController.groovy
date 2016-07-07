@@ -582,12 +582,6 @@ class ProjectController {
                 render(template: "/project/validate/validategrid", model: model)
             }else if(params.selectedSortValue=='Homepage'){
             
-                if(params.country.equalsIgnoreCase('INDIA')){
-                    currentEnv ="prodIndia"
-                }else{
-                    currentEnv = 'production'
-                }
-                
                 def homePageCampaigns = projectService.getHomePageCampaignByEnv(currentEnv)
                 
                 if(homePageCampaigns){
@@ -599,15 +593,18 @@ class ProjectController {
                 
             }else if(params.selectedSortValue=='Deadline'){
             
-                if(params.country.equalsIgnoreCase('INDIA')){
-                    currentEnv ="prodIndia"
-                }else{
-                    currentEnv = 'production'
-                }
+                def deadlinDays= projectService.getInDays()
+                render(template: "/project/validate/deadline", model: [projects:projects, currentEnv:currentEnv, deadlinDays: deadlinDays])
                 
-                render(template: "/project/validate/deadline", model: [projects:projects, currentEnv:currentEnv])
+            }else if(params.selectedSortValue=='Deleted'){
+            
+                render(template:"/project/validate/deletedcampaigns", model:[projects:projects, currentEnv:currentEnv])
                 
-            } else {
+            }else if(params.selectedSortValue== 'Carousel'){
+            
+                render(template:"/project/validate/homepagecarousel", model:[projects:projects, currentEnv:currentEnv])
+                
+            }  else {
                 render(template: "/user/user/grid", model: model)
             }
         }
@@ -643,7 +640,7 @@ class ProjectController {
         }
     }
     
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def manageCampaignDeadline(){
         
         def project
@@ -653,14 +650,14 @@ class ProjectController {
             project = projectService.getProjectFromTitle(params.campaignSelection)
             
             if(project){
-                projectService.setCampaignDeadline(project, params.int('deadline'), params.int('daysLeft'))
+                projectService.setCampaignDeadline(project, params.int('deadline'), params.int('extendDays'))
             }
         }
         
-        render(template: "/project/validate/deadline", model:[projects: projects, project:project])
+        render(template: "/project/validate/deadline", model:[projects: projects.title, project:project, extendDays: params.extendDays])
     }
     
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def setCampaignCurrentDays(){
         def campaign = projectService.getProjectFromTitle(params.campaign)
         
@@ -673,7 +670,7 @@ class ProjectController {
         }
     }
     
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def manageHomePageCampaigns(){
         
         def projects = projectService.getValidatedProjects()
@@ -2032,8 +2029,8 @@ class ProjectController {
 			}
 
 			def multiplier = projectService.getCurrencyConverter();
-			def model = [totalContributions : totalContributions, CurrentUserTeam: CurrentUserTeam,isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, contributions: contributions, project: project,
-				team: currentTeam, multiplier: multiplier, vanityUsername:params.fr, currentUser: currentUser]
+			def model = [totalContributions : totalContributions, CurrentUserTeam: CurrentUserTeam,isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin,
+                contributions: contributions, project: project, team: currentTeam, multiplier: multiplier, vanityUsername:params.fr, currentUser: currentUser]
 			if (request.xhr) {
 				render(template: "show/contributionlist", model: model)
 			}
@@ -2671,7 +2668,6 @@ class ProjectController {
         }else{
             contacts =projectService.getDataFromImportedCSV(params.filecsv, user)
             render(contentType: 'text/json') {['contacts': contacts]}
-            jQuery.parseJSON(JSON.stringify(data));
         }  
     }
     
@@ -2753,4 +2749,35 @@ class ProjectController {
             render  new JSONObject(requiredFieldMessage)
         }
     }
+    
+    @Secured(["IS_AUTHENTICATED_FULLY"])
+    def manageDeletedCamapaigns(){
+        
+        if(request.method == 'POST' && params.deletedCampaign){
+            def project = projectService.getProjectFromTitle(params.deletedCampaign)
+            def status = projectService.setCampaignActive(project, 'deleted')
+            if(status){
+                render 'true'
+            }else{
+                render 'false'
+            }
+        }else {
+            render ''
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def restoreCampaign(){
+        if(request.method=='POST' && params.projectId){
+            Project project =Project.get(params.projectId)
+            def status =projectService.setCampaignActive(project, 'rejected')
+            if(status){
+                render 'true'
+            }else{
+                render 'false'
+            }
+        }
+        render ''
+    }
+    
 }

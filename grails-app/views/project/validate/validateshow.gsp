@@ -131,10 +131,14 @@
                                 <label><b>Payment mode : </b>payUMoney</label><br>
                                 <label><b>PayUMoney Email: </b>${project.payuEmail }</label><br>
                             </g:elseif>
-                            <g:else>
+                            <g:elseif test="${project.paypalEmail}">
                                 <label><b>Payment mode : </b>Paypal</label><br>
                                 <label><b>Paypal Email : </b>${project.paypalEmail}</label><br>
-                            </g:else>
+                            </g:elseif>
+                            <g:elseif test="${project.citrusEmail}">
+                                <label><b>Payment mode : </b>Citrus</label><br>
+                                <label><b>Citrus Email : </b>${project.citrusEmail}</label><br>
+                            </g:elseif>
                             <div class="visible-md visible-lg visible-xs">
                             <g:if test="${taxReceipt}">
 	                            <h6 class="text-center "><b>Tax Receipt Details</b></h6>

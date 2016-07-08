@@ -322,7 +322,10 @@ $(function() {
     .hover(showPopover, hidePopover);
     
     /***Load campaign admin dashboard*****/
-    campaignsortByCountry();
+    var option = $('#settingList').val();
+    if(option==''){
+        campaignsortByCountry();
+    }
     
 });
 
@@ -448,7 +451,6 @@ function uploadCarouselImage(){
 	    formData.append('uploadFile', $('#uploadCarouselFile')[0].files[0]);
 	    formData.append('country', $("#countryOpts").val());
 	    formData.append('carouselOption','upload');
-	    $('#loading-gif').show();
 	    
 	    $('.homeCarouselForm').submit(function(){
 	    	return false;
@@ -461,6 +463,9 @@ function uploadCarouselImage(){
 	        cache:true,
 	        processData: false,  
 	        contentType: false,
+	        beforeSend:function(){
+	        	 $('#loading-gif').show();
+	        },
 	        mimeType:'multipart/form-data',
 	        success:function(data){
 	        	$('#loading-gif').hide();
@@ -475,7 +480,6 @@ function deleteCarouselImage(){
 	if(form){
 		var formData = $('.homeCarouselForm').serialize();
 	    var country =$("#countryOpts").val();
-	    $('#loading-gif').show();
 	      
 	    $('.homeCarouselForm').submit(function(){
 	    	return false;
@@ -485,6 +489,9 @@ function deleteCarouselImage(){
 	          type:'POST',
 	          cache:true,
 	          data:formData+"&country="+country,
+	          beforeSend: function(){
+	        	  $('#loading-gif').show();
+	          },
 	          success:function(data){
 	        	  $('#loading-gif').hide();
 	        	  $('#carouselTemplate').load('/carouseltemplate #deleteTemplate');
@@ -504,7 +511,6 @@ function updateCarouselImage(){
 	    formData.append('country', $("#countryOpts").val());
 	    formData.append('carouselImage',$('#updateImage').val());
 	    formData.append('carouselOption','update');
-	    $('#loading-gif').show();
 	    
 	    $('.homeCarouselForm').submit(function(){
 	    	return false;
@@ -518,6 +524,9 @@ function updateCarouselImage(){
 	       processData: false,  
 	       contentType: false,
 	       mimeType:'multipart/form-data',
+           beforeSend: function(){
+               $('#loading-gif').show();
+           },
 	       success:function(data){
 	    	   $('#loading-gif').hide();
 	    	   $('#carouselTemplate').load('/carouseltemplate #updateTemplate');
@@ -534,6 +543,9 @@ function loadDropDownData(tag){
         type:'POST',
         cache:true,
         data:"country="+country+"&data=name",
+        beforeSend: function(){
+        	 $('#loading-gif').show();
+        },
         success:function(data){
             $('#loading-gif').hide();
             var jsonData = jQuery.parseJSON(JSON.stringify(data));

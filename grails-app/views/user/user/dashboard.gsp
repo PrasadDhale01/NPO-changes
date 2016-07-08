@@ -311,12 +311,12 @@
           
          </div>
      </div>
-     <div id="loading-gif" class="loadinggif text-center" style="display: none;">
-        <img id="loading-gif-img" alt="'loadingImage'" src="//s3.amazonaws.com/crowdera/documents/loading.gif">
-    </div>
      <div class="loadingfilegif text-center" id="loadingfilegif">
          <img src="//s3.amazonaws.com/crowdera/assets/loading.gif" alt="'loadingImage'" id="loading-file-gif-img">
      </div>
 </g:else>
+     <div id="loading-gif" class="loadinggif text-center" style="display: none;">
+        <img id="loading-gif-img" alt="'loadingImage'" src="//s3.amazonaws.com/crowdera/documents/loading.gif">
+    </div>
 </body>
 </html>

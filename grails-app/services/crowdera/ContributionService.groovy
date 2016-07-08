@@ -1,5 +1,14 @@
 package crowdera
 
+import groovy.json.JsonSlurper
+import org.apache.http.HttpEntity
+import org.apache.http.HttpResponse
+import org.apache.http.client.HttpClient
+import org.apache.http.client.methods.HttpPost
+import org.apache.http.entity.StringEntity
+import org.apache.http.impl.client.DefaultHttpClient
+import org.apache.http.util.EntityUtils
+
 class ContributionService {
     
     private UserService userService;
@@ -8,6 +17,12 @@ class ContributionService {
         return Transaction.findByTransactionId(transactionId)
     }
 
+    def grailsApplication
+    
+    def getBankInfoByProject(Project project) {
+        return BankInfo.findByProject(project)
+    }
+    
     def getTotalContribution() {
         def c = Contribution.createCriteria()
         def totalContribution = c.get {
@@ -633,6 +648,117 @@ class ContributionService {
     
     def getTransactionByContribution(def contribution) {
         return Transaction.findByContribution(contribution)
+    }
+    
+    def getSecuritySignature(String txnID, String secret_key, String access_Key, def amount ) {
+        
+        String data = "merchantAccessKey=" + access_Key + "&transactionId=" + txnID + "&amount=" + amount;
+        
+        javax.crypto.Mac mac = javax.crypto.Mac.getInstance("HmacSHA1");
+        
+        mac.init(new javax.crypto.spec.SecretKeySpec(secret_key.getBytes(), "HmacSHA1"));
+        
+        byte[] hexBytes = new org.apache.commons.codec.binary.Hex().encode(mac.doFinal(data.getBytes()));
+        String securitySignature = new String(hexBytes, "UTF-8");
+        return securitySignature
+    }
+    
+    
+    def setSellerId(Project project) {
+        def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
+        def url = citrusBaseUrl +"/marketplace/seller/"
+        
+        BankInfo bankInfo = getBankInfoByProject(project)
+        
+        if (bankInfo != null) {
+            def sellername = bankInfo.fullName
+            def selleremail = bankInfo.email
+            
+            def seller = getSellerIdByEmail(selleremail)
+            def sellerId
+            if (seller) {
+                return seller.sellerId
+            } else {
+                def address1 = bankInfo.address1
+                def address2 = bankInfo.address2
+                def city = bankInfo.city
+                def state = bankInfo.state
+                def country = bankInfo.country
+                def zip = bankInfo.zip
+                def businessurl = project.webAddress
+                def sellermobile = bankInfo.mobile
+                
+                def ifsccode = bankInfo.ifscCode
+                def payoutmode = bankInfo.payoutmode
+                def accountnumber = bankInfo.accountNumber
+                
+                def auth_token = getAccessTokenForCitrus()
+                HttpClient httpclient = new DefaultHttpClient()
+                HttpPost httppost = new HttpPost(url)
+                httppost.setHeader("auth_token","${auth_token}")
+                
+                StringEntity input = new StringEntity("{\"seller_name\":\"${sellername}\",\"seller_add1\":\"${address1}\",\"seller_add2\":\"${address2}\",\"seller_city\":\"${city}\",\"seller_state\":\"${state}\",\"seller_country\":\"${country}\",\"zip\":\"${zip}\",\"businessurl\":\"${businessurl}\",\"seller_mobile\":\"${sellermobile}\",\"seller_ifsc_code\":\"${ifsccode}\",\"selleremail\":\"${selleremail}\",\"payoutmode\":\"${payoutmode}\",\"seller_acc_num\":\"${accountnumber}\",\"active\":1}")
+                input.setContentType("application/json")
+                httppost.setEntity(input)
+        
+                HttpResponse httpres = httpclient.execute(httppost)
+                
+                int status = httpres.getStatusLine().getStatusCode()
+                if (status == 200){
+                    HttpEntity entity = httpres.getEntity()
+                    if (entity != null){
+                        def jsonString = EntityUtils.toString(entity)
+                        def slurper = new JsonSlurper()
+                        def json = slurper.parseText(jsonString)
+                        sellerId = json.sellerid
+                        
+                        if (sellerId != null) {
+                            new Seller(email: selleremail, sellerId: sellerId).save();
+                        }
+                    }
+                    
+                }
+                
+                return sellerId
+            }
+        } else {
+            return null;
+        }
+    }
+    
+    def getAccessTokenForCitrus() {
+        def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
+        def url = citrusBaseUrl +"/marketplace/auth/"
+        
+        HttpClient httpclient = new DefaultHttpClient()
+        HttpPost httppost = new HttpPost(url)
+        
+        def access_key = grailsApplication.config.crowdera.CITRUS.ACCESS_KEY
+        def secret_key = grailsApplication.config.crowdera.CITRUS.SECRETE_KEY
+
+        StringEntity input = new StringEntity("{\"access_key\":\"${access_key}\",\"secret_key\":\"${secret_key}\"}")
+        
+        input.setContentType("application/json")
+        httppost.setEntity(input)
+
+        HttpResponse httpres = httpclient.execute(httppost)
+        def authToken
+        
+        int status = httpres.getStatusLine().getStatusCode()
+        if (status == 200){
+            HttpEntity entity = httpres.getEntity()
+            if (entity != null){
+                String jsonString = EntityUtils.toString(entity)
+                def slurper = new JsonSlurper()
+                def json = slurper.parseText(jsonString)
+                authToken = json.auth_token
+            }
+        }
+        return authToken
+    }
+    
+    def getSellerIdByEmail(String email) {
+        return Seller.findByEmail(email)
     }
     
 }

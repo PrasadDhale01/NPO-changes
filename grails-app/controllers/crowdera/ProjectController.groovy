@@ -69,12 +69,13 @@ class ProjectController {
 		SECRETKEY:'secretKey',
 		FACEBOOKURl:'facebookUrl',
 		TWITTERURl:'twitterUrl',
-		LINKEDINURL:'linkedinUrl'
+		LINKEDINURL:'linkedinUrl',
+        CITRUSEMAIL: 'citrusEmail'
 	]
 
 	def list = {
 		def countryOptions = projectService.getCountry()
-		def currentEnv = Environment.current.getName()
+		def currentEnv = projectService.getCurrentEnvironment()
 		def discoverLeftCategoryOptions
 		if(currentEnv =="testIndia" || currentEnv=="stagingIndia" || currentEnv=="prodIndia"){
 			discoverLeftCategoryOptions = projectService.getIndiaCategory()
@@ -103,7 +104,7 @@ class ProjectController {
 	}
 
 	def search () {
-		def currentEnv = Environment.current.getName()
+		def currentEnv = projectService.getCurrentEnvironment()
 		def query = params.q
 		def countryOptions = projectService.getCountry()
 		def discoverLeftCategoryOptions
@@ -433,7 +434,7 @@ class ProjectController {
     def delete() {
         def project = projectService.getProjectById(params.id)
         User user = userService.getCurrentUser()
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
         
         if (project) {
             if (userService.isAdmin()) {
@@ -537,7 +538,7 @@ class ProjectController {
 
 	@Secured(['ROLE_ADMIN'])
 	def validateList() {
-		def currentEnv = Environment.current.getName()
+		def currentEnv = projectService.getCurrentEnvironment()
 		def projects = projectService.getNonValidatedProjects(currentEnv)
         if (flash.prj_validate_message) {
             flash.prj_validate_message = "Campaign validated successfully"
@@ -607,25 +608,6 @@ class ProjectController {
             }  else {
                 render(template: "/user/user/grid", model: model)
             }
-        }
-    }
-    
-    @Secured(['ROLE_USER'])
-    def ContributedAmounts(){
-        def amount
-        def fundraiser = params.fundraiser
-        def contributor = params.contributor
-        def project = Project.get(params.projectId)
-        def fundraiserName = projectService.getFundraiserByFirstnameAndLastName(fundraiser, project.teams)
-        
-        if(fundraiserName){
-            amount= contributionService.getContributionAmount(fundraiserName, contributor, project)
-        }
-        
-        if(amount){
-            render(contentType: 'text/json') {['data': amount]}
-        }else{
-            render(contentType: 'text/json') {['data': 0]}
         }
     }
     
@@ -779,7 +761,7 @@ class ProjectController {
 
 
 	def create() {
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
         String partnerInviteCode = g.cookie(name: 'inviteCode')
         def inDays = projectService.getInDays()
 		render(view: 'create/index1', model: [FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv, partnerInviteCode: partnerInviteCode, inDays:inDays])
@@ -885,7 +867,7 @@ class ProjectController {
             def spends = project.spend
             spends = spends.sort{it.numberAvailable}
             if (user == currentUser) {
-                def currentEnv = Environment.current.getName()
+                def currentEnv = projectService.getCurrentEnvironment()
                 def categoryOptions 
                 if(currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
                     categoryOptions = projectService.getIndiaCategoryList()
@@ -952,7 +934,7 @@ class ProjectController {
         if (project) {
             User user = userService.getCurrentUser()
             if (project.user == user) {
-                def currentEnv = Environment.current.getName()
+                def currentEnv = projectService.getCurrentEnvironment()
                 if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
                     if(params.payuEmail){
                         project.payuEmail = params.payuEmail
@@ -1010,7 +992,7 @@ class ProjectController {
 	def launch() {
 		def vanityTitle = params.title
 		def project = projectService. getProjectFromVanityTitle(vanityTitle)
-		def currentEnv = Environment.current.getName()
+		def currentEnv = projectService.getCurrentEnvironment()
         
         if(project) {
     		if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
@@ -1048,7 +1030,7 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def edit() {
         Project project = projectService.getProjectFromVanityTitle(params.projectTitle)
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
         def vanityTitle = params.projectTitle
         
         if (project) {
@@ -1116,7 +1098,7 @@ class ProjectController {
 	def update() {
 		Project project = projectService.getProjectFromVanityTitle(params.vanityTitle)
         def vanityTitle = projectService.getProjectUpdateDetails(params, project)
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
         
 		if(project) {
 			rewardService.saveRewardDetails(params);
@@ -1369,7 +1351,7 @@ class ProjectController {
 	def projectdelete() {
 		Project project = projectService.getProjectById(params.id)
 		def currentUser= userService.getCurrentUser()
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
         def vanityTitle = projectService.getProjectUpdateDetails(params, project)
         
 		if (project) {
@@ -1403,7 +1385,7 @@ class ProjectController {
 		def reward = rewardService.getRewardByParams(params)
 		RewardShipping shippingInfo = rewardService.getRewardShippingByParams(params)
 		def title = projectService.getVanityTitleFromId(params.id)
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
 
 		if(reward.save()) {
 			def project= projectService.getProjectById(params.id)
@@ -1480,7 +1462,7 @@ class ProjectController {
 		def projectUpdate = projectService.getProjectUpdateById(params.id)
 		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
 		def projectUpdates = project.projectUpdates
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
         
 		if (projectUpdates.contains(projectUpdate)) {
 			flash.editUpdateSuccessMsg = "Campaign Update Edited Successfully"
@@ -1518,7 +1500,7 @@ class ProjectController {
 		def project = projectService.getProjectById(params.id)
 		def story = params.story
 		def title = projectService.getVanityTitleFromId(params.id)
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
 
 		if(project) {
 			if (params.imageList || !story.isAllWhitespace()) {
@@ -1562,7 +1544,7 @@ class ProjectController {
 
 	def categoryFilter() {
 		def countryOptions = projectService.getCountry()
-		def currentEnv = Environment.current.getName()
+		def currentEnv = projectService.getCurrentEnvironment()
 		def discoverLeftCategoryOptions
 		if(currentEnv =="testIndia" || currentEnv=="stagingIndia" || currentEnv=="prodIndia"){
 			discoverLeftCategoryOptions = projectService.getIndiaCategory()
@@ -1835,7 +1817,7 @@ class ProjectController {
 
 	def sortCampaign(){
 		def countryOptions = projectService.getCountry()
-		def environment = Environment.current.getName()
+		def environment = projectService.getCurrentEnvironment()
 		def discoverLeftCategoryOptions
 		if(environment =="testIndia" || environment=="stagingIndia" || environment=="prodIndia"){
 			discoverLeftCategoryOptions = projectService.getIndiaCategory()

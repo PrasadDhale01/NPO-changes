@@ -120,6 +120,9 @@
                             <g:elseif test="${project.paypalEmail}">
                                 <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAY" optionKey="key" optionValue="value" />
                             </g:elseif>
+                            <g:elseif test="${project.citrusEmail}">
+                                <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="CITRUS" optionKey="key" optionValue="value" />
+                            </g:elseif>
                             <g:else>
                                 <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="${FORMCONSTANTS.PAYMENT}" optionKey="key" optionValue="value" noSelection="['null':'Payment']"/>
                             </g:else>
@@ -847,6 +850,21 @@
                             </div>
                         </div>
                     </div>
+                    <g:if test ="${currentEnv == 'testIndia'}">
+	                    <div id="CitrusPay">
+	                        <div class="form-group">
+	                            <label class="col-sm-4 control-label">Email</label>
+	                            <div class="col-sm-6 col-xs-10">
+	                                <g:if test="${project.citrusEmail}">
+	                                    <input type="email" id="citrusemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.CITRUSEMAIL}" value="${project.citrusEmail}">
+	                                </g:if>
+	                                <g:else>
+	                                    <input type="email" id="citrusemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.CITRUSEMAIL}">
+	                                </g:else>
+	                            </div>
+	                        </div>
+	                    </div>
+                    </g:if>
                 </g:if>
                 <g:else>
                     <div class="col-sm-12" id="paypalemail">

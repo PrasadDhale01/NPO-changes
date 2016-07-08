@@ -26,6 +26,7 @@
          
         contributedAmount = contributionService.getTotalContributionForUser(currentTeam.contributions)
     }
+
     def amount = projectService.getDataType(contributedAmount)
     
     def username = project.user.username

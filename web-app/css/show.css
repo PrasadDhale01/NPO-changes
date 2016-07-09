@@ -5,6 +5,8 @@
     text-align: left;
     padding-bottom: 15px;
     padding-top: 15px;
+/*     background-color: #fff; */
+/*     padding: 20px; */
 }
 .reasonspadding {
     padding: 5px;
@@ -31,10 +33,11 @@
     border: #f7f7f7;
     background-color: #f7f7f7;
     height: 90px;
-    margin-top: -3px
+    margin-top: -3px;
 }
-.impactassessment .panel-default p {
-    color: #5a6771;
+
+.impactassessment .panel-default p{
+	color: #5a6771;
     font-weight: 900;
     font-family: sans-serif;
     font-size: 15px;
@@ -42,9 +45,259 @@
     line-height: 36px;
     padding: 2px 10px 10px;
 }
+.show-impact .panel-default {
+    background-color: #fff;
+    border-left: medium none;
+    border-top: medium none;
+    height: 150px;
+    margin-top: -3px;
+    padding: 20px;
+    border-left: medium none;
+    border-top: medium none;
+}
+.show-impact .show-assessment p {
+    color: #727272;
+    font-family: open sans;
+    font-size: 14px;
+    line-height: 26px;
+}
 .impactassessment .panel-body {
     padding: 5px;
 }
 .managecampaign-hashtag {
     
+}
+.campaign-bg-color{
+	background-color: #f5f5f5;
+}
+a.show-web-address {
+    text-decoration: none;
+    padding-left: 9px;
+    border-left: 2px solid #6d6e6e;
+}
+a.show-web-address:hover {
+    color: #01bbd2;
+    padding-left: 9px;
+}
+.show-web-address img{
+    padding-right: 9px;
+    margin-left: 30px;
+}
+.show-nonpft {
+    padding-right: 30px;
+}
+.show-matrix-bg {
+    background-color: #fff;
+    border-bottom: 2px solid #e7e7e7;
+    border-right: 2px solid #e7e7e7;
+    padding: 22px;
+}
+.show-comments-section {
+    background-color: #fff;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-bottom: 2px solid #e7e7e7;
+    border-right: 2px solid #e7e7e7;
+}
+a.show-campaigndetails-font {
+    color: #787878;
+    font-family: open sans;
+    font-size: 20px;
+}
+.show-impact-assessment {
+    color: #363636;
+    font-family: open sans;
+    font-size: 30px;
+    font-weight: 900;
+}
+.show-impact-assessment {
+    color: #363636;
+    font-family: open sans;
+    font-size: 30px;
+    font-weight: 900;
+    padding-left: 14px;
+}
+.show-impact {
+    padding-top: 22px;
+}
+.show-perks-style-reasons {
+    background-color: #fff;
+    padding: 15px;
+}
+.show-tri-reasons-to-fund {
+    font-family: open sans;
+    font-size: 30px;
+    font-weight: 900;
+    color: #363636;
+}
+.show-reasonsToFund {
+   
+/*     padding: 20px; */
+}
+.show-reasonsToFund .badge1 {
+    color: #363636;
+    font-family: open sans;
+    font-size: 30px;
+    font-weight: 900;
+    padding: 0;
+    top: 5px;
+}
+.show-reasons-des {
+    color: #727272;
+    font-family: open sans;
+    font-size: 14px;
+    padding-bottom: 20px;
+    padding-top: 23px;
+    text-align: justify;
+}
+.show-reasons-fund-bgpadding{
+	background-color: #fff;
+    padding: 15px;
+}
+.show-reasons {
+    border-bottom: 2px solid #e7e7e7;
+    border-right: 2px solid #e7e7e7;
+}
+.rewardsection {
+    background-color: #fff;
+    padding: 20px;
+    border-bottom: 2px solid #e7e7e7;
+    border-right: 2px solid #e7e7e7;
+}
+.show-tile-raised {
+    width: 100%;
+    color: #363636;
+    font-family: open sans;
+    font-size: 14px;
+}
+.show-raised-amt {
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 0.8;
+}
+.show-org-tile-padding {
+    padding-bottom: 12px;
+}
+.show-progressbar {
+    padding-top: 6px;
+}
+.show-goal-size {
+    width: 38px;
+}
+.show-goal-padding {
+    padding-top: 10px;
+}
+.show-timeday-size {
+    width: 19px;
+}
+.show-time-day-padding {
+    padding-left: 24px;
+    padding-top: 11px;
+}
+.show-user-profile-hw{
+	height: 65px;
+    width: 75px;
+}
+.show-image-dp img {
+    height: 65px;
+    width: 75px;
+}
+.show-profile-padding {
+    padding: 0;
+}
+.show-profile-imagewidth {
+    width: 77px;
+    padding: 0;
+}
+.show-org-profiletile {
+    background-color: #f0f2f3;
+    border-right: 2px solid #e7e7e7;
+    height: 66px;
+    overflow: hidden;
+}
+.show-contact-ofOwner{
+	font-size: 12px;
+	width: 184px;
+	padding-left: 11px;
+    padding-top: 3px;
+}
+.show-profile {
+    font-size: 9px;
+    padding: 0;
+    width: 65px;
+}
+.show-org-name {
+    font-size: 12px;
+    padding: 0;
+    width: 117px;
+    overflow: hidden;
+}
+.show-lbl-orgname {
+    padding-left: 14px;
+    padding-top: 8px;
+}
+/* img.show-profile-imgs{ */
+/*     left: 6px; */
+/*     padding-left: 0; */
+/*     padding-right: 0; */
+/*     padding-top: 3px; */
+/*     width: 19px; */
+/* } */
+.show-contact-profilefixes{
+	 padding: 0;
+}
+.show-social-icons{
+    padding-left: 180px;
+}
+.sh-mobperks {
+    padding-top: 22px;
+}
+.show-spend-matrix-title {
+    font-family: open sans;
+    font-size: 30px;
+}
+.show-comments-title{
+    font-family: open sans;
+    font-size: 30px;
+}
+img.show-cmment-box-imgheight {
+   width: 148%; 
+}
+.show-comment-profile-padding {
+    padding: 0;
+}
+.show-padding-commentsbox{
+    padding: 0;
+    margin-bottom: 0;
+    margin-top: 15px;
+    height: 95px;
+}
+.show-all-padding {
+    padding-left: 30px;
+    padding-right: 0;
+}
+textarea.show-textareawidth {
+    height: 73px;
+    width: 145%;
+}
+.show-all-padding span.help-block {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.show-attach-file {
+    padding-left: 0;
+    padding-top: 3px;
+}
+.show-btn-font {
+    border: medium none;
+    font-family: open sans;
+    font-size: 16px;
+    font-weight: 900;
+    outline: medium none;
+}
+.panel-bgColor{
+    background-color: #fff;
+}
+.show-funds-padding {
+    padding-top: 10px;
 }

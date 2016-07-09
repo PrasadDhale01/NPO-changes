@@ -1,4 +1,5 @@
-<div class="panel panel-default">
+<div class="panel panel-default show-assessment">
+    <label class="show-impact-assessment">IMPACT</label>
     <div class="panel-body">
         <g:if test="${project.category.toString() == 'ANIMALS'}">
             <g:if test="${project.payuStatus}">

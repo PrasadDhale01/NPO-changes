@@ -31,6 +31,18 @@
         commentval = teamcomment.comment
         teamCommentId = teamcomment?.id
     }
+    
+   def user = userService.getCurrentUser()
+    def userImage
+    if (user) {
+        if (user.userImageUrl) {
+            userImage = user.userImageUrl
+        } else {
+            userImage = '//s3.amazonaws.com/crowdera/assets/6667f492-acde-4f1c-b9d5-d66f5282baad.png'
+        }
+    }
+  
+    
 %>
 
 <g:if test="${flash.commentmessage}">
@@ -38,15 +50,39 @@
 </g:if>
 
 <g:if test="${project.validated}">
-    <h3><b>Comments</b></h3>
+   <b class="show-comments-title">Comments</b>
     <g:if test="${projectComment || teamcomment}">
         <div id="commentBox">
             <g:form controller="project" action="editCommentSave" role="form" params="['projectTitle': vanityTitle, 'fr': fundRaiser]">
                 <g:hiddenField name='teamCommentId' value="${teamCommentId}"></g:hiddenField>
                 <g:hiddenField name='commentId' value="${commentId}"></g:hiddenField>
 
-                <div class="form-group">
-                    <textarea class="form-control" name="comment" rows="4" required>${commentval}</textarea>
+                <div class="form-group show-padding-commentsbox col-lg-12 col-sm-12 col-md-12">
+                    <div class="col-lg-1 col-sm-1 col-md-1 show-comment-profile-padding">
+                         <sec:ifLoggedIn>
+                             <g:if test="${userService.isFacebookUser()}">
+                                 <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
+                             </g:if>
+                             <g:elseif test="${userService.isAdmin()}">
+                                 <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
+                             </g:elseif>
+                             <g:elseif test="${userService.isAuthor()}">
+                                 <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
+                             </g:elseif>
+                             <g:elseif test="${userService.isCommunityManager()}">
+                                 <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
+                             </g:elseif>
+                             <g:else>
+                                 <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
+                             </g:else>
+                         </sec:ifLoggedIn>
+                         <sec:ifNotLoggedIn>
+                              <span><img class="show-cmment-box-imgheight" src="//s3.amazonaws.com/crowdera/assets/6667f492-acde-4f1c-b9d5-d66f5282baad.png" alt="userImage"></span>
+                         </sec:ifNotLoggedIn>
+                    </div>
+                    <div class="col-lg-11 col-sm-11 col-md-11 show-all-padding">
+                        <textarea class="form-control show-textareawidth" name="comment" rows="4" required>${commentval}</textarea>
+                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-sm pull-right">Save comment</button>
                 <div class="clear"></div>
@@ -57,21 +93,71 @@
 	     <div id="commentBox">
 	         <g:if test="${team?.user!=project?.user}">
 	             <g:form controller="project" action="teamcomment"  id="${project.id}" params="['fr': fundRaiser]">
-	                 <div class="form-group">
-	                     <textarea class="form-control" name="comment" rows="4" placeholder="Leave a comment" required></textarea>
+	                 <div class="form-group show-padding-commentsbox col-lg-12 col-sm-12 col-md-12">
+	                 
+	                      <div class="col-lg-1 col-sm-1 col-md-1 show-comment-profile-padding">
+	                          <sec:ifLoggedIn>
+                                  <g:if test="${userService.isFacebookUser()}">
+                                      <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
+                                  </g:if>
+                                  <g:elseif test="${userService.isAdmin()}">
+                                      <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
+                                  </g:elseif>
+                                  <g:elseif test="${userService.isAuthor()}">
+                                      <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
+                                  </g:elseif>
+                                  <g:elseif test="${userService.isCommunityManager()}">
+                                      <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
+                                  </g:elseif>
+                                  <g:else>
+                                      <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
+                                  </g:else>
+                              </sec:ifLoggedIn>
+                              <sec:ifNotLoggedIn>
+                                  <span><img class="show-cmment-box-imgheight" src="//s3.amazonaws.com/crowdera/assets/6667f492-acde-4f1c-b9d5-d66f5282baad.png" alt="userImage"></span>
+                              </sec:ifNotLoggedIn>
+                         </div>
+                    <div class="col-lg-11 col-sm-11 col-md-11 show-all-padding">
+                        <textarea class="form-control show-textareawidth" name="comment" rows="4" required>${commentval}</textarea>
+                     </div>
 	                 </div>
 	                 <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
 	                 <div class="clear"></div>
 	             </g:form>
 	        </g:if>
 	        <g:else>
-	            <g:form controller="project" action="comment"  id="${project.id}" params="['fr':fundRaiser]">
-	                <div class="form-group">
-	                    <textarea class="form-control" name="comment" rows="4" placeholder="Leave a comment" required></textarea>
+	            <g:uploadForm controller="project" action="comment"  id="${project.id}" params="['fr':fundRaiser]">
+	                <div class="form-group show-padding-commentsbox col-lg-12 col-sm-12 col-md-12">
+	                    <div class="col-lg-1 col-sm-1 col-md-1 show-comment-profile-padding">
+	                    <sec:ifLoggedIn>
+                          <g:if test="${userService.isFacebookUser()}">
+                                <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
+                            </g:if>
+                            <g:elseif test="${userService.isAdmin()}">
+                                <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
+                            </g:elseif>
+                            <g:elseif test="${userService.isAuthor()}">
+                                <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
+                            </g:elseif>
+                            <g:elseif test="${userService.isCommunityManager()}">
+                                <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
+                            </g:elseif>
+                            <g:else>
+                                <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
+                            </g:else>
+                        </sec:ifLoggedIn>
+                        <sec:ifNotLoggedIn>
+                                <span><img class="show-cmment-box-imgheight" src="//s3.amazonaws.com/crowdera/assets/6667f492-acde-4f1c-b9d5-d66f5282baad.png" alt="userImage"></span>
+                        </sec:ifNotLoggedIn>
+                    </div>
+                    <div class="col-lg-11 col-sm-11 col-md-11 show-all-padding">
+                        <textarea class="form-control show-textareawidth" name="comment" rows="4" required>${commentval}</textarea>
+                        <input type="file" class="upload show-attach-file" name="attachedFileForProject" accept="application/msword,application/pdf,.txt,.docx"/>
+                     </div>
 	                </div>
-	                <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
+	                <button type="submit" class="btn btn-primary btn-sm pull-right show-btn-font">Post comment</button>
 	                <div class="clear"></div>
-	            </g:form>
+	            </g:uploadForm>
 	        </g:else>
 	    </div>
 	</g:else>

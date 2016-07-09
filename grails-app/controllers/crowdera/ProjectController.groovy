@@ -707,7 +707,12 @@ class ProjectController {
     def comment() {
         User user = userService.getCurrentUser()
         def base_url = grailsApplication.config.crowdera.BASE_URL
-
+        
+        CommonsMultipartFile projectcomment = params.attachedFileForProject
+        println "pro===============ject============"+projectcomment.class
+        def sss = projectService.setAttachedFileForProject(projectcomment,params)
+        println"sss================"+sss
+        
         def reqUrl
         if (!user) {
             

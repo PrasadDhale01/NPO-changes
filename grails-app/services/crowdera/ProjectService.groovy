@@ -2037,7 +2037,7 @@ class ProjectService {
         def bucketName = "crowdera"
         def s3Bucket = new S3Bucket(bucketName)
 
-        def Folder = "project-images"
+        def Folder = "assets"
 
         def tempImageUrl
         def imageUrl = new ImageUrl()
@@ -2058,6 +2058,7 @@ class ProjectService {
                 object.key=key
 
                 tempImageUrl = "//s3.amazonaws.com/crowdera/${key}"
+                println"ImageUrl====="+tempImageUrl
                 s3Service.putObject(s3Bucket, object)
                 imageUrl.url = tempImageUrl
                 
@@ -2732,6 +2733,36 @@ class ProjectService {
                      log.error("Error: " + e)
                 }
             }
+        }
+    }
+    
+    def setAttachedFileForProject(CommonsMultipartFile projectcomment, def params) {
+        if (!projectcomment?.empty && projectcomment.size < 1024 * 1024 * 3) {
+            def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+            def awsSecretKey = "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"
+            def bucketName = "crowdera"
+            def folder = "Attachments"
+
+            def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+            def s3Service = new RestS3Service(awsCredentials);
+            def s3Bucket = new S3Bucket(bucketName)
+
+            int index = projectcomment.getOriginalFilename().lastIndexOf(".")
+            String extName = projectcomment.getOriginalFilename().substring(index);
+            def fileName =  UUID.randomUUID().toString() + extName
+            
+            def tempFile = new File("${fileName}")
+            def key = "${folder}/${fileName}"
+            key = key.toLowerCase()
+            projectcomment.transferTo(tempFile)
+            def object = new S3Object(tempFile)
+            object.key = key
+
+            s3Service.putObject(s3Bucket, object)
+            tempFile.delete()
+
+            def attachedmentsfileforproject = "//s3.amazonaws.com/crowdera/${key}"
+            getProjectCommentById(params,attachedmentsfileforproject)
         }
     }
     

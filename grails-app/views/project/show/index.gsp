@@ -133,7 +133,7 @@
     
 </head>
 <body>
-<div class="feducontent">
+<div class="feducontent campaign-bg-color">
     <g:if test="${isPreview}">
         <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
             <div class="preview-banner-margin" id="preview-banner">
@@ -194,13 +194,19 @@
                 </div>
                 </g:else>
                 <g:if test="${user || beneficiary}">
-                    <div class="col-md-12 col-sm-12 col-xs-12 text-center campaignFundRaiser hidden-xs">
-                        <h4 class="green-heading">
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-right campaignFundRaiser hidden-xs">
+                        <h4 class="green-heading col-lg-4 pull-right">
                             <img class="show-location hidden" alt="location" src="//s3.amazonaws.com/crowdera/assets/show-page-locations.png">
                             <span class="hidden"><g:if test="${project?.user?.city}">${project?.user?.city},</g:if> ${project.beneficiary.country}</span>
                             <g:if test = "${project.fundsRecievedBy != null }">
                                 <img class="show-location sh-none-pft" alt="location" src="//s3.amazonaws.com/crowdera/assets/show-page-non-profit-icons.png">
-                                <span>${project.fundsRecievedBy}</span>
+                                <span class="show-nonpft">${project.fundsRecievedBy}</span>
+                            </g:if>
+                            <g:if test="${project?.webAddress}">
+                                <a href="${webUrl}" target="_blank" class="show-web-address">
+                                    <img src="//s3.amazonaws.com/crowdera/assets/76ed02b5-f6f2-4d60-a583-7833998b3d5a.png" alt="fb-icons">
+                                    <span>Website</span>
+                                </a> 
                             </g:if>
                         </h4>
                     </div>
@@ -555,16 +561,16 @@
                     <ul class="nav nav-pills nav-justified nav-justi show-marginbottoms sh-tabs mng-safari-mobile show-new-tabs-alignments<g:if test="${!project?.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
                         
                         <li class="show-tabs"><span class="active show-tbs-right-borders  hidden-xs">
-                                <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials">
-                                    <span class="tab-text hidden-xs"> STORY</span>
+                                <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials show-campaigndetails-font">
+                                    <span class="tab-text hidden-xs"> Story</span>
                                 </a>
                                 <span class="show-ids-header"></span>
                             </span>
                         </li>
                         <g:if test="${!project?.projectUpdates.isEmpty() }">
                             <li><span class="show-tbs-right-borders hidden-xs">
-                                    <a href="#projectupdates" data-toggle="tab" class="show-tabs-text projectupdates">
-                                        <span class="tab-text hidden-xs"> UPDATES</span> 
+                                    <a href="#projectupdates" data-toggle="tab" class="show-tabs-text projectupdates show-campaigndetails-font">
+                                        <span class="tab-text hidden-xs"> Updates</span> 
                                     </a>
                                     <span class="show-tabs-count hidden-xs">
                                         <g:if test="${project?.projectUpdates?.size() > 0}">${project?.projectUpdates?.size()}</g:if>
@@ -574,15 +580,15 @@
                             </li>
                         </g:if>
                         <li><span class="show-tbs-right-borders hidden-xs">
-                                <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text manageTeam">
-                                    <span class="tab-text"> TEAMS</span>
+                                <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text manageTeam show-campaigndetails-font">
+                                    <span class="tab-text"> Teams</span>
                                 </a>
                                 <span class="show-ids-header"></span>
                             </span>
                         </li>
                         <li><span class="show-tbs-right-borders hidden-xs">
-                                <a href="#contributions" data-toggle="tab"  class="show-tabs-text contributions">
-                                    <span class="tab-text"> CONTRIBUTIONS</span>
+                                <a href="#contributions" data-toggle="tab"  class="show-tabs-text contributions show-campaigndetails-font">
+                                    <span class="tab-text"> Contributions</span>
                                 </a>
                                 <span class="show-tabs-count hidden-xs">
                                     <g:if test="${totalContributions?.size() > 0 && screen == 'false'}">${totalContributions?.size()}</g:if>
@@ -591,8 +597,8 @@
                             </span>
                         </li>
                         <li><span class="show-comit-lft hidden-xs">
-                                <a href="#essentials" data-toggle="tab"  class="show-tabs-text comments scrollToComment">
-                                    <span class="tab-text hidden-xs"> COMMENTS</span>
+                                <a href="#essentials" data-toggle="tab"  class="show-tabs-text comments scrollToComment show-campaigndetails-font">
+                                    <span class="tab-text hidden-xs"> Comments</span>
                                 </a>
                                 <span class="show-ids-header"></span>
                             </span>
@@ -768,10 +774,10 @@
                   </div>
                
                   <div class="col-xs-12 col-md-4 col-sm-4 show-desk-org-tile show-tops-corsal">
-                      <div class="hidden-xs">
-                          <g:render template="/layouts/orgDetails"/>
-                      </div>
-                    
+<%--                      <div class="hidden-xs">--%>
+<%--                          <g:render template="/layouts/orgDetails"/>--%>
+<%--                      </div>--%>
+                 
                       <g:if test="${isPreview && !project.validated}">
                           <div class="submitForApprovalSectionbtn" id="submitForApprovalSectionbtn">
                               <g:if test="${project?.organizationIconUrl && project?.webAddress && (project?.charitableId || project?.paypalEmail || project?.payuEmail) && (!project?.imageUrl.isEmpty()) && project?.organizationName && project?.beneficiary?.country && (projectService.getRemainingDay(project) > 0)}">
@@ -803,7 +809,7 @@
                           </div>
                         
                           <div class="hidden-xs">
-                              <g:render template="/layouts/show_tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
+                              <g:render template="/layouts/showTilesanstitleForOrg" model="['currentTeamAmount':currentTeamAmount]"/>
                           </div>
                         
                           <g:if test="${isPreview}">
@@ -848,12 +854,49 @@
                               <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs">FUND NOW!</button>
                           </g:else>
                       </g:else>
-
+                      
+<%--               user profile code  --%>
+                   <div class="col-lg-12 col-sm-12 col-md-12 show-profile-padding show-org-profiletile">
+	                   <div class="col-lg-4 col-sm-4 col-md-4 show-profile-imagewidth">
+		                   <g:if test="${user.userImageUrl}">
+		                        <div id="partnerImageEditDeleteIcon">
+		                            <span  class="show-image-dp">
+		                                <img src="${user.userImageUrl}" alt="avatar">
+		                            </span>
+		                        </div>
+		                    </g:if>
+		                    <g:else>
+		                        <div id="userAvatarUploadIcon">
+		                            <span id="useravatar">
+		                                <img class="show-user-profile-hw" src="https://s3.amazonaws.com/crowdera/assets/profile_image.jpg" alt="' '">
+		                            </span>
+		                        </div>
+		                    </g:else> 
+	                    </div>
+	                    <div class="col-lg-8 col-sm-8 col-md-8 show-profile-padding show-tabs-profiledesp">
+	                        <div class="show-lbl-orgname">
+	                            <label class="col-lg-5 col-sm-5 col-md-5 show-profile">Campaign by:</label>
+                                <span class="col-lg-8 col-sm-8 col-md-8 show-org-name">${project?.organizationName}</span>
+                            </div>
+                            <div class="show-contact-profilefixes col-lg-12 col-sm-12 col-md-12">
+                                <div class="col-lg-2 col-sm-2 col-md-2 show-email-profileIcons">
+                                    <img class="show-profile-imgs" src="//s3.amazonaws.com/crowdera/assets/1c19404a-4627-4479-94b0-46e49e62471b.png" alt="emails">
+                                </div>
+                                <div class="col-lg-10 col-sm-10 col-md-10 show-contact-profilefixes">
+                                    <span class="col-lg-12 col-sm-12 col-md-12 show-contact-ofOwner">Contact Campaign of Owner</span>
+                                </div>
+                            </div>
+	                    </div> 
+                    </div>
+                    <div class="clear"></div>
+                    
                       <g:if test="${!isPreview || project.validated}">
                           <div class="hidden-xs">
-                              <g:render template="/layouts/show_tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
+                              <g:render template="/layouts/showTilesanstitleForOrg" model="['currentTeamAmount':currentTeamAmount]"/>
+                              
+                               <g:render template="/layouts/show_teamtileInfo" model="['currentTeamAmount':currentTeamAmount]"/>
                           </div>
-                        
+                        <div class="clear"></div>
                           <g:if test="${isPreview}">
                               <div class="showfacebooksAA"></div>
                               <span class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color">
@@ -870,8 +913,8 @@
                       
                       <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
                           <g:if test="${project.impactNumber > 0 && project?.impactAmount > 0}">
-                              <div class="impactassessment">
-                                  <g:render template="show/impactstatement"/>
+                              <div class="show-impact">
+                                  <g:render template="show/showImpactstatement"/>
                               </div>
                           </g:if>
                       </g:if>
@@ -891,49 +934,46 @@
                               </p>
                           </g:else>
                       </g:if>
-                      
+                      <div class="show-reasons">
                       <g:if test="${reasons && (reasons.reason1 || reasons.reason2 || reasons.reason3)}">
-                          <div class="modal-footer tile-footer perks-style reasons-title">
-                              <h2 class="rewardsectionheading text-center">3 Reasons to Fund Our Campaign</h2>
-                          </div>
+<%--                          <div class="tile-footer show-perks-style-reasons">--%>
+<%--                              --%>
+<%--                          </div>--%>
+                          <div class="show-reasons-fund-bgpadding">
+                          <h2 class="show-tri-reasons-to-fund text-center">3 Reasons to Fund Our Campaign</h2>
                           <g:if test="${reasons.reason1}">
-                              <div class="reasonsToFund">
+                              <div class="show-reasonsToFund">
                                   <div class="reasonspadding">
-                                      <div class="col-xs-2 col-plr-0">
-                                          <span class="badge1">#1</span>
-                                      </div>
-                                      <div class="col-xs-10 col-p-5">
+                                      <span class="badge1 col-lg-2 col-md-2 col-sm-2">#1</span>
+                                      <div class="show-reasons-des">
                                            ${reasons.reason1}
                                       </div>
                                   </div>
                               </div>
                           </g:if>
                           <g:if test="${reasons.reason2}">
-                              <div class="reasonsToFund">
+                              <div class="show-reasonsToFund">
                                   <div class="reasonspadding">
-                                      <div class="col-xs-2 col-plr-0">
-                                          <span class="badge1">#2</span>
-                                      </div>
-                                      <div class="col-xs-10 col-p-5">
+                                      <span class="badge1 col-lg-2 col-md-2 col-sm-2">#2</span>
+                                      <div class="show-reasons-des">
                                           ${reasons.reason2}
                                       </div>
                                   </div>
                               </div>
                           </g:if>
                           <g:if test="${reasons.reason3}">
-                              <div class="reasonsToFund">
+                              <div class="show-reasonsToFund">
                                   <div class="reasonspadding">
-                                      <div class="col-xs-2 col-plr-0">
-                                          <span class="badge1">#3</span>
-                                      </div>
-                                      <div class="col-xs-10 col-p-5">
+                                      <span class="badge1 col-lg-2 col-md-2 col-sm-2">#3</span>
+                                      <div class="show-reasons-des">
                                           ${reasons.reason3}
                                       </div>
                                   </div>
                               </div>
                           </g:if>
+                          </div>
                       </g:if>
-                      
+                      </div>
                       <g:if test="${isPreview && !project.validated}">
                           <div class="hidden-xs">
                               <g:if test="${project?.rewards?.size()>1}">
@@ -985,3 +1025,4 @@
 
 </body>
 </html>
+                         

@@ -306,6 +306,14 @@ textarea.textarea-embed-tile{
     top: 12px;
     left: 2px;
 }
+.glyphicon-show-design-ract{
+    color: white;
+    font-size: 16px;
+    padding: 7px;
+    text-decoration: none;
+    top: 12px;
+    left: 2px;
+}
 
 .embedIcon-manage-left{
     margin-left:2px;
@@ -1676,7 +1684,7 @@ a.thankyou-textdeco {
     padding-top: 10px;
 }
 .show-tags-topbottom{
-    padding-bottom: 65px;
+    padding-bottom: 22px;
     padding-top: 10px;
 }
 .contact-details {

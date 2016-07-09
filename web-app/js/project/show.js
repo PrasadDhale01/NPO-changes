@@ -614,7 +614,7 @@ $(function() {
     	}
       });
     
-    /*******************************Show-page-share icons hover***************************/
+    /*******************************Manage-page-Hover-functinos-of-Social-media***************************/
     $('.show-email').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-email-color.png");
     	}).mouseleave(function(){
@@ -649,6 +649,44 @@ $(function() {
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/user-images/embedicon.png");
     	}).mouseleave(function(){
         $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/embedicon-grey.png");
+    });
+    
+    
+/*****************************Show-page-Hover-functinos-of-Social-media***********************************/
+    $('.show-email-social').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/4df7ed58-1d91-419b-ad9c-1d71a6192d00.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0fea8e3c-7e84-4369-a5a0-451585c06492.png");
+    });
+    
+    $('.show-twitter-social').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/e227b5d5-edad-46ff-ac0b-3234035e8120.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/543485b8-21d6-4144-9c30-c0e49c95c4e6.png");
+    });
+    
+    $('.show-like-social').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/ae504306-b6fe-4665-b1bd-4b2f83af87f6.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/c8836846-373f-45af-a660-ece7f1110ba0.png");
+    });
+    
+    $('.show-linkedin-social').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/fcd2d0b1-d459-4974-8227-0b137784a5cc.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0d661ddc-4d08-4ad9-a707-cf2e22349989.png");
+    });
+    
+    $('.show-google-social').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/3f7fd05e-6dea-4d32-aca2-3d9d45ef9eaa.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0c536e08-376d-4965-a901-ca42a4b6c4d5.png");
+    });
+    
+    $('.show-embedIcon-social').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/7c6e7ddd-e0ad-4a6c-bd43-89bd567bb989.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/75ed76bc-3275-4b00-a534-9c4a324cc04e.png");
     });
     
     /*******************************Description text length*********************/

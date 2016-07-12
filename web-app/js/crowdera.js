@@ -55,41 +55,30 @@ $(function() {
 //         $('.search-image-header').css('paddingRight', '40px');
     });
     
+	function loadFooterCallback(){
+	    var device = '';
+	
+	    if(screen.width <768){
+	        device ="mobile";
+	    }else if(screen.width >=768 && screen.width <=1024){
+	        device="tab";
+	    }else{
+	        device="desktop";
+	    }
+	
+	    $.ajax({
+	        url:"/home/loadFooterCallback",
+	        type:"post",
+	        data:"device="+device,
+	        success:function(res){
+	            $("#loadFooter").html(res);
+	        }
+	   });
+	}
+    
     $(document).ready(function() { 
-	    
-    	$("#mvc-embedded-subscribe-form-lg").validate({ 
-    	   rules: { 
-    	    EMAIL: {// compound rule 
-    		          required: true, 
-    		          email: true 
-    	    		} 
-    	   }, 
-    	   messages: { 
-    	    email: "" 
-    	   } 
-    	});
-    	$("#mc-embedded-subscribe-form-md").validate({ 
-     	   rules: { 
-     	    EMAIL: {// compound rule 
-     		          required: true, 
-     		          email: true 
-     	    		} 
-     	   }, 
-     	   messages: { 
-     	    email: "" 
-     	   }
-     	}); 
-    	$("#mc-embedded-subscribe-form-sm").validate({ 
-     	   rules: { 
-     	    EMAIL: {// compound rule 
-     		          required: true, 
-     		          email: true 
-     	    		} 
-     	   }, 
-     	   messages: { 
-     	    email: "" 
-     	   } 
-     	}); 
+    	
+        loadFooterCallback();
     	
     	var validator = $('#myCrewDetails').find('form').validate({
             rules: {

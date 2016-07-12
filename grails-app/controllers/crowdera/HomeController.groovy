@@ -111,4 +111,34 @@ class HomeController {
         render carousel as JSON
     }
     
+    
+    def loadFooterCallback(){
+        
+        def currentEnv = projectService.getCurrentEnvironment()
+        boolean isTestEnv = false
+        def mailChimpUrl
+        def base_url = grailsApplication.config.crowdera.BASE_URL
+        
+        if (currentEnv == 'development' || currentEnv == 'testIndia' || currentEnv == 'test') {
+            isTestEnv = true
+        }
+        
+        if (currentEnv == 'development' || currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+            mailChimpUrl = "//crowdera.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=11344f1cfe"
+        } else {
+            mailChimpUrl = "//crowdera.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&amp;id=e37aea1b78"
+        }
+        
+        switch(params.device){
+            case 'desktop':
+                render template:'/layouts/footer', model:[currentEnv:currentEnv, isTestEnv:isTestEnv, mailChimpUrl:mailChimpUrl, base_url:base_url]
+            break;
+            case 'mobile':
+                render template:'/layouts/mobilefooter', model:[currentEnv:currentEnv, isTestEnv:isTestEnv, mailChimpUrl:mailChimpUrl, base_url:base_url]
+            break;
+            case 'tab':
+                render template:'/layouts/tabfooter', model:[currentEnv:currentEnv, isTestEnv:isTestEnv, mailChimpUrl:mailChimpUrl, base_url:base_url]
+            break;
+        }
+    }
 }

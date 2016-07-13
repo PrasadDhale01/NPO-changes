@@ -676,7 +676,7 @@ $(function() {
     });
 
     function validateExtension(imgExt){
-        var allowedExtensions = new Array("jpg","JPG","png","PNG","pdf","doc","docx","xlsx","ppt","pptx","csv");
+        var allowedExtensions = new Array("jpg","JPG","png","PNG","pdf","doc","docx","xls","xlsx","ppt","pptx","csv");
 
         for(var imgExtImg=0;imgExtImg<allowedExtensions.length;imgExtImg++)
         {

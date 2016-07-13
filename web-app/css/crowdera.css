@@ -1368,7 +1368,9 @@ footer .footerbottomsection {
 .btn-show-fund {
     color: #ffffff !important;
     background-color: #01bbd3 !important;
-    border-color: #01bbd3 !important;
+    outline: none !important;
+    border:none !important;
+    box-shadow: none;
     margin-top: -14px;
     font-size: 24px;
     font-weight: bold;
@@ -1377,7 +1379,9 @@ footer .footerbottomsection {
 .btn-show-fund:hover{
     color: #ffffff !important;
     background-color: #01bbd3 !important;
-    border-color:  #01bbd3!important;
+    outline: none !important;
+    border:none !important;
+    box-shadow: none;
 }
 
 .cvc-details span.input-group-addon {

@@ -164,6 +164,9 @@ $(function() {
     	/*********************Call loadwhycrowderacallback function***************************************/
     	loadWhyCrowderaCallback();
     	
+    	/*************call loadMediaStrip function***********************/
+    	loadMediaStrip();
+    	
         function sticky_relocate() {
         	var window_top = $(window).scrollTop();
         	if($('.hm-image-header').length){
@@ -405,6 +408,18 @@ function loadWhyCrowderaCallback(){
         data:"device="+device,
         success:function(res){
             $("#loadWhyCrowdera").html(res);
+        }
+   });
+}
+
+/******************Load media strip**********************************/
+function loadMediaStrip(){
+	$.ajax({
+        url:$('#b_url').val()+ "/home/loadMediaStrip",
+        type:"post",
+        data:"device=desktop",
+        success:function(res){
+            $("#loadMediaStrip").html(res);
         }
    });
 }

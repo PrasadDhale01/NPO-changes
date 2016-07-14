@@ -82,9 +82,7 @@
         </div>
     </div>
     <div class="hidden-xs">
-        <div class="whycrowderacontainer" id="loadWhyCrowdera">
-            
-        </div>
+        <div class="whycrowderacontainer" id="loadWhyCrowdera"></div>
         <div class="success-stories-container">
             <g:render template="success-stories"></g:render>
         </div>
@@ -92,9 +90,7 @@
 <%--            <g:render template="association"></g:render>--%>
 <%--        </div>--%>
     </div>
-    <div class="media-stript-container">
-        <g:render template="media-strip"></g:render>
-    </div>
+    <div class="media-stript-container" id="loadMediaStrip"></div>
         
     <div class="customer-support hidden-xs">
         <div class="willSlide customer-support-btn" id="customer-support-btn">

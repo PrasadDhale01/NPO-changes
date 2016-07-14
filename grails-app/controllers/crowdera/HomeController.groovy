@@ -160,4 +160,13 @@ class HomeController {
             render "WhyCrowdera section not loaded. Please, refresh to load again."
         }
     }
+    
+    def loadMediaStrip(){
+        
+        if(request.method=='POST'){
+            render template:'media-strip'
+        }else{
+            render "Media strip not loaded. Please, refresh to load again."
+        }
+    }
 }

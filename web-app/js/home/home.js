@@ -161,6 +161,9 @@ $(function() {
     
     $( document ).ready(function() {
     	
+    	/***********************call homepage carousel images****************************/
+    	loadHomePageCarouselImage();
+    	
     	/*********************Call loadwhycrowderacallback function***************************************/
     	loadWhyCrowderaCallback();
     	
@@ -388,10 +391,18 @@ $( document ).ready(function() {
 		$('.home-header-section').removeClass('banner-nav');
 	});
 	
-	$("#homepage-carousel").load('/us/carousel_images');
-	
 });
 
+function loadHomePageCarouselImage(){
+	$.ajax({
+        url:$('#b_url').val()+ "/home/loadHomepageCarousel",
+        type:"post",
+        data:"device=desktop",
+        success:function(res){
+            $("#homepage-carousel").html(res);
+        }
+   });
+}
 /*******************Load whycrowdera template**********************************************/
 function loadWhyCrowderaCallback(){
     var device = '';

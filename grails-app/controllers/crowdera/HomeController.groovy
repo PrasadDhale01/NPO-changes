@@ -108,7 +108,25 @@ class HomeController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def getHomePageCarouselImage(){
         def carousel = projectService.getHomePageCarouselImage(params?.country, params?.data)
-        render carousel as JSON
+        
+        if(carousel){
+            render carousel as JSON
+        }else{
+           render ''
+        }
+    }
+    
+    def loadHomepageCarousel(){
+        
+        if(request.method=='POST'){
+            
+            def currentEnv = projectService.getCurrentEnvironment()
+            def imageUrl = projectService.getHomePageCarouselImage(currentEnv, 'link')
+            
+            render template:'homepagecarousel', model:[imageUrl:imageUrl]
+        }else{
+            render "Carousel images not loaded. Please, refresh to load again."
+        }
     }
     
     

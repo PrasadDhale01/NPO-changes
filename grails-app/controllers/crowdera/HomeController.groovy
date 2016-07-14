@@ -141,4 +141,23 @@ class HomeController {
             break;
         }
     }
+    
+    def loadWhyCrowderaCallback(){
+        def currentEnv = projectService.getCurrentEnvironment()
+        
+        if(request.method=='POST' && params.device){
+            
+            switch(params.device){
+                case 'desktop':
+                    render template:'whycrowdera', model:[currentEnv: currentEnv]
+                break;
+                case 'tab':
+                    render template:'tabwhycrowdera', model:[currentEnv:currentEnv]
+                break;
+            }
+            
+        }else{
+            render "WhyCrowdera section not loaded. Please, refresh to load again."
+        }
+    }
 }

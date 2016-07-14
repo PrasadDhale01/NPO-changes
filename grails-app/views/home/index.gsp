@@ -82,8 +82,8 @@
         </div>
     </div>
     <div class="hidden-xs">
-        <div class="whycrowderacontainer">
-            <g:render template="whycrowdera"></g:render>
+        <div class="whycrowderacontainer" id="loadWhyCrowdera">
+            
         </div>
         <div class="success-stories-container">
             <g:render template="success-stories"></g:render>

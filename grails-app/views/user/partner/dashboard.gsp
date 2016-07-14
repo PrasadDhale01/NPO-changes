@@ -282,7 +282,7 @@
                     </div>
                     
                     <div class="tab-pane tab-pane-active <g:if test="${isInviteTrue}">active</g:if>" id="invite">
-                        <div id="partnercampaignpaginate">
+                        <div id="inviteCampaignOwner">
                              <g:render template="/user/partner/invitecampaignmember"/>
                          </div>
                     </div>

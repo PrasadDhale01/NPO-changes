@@ -2011,8 +2011,10 @@ class ProjectController {
 			}
 
 			def multiplier = projectService.getCurrencyConverter();
-			def model = [totalContributions : totalContributions, CurrentUserTeam: CurrentUserTeam,isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin,
-                contributions: contributions, project: project, team: currentTeam, multiplier: multiplier, vanityUsername:params.fr, currentUser: currentUser]
+            def currentEnv = projectService.getCurrentEnvironment();
+            
+			def model = [totalContributions : totalContributions, CurrentUserTeam: CurrentUserTeam,isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, contributions: contributions, project: project,
+				team: currentTeam, multiplier: multiplier, currentEnv: currentEnv, vanityUsername:params.fr, currentUser: currentUser]
 			if (request.xhr) {
 				render(template: "show/contributionlist", model: model)
 			}

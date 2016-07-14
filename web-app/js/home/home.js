@@ -160,6 +160,10 @@ $(function() {
     });
     
     $( document ).ready(function() {
+    	
+    	/*********************Call loadwhycrowderacallback function***************************************/
+    	loadWhyCrowderaCallback();
+    	
         function sticky_relocate() {
         	var window_top = $(window).scrollTop();
         	if($('.hm-image-header').length){
@@ -384,3 +388,23 @@ $( document ).ready(function() {
 	$("#homepage-carousel").load('/us/carousel_images');
 	
 });
+
+/*******************Load whycrowdera template**********************************************/
+function loadWhyCrowderaCallback(){
+    var device = '';
+
+    if(screen.width >=768 && screen.width <1025){
+        device="tab";
+    }else{
+        device="desktop";
+    }
+
+    $.ajax({
+        url:$('#b_url').val()+ "/home/loadWhyCrowderaCallback",
+        type:"post",
+        data:"device="+device,
+        success:function(res){
+            $("#loadWhyCrowdera").html(res);
+        }
+   });
+}

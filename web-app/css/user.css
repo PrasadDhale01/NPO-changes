@@ -925,7 +925,7 @@ div.dashboardtile-min-height {
 .partner-dashboard div.list-group-item.active, .partner-dashboard div.list-group-item.active:hover, .partner-dashboard div.list-group-item.active:focus {
     z-index: 2;
     color: #000 !important;
-    border: 2px solid #01bbd2;
+    border: 1px solid #01bbd2;
     background-color: #fff !important;
 }
 .partner-dashboard .campaign-img {

@@ -868,12 +868,10 @@
                           </g:else>
                       </g:if>
                       
-                      <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
-                          <g:if test="${project.impactNumber > 0 && project?.impactAmount > 0}">
-                              <div class="impactassessment">
-                                  <g:render template="show/impactstatement"/>
-                              </div>
-                          </g:if>
+                      <g:if test="${project?.impactNumber > 0}">
+                          <div class="impactassessment">
+                              <g:render template="show/impactstatement"/>
+                          </div>
                       </g:if>
                       
                       <g:if test="${project.hashtags}">

@@ -1048,7 +1048,7 @@ class ProjectService {
             "ans3":"Please select 'Your contributors want to know' option(s).",
             "ans4":"Please select 'Your contributors want to know' option(s).",
             "projectImageFile":"Please upload aleast one image.",
-            "impactAmount":"Please fill impact assessment amount.",
+            /*"impactAmount":"Please fill impact assessment amount.",*/
             "impactNumber":"Please fill impact assessment number.",
             "checkBox":"Please check 'Terms of use and privacy policy' checkbox.",
             "paypalEmailId":"Please fill Paypal email id.",
@@ -4201,12 +4201,12 @@ class ProjectService {
                 isValueChanged = true
                 break;
 
-            case 'impactAmount':
+           /* case 'impactAmount':
                 if (varValue.isNumber()) {
                     project.impactAmount = Integer.parseInt(varValue);
                     isValueChanged = true
                 }
-                break;
+                break;*/
                 
             case 'impactNumber':
                 if (varValue.isNumber()) {
@@ -5137,7 +5137,7 @@ class ProjectService {
         project.hashtags = hashlist
 
         project.impactNumber = 0;
-        project.impactAmount = 0;
+        /*project.impactAmount = 0;*/
 
         project.save();
     }

@@ -1941,6 +1941,23 @@ class UserService {
         return settingList
     } 
     
+    String getUserImageUrl(def user){
+        
+        String userImage=''
+        
+        if (user) {
+            if (user.userImageUrl) {
+                userImage = user.userImageUrl
+            } else {
+                def imageobj = getCurrentUserImage(user.firstName)
+                userImage = imageobj.userImage
+            }
+        }
+        
+        return userImage
+        
+    }
+    
 
     @Transactional
     def bootstrap() {

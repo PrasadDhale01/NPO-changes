@@ -68,12 +68,14 @@ $(document).ready(function(){
 			}
 		}
 	});
-	$('.banner-close').click(function(){
-		$('.info-banner').css('display','none');
-		//$('.home-header-section').removeClass('banner-nav');
-		$('#TW-discover-banner-padding').removeClass('banner-padding');
-	});
 });
+
+function bannerClose(){
+	$('.info-banner').css('display','none');
+	//$('.home-header-section').removeClass('banner-nav');
+	$('#TW-discover-banner-padding').removeClass('banner-padding');
+}
+
 $(window).load(function() {
     /*
     $('.blacknwhite').BlackAndWhite({

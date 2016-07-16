@@ -70,9 +70,7 @@
     }(document, 'script', 'facebook-jssdk'));
     </script>
 
-    <div class="main-header-gsp">
-        <g:render template="/layouts/header"/>
-    </div>
+    <div class="main-header-gsp" id="loadHeaderTempate"></div>
 
     <div class="feduoutercontent mobile-header-onmain">
         <g:layoutBody />

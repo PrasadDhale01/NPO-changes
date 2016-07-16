@@ -1416,12 +1416,6 @@ $(function() {
    			}
    		}
    	});
-   	$('.banner-close').click(function(){
-   		$('.info-banner').css('display','none');
-   		$('.home-header-section').removeClass('banner-nav');
-   		$('#preview-banner').attr('class','preview-banner-margin');
-   	});
-
 
     $('.video-play').click(function() {
     	$('.choose-error').html('');
@@ -1534,4 +1528,10 @@ function hideNavigation() {
 		document.getElementById('updateindicators').style.display = 'none';
 		document.getElementById('updatenavigators').style.display = 'none';
     }
+}
+
+function bannerClose(){
+	$('.info-banner').css('display','none');
+	$('.home-header-section').removeClass('banner-nav');
+	$('#preview-banner').attr('class','preview-banner-margin');
 }

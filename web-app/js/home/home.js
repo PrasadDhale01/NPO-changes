@@ -386,12 +386,12 @@ $( document ).ready(function() {
 			}
 		}
 	});
-	$('.banner-close').click(function(){
-		$('.info-banner').css('display','none');
-		$('.home-header-section').removeClass('banner-nav');
-	});
-	
 });
+
+function bannerClose(){
+	$('.info-banner').css('display','none');
+	$('.home-header-section').removeClass('banner-nav');
+}
 
 function loadHomePageCarouselImage(){
 	$.ajax({

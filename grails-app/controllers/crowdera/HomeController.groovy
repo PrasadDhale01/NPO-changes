@@ -187,4 +187,28 @@ class HomeController {
             render "Media strip not loaded. Please, refresh to load again."
         }
     }
+    
+    def loadHeaderCallback(){
+        
+        if(request.method=='POST' && params.device){
+            def currentEnv = projectService.getCurrentEnvironment()
+            def user = userService.getCurrentUser()
+            String userImage = userService.getUserImageUrl(user)
+            def model = [user:user, userImage:userImage, currentEnv:currentEnv ]
+            
+            switch(params.device){
+                case 'desktop':
+                case 'tab':
+                    render template:'/layouts/header', model:model
+                break;
+                case 'mobile':
+                    render template:'/layouts/mobileheader', model:model
+                break;
+                
+            }
+            
+        }else{
+            render 'Header not loaded. Please, refresh to load again.'
+        }
+    }
 }

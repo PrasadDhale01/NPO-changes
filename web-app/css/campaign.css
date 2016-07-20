@@ -1264,20 +1264,21 @@ img.how-it-success-img{
 .managecampaignDescription {
     border:#f7f7f7;
     background-color: #f7f7f7;
-    height: 90px;
-    margin-top: -3px
+    height: 105px;
+    margin-top: -3px;
+    line-height: 30px;
 }
 .managecampaignDescription p {
-    color: #5a6771;
-    font-weight: 900;
-    font-family: sans-serif;
-    font-size: 14px;
+    font-weight: bold;
     margin: 0 0 0px;
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 4px;
     padding-bottom: 4px;
-    line-height: 36px;
+    font-size: 24px;
+    word-wrap: break-word;
+    font-family: Ubuntu Condensed;
+    color: #222222;
 }
 .managecampaignDescription .panel-body {
     padding: 5px;

@@ -205,17 +205,13 @@
         <script src="/js/raphel-pie/g.pie.js"></script>
     </g:if>
     
-    
-    
 </div>
 
 <div class="col-sm-4 col-xs-12">
-    <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
-        <g:if test="${project.impactNumber > 0 && project.impactAmount > 0}">
-            <div class="impactassessment">
-                <g:render template="show/impactstatement"/>
-            </div>
-        </g:if>
+    <g:if test="${project.impactNumber > 0}">
+        <div class="impactassessment">
+            <g:render template="show/impactstatement"/>
+        </div>
     </g:if>
     
     <g:if test="${reasons && (reasons.reason1 || reasons.reason2 || reasons.reason3)}">

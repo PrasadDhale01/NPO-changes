@@ -2368,14 +2368,14 @@ class ProjectController {
         render ''
     }
 
-    def getImpactText(){
+    /*def getImpactText(){
         Project project = projectService.getProjectById(params.projectId)
         def currentEnv = projectService.getCurrentEnvironment()
         projectService.getCategoryAndHashTagsSaved(project, currentEnv, params.selectedCategory)
         if(request.xhr){
             render(template: "create/impactAnalysisText", model:[project:project, currentEnv:currentEnv, loadjs:true])
         }
-    }
+    }*/
 
     def saveRecipientAndHashTags(){
         projectService.saveRecipientAndHashTags(params)

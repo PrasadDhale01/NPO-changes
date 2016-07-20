@@ -2014,8 +2014,11 @@ class ProjectController {
 			}
 
 			def multiplier = projectService.getCurrencyConverter();
+             def currentEnv = projectService.getCurrentEnvironment()
+            
 			def model = [totalContributions : totalContributions, CurrentUserTeam: CurrentUserTeam,isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, contributions: contributions, project: project,
-				team: currentTeam, multiplier: multiplier, vanityUsername:params.fr, currentUser: currentUser]
+				team: currentTeam, multiplier: multiplier, currentEnv: currentEnv, vanityUsername:params.fr, currentUser: currentUser]
+            
 			if (request.xhr) {
 				render(template: "show/contributionlist", model: model)
 			}
@@ -2365,14 +2368,14 @@ class ProjectController {
         render ''
     }
 
-    def getImpactText(){
+    /*def getImpactText(){
         Project project = projectService.getProjectById(params.projectId)
         def currentEnv = projectService.getCurrentEnvironment()
         projectService.getCategoryAndHashTagsSaved(project, currentEnv, params.selectedCategory)
         if(request.xhr){
             render(template: "create/impactAnalysisText", model:[project:project, currentEnv:currentEnv, loadjs:true])
         }
-    }
+    }*/
 
     def saveRecipientAndHashTags(){
         projectService.saveRecipientAndHashTags(params)

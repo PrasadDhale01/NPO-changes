@@ -1368,7 +1368,9 @@ footer .footerbottomsection {
 .btn-show-fund {
     color: #ffffff !important;
     background-color: #01bbd3 !important;
-    border-color: #01bbd3 !important;
+    outline: none !important;
+    border:none !important;
+    box-shadow: none;
     margin-top: -14px;
     font-size: 24px;
     font-weight: bold;
@@ -1377,7 +1379,9 @@ footer .footerbottomsection {
 .btn-show-fund:hover{
     color: #ffffff !important;
     background-color: #01bbd3 !important;
-    border-color:  #01bbd3!important;
+    outline: none !important;
+    border:none !important;
+    box-shadow: none;
 }
 
 .cvc-details span.input-group-addon {
@@ -2480,7 +2484,7 @@ a.footerlink {
    	border-color: #dadada #dadada #b2b2b2 #c9c9c9;
 	margin-top: -3px;
 	text-align: left;
-	height: 90px;
+	height: 105px;
 }
 .perks-supporters{
 	border: 5px solid #f7f7f7;
@@ -4629,12 +4633,14 @@ ul.personalDetailClasses, menu, dir {
 	margin-bottom: 20px;
 }
 .campaignDescription {
-	font-weight: 600;
-	font-size: 15px;
+	font-weight: bold;
+	font-size: 24px;
 	word-wrap: break-word;
+	font-family: Ubuntu Condensed;
+	color: #222222;
 }
 p {
-        word-wrap: break-word;
+    word-wrap: break-word;
 }
 .rewardleftmargin {
 	margin-left: 35px;
@@ -8191,12 +8197,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /*     } */
     div.show-description {
         margin-top: 9px;
-        height: 90px;
-        line-height: 26px;
+        height: 105px;
+        line-height: 28px;
     }
     .impactassessment .panel-default p {
-        font-size: 15px;
-        line-height: 26px;
+        font-size: 22px;
+        line-height: 28px;
     }
     a.show-btn-sh-fb {
         margin-bottom: 108px;
@@ -9102,7 +9108,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 50%;
 	}
     div.perks-style {
-        height: 82px;
+        height: 105px;
+        padding-top: 15px;
     }
     #campaignthumbnails.col-sm-12 {
         padding-left: 11px;
@@ -9115,8 +9122,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 110%;
     }
     p.campaignDescription {
-        font-size: 14px;
-        line-height: 26px;
+        font-size: 22px;
+        line-height: 28px;
         padding-top: 1px;
     }
     h2.sh-fundclosed-mobile{
@@ -11411,8 +11418,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     .impactassessment .panel-default p {
         padding: 3px 0px;
-        font-size: 15px;
-        line-height: 26px;
+        font-size: 22px;
+        line-height: 28px;
     }
     div.show-description {
         background-color: #e7e7e7;
@@ -13399,7 +13406,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: 30px;
     }
     div.impactassessment .panel-default p {
-        font-size: 15px;
+        font-size: 24px;
     }
     div.ack-tile-height {
         height: auto;
@@ -14986,7 +14993,7 @@ textarea.textarea-embed-video {
         margin-left: -22px;
     }
     div.impactassessment .panel-default p {
-        font-size: 15px;
+        font-size: 24px;
     }
     span.ft-mobiles-padding {
         padding-left: 53px;
@@ -17379,14 +17386,14 @@ textarea.textarea-embed-video {
 }
 .show-description {
     background-color: #f7f7f7;
-    height: 90px;
+    height: 105px;
     margin-top: 22px;
     padding-bottom: 9px;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 9px;
     color: #5a6771;
-    line-height: 36px;
+    line-height: 30px;
 }
 .sh-contrialignment{
 	margin-top: -19px;

@@ -2484,7 +2484,7 @@ a.footerlink {
    	border-color: #dadada #dadada #b2b2b2 #c9c9c9;
 	margin-top: -3px;
 	text-align: left;
-	height: 90px;
+	height: 105px;
 }
 .perks-supporters{
 	border: 5px solid #f7f7f7;
@@ -9108,7 +9108,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 50%;
 	}
     div.perks-style {
-        height: 82px;
+        height: 105px;
+        padding-top: 15px;
     }
     #campaignthumbnails.col-sm-12 {
         padding-left: 11px;

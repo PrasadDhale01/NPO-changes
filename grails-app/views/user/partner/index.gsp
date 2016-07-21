@@ -104,7 +104,7 @@
         
         <!-- invitePartnerModal -->
         <div class="modal fade" id="invitePartnerModal" tabindex="-1">
-            <g:form name="invite-partner-form" action="addpartner" controller="user" role="form">
+            <g:form name="invite-partner-form" action="addpartner" controller="user">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-body">
@@ -114,19 +114,19 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="text" for="title"><b>FirstName</b></label>
+                                    <label class="text"><b>FirstName</b></label>
                                     <input type="text" class="form-control contributioninput" name="firstName"/>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="text" for="title"><b>LastName</b></label>
+                                    <label class="text"><b>LastName</b></label>
                                     <input type="text" class="form-control contributioninput" name="lastName"/>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="title" class="text"><b>Email</b></label>
+                                    <label class="text"><b>Email</b></label>
                                     <input type="email" class="form-control contributioninput offlineAmount" name="email"/>
                                 </div>
                             </div>

@@ -1,3 +1,8 @@
+.TW-update-redactor .redactor-box .redactor-editor,
+.TW-editUpdate-redactor .redactor-box .redactor-editor,
+.TW-redactor .redactor-box .redactor-editor {
+	height: 200px;
+}
 div.customUrlLabel{
 	padding-right: 0 !important;
 	padding-left: 0 !important;
@@ -360,7 +365,8 @@ textarea.textarea-embed-tile{
     min-height: 0px;
     height: 120px;
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: auto;
+    height: 300px;
 }
 
 .redactor-animate{

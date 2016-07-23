@@ -91,13 +91,9 @@ $(function() {
             //var story = that.code.get();
             // autoSave('story', story);
             //}, 5000);
-
-        },focusCallback: function(){
+        },
+        blurCallback: function() {
             autoSave('story', this.code.get());
-            $(".cr-story-padding .redactor-box .redactor-editor").toggleClass("redactor-animate", true, 100000);
-        },blurCallback: function() {
-            autoSave('story', this.code.get());
-            $(".cr-story-padding .redactor-box .redactor-editor").toggleClass("redactor-animate", false, 100000);
         },
         plugins: ['video','fontsize','fontfamily','fontcolor'],
         buttonsHide: ['indent', 'outdent', 'horizontalrule', 'deleted']

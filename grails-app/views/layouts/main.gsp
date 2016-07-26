@@ -69,7 +69,8 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
     </script>
-
+    <script src="/js/main.js" type="application/x-javascript"></script>
+    
     <div class="main-header-gsp" id="loadHeaderTempate"></div>
 
     <div class="feduoutercontent mobile-header-onmain">
@@ -81,7 +82,7 @@
     <r:require modules="crowderajs"/>
     <r:require module="googleanalytics"/>
     
-    <script src="/js/main.js" type="application/x-javascript"></script>
+    
     
     <r:layoutResources/>
 </body>

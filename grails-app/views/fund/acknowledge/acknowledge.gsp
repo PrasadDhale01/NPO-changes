@@ -45,6 +45,7 @@
 </head>
 <body>
 <g:hiddenField name="projectId" value="${project.id}" id="projectId"/>
+<g:hiddenField name="ackPage" value="ackPage" id="ackPage"/>
 <g:hiddenField name="contributionId" value="${contribution.id}" id="contributionId"/>
 <g:hiddenField name="fbShareUrl" value="${fbShareUrl}" id="fbShareUrl"/>
 <g:hiddenField name="beneficiaryName" value="${beneficiaryName}" id="beneficiaryName"/>
@@ -159,7 +160,7 @@
             		</div>
         		</div>
         		
-        		<div id="ackMobileView" class=" visible-xs <g:if test="${project.rewards.size()>1 }">acknowledge-tile-tag ack-tile-height</g:if><g:else>ack-panel-tile</g:else>">
+        		<div id="ackMobileView" class=" visible-xs  <g:if test="${project.rewards.size()>1 }">acknowledge-tile-tag ack-tile-height</g:if><g:else>ack-panel-tile</g:else>">
                 </div>
         		
         		<%

@@ -524,7 +524,9 @@ $(function() {
         });
         
         //load campaign tile in acknowledge page
-        loadAckCampaignTile();
+        if($('#ackPage').val()=='ackPage'){
+            loadAckCampaignTile();
+        }
 });
 
 function loadAckCampaignTile(){

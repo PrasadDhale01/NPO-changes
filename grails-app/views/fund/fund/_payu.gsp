@@ -128,7 +128,7 @@
                              <div class="form-group">
                                  <div class="input-group col-md-12">
                                      <g:if test="${user}">
-                                         <input class="form-control" type="text" placeholder="Last Name" name="lastname" value="${user.firstName}" required>
+                                         <input class="form-control" type="text" placeholder="Last Name" name="lastname" value="${user.lastName}" required>
                                      </g:if>
                                      <g:else>
                                          <input class="form-control" type="text" placeholder="Last Name" name="lastname" required>
@@ -191,7 +191,7 @@
                             <div class="form-group">
                                 <div class="input-group col-md-12">
                                     <g:if test="${user}">
-                                        <input class="form-control" type="text" placeholder="Last Name" name="lastname" value="${user.firstName}">
+                                        <input class="form-control" type="text" placeholder="Last Name" name="lastname" value="${user.lastName}">
                                     </g:if>
                                     <g:else>
                                         <input class="form-control" type="text" placeholder="Last Name" name="lastname">

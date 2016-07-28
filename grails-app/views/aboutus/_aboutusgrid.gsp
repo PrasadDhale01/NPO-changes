@@ -235,19 +235,19 @@
 	                           <h3 class="text-center"><b>Join Our Crew</b></h3>
 	                           <hr>
 	                           <div class="form-group">
-	                                <label for="firstName">First Name</label>
+	                                <label>First Name</label>
 	                                <input type="text" class="form-control" name="firstName"/>
 	                           </div>
 	                           <div class="form-group">
-	                                <label for="lastName">Last Name</label>
+	                                <label>Last Name</label>
 	                                <input type="text" class="form-control" name="lastName"/>
 	                           </div>
 	                           <div class="form-group">
-	                                <label for="email">Email</label>
+	                                <label>Email</label>
 	                                <input type="text" class="form-control" name="email"/>
 	                           </div>
 	                           <div class="form-group">
-	                                <label for="email">Phone</label>
+	                                <label>Phone</label>
 	                                <input type="text" class="form-control" name="phone"/>
 	                           </div>
 	                           <div class="form-group">
@@ -267,19 +267,19 @@
 	                           </div>
 	                           <div class="clear"></div>
 	                           <div class="form-group">
-	                                <label for="letterDescriptions">Cover Letter (Optional)</label>
+	                                <label>Cover Letter (Optional)</label>
 	                                <textarea class="form-control" name="letterDescriptions"></textarea>
 	                           </div>
 	                           <div class="form-group">
-	                                <label for="title">Why should we hire you?</label>
+	                                <label>Why should we hire you?</label>
 	                                <textarea class="form-control" name="crewDescriptions"></textarea>
 	                           </div>
 	                            <div class="form-group">
-	                                <label for="title">LinkedIn</label>
+	                                <label>LinkedIn</label>
 	                                <input type="text" class="form-control" name="linkedIn" placeholder="LinkedIn Url"/>
 	                           </div>
 	                           <div class="form-group">
-	                                <label for="title">Facebook</label>
+	                                <label>Facebook</label>
 	                                <input type="text" class="form-control" name="faceBook" placeholder="Facebook Url"/>
 	                           </div>
 	                           <div class="modal-footer">

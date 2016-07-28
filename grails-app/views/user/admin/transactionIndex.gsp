@@ -14,8 +14,8 @@
            </div>
            <g:if test="${!contribution.empty }">
            <div class="generateCSV col-sm-2 col-xs-6">
-               <g:form controller="fund" action="generateCSV" Method="post" >
-                   <g:hiddenField name="currency" value="${currency}"/>
+               <g:form controller="fund" action="generateCSV" method="post" >
+                   <g:hiddenField name="currency" value="${currency}" id="currencyValue"/>
                    <button type="submit" class="btn btn-primary btn-sm btn-xs-width pull-right" >Generate CSV</button>
                </g:form>
             </div>

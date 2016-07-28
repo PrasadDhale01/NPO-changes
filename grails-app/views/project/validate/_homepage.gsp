@@ -7,21 +7,21 @@
                         <div class="col-sm-4">
                             <div class="chooseHomePageCampaign">
                                 <g:select class="selectpicker form-control input-lg "
-                                    name="campaignOne" from="${projects.title}" id="campaignOne"  optionValue="value" value="${campaignOne}"/>
+                                    name="campaignOne" from="${projects}" id="campaignOne" value="${campaignOne}"/>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <div class="chooseHomePageCampaign">
                                     <g:select class="selectpicker form-control input-lg"
-                                        name="campaignTwo" from="${projects.title}" id="campaignTwo" optionValue="value" value="${campaignTwo}" /> 
+                                        name="campaignTwo" from="${projects}" id="campaignTwo"  value="${campaignTwo}" /> 
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="chooseHomePageCampaign">
                                 <g:select class="selectpicker form-control input-lg"
-                                    name="campaignThree" from="${projects.title}" id="campaignThree" optionValue="value" value="${campaignThree}"/> 
+                                    name="campaignThree" from="${projects}" id="campaignThree"  value="${campaignThree}"/> 
                             </div>
                         </div>
                     </div>

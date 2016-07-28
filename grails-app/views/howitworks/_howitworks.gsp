@@ -246,7 +246,7 @@
                 <h5 class="how-bottomstrip">
                     More advice for setting your funding goals, creating a great
                     campaign video, and marketing your campaign can be found on our 
-                    <a class="how-bolg-tips" href="http://crowdera.tumblr.com" target="_blanck">blog</a> along with other useful
+                    <a class="how-bolg-tips" href="http://crowdera.tumblr.com" target="_blank">blog</a> along with other useful
                     tips for success. Take a look!
                 </h5>
             </div>

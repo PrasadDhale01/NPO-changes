@@ -1134,6 +1134,8 @@ $(function() {
 
     $('.show1-Primary').hide();
     $( document ).ready(function() {
+    	
+    	/**************************Sets text on file selection*************************/
 
     	$(document).on('change', '.btn-file :file', function() {
             var filename =this.files[0].name;
@@ -1414,12 +1416,6 @@ $(function() {
    			}
    		}
    	});
-   	$('.banner-close').click(function(){
-   		$('.info-banner').css('display','none');
-   		$('.home-header-section').removeClass('banner-nav');
-   		$('#preview-banner').attr('class','preview-banner-margin');
-   	});
-
 
     $('.video-play').click(function() {
     	$('.choose-error').html('');
@@ -1466,6 +1462,23 @@ $(function() {
 
 
    });
+    
+	/**Restore rejected campaign**/
+	$('#restoreCampaign').one("click", function(){
+	   var projectId = $('#prjId').val();
+	   $.ajax({
+	        type    :'post',
+	        url     : $("#b_url").val()+'/project/restoreCampaign',
+	        data    : "projectId="+projectId,
+	        success : function(response){
+	          if(response =="true"){
+	        	  alert('Campaign restored.');
+	          }
+	        }
+	    }).error(function(){
+	 	   console.log('Campaign not restored');
+	    });
+	});
 });
 
 function showNavigation(){
@@ -1515,4 +1528,10 @@ function hideNavigation() {
 		document.getElementById('updateindicators').style.display = 'none';
 		document.getElementById('updatenavigators').style.display = 'none';
     }
+}
+
+function bannerClose(){
+	$('.info-banner').css('display','none');
+	$('.home-header-section').removeClass('banner-nav');
+	$('#preview-banner').attr('class','preview-banner-margin');
 }

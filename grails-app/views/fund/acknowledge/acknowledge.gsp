@@ -44,6 +44,9 @@
     </script>
 </head>
 <body>
+<g:hiddenField name="projectId" value="${project.id}" id="projectId"/>
+<g:hiddenField name="ackPage" value="ackPage" id="ackPage"/>
+<g:hiddenField name="contributionId" value="${contribution.id}" id="contributionId"/>
 <g:hiddenField name="fbShareUrl" value="${fbShareUrl}" id="fbShareUrl"/>
 <g:hiddenField name="beneficiaryName" value="${beneficiaryName}" id="beneficiaryName"/>
 <g:hiddenField name="campaignTitle" value="${project.title}" id="campaignTitle"/>
@@ -157,12 +160,7 @@
             		</div>
         		</div>
         		
-        		<div class=" visible-xs <g:if test="${project.rewards.size()>1 }">acknowledge-tile-tag ack-tile-height</g:if><g:else>ack-panel-tile</g:else>">
-                    <g:if test="${project.rewards.size()>1 }">
-                        <g:render template="rewardtile"/>
-                    </g:if>
-                    <g:render template="fund/fundTile"/>
-                    <%--<g:render template="/layouts/tile"/>--%>
+        		<div id="ackMobileView" class=" visible-xs  <g:if test="${project.rewards.size()>1 }">acknowledge-tile-tag ack-tile-height</g:if><g:else>ack-panel-tile</g:else>">
                 </div>
         		
         		<%
@@ -222,13 +220,7 @@
                 </g:else>
             </div>
        </div>
-            <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 hidden-xs <g:if test="${project.rewards.size()>1 }">acknowledge-tile-tag ack-tile-height</g:if><g:else>ack-panel-tile</g:else>">
-                <g:if test="${project.rewards.size()>1 }">
-                    <g:render template="rewardtile"/>
-                </g:if>
-                <g:render template="fund/fundTile"/>
-                <%--<g:render template="/layouts/tile"/>--%>
-            </div>
+            <div id="ackDesktopView" class="col-lg-4 col-sm-4 col-md-4 col-xs-12 hidden-xs <g:if test="${project.rewards.size()>1 }">acknowledge-tile-tag ack-tile-height</g:if><g:else>ack-panel-tile</g:else>"></div>
                 
     </div>
 </div>

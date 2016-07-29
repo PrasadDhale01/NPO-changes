@@ -675,7 +675,7 @@ class ProjectService {
 		 if (amount && contributorFirstName && contributorEmail1 && contributorLastName) {
 			 Contribution contribution = new Contribution(
                     date: new Date(),
-                    user: user.user,
+                    user: (userExist)?user:user.user,
                     reward: reward,
                     amount: amount,
                     contributorFirstName: contributorFirstName,

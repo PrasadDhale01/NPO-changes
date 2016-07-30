@@ -1068,8 +1068,11 @@ class ProjectController {
             } else {
                 payOpts = projectService.getPayment()
             }
-            def selectedCountry = (project.beneficiary.country) ? projectService.getCountryKey(project.beneficiary.country) : null;
-        
+            
+            //Country Issue for India site
+            //India: Map key is fetching for country like, AL is fetching for AL:"ALBANIA"
+            //USA: Map value is fetching for country like, ALBANIA is fetching for AL:"ALBANIA"
+            def selectedCountry = (project.beneficiary.country.length() > 3 ) ? projectService.getCountryKey(project.beneficiary.country) : project.beneficiary.country
             def beneficiary = project.beneficiary
             def reasonsToFund = projectService.getProjectReasonsToFund(project)
             def qA = projectService.getProjectQA(project)

@@ -63,6 +63,7 @@
     def embedCode = '<iframe width="310px" height="451px" src="'+embedTileUrl+'" scrolling="no" frameborder="0"  class="embedTitleUrl"></iframe>'
     def embedVideoCode = '<iframe width="480" height="360" frameborder="0" src="'+campaignVideoUrl+'" scrolling="no"></iframe>'
     
+    def ss = '/layouts/show_teamtileInfo'
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
@@ -148,7 +149,8 @@
     </g:if> 
     
     <div class="container show-cmpgn-container">
-
+        <g:hiddenField name="teamId" id="teamId" value="${currentTeam.id}"/>
+        <g:hiddenField name="campaignId" id="campaignId" value="${project.id }"/>
         <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
         <g:hiddenField name="pieList" value="${pieList}" id="pieList"/>
         <g:hiddenField name="projectamount" value="${project?.amount.round()}" id="projectamount"/>
@@ -276,17 +278,17 @@
                             <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
                                 <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
                                     <div class="redirectCampaign">
-                                        <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund" id="btnFundDesktop">FUND NOW!</button></g:link>
+                                        <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri" id="btnFundDesktop">Fund Now!</button></g:link>
                                     </div>
                                 </g:if>
                                 <g:else>
                                     <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
-                                        <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund"  id="btnFundMobile">FUND NOW!</button>
+                                        <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri"  id="btnFundMobile">Fund Now!</button>
                                     </g:form>
                                 </g:else>
                             </g:if>
                             <g:else>
-                                <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund">FUND NOW!</button>
+                                <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri">Fund Now!</button>
                             </g:else>
                         </div>
                     </g:else>
@@ -347,14 +349,14 @@
                         <ul class="nav nav-pills nav-justified nav-justi sh-tabs show-pages-width">
                         
                             <li><span class="active show-tbs-right-borders  hidden-xs">
-                                    <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials show-all-icons-header-tabs show-story">
+                                    <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials showStoryTemplate show-all-icons-header-tabs show-story">
                                         <span class="tab-text sh-tabs-font hidden-xs"> STORY</span>
                                     </a>
                                 </span>
                             </li>
                             <g:if test="${!project?.projectUpdates.isEmpty() }">
                                 <li><span class="show-tbs-right-borders hidden-xs">
-                                        <a href="#projectupdates" data-toggle="tab"  class="show-tabs-text projectupdates show-all-icons-header-tabs">
+                                        <a href="#projectupdates" data-toggle="tab"  class="show-tabs-text projectupdates showUpdateTemplate show-all-icons-header-tabs">
                                             <span class="tab-text sh-tabs-font hidden-xs"> UPDATES</span> 
                                         </a>
                                         <span class="show-tabs-count hidden-xs">
@@ -364,13 +366,13 @@
                                 </li>
                             </g:if>
                             <li><span class="show-tbs-right-borders hidden-xs">
-                                    <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text manageTeam show-all-icons-header-tabs">
+                                    <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text manageTeam showTeamTemplate show-all-icons-header-tabs">
                                         <span class="tab-text sh-tabs-font"> TEAMS</span>
                                     </a>
                                 </span>
                             </li>
                             <li><span class="show-tbs-right-borders hidden-xs">
-                                    <a href="#contributions" data-toggle="tab"  class="show-tabs-text contributions show-all-icons-header-tabs">
+                                    <a href="#contributions" data-toggle="tab"  class="show-tabs-text contributions showContributionTemplate show-all-icons-header-tabs">
                                         <span class="tab-text sh-tabs-font"> CONTRIBUTIONS</span>
                                     </a>
                                     <span class="show-tabs-count hidden-xs">
@@ -379,7 +381,7 @@
                                 </span>
                             </li>
                             <li><span class="show-comit-lft hidden-xs">
-                                   <a href="#essentials" data-toggle="tab"  class="show-tabs-text comments navComment scrollToComment">
+                                   <a href="#essentials" data-toggle="tab"  class="show-tabs-text comments showCommentTemplate navComment scrollToComment">
                                        <span class="tab-text hidden-xs sh-tabs-font"> COMMENTS</span>
                                    </a>
                                 </span>
@@ -422,17 +424,17 @@
                                     <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
                                         <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
                                             <div class="redirectCampaign">
-                                                <g:link class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js" controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="btnFundDesktop">FUND NOW</g:link>
+                                                <g:link class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js sh-fund-donate-contri" controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="btnFundDesktop">FUND NOW</g:link>
                                             </div>
                                         </g:if>
                                         <g:else>
                                             <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
-                                                <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js">FUND NOW</button>
+                                                <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js sh-fund-donate-contri">FUND NOW</button>
                                             </g:form>
                                         </g:else>
                                     </g:if>
                                     <g:else>
-                                        <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block sh-fund-2header mob-show-fund show-btn-js">FUND NOW</button>
+                                        <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block sh-fund-2header mob-show-fund show-btn-js sh-fund-donate-contri">FUND NOW</button>
                                     </g:else>
                                 </li>
                             </ul>
@@ -561,7 +563,7 @@
                     <ul class="nav nav-pills nav-justified nav-justi show-marginbottoms sh-tabs mng-safari-mobile show-new-tabs-alignments<g:if test="${!project?.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
                         
                         <li class="show-tabs"><span class="active show-tbs-right-borders  hidden-xs">
-                                <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials show-campaigndetails-font">
+                                <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials showStoryTemplate show-campaigndetails-font">
                                     <span class="tab-text hidden-xs"> Story</span>
                                 </a>
                                 <span class="show-ids-header"></span>
@@ -569,7 +571,7 @@
                         </li>
                         <g:if test="${!project?.projectUpdates.isEmpty() }">
                             <li><span class="show-tbs-right-borders hidden-xs">
-                                    <a href="#projectupdates" data-toggle="tab" class="show-tabs-text projectupdates show-campaigndetails-font">
+                                    <a href="#projectupdates" data-toggle="tab" class="show-tabs-text projectupdates showUpdateTemplate show-campaigndetails-font">
                                         <span class="tab-text hidden-xs"> Updates</span> 
                                     </a>
                                     <span class="show-tabs-count hidden-xs">
@@ -580,14 +582,14 @@
                             </li>
                         </g:if>
                         <li><span class="show-tbs-right-borders hidden-xs">
-                                <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text manageTeam show-campaigndetails-font">
+                                <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text manageTeam showTeamTemplate ss show-campaigndetails-font">
                                     <span class="tab-text"> Teams</span>
                                 </a>
                                 <span class="show-ids-header"></span>
                             </span>
                         </li>
                         <li><span class="show-tbs-right-borders hidden-xs">
-                                <a href="#contributions" data-toggle="tab"  class="show-tabs-text contributions show-campaigndetails-font">
+                                <a href="#contributions" data-toggle="tab"  class="show-tabs-text contributions showContributionTemplate show-campaigndetails-font">
                                     <span class="tab-text"> Contributions</span>
                                 </a>
                                 <span class="show-tabs-count hidden-xs">
@@ -597,7 +599,7 @@
                             </span>
                         </li>
                         <li><span class="show-comit-lft hidden-xs">
-                                <a href="#essentials" data-toggle="tab"  class="show-tabs-text comments scrollToComment show-campaigndetails-font">
+                                <a href="#essentials" data-toggle="tab"  class="show-tabs-text comments scrollToComment showCommentTemplate show-campaigndetails-font">
                                     <span class="tab-text hidden-xs"> Comments</span>
                                 </a>
                                 <span class="show-ids-header"></span>
@@ -631,8 +633,8 @@
                         <div class="tab-pane tab-pane-active hidden-xs" id="projectupdates">
                             <g:render template="show/projectupdates"/>
                         </div>
-                        <div class="tab-pane tab-pane-active" id="manageTeam">
-                            <g:render template="show/manageteam"/>
+                        <div class="tab-pane tab-pane-active show-teamspage" id="manageTeam">
+                                <g:render template="show/manageteam"/>
                         </div>
                         <div class="tab-pane tab-pane-active" id="contributions">
                             <g:render template="show/contributions" model="['team':currentTeam]"/>
@@ -832,31 +834,31 @@
                       </g:elseif>
                       <g:elseif test="${ended}">
                           <div class="show-A-fund"> </div>
-                          <button type="button" class="btn btn-warning btn-lg btn-block show-campaign-sucess-endedbtn mob-show-sucessend hidden-xs" disabled>CAMPAIGN ENDED!</button>
+                          <button type="button" class="btn btn-warning btn-lg btn-block show-campaign-sucess-endedbtn mob-show-sucessend hidden-xs show-campaign-ended-funded" disabled>CAMPAIGN ENDED!</button>
                       </g:elseif>
                       <g:else>
                           <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
                               <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
                                   <div class="redirectCampaign">
                                       <div class="show-A-fund"> </div>
-                                      <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><div class="show-A-fund"> </div><button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs" id="btnFundDesktop">FUND NOW!</button></g:link>
+                                      <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><div class="show-A-fund"> </div><button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri" id="btnFundDesktop">Fund Now!</button></g:link>
                                   </div>
                               </g:if>
                               <g:else>
                                   <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
                                       <div class="show-A-fund"> </div>
-                                      <button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs" id="btnFundDesktop">FUND NOW!</button>
+                                      <button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri" id="btnFundDesktop">Fund Now!</button>
                                   </g:form>
                               </g:else>
                           </g:if>
                           <g:else>
                               <div class="show-A-fund"> </div>
-                              <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs">FUND NOW!</button>
+                              <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri">Fund Now!</button>
                           </g:else>
                       </g:else>
                       
 <%--               user profile code  --%>
-                   <div class="col-lg-12 col-sm-12 col-md-12 show-profile-padding show-org-profiletile">
+                   <div class="col-lg-12 col-sm-12 col-md-12 show-profile-padding show-org-profiletile hidden-xs">
 	                   <div class="col-lg-4 col-sm-4 col-md-4 show-profile-imagewidth">
 		                   <g:if test="${user.userImageUrl}">
 		                        <div id="partnerImageEditDeleteIcon">
@@ -876,7 +878,12 @@
 	                    <div class="col-lg-8 col-sm-8 col-md-8 show-profile-padding show-tabs-profiledesp">
 	                        <div class="show-lbl-orgname">
 	                            <label class="col-lg-5 col-sm-5 col-md-5 show-profile">Campaign by:</label>
-                                <span class="col-lg-8 col-sm-8 col-md-8 show-org-name">${project?.organizationName}</span>
+	                            <g:if test="${project.organizationName && currentFundraiser == beneficiary}">
+                                    <span class="col-lg-8 col-sm-8 col-md-8 show-org-name">${project?.organizationName}</span>
+                                </g:if>
+                                <g:if test="${currentFundraiser != beneficiary}">
+                                    <span class="col-lg-8 col-sm-8 col-md-8 show-org-name">${currentFundraiser?.firstName} ${currentFundraiser?.lastName}</span>
+                                </g:if>
                             </div>
                             <div class="show-contact-profilefixes col-lg-12 col-sm-12 col-md-12">
                                 <div class="col-lg-2 col-sm-2 col-md-2 show-email-profileIcons">
@@ -891,11 +898,7 @@
                     <div class="clear"></div>
                     
                       <g:if test="${!isPreview || project.validated}">
-                          <div class="hidden-xs">
-                              <g:render template="/layouts/showTilesanstitleForOrg" model="['currentTeamAmount':currentTeamAmount]"/>
-                              
-                               <g:render template="/layouts/show_teamtileInfo" model="['currentTeamAmount':currentTeamAmount]"/>
-                          </div>
+                          <div class="hidden-xs" id="organizationTemplateId"></div>
                         <div class="clear"></div>
                           <g:if test="${isPreview}">
                               <div class="showfacebooksAA"></div>
@@ -920,19 +923,21 @@
                       </g:if>
                       
                       <g:if test="${project.hashtags}">
-                          <h3 class="moretags-tabs visible-xs"><b>More tags</b></h3>
-                          <g:if test="${project.validated}">
-                              <p class="moretags-tabs visible-xs">
-                                  <g:each in="${hashtagsList}" var="hashtag">
-                                      <g:link class="searchablehastag" controller="project" action="search" params="['q': hashtag]">${hashtag}</g:link>
-                                  </g:each>
-                              </p>
-                          </g:if>
-                          <g:else>
-                              <p class="moretags-tabs visible-xs">
-                                  ${project.hashtags}
-                              </p>
-                          </g:else>
+                          <div class="show-more-tags">
+	                          <h3 class="moretags-tabs visible-xs"><b>More tags</b></h3>
+	                          <g:if test="${project.validated}">
+	                              <p class="moretags-tabs visible-xs">
+	                                  <g:each in="${hashtagsList}" var="hashtag">
+	                                      <g:link class="searchablehastag" controller="project" action="search" params="['q': hashtag]">${hashtag}</g:link>
+	                                  </g:each>
+	                              </p>
+	                          </g:if>
+	                          <g:else>
+	                              <p class="moretags-tabs visible-xs">
+	                                  ${project.hashtags}
+	                              </p>
+	                          </g:else>
+                          </div>
                       </g:if>
                       <div class="show-reasons">
                       <g:if test="${reasons && (reasons.reason1 || reasons.reason2 || reasons.reason3)}">
@@ -944,7 +949,7 @@
                           <g:if test="${reasons.reason1}">
                               <div class="show-reasonsToFund">
                                   <div class="reasonspadding">
-                                      <span class="badge1 col-lg-2 col-md-2 col-sm-2">#1</span>
+                                      <span class="badge1 col-lg-2 col-md-2 col-sm-2 col-xs-2">#1</span>
                                       <div class="show-reasons-des">
                                            ${reasons.reason1}
                                       </div>
@@ -954,7 +959,7 @@
                           <g:if test="${reasons.reason2}">
                               <div class="show-reasonsToFund">
                                   <div class="reasonspadding">
-                                      <span class="badge1 col-lg-2 col-md-2 col-sm-2">#2</span>
+                                      <span class="badge1 col-lg-2 col-md-2 col-sm-2 col-xs-2">#2</span>
                                       <div class="show-reasons-des">
                                           ${reasons.reason2}
                                       </div>
@@ -964,7 +969,7 @@
                           <g:if test="${reasons.reason3}">
                               <div class="show-reasonsToFund">
                                   <div class="reasonspadding">
-                                      <span class="badge1 col-lg-2 col-md-2 col-sm-2">#3</span>
+                                      <span class="badge1 col-lg-2 col-md-2 col-sm-2 col-xs-2">#3</span>
                                       <div class="show-reasons-des">
                                           ${reasons.reason3}
                                       </div>

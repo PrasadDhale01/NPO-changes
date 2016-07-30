@@ -14,6 +14,7 @@
     
     <!-- font-family:Ubuntu Condensed -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" />
 
     <!-- Twitter Bootstrap CSS -->
     <!--

@@ -57,9 +57,8 @@
                 <g:hiddenField name='teamCommentId' value="${teamCommentId}"></g:hiddenField>
                 <g:hiddenField name='commentId' value="${commentId}"></g:hiddenField>
 
-                <div class="form-group show-padding-commentsbox col-lg-12 col-sm-12 col-md-12">
-                    <div class="col-lg-1 col-sm-1 col-md-1 show-comment-profile-padding">
-                         <sec:ifLoggedIn>
+                <div class="form-group show-padding-commentsbox col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                    <div class="col-lg-1 col-sm-1 col-md-1 col-xs-2 show-comment-profile-padding">
                              <g:if test="${userService.isFacebookUser()}">
                                  <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
                              </g:if>
@@ -73,16 +72,14 @@
                                  <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
                              </g:elseif>
                              <g:else>
-                                 <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
+                                  <span><img class="show-cmment-box-imgheight" src="//s3.amazonaws.com/crowdera/assets/6667f492-acde-4f1c-b9d5-d66f5282baad.png" alt="userImage"></span>
                              </g:else>
-                         </sec:ifLoggedIn>
-                         <sec:ifNotLoggedIn>
-                              <span><img class="show-cmment-box-imgheight" src="//s3.amazonaws.com/crowdera/assets/6667f492-acde-4f1c-b9d5-d66f5282baad.png" alt="userImage"></span>
-                         </sec:ifNotLoggedIn>
+                         
                     </div>
-                    <div class="col-lg-11 col-sm-11 col-md-11 show-all-padding">
+                    <div class="col-lg-11 col-sm-11 col-md-11 col-xs-10 show-all-padding">
                         <textarea class="form-control show-textareawidth" name="comment" rows="4" required>${commentval}</textarea>
-                     </div>
+<%--                         <input type="file" class="upload show-attach-file" name="ownerteamedit"  accept="application/msword,application/pdf,.txt,.docx"/> --%>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-sm pull-right">Save comment</button>
                 <div class="clear"></div>
@@ -92,11 +89,10 @@
 	<g:else>
 	     <div id="commentBox">
 	         <g:if test="${team?.user!=project?.user}">
-	             <g:form controller="project" action="teamcomment"  id="${project.id}" params="['fr': fundRaiser]">
-	                 <div class="form-group show-padding-commentsbox col-lg-12 col-sm-12 col-md-12">
+	             <g:uploadForm controller="project" action="teamcomment"  id="${project.id}" params="['fr': fundRaiser]">
+	                 <div class="form-group show-padding-commentsbox col-lg-12 col-sm-12 col-md-12 col-xs-12">
 	                 
-	                      <div class="col-lg-1 col-sm-1 col-md-1 show-comment-profile-padding">
-	                          <sec:ifLoggedIn>
+	                      <div class="col-lg-1 col-sm-1 col-md-1 col-xs-2 show-comment-profile-padding">
                                   <g:if test="${userService.isFacebookUser()}">
                                       <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
                                   </g:if>
@@ -110,26 +106,23 @@
                                       <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
                                   </g:elseif>
                                   <g:else>
-                                      <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
+                                       <span><img class="show-cmment-box-imgheight" src="//s3.amazonaws.com/crowdera/assets/6667f492-acde-4f1c-b9d5-d66f5282baad.png" alt="userImage"></span>
                                   </g:else>
-                              </sec:ifLoggedIn>
-                              <sec:ifNotLoggedIn>
-                                  <span><img class="show-cmment-box-imgheight" src="//s3.amazonaws.com/crowdera/assets/6667f492-acde-4f1c-b9d5-d66f5282baad.png" alt="userImage"></span>
-                              </sec:ifNotLoggedIn>
+                                 
                          </div>
-                    <div class="col-lg-11 col-sm-11 col-md-11 show-all-padding">
+                     <div class="col-lg-11 col-sm-11 col-md-11 col-xs-10 show-all-padding">
                         <textarea class="form-control show-textareawidth" name="comment" rows="4" required>${commentval}</textarea>
+                        <input type="file" class="upload show-attach-file" name="teamAttachFile" accept="application/msword,application/pdf,.txt,.docx"/>
                      </div>
 	                 </div>
 	                 <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
 	                 <div class="clear"></div>
-	             </g:form>
+	             </g:uploadForm>
 	        </g:if>
 	        <g:else>
 	            <g:uploadForm controller="project" action="comment"  id="${project.id}" params="['fr':fundRaiser]">
-	                <div class="form-group show-padding-commentsbox col-lg-12 col-sm-12 col-md-12">
-	                    <div class="col-lg-1 col-sm-1 col-md-1 show-comment-profile-padding">
-	                    <sec:ifLoggedIn>
+	                <div class="form-group show-padding-commentsbox col-lg-12 col-sm-12 col-md-12  col-xs-12">
+	                    <div class="col-lg-1 col-sm-1 col-md-1 col-xs-2 show-comment-profile-padding">
                           <g:if test="${userService.isFacebookUser()}">
                                 <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
                             </g:if>
@@ -143,16 +136,22 @@
                                 <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
                             </g:elseif>
                             <g:else>
-                                <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
-                            </g:else>
-                        </sec:ifLoggedIn>
-                        <sec:ifNotLoggedIn>
                                 <span><img class="show-cmment-box-imgheight" src="//s3.amazonaws.com/crowdera/assets/6667f492-acde-4f1c-b9d5-d66f5282baad.png" alt="userImage"></span>
-                        </sec:ifNotLoggedIn>
+                            </g:else>
                     </div>
-                    <div class="col-lg-11 col-sm-11 col-md-11 show-all-padding">
+                    <div class="col-lg-11 col-sm-11 col-md-11 col-xs-10 show-all-padding">
                         <textarea class="form-control show-textareawidth" name="comment" rows="4" required>${commentval}</textarea>
-                        <input type="file" class="upload show-attach-file" name="attachedFileForProject" accept="application/msword,application/pdf,.txt,.docx"/>
+                        <div class="col-xs-4 col-sm-4 col-md-4 upload-btn">
+                            <div class="fileUpload btn btn-primary btn-sm">
+                                <span>Attach File</span>
+                                <input type="file" class="upload show-attach-file resumefile" name="attachedFileForProject" accept="application/msword,application/pdf,.txt,.docx"/>
+                            </div>
+                         </div>
+                         <div class="col-xs-8 col-sm-8 col-md-8">
+                             <div id="resultOutput"></div>
+                         </div>
+                         <div class="clear"></div>
+                         <label class="docfile-orglogo-css" id="resumefilesize"></label> 
                      </div>
 	                </div>
 	                <button type="submit" class="btn btn-primary btn-sm pull-right show-btn-font">Post comment</button>
@@ -176,8 +175,8 @@
                         def date = dateFormat.format(comment.date)
                         def isAnonymous = userService.isAnonymous(comment?.user)
                     %>
-                    <g:if test="${user== project?.user}">
-                        <g:if test="${!comment.status}">
+                    <g:if test="${currentUser == project?.user}">
+                        <g:if test="${comment}">
                             <div class="modal-body tile-footer show-comments-date">
 				                <g:if test="${isAnonymous}">
                                     <dt>By ${comment?.userName}, on ${date}</dt>

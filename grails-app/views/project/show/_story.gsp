@@ -106,19 +106,18 @@
 			
 		    </g:if>
 		    <g:else>
-			    <div class="show-description">
 	                <p class="campaignDescription justify">${raw(currentTeam?.description)}</p>
-			    </div>
 		    </g:else>
         
-            <g:if test="${isCrFrCampBenOrAdmin}">
-                <p class="campaignStory justify">${raw(project?.story)}</p>
-            </g:if>
-            <g:else>
-                <p class="campaignStory justify">${raw(currentTeam?.story)}</p>
-                <p class="campaignStory justify">${raw(project?.story)}</p>
-            </g:else>
+            <div class=" faq-panel-height sss" id="show-story-read">
+	            
+            </div>
         </div>
+        
+        <h4 class="panel-title text-center show-read-more-font">
+            <a href="#"  id="sh-read-more-story" class="sh-read-more-story">Read more..</a>
+        </h4>
+        
         <div class="show-tags-topbottom">
 	         <g:if test="${!remainingHashTags.isEmpty()}">
 	            <h4 class="moretags-desktop col-lg-3 col-sm-3 col-md-3 tags-managepagewidth"><b>More tags:</b></h4>

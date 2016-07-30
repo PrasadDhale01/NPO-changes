@@ -229,6 +229,7 @@ class ProjectController {
 			def webUrl = projectService.getWebUrl(project)
 
 			if (params?.commentId) {
+               
 				projectComment = projectService.getProjectCommentById(params.long('commentId'))
 			}
 			if (params?.teamCommentId) {
@@ -247,6 +248,9 @@ class ProjectController {
             
             def reasons = projectService.getReasonsToFundFromProject(project)
             def isDeviceMobileOrTab = isDeviceMobileOrTab();
+            
+//            def projectStory = projectService.getProjectStory(project, currentTeam, 4999).toString()
+//            def projectStoryLength = (project.user == currentTeam.user)?project?.story.size():((currentTeam.story!=null)?currentTeam?.story.size():project?.story.size())
             
             if((currentUser == project.user) && (project.draft || project.validated==false)){
                 render (view: 'show/index',
@@ -287,6 +291,16 @@ class ProjectController {
 			render(view: '/404error', model: [message: 'This campaign does not exist.'])
 		}
 	}
+    
+    
+    def loadProjectStory(){
+        def currentTeam = Team.get(params.team)
+        def project = Project.get(params.projectId)
+        def projectStory = projectService.getProjectStory(project, currentTeam, params.int('storyLength'))
+        def storyMap = ["projectStory":projectStory, "storySize":params.int('storyLength')]
+    
+        render new JSONObject(storyMap)
+    }
     
     def campaignShare() {
         def title = projectService.getVanityTitleFromId(params.id)
@@ -707,11 +721,10 @@ class ProjectController {
     def comment() {
         User user = userService.getCurrentUser()
         def base_url = grailsApplication.config.crowdera.BASE_URL
-        
+       
         CommonsMultipartFile projectcomment = params.attachedFileForProject
-        println "pro===============ject============"+projectcomment.class
-        def sss = projectService.setAttachedFileForProject(projectcomment,params)
-        println"sss================"+sss
+        def fileUrl = projectService.setAttachedFileForProject(projectcomment)
+        println "fileUrl i " + fileUrl
         
         def reqUrl
         if (!user) {
@@ -721,14 +734,17 @@ class ProjectController {
             cookie.maxAge= 600
             response.addCookie(cookie)
         }
-        reqUrl = base_url+"/project/savecomment?comment=${params.comment}&id=${params.id}&fr=${params.fr}"
+        reqUrl = base_url+"/project/savecomment?comment=${params.comment}&id=${params.id}&fr=${params.fr}&fileComment=${fileUrl}"
         redirect (url: reqUrl)
     }
 
     def teamcomment() {
         User user = userService.getCurrentUser()
         def base_url = grailsApplication.config.crowdera.BASE_URL
-
+        
+        CommonsMultipartFile projectcomment = params.teamAttachFile
+        def teamfileUrl = projectService.setAttachedFileForProject(projectcomment)
+        
         def reqUrl
         if (!user) {
             Cookie cookie = new Cookie("requestUrl", reqUrl)
@@ -736,7 +752,7 @@ class ProjectController {
             cookie.maxAge= 600
             response.addCookie(cookie)
         }
-        reqUrl = base_url+"/project/saveteamcomment?comment=${params.comment}&id=${params.id}&fr=${params.fr}"
+        reqUrl = base_url+"/project/saveteamcomment?comment=${params.comment}&id=${params.id}&fr=${params.fr}&teamfileComment=${teamfileUrl}"
         redirect (url: reqUrl)
     }
 
@@ -744,8 +760,9 @@ class ProjectController {
 	def savecomment() {
 		def title = projectService.getVanityTitleFromId(params.id)
 		def name = userService.getVanityNameFromUsername(params.fr, params.id)
+        
 		if (params.id) {
-			projectService.getCommentsDetails(params)
+		    projectService.getCommentsDetails(params)
 		} else {
 			flash.sentmessage = "Something went wrong saving comment. Please try again later."
 		}
@@ -1716,6 +1733,7 @@ class ProjectController {
 		def message = projectService.getTeamCommentsDetails(params)
 		def title = projectService.getVanityTitleFromId(params.id)
 		def username = userService.getVanityNameFromUsername(params.fr, params.id)
+        
 		flash.prj_mngprj_message = message
 
 		if (!params.ismanagepage) {
@@ -2756,6 +2774,40 @@ class ProjectController {
         if(request.method=="POST"){
             def requiredFieldMessage = projectService.requiredFieldsService(params) 
             render  new JSONObject(requiredFieldMessage)
+        }
+    }
+    
+    def loadOrganizationTemplate(){
+         def user =userService.getCurrentUser()
+         if(!user){
+             user = userService.getUserByEmail("anonymous@example.com")
+         }
+         def project =Project.get(params.campaignId)
+         def totalContribution = contributionService.getTotalContributionForProject(project)
+         def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
+         def day= projectService.getRemainingDay(project)
+         
+         def isTeamExist
+         if(user){
+              isTeamExist = userService.isValidatedTeamExist(project, user)
+         }
+         
+         def model =[project:project, totalContribution:totalContribution, percentage:percentage, currentFundraiser:user, day:day, isTeamExist: isTeamExist]
+         
+        if(request.method=="POST"&& params.activeTab){
+            switch(params.activeTab){
+                case "story":
+                    render template:"/layouts/showTilesanstitleForOrg", model:model
+                break;
+                case "team":
+                  render template:"/layouts/show_teamtileInfo", model:model
+                break;
+                case "contribution":
+                    render template:"/layouts/contributions_tilesanstitle" , model:model
+                break;
+            }
+        }else {
+            render "Organization template not loaded. Please, refresh to load again."
         }
     }
 }

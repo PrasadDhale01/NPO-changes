@@ -5,7 +5,7 @@
     def percent
     def contributedSoFar
     def amount
-    if (project.user == currentFundraiser){
+    if (project.user){
         percent = percentage
         contributedSoFar = totalContribution
         amount = project?.amount.round()
@@ -23,7 +23,7 @@
     }
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
-    username = currentFundraiser.email
+    username = currentFundraiser?.email
     def currentEnv = projectService.getCurrentEnvironment()
     def conversionMultiplier = multiplier
     if (!conversionMultiplier) {

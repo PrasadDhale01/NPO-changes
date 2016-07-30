@@ -4,12 +4,26 @@ $(function() {
     changeTeamStatus();
     $('#editimg').hide();
     $('#editTeamImg').hide();
+    $('#resumefilesize').hide();
+    $('#resultOutput').hide();
 
     var currentEnv=$('#currentEnv').val();
     var isIndianCampaign = ($('#isIndianCampaign').val() === 'true') ? true : false;
 
     var hash = window.location.hash;
     hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+    
+    /********ON-Browsers-refreshing-mode-show-tabs-active-tile*********/
+    if($('li.active').find('a.show-tabs-text').hasClass('showStoryTemplate')){
+    	loadOrganizationTemplate("story");
+    }else if($('li.active').find('a.show-tabs-text').hasClass('showTeamTemplate')){
+    	loadOrganizationTemplate("team");
+    }else if($('li.active').find('a.show-tabs-text').hasClass('showContributionTemplate')){
+    	loadOrganizationTemplate("contribution");
+    }else if($('li.active').find('a.show-tabs-text').hasClass('showCommentTemplate')){
+    	loadOrganizationTemplate("story");
+    }
+    
 
     var videoVal = $('#youtubeVideoUrl').val();
     if(videoVal && videoVal.length > 0) {
@@ -578,6 +592,30 @@ $(function() {
         }
     });
     
+    $(".resumefile").change(function(event) {
+        var file =this.files[0];
+        if(validateExtension(file.name) == false){
+	        $('#resultOutput').hide();
+	        $("#resumefilesize").show();
+        	$("#resumefilesize").html("Only text,docx and pdf files are allowed.");
+	        this.value=null;
+	        return;
+	    }
+	    else{
+	        if (file.size > 1024 * 1024 * 3) {
+	            $('#resultOutput').hide();
+	            $('#resumefilesize').show();
+	            $("#resumefilesize").html("The file \"" +file.name+ "\" you are attempting to upload is larger than the permitted size of 3MB.");
+	            $('#resumefile').val('');
+	        } else {
+                $('#resultOutput').show();
+                $('#resumefilesize').hide();
+                $("#resultOutput").html(""+file.name);
+                
+	        }
+	    } 
+    });
+    
     function validateExtension(imgExt) {
           var allowedExtensions = new Array("jpg","JPG","png","PNG");
           for(var imgExtImg=0;imgExtImg<allowedExtensions.length;imgExtImg++)
@@ -787,6 +825,29 @@ $(function() {
         var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent(fbShareUrl);
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
+    });
+    
+    
+    $("a.show-tabs-text").click(function(){
+    	if ($(this).hasClass('showStoryTemplate')){
+    		loadOrganizationTemplate("story");
+    		 $('button.sh-fund-donate-contri').text('Fund Now!');
+    	}
+    	if ($(this).hasClass('showUpdateTemplate')){
+    		loadOrganizationTemplate("update");
+    	}
+    	if ($(this).hasClass('showTeamTemplate')){
+    		loadOrganizationTemplate("team");
+    		$('button.sh-fund-donate-contri').text('DONATE');
+    	}
+    	if ($(this).hasClass('showContributionTemplate')){
+    		loadOrganizationTemplate("contribution");
+    		$('button.sh-fund-donate-contri').text('CONTRIBUTE');
+    	}
+    	if ($(this).hasClass('showCommentTemplate')){
+    		loadOrganizationTemplate("story");
+    		 $('button.sh-fund-donate-contri').text('Fund Now!');
+    	}
     });
     
     $("a.show-tabs-text").click(function(){
@@ -1440,7 +1501,37 @@ $(function() {
 
        
    });
+    
+    $('#sh-read-more-story').click(function(){
+    	if($(this).hasClass('sh-read-more-story')){
+    		loadCampaignStory(5001);
+    	}else{
+    		loadCampaignStory(5000);
+    	}
+    	
+    });
+    
+    loadCampaignStory(5000);
 });
+
+function loadCampaignStory(storyLength){
+	$.ajax({
+		url:$('#b_url').val() + '/project/loadProjectStory',
+		type:'post',
+		data:"projectId="+$("#campaignId").val()+"&storyLength="+storyLength+"&team="+$('#teamId').val(),
+		success: function(data){
+			var jsonData = $.parseJSON(data);
+			
+			if(jsonData.storySize == 5000){
+				$('#sh-read-more-story').removeClass().addClass("sh-read-more-story").text('Read more...');
+			}else{
+				$('#sh-read-more-story').removeClass().addClass("sh-read-less-story").text('Read less...');
+			}
+			
+		   $("#show-story-read").html(jsonData.projectStory);
+		}
+	});
+}
 
 function showNavigation(){
 	var indicator = document.getElementById('indicators');
@@ -1489,4 +1580,17 @@ function hideNavigation(){
 		document.getElementById('updateindicators').style.display = 'none';
 		document.getElementById('updatenavigators').style.display = 'none';
 	}		
+}
+
+function loadOrganizationTemplate(activeTab){
+	if(activeTab){
+		$.ajax({
+			url:$("#b_url").val()+"/project/loadOrganizationTemplate",
+			type:"post",
+			data:"activeTab="+activeTab+"&campaignId="+$('#campaignId').val(),
+			success:function(res){
+				$('#organizationTemplateId').html(res);
+			}
+		});
+	}
 }

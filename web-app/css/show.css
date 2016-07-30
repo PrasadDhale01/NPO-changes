@@ -227,7 +227,7 @@ a.show-campaigndetails-font {
     width: 65px;
 }
 .show-org-name {
-    font-size: 12px;
+    font-size: 10px;
     padding: 0;
     width: 117px;
     overflow: hidden;
@@ -297,7 +297,121 @@ textarea.show-textareawidth {
 }
 .panel-bgColor{
     background-color: #fff;
+    border-right: 2px solid #e7e7e7;
 }
 .show-funds-padding {
     padding-top: 10px;
+}
+.show-teams-padding {
+    padding-top: 24px;
+}
+.show-join-our-team,
+.show-join-our-team:hover,
+.show-join-our-team:focus {
+    background-color: #ffbf08;
+    color: #fff;
+    padding: 5px;
+}
+.show-title-jointeam {
+    font-size: 30px;
+}
+.show-sub-titleJointeam {
+    color: #000;
+}
+.show-contact-teamtile span {
+    padding-top: 14px;
+}
+.show-manageteamsize{
+	background-color: #fff;
+    left: 15px;
+    margin-right: 13px;
+    padding-left: 0;
+    padding-right: 20px;
+    padding-top: 15px;
+    width: 64%;
+}
+.show-widht-team {
+    background-color: #fff;
+    padding-top: 20px;
+    width: 108.5%;
+}
+.show-manageteam-detailspage{
+	padding-right: 0;
+    width: 94.5%;
+}
+.show-teams-width{
+    width: 97%;
+}
+.show-teamspage {
+    padding-right: 0;
+    width: 102%;
+    background-color: #fff;
+    margin-top: 15px;
+}
+.show-team-number {
+    font-family: open sans;
+    font-size: 30px;
+    font-weight: 900;
+    padding-top: 12px;
+    text-decoration: none;
+}
+.show-teamsnumber a{
+    text-decoration: none;
+    font-family: open sans;
+    font-size: 30px;
+    font-weight: 900;
+}
+.show-team-top {
+    top: 10px;
+}
+.show-contributions-top {
+    background-color: #fff;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    left: 15px;
+    width: 98%;
+    border-bottom: 2px solid #e7e7e7;
+    border-right: 2px solid #e7e7e7;
+}
+.show-page-totalteams {
+    font-family: open sans;
+    font-size: 30px;
+    font-weight: 900;
+}
+.show-fundamt-tooltip {
+    position: relative;
+}
+.show-text-cmt-tooltip {
+    position: absolute;
+    top: 50%;
+    width: 80%;
+    padding-left: 20px;
+}
+.show-left-cmtbox {
+    left: 37px;
+    padding-left: 14px;
+}
+.show-cmt-label {
+    color: #686868;
+    font-family: open sans;
+    font-size: 18px;
+    font-weight: 900;
+}
+.show-cmt-text {
+    color: #5a6771;
+    font-family: open sans;
+}
+.show-contributionpadding {
+    padding-bottom: 14px;
+}
+.show-read-more-font {
+    background-color: #fff;
+    border-bottom: 2px solid #e7e7e7;
+    border-right: 2px solid #e7e7e7;
+    padding: 15px;
+}
+.sh-read-more-story,
+.sh-read-less-story {
+    font-size: 20px;
+    font-weight: 900;
 }

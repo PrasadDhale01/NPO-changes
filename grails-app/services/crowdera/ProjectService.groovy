@@ -366,13 +366,40 @@ class ProjectService {
 
     def getCommentsDetails(params){
         def project = Project.get(params.id)
+        
         if (project && params.comment) {
             new ProjectComment(
                 comment: params.comment,
                 user: userService.getCurrentUser(),
                 project: project,
+                attachFile: params.fileComment,
                 date: new Date()).save(failOnError: true)
         }
+    }
+    
+    def getProjectStory(Project project, def currentTeam, int storySize){
+        int storyLength = 0
+        def projectStory
+        
+        if(storySize > 5000){
+            if(project.user == currentTeam.user){
+               projectStory = project.story[storySize..-1]   
+               return projectStory
+            }else{
+                projectStory = (currentTeam.story!=null)?currentTeam.story[storySize..-1]:project?.story[storySize..-1]
+                return projectStory
+            }
+        }else{
+            if(project.user == currentTeam.user){
+                storyLength = project?.story.size()
+                return (storyLength > 5000)?project?.story[0..storySize]:project?.story
+            }else{
+                storyLength = (currentTeam?.story!=null)?currentTeam?.story.size():project?.story.size()
+                def teamStory =(storyLength > 5000 && currentTeam.story!=null)?currentTeam?.story[0..storySize]:currentTeam?.story
+                return (teamStory!=null)?teamStory:((project.story!=null)?project?.story[0..storySize]:project?.story)
+            }
+        }
+        
     }
 
      def getUpdateCommentDetails(def request){
@@ -426,11 +453,13 @@ class ProjectService {
          User user = User.findByUsername(fundRaiser)
          Project project = Project.get(params.id)
          Team team = getTeamByUserAndProject(project, user)
+         
          if (team) {
              TeamComment teamComment = new TeamComment(
                  comment: params.comment,
                  user: userService.getCurrentUser(),
                  team: team,
+                 attachteamfile: params.teamfileComment,
                  date: new Date())
              team.addToComments(teamComment).save(failOnError: true)
          } else {
@@ -2736,7 +2765,7 @@ class ProjectService {
         }
     }
     
-    def setAttachedFileForProject(CommonsMultipartFile projectcomment, def params) {
+    def setAttachedFileForProject(CommonsMultipartFile projectcomment) {
         if (!projectcomment?.empty && projectcomment.size < 1024 * 1024 * 3) {
             def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
             def awsSecretKey = "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"
@@ -2762,7 +2791,7 @@ class ProjectService {
             tempFile.delete()
 
             def attachedmentsfileforproject = "//s3.amazonaws.com/crowdera/${key}"
-            getProjectCommentById(params,attachedmentsfileforproject)
+            return attachedmentsfileforproject
         }
     }
     

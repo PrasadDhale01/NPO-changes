@@ -2,7 +2,7 @@
     def percent
     def contributedSoFar
     def amount
-    if (project.user == currentFundraiser){
+    if (currentFundraiser){
         percent = percentage
         contributedSoFar = totalContribution
         amount = project?.amount.round()
@@ -23,4 +23,26 @@
          </g:else>
      </div>
      <span class="col-lg-12 col-sm-12 col-md-12 show-funds-padding">Funds Raised</span>
+     <br>
+     <div class="show-contact-teamtile">
+         <g:if test="${project.beneficiary.telephone}">
+             <span class="col-lg-12 col-sm-12 col-md-12 show-teams-padding">${project.beneficiary.telephone}</span>
+         </g:if>
+         <span class="col-lg-12 col-sm-12 col-md-12">Palo Alto, California, US</span>
+    </div>
+    
 </div>
+<g:if test="${!isTeamExist && project.validated}">
+        <g:if test="${!ended}">
+            <g:form controller="project" action="addTeam" id="${project.id}">
+                <button type="submit" value="Join our Team" class="col-lg-12 col-sm-12 col-md-12 text-center btn btn-block show-join-our-team"><span class="show-title-jointeam">Join our Team </span><br> <span class="show-sub-titleJointeam"> To Fundraise for us</span></button>
+                <span></span>
+            </g:form> 
+         </g:if>
+         <g:else>
+             <button type="submit" value="Join our Team" class=" col-lg-12 col-sm-12 col-md-12 text-center btn btn-block show-join-our-team">Join our Team <br> <span class="show-sub-titleJointeam"> To Fundraise for us</span></button>
+             <span>To Fundraise for us</span>
+         </g:else>
+         
+    </g:if>
+    

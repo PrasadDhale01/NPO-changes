@@ -12,6 +12,7 @@ class TeamComment {
 
     String comment
     String userName
+    String attachteamfile
     Date date
 
     static mapping = {
@@ -20,5 +21,6 @@ class TeamComment {
 
     static constraints = {
         userName nullable:true
+        attachteamfile nullable:true
     }
 }

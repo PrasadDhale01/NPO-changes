@@ -1851,7 +1851,7 @@
                         <div class="panel-body">
                                  <p>To add a title to your campaign </p>
                                  <ul>
-	                                <li>To add a title to your campaign </li>
+	                                <li>Login into your account</li>
 	                                <li>Click on Create on the upper right hand corner</li>
 	                                <li>Add your title to the “My plan is..” section</li>
 	                                <br>
@@ -1978,7 +1978,7 @@
                                 <li>Your draft will be autosaved and can be access via your Dashboard</li> 
                             </ul>
                             
-                            <p>If you want to edit the description of an existing campaign follow these steps</p>
+                            <p>If you want to edit the display name of an existing campaign follow these steps</p>
                             <ul>
                                 <li>Login to your Crowdera account</li>
                                 <li>Click on “Your Name” that appears on the upper right corner of the page</li>
@@ -2519,11 +2519,11 @@
                                 <br>
                                     <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/6dfa560d-8d7b-4fe3-992b-400986ff3f82.png" alt="Mode of Delivery">
                                 <br>
-                                <li>To add any custom details such size of t-shirt etc. use the custom field.</li>
+                                <li>To add any custom details such as size of t-shirt etc. use the custom field.</li>
                                 <br>
                                     <img class="img-responsive" src="http://s3.amazonaws.com/crowdera/assets/47f3acae-2c00-4f1e-abf9-0c2b696503f9.png" alt="Custom-field">
                                 <br>
-                                <li>Use the follow icons to Save, Add another perk or Delete the perk</li>
+                                <li>Use the following icons to Save, Add another perk or Delete the perk</li>
                                 <br>
                                     <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/ef8f6b9f-2265-4dfd-bf89-ebcb03fcd100.png" alt="save-delete">
                                 <br>
@@ -2615,11 +2615,7 @@
                     </div>
                     <div id="collapsemnageOne" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                            <ul>
-                                <li>Login to your account.</li>
-                                <li>Go to my Dashboard present under your name.</li>
-                                <li>Go to your current campaign and click on manage campaign and the following screen appears</li>
-                            </ul>
+                            
                             <p>Follow these steps to access your campaign dashboard</p>
                             <ul>
                                  <li>Login to your Crowdera account</li>
@@ -2833,7 +2829,7 @@
                     </div>
                     <div id="collapsemanageeight" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                                 <p>Follow these steps to enable or disable a team</p>
+                                 <p>Follow these steps for offline contributions</p>
                                  <ul>
                                      <li>Login to your Crowdera account</li>
                                      <li>Click on “Your Name” that appears on the upper right corner of the page</li>
@@ -2887,7 +2883,7 @@
                     </div>
                     <div id="collapsemanageTen" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                                 <p>Follow these steps to enable or disable a team</p>
+                                 <p>Follow these steps to embed your campaign</p>
                                  <ul>
                                      <li>Login to your Crowdera account</li>
                                      <li>Click on “Your Name” that appears on the upper right corner of the page</li>

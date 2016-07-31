@@ -5,92 +5,11 @@ $(function() {
     $('#resultOutput').hide();
     $('.search-box').hide();
     
-    $('.trigger').click(function() {
-    	var slider_width = $('#hiddensearch').width();
-    	var isAnimated = $(".search-box").is(':animated');
-    	if (isAnimated) {
-            $(".search-box").animate({width: "0px"});
-            var delay = 300;
-            setTimeout(function() {
-                $('.search-box').hide();
-                $('.discover').show();
-                $('.learn').show();
-            }, delay);
-            $('.search-image-header').css('paddingRight', '40px');
-        } else {
-            $('.search-box').show();
-            $('.discover').hide();
-            $('.learn').hide();
-            $(".search-box").animate({width: slider_width},function(){
-                $(this).focus(); // For bonus, the input will now get autofocus
-            });
-            $('.search-image-header').css('paddingRight', '20px');
-        }
-    });
-    
-    $('.trigger-mob').click(function() {
-    	var isAnimated = $(".search-box").is(':animated');
-    	if (isAnimated) {
-//            $(".search-box").animate({width: "0px"});
-            var delay = 300;
-            setTimeout(function() {
-                $('.search-box').hide();
-            }, delay);
-        } else {
-            $('.search-box').show();
-            $(".search-box").animate({"width": "174px","z-index":"10000","right":"40px"}, function(){
-                $(this).focus(); // For bonus, the input will now get autofocus
-            });
-        }
-    });
-    
-    $('.search-box').blur(function() {
-         $(this).animate({width: "0px"});
-         var delay = 300;
-         setTimeout(function() {
-        	 $('.search-box').hide();
-        	 $('.discover').show();
-             $('.learn').show();
-         }, delay);
-//         $('.search-image-header').css('paddingRight', '40px');
-    });
-    
     $(document).ready(function() { 
-	    
-    	$("#mvc-embedded-subscribe-form-lg").validate({ 
-    	   rules: { 
-    	    EMAIL: {// compound rule 
-    		          required: true, 
-    		          email: true 
-    	    		} 
-    	   }, 
-    	   messages: { 
-    	    email: "" 
-    	   } 
-    	});
-    	$("#mc-embedded-subscribe-form-md").validate({ 
-     	   rules: { 
-     	    EMAIL: {// compound rule 
-     		          required: true, 
-     		          email: true 
-     	    		} 
-     	   }, 
-     	   messages: { 
-     	    email: "" 
-     	   }
-     	}); 
-    	$("#mc-embedded-subscribe-form-sm").validate({ 
-     	   rules: { 
-     	    EMAIL: {// compound rule 
-     		          required: true, 
-     		          email: true 
-     	    		} 
-     	   }, 
-     	   messages: { 
-     	    email: "" 
-     	   } 
-     	}); 
     	
+    	loadHeaderCallback();
+        loadFooterCallback();
+        
     	var validator = $('#myCrewDetails').find('form').validate({
             rules: {
                 firstName: {
@@ -353,3 +272,96 @@ $(function() {
         $(this).attr('src',"/images/s4.png");
     }); */
 });
+
+function loadFooterCallback(){
+    var device = '';
+
+    if(screen.width <768){
+        device ="mobile";
+    }else if(screen.width >=768 && screen.width <=1024){
+        device="tab";
+    }else{
+        device="desktop";
+    }
+
+    $.ajax({
+        url:"/home/loadFooterCallback",
+        type:"post",
+        data:"device="+device,
+        success:function(res){
+            $("#loadFooter").html(res);
+        }
+   });
+}
+
+function loadHeaderCallback(){
+	var device = '';
+	
+    if(screen.width <768){
+        device ="mobile";
+    }else if(screen.width >=768 && screen.width <=1024){
+        device="tab";
+    }else{
+        device="desktop";
+    }
+
+    $.ajax({
+        url:"/home/loadHeaderCallback",
+        type:"post",
+        data:"device="+device,
+        success:function(res){
+            $("#loadHeaderTempate").html(res);
+        }
+   });
+}
+
+function desktopSearch(){
+	
+	var slider_width = $('#hiddensearch').width();
+	var isAnimated = $(".search-box").is(':animated');
+	if (isAnimated) {
+        $(".search-box").animate({width: "0px"});
+        var delay = 300;
+        setTimeout(function() {
+            $('.search-box').hide();
+            $('.discover').show();
+            $('.learn').show();
+        }, delay);
+        $('.search-image-header').css('paddingRight', '40px');
+    } else {
+        $('.search-box').show();
+        $('.discover').hide();
+        $('.learn').hide();
+        $(".search-box").animate({width: slider_width},function(){
+            $(this).focus(); // For bonus, the input will now get autofocus
+        });
+        $('.search-image-header').css('paddingRight', '40px');
+    }
+}
+
+function mobileSearch(){
+	var isAnimated = $(".search-box").is(':animated');
+	if (isAnimated) {
+//            $(".search-box").animate({width: "0px"});
+        var delay = 300;
+        setTimeout(function() {
+            $('.search-box').hide();
+        }, delay);
+    } else {
+        $('.search-box').show();
+        $(".search-box").animate({"width": "174px","z-index":"10000","right":"40px"}, function(){
+            $(this).focus(); // For bonus, the input will now get autofocus
+        });
+    }
+}
+
+function onSearchLeave(){
+     $('.search-box').animate({width: "0px"});
+     var delay = 300;
+     setTimeout(function() {
+    	 $('.search-box').hide();
+    	 $('.discover').show();
+         $('.learn').show();
+     }, delay);
+//         $('.search-image-header').css('paddingRight', '40px');
+}

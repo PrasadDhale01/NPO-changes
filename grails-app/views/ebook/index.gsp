@@ -10,7 +10,6 @@
 %>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
 	<meta name="layout" content="main"/>
 	<r:require modules="ebookjs"/>
 	<title>Crowdera- Crowdfunding ebook</title>
@@ -28,7 +27,7 @@
 		       <a id="fbshare" class="fb-like pull-left" target="_blank" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${ebookUrl}">
 		           <img alt="Facebook Share" src="//s3.amazonaws.com/crowdera/assets/contribution-fb-share.png">
 		        </a>
-		        <a class="twitter-share pull-left" href="https://twitter.com/intent/tweet?text=The%20crowdfunding%20ebook%20for%20success : &url=${ebookUrl}" id="twitterShare" target="_blank">
+		        <a class="twitter-share pull-left" href="https://twitter.com/intent/tweet?text=The%20crowdfunding%20ebook%20for%20success&url=${ebookUrl}" id="twitterShare" target="_blank">
 			   <img alt="Twitter Share" src="//s3.amazonaws.com/crowdera/assets/contribution-twitter-share.png">
 		        </a>
 			<a onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" id="share-linkedin" target="_blank" href="https://www.linkedin.com/cws/share?url=${ebookUrl}" class="share-linkedin pull-left">
@@ -537,7 +536,7 @@
 					     </ul>
 					 </div>
 					 <div class="col-lg-offset-4 col-sm-offset-4 col-xs-offset-2 col-md-offset-4 TW-ebook-footer">
-					     <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo" class="img-responsive">
+					     <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo">
 					     <div  class="TW-ebook-footer-links">
 					    	<g:if test="${currentEnv == 'production' || currentEnv == 'staging'|| currentEnv == 'test'|| currentEnv=='development'}">
 							    <a href="https://crowdera.co">www.crowdera.co</a>
@@ -569,7 +568,7 @@
 					    </ul>
 					</div>
 					<div class="col-lg-offset-4 col-sm-offset-4 col-xs-offset-2 col-md-offset-4 TW-ebook-footer">
-					    <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo" class="img-responsive">
+					    <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo">
 					    <div  class="TW-ebook-footer-links">
 						<g:if test="${currentEnv == 'production' || currentEnv == 'staging'|| currentEnv == 'test'|| currentEnv=='development'}">
 						    <a href="https://crowdera.co">www.crowdera.co</a>

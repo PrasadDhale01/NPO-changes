@@ -72,6 +72,7 @@
     <g:hiddenField id="projectamount" name="projectamount" value="${project.amount.round()}"/>
     <g:hiddenField id="payuStatus" name="payuStatus" value="${project.payuStatus}"/>
 	<g:hiddenField id="b_url" name="b_url" value="${base_url}"/>
+	<g:hiddenField id="prjId" name="prjId" value="${project.id}"/>
 	<g:hiddenField name="fbShareUrlupdatePage" value="${fbShareUrlupdatePage}" id="fbShareUrlupdatePage"/>
 	
 	<div class="feducontent">
@@ -86,7 +87,7 @@
 					<g:if test="${project.rejected}">
 						<div class="alert alert-info">
 							<h2 class="text-center">Sorry, but this project is not
-								validated by admin</h2>
+								validated by admin<br><a href="javascript:void(0);" id="restoreCampaign">Click here to restore</a></h2>
 						</div>
 					</g:if>
 					<g:if test="${flash.teamvalidationmessage}">

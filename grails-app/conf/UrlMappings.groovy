@@ -36,6 +36,7 @@ class UrlMappings {
         /*****Home page campaigns******/
         "/desktop_campaigns"(view:'/home/desktop_campaigns')
         "/mobile_campaigns"(view:'/home/mobile_campaigns')
+        "/carouseltemplate"(view:'/project/validate/carouseltemplate')
 
         /*Terms of Use*/
         "/termsofuse"(view:'/termsofuse/index')

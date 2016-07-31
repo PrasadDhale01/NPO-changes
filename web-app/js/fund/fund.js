@@ -522,4 +522,29 @@ $(function() {
         	var other = $(this).val();
         	$('#otherField').val(other);
         });
+        
+        //load campaign tile in acknowledge page
+        if($('#ackPage').val()=='ackPage'){
+            loadAckCampaignTile();
+        }
 });
+
+function loadAckCampaignTile(){
+	
+	var projectid= $('#projectId').val();
+	var url = "/fund/loadAckCampaignTile";
+	var contributionid = $('#contributionId').val();
+	
+	if(screen.width<768){
+		
+		$.post(url, {projectId:projectid, contributionId:contributionid}, function(res){
+			$('#ackMobileView').html(res);
+		});
+		
+	}else if(screen.width>767){
+		
+		$.post(url, {projectId:projectid, contributionId:contributionid}, function(res){
+			$('#ackDesktopView').html(res);
+		});
+	}
+}

@@ -52,9 +52,9 @@
     
     fbq('init', '651945004959238');
     fbq('track', "PageView");</script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=651945004959238&ev=PageView&noscript=1"
-    /></noscript>
+    <noscript><img height="1" width="1" style="display:none" alt="facebook"
+    src="https://www.facebook.com/tr?id=651945004959238&ev=PageView&noscript=1">
+    </noscript>
     
     <!-- End Facebook Pixel Code -->
 
@@ -69,21 +69,20 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
     </script>
-
-    <div class="main-header-gsp">
-        <g:render template="/layouts/header"/>
-    </div>
+    <script src="/js/main.js" type="application/x-javascript"></script>
+    
+    <div class="main-header-gsp" id="loadHeaderTempate"></div>
 
     <div class="feduoutercontent mobile-header-onmain">
         <g:layoutBody />
     </div>
-    <g:render template="/layouts/footer"/>
+    <div id="loadFooter"></div>
 
     <!-- Include all javascript assets -->
     <r:require modules="crowderajs"/>
     <r:require module="googleanalytics"/>
     
-    <script src="/js/main.js" type="application/x-javascript"></script>
+    
     
     <r:layoutResources/>
 </body>

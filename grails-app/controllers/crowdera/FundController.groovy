@@ -1261,5 +1261,21 @@ class FundController {
         contributionService.moveContribution(params, userService.getCurrentUser());
         redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
     }
+    
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def loadAckCampaignTile(){
+        
+        if(request.method=='POST' && params.projectId && params.contributionId){
+            def project = Project.get(params.projectId)
+            Contribution contribution = contributionService.getContributionById(params.long('contributionId'))
+            Reward reward = contribution?.reward
+            
+            render template:'/fund/acknowledge/ackcampaigntile', model:[project:project, reward:reward]
+        }else{
+            render 'Campaign tile is not rendered. Please, refresh to load again.'
+        }
+        
+    }
 
 }

@@ -22,7 +22,7 @@ function selectedCampaignCategory(){
 function submitCampaignShowForm(pkey, projectId, fr){
     $.ajax({
         type    :'post',
-        url     : $("#b_url").val()+'/project/urlBuilder',
+        url     : $('#b_url').val() + '/project/urlBuilder',
         data    : "projectId="+projectId+"&fr="+fr+"&pkey="+pkey,
         success : function(response){
             $(location).attr('href', response);
@@ -68,12 +68,14 @@ $(document).ready(function(){
 			}
 		}
 	});
-	$('.banner-close').click(function(){
-		$('.info-banner').css('display','none');
-		//$('.home-header-section').removeClass('banner-nav');
-		$('#TW-discover-banner-padding').removeClass('banner-padding');
-	});
 });
+
+function bannerClose(){
+	$('.info-banner').css('display','none');
+	//$('.home-header-section').removeClass('banner-nav');
+	$('#TW-discover-banner-padding').removeClass('banner-padding');
+}
+
 $(window).load(function() {
     /*
     $('.blacknwhite').BlackAndWhite({

@@ -220,32 +220,32 @@ $(function() {
         	fullName: {
                 required: true,
                 minlength: 3,
-                maxlength: 50
+                maxlength: 30
             },
             email: {
             	required : true,
             	minlength: 3,
-            	maxlength: 50
+            	maxlength: 30
             },
             branch: {
                 required: true,
                 minlength: 3,
-                maxlength: 50
+                maxlength: 30
             },
             ifscCode: {
             	required: true,
                 minlength: 2,
-                maxlength: 50
+                maxlength: 11
             },
             accountType: {
             	required: true,
                 minlength: 2,
-                maxlength: 50
+                maxlength: 20
             },
             accountNumber: {
             	required: true,
                 minlength: 2,
-                maxlength: 50,
+                maxlength: 35,
                 number: true
             },
             payoutmode: {
@@ -261,28 +261,28 @@ $(function() {
             address1: {
             	required: true,
             	minlength: 3,
-            	maxlength: 100
+            	maxlength: 50
             },
             address2: {
-            	maxlength: 100
+            	maxlength: 50
             },
             city: {
             	required: true,
-            	maxlength: 50
+            	maxlength: 30
             },
             zip: {
             	required: true,
-            	maxlength: 6,
+            	maxlength: 8,
             	minlength: 6
             },
             state: {
             	required: true,
-            	maxlength: 50,
+            	maxlength: 30,
             	minlength: 2
             },
             country: {
             	required: true,
-            	maxlength: 50,
+            	maxlength: 30,
             	minlength: 2
             }
         }

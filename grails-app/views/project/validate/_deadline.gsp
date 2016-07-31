@@ -15,7 +15,7 @@
                                  <input type="hidden" id="deadline" name="deadline"  class="input-lg" placeholder="Days" readonly min="0"/>
                              </div>
                              <div class="chooseHomePageCampaign"> 
-                                 <input type="number" id="daysLeft" name="daysLeft" value="<g:if test='${extendDays}'>${extendDays}</g:if>" class="input-lg" placeholder="Days Left" max="90" min="0" readonly/>
+                                 <input type="text" id="daysLeft" name="daysLeft" value="<g:if test='${extendDays}'>${extendDays}</g:if>" class="input-lg" placeholder="Days Left" max="90" min="0" readonly/>
                              </div>
                         </div>
                     </div>

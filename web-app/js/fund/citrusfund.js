@@ -53,46 +53,59 @@ $(function() {
             },
             receiptName: {
             	required: true,
-            	isFullName: true
+            	isFullName: true,
+            	maxlength: 30
             },
             receiptEmail: {
             	required: true,
-            	email: true
+            	email: true,
+            	maxlength: 30
             },
             agreetoTermsandUse: {
                 required: true
             },
             addressLine1: {
-            	required: true
+            	required: true,
+            	maxlength: 50
             },
             city: {
-            	required: true
+            	required: true,
+            	maxlength: 30
             },
             zip: {
-            	required: true
+            	required: true,
+            	maxlength: 8,
+            	minlength: 6
             },
             shippingEmail: {
             	required: true,
-            	email: true
+            	email: true,
+            	maxlength: 30
             },
             twitterHandle: {
-            	required: true
+            	required: true,
+            	 maxlength: 30
             },
             shippingCustom: {
-            	required: true
+            	required: true,
+            	maxlength: 50 
             },
             firstname:{
-            	required:true
+            	required:true,
+            	maxlength: 20
             },
             lastname:{
-            	required:true
+            	required:true,
+            	maxlength: 20
             },
             email:{
             	required:true,
-            	email:true
+            	email:true,
+            	maxlength: 30
             },
             citrusNumber: {
-                required: true
+                required: true,
+                maxlength: 35
             },
             citrusCardType: {
                 required: true
@@ -103,21 +116,21 @@ $(function() {
             },
             citrusCardHolder: {
                 required: true,
-                minlength: 2,
-                maxlength: 100
+                minlength: 3,
+                maxlength: 30
             },
             citrusFirstName: {
                 required: true,
-                maxlength:100
+                maxlength: 20
             },
             citrusLastName: {
                 required: true,
-                maxlength:100
+                maxlength: 20
             },
             citrusEmail: {
                 required: true,
                 email: true,
-                maxlength: 100
+                maxlength: 30
             },
             citrusMobile: {
             	required: true,
@@ -127,18 +140,18 @@ $(function() {
             },
             citrusStreet1: {
                 required: true,
-                maxlength:255
+                maxlength: 50
             },
             citrusStreet2: {
-                maxlength:255
+                maxlength: 50
             },
             citrusCity: {
                 required: true,
-                maxlength:35
+                maxlength: 30
             },
             citrusZip: {
-                required: true,
-                maxlength: 20
+            	required: true,
+                maxlength: 8
             }
         },
         messages:{
@@ -698,6 +711,9 @@ function validateshippingInfo() {
 	}
 	if ($('#citrusMobile').length) {
 		$('#citrusMobile').valid() ? ' ': status= false;
+	}
+	if ($('#citrusCity').length) {
+		$('#citrusCity').valid() ? ' ': status= false;
 	}
 	if ($('#citrusStreet1').length) {
 		$('#citrusStreet1').valid() ? ' ': status= false;

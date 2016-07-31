@@ -44,22 +44,22 @@
 	<g:form action="paymentInfo" controller="user" params="['projectTitle':vanityTitle]">
 	    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
 	        <div class="form-group">
-	            <input type="text" id="beneficiaryname" class="form-control" name="fullName" value="${fullName}" placeholder="Beneficiary Name">
+	            <input type="text" id="beneficiaryname" class="form-control" name="fullName" value="${fullName}" placeholder="Beneficiary Name" maxlength="30">
 	        </div>
 	        <div class="form-group">
-	            <input type="text" class="form-control" name="email" value="${email}" placeholder="Beneficiary Email" readonly>
+	            <input type="text" class="form-control" name="email" value="${email}" placeholder="Beneficiary Email" readonly maxlength="30">
 	        </div>
 	        <div class="form-group">
-	            <input type="text" id="branch" class="form-control" name="branch" value="${branch}" placeholder="Bank branch">
+	            <input type="text" id="branch" class="form-control" name="branch" value="${branch}" placeholder="Bank branch" maxlength="30">
 	        </div>
 	        <div class="form-group">
-	            <input type="text" id="ifscCode" class="form-control" name="ifscCode" value="${ifscCode}" placeholder="IFSC code">
+	            <input type="text" id="ifscCode" class="form-control" name="ifscCode" value="${ifscCode}" placeholder="IFSC code" maxlength="11">
 	        </div>
 	        <div class="form-group">
-	            <input type="text" id="accountType" class="form-control" name="accountType" value="${accountType}" placeholder="Account type">
+	            <input type="text" id="accountType" class="form-control" name="accountType" value="${accountType}" placeholder="Account type" maxlength="20">
 	        </div>
 	        <div class="form-group">
-	            <input type="text" id="accountNumber" class="form-control" name="accountNumber" value="${accountNumber}" placeholder="Account number">
+	            <input type="text" id="accountNumber" class="form-control" name="accountNumber" value="${accountNumber}" placeholder="Account number" maxlength="35">
 	        </div>
 	        <g:if test="${payoutmode}">
 		        <div class="form-group">
@@ -74,19 +74,19 @@
 	    </div>
 	    <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
 	        <div class="form-group">
-	            <input type="text" class="form-control" name="mobile" value="${mobile}" placeholder="Mobile Number">
+	            <input type="text" class="form-control" name="mobile" value="${mobile}" placeholder="Mobile Number" maxlength="10">
 	        </div>
 	        <div class="form-group">
-	            <input type="text" class="form-control" name="address1" value="${address1}" placeholder="Address Line 1">
+	            <input type="text" class="form-control" name="address1" value="${address1}" placeholder="Address Line 1" maxlength="50">
 	        </div>
 	        <div class="form-group">
-	            <input type="text" class="form-control" name="address2" value="${address2}" placeholder="Address Line 2">
+	            <input type="text" class="form-control" name="address2" value="${address2}" placeholder="Address Line 2" maxlength="50">
 	        </div>
 	        <div class="form-group">
-	            <input type="text" class="form-control" name="city" value="${city}" placeholder="City">
+	            <input type="text" class="form-control" name="city" value="${city}" placeholder="City" maxlength="30">
 	        </div>
 	        <div class="form-group">
-	            <input type="text" class="form-control" name="zip" value="${zip}" placeholder="Zip">
+	            <input type="text" class="form-control" name="zip" value="${zip}" placeholder="Zip" maxlength="8">
 	        </div>
 	        <div class="form-group" id="indianStates">
 	            <g:select class="indianstate selectpicker" id="state" name="state" from="${indianStates}" value="${state}" optionKey="key" optionValue="value" noSelection="['null':'State']"/>
@@ -106,19 +106,18 @@
     <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 col-xs-12" id="paymentInfo">
 	    <g:form action="paymentInfo" controller="user" params="['projectTitle':vanityTitle]">
 	        <div class="form-group">
-	            <input type="text" id="beneficiaryname" class="form-control" name="beneficiaryName" value="${fullName}" placeholder="Beneficiary Name">
 	        </div>
 	        <div class="form-group">
-	            <input type="text" id="branch" class="form-control" name="branch" value="${branch}" placeholder="Bank branch">
+	            <input type="text" id="branch" class="form-control" name="branch" value="${branch}" placeholder="Bank branch" maxlength="30">
 	        </div>
 	        <div class="form-group">
-	            <input type="text" id="ifscCode" class="form-control" name="ifscCode" value="${ifscCode}" placeholder="IFSC code">
+	            <input type="text" id="ifscCode" class="form-control" name="ifscCode" value="${ifscCode}" placeholder="IFSC code" maxlength="11">
 	        </div>
 	        <div class="form-group">
-	            <input type="text" id="accountType" class="form-control" name="accountType" value="${accountType}" placeholder="Account type">
+	            <input type="text" id="accountType" class="form-control" name="accountType" value="${accountType}" placeholder="Account type" maxlength="20">
 	        </div>
 	        <div class="form-group">
-	            <input type="text" id="accountNumber" class="form-control" name="accountNumber" value="${accountNumber}" placeholder="Account number">
+	            <input type="text" id="accountNumber" class="form-control" name="accountNumber" value="${accountNumber}" placeholder="Account number" maxlength="35">
 	        </div>
 	        <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
 	    </g:form>

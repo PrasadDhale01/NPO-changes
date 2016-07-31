@@ -106,6 +106,7 @@
     <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 col-xs-12" id="paymentInfo">
 	    <g:form action="paymentInfo" controller="user" params="['projectTitle':vanityTitle]">
 	        <div class="form-group">
+	            <input type="text" id="beneficiaryname" class="form-control" name="fullName" value="${fullName}" placeholder="Beneficiary Name" maxlength="30">
 	        </div>
 	        <div class="form-group">
 	            <input type="text" id="branch" class="form-control" name="branch" value="${branch}" placeholder="Bank branch" maxlength="30">

@@ -1087,7 +1087,7 @@ class MandrillService {
     }
 
     public def contributionEmailToCampaignOwnerOrTeam(def fundRaiser, def project, def contribution) {
-        def username = fundRaiser.username
+        def username = fundRaiser?.username
         def link
         if (project.user == fundRaiser) {
             link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', id: project.id, params:[fr:username], absolute: true, fragment: 'contributions')

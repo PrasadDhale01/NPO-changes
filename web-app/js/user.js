@@ -320,8 +320,32 @@ $(function() {
     .focus(showPopover)
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
-
+    
+    /***Load campaign admin dashboard*****/
+    var option = $('#settingList').val();
+    if(option==''){
+        campaignsortByCountry();
+    }
+    
 });
+
+function settingOption(){
+	var option = $('#settingList').val();
+	var grid = $('#adminCampaignGrid');
+	if(option){
+		$.ajax({
+			url:$('#baseUrl').val()+'/user/settingOption',
+			type:'post',
+			data:"option="+option,
+			success:function(data){
+				
+				$(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+			}
+		});
+	}else{
+		campaignsortByCountry();
+	}
+}
 
 function campaignsort(){
 	var selectedSortValue = $('#sortByOptions').val();
@@ -417,4 +441,154 @@ function getcampaignsortByCountry(){
 	}).error(function(){
 		$('#loading-gif').hide();
 	});
+}
+
+function uploadCarouselImage(){
+	
+	var form = $('.homeCarouselForm').valid();
+	if(form){	
+	    var formData = new FormData();
+	    formData.append('uploadFile', $('#uploadCarouselFile')[0].files[0]);
+	    formData.append('country', $("#countryOpts").val());
+	    formData.append('carouselOption','upload');
+	    
+	    $('.homeCarouselForm').submit(function(){
+	    	return false;
+	    });
+	    
+	    $.ajax({
+	        url:'/home/manageHomePageCarousel',
+	        type:'POST',
+	        data:formData,
+	        cache:true,
+	        processData: false,  
+	        contentType: false,
+	        beforeSend:function(){
+	        	 $('#loading-gif').show();
+	        },
+	        mimeType:'multipart/form-data',
+	        success:function(data){
+	        	$('#loading-gif').hide();
+	        }
+	    });
+	}
+}
+
+function deleteCarouselImage(){
+
+	var form = $('.homeCarouselForm').valid();
+	if(form){
+		var formData = $('.homeCarouselForm').serialize();
+	    var country =$("#countryOpts").val();
+	      
+	    $('.homeCarouselForm').submit(function(){
+	    	return false;
+	    });
+	      $.ajax({
+	          url:'/home/manageHomePageCarousel',
+	          type:'POST',
+	          cache:true,
+	          data:formData+"&country="+country,
+	          beforeSend: function(){
+	        	  $('#loading-gif').show();
+	          },
+	          success:function(data){
+	        	  $('#loading-gif').hide();
+	        	  $('#carouselTemplate').load('/carouseltemplate #deleteTemplate');
+	        	  loadDropDownData("deleteImage");
+	        	  
+	          }
+	      });
+	}
+}
+
+function updateCarouselImage(){
+	
+	var form = $('.homeCarouselForm').valid();
+	if(form){	
+		var formData = new FormData();
+	    formData.append('uploadFile', $('#uploadCarouselFile')[0].files[0]);
+	    formData.append('country', $("#countryOpts").val());
+	    formData.append('carouselImage',$('#updateImage').val());
+	    formData.append('carouselOption','update');
+	    
+	    $('.homeCarouselForm').submit(function(){
+	    	return false;
+	    });
+	    
+	   $.ajax({
+	       url:'/home/manageHomePageCarousel',
+	       type:'POST',
+	       data:formData,
+	       cache:true,
+	       processData: false,  
+	       contentType: false,
+	       mimeType:'multipart/form-data',
+           beforeSend: function(){
+               $('#loading-gif').show();
+           },
+	       success:function(data){
+	    	   $('#loading-gif').hide();
+	    	   $('#carouselTemplate').load('/carouseltemplate #updateTemplate');
+	    	   loadDropDownData("updateImage");
+	       }
+	   });
+	}
+ }
+
+function loadDropDownData(tag){
+    var country = $('#countryOpts').val();
+    $.ajax({
+        url:'/home/getHomePageCarouselImage',
+        type:'POST',
+        cache:true,
+        data:"country="+country+"&data=name",
+        beforeSend: function(){
+        	 $('#loading-gif').show();
+        },
+        success:function(data){
+            $('#loading-gif').hide();
+            var jsonData = jQuery.parseJSON(JSON.stringify(data));
+            
+             if($('#'+tag).length > 0) {
+                 $('#'+tag+' option:gt(0)').remove();
+             }
+             
+             $.each(jsonData, function(index, value){
+                 $('#'+tag).append('<option value="'+value+'">'+value+'</option>');
+             });
+        }
+    });
+}
+
+function setSelectedFileName(){
+
+	/**************************Sets text on file selection*************************/
+	
+	$(document).on('change', '.btn-file :file', function() {
+            var filename =this.files[0].name;
+            var input = $(this),
+                        fileExt = filename.substr(filename.lastIndexOf('.') + 1),
+                        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                        input.trigger('fileselect', [fileExt, label]);
+        });
+
+      
+        $('.btn-file :file').on('fileselect', function(event, fileExt, label) {
+        	
+            var input = $(this).parents('.input-group').find(':text'),
+                        log = ( (fileExt == 'jpg') || (fileExt =='png')) ? label : 'Select image file';
+            
+            if(fileExt=='jpg' || fileExt == 'png'){
+                $('.upload').removeClass('has-error');
+            }else{
+                $('.upload').addClass('has-error');
+                input.val('');
+                return false;
+            }
+            
+            if(input.length ) {
+                input.val(log);
+            } 
+       });
 }

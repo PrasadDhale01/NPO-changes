@@ -26,7 +26,7 @@
                 </div>
             </g:if>
             <g:link controller="project" action="sendEmailToNonUserContributors">
-                <button class="sendMail all-users btn-sm" id="sendEmailButton"><span class="glyphicon glyphicon-envelope"></span> Send email to non registered contributors</button>
+                <div class="sendMail all-users btn btn-sm" id="sendEmailButton"><span class="glyphicon glyphicon-envelope"></span> Send email to non registered contributors</div>
             </g:link><br>
             <h4>Verified Users</h4>
             <div class="table table-responsive">
@@ -52,7 +52,7 @@
                 <div class="col-sm-6">
                     <h5>Send an email to all non-verified users</h5>
                     <g:link action="resendToUsers" controller="User">
-                        <button class="sendMail all-users btn-sm" ><span class="glyphicon glyphicon-envelope"></span> Send Mail</button>
+                        <div class="sendMail all-users btn btn-sm" ><span class="glyphicon glyphicon-envelope"></span> Send Mail</div>
                     </g:link>
                 </div>
             </div>

@@ -1,3 +1,8 @@
+.TW-update-redactor .redactor-box .redactor-editor,
+.TW-editUpdate-redactor .redactor-box .redactor-editor,
+.TW-redactor .redactor-box .redactor-editor {
+	height: 200px;
+}
 div.customUrlLabel{
 	padding-right: 0 !important;
 	padding-left: 0 !important;
@@ -360,7 +365,8 @@ textarea.textarea-embed-tile{
     min-height: 0px;
     height: 120px;
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: auto;
+    height: 300px;
 }
 
 .redactor-animate{
@@ -1777,4 +1783,14 @@ a.thankyou-textdeco {
 #deadline.input-lg,
 #daysLeft.input-lg {
     width: 100%;
+}
+.has-video-error .form-control{
+    border-color: #f04124;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+.has-video-error .video-help-block {
+    color: #f04124;
+    font-size: 12px;
+    font-weight: normal;
 }

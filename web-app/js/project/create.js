@@ -1,6 +1,7 @@
 $(function() {
     $('#iconfile').val('');
-
+    $('#iconfilesizeSmaller').hide();
+    
     $("#sendEmailButton").click(function(){
         $("#sendEmailButton").attr('disabled','disabled');
     });
@@ -1566,6 +1567,7 @@ $(function() {
         if(validateExtension(file.name) === false){
 	        $('#icondiv').hide();
 	        $('#iconfilesize').hide();
+	        $('#iconfilesizeSmaller').hide();
 	        $('#logomsg').show();
 	        $('#logomsg').html("Add only PNG or JPG extension image");
 	        this.value=null;
@@ -1574,17 +1576,29 @@ $(function() {
 	    if(!file.type.match('image')){
 	        $('#icondiv').hide();
 	        $('#iconfilesize').hide();
+	        $('#iconfilesizeSmaller').hide();
 	        $('#logomsg').show();
 	        this.value=null;
 	    } else{
 	        if (file.size > 1024 * 1024 * 3) {
 	            $('#icondiv').hide();
 	            $('#logomsg').hide();
-	            $('#iconfilesize').show();
+	            if($('#iconfilesize')){
+	                $('#iconfilesize').show();
+	                $('#iconfilesizeSmaller').hide();
+	            }
 	            $('#iconfile').val('');
+	        }else if(file.size < 1024){
+	        	 $('#icondiv').hide();
+		         $('#logomsg').hide();
+		         if($('#iconfilesizeSmaller')){
+		             $('#iconfilesizeSmaller').show();
+		             $('#iconfilesize').hide();
+		          }
+		          $('#iconfile').val('');
 	        } else {
 	        	$('#iconfilesize').hide();
-
+	        	$('#iconfilesizeSmaller').hide();
                 $('#loading-gif').show();
 
                var formData = !!window.FormData ? new FormData() : null;

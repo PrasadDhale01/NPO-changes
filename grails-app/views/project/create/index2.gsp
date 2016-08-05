@@ -1408,6 +1408,7 @@
                                 <div class="form-group col-xs-text-box-with-button">
                                     <div class="col-sm-10 col-xs-9 col-xs-textbox">
                                         <input class="form-control form-control-no-border text-color videoUrl" id="videoUrlTextModal" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
+                                        <span id="video-error-msg">This field is required.</span>
                                     </div>
                                     <div class="col-sm-2 col-xs-2 col-xs-button">
                                         <button type="button" class="btn btn-info btn-sm cr-btn-color add btn-center" id="addVideoFromModal">Add</button>
@@ -1466,17 +1467,30 @@
 
     var j = jQuery.noConflict();
     j(function(){
+
+    	var nowTemp = new Date();
+    	var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+    	
         j('.datepicker-reg').datepicker({
+        	onRender: function(date) {
+                return date.valueOf() > now.valueOf() ? 'disabled' : '';
+            }
         }).on('changeDate', function(){
             autoSave('regDate', $('.datepicker-reg').val());
         });
         
         j('.datepicker-expiry').datepicker({
+        	onRender: function(date) {
+        	    return date.valueOf() < now.valueOf() ? 'disabled' : '';
+        	}
         }).on('changeDate', function(){
             autoSave('expiryDate', $('.datepicker-expiry').val());
         });
 
         j('.fcra-reg-date').datepicker({
+        	onRender: function(date) {
+                return date.valueOf() > now.valueOf() ? 'disabled' : '';
+            }
         }).on('changeDate', function(){
             autoSave('fcraRegDate', $('.fcra-reg-date').val());
         });

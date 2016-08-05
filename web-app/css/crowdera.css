@@ -8440,6 +8440,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.homepagTempHeight {
+	    height: 210px;
+	}
     div.newsletter-input {
         margin-left: -46px;
     }
@@ -10067,7 +10070,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 @media only screen and (max-width: 1024px) {
     .cr-story-padding .redactor-box .redactor-editor{
-        height:136px;
+        height:300px;
     }
     .hashtags-padding-left{
         left:35%;
@@ -11213,8 +11216,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 @media only screen and (min-width: 1025px) and (max-width: 1920px){
 	
     .chooseHomePageCampaign .dropdown-menu.open ul{
-        max-height: 100px !important;
-        min-height: 100px !important;
+        max-height: 140px !important;
+        min-height: 140px !important;
         width:100%;
     }
 	.homepagTempHeight{
@@ -18402,8 +18405,8 @@ input[readonly] {
 }
 .chooseHomePageCampaign .dropdown-menu.open {
     margin-left: -3px;
-    max-height: 100px !important;
-    min-height: 100px !important;
+    max-height: 140px !important;
+    min-height: 140px !important;
     width: 100%;
     z-index: 1 !important;
 }

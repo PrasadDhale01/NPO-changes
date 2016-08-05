@@ -142,9 +142,13 @@
                             <div class="visible-md visible-lg visible-xs">
                             <g:if test="${taxReceipt}">
 	                            <h6 class="text-center "><b>Tax Receipt Details</b></h6>
-	                            <label><b>EIN : </b></label> ${taxReceipt.ein}<br>
+	                            <g:if test="${taxReceipt.ein}">
+                                    <label><b>EIN : </b></label> ${taxReceipt.ein}<br>
+                                </g:if>
 	                            <label><b>Name : </b></label> ${taxReceipt.name}<br>
-	                            <label><b>Deductible Status : </b></label> ${deductibleStatus}<br>
+	                             <g:if test="${deductibleStatus}">
+                                    <label><b>Deductible Status : </b></label> ${deductibleStatus}<br>
+                                </g:if>
 	                            <label><b>Address : </b></label> ${taxReceipt.city}, ${taxReceipt.taxRecieptHolderState}, ${taxReceipt.country}<br>
                             </g:if>
                             </div>
@@ -175,9 +179,13 @@
                         <div class="panel panel-default organization-panel org-panel-4 org-padding">
                             <g:if test="${taxReceipt}">
                                 <h6 class="text-center "><b>Tax Receipt Details</b></h6>
-                                <label><b>EIN : </b></label> ${taxReceipt.ein}<br>
+                                <g:if test="${taxReceipt.ein}">
+                                    <label><b>EIN : </b></label> ${taxReceipt.ein}<br>
+                                </g:if>
                                 <label><b>Name : </b></label> ${taxReceipt.name}<br>
-                                <label><b>Deductible Status : </b></label> ${deductibleStatus}<br>
+                                <g:if test="${deductibleStatus}">
+                                    <label><b>Deductible Status : </b></label> ${deductibleStatus}<br>
+                                </g:if>
                                 <label><b>Address : </b></label> ${taxReceipt.city}, ${taxReceipt.taxRecieptHolderState}, ${taxReceipt.country}<br>
                             </g:if>
                             <g:else>

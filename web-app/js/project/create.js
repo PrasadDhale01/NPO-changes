@@ -2,6 +2,8 @@ $(function() {
     $('#iconfile').val('');
     $('#iconfilesizeSmaller').hide();
     
+    $("#video-error-msg").hide();
+
     $("#sendEmailButton").click(function(){
         $("#sendEmailButton").attr('disabled','disabled');
     });
@@ -92,13 +94,9 @@ $(function() {
             //var story = that.code.get();
             // autoSave('story', story);
             //}, 5000);
-
-        },focusCallback: function(){
+        },
+        blurCallback: function() {
             autoSave('story', this.code.get());
-            $(".cr-story-padding .redactor-box .redactor-editor").toggleClass("redactor-animate", true, 100000);
-        },blurCallback: function() {
-            autoSave('story', this.code.get());
-            $(".cr-story-padding .redactor-box .redactor-editor").toggleClass("redactor-animate", false, 100000);
         },
         plugins: ['video','fontsize','fontfamily','fontcolor'],
         buttonsHide: ['indent', 'outdent', 'horizontalrule', 'deleted']
@@ -1496,17 +1494,45 @@ $(function() {
     }
 
     $('#videoUrledit').on('click',function(){
+    	$("#video-error-msg").hide();
+    	$("#addVideoFromModal").closest(".form-group").removeClass("has-video-error");
+    	$("#video-error-msg").removeClass("video-help-block");
+    	$('#videoUrlTextModal').val($('#addvideoUrl').val());
     	$('#addVideo').modal('show');
     });
-
+    
+    $('#videoUrlTextModal').on('keydown', function(event) {
+       validateVideoUrl();
+    }).keyup(function(e) {
+    	validateVideoUrl();
+    })
+    
+    function validateVideoUrl() {
+    	
+    	if ($("#videoUrlTextModal").val().length > 0) {
+    		$("#video-error-msg").hide();
+    		$("#addVideoFromModal").closest(".form-group").removeClass("has-video-error");
+        	$("#video-error-msg").removeClass("video-help-block");
+    	} else {
+    		$("#addVideoFromModal").closest(".form-group").addClass("has-video-error");
+	    	$("#video-error-msg").addClass("video-help-block");
+	    	$("#video-error-msg").show();
+    	}
+    }
+    
     $('#addVideoFromModal').on('click',function(){
     	var youtube = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
         var url= $('#videoUrlTextModal').val().trim();
         var match = (url.match(youtube) || url.match(vimeo));
         if (validator.element("#videoUrlTextModal")){
-        	$('#addVideo').modal('hide');
+        	
+        	$(this).closest(".form-group").removeClass("has-video-error");
+        	$("#video-error-msg").removeClass("video-help-block");
+        	$("#video-error-msg").hide();
+        	
             if (match && match[2].length === 11) {
+            	$('#addVideo').modal('hide');
                 $('#ytVideo').show();
                 $('#media').hide();
                 $('#media-video').show();
@@ -1515,6 +1541,7 @@ $(function() {
                 autoSave('videoUrl', vurl);
                 $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'?wmode=transparent></iframe>');
             } else if (match && match[2].length === 9) {
+            	$('#addVideo').modal('hide');
                 $('#ytVideo').show();
                 $('#media').hide();
                 $('#media-video').show();
@@ -1522,10 +1549,16 @@ $(function() {
                 $('#addvideoUrl').val(url);
                 $('#ytVideo').html('<iframe class="youtubeVideoIframe" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
             } else if($(this) && !$('#addvideoUrl').val()) {
+            	$('#addVideo').modal('hide');
                 $('#ytVideo').hide();
                 $('#media').show();
                 $('#media-video').hide();
+            } else if ($("#videoUrlTextModal").val() == "") {
+            	$(this).closest(".form-group").addClass("has-video-error");
+            	$("#video-error-msg").addClass("video-help-block");
+            	$("#video-error-msg").show();
             }
+            
         }
     });
 
@@ -2867,7 +2900,7 @@ $(function() {
             $('.fcra-details').show();
         } else {
             $('.fcra-details').hide();
-            autoSave('fcraRegNum', null);
+            autoSave('fcraRegNum', "");
             $('.fcra-reg-no').val('');
             $('.fcra-reg-date').val('');
         }

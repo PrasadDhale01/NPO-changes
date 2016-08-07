@@ -9,7 +9,7 @@
 <div class="pill-buttons">
 <g:if test="${project.validated}">
     <g:if test="${!teams.isEmpty()}">
-        <g:if test="${isCampaignOwnerOrAdmin}">
+        <g:if test="${isCampaignOwnerOrAdmin || isAdmin}">
 		    <ul class="nav nav-pills nav-pills-manageteam  mange-active-teams-mobile">
                 <li data-toggle="tab" class="active team-footer col-md-3 col-sm-4 col-xs-12 manage-team-btn-tabsmargin">
                     <a href="#manageTeams" class="text-center teammembers" id="loadTeamPage">

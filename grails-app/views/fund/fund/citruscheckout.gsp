@@ -97,7 +97,7 @@
 				                </div>
 				                
 				                <div class="row">
-				                    <div class="col-md-12 col-sm-12 col-xs-12">
+				                    <div class="col-md-12 col-sm-12 col-xs-12 eazywizard-bottom-margin">
 				                        <div  class="amount-button"><button type="button" class="btn btn-info btn-md btn-block" id="btnCheckoutContinue">Continue</button></div>
 				                    </div>
 				                </div>
@@ -178,10 +178,14 @@
 			                                <div class="input-group col-md-12">
 			                                    <div class="row">
 			                                        <div class="col-sm-6">
-			                                            <input class="form-control TW-city-margin all-place" type="text" placeholder="City" name="citrusCity" id="citrusCity" id="billToCity">
+			                                            <div class="form-group">
+			                                                <input class="form-control TW-city-margin all-place" type="text" placeholder="City" name="citrusCity" id="citrusCity">
+			                                            </div>
 			                                        </div>
 			                                        <div class="col-sm-6">
-			                                            <input class="form-control all-place" type="text" placeholder="Zip" name="citrusZip" id="citrusZip"> 
+			                                            <div class="form-group">
+			                                                <input class="form-control all-place" type="text" placeholder="Zip" name="citrusZip" id="citrusZip">
+			                                            </div> 
 			                                        </div>
 			                                    </div>
 			                                </div>
@@ -215,7 +219,7 @@
 				                
 				            </div>
 				            
-                            <div class="col-xs-12">
+                            <div class="col-xs-12 eazywizard-bottom-margin">
                                 <div class="col-sm-offset-8 col-sm-4 col-xs-offset-0 col-xs-12">
                                     <div class="amount-button"><button type="button" class="btn btn-info btn-md btn-block" id="btnShippingContinue">Continue</button></div>
                                 </div>
@@ -229,14 +233,14 @@
 				                    <h3 class="panel-title">Card Details</h3>
 				                </div>
 				                <div class="panel-body">
-					                <div class="col-md-offset-1 col-md-10 col-sm-offset-0 col-sm-12">
+					                <div class="col-md-offset-1 col-md-10 col-sm-offset-0 col-sm-12 col-xs-12 col-xs-offset-0">
 					                    <div class="form-group">
 					                        <div class="leftcard-column">
 					                            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
-					                            <input type="text" class="card-number form-control all-place" placeholder="Card Holder Name" name="citrusCardHolder" id="citrusCardHolder" required>
+					                            <input type="text" class="card-number form-control all-place" placeholder="Card Holder Name" name="citrusCardHolder" id="citrusCardHolder" maxlength="30" required>
 					                            <div class="clear-both"></div>
 					                        </div>
-					                        <div class="rightcard-column">
+					                        <div class="rightcard-column citrusCardType-column">
 					                            <span class="input-group-addon card-details"><span class="glyphicon glyphicon-credit-card"></span> </span>
 					                            <g:select class="selectpicker card-number card-number-width" name="citrusCardType" id="citrusCardType" from="${citrusCardTypes}" optionKey="key" optionValue="value"/>
 					                            <div class="clear-both"></div>
@@ -284,7 +288,7 @@
 					                    </div>
 					                    
 					                    
-					                    <div class="col-xsl-0 col-md-4 col-xs-12 box fund-campaign-tile-center-align">
+					                    <div class="col-xsl-0 col-md-4 col-xs-12 box fund-campaign-tile-center-align eazywizard-bottom-margin">
 					                    
 	                                        <div class="form-group term-of-use-center-alignment">
 	                                            <label class="checkbox control-label">
@@ -297,7 +301,8 @@
 	                                            <button type="button" class="btn btn-info btn-block btn-lg hidden citruscheckoutsubmitbtn" name="fund-button" id="citrusCardPayButton"></button>
 	                                        </div>
 	                                    </div>
-                                    <g:select class="selectpicker hidden" name="citrusAvailableOptions" id="citrusAvailableOptions" from="${citrusAvailableOptions}" optionKey="key" optionValue="value"/>
+	                                    
+                                        <g:select class="selectpicker hidden" name="citrusAvailableOptions" id="citrusAvailableOptions" from="${citrusAvailableOptions}" optionKey="key" optionValue="value"/>
 					                </div>
 					                
 					            </div><br>

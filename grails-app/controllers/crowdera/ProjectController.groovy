@@ -1068,8 +1068,11 @@ class ProjectController {
             } else {
                 payOpts = projectService.getPayment()
             }
-            def selectedCountry = (project.beneficiary.country) ? projectService.getCountryKey(project.beneficiary.country) : null;
-        
+            
+            //Country Issue for India site
+            //India: Map key is fetching for country like, AL is fetching for AL:"ALBANIA"
+            //USA: Map value is fetching for country like, ALBANIA is fetching for AL:"ALBANIA"
+            def selectedCountry = (project.beneficiary.country.length() > 3 ) ? projectService.getCountryKey(project.beneficiary.country) : project.beneficiary.country
             def beneficiary = project.beneficiary
             def reasonsToFund = projectService.getProjectReasonsToFund(project)
             def qA = projectService.getProjectQA(project)
@@ -1327,7 +1330,7 @@ class ProjectController {
 					discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset, day: day,
 					ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
 					unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, vanityUsername:vanityUsername, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo,
-					tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier, reasons: reasons,
+					tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier, reasons: reasons, isAdmin: isAdmin,
                     spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, isDeviceMobileOrTab: isDeviceMobileOrTab,
                     hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
                     hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, enableTeamNames: enableTeamNamesList, teamNames:teamNameList])
@@ -2448,6 +2451,25 @@ class ProjectController {
                     render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
                 }
             break;
+			case 'testIndia':
+			if(provider.equals('google')){
+				def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+				def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+				def scope = grailsApplication.config.crowdera.gmail.SCOPE
+				def redirectUri=base_url+'/project/getSocialContactsCode'
+				render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+			}else if(provider.equals("constant")){
+				def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+				def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+				def redirectUri='http%3A%2F%2ftest%2Ecrowdera%2Eco%2Fproject%2FgetSocialContactsCode'
+				render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+			}else if(provider.equals('mailchimp')){
+				def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
+				def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+				def redirectUri=base_url+'/project/getSocialContactsCode'
+				render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
+			}
+		    break;
             case 'staging':
                 if(provider.equals('google')){
                     def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL

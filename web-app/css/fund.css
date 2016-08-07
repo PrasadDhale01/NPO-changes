@@ -162,6 +162,9 @@ div#checkoutgsp button.btn-default:focus{
     padding: 5px;
     margin-bottom: 30px;
 }
+.eazywizard-bottom-margin {
+	margin-bottom: 50px;
+}
 
 div.citrusfundbody .bootstrap-select > button,
 div.citrusfundbody .bootstrap-select > button:hover,
@@ -178,11 +181,11 @@ div.citrusfundbody .dropdown-menu.open {
 }
 
 div.citrusfundbody .bootstrap-select.btn-group .dropdown-menu {
-    height: 156px;
+    height: 130px;
 }
 
-div.citrusfundbody div.dropdown-menu{
-	max-height: 155px;
+div.citrusfundbody .citrusCardType-column .bootstrap-select.btn-group .dropdown-menu {
+	height: 85px;
 }
 .billing-panel .panel-body {
 	padding-top: 30px;

@@ -13,7 +13,10 @@
         fundRaiser = user.username
     }
     def projectId = project.id
-    
+    def conversionMultiplier = multiplier
+    if (!conversionMultiplier) {
+        conversionMultiplier = projectService.getCurrencyConverter();
+    }
 %>
 <g:if test="${!contributions.empty}">
     <div class="row contributions-panel contribution-center-alignment sh-contrialignment">
@@ -59,8 +62,8 @@
                                         <g:if test="${isCrUserCampBenOrAdmin && CurrentUserTeam && currentFundraiser == team}">
                                             <h4>${contribution.contributorName}</h4> 
                                             <span class="sso">
-                                                <g:if test="${project.payuStatus}">
-                                                    <span class="fa fa-inr"></span><b>${amount}</b><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                                 </g:if>
                                                 <g:else>
                                                     $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
@@ -71,7 +74,7 @@
                                         <g:else>
                                             <h4 class="anonymous-top">Anonymous Good Soul</h4>
                                             <span class="sso">
-                                                <g:if test="${project.payuStatus}">
+                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                                                     <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                                 </g:if>
                                                 <g:else>

@@ -85,7 +85,14 @@
             <div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center">
                 <span class="text-center tile-goal">
                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                        <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${amount}</span></g:if><g:else><span class="lead">${amount * conversionMultiplier}</span></g:else>
+                        <%--<span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${amount}</span></g:if><g:else><span class="lead">${amount * conversionMultiplier}</span></g:else>
+                        --%>
+                        <g:if test="${project.payuStatus}">
+                            <span class="fa fa-inr"></span><span class="lead">${amount}</span>
+                        </g:if>
+                        <g:else>
+                            $<span class="lead">${amount}</span>
+                        </g:else>
                     </g:if>
                     <g:else>
                         $<span class="lead">${amount}</span>
@@ -113,7 +120,14 @@
             <div class="col-md-4 col-xs-4 amount-alignment amount-text-align text-center">
                 <span class="text-center tile-goal">
                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                        <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${contribution}</span></g:if><g:else><span class="lead">${contribution * conversionMultiplier}</span></g:else>
+                        <%--<span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${contribution}</span></g:if><g:else><span class="lead">${contribution * conversionMultiplier}</span></g:else>
+                    --%>
+                        <g:if test="${project.payuStatus}">
+                            <span class="fa fa-inr"></span><span class="lead">${contribution}</span>
+                        </g:if>
+                        <g:else>
+                            $<span class="lead">${contribution}</span>
+                        </g:else>
                     </g:if>
                     <g:else>
                         $<span class="lead">${contribution}</span>

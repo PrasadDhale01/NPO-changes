@@ -158,22 +158,38 @@
 	        <div class="row tilepadding">
 	            <div class="col-md-6 col-xs-6 text-center">
 	                <span class="text-center tile-goal teamtile">
-	                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+	                    <%--<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 	                        <span class="fa fa-inr"></span><span class="lead goal-size teamtile"><g:if test="${project.payuStatus}">${goal}</g:if><g:else>${goal * conversionMultiplier}</g:else></span>
 	                    </g:if>
 	                    <g:else>
 	                        $<span class="lead goal-size teamtile">${goal}</span>
 	                    </g:else>
+	                    
+	                --%>
+	                   <g:if test="${project.payuStatus}">
+                            <span class="fa fa-inr"></span><span class="lead goal-size teamtile">${goal}</span>
+                        </g:if>
+                        <g:else>
+                            $<span class="lead goal-size teamtile">${goal}</span>
+                        </g:else>
 	                </span>
 	            </div>
 	            <div class="col-md-6 col-xs-6 text-center team-achieve-amt-border">
-	                <span class="text-center tile-goal teamtile">
+	                <span class="text-center tile-goal teamtile"><%--
 	                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 	                        <span class="fa fa-inr"></span><span class="lead achived-size teamtile"><g:if test="${project.payuStatus}">${amount}</g:if><g:else>${amount * conversionMultiplier}</g:else></span>
 	                    </g:if>
 	                    <g:else>
 	                        $<span class="lead achived-size teamtile">${amount}</span>
 	                    </g:else>
+	                    
+	                    --%>
+	                    <g:if test="${project.payuStatus}">
+                            <span class="fa fa-inr"></span><span class="lead achived-size teamtile">${amount}</span>
+                        </g:if>
+                        <g:else>
+                            $<span class="lead achived-size teamtile">${amount}</span>
+                        </g:else>
 	                </span>
 	            </div>
 	        </div>
@@ -182,12 +198,20 @@
             <div class="row tilepadding">
 	            <div class="col-md-6 col-xs-6 text-center">
 	                <span class="text-center tile-goal teamtile">
-	                    <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead goal-size teamtile">${goal}</span>
+	                    <g:if test="${project.payuStatus}">
+	                       <span class="fa fa-inr"></span>
+	                    </g:if>
+	                    <g:else>$</g:else>
+	                    <span class="lead goal-size teamtile">${goal}</span>
 	                </span>
 	            </div>
 	            <div class="col-md-6 col-xs-6 text-center team-achieve-amt-border">
 	                <span class="text-center tile-goal teamtile">
-	                    <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead achived-size teamtile">${amount}</span>
+	                    <g:if test="${project.payuStatus}">
+	                       <span class="fa fa-inr"></span>
+	                    </g:if>
+	                    <g:else>$</g:else>
+	                    <span class="lead achived-size teamtile">${amount}</span>
 	                </span>
 	            </div>
 	        </div>
@@ -229,16 +253,22 @@
      
         <g:if test="${isshow}">
 	        <div class="mobile-show-team">
-	            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-	                <span class="fa fa-inr"></span><span class="show-mob-goal-amt"><b><g:if test="${project.payuStatus}">${goal}</g:if><g:else>${goal * conversionMultiplier}</g:else></b><span class="show-mobfont-goal">&nbsp;&nbsp;Goal</span></span>
+	            <g:if test="${project.payuStatus}">
+	                <span class="fa fa-inr"></span>
+	                <span class="show-mob-goal-amt">
+	                   <b>${goal}</b><span class="show-mobfont-goal">&nbsp;&nbsp;Goal</span>
+	                </span>
 	            </g:if>
 	            <g:else>
 	                 <span class="show-mob-goal-amt">$<b>${goal}</b><span class="show-mobfont-goal">&nbsp;&nbsp;Goal</span></span>
 	            </g:else>
 	        </div>
 	        <div class="mobile-show-team">
-	            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-	                <span class="fa fa-inr"></span><span class="show-mob-goal-amt"><b><g:if test="${project.payuStatus}">${amount}</g:if><g:else>${amount * conversionMultiplier}</g:else></b><span class="show-mobfont-goal">&nbsp;&nbsp;Raised</span></span>
+	            <g:if test="${project.payuStatus}">
+	                <span class="fa fa-inr"></span>
+	                <span class="show-mob-goal-amt">
+	                   <b>${amount}</b><span class="show-mobfont-goal">&nbsp;&nbsp;Raised</span>
+	                </span>
 	            </g:if>
 	            <g:else>
 	                <span class="show-mob-goal-amt">$<b>${amount}</b><span class="show-mobfont-goal">&nbsp;&nbsp;Raised</span></span>

@@ -70,12 +70,6 @@
              </div>
 
              <label class="checkbox control-label">
-                 <input type="checkbox" name="taxreceipt" id="taxreceipt"> Do you want Tax Receipt?
-             </label>
-             <div class="form-group fund-inr">
-                 <input class="form-control" id="panNumber" name="panNumber" type="text"/>
-             </div>
-             <label class="checkbox control-label">
                  <input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
              </label>
 

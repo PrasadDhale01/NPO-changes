@@ -13,7 +13,7 @@ class HomeController {
 
     def index() {
         def contributorEmail = g.cookie(name: 'contributorEmailCookie')
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment();
         def fb = params.fb
 
         if(contributorEmail){

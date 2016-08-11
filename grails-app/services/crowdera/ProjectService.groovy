@@ -3297,13 +3297,20 @@ class ProjectService {
         return projectId
     }
     
-    def getHomePageCampaignByEnv(def currentEnv){
+    HomePageCampaigns getHomePageCampaignByEnv(def currentEnv){
+        return HomePageCampaigns.findByCurrentEnv(currentEnv)
+    }
+    
+    List<Project> getHomePageCampaignListByEnv(def currentEnv){
         def homePageCampaign = HomePageCampaigns.findByCurrentEnv(currentEnv)
+        List<Project> projects = new ArrayList<Project>();
         
-        if(homePageCampaign){
-            return homePageCampaign
+        if(homePageCampaign != null) {
+            (homePageCampaign.campaignOne != null) ? projects.add(homePageCampaign.campaignOne) : "";
+            (homePageCampaign.campaignTwo != null) ? projects.add(homePageCampaign.campaignTwo) : "";
+            (homePageCampaign.campaignThree != null) ? projects.add(homePageCampaign.campaignThree) : "";
         }
-        return null
+        return projects;
     }
     
     def setHomePageCampaignByEnv(def campaignOne, def campaingTwo, def campaingThree, def currentEnv){

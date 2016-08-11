@@ -24,24 +24,24 @@
                 <div class="col-xs-6">
                     <label class="taxdetailslabel"><b>Registration Date:</b></label>
                     <div class="form-control">
-                        ${dateFormat.format(taxReciept.regDate)}
+                        ${dateFormat.format(taxReciept?.regDate)}
                     </div>
                     <label class="taxdetailslabel"><b>PAN no. of Organization:</b></label>
                     <div class="form-control">
-                        ${taxReciept.panCardNumber}
+                        ${taxReciept?.panCardNumber}
                     </div>
                     <label class="taxdetailslabel"><b>Receipt Number / Transaction Number:</b></label>
                     <div class="form-control">
-                        ${transaction.transactionId}
+                        ${transaction?.transactionId}
                     </div>
                 </div>
                 <div class="col-xs-6">
                     <label class="taxdetailslabel"><b>Organization Address:</b></label>
                     <div class="form-control taxorgaddress">
-                        ${taxReciept.addressLine1},<br/>
-                        ${taxReciept.addressLine2},<br/>
-                        ${taxReciept.city}- ${taxReciept.zip},<br/>
-                        ${taxReciept.taxRecieptHolderState}, India
+                        ${taxReciept?.addressLine1},<br/>
+                        ${taxReciept?.addressLine2},<br/>
+                        ${taxReciept?.city}- ${taxReciept?.zip},<br/>
+                        ${taxReciept?.taxRecieptHolderState}, India
                     </div>
                 </div>
             </div>
@@ -100,8 +100,10 @@
                         <label class="pull-right taxreceiptdetailsfont zerotopmargin">Authorized Representative of Organization:</label>
                     </div>
                     <div class="col-xs-6 taxreceipttop">
-                        <div class="form-control">${taxReciept.name}</div>
-                        <div class="form-control digitalsignature taxreceipttop"></div>
+                        <div class="form-control">${taxReciept?.name}</div>
+                        <div class="form-control digitalsignature taxreceipttop text-center">
+                            <img src="${taxReciept?.signatureUrl}" alt="signature">
+                        </div>
                     </div>
                     <div class="clear"></div>
                     
@@ -154,15 +156,16 @@
                     </div>
                     <label class="taxdetailslabel"><b>Phone</b></label>
                     <div class="form-control">
+                        ${taxReciept?.phone}
                     </div>
                 </div>
                 <div class="col-xs-6">
                     <label class="taxdetailslabel"><b>Organization Address:</b></label>
                     <div class="form-control taxorgaddress">
-                        ${taxReciept.addressLine1},<br/>
-                        ${taxReciept.addressLine2},<br/>
-                        ${taxReciept.city}- ${taxReciept.zip},<br/>
-                        ${taxReciept.taxRecieptHolderState}, ${taxReciept.country}
+                        ${taxReciept?.addressLine1},<br/>
+                        ${taxReciept?.addressLine2},<br/>
+                        ${taxReciept?.city}- ${taxReciept?.zip},<br/>
+                        ${taxReciept?.taxRecieptHolderState}, ${taxReciept?.country}
                     </div>
                 </div>
             </div>
@@ -230,7 +233,7 @@
                         <label class="pull-right taxreceiptdetailsfont">Federal ID Number:</label>
                     </div>
                     <div class="col-xs-6 taxreceipttop">
-                        <div class="form-control">${taxReciept.ein}</div>
+                        <div class="form-control">${taxReciept?.ein}</div>
                     </div>
                     <div class="clear"></div>
                     
@@ -238,7 +241,7 @@
                         <label class="pull-right taxreceiptdetailsfont">Legal Status / % of Exemption:</label>
                     </div>
                     <div class="col-xs-6 taxreceipttop">
-                        <div class="form-control">${taxReciept.deductibleStatus}</div>
+                        <div class="form-control">${taxReciept?.deductibleStatus}</div>
                     </div>
                     <div class="clear"></div>
                     
@@ -247,8 +250,10 @@
                         <label class="pull-right taxreceiptdetailsfont zerotopmargin">Authorized Representative of Organization:</label>
                     </div>
                     <div class="col-xs-6 taxreceipttop">
-                        <div class="form-control">${taxReciept.name}</div>
-                        <div class="form-control digitalsignature taxreceipttop"></div>
+                        <div class="form-control">${taxReciept?.name}</div>
+                        <div class="form-control digitalsignature taxreceipttop text-center">
+                            <img src="${taxReciept?.signatureUrl}" alt="signature">
+                        </div>
                     </div>
                 </div>
             </div>

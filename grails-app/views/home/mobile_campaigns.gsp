@@ -11,13 +11,9 @@
                </ol>
            </div>   
            <%
-                def projects
+                
                 def currentEnv = projectService.getCurrentEnvironment()
-                if(currentEnv=='test' || currentEnv=='testIndia' || currentEnv=='development'){
-                    projects = projectService.showProjects(currentEnv)
-                }else{
-                    projects= projectService.getHomePageCampaignByEnv(currentEnv)
-                } 
+                def projects = projectService.getHomePageCampaignListByEnv(currentEnv)
            
                 def count = projects.size()
                 def cols = 1

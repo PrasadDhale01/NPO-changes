@@ -69,7 +69,6 @@
                  <span id="errormsg"></span>
              </div>
 
-
              <label class="checkbox control-label">
                  <input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
              </label>

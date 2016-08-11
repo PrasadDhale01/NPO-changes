@@ -1794,3 +1794,6 @@ a.thankyou-textdeco {
     font-size: 12px;
     font-weight: normal;
 }
+.digitalsignature.taxreceipttop img{
+	height: 100%;
+}

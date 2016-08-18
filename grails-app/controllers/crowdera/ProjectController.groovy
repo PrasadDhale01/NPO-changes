@@ -656,6 +656,7 @@ class ProjectController {
     def manageHomePageCampaigns(){
         
         def projects = projectService.getValidatedProjects()
+        def liveProjects = projectService.getLiveProjects(projects)
         def currentEnv = params.currentEnv
         def homePageCampaigns = projectService.getHomePageCampaignByEnv(currentEnv)
         
@@ -670,15 +671,15 @@ class ProjectController {
                 new HomePageCampaigns(campaignOne:campaignOneId, campaignTwo:campaignTwoId, campaignThree:campaignThreeId, currentEnv:currentEnv).save()
             }
             
-            render(template: "/project/validate/homepage", model:[projects:projects, campaignOne:campaignOneId, 
+            render(template: "/project/validate/homepage", model:[projects:liveProjects, campaignOne:campaignOneId, 
                 campaignTwo: campaignTwoId, campaignThree: campaignThreeId])
         }else{
         
             if(homePageCampaigns){
-                render(template: "/project/validate/homepage", model:[projects:projects, campaignOne:campaignOneId,
+                render(template: "/project/validate/homepage", model:[projects:liveProjects, campaignOne:campaignOneId,
                      campaignTwo: campaignTwoId, campaignThree: campaignThreeId])
             }else{
-                render(template: "/project/validate/homepage", model:[projects:projects])
+                render(template: "/project/validate/homepage", model:[projects:liveProjects])
             }
         }
     }

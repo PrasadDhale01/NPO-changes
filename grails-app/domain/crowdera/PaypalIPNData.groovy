@@ -61,4 +61,4 @@ class PaypalIPNData {
         addressStreet nullable: true
         receiverId nullable: true
     }
- +}
+ }

@@ -92,6 +92,7 @@
 	                                    <input type="checkbox" name="isTaxreceipt" id="isTaxreceipt" > Do you want tax receipt?
 	                                </label>
 	                                <div class="form-group fund-inr pannumberdiv">
+	                                    <input class="form-control" id="panNumber" name="panNumber" type="text" placeholder="Enter PAN Number" maxlength="10"/>
 	                                </div>
                                 </g:if>
                                 <label class="checkbox control-label">

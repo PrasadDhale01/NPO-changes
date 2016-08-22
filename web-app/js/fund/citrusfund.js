@@ -33,6 +33,8 @@ $(function() {
     		
     		$('[name="panNumber"]').rules( "add", {
                 required: true,
+                minlength: 10,
+                maxlength: 10
             });
     	} else {
     		$(".pannumberdiv").slideUp();

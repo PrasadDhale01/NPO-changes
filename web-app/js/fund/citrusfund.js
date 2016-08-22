@@ -27,6 +27,19 @@ $(function() {
     	}
     });
     
+    $("#isTaxreceipt").change(function() {
+    	if ($(this).is(':checked')) {
+    		$(".pannumberdiv").slideDown();
+    		
+    		$('[name="panNumber"]').rules( "add", {
+                required: true,
+            });
+    	} else {
+    		$(".pannumberdiv").slideUp();
+    		$('[name="panNumber"]').rules('remove');
+    	}
+    });
+    
     var validator = $('#fundindex').find('form').validate({
         rules: {
             amount: {
@@ -193,7 +206,7 @@ $(function() {
         });
         
         $('#btnCheckoutContinue').click(function() {
-            if($('#amount').valid()) {
+            if($('#amount').valid() && $("#panNumber").valid()) {
             	var rewardId = getSelectedRewardId();
             	if (rewardId === undefined) {
                 	rewardId = 1;
@@ -529,7 +542,8 @@ $(function() {
                     'shippingEmail' : $('input[name= shippingEmail]').val(),
                     'twitterHandle' : $('input[name= twitterHandle]').val(),
                     'shippingCustom': $('input[name= shippingCustom]').val(),
-                    'projectTitle'  : $('input[name= projectTitle]').val()
+                    'projectTitle'  : $('input[name= projectTitle]').val(),
+                    'panNumber'     : $('input[name= panNumber]').val()
                 };
 
                 $.ajax({

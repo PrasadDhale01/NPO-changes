@@ -18420,15 +18420,6 @@ input[readonly] {
 .requireFieldBody{
 	overflow:scroll;
 }
-
 .requiredFieldHeading span#requiredFieldMessage{
 	color: #f04124;
-}
-
-.embed-logo{
-    width: 60px;
-    height: 55px;    
-    float: left;
-    position: absolute;
-    margin-top: 30px;  
 }

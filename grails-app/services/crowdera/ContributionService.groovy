@@ -761,18 +761,4 @@ class ContributionService {
         return Seller.findByEmail(email)
     }
     
-    
-    def setPaypalIPNData(def params){
-        PaypalIPNData ipnData = new PaypalIPNData( itemNumber: params.item_number, residenceCountry: params.residence_country,
-                                           invoice: params.invoice, addressCountry: params.address_country, addressCity: params.address_city,
-                                           paymentStatus: params.payment_status, payerId: params.payer_id, firstName : params.first_name,
-                                           shipping: params.shipping, payerEmail: params.payer_email, txnId: params.txn_id, receiverEmail: params.receiver_email,
-                                           txnType: params.txn_type, mcGross: params.mc_gross, mcCurrency: params.mc_currency, payerStatus: params.payer_status,
-                                           paymentDate: params.payment_date, addressZip: params.address_zip, addressState: params.address_state, itemName: params.item_name,
-                                           addressName: params.address_name, lastName: params.last_name, paymentType: params.payment_type,
-                                           addressStreet: params.address_street, receiverId: params.receiver_id
-                                         )
-        ipnData.save()
-    }
-    
 }

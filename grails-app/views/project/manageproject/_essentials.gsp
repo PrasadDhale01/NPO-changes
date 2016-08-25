@@ -275,10 +275,7 @@
                         <div class="col-sm-7">
                             <p>Video preview</p>
                             <textarea class="textarea-embed-video form-control" onclick="this.select()">${embedVideoCode}</textarea><br><br>
-                                <g:link  target="_blank" controller="project" action="show" params="['fr': vanityUsername, 'projectTitle':vanityTitle]">
-                                      <img class="embed-logo" id="embedHover"  alt="Crowdera" src="https://s3.amazonaws.com/crowdera/project-images/7054ed14-deb4-4be9-a273-43b49c9a3d18.png"/>
-                                 </g:link>
-                                 <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>
+                            <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>
                             <p>After choosing a video size, copy and paste the embed code above.</p>
                             <div class="row desktop-video-play">
                                 <div class="col-sm-2 margin-sm-left video-play video-play-sm video-play-hover selected text-center">

@@ -24,6 +24,7 @@
 
      <g:hiddenField name="projectId" id="projectId" value="${project.id}" />
      <input type="hidden" name="fr" value="${vanityUsername}" />
+     <input type="hidden" name="rewardId" value="${reward.id}"/>
      <input type="hidden" name="anonymous" value="false" id="anonymous"/>
       
      <input class="form-control" type="hidden" value="Mr/Mrs/Ms" name="billToTitle" id="billToTitle" />

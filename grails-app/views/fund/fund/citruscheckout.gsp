@@ -272,7 +272,7 @@
                                         <div class="form-group cvc-width">
                                             <div class="leftcard-column-one">
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </span>
-                                                    <input class="form-control all-place" type="text" placeholder="CVV" data-stripe="cvc" name="citrusCvv" id="citrusCvv" required>
+                                                    <input class="form-control all-place" type="password" placeholder="CVV" data-stripe="cvc" name="citrusCvv" id="citrusCvv" required>
                                                 <div class="clear"></div>       
                                             </div>
                                             <div class="leftcard-column-two">
@@ -361,7 +361,24 @@
         function citrusClientErrMsg(errorResponse) {
             console.log(errorResponse);
         }
-    
+
+        // setup card inputs;       
+        jQuery('#citrusExpiry').payment('formatCardExpiry');
+        jQuery('#citrusCvv').payment('formatCardCVC');
+        jQuery('#citrusNumber').keyup(function() {
+            
+            var cardNum = jQuery('#citrusNumber').val().replace(/\s+/g, '');        
+            var type = jQuery.payment.cardType(cardNum);
+            console.log(type);
+                jQuery("#citrusNumber").css("background-image", "url(images/" + type + ".png)");                        
+                if(type!='amex')
+                jQuery("#citrusCvv").attr("maxlength","3");
+                else
+                jQuery("#citrusCvv").attr("maxlength","4");                     
+                jQuery('#citrusNumber').payment('formatCardNumber');                                            
+                jQuery("#citrusScheme").val(type);      
+        });
+        
     </script>
 
 </body>

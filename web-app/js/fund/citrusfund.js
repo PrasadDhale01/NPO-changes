@@ -8,6 +8,11 @@ $(function() {
         return $('.list-group-item.active').data('rewardprice');
     }
     
+    var optionChosen = 'visa';
+    $('#citrusScheme').change(function() {
+        optionChosen = $(this).val();
+    });
+    
     $('#myWizard').easyWizard({
         showButtons: false,
         submitButton: false
@@ -126,8 +131,14 @@ $(function() {
                 required: true
             },
             citrusCvv: {
-                required: true,
-                maxlength: 4
+            	required: true,
+                maxlength: function(){
+                    if (optionChosen === 'visa' || optionChosen === 'mastercard') {
+                        return 3;
+                    } else {
+                        return 4;
+                    }
+                }
             },
             citrusCardHolder: {
                 required: true,

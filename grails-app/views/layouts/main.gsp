@@ -77,13 +77,11 @@
         <g:layoutBody />
     </div>
     <div id="loadFooter"></div>
-
+    <g:render template="/layouts/ga"/>
+    
     <!-- Include all javascript assets -->
     <r:require modules="crowderajs"/>
-    <r:require module="googleanalytics"/>
-    
-    
-    
+<%--    <r:require module="googleanalytics"/>--%>
     <r:layoutResources/>
 </body>
 </html>

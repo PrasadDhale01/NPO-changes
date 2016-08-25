@@ -698,6 +698,14 @@ $(function() {
         $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/embedicon-grey.png");
     });
 
+    $("#embedHover").hover(function (){
+
+        $(this).attr('src','https://s3.amazonaws.com/crowdera/project-images/8cc54bde-504b-430c-9276-f7722f606eec.png');
+
+    }).mouseleave(function(){
+
+        $(this).attr('src','https://s3.amazonaws.com/crowdera/project-images/7054ed14-deb4-4be9-a273-43b49c9a3d18.png');
+    });
     /*******************************Description text length*********************/
         $('#descarea').on('keydown', function(event) {
             event.altKey==true;

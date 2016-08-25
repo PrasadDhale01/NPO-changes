@@ -1278,4 +1278,20 @@ class FundController {
         
     }
 
+
+    def ipnHandler(){
+
+        println "paypal ipn response data : - " + params
+
+        if("verified".equalsIgnoreCase(params.payer_status)){
+            contributionService.setPaypalIPNData(params)
+        }
+    }
+
+    def mandrillHandler(){
+
+        //For debugging purpose as Mandrill callback url not work in localhost
+        println "Mandrill response handler " + params
+    }
+
 }

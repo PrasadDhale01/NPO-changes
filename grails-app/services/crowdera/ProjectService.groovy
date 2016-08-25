@@ -3312,7 +3312,17 @@ class ProjectService {
         }
         return projects;
     }
-    
+
+	def getLiveProjects(def projects){
+		def liveProjects = []
+		projects.each{project ->
+			if(!isProjectDeadlineCrossed(project) && project.validated){
+				liveProjects.add(project);
+			}
+		}
+		return liveProjects
+	}
+
     def setHomePageCampaignByEnv(def campaignOne, def campaingTwo, def campaingThree, def currentEnv){
         def homePageCampaigns = getHomePageCampaignByEnv(currentEnv)
         
@@ -5044,7 +5054,8 @@ class ProjectService {
                 projects = activeCampaigns
                 break;
             case 'Homepage':
-                projects = totalProjects.title.sort{it.toLowerCase()}
+                def liveProjects = getLiveProjects(totalProjects)
+                projects = liveProjects.title.sort{it.toLowerCase()}
                 break;
             case 'Deadline':
                 projects= totalProjects.title.sort{it.toLowerCase()}

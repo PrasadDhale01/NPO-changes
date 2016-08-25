@@ -1255,7 +1255,7 @@
                                  <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
                                     <div class="col-sm-4 col-xs-12">
                                         <div class="form-group form-group-tax-reciept">
-                                            <input type="text" placeholder="Phone Number" class="form-control" name="tax-reciept-holder-phone">
+                                            <input type="text" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone" value="${taxReciept.phone}">
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-8 col-xs-12">

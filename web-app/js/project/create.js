@@ -1621,7 +1621,7 @@ $(function() {
 	                $('#iconfilesizeSmaller').hide();
 	            }
 	            $('#iconfile').val('');
-	        }else if(file.size < 1024){
+	        }else if(file.size < 1024 * 1024 * 1){
 	        	 $('#icondiv').hide();
 		         $('#logomsg').hide();
 		         if($('#iconfilesizeSmaller')){

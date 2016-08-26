@@ -201,7 +201,7 @@
                             <img class="show-location hidden" alt="location" src="//s3.amazonaws.com/crowdera/assets/show-page-locations.png">
                             <span class="hidden"><g:if test="${project?.user?.city}">${project?.user?.city},</g:if> ${project.beneficiary.country}</span>
                             <g:if test = "${project.fundsRecievedBy != null }">
-                                <img class="show-location sh-none-pft" alt="location" src="//s3.amazonaws.com/crowdera/assets/show-page-non-profit-icons.png">
+                                <img class="show-location sh-none-pft" alt="location" src="//s3.amazonaws.com/crowdera/assets/1d4fda56-5ee2-41f7-99a3-0528eda93aed.png">
                                 <span class="show-nonpft">${project.fundsRecievedBy}</span>
                             </g:if>
                             <g:if test="${project?.webAddress}">
@@ -563,7 +563,7 @@
                     <ul class="nav nav-pills nav-justified nav-justi show-marginbottoms sh-tabs mng-safari-mobile show-new-tabs-alignments<g:if test="${!project?.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
                         
                         <li class="show-tabs"><span class="active show-tbs-right-borders  hidden-xs">
-                                <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials showStoryTemplate show-campaigndetails-font">
+                                <a href="#essentials" data-toggle="tab" class="show-tabs-text show-js-fileA essentials showStoryTemplate show-campaigndetails-font">
                                     <span class="tab-text hidden-xs"> Story</span>
                                 </a>
                                 <span class="show-ids-header"></span>
@@ -582,14 +582,14 @@
                             </li>
                         </g:if>
                         <li><span class="show-tbs-right-borders hidden-xs">
-                                <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text manageTeam showTeamTemplate ss show-campaigndetails-font">
+                                <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text show-js-fileB manageTeam showTeamTemplate ss show-campaigndetails-font">
                                     <span class="tab-text"> Teams</span>
                                 </a>
                                 <span class="show-ids-header"></span>
                             </span>
                         </li>
                         <li><span class="show-tbs-right-borders hidden-xs">
-                                <a href="#contributions" data-toggle="tab"  class="show-tabs-text contributions showContributionTemplate show-campaigndetails-font">
+                                <a href="#contributions" data-toggle="tab"  class="show-tabs-text show-js-fileC contributions showContributionTemplate show-campaigndetails-font">
                                     <span class="tab-text"> Contributions</span>
                                 </a>
                                 <span class="show-tabs-count hidden-xs">

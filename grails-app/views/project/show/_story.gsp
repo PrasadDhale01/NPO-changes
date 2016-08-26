@@ -21,6 +21,7 @@
     <%-- Social features --%>
     <g:hiddenField name="shareUrl" id="shareUrl" value="${shareUrl}"/>
     <g:hiddenField name="embedTileUrl" id="embedTileUrl" value="${embedTileUrl}"/>
+    <g:hiddenField id="storyContent" name="storyContent" value="${project?.story}"/>
 
     <div class="col-sm-12 social sharing-icon-alignment <g:if test="${!firstFiveHashtag.isEmpty() || !firstThreeHashtag.isEmpty()}"></g:if><g:else>sharing-icons-padding-left</g:else> <g:if test="${isvalidateShow}">validate-share-border</g:if><g:else>show-share-border-line</g:else> hidden-xs">
         <a class="show-socials-iconsA"></a>
@@ -109,14 +110,31 @@
 	                <p class="campaignDescription justify">${raw(currentTeam?.description)}</p>
 		    </g:else>
         
-            <div class=" faq-panel-height sss" id="show-story-read">
-	            
-            </div>
+<%--            <div class=" faq-panel-height sss" id="show-story-read">--%>
+<%--	            --%>
+<%--            </div>--%>
+        
+            <g:if test="${isCrFrCampBenOrAdmin}">
+                
+               <span class="read-more">${raw(project?.story)}</span>
+                
+            </g:if>
+            <g:else>
+                <div class="read-more-team">
+                    <p class="campaignStory justify">${raw(currentTeam?.story)}</p>
+                </div>
+                <div class="read-more">
+                    <p class="campaignStory justify">${raw(project?.story)}</p>
+                </div>
+            </g:else>
         </div>
         
-        <h4 class="panel-title text-center show-read-more-font">
-            <a href="#"  id="sh-read-more-story" class="sh-read-more-story">Read more..</a>
-        </h4>
+<%--        <h4 class="panel-title text-center show-read-more-font">--%>
+<%--            <a href="javascript:void(0);"  id="sh-read-more-story" class="sh-read-more-story">Read more..</a>--%>
+<%--        </h4>--%>
+            
+            
+            
         
         <div class="show-tags-topbottom">
 	         <g:if test="${!remainingHashTags.isEmpty()}">

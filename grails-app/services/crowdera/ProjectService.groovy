@@ -377,30 +377,36 @@ class ProjectService {
         }
     }
     
-    def getProjectStory(Project project, def currentTeam, int storySize){
-        int storyLength = 0
-        def projectStory
-        
-        if(storySize > 5000){
-            if(project.user == currentTeam.user){
-               projectStory = project.story[storySize..-1]   
-               return projectStory
-            }else{
-                projectStory = (currentTeam.story!=null)?currentTeam.story[storySize..-1]:project?.story[storySize..-1]
-                return projectStory
-            }
-        }else{
-            if(project.user == currentTeam.user){
-                storyLength = project?.story.size()
-                return (storyLength > 5000)?project?.story[0..storySize]:project?.story
-            }else{
-                storyLength = (currentTeam?.story!=null)?currentTeam?.story.size():project?.story.size()
-                def teamStory =(storyLength > 5000 && currentTeam.story!=null)?currentTeam?.story[0..storySize]:currentTeam?.story
-                return (teamStory!=null)?teamStory:((project.story!=null)?project?.story[0..storySize]:project?.story)
-            }
-        }
-        
-    }
+//    def getProjectStory(Project project, def currentTeam, int storySize){
+//        int storyLength = 0
+//        def projectStory
+//        
+//        if(storySize > 5000){
+//            if(project.user == currentTeam.user){
+//               projectStory = project.story[storySize..-1]
+//               println"project story ==="+projectStory
+//               return projectStory
+//            }else{
+////                projectStory = (currentTeam.story!=null)?currentTeam.story[storySize..-1]:project?.story[storySize..-1]
+//                if(currentTeam.story!= null){
+//                    projectStory = currentTeam.story[storySize..-1]
+//                }else {
+//                    projectStory = project.story[storySize..-1]
+//                }
+//                return projectStory
+//            }
+//        }else{
+//            if(project.user == currentTeam.user){
+//                storyLength = project?.story.size()
+//                return (storyLength > 5000)?project?.story[0..storySize]:project?.story
+//            }else{
+//                storyLength = (currentTeam?.story!=null)?currentTeam?.story.size():project?.story.size()
+//                def teamStory =(storyLength > 5000 && currentTeam.story!=null)?currentTeam?.story[0..storySize]:currentTeam?.story
+//                return (teamStory!=null)?teamStory:((project.story!=null)?project?.story[0..storySize]:project?.story)
+//            }
+//        }
+//        
+//    }
 
      def getUpdateCommentDetails(def request){
          def checkid= request.getParrmeter('checkID')
@@ -2765,8 +2771,8 @@ class ProjectService {
         }
     }
     
-    def setAttachedFileForProject(CommonsMultipartFile projectcomment) {
-        if (!projectcomment?.empty && projectcomment.size < 1024 * 1024 * 3) {
+    def setAttachedFileForProject(CommonsMultipartFile attachFile) {
+        if (!attachFile?.empty && attachFile.size < 1024 * 1024 * 3) {
             def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
             def awsSecretKey = "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"
             def bucketName = "crowdera"
@@ -2776,22 +2782,21 @@ class ProjectService {
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
 
-            int index = projectcomment.getOriginalFilename().lastIndexOf(".")
-            String extName = projectcomment.getOriginalFilename().substring(index);
+            int index = attachFile.getOriginalFilename().lastIndexOf(".")
+            String extName = attachFile.getOriginalFilename().substring(index);
             def fileName =  UUID.randomUUID().toString() + extName
             
             def tempFile = new File("${fileName}")
             def key = "${folder}/${fileName}"
             key = key.toLowerCase()
-            projectcomment.transferTo(tempFile)
+            attachFile.transferTo(tempFile)
             def object = new S3Object(tempFile)
             object.key = key
 
             s3Service.putObject(s3Bucket, object)
             tempFile.delete()
 
-            def attachedmentsfileforproject = "//s3.amazonaws.com/crowdera/${key}"
-            return attachedmentsfileforproject
+            return "//s3.amazonaws.com/crowdera/${key}";
         }
     }
     

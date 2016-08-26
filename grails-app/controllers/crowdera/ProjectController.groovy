@@ -293,14 +293,14 @@ class ProjectController {
 	}
     
     
-    def loadProjectStory(){
-        def currentTeam = Team.get(params.team)
-        def project = Project.get(params.projectId)
-        def projectStory = projectService.getProjectStory(project, currentTeam, params.int('storyLength'))
-        def storyMap = ["projectStory":projectStory, "storySize":params.int('storyLength')]
-    
-        render new JSONObject(storyMap)
-    }
+//    def loadProjectStory(){
+//        def currentTeam = Team.get(params.team)
+//        def project = Project.get(params.projectId)
+//        def projectStory = projectService.getProjectStory(project, currentTeam, params.int('storyLength'))
+//        def storyMap = ["projectStory":projectStory, "storySize":params.int('storyLength')]
+//    
+//        render new JSONObject(storyMap)
+//    }
     
     def campaignShare() {
         def title = projectService.getVanityTitleFromId(params.id)
@@ -724,11 +724,9 @@ class ProjectController {
        
         CommonsMultipartFile projectcomment = params.attachedFileForProject
         def fileUrl = projectService.setAttachedFileForProject(projectcomment)
-        println "fileUrl i " + fileUrl
         
         def reqUrl
         if (!user) {
-            
             Cookie cookie = new Cookie("requestUrl", reqUrl)
             cookie.path = '/'
             cookie.maxAge= 600
@@ -1965,6 +1963,7 @@ class ProjectController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def editComment() {
 		def vanityUserName = userService.getVanityNameFromUsername(params.fr, params.projectId)
+        
 		if (params.commentId || params.teamCommentId) {
 			if (params.commentId) {
 				redirect (action:'show', controller:'project', fragment: 'comments', params:[projectTitle:params.projectTitle, fr: vanityUserName, commentId: params.commentId])
@@ -1985,13 +1984,22 @@ class ProjectController {
 
 		if (params.commentId) {
 			projectComment = projectService.getProjectCommentById(params.long('commentId'))
+            
 			if (projectComment) {
+                CommonsMultipartFile attachFileUrl = params.attachFileUrls
+                String fileUrl = projectService.setAttachedFileForProject(attachFileUrl)
+                
+                projectComment.attachFile = fileUrl;
 				projectComment.comment = params.comment
 			}
 		}
 		if (params.teamCommentId) {
 			teamcomment = projectService.getTeamCommentById(params.long('teamCommentId'))
 			if (teamcomment) {
+                CommonsMultipartFile attachFileUrl = params.attachFileUrls
+                String fileUrl = projectService.setAttachedFileForProject(attachFileUrl)
+                
+                teamcomment.attachteamfile = fileUrl;
 				teamcomment.comment = params.comment
 			}
 		}
@@ -2488,6 +2496,25 @@ class ProjectController {
                     def redirectUri=base_url+'/project/getSocialContactsCode'
                     render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
                 }
+            break;
+            case 'testIndia':
+            if(provider.equals('google')){
+                def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+                def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+                def scope = grailsApplication.config.crowdera.gmail.SCOPE
+                def redirectUri=base_url+'/project/getSocialContactsCode'
+                render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+            }else if(provider.equals("constant")){
+                def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+                def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+                def redirectUri='http%3A%2F%2ftest%2Ecrowdera%2Eco%2Fproject%2FgetSocialContactsCode'
+                render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+            }else if(provider.equals('mailchimp')){
+                def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
+                def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+                def redirectUri=base_url+'/project/getSocialContactsCode'
+                render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
+            }
             break;
             case 'staging':
                 if(provider.equals('google')){

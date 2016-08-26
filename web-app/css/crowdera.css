@@ -2468,7 +2468,7 @@ a.footerlink {
 	text-align: left; 
 }
 .show-comments-details{
-	margin-top: 30px;
+	margin-top: 50px;
 }
 .show-comments-date{
 	text-align: left;
@@ -5629,7 +5629,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-       div.rewardsection {
+	div.sh-campaignupdate {
+        border: 1px solid #e7e7e7;
+        box-shadow: none;
+    }
+    div.rewardsection {
         border: 2px solid #f7f7f7;
     }
     div.show-reasons {
@@ -8468,6 +8472,35 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.show-page-totalteams {
+        width: 124%;
+    }
+    div.show-teamsnumber a {
+        font-size: 29px;
+    } 
+    img.telephone-icons {
+        left: 15px;
+        padding: 8px;
+        top: 9px;
+        width: 17.5%;
+    }
+    div.show-contact-teamtile span {
+        padding-top: 14px;
+        width: 75%;
+    }
+    div.locationandtelephone {
+        margin-left: 0;
+        text-align: left;
+    }
+    img.location-icon {
+        left: 7px;
+        padding: 0;
+        top: 16px;
+        width: 8.5%;
+    }
+    div.location-icon-mob {
+        left: 15px;
+    }
     div.show-contributionpadding {
         padding-bottom: 6px;
         padding-left: 6px;
@@ -9228,7 +9261,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-top: 0px;
     }
     h2.rewardsectionheading {
-	    font-size: 24px;
+	    font-size: 23px;
 	    padding-top: 10px;
     }
     img.sh-img-update {
@@ -15051,6 +15084,10 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.sh-campaignupdate {
+        border: 1px solid #e7e7e7;
+        box-shadow: none;
+    }
     div.rewardsection {
         border: 2px solid #f7f7f7;
     }
@@ -17460,6 +17497,7 @@ textarea.textarea-embed-video {
 .show-tiles-padding {
     padding-top: 20px;
     border-top: medium none;
+    border-left: 0 none;
 }
 .show-icons {
     left: 103px;
@@ -17514,7 +17552,7 @@ textarea.textarea-embed-video {
     color: #5a6771;
     line-height: 36px;
     background-color: #fff;
-    border-bottom: 1px solid #e7e7e7;
+    border-bottom: 2px solid #e7e7e7;
     border-right: 2px solid #e7e7e7;
     overflow: hidden;
 }

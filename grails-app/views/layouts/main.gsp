@@ -54,8 +54,7 @@
     fbq('init', '651945004959238');
     fbq('track', "PageView");</script>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=651945004959238&ev=PageView&noscript=1"
-    /></noscript>
+    src="https://www.facebook.com/tr?id=651945004959238&ev=PageView&noscript=1"></noscript>
     
     <!-- End Facebook Pixel Code -->
 

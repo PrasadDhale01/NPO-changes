@@ -25,10 +25,21 @@
      <span class="col-lg-12 col-sm-12 col-md-12 show-funds-padding">Funds Raised</span>
      <br>
      <div class="show-contact-teamtile">
-         <g:if test="${project.beneficiary.telephone}">
-             <span class="col-lg-12 col-sm-12 col-md-12 show-teams-padding">${project.beneficiary.telephone}</span>
-         </g:if>
-         <span class="col-lg-12 col-sm-12 col-md-12">Palo Alto, California, US</span>
+         <div class="col-lg-12 col-sm-12 col-md-12 locationandtelephone">
+             <g:if test="${project.beneficiary.telephone}">
+                 <img class="telephone-icons col-lg-4 col-sm-4 col-md-4" src="//s3.amazonaws.com/crowdera/assets/e95db1c4-b5a1-4437-8d1d-9cc41d578bab.png">
+                 <span class="col-lg-8 col-sm-8 col-md-8 show-teams-padding">${project.beneficiary.telephone}</span>
+             </g:if>
+         </div>
+         <div class="col-lg-12 col-sm-12 col-md-12 locationandtelephone location-icon-mob">
+             <img class="location-icon col-lg-4 col-sm-4 col-md-4" src="//s3.amazonaws.com/crowdera/assets/c9a2645e-0a60-41f0-9f9d-53295a878981.png">
+             <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                  <span class="col-lg-8 col-sm-8 col-md-8">206, Sankalp Nagar,Wathoda layout, Nagpur, Maharashtra, India</span>
+             </g:if>
+             <g:else>
+                  <span class="col-lg-8 col-sm-8 col-md-8">Palo Alto, California, US</span>
+             </g:else>
+         </div>
     </div>
     
 </div>

@@ -8,7 +8,7 @@
 		    def index = 0
 		%>
 	    <g:each in="${(1..rows).toList()}" var="row">
-		    <div class="row campaignupdate">
+		    <div class="row sh-campaignupdate">
                 <% if (index < count) { %>
                     <g:render template="/project/manageproject/campaigngrid" model="['projectUpdate': projectUpdates.get(index++), 'i': i--]"></g:render>
                 <% } %>

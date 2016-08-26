@@ -4,7 +4,10 @@ $(function() {
     changeTeamStatus();
     $('#editimg').hide();
     $('#editTeamImg').hide();
-    $('#resumefilesize').hide();
+    
+    
+    
+    $('#fileforcomments').hide();
     $('#resultOutput').hide();
 
     var currentEnv=$('#currentEnv').val();
@@ -14,12 +17,35 @@ $(function() {
     hash && $('ul.nav a[href="' + hash + '"]').tab('show');
     
     /********ON-Browsers-refreshing-mode-show-tabs-active-tile*********/
+    
+
+    if($('#essentials')){
+    	if(loadOrganizationTemplate("story")){
+    		loadOrganizationTemplate("story");
+    	}
+    }else if($('#projectupdates')){
+    	if(loadOrganizationTemplate("update")){
+    		loadOrganizationTemplate("update");
+    	}
+    }else if($('#manageTeam')){
+    	if(loadOrganizationTemplate("team")){
+    		loadOrganizationTemplate("team");
+    	}
+    }else if($('#contributions')){
+    	if(loadOrganizationTemplate("contribution")){
+    		loadOrganizationTemplate("contribution");
+    	}
+    }
+    
     if($('li.active').find('a.show-tabs-text').hasClass('showStoryTemplate')){
     	loadOrganizationTemplate("story");
+    	$('button.sh-fund-donate-contri').text('Fund Now!');
     }else if($('li.active').find('a.show-tabs-text').hasClass('showTeamTemplate')){
     	loadOrganizationTemplate("team");
+    	$('button.sh-fund-donate-contri').text('DONATE');
     }else if($('li.active').find('a.show-tabs-text').hasClass('showContributionTemplate')){
     	loadOrganizationTemplate("contribution");
+    	$('button.sh-fund-donate-contri').text('CONTRIBUTE');
     }else if($('li.active').find('a.show-tabs-text').hasClass('showCommentTemplate')){
     	loadOrganizationTemplate("story");
     }
@@ -393,6 +419,8 @@ $(function() {
              console.log('An error occured');
          });
      }
+     
+    
 
     /***********************Youtube url********************************/
      
@@ -441,6 +469,34 @@ $(function() {
         		error.insertAfter(element);
         	}
         }
+    });
+    
+    
+    
+    $(".attachfileforcomments").change(function(event) {
+    	
+    	
+        var file =this.files[0];
+        if(validateExtensionForTextDocx(file.name) == false){
+	        $('#resultOutput').hide();
+	        $("#fileforcomments").show();
+        	$("#fileforcomments").html("Only text,docx and pdf files are allowed.");
+	        this.value=null;
+	        return;
+	    }
+	    else{
+	        if (file.size > 1024 * 1024 * 3) {
+	            $('#resultOutput').hide();
+	            $('#fileforcomments').show();
+	            $("#fileforcomments").html("The file \"" +file.name+ "\" you are attempting to upload is larger than the permitted size of 3MB.");
+	            $('#resumefile').val('');
+	        } else {
+                $('#resultOutput').show();
+                $('#fileforcomments').hide();
+                $("#resultOutput").html(""+file.name);
+                
+	        }
+	    } 
     });
     
     $('#teamSaveButton').on('click', function() {
@@ -592,29 +648,7 @@ $(function() {
         }
     });
     
-    $(".resumefile").change(function(event) {
-        var file =this.files[0];
-        if(validateExtension(file.name) == false){
-	        $('#resultOutput').hide();
-	        $("#resumefilesize").show();
-        	$("#resumefilesize").html("Only text,docx and pdf files are allowed.");
-	        this.value=null;
-	        return;
-	    }
-	    else{
-	        if (file.size > 1024 * 1024 * 3) {
-	            $('#resultOutput').hide();
-	            $('#resumefilesize').show();
-	            $("#resumefilesize").html("The file \"" +file.name+ "\" you are attempting to upload is larger than the permitted size of 3MB.");
-	            $('#resumefile').val('');
-	        } else {
-                $('#resultOutput').show();
-                $('#resumefilesize').hide();
-                $("#resultOutput").html(""+file.name);
-                
-	        }
-	    } 
-    });
+   
     
     function validateExtension(imgExt) {
           var allowedExtensions = new Array("jpg","JPG","png","PNG");
@@ -626,6 +660,18 @@ $(function() {
               }
           }
           return false;
+    }
+    
+    function validateExtensionForTextDocx(imgExt) {
+    	var allowedExtensions = new Array("txt","docx","doc","pdf");
+    	for(var imgExtImg=0; imgExtImg < allowedExtensions.length; imgExtImg++)
+        {
+    		imageFile = imgExt.lastIndexOf(allowedExtensions[imgExtImg]);
+    		if(imageFile != -1){
+    			return true;
+    		}
+        }
+    	return false;
     }
     
     /*************************Edit video for team*************************/
@@ -834,7 +880,7 @@ $(function() {
     		 $('button.sh-fund-donate-contri').text('Fund Now!');
     	}
     	if ($(this).hasClass('showUpdateTemplate')){
-    		loadOrganizationTemplate("update");
+    		loadOrganizationTemplate("story");
     	}
     	if ($(this).hasClass('showTeamTemplate')){
     		loadOrganizationTemplate("team");
@@ -1502,36 +1548,39 @@ $(function() {
        
    });
     
-    $('#sh-read-more-story').click(function(){
-    	if($(this).hasClass('sh-read-more-story')){
-    		loadCampaignStory(5001);
-    	}else{
-    		loadCampaignStory(5000);
-    	}
-    	
-    });
+//    $('#sh-read-more-story').click(function(){
+//    	if($(this).hasClass('sh-read-more-story')){
+//    		loadCampaignStory(5001);
+//    	}else{
+//    		loadCampaignStory(5000);
+//    	}
+//    	
+//    });
     
-    loadCampaignStory(5000);
+//    loadCampaignStory(5000);
+    
+    showMoreOrLess("read-more", 5000);
+    showMoreOrLess("read-more-team", 5000);
 });
 
-function loadCampaignStory(storyLength){
-	$.ajax({
-		url:$('#b_url').val() + '/project/loadProjectStory',
-		type:'post',
-		data:"projectId="+$("#campaignId").val()+"&storyLength="+storyLength+"&team="+$('#teamId').val(),
-		success: function(data){
-			var jsonData = $.parseJSON(data);
-			
-			if(jsonData.storySize == 5000){
-				$('#sh-read-more-story').removeClass().addClass("sh-read-more-story").text('Read more...');
-			}else{
-				$('#sh-read-more-story').removeClass().addClass("sh-read-less-story").text('Read less...');
-			}
-			
-		   $("#show-story-read").html(jsonData.projectStory);
-		}
-	});
-}
+//function loadCampaignStory(storyLength){
+//	$.ajax({
+//		url:$('#b_url').val() + '/project/loadProjectStory',
+//		type:'post',
+//		data:"projectId="+$("#campaignId").val()+"&storyLength="+storyLength+"&team="+$('#teamId').val(),
+//		success: function(data){
+//			var jsonData = $.parseJSON(data);
+//			
+//			if(jsonData.storySize == 5000){
+//				$('#sh-read-more-story').removeClass().addClass("sh-read-more-story").text('Read more...');
+//			}else{
+//				$('#sh-read-more-story').removeClass().addClass("sh-read-less-story").text('Read less...');
+//			}
+//			
+//		   $("#show-story-read").html(jsonData.projectStory);
+//		}
+//	});
+//}
 
 function showNavigation(){
 	var indicator = document.getElementById('indicators');
@@ -1593,4 +1642,24 @@ function loadOrganizationTemplate(activeTab){
 			}
 		});
 	}
+}
+function showMoreOrLess(divClass, strLength){
+	var readMoreHtml = $("."+divClass).html();
+	var lessText = readMoreHtml.substr(0,strLength);
+	
+	if(readMoreHtml.length > strLength){
+		$("."+divClass).html(lessText).append("<a href='' class='read-more-link'> Show More</a>");
+	}else{
+		$("."+divClass).html(readMoreHtml);
+	}
+	
+	$("body").on("click",".read-more-link", function(event){
+		event.preventDefault();
+		$(this).parent("."+divClass).html(readMoreHtml).append("<a href='' class='show-less-link'> Show Less</a>")
+	});
+	
+	$("body").on("click",".show-less-link", function(event){
+		event.preventDefault();
+		$(this).parent("."+divClass).html(readMoreHtml.substr(0,strLength)).append("<a href='' class='read-more-link'> Show More</a>")
+	});
 }

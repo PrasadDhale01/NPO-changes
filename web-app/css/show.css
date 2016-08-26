@@ -415,3 +415,36 @@ textarea.show-textareawidth {
     font-size: 20px;
     font-weight: 900;
 }
+.sh-attach-btn {
+    font-size: 12px;
+    padding: 5px;
+    width: 106px;
+}
+.sh-attach-file-icon{
+    height: 19px; 
+    width: 8px !important; 
+    margin-right: 7px;
+}
+.location-icon {
+    width: 17.5%;
+    padding-top: 15px;
+    left: 20px;
+}
+.telephone-icons {
+    width: 17%;
+    top: 17px;
+    left: 19px;
+}
+.locationandtelephone {
+    text-align: left;
+    margin-left: 8%;
+}
+.show-label-msz {
+    width: 54%;
+}
+.sh-campaignupdate {
+    background-color: #fff;
+    margin-bottom: 15px;
+    padding: 15px 0;
+    box-shadow: 2px 2px 1px #e7e7e7;
+}

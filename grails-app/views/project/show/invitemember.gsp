@@ -32,7 +32,7 @@
                               <div><label>Add to contacts</label></div>
                               <div class="socialContactsImg">
                                   <a href="#"><img class="constantContact <g:if test='${provider=="constant"}'> highlightIcon </g:if> img-responsive" alt="Constantcontact" src="//s3.amazonaws.com/crowdera/assets/constantcontact-icon.png"></a>&nbsp;
-                                  <a href="#"><img class="gmailContact <g:if test='${provider=="google"}'> highlightIcon </g:if> img-responsive" alt="Gmail" src="//s3.amazonaws.com/crowdera/assets/show-original-google-color.png"></a>
+                                  <a href="#"><img class="gmailContact <g:if test='#'> highlightIcon </g:if> img-responsive" alt="Gmail" src="//s3.amazonaws.com/crowdera/assets/show-original-google-color.png"></a>
                                   <a href="#"><img class="mailchimpContact <g:if test='${provider=="mailchimp"}'> highlightIcon </g:if> img-responsive" alt="MailChimp" src="//s3.amazonaws.com/crowdera/assets/mailchimp.png"></a>
                                   <g:if test="${ currentEnv=='test' || currentEnv=='development'}">
                                       <a href="#"><img class="facebookContact <g:if test='${provider=="facebook"}'> highlightIcon </g:if> img-responsive" alt="Facebook" src="//s3.amazonaws.com/crowdera/assets/contribution-fb-share.png"></a>

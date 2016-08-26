@@ -239,6 +239,7 @@ $(function() {
         $('.list-group.twitterHandler').find('a.list-group-item').removeClass('active');
         $(this).addClass('active');
         var rewardId = $('a.list-group-item.active').attr('id');
+        $("#rewardId").val(rewardId);
         showShippingDetails(rewardId);
     });
     

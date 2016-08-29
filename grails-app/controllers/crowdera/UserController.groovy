@@ -323,7 +323,9 @@ class UserController {
     
     def logout() {
         SecurityContextHolder.clearContext()
-        render(view: '/login/error', model: [facelogoutmsg: 'A user with that email id already exists. Please log into your account.'])
+//        render(view: '/login/error', model: [facelogoutmsg: 'A user with that email id already exists. Please log into your account.'])
+		  flash.message = "A user with that email Id already exists. Please,log into your account."
+		  render view: '/login/auth', model:[message: '']
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])

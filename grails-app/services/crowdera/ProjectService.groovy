@@ -2944,7 +2944,7 @@ class ProjectService {
                 }
             }
             sortedProjects =activeProjects.sort{contributionService.getPercentageContributionForProject(it)}
-            finalList = draftProjects.reverse()+ pendingProjects.reverse() + sortedProjects.reverse() + endedProjects.reverse() 
+            finalList = draftProjects.sort{it.created}.reverse() + pendingProjects.sort{it.created}.reverse() + sortedProjects.sort{it.created}.reverse() + endedProjects.sort{it.created}.reverse()
         }
         return finalList
     }
@@ -3314,13 +3314,23 @@ class ProjectService {
     }
 
 	def getLiveProjects(def projects){
-		def liveProjects = []
+        List liveProjects = []
 		projects.each{project ->
 			if(!isProjectDeadlineCrossed(project) && project.validated){
 				liveProjects.add(project);
 			}
 		}
 		return liveProjects
+	}
+	
+	def getEndedCampaigns(def projects){
+		List endedCampaigns = []
+		projects.each{project ->
+			if(isProjectDeadlineCrossed(project)){
+				endedCampaigns.add(project);
+			}
+		}
+		return endedCampaigns
 	}
 
     def setHomePageCampaignByEnv(def campaignOne, def campaingTwo, def campaingThree, def currentEnv){
@@ -5018,7 +5028,6 @@ class ProjectService {
         
         List projects = []
         List totalProjects = []
-        List endedCampaigns = []
         List activeCampaigns = []
         if (condition == 'Live' || condition == 'Ended' || condition=="Homepage" || condition=='Deadline') {
             if (country == 'INDIA') {
@@ -5028,30 +5037,32 @@ class ProjectService {
                 
                 totalProjects = Project.findAllWhere(payuStatus: false, validated: true, inactive: false)
             }
-            totalProjects.each { project->
-                if (isProjectDeadlineCrossed(project)) {
-                    endedCampaigns.add(project)
-                } else {
-                    activeCampaigns.add(project)
-                }
-            }
+//            totalProjects.each { project->
+//                if (isProjectDeadlineCrossed(project)) {
+//                    endedCampaigns.add(project)
+//                } else {
+//                    activeCampaigns.add(project)
+//                }
+//            }
         }
         
         switch (condition) {
             case 'Ended':
-                projects = endedCampaigns
+                def endedCampaigns= getEndedCampaigns(totalProjects)
+                projects = endedCampaigns.sort{it.created}.reverse()
                 break;
             case 'Pending':
                 if (country == 'INDIA') {
-                    projects = Project.findAllWhere(payuStatus: true, draft: false, inactive: false, rejected: false, validated: false)
+                    projects = Project.findAllWhere(payuStatus: true, draft: false, inactive: false, rejected: false, validated: false).sort{it.created}.reverse()
                     checkProjectExistence(projects)
                 } else if(country == 'USA') {
-                    projects = Project.findAllWhere(payuStatus: false, draft: false, inactive: false, rejected: false, validated: false)
+                    projects = Project.findAllWhere(payuStatus: false, draft: false, inactive: false, rejected: false, validated: false).sort{it.created}.reverse()
                     checkProjectExistence(projects)
                 }
                 break;
             case 'Live':
-                projects = activeCampaigns
+                def liveProjects = getLiveProjects(totalProjects)
+                projects = liveProjects.sort{it.created}.reverse()
                 break;
             case 'Homepage':
                 def liveProjects = getLiveProjects(totalProjects)
@@ -5062,18 +5073,18 @@ class ProjectService {
                 break;
             case 'Draft':
                 if (country == 'INDIA') {
-                    projects = Project.findAllWhere(payuStatus: true, draft: true, inactive: false, rejected: false)
+                    projects = Project.findAllWhere(payuStatus: true, draft: true, inactive: false, rejected: false).sort{it.created}.reverse()
                     checkProjectExistence(projects)
                 } else if(country == 'USA') {
-                    projects = Project.findAllWhere(payuStatus: false, draft: true, inactive: false, rejected: false)
+                    projects = Project.findAllWhere(payuStatus: false, draft: true, inactive: false, rejected: false).sort{it.created}.reverse()
                     checkProjectExistence(projects)
                 }
                 break;
             case 'Rejected':
                 if (country == 'INDIA') {
-                    projects = Project.findAllWhere(payuStatus: true, rejected: true)
+                    projects = Project.findAllWhere(payuStatus: true, rejected: true).sort{it.created}.reverse()
                 } else if(country == 'USA') {
-                    projects = Project.findAllWhere(payuStatus: false, rejected: true)
+                    projects = Project.findAllWhere(payuStatus: false, rejected: true).sort{it.created}.reverse()
                 }
                 break;
             case 'Deleted':

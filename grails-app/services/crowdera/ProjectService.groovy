@@ -496,7 +496,7 @@ class ProjectService {
 	}
 
     def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
-        def emailId, twitter,custom, userId,anonymous
+        def emailId, twitter,custom, userId,anonymous,panNumber
         def currency
         if (project.payuEmail) {
             currency = 'INR'
@@ -505,6 +505,7 @@ class ProjectService {
             custom =  request.getParameter('shippingCustom')
             userId = request.getParameter('tempValue')
             anonymous = request.getParameter('anonymous')
+            panNumber = request.getParameter('panNumber')
         } else {
             currency = 'USD'
             emailId = request.getParameter('shippingEmail')
@@ -545,7 +546,8 @@ class ProjectService {
             contributorName: name,
             contributorEmail:username,
             physicalAddress: shippingDetail.address,
-            currency : currency
+            currency : currency,
+            panNumber : panNumber
         )
         project.addToContributions(contribution).save(failOnError: true)
 		 
@@ -4392,7 +4394,7 @@ class ProjectService {
         def firstname =  params.firstname
         def email = params.email
         def productinfo = params.productinfo
-        def surl = base_url + "/fund/payureturn?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&fundraiser=${fundraiser.id}&physicalAddress=${address}&shippingCustom=${params.shippingCustom}&shippingEmail=${params.shippingEmail}&shippingTwitter=${params.twitterHandle}&name=${params.firstname} ${params.lastname}&email=${params.email}&anonymous=${params.anonymous}&projectTitle=${params.projectTitle}"
+        def surl = base_url + "/fund/payureturn?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&fundraiser=${fundraiser.id}&physicalAddress=${address}&shippingCustom=${params.shippingCustom}&shippingEmail=${params.shippingEmail}&shippingTwitter=${params.twitterHandle}&name=${params.firstname} ${params.lastname}&email=${params.email}&anonymous=${params.anonymous}&projectTitle=${params.projectTitle}&panNumber=${params.panNumber}"
 
         def furl = base_url + "/error"
         def txnid = generateTransId()
@@ -5978,6 +5980,7 @@ class ProjectService {
         session['twitterHandle'] = params.twitterHandle
         session['shippingCustom'] = params.shippingCustom
         session['projectTitle'] = params.projectTitle
+        session['panNumber'] = params.panNumber
         def address = getAddress(params)
         session['address'] = address
     }

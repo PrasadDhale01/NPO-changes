@@ -8,6 +8,11 @@ $(function() {
         return $('.list-group-item.active').data('rewardprice');
     }
     
+    var optionChosen = 'visa';
+    $('#citrusScheme').change(function() {
+        optionChosen = $(this).val();
+    });
+    
     $('#myWizard').easyWizard({
         showButtons: false,
         submitButton: false
@@ -24,6 +29,21 @@ $(function() {
     		$(".ostate").show();
     	} else {
     		$(".ostate").hide();
+    	}
+    });
+    
+    $("#isTaxreceipt").change(function() {
+    	if ($(this).is(':checked')) {
+    		$(".pannumberdiv").slideDown();
+    		
+    		$('[name="panNumber"]').rules( "add", {
+                required: true,
+                minlength: 10,
+                maxlength: 10
+            });
+    	} else {
+    		$(".pannumberdiv").slideUp();
+    		$('[name="panNumber"]').rules('remove');
     	}
     });
     
@@ -111,8 +131,14 @@ $(function() {
                 required: true
             },
             citrusCvv: {
-                required: true,
-                maxlength: 4
+            	required: true,
+                maxlength: function(){
+                    if (optionChosen === 'visa' || optionChosen === 'mastercard') {
+                        return 3;
+                    } else {
+                        return 4;
+                    }
+                }
             },
             citrusCardHolder: {
                 required: true,
@@ -193,7 +219,7 @@ $(function() {
         });
         
         $('#btnCheckoutContinue').click(function() {
-            if($('#amount').valid()) {
+            if($('#amount').valid() && $("#panNumber").valid()) {
             	var rewardId = getSelectedRewardId();
             	if (rewardId === undefined) {
                 	rewardId = 1;
@@ -529,7 +555,8 @@ $(function() {
                     'shippingEmail' : $('input[name= shippingEmail]').val(),
                     'twitterHandle' : $('input[name= twitterHandle]').val(),
                     'shippingCustom': $('input[name= shippingCustom]').val(),
-                    'projectTitle'  : $('input[name= projectTitle]').val()
+                    'projectTitle'  : $('input[name= projectTitle]').val(),
+                    'panNumber'     : $('input[name= panNumber]').val()
                 };
 
                 $.ajax({
@@ -603,6 +630,25 @@ $(function() {
 //        .focus(showPopover)
 //        .blur(hidePopover)
 //        .hover(showPopover, hidePopover);
+        
+     // setup card inputs;       
+        $('#citrusExpiry').payment('formatCardExpiry');
+        $('#citrusCvv').payment('formatCardCVC');
+        $('#citrusNumber').keyup(function() {
+            
+	        var cardNum = $('#citrusNumber').val().replace(/\s+/g, '');        
+	        var type = $.payment.cardType(cardNum);
+	        console.log(type);
+	        if(type!='amex')
+	        	$("#citrusCvv").attr("maxlength","3");
+	        else
+	        	$("#citrusCvv").attr("maxlength","4");
+	        
+	        $('#citrusNumber').payment('formatCardNumber');                                            
+	        $("#citrusScheme").val(type);
+            
+        });
+        
 
 });
 
@@ -749,4 +795,3 @@ function dateValidator(value) {
 	 	 return false;
 	 }
 }
-

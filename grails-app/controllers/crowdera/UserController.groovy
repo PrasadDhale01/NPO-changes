@@ -1045,7 +1045,7 @@ class UserController {
         def contribution = Contribution.get(params.id)
         
         if (contribution) {
-            def title = contribution.project.organizationName
+            def title = contribution?.project.organizationName
             def reportDef = userService.generateTaxreceiptPdf(contribution);
             ByteArrayOutputStream bytes = jasperService.generateReport(reportDef)
             response.setHeader("Content-Disposition", 'attachment; filename="taxreceipt-"'+title+'".pdf"');

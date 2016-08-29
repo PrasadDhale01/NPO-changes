@@ -213,3 +213,6 @@ div.citrusfundbody .btn.btn-info {
 	font-weight: 600;
 	font-size: 13px;
 }
+.pannumberdiv {
+	display: none;
+}

@@ -170,7 +170,7 @@ modules = {
     
     citrusfundjs {
         resource url: 'js/fund/citrusfund.js'
-        dependsOn 'underscorejs', 'crowderajs', 'easywizardjs'
+        dependsOn 'underscorejs', 'crowderajs', 'easywizardjs', 'jqueryPaymentjs'
     }
     
     userlistjs {
@@ -178,6 +178,9 @@ modules = {
         dependsOn 'crowderajs','datatablejs'
     }
     
+    jqueryPaymentjs {
+        resource url: 'js/jquery.payment.min.js'
+    }
     /* CSS */
     datatablecss {
         resource url: 'css/dataTables.bootstrap.min.css', attrs: [media: 'screen']

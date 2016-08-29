@@ -630,6 +630,25 @@ $(function() {
 //        .focus(showPopover)
 //        .blur(hidePopover)
 //        .hover(showPopover, hidePopover);
+        
+     // setup card inputs;       
+        $('#citrusExpiry').payment('formatCardExpiry');
+        $('#citrusCvv').payment('formatCardCVC');
+        $('#citrusNumber').keyup(function() {
+            
+	        var cardNum = $('#citrusNumber').val().replace(/\s+/g, '');        
+	        var type = $.payment.cardType(cardNum);
+	        console.log(type);
+	        if(type!='amex')
+	        	$("#citrusCvv").attr("maxlength","3");
+	        else
+	        	$("#citrusCvv").attr("maxlength","4");
+	        
+	        $('#citrusNumber').payment('formatCardNumber');                                            
+	        $("#citrusScheme").val(type);
+            
+        });
+        
 
 });
 
@@ -776,4 +795,3 @@ function dateValidator(value) {
 	 	 return false;
 	 }
 }
-

@@ -8,7 +8,7 @@
     <r:require modules="fundcss" />
     <title>Crowdera- Contribute</title>
     
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"> </script>
+    <script src="/js/jquery-1.11.1.min.js"> </script>
     <script src="/js/citrus.js"></script>
 </head>
 <body>
@@ -321,7 +321,6 @@
         </div>
         
     </div>
-    
     <script type="text/javascript">
         var $jq = jQuery.noConflict();
     
@@ -356,29 +355,17 @@
     
         function citrusServerErrorMsg(errorResponse) {
             console.log(errorResponse);
+            if (errorResponse.pgRespCode == 125) {
+                alert("Transaction Cannot be completed! Please verify your payment settings");
+            } else {
+                alert("Transaction Cannot be completed! Please verify your payment settings");
+            }
         }
-    
+        
         function citrusClientErrMsg(errorResponse) {
             console.log(errorResponse);
         }
 
-        // setup card inputs;       
-        jQuery('#citrusExpiry').payment('formatCardExpiry');
-        jQuery('#citrusCvv').payment('formatCardCVC');
-        jQuery('#citrusNumber').keyup(function() {
-            
-            var cardNum = jQuery('#citrusNumber').val().replace(/\s+/g, '');        
-            var type = jQuery.payment.cardType(cardNum);
-            console.log(type);
-                jQuery("#citrusNumber").css("background-image", "url(images/" + type + ".png)");                        
-                if(type!='amex')
-                jQuery("#citrusCvv").attr("maxlength","3");
-                else
-                jQuery("#citrusCvv").attr("maxlength","4");                     
-                jQuery('#citrusNumber').payment('formatCardNumber');                                            
-                jQuery("#citrusScheme").val(type);      
-        });
-        
     </script>
 
 </body>

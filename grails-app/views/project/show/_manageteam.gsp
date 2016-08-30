@@ -23,7 +23,7 @@
             </g:if>
             <g:else>
            
-                <div class="show-page-totalteams">${totalteams.size()}&nbsp;&nbsp;<g:if test="${totalteams.size() > 1}">Teams</g:if><g:else>Team</g:else></div></a>
+                <div class="show-page-totalteams">${totalteams.size()}&nbsp;&nbsp;<g:if test="${totalteams.size() > 1}">Teams</g:if><g:else>Team</g:else></div>
             </g:else>
         </div>
 	<ul class="nav nav-pills">

@@ -100,7 +100,7 @@ $(function() {
     	 var picReader = new FileReader();
          picReader.addEventListener("load",function(event) {
              var picFile = event.target;
-             $('#comment-img-id').attr('src',picFile.result);
+             $('.comment-img-id').attr('src',picFile.result);
              $('.commentResultId').show();
         });
         // Read the image

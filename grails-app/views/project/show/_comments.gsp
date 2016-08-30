@@ -85,7 +85,7 @@
                         </div>
                         <g:if test="${projectComment?.attachFile != null && projectComment?.attachFile != 'null'}">
 	                        <div class="col-sm-6 commentResultId">
-	                             <div  class="comment-imgdiv comment-thumb-div">
+	                             <div  class="comment-imgdiv comment-thumb-div sh-tabs-iconleft">
                                         <img alt="image" class='img-thumbnail pr-thumbnail' src='${projectComment?.attachFile}'>
                                         <div class="deleteicon comment-deleteicon">
                                             <img class="commentImgEdit" alt="cross"  src="//s3.amazonaws.com/crowdera/assets/delete.ico">
@@ -95,7 +95,7 @@
 	                     </g:if>
 	                     <g:elseif test="${teamcomment?.attachteamfile !=null && teamcomment?.attachteamfile !='null'}">
 	                     	<div class="col-sm-6 commentResultId">
-	                             <div  class="comment-imgdiv comment-thumb-div">
+	                             <div  class="comment-imgdiv comment-thumb-div sh-tabs-iconleft">
                                         <img alt="image" class='img-thumbnail pr-thumbnail' src='${teamcomment?.attachteamfile}'>
                                         <div class="deleteicon comment-deleteicon">
                                             <img class="commentImgEdit" alt="cross"  src="//s3.amazonaws.com/crowdera/assets/delete.ico">
@@ -105,7 +105,7 @@
 	                     </g:elseif>
 	                     <g:else>
 	                     	<div class="col-sm-6 commentResultId">
-	                             <div class="comment-imgdiv comment-thumb-div">
+	                             <div class="comment-imgdiv comment-thumb-div sh-tabs-iconleft">
                                         <img alt="image" class='img-thumbnail pr-thumbnail' src='#'>
                                         <div class="deleteicon comment-deleteicon">
                                             <img class="commentImgDelete" alt="cross"  src="//s3.amazonaws.com/crowdera/assets/delete.ico">
@@ -117,7 +117,7 @@
                          <label class="docfile-orglogo-css show-label-msz fileforcomments"></label> 
                     </div>
                 </div>
-                <button type="submit" class="btn show-btn-font btn-lg pull-right">Save comment</button>
+                <button type="submit" class="btn show-btn-font btn-lg pull-right show-button-cmt">Save comment</button>
                 <div class="clear"></div>
             </g:uploadForm>
         </div>
@@ -154,8 +154,8 @@
                             	</div>
                         	</div>
                         	<div class="col-sm-6 commentResultId">
-	                             <div class="comment-imgdiv comment-thumb-div">
-                                    <img alt="image" class='img-thumbnail pr-thumbnail' src='#'>
+	                             <div class="comment-imgdiv comment-thumb-div sh-tabs-iconleft">
+                                    <img alt="image" class='comment-img-id img-thumbnail pr-thumbnail' src='#'>
                                     <div class="deleteicon comment-deleteicon">
                                         <img class="commentImgDelete" alt="cross"  src="//s3.amazonaws.com/crowdera/assets/delete.ico">
                                     </div>
@@ -165,7 +165,7 @@
                          	<label class="docfile-orglogo-css show-label-msz fileforcomments"></label>  
                      	</div>
 	                 </div>
-	                 <button type="submit" class="btn  show-btn-font btn-lg pull-right">Post comment</button>
+	                 <button type="submit" class="btn  show-btn-font btn-lg pull-right show-button-cmt">Post comment</button>
 	                 <div class="clear"></div>
 	             </g:uploadForm>
 	        </g:if>
@@ -200,8 +200,8 @@
 	                            </div>
 	                         </div>
 	                         <div class="col-sm-6 commentResultId">
-	                             <div class="comment-imgdiv comment-thumb-div">
-                                        <img alt="image" class='img-thumbnail pr-thumbnail' src='#'>
+	                             <div class="comment-imgdiv comment-thumb-div sh-tabs-iconleft">
+                                        <img alt="image" class='comment-img-id img-thumbnail pr-thumbnail' src='#'>
                                         <div class="deleteicon comment-deleteicon">
                                             <img class="commentImgDelete" alt="cross"  src="//s3.amazonaws.com/crowdera/assets/delete.ico">
                                         </div>
@@ -211,7 +211,7 @@
 	                         <label class="docfile-orglogo-css show-label-msz fileforcomments"></label> 
 	                     </div>
 	                </div>
-	                <button type="submit" class="btn btn-lg pull-right show-btn-font">Post comment</button>
+	                <button type="submit" class="btn btn-lg pull-right show-btn-font show-button-cmt">Post comment</button>
 	                <div class="clear"></div>
 	            </g:uploadForm>
 	        </g:else>

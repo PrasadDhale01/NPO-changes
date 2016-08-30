@@ -18,12 +18,12 @@
                             def isAnonymous = userService.isAnonymous(comment.user)
                         %>
                         <g:if test="${isAnonymous}">
-                            <dt>By ${comment.userName}, on ${date}</dt>
+                           <span class="dt">By ${comment.userName}, on ${date}</span>
                         </g:if>
                         <g:else>
-                            <dt>By ${userService.getFriendlyFullName(comment.user)}, on ${date}</dt>
+                            <span class="dt">By ${userService.getFriendlyFullName(comment.user)}, on ${date}</span>
                         </g:else>
-                        <dd>${comment.comment}</dd>
+                        <span class="dd">${comment.comment}</span>
                         <input type="checkbox" name="link" id="${i}" value="${comment.id}" 
                             <g:if test="${comment.status }">checked="checked"</g:if>><span id="check${i}"> Hide</span>
                         <% i++ %>

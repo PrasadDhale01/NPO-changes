@@ -47,18 +47,6 @@ $(function() {
         }
     });
 
-    $('#updatesendmailmodal').find('form').validate({
-        rules: {
-        	name: {
-        		required: true
-        	},
-            emails: {
-                required: true,
-                validateMultipleEmailsCommaSeparated: true
-            }
-        }
-    });
-
     $('.submitForApprovalSection').find('form').validate({
         rules: {
         	submitForApprovalcheckbox : {
@@ -393,7 +381,28 @@ $(function() {
 
     $('a.show-emailjsid').click(function(){
     	var updateId = $(this).attr('id');
-        $('#projectUpdateId').val(updateId);
+    	$.ajax({
+        	url:$("#b_url").val()+"/project/updateSendMailModal",
+        	type:"post",
+        	data:"projectId="+$("#projectId").val(),
+        	success: function(response){
+        		$("div.updatesendmaildiv").html(response);
+        		$('#updatesendmailmodal').modal('show');
+        		$('#projectUpdateId').val(updateId);
+        	}
+        }).done(function(){
+        	$('#updatesendmailmodal').find('form').validate({
+                rules: {
+                	name: {
+                		required: true
+                	},
+                    emails: {
+                        required: true,
+                        validateMultipleEmailsCommaSeparated: true
+                    }
+                }
+            });
+        });
     });
 
     /***********************Enable or Disable a Team********************************/
@@ -1487,6 +1496,7 @@ $(function() {
 	 	   console.log('Campaign not restored');
 	    });
 	});
+	
 });
 
 function showNavigation(){
@@ -1543,3 +1553,4 @@ function bannerClose(){
 	$('.home-header-section').removeClass('banner-nav');
 	$('#preview-banner').attr('class','preview-banner-margin');
 }
+

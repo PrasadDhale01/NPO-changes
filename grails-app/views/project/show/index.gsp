@@ -216,8 +216,8 @@
                 
                 <div class="col-xs-12 col-md-4 mobileview-top sh-mobiles-top campaign-tile-xs">
                   
-                    <div class="visible-xs">
-                        <g:render model="['project': project]" template="/layouts/tile_for_mobile"></g:render>
+                    <div class="visible-xs loadmobileCampaignTile">
+                        <g:render template="/layouts/tile_for_mobile"  model="['project': project]"/>
                     </div>
                     
                     <div class="hidden-xs">
@@ -631,9 +631,6 @@
                         <div class="tab-pane tab-pane-active" id="contributions">
                             <g:render template="show/contributions" model="['team':currentTeam]"/>
                         </div>
-<%--                        <div class="tab-pane tab-pane-active hidden-xs" id="comments">--%>
-<%--                            <g:render template="show/comments"/>--%>
-<%--                        </div>--%>
                     </div>
                     
                     <div class="row"> 

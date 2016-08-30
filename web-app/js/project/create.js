@@ -1594,7 +1594,7 @@ $(function() {
 	           
 	            $('#iconfile').val('');
 	            
-	        } else if (file.size < 1024 * 1024 * 1) { 
+	        } else if (file.size < 1024) { 
 	        	 $('#icondiv').hide();
 		         $('#logomsg').hide();
 		         if($('#iconfilesizeSmaller')){

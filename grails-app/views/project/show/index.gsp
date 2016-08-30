@@ -160,7 +160,7 @@
         <g:if test="${project}">
             <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>
             <div class="redirectUrl">
-                <g:link controller="project" action="show" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"></g:link>
+                <g:link controller="project" action="show" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="redirectLinkShow"></g:link>
             </div>
             <div class="row">
                 <g:if test="${flash.prj_mngprj_message}">
@@ -207,7 +207,7 @@
                             <g:if test="${project?.webAddress}">
                                 <a href="${webUrl}" target="_blank" class="show-web-address">
                                     <img src="//s3.amazonaws.com/crowdera/assets/76ed02b5-f6f2-4d60-a583-7833998b3d5a.png" alt="fb-icons">
-                                    <span>Website</span>
+                                    <span class="show-nonpft">Website</span>
                                 </a> 
                             </g:if>
                         </h4>
@@ -278,7 +278,7 @@
                             <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
                                 <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
                                     <div class="redirectCampaign">
-                                        <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri" id="btnFundDesktop">Fund Now!</button></g:link>
+                                        <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="fundSubmit"><button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri" id="btnFundDesktop">Fund Now!</button></g:link>
                                     </div>
                                 </g:if>
                                 <g:else>
@@ -313,12 +313,12 @@
                    <%-- Mobile share FB--%>
                    <g:if test="${isPreview}">
                        <a class="btn btn-social btn-facebook show-mobilebt-fb mob-show-fb sho-fb-color hidden">
-                           <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
+                           <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>Share (${facebookShare})
                        </a>
                    </g:if>
                    <g:else>
                         <a class="btn btn-social btn-facebook show-mobilebt-fb mob-show-fb sho-fb-color hidden"  id="fbshare-mobile" href="#">
-                            <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
+                            <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> Share (${facebookShare})
                         </a>
                    </g:else>
                  
@@ -449,42 +449,42 @@
                            <%-- Social features --%>
                            <g:if test="${isPreview}">
                                <a class="share-mail pull-left show-icons-secandheader show-email-hover show-pointer-not">
-                                   <img src="//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png" class="show-email" alt="Mail Share">
+                                   <img src="//s3.amazonaws.com/crowdera/assets/0fea8e3c-7e84-4369-a5a0-451585c06492.png" class="show-email" alt="Mail Share">
                                </a>
                                <a class=" pull-left show-icons-secandheader show-pointer-not">
-                                   <img src="//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png" class="show-twitter" alt="Twitter Share">
+                                   <img src="//s3.amazonaws.com/crowdera/assets/543485b8-21d6-4144-9c30-c0e49c95c4e6.png" class="show-twitter" alt="Twitter Share">
                                </a>
                                <a class="pull-left show-icons-secandheader show-pointer-not">
-                                   <img src="//s3.amazonaws.com/crowdera/assets/show-like-gray.png" class="show-like" alt="campaign-supporter">
+                                   <img src="//s3.amazonaws.com/crowdera/assets/c8836846-373f-45af-a660-ece7f1110ba0.png" class="show-like" alt="campaign-supporter">
                                </a>
                                <a class="social share-linkedin pull-left show-icons-secandheader show-pointer-not" target="_blank">
-                                   <img src="//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png" class="show-linkedin" alt="LinkedIn Share">
+                                   <img src="//s3.amazonaws.com/crowdera/assets/0d661ddc-4d08-4ad9-a707-cf2e22349989.png" class="show-linkedin" alt="LinkedIn Share">
                                </a>
                                <a class="social google-plus-share pull-left show-icons-secandheader show-pointer-not">
-                                   <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
+                                   <img src="//s3.amazonaws.com/crowdera/assets/0c536e08-376d-4965-a901-ca42a4b6c4d5.png" class="show-google" alt="Google+ Share">
                                </a>
                                <span class="pull-left show-icons-secandheader show-pointer-not"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" alt="embedicon" class="show-embedIcon"></span>
-                               <span class="shortUrlglyphicon glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color show-ispriview-headurl show-pointer-not"></span>
+                               <span class="shortUrlglyphicon glyphicon glyphicon-link glyphicon-show-design-ract glyphicon-show-link-color show-ispriview-headurl show-pointer-not"></span>
                            </g:if>
                            <g:else>
                                <a class="share-mail pull-left show-icons-secandheader" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" >
-                                   <img src="//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png" alt="Mail Share" class="show-email">
+                                   <img src="//s3.amazonaws.com/crowdera/assets/0fea8e3c-7e84-4369-a5a0-451585c06492.png" alt="Mail Share" class="show-email">
                                </a>
                                <a class="twitter-share pull-left show-icons-secandheader" data-url="${shareUrl}" target="_blank">
-                                   <img src="//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png" class="show-twitter" alt="Twitter Share">
+                                   <img src="//s3.amazonaws.com/crowdera/assets/543485b8-21d6-4144-9c30-c0e49c95c4e6.png" class="show-twitter" alt="Twitter Share">
                                </a>
                                <g:link absolute="true" uri="/campaign/supporter/${project.id}/${username}" class="pull-left show-icons-secandheader">
-                                   <img src="//s3.amazonaws.com/crowdera/assets/show-like-gray.png" class="show-like" alt="campaign-supporter" >
+                                   <img src="//s3.amazonaws.com/crowdera/assets/c8836846-373f-45af-a660-ece7f1110ba0.png" class="show-like" alt="campaign-supporter" >
                                </g:link>
                                <a class="social-header share-linkedin pull-left show-icons-secandheader" href="https://www.linkedin.com/cws/share?url=${shareUrl}" target="_blank"  onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-                                   <img src="//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png" class="show-linkedin" alt="LinkedIn Share">
+                                   <img src="//s3.amazonaws.com/crowdera/assets/0d661ddc-4d08-4ad9-a707-cf2e22349989.png" class="show-linkedin" alt="LinkedIn Share">
                                </a>
                                <a class="social-header google-plus-share pull-left show-icons-secandheader" href="https://plus.google.com/share?url=${shareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-                                    <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
+                                    <img src="//s3.amazonaws.com/crowdera/assets/0c536e08-376d-4965-a901-ca42a4b6c4d5.png" class="show-google" alt="Google+ Share">
                                </a>
-                               <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left show-icons-secandheader"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" class="show-embedIcon" alt="embedicon"></a>
+                               <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left show-icons-secandheader"><img src="//s3.amazonaws.com/crowdera/assets/75ed76bc-3275-4b00-a534-9c4a324cc04e.png" class="show-embedIcon" alt="embedicon"></a>
                                <div class="popoverClass">
-                                    <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphiconheader glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color show-shortUrlheader-top"></span>
+                                    <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphiconheader glyphicon glyphicon-link glyphicon-show-design-ract glyphicon-show-link-color show-shortUrlheader-top"></span>
                                     <div class="hidden popoverConent">
                                         <button type="button" class="close">&times;</button>
                                         <p>${shareUrl}</p>
@@ -496,12 +496,12 @@
                        <div class="col-lg-6 col-md-6 hidden-sm show-share-FB">
                            <g:if test="${isPreview}">
                                <a class="btn btn-block btn-social btn-facebook sh-head-fb-over hidden-xs sho-fb-color show-2ndhead-btnFB ss3 show-pointer-not">
-                                   <i class="fa fa-facebook fa-facebook-styles sh-fb-icons sh-iconsfb-header"></i> SHARE ON FACEBOOK
+                                   <i class="fa fa-facebook fa-facebook-styles sh-fb-icons sh-iconsfb-header"></i> Share (${facebookShare})
                                </a>
                            </g:if>
                            <g:else>
                                 <a class="btn btn-block btn-social btn-facebook sh-head-fb-over hidden-xs sho-fb-color show-2ndhead-btnFB ss3 fbshare-header" href="#">
-                                   <i class="fa fa-facebook fa-facebook-styles sh-fb-icons sh-iconsfb-header"></i> SHARE ON FACEBOOK
+                                   <i class="fa fa-facebook fa-facebook-styles sh-fb-icons sh-iconsfb-header"></i> Share (${facebookShare})
                                 </a>
                            </g:else>
                        </div>
@@ -817,13 +817,13 @@
                           <g:if test="${isPreview}">
                               <div class="showfacebooksAA"></div>
                               <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb sho-fb-color hidden-xs show-pointer-not">
-                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
+                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>Share (${facebookShare})
                               </a>
                           </g:if>
                           <g:else>
                               <div class="showfacebooksAA"></div>
                               <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb sho-fb-color hidden-xs" id="fbshare" href="#">
-                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
+                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>Share (${facebookShare})
                               </a>
                           </g:else>
                            
@@ -841,7 +841,7 @@
                               <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
                                   <div class="redirectCampaign">
                                       <div class="show-A-fund"> </div>
-                                      <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><div class="show-A-fund"> </div><button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri" id="btnFundDesktop">Fund Now!</button></g:link>
+                                      <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="btnShowLink"><div class="show-A-fund"> </div><button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri" id="btnFundDesktop">Fund Now!</button></g:link>
                                   </div>
                               </g:if>
                               <g:else>
@@ -860,10 +860,10 @@
 <%--               user profile code  --%>
                    <div class="col-lg-12 col-sm-12 col-md-12 show-profile-padding show-org-profiletile hidden-xs">
 	                   <div class="col-lg-4 col-sm-4 col-md-4 show-profile-imagewidth">
-		                   <g:if test="${user.userImageUrl}">
+		                   <g:if test="${user?.userImageUrl}">
 		                        <div id="partnerImageEditDeleteIcon">
 		                            <span  class="show-image-dp">
-		                                <img src="${user.userImageUrl}" alt="avatar">
+		                                <img src="${user?.userImageUrl}" alt="avatar">
 		                            </span>
 		                        </div>
 		                    </g:if>
@@ -903,13 +903,13 @@
                           <g:if test="${isPreview}">
                               <div class="showfacebooksAA"></div>
                               <span class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color">
-                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
+                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> Share (${facebookShare})
                               </span>
                           </g:if>
                           <g:else>
                               <div class="showfacebooksAA"></div>
                               <span class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color" id="fbshare">
-                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
+                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> Share (${facebookShare})
                               </span>
                           </g:else>
                       </g:if>
@@ -945,7 +945,7 @@
 <%--                              --%>
 <%--                          </div>--%>
                           <div class="show-reasons-fund-bgpadding">
-                          <h2 class="show-tri-reasons-to-fund text-center">3 Reasons to Fund Our Campaign</h2>
+                          <span class="show-tri-reasons-to-fund text-center">3 Reasons to Fund Our Campaign</span>
                           <g:if test="${reasons.reason1}">
                               <div class="show-reasonsToFund">
                                   <div class="reasonspadding">

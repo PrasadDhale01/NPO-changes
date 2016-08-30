@@ -1,35 +1,3 @@
-<%@ page import="java.text.SimpleDateFormat" %>
-<g:set var="contributionService" bean="contributionService"/>
-<g:set var="projectService" bean="projectService"/>
-<%
-    def percent
-    def contributedSoFar
-    def amount
-    if (project.user){
-        percent = percentage
-        contributedSoFar = totalContribution
-        amount = project?.amount.round()
-    } else {
-        percent = teamPercentage
-        contributedSoFar = teamContribution
-        amount = currentTeamAmount?.round()
-    }
-    
-    def cents
-    if(percent >= 100) {
-        cents = 100
-    } else {
-        cents = percent
-    }
-
-    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
-    username = currentFundraiser?.email
-    def currentEnv = projectService.getCurrentEnvironment()
-    def conversionMultiplier = multiplier
-    if (!conversionMultiplier) {
-        conversionMultiplier = projectService.getCurrencyConverter();
-    }
-%>
 <div class="modal-footer tile-footer tileanstitle-goals tileanstitle-goal-margin show-tiles-padding">
 <%--    <div class="row icons-centering sh-moballamt">--%>
         <div class="col-lg-12 col-sm-12 col-md-12 show-org-tile-padding" data-percent="43">
@@ -47,7 +15,7 @@
                 <span class="show-tile-raised">Raised</span><br>
                 <span class="show-raised-amt show-contribution-amt-tile">
                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                        <span class="fa fa-inr"></span><span class="lead show-contribution-amt-tile"><g:if test="${project.payuStatus}">${contributedSoFar}</g:if><g:else>${contributedSoFar * conversionMultiplier}</g:else></span>
+                        <span class="fa fa-inr"></span><span class="lead show-contribution-amt-tile"><g:if test="${payuStatus}">${contributedSoFar}</g:if><g:else>${contributedSoFar * conversionMultiplier}</g:else></span>
                     </g:if>
                     <g:else>
                         $<span class="show-raised-amt show-contribution-amt-tile">${contributedSoFar}</span>
@@ -65,7 +33,7 @@
                  <span class="show-tile-raised">Goal</span><br>
                 <span class="show-raised-amt">
                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                        <span class="fa fa-inr"></span><span class=""><g:if test="${project.payuStatus}">${amount}</g:if><g:else>${amount * conversionMultiplier}</g:else></span>
+                        <span class="fa fa-inr"></span><span class=""><g:if test="${payuStatus}">${amount}</g:if><g:else>${amount * conversionMultiplier}</g:else></span>
                     </g:if>
                     <g:else>
                         $<span class="show-raised-amt">${amount}</span>

@@ -1654,8 +1654,8 @@ div.tile-min-height{
 }
 
 .rewardsection .badge{
-    background-color:#f0f2f3;
-    color: #363636;
+    background-color:#175E83;
+    color: #fff;
     height: 40px;
     padding: 11px 6px;
     width: 40px;
@@ -1689,12 +1689,12 @@ div.tile-min-height{
     word-wrap: break-word;
 }
 .rewardsectionheading{
-    font-size: 30px;
+    font-size: 25px;
     font-weight:bold;
     margin-bottom: 0px;
     margin-top: 0px;
 /*     padding-left:6px; */
-    color: #676767;
+    color: #363636;
     padding-bottom: 20px;
     padding-top: 18px;
     font-family: open sans;
@@ -2488,7 +2488,7 @@ a.footerlink {
 }
 .perks-supporters{
 	border: 2px solid #f7f7f7;
-	margin-top:4px;
+	margin-top:15px;
 	margin-bottom:20px;
 	text-align: left;
 }
@@ -2815,9 +2815,6 @@ color:#fff;
 #reportModal .modal-dialog {
     width: 95%;
     margin-top: 30px !important;
-}
-.deleteComment{
- padding-bottom:22px;
 }
 .coCreator{
     padding-top:10px;
@@ -4633,8 +4630,10 @@ ul.personalDetailClasses, menu, dir {
 	margin-bottom: 20px;
 }
 .campaignDescription {
-	font-weight: 600;
-	font-size: 15px;
+	color:#363636;
+	font-weight: bold;
+	font-size: 25px;
+	line-height:26px;
 	word-wrap: break-word;
 }
 p {
@@ -4657,9 +4656,13 @@ p {
     }
 }
 .rewardsection-row:hover {
-	background-color: #fff;
-    border-color: #01bbd2 !important;
+	background-color: #f5f5f5;
+    border-color: #fff !important;
     border: 2px solid #01bbd2;
+}
+
+.rewardsection-row:hover > .rewardBottomBorder > .rewardtitlespan{
+	color: #175e83;
 }
 .rewardsection a:hover, .rewardsection a:active {
     text-decoration: none !important;
@@ -4722,14 +4725,16 @@ p {
     margin: 0 auto;
 }
 
-.commentsoncampaign dd {
+.commentsoncampaign .dd {
 	font-size: 13px;
 	font-family: "Open Sans";
+	margin-left:0;
 }
 
-.commentsoncampaign dt {
+.commentsoncampaign .dt {
 	font-size: 14px;
 	font-family: "Open Sans";
+	font-weight:bold;
 }
 
 .whycrowderacol-md-2 .col-md-2, .whycrowderacol-md-12 .col-md-12, .whycrowderacol-sm .col-xs-12, .whycrowderacol-sm .col-xs-3{
@@ -5395,15 +5400,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .campaignTitle h1 {
 	color: #000 !important;
 	font-weight: 900 !important;
-	font-size: 40px !important;
+	font-size: 30px !important;
+	margin-bottom:26px;
 }
 .campaignFundRaiser h4 {
     color: #01bbd2 !important;
     font-weight: 500;
     font-size: 12px;
-}
-.campaignFundRaiser {
-	margin-bottom: 10px;
 }
 .rewardpricespan {
 	color: #686868;
@@ -17425,8 +17428,9 @@ textarea.textarea-embed-video {
        height: 100px;
        border-bottom: 2px solid #e7e7e7;
        border-right: 2px solid #e7e7e7;
-       height: 160px;
-       padding: 20px;
+       height: 152px;
+       margin-top:20px;
+       padding: 15px;
 }
 .show-icons img{
 	height: 50px;
@@ -17457,13 +17461,13 @@ textarea.textarea-embed-video {
 .show-new-tabs-alignments{
 	border-right-width: 0;
     line-height: 2;
-    margin-left: -13px;
+    margin-left: 5px;
     margin-right: 0;
     margin-top: 10px;
 /*     width: 400px; */
 }
 .show-tbs-right-borders{
-	border-right: 2px solid #6d6e6e;
+	border-right: 1px solid #d4d4d4;
 	padding-left: 8px;
     padding-right: 10px;
 }
@@ -17548,9 +17552,9 @@ textarea.textarea-embed-video {
     background-color: #f7f7f7;
 /*     height: 90px; */
     margin-top: 22px;
-    padding: 20px;
+    padding: 15px;
     color: #5a6771;
-    line-height: 36px;
+/*     line-height: 36px; */
     background-color: #fff;
     border-bottom: 2px solid #e7e7e7;
     border-right: 2px solid #e7e7e7;
@@ -18378,12 +18382,23 @@ li.sh-button-fund-secandaryheader{
     height: 41px;
 }
 .sh-submitaproval-2header {
-    font-size: 16px;
-    margin-top: -15px;
-    padding: 6px;
-    width: 303px;
-    height: 42px;
+    height: 60px;
+    font-size: 23px;
+    font-family: open sans, sans-serif;
+    padding: 8px;
+    margin-top: 0;
+    margin-bottom:0px;
 }
+
+.sh-submitaproval-2header-btn {
+    font-family: open sans,sans-serif;
+    font-size: 24px;
+    height: 40px;
+    margin-bottom: 0;
+    margin-top: -14px;
+    padding: 3px;
+}
+
 .sh-logo-color{
     height:44px;
     margin-top: -9px;

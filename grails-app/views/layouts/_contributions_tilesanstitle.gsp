@@ -1,18 +1,3 @@
-<%
-    def percent
-    def contributedSoFar
-    def amount
-    if (currentFundraiser){
-        percent = percentage
-        contributedSoFar = totalContribution
-        amount = project?.amount.round()
-    } else {
-        percent = teamPercentage
-        contributedSoFar = teamContribution
-        amount = currentTeamAmount?.round()
-    }
-%>
-
 <div class="col-lg-12 col-sm-12 col-md-12 panel-body panel-bgColor ">
      <div class="col-lg-12 show-raised-amt text-center">
          <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
@@ -33,5 +18,4 @@
 	         <p class="show-cmt-text">We are all so excited to have raised so much money</p>
 	     </div>
      </div>
-     
 </div>

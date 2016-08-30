@@ -1,6 +1,6 @@
 <div class="panel panel-default show-assessment">
-    <label class="show-impact-assessment">IMPACT</label>
-    <div class="panel-body">
+    <span class="show-impact-assessment">IMPACT</span>
+    <div class="impact-div">
         <g:if test="${project.category.toString() == 'ANIMALS'}">
             <g:if test="${project.payuStatus}">
                 <p>Our campaign will benefit  ${project.impactNumber}  animals by providing <span class="fa fa-inr"></span>${project.impactAmount}</p>

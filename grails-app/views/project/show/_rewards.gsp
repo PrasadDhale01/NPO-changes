@@ -14,7 +14,7 @@ if (!conversionMultiplier) {
 
     <div class="rewardsection">
     <g:if test="${isFundingOpen || isPreview}">
-            <h2 class="rewardsectionheading">Choose a Perks</h2>
+            <span class="rewardsectionheading">Choose a Perks</span>
         </g:if>
         <g:else>
             <h2 class="rewardsectionheading sh-fundclosed-mobile">Funding Closed</h2>

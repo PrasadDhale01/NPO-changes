@@ -4,6 +4,9 @@ import static java.util.Calendar.*
 import grails.transaction.Transactional
 import grails.util.Environment
 import groovy.json.JsonSlurper
+import groovyx.net.http.ContentType
+import groovyx.net.http.HTTPBuilder
+import groovyx.net.http.Method
 
 import java.security.MessageDigest
 import java.text.DateFormat
@@ -12,7 +15,7 @@ import java.text.SimpleDateFormat
 import javax.servlet.http.Cookie
 
 import org.hibernate.Session
-import org.hibernate.SessionFactory;
+import org.hibernate.SessionFactory
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.model.*
 import org.jets3t.service.security.AWSCredentials
@@ -377,36 +380,6 @@ class ProjectService {
         }
     }
     
-//    def getProjectStory(Project project, def currentTeam, int storySize){
-//        int storyLength = 0
-//        def projectStory
-//        
-//        if(storySize > 5000){
-//            if(project.user == currentTeam.user){
-//               projectStory = project.story[storySize..-1]
-//               println"project story ==="+projectStory
-//               return projectStory
-//            }else{
-////                projectStory = (currentTeam.story!=null)?currentTeam.story[storySize..-1]:project?.story[storySize..-1]
-//                if(currentTeam.story!= null){
-//                    projectStory = currentTeam.story[storySize..-1]
-//                }else {
-//                    projectStory = project.story[storySize..-1]
-//                }
-//                return projectStory
-//            }
-//        }else{
-//            if(project.user == currentTeam.user){
-//                storyLength = project?.story.size()
-//                return (storyLength > 5000)?project?.story[0..storySize]:project?.story
-//            }else{
-//                storyLength = (currentTeam?.story!=null)?currentTeam?.story.size():project?.story.size()
-//                def teamStory =(storyLength > 5000 && currentTeam.story!=null)?currentTeam?.story[0..storySize]:currentTeam?.story
-//                return (teamStory!=null)?teamStory:((project.story!=null)?project?.story[0..storySize]:project?.story)
-//            }
-//        }
-//        
-//    }
 
      def getUpdateCommentDetails(def request){
          def checkid= request.getParrmeter('checkID')
@@ -509,6 +482,31 @@ class ProjectService {
 		def vanityUserName = userService.getVanityNameFromUsername(fundraiser.username, project.id)
 		def url = base_url+'/campaigns/'+vanityTitle+'/'+vanityUserName
 		return url
+	}
+	
+	
+	int getFacebookShareCountForCampaign(String campaignUrl){
+		def httpFb = new HTTPBuilder('http://graph.facebook.com/?id=' + campaignUrl)
+		int facebookCount= 0;
+		
+		try{
+			httpFb.request(Method.GET, ContentType.JSON) {
+				response.success = { resp, reader ->
+					facebookCount = reader.share?.share_count?:0
+				}
+				
+				response.failure = { resp, json ->
+					return facebookCount
+				}
+			}
+		}catch(UnknownHostException e){
+			return facebookCount
+		}catch(Exception e){
+			return facebookCount
+		}
+		
+			
+		return facebookCount
 	}
 
     def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
@@ -2093,7 +2091,6 @@ class ProjectService {
                 object.key=key
 
                 tempImageUrl = "//s3.amazonaws.com/crowdera/${key}"
-                println"ImageUrl====="+tempImageUrl
                 s3Service.putObject(s3Bucket, object)
                 imageUrl.url = tempImageUrl
                 

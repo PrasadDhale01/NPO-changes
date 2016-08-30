@@ -7,7 +7,7 @@ $(function() {
     
     
     
-    $('#fileforcomments').hide();
+    $('.fileforcomments').hide();
     $('#resultOutput').hide();
 
     var currentEnv=$('#currentEnv').val();
@@ -92,6 +92,42 @@ $(function() {
                 validateMultipleEmailsCommaSeparated: true
             }
         }
+    });
+    
+    $('.commentImgFile').change(function(event){
+    	var file = this.files[0];
+    	
+    	 var picReader = new FileReader();
+         picReader.addEventListener("load",function(event) {
+             var picFile = event.target;
+             $('#comment-img-id').attr('src',picFile.result);
+             $('.commentResultId').show();
+        });
+        // Read the image
+        picReader.readAsDataURL(file);
+        
+    });
+    
+    $('.commentImgDelete').click(function(){
+    	$('.commentImgFile').val('');
+    	$('.commentResultId').find('#resultOutput').html('');
+    	$('.commentResultId').hide();
+    });
+    
+    $('.scommentImgEdit').click(function(){
+    	
+    	var commentId= $('#commentId').val();
+    	var teamCommentId = $('#teamCommentId').val();
+    	
+    	$.ajax({
+    		url:$('#b_url').val()+'/project/deleteCommentImage',
+    		type:'post',
+    		data:'commentId='+commentId+"&teamCommentId="+ teamCommentId,
+    		success:function(response){
+    			$('.commentResultId').hide();
+    		}
+    	});
+    	
     });
 
     $('.submitForApprovalSection').find('form').validate({
@@ -471,28 +507,26 @@ $(function() {
         }
     });
     
-    
-    
     $(".attachfileforcomments").change(function(event) {
     	
     	
         var file =this.files[0];
-        if(validateExtensionForTextDocx(file.name) == false){
+        if(validateExtension(file.name) == false){
 	        $('#resultOutput').hide();
-	        $("#fileforcomments").show();
-        	$("#fileforcomments").html("Only text,docx and pdf files are allowed.");
+	        $(".fileforcomments").show();
+        	$(".fileforcomments").html("Attach image file.");
 	        this.value=null;
 	        return;
 	    }
 	    else{
 	        if (file.size > 1024 * 1024 * 3) {
 	            $('#resultOutput').hide();
-	            $('#fileforcomments').show();
-	            $("#fileforcomments").html("The file \"" +file.name+ "\" you are attempting to upload is larger than the permitted size of 3MB.");
+	            $('.fileforcomments').show();
+	            $(".fileforcomments").html("The file \"" +file.name+ "\" you are attempting to upload is larger than the permitted size of 3MB.");
 	            $('#resumefile').val('');
 	        } else {
                 $('#resultOutput').show();
-                $('#fileforcomments').hide();
+                $('.fileforcomments').hide();
                 $("#resultOutput").html(""+file.name);
                 
 	        }
@@ -662,17 +696,6 @@ $(function() {
           return false;
     }
     
-    function validateExtensionForTextDocx(imgExt) {
-    	var allowedExtensions = new Array("txt","docx","doc","pdf");
-    	for(var imgExtImg=0; imgExtImg < allowedExtensions.length; imgExtImg++)
-        {
-    		imageFile = imgExt.lastIndexOf(allowedExtensions[imgExtImg]);
-    		if(imageFile != -1){
-    			return true;
-    		}
-        }
-    	return false;
-    }
     
     /*************************Edit video for team*************************/
     
@@ -700,39 +723,39 @@ $(function() {
     
     /*******************************Manage-page-Hover-functinos-of-Social-media***************************/
     $('.show-email').hover(function(){
-    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-email-color.png");
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/4df7ed58-1d91-419b-ad9c-1d71a6192d00.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0fea8e3c-7e84-4369-a5a0-451585c06492.png");
     });
     
     $('.show-twitter').hover(function(){
-    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-twitter-color.png");
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/e227b5d5-edad-46ff-ac0b-3234035e8120.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/543485b8-21d6-4144-9c30-c0e49c95c4e6.png");
     });
     
     $('.show-like').hover(function(){
-    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-like-color.png");
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/ae504306-b6fe-4665-b1bd-4b2f83af87f6.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-like-gray.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/c8836846-373f-45af-a660-ece7f1110ba0.png");
     });
     
     $('.show-linkedin').hover(function(){
-    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-linkedin-color.png");
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/fcd2d0b1-d459-4974-8227-0b137784a5cc.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0d661ddc-4d08-4ad9-a707-cf2e22349989.png");
     });
     
     $('.show-google').hover(function(){
-    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-google-color.png");
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/3f7fd05e-6dea-4d32-aca2-3d9d45ef9eaa.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-google-gray.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0c536e08-376d-4965-a901-ca42a4b6c4d5.png");
     });
     
     $('.show-embedIcon').hover(function(){
-    	$(this).attr('src',"//s3.amazonaws.com/crowdera/user-images/embedicon.png");
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/7c6e7ddd-e0ad-4a6c-bd43-89bd567bb989.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/embedicon-grey.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/75ed76bc-3275-4b00-a534-9c4a324cc04e.png");
     });
     
     
@@ -1548,39 +1571,15 @@ $(function() {
        
    });
     
-//    $('#sh-read-more-story').click(function(){
-//    	if($(this).hasClass('sh-read-more-story')){
-//    		loadCampaignStory(5001);
-//    	}else{
-//    		loadCampaignStory(5000);
-//    	}
-//    	
-//    });
+    if($('.checkStory').hasClass('read-more')){
+    	showMoreOrLess("read-more", 5000);
+    }
     
-//    loadCampaignStory(5000);
+    if($('.checkStory').hasClass('read-more-team')){
+    	showMoreOrLess("read-more-team", 5000);
+    }
     
-    showMoreOrLess("read-more", 5000);
-    showMoreOrLess("read-more-team", 5000);
 });
-
-//function loadCampaignStory(storyLength){
-//	$.ajax({
-//		url:$('#b_url').val() + '/project/loadProjectStory',
-//		type:'post',
-//		data:"projectId="+$("#campaignId").val()+"&storyLength="+storyLength+"&team="+$('#teamId').val(),
-//		success: function(data){
-//			var jsonData = $.parseJSON(data);
-//			
-//			if(jsonData.storySize == 5000){
-//				$('#sh-read-more-story').removeClass().addClass("sh-read-more-story").text('Read more...');
-//			}else{
-//				$('#sh-read-more-story').removeClass().addClass("sh-read-less-story").text('Read less...');
-//			}
-//			
-//		   $("#show-story-read").html(jsonData.projectStory);
-//		}
-//	});
-//}
 
 function showNavigation(){
 	var indicator = document.getElementById('indicators');
@@ -1636,30 +1635,31 @@ function loadOrganizationTemplate(activeTab){
 		$.ajax({
 			url:$("#b_url").val()+"/project/loadOrganizationTemplate",
 			type:"post",
-			data:"activeTab="+activeTab+"&campaignId="+$('#campaignId').val(),
+			data:"activeTab="+activeTab+"&campaignId="+$('#campaignId').val()+'&teamId='+$('#teamId').val(),
 			success:function(res){
 				$('#organizationTemplateId').html(res);
 			}
 		});
 	}
 }
+
 function showMoreOrLess(divClass, strLength){
 	var readMoreHtml = $("."+divClass).html();
 	var lessText = readMoreHtml.substr(0,strLength);
 	
 	if(readMoreHtml.length > strLength){
-		$("."+divClass).html(lessText).append("<a href='' class='read-more-link'> Show More</a>");
+		$("."+divClass).html(lessText).append("<a href='' class='read-more-link' style='color:green;'> Read More</a>");
 	}else{
 		$("."+divClass).html(readMoreHtml);
 	}
 	
 	$("body").on("click",".read-more-link", function(event){
 		event.preventDefault();
-		$(this).parent("."+divClass).html(readMoreHtml).append("<a href='' class='show-less-link'> Show Less</a>")
+		$(this).parent("."+divClass).html(readMoreHtml).append("<a href='' class='read-less-link' style='color:red;'> Read Less</a>")
 	});
 	
-	$("body").on("click",".show-less-link", function(event){
+	$("body").on("click",".read-less-link", function(event){
 		event.preventDefault();
-		$(this).parent("."+divClass).html(readMoreHtml.substr(0,strLength)).append("<a href='' class='read-more-link'> Show More</a>")
+		$(this).parent("."+divClass).html(readMoreHtml.substr(0,strLength)).append("<a href='' style='color:green;' class='read-more-link'> Read More</a>")
 	});
 }

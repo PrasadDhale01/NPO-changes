@@ -23,7 +23,7 @@
             </g:if>
             <g:else>
            
-                <div class="col-md-12 col-sm-12 col-xs-12 text-center show-page-totalteams">${totalteams.size()}&nbsp;&nbsp;<g:if test="${totalteams.size() > 1}">Teams</g:if><g:else>Team</g:else></div></a>
+                <div class="show-page-totalteams">${totalteams.size()}&nbsp;&nbsp;<g:if test="${totalteams.size() > 1}">Teams</g:if><g:else>Team</g:else></div></a>
             </g:else>
         </div>
 	<ul class="nav nav-pills">
@@ -68,7 +68,6 @@
             
 		</g:else>
 	</ul>
-<%--	<div class="teamtileseperator"></div>--%>
 
     <div class="tab-content">
         <div class="tab-pane active sh-alignedteamtiles col-md-12 col-sm-12 col-xs-12 show-manageteam-detailspage" id="team">
@@ -123,10 +122,10 @@
                     <h3 class="modal-title text-center"><b>Edit Fundraiser Info</b></h3>
                 </div>
                 <div class="modal-body">
-                    <g:hiddenField name="project" value="${project.id}"/>
-                    <g:hiddenField name="projectAmount" value="${project.amount}"/>
+                    <input type="hidden" name="project" value="${project.id}"/>
+                    <input type="hidden" name="projectAmount" value="${project.amount}"/>
                     <input type="hidden" id="b_url" value="<%=base_url%>" />
-                    <g:hiddenField name="teamId" value="${currentTeam.id}"/>
+                    <input type="hidden" name="teamId" value="${currentTeam.id}"/>
 
                     <div class="form-group">
                         <label>Goal</label>

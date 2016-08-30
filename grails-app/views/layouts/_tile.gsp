@@ -25,13 +25,13 @@
 %>
 <g:if test="${project.validated}">
 <div class="fedu thumbnail grow tile-pad">
-    <g:hiddenField name="projectId" class="projectId" id="projectId" value="${project.id}"/>
+<%--    <g:hiddenField name="projectId" class="projectId" id="projectId:${project.id}" value="${project.id}"/>--%>
     <g:if test="${percentage >= 75}">
         <div class="over show-tile">
             <img src="//s3.amazonaws.com/crowdera/assets/Funded-Tag.png" alt="Funded"/>
         </div>
     </g:if>
-    <div class="blacknwhite tile" id="campaignTileId">
+    <div class="blacknwhite tile">
 <%--        <g:form controller="project" action="showCampaign" title="${project.title}" name="${project.title}" novalidate="novalidate" id="${project.id}">--%>
 <%--            <g:hiddenField name="fr" value="${username }" id="fr:${project.id}"/>--%>
 <%--            <g:hiddenField name="id" value="${project.id}" id="id:${project.id}"/>--%>

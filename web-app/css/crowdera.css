@@ -4723,14 +4723,16 @@ p {
     margin: 0 auto;
 }
 
-.commentsoncampaign dd {
+.commentsoncampaign .dd {
 	font-size: 13px;
 	font-family: "Open Sans";
+	margin-left:0;
 }
 
-.commentsoncampaign dt {
+.commentsoncampaign .dt {
 	font-size: 14px;
 	font-family: "Open Sans";
+	font-weight:bold;
 }
 
 .whycrowderacol-md-2 .col-md-2, .whycrowderacol-md-12 .col-md-12, .whycrowderacol-sm .col-xs-12, .whycrowderacol-sm .col-xs-3{

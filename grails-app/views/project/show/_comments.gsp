@@ -94,12 +94,12 @@
                         <g:if test="${!comment.status}">
                             <div class="modal-body tile-footer show-comments-date">
 				                <g:if test="${isAnonymous}">
-                                    <dt>By ${comment?.userName}, on ${date}</dt>
+                                    <span class="dt">By ${comment?.userName}, on ${date}</span><br>
                                 </g:if>
                                 <g:else>
-                                    <dt>By ${userService.getFriendlyFullName(comment?.user)}, on ${date}</dt>
+                                    <span class="dt">By ${userService.getFriendlyFullName(comment?.user)}, on ${date}</span><br>
                                 </g:else>
-				                <dd>${comment.comment}</dd>
+				                <span class="dd">${comment.comment}</span>
                                 <g:if test="${comment?.user == currentUser || project?.user == currentUser}">
                                     <div class="editAndDeleteBtn deleteComment">
                                         <g:form controller="project" action="commentdelete" method="post" params="['projectId':projectId, 'fr': fundRaiser]">
@@ -124,12 +124,12 @@
                     <g:else>
                         <div class="modal-body tile-footer show-comments-date">
                             <g:if test="${isAnonymous}">
-                                <dt>By ${comment?.userName}, on ${date}</dt>
+                                <span class="dt">By ${comment?.userName}, on ${date}</span><br>
                             </g:if>
                             <g:else>
-                                <dt>By ${userService.getFriendlyFullName(comment?.user)}, on ${date}</dt>
+                                <span class="dt">By ${userService.getFriendlyFullName(comment?.user)}, on ${date}</span><br>
                             </g:else>
-                            <dd>${comment.comment}</dd>
+                            <span class="dd">${comment.comment}</span>
                             <g:if test="${team?.user!=project?.user || comment?.user == currentUser}">
                                 <g:if test="${team?.user == currentUser || comment?.user == currentUser}">
                                     <div class="editAndDeleteBtn deleteComment">

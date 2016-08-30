@@ -335,7 +335,7 @@
                                                 <div class="form-group">
                                                     <label class="text col-sm-3">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control contributioninput offlineAmount" name="amount" value="${contribution.amount.round()}" id="offlineAmount">
+                                                        <input type="text" class="form-control contributioninput offlineAmount" name="amount" value="${contribution.amount.round()}">
                                                     </div>
                                                 </div>
                                                 <div class="contributionerrormsg"></div>
@@ -345,7 +345,7 @@
                                         
                                         <div class="modal-footer">
                                             <button data-dismiss="modal" class="btn btn-primary">Close</button>
-                                            <button class="btn btn-primary" type="submit" id="saveButton">Save</button>
+                                            <button class="btn btn-primary" type="submit">Save</button>
                                         </div>
                                     </div>
                                 </div>

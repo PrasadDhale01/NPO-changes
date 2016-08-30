@@ -26,7 +26,7 @@
 %>
 <g:if test="${project.validated}">
 <div class="fedu thumbnail grow tile-pad sh-thumbnil-tile">
-    <g:hiddenField name="projectId" class="projectId" id="projectId" value="${project.id}"/>
+<%--    <g:hiddenField name="projectId" class="projectId" id="projectId" value="${project.id}"/>--%>
     <g:if test="${percentage >= 75}">
         <div class="over show-tile sh-tiles-baner">
             <img src="//s3.amazonaws.com/crowdera/assets/Funded-Tag.png" alt="Funded">

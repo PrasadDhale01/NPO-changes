@@ -22,7 +22,7 @@ function selectedCampaignCategory(){
 function submitCampaignShowForm(pkey, projectId, fr){
     $.ajax({
         type    :'post',
-        url     : $("#b_url").val()+'/project/urlBuilder',
+        url     : $('#b_url').val() + '/project/urlBuilder',
         data    : "projectId="+projectId+"&fr="+fr+"&pkey="+pkey,
         success : function(response){
             $(location).attr('href', response);
@@ -35,31 +35,31 @@ function submitCampaignShowForm(pkey, projectId, fr){
 $(document).ready(function(){
 	var currentEnv=$('#currentEnv').val();
 	$.ajax( { 
-		url: 'http://ipinfo.io/json', 
+		url: 'https://geoip.nekudo.com/api', 
 		type: 'POST', 
 		dataType: 'jsonp',
 		success: function(location) {
 			// If the visitor is browsing from India.
-			if (location.country == 'IN' && currentEnv == 'test') {
+			if (location.country.code == 'IN' && currentEnv == 'test') {
 			// Tell him about the India store.
 					$('.info-banner').css('display','block');
 					$('.banner-link').text('test.crowdera.in');
 					$('.banner-link').attr('href','http://test.crowdera.in');
 					//$('.home-header-section').addClass('banner-nav');
 					$('#TW-discover-banner-padding').addClass('banner-padding');
-			}else if(location.country == 'IN' && currentEnv == 'staging'){
+			}else if(location.country.code == 'IN' && currentEnv == 'staging'){
 				$('.info-banner').css('display','block');
 				$('.banner-link').text('staging.crowdera.in');
 				$('.banner-link').attr('href','http://staging.crowdera.in');
 				//$('.home-header-section').addClass('banner-nav');
 				$('#TW-discover-banner-padding').addClass('banner-padding');
-			}else if(location.country == 'IN' && currentEnv == 'production'){
+			}else if(location.country.code == 'IN' && currentEnv == 'production'){
 				$('.info-banner').css('display','block');
 				$('.banner-link').text('www.crowdera.in');
 				$('.banner-link').attr('href','http://crowdera.in');
 				//$('.home-header-section').addClass('banner-nav');
 				$('#TW-discover-banner-padding').addClass('banner-padding');
-			} else if(location.country == 'IN' && currentEnv == 'development'){
+			} else if(location.country.code == 'IN' && currentEnv == 'development'){
 				$('.info-banner').css('display','block');
 				$('.banner-link').text('www.crowdera.in');
 				$('.banner-link').attr('href','http://localhost:8080');
@@ -68,12 +68,14 @@ $(document).ready(function(){
 			}
 		}
 	});
-	$('.banner-close').click(function(){
-		$('.info-banner').css('display','none');
-		//$('.home-header-section').removeClass('banner-nav');
-		$('#TW-discover-banner-padding').removeClass('banner-padding');
-	});
 });
+
+function bannerClose(){
+	$('.info-banner').css('display','none');
+	//$('.home-header-section').removeClass('banner-nav');
+	$('#TW-discover-banner-padding').removeClass('banner-padding');
+}
+
 $(window).load(function() {
     /*
     $('.blacknwhite').BlackAndWhite({

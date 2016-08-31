@@ -160,6 +160,16 @@ $(function() {
     });
     
     $( document ).ready(function() {
+    	
+    	/***********************call homepage carousel images****************************/
+    	loadHomePageCarouselImage();
+    	
+    	/*********************Call loadwhycrowderacallback function***************************************/
+    	loadWhyCrowderaCallback();
+    	
+    	/*************call loadMediaStrip function***********************/
+    	loadMediaStrip();
+    	
         function sticky_relocate() {
         	var window_top = $(window).scrollTop();
         	if($('.hm-image-header').length){
@@ -347,28 +357,28 @@ $( document ).ready(function() {
 
 	var currentEnv=$('#currentEnv').val();
 	$.ajax( { 
-		url: 'http://ipinfo.io/json', 
+		url: 'https://geoip.nekudo.com/api', 
 		type: 'POST', 
 		dataType: 'jsonp',
 		success: function(location) {
 			// If the visitor is browsing from India.
-			if (location.country== 'IN' && currentEnv == 'test') {
+			if (location.country.code== 'IN' && currentEnv == 'test') {
 			// Tell him about the India.
 					$('.info-banner').css('display','block');
 					$('.banner-link').text('test.crowdera.in');
 					$('.banner-link').attr('href','http://test.crowdera.in');
 					$('.home-header-section').addClass('banner-nav');
-			}else if(location.country == 'IN' && currentEnv == 'staging'){
+			}else if(location.country.code == 'IN' && currentEnv == 'staging'){
 				$('.info-banner').css('display','block');
 				$('.banner-link').text('staging.crowdera.in');
 				$('.banner-link').attr('href','http://staging.crowdera.in');
 				$('.home-header-section').addClass('banner-nav');
-			}else if(location.country== 'IN' && currentEnv == 'production'){
+			}else if(location.country.code== 'IN' && currentEnv == 'production'){
 				$('.info-banner').css('display','block');
 				$('.banner-link').text('www.crowdera.in');
 				$('.banner-link').attr('href','http://crowdera.in');
 				$('.home-header-section').addClass('banner-nav');
-			}else if(location.country== 'IN' && currentEnv == 'development'){
+			}else if(location.country.code== 'IN' && currentEnv == 'development'){
 				$('.info-banner').css('display','block');
 				$('.banner-link').text('www.crowdera.in');
 				$('.banner-link').attr('href','http://localhost:8080');
@@ -376,8 +386,51 @@ $( document ).ready(function() {
 			}
 		}
 	});
-	$('.banner-close').click(function(){
-		$('.info-banner').css('display','none');
-		$('.home-header-section').removeClass('banner-nav');
-	});
 });
+
+function bannerClose(){
+	$('.info-banner').css('display','none');
+	$('.home-header-section').removeClass('banner-nav');
+}
+
+function loadHomePageCarouselImage(){
+	$.ajax({
+        url:$('#b_url').val()+ "/home/loadHomepageCarousel",
+        type:"post",
+        data:"device=desktop",
+        success:function(res){
+            $("#homepage-carousel").html(res);
+        }
+   });
+}
+/*******************Load whycrowdera template**********************************************/
+function loadWhyCrowderaCallback(){
+    var device = '';
+
+    if(screen.width >=768 && screen.width <1025){
+        device="tab";
+    }else{
+        device="desktop";
+    }
+
+    $.ajax({
+        url:$('#b_url').val()+ "/home/loadWhyCrowderaCallback",
+        type:"post",
+        data:"device="+device,
+        success:function(res){
+            $("#loadWhyCrowdera").html(res);
+        }
+   });
+}
+
+/******************Load media strip**********************************/
+function loadMediaStrip(){
+	$.ajax({
+        url:$('#b_url').val()+ "/home/loadMediaStrip",
+        type:"post",
+        data:"device=desktop",
+        success:function(res){
+            $("#loadMediaStrip").html(res);
+        }
+   });
+}

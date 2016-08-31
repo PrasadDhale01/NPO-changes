@@ -15,7 +15,7 @@
 .reasonsToFund .badge1 {
     font-size: 38px;
     font-weight: 900;
-    font-family: fantasy;
+    font-family: Ubuntu Condensed;
     color: #01BBD3;
 }
 .col-plr-0 {
@@ -41,9 +41,18 @@
     font-weight: 900;
     font-family: sans-serif;
     font-size: 15px;
+    height: 105px;
+    margin-top: -3px
+}
+.impactassessment .panel-default p {
+	font-weight: bold;
+    font-size: 24px;
+    word-wrap: break-word;
+    font-family: Ubuntu Condensed;
+    color: #222222;
     text-align: center;
-    line-height: 36px;
     padding: 2px 10px 10px;
+    line-height: 30px;
 }
 .show-impact .panel-default {
     background-color: #fff;

@@ -106,7 +106,7 @@
             </g:else>
         </g:if>
         <g:elseif test="${!ismanagepage || !isAdminOrBeneficiary}">
-            <a href="javascript:void(0)" onclick="submitCampaignShowForm('show','${project.id}','${username}');">
+            <a href="javascript:void(0)"   onclick="submitCampaignShowForm('show','${project.id}','${username}');">
                 <g:if test="${userImageUrl != null}">
                     <img alt="${userName}" class="project-img" src="${userImageUrl}">
                 </g:if>

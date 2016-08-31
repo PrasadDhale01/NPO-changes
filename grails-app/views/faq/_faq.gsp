@@ -2,7 +2,7 @@
 <%
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
     def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-	def currentEnv = projectService.getCurrentEnvironment()
+    def currentEnv = projectService.getCurrentEnvironment()
 %>
 <div class="container footer-container">
 <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
@@ -27,13 +27,13 @@
                     <div id="collapseOne" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">
-			                    Crowdera is a crowdfunding platform that supports individuals and non profit organizations in their efforts to create a social impact. 
-			                    Organizations start their fundraising campaigns on Crowdera and supporters rally to fund those campaigns. </p>
-		                    <p class="text-justify">Crowdera intents to complement organization’s
-		                        existing fundraising and volunteering activities by offering a user-friendly 
-		                        platform to create visually compelling and viral fundraising campaigns that raise awareness 
-		                        and funding for an individual or organization’s goals and missions.
-		                    </p>
+                                Crowdera is a crowdfunding platform that supports individuals and non profit organizations in their efforts to create a social impact. 
+                                Organizations start their fundraising campaigns on Crowdera and supporters rally to fund those campaigns. </p>
+                            <p class="text-justify">Crowdera intents to complement organization’s
+                                existing fundraising and volunteering activities by offering a user-friendly 
+                                platform to create visually compelling and viral fundraising campaigns that raise awareness 
+                                and funding for an individual or organization’s goals and missions.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -47,10 +47,10 @@
                     <div id="collapseTwo" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">
-			                   Crowdfunding is a popular way to fund projects from a large group of people, mainly via the Internet and social media. It helps individuals and organizations reach their financial goals by receiving and leveraging small contributions from many people.</p>
-		                    <p class="text-justify">
-			                    All you need is a mission to do something good, a funding goal and timeframe, some cool perks to promise to your supporters and show gratitude, and a crowd of family, friends, and fans / followers / customers to promote your campaign to.
-		                    </p>
+                               Crowdfunding is a popular way to fund projects from a large group of people, mainly via the Internet and social media. It helps individuals and organizations reach their financial goals by receiving and leveraging small contributions from many people.</p>
+                            <p class="text-justify">
+                                All you need is a mission to do something good, a funding goal and timeframe, some cool perks to promise to your supporters and show gratitude, and a crowd of family, friends, and fans / followers / customers to promote your campaign to.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -103,16 +103,16 @@
                     <div id="collapseSix" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <ul>
-			                    <li>Crowdera lets you build your fundraising campaign on its platform. 
-			                        You can set a fundraising goal, write your story and add compelling photos and video.</li>
-			                    <li>Once your campaign is validated, you can email the link of your campaign to friends, 
+                                <li>Crowdera lets you build your fundraising campaign on its platform. 
+                                    You can set a fundraising goal, write your story and add compelling photos and video.</li>
+                                <li>Once your campaign is validated, you can email the link of your campaign to friends, 
                                     family, colleagues as well as post the link on your social media outlets. 
                                     The more people who know about your campaign, the more opportunities to help you reach your goal!
                                 </li>
-			                    <li>You can share milestones, photos and updates easily through
-				                    email and social media right from your campaign page.</li>
-			                    <li>Your campaign ends once it reaches the campaign end date. Do more good and make your campaign a success with the funds you just raised!</li>
-		                    </ul>
+                                <li>You can share milestones, photos and updates easily through
+                                    email and social media right from your campaign page.</li>
+                                <li>Your campaign ends once it reaches the campaign end date. Do more good and make your campaign a success with the funds you just raised!</li>
+                            </ul>
                         </div>
                     </div>
                 </div>

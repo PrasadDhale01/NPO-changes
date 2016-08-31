@@ -29,7 +29,7 @@
     </g:if>
     <g:if test="${project.draft}">
         <div class="submitForApprovalSection">
-            <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+            <g:if test="${project.organizationIconUrl && project.webAddress && ((project.charitableId || project.paypalEmail) || (project.payuEmail || project.citrusEmail)) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                 <g:form controller="project" action="saveasdraft" id="${project.id}">
                     <g:if test="${!project.touAccepted}">
                         <div class="form-group manage-check-box-ondraft">
@@ -75,7 +75,7 @@
     </g:if>
     <g:if test="${project.draft}">
         <div class="submitForApprovalSectionbtn managepage-bottom-margin" id="submitForApprovalSectionbtn">
-            <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+            <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail || project.citrusEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                 <g:form controller="project" action="saveasdraft" id="${project.id}">
                     <g:if test="${!project.touAccepted}">
                         <div class="form-group manage-check-box-ondraft">
@@ -205,17 +205,13 @@
         <script src="/js/raphel-pie/g.pie.js"></script>
     </g:if>
     
-    
-    
 </div>
 
 <div class="col-sm-4 col-xs-12">
-    <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
-        <g:if test="${project.impactNumber > 0 && project.impactAmount > 0}">
-            <div class="impactassessment">
-                <g:render template="show/impactstatement"/>
-            </div>
-        </g:if>
+    <g:if test="${project.impactNumber > 0}">
+        <div class="impactassessment">
+            <g:render template="show/impactstatement"/>
+        </div>
     </g:if>
     
     <g:if test="${reasons && (reasons.reason1 || reasons.reason2 || reasons.reason3)}">
@@ -279,7 +275,10 @@
                         <div class="col-sm-7">
                             <p>Video preview</p>
                             <textarea class="textarea-embed-video form-control" onclick="this.select()">${embedVideoCode}</textarea><br><br>
-                            <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>
+                                <g:link  target="_blank" controller="project" action="show" params="['fr': vanityUsername, 'projectTitle':vanityTitle]">
+                                      <img class="embed-logo" id="embedHover"  alt="Crowdera" src="https://s3.amazonaws.com/crowdera/project-images/7054ed14-deb4-4be9-a273-43b49c9a3d18.png"/>
+                                 </g:link>
+                                 <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>
                             <p>After choosing a video size, copy and paste the embed code above.</p>
                             <div class="row desktop-video-play">
                                 <div class="col-sm-2 margin-sm-left video-play video-play-sm video-play-hover selected text-center">

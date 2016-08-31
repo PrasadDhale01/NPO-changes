@@ -20,7 +20,7 @@
         <td class="col-sm-2">${users.dateCreated}</td>
         <td class="col-sm-2 text-center">
         <g:link action="resendConfirmMailByAdmin" id="${users.id}" role="button">
-            <button class="sendMail btn-sm sendMailbtn" ><span class="glyphicon glyphicon-envelope"></span> Send Mail</button>
+            <div class="sendMail btn btn-sm sendMailbtn" ><span class="glyphicon glyphicon-envelope"></span> Send Mail</div>
         </g:link>
         </td>
         <td class="text-center">

@@ -25,30 +25,40 @@
 %>
 <g:if test="${project.validated}">
 <div class="fedu thumbnail grow tile-pad">
-    <g:hiddenField name="projectId" class="projectId" id="projectId" value="${project.id}"/>
+<%--    <g:hiddenField name="projectId" class="projectId" id="projectId:${project.id}" value="${project.id}"/>--%>
     <g:if test="${percentage >= 75}">
         <div class="over show-tile">
             <img src="//s3.amazonaws.com/crowdera/assets/Funded-Tag.png" alt="Funded"/>
         </div>
     </g:if>
-    <div class="blacknwhite tile" id="campaignTileId">
-        <g:form controller="project" action="showCampaign" title="${project.title}" name="${project.title}" novalidate="novalidate" id="${project.id}">
-            <g:hiddenField name="fr" value="${username }" id="fr:${project.id}"/>
-            <g:hiddenField name="id" value="${project.id}" id="id:${project.id}"/>
+    <div class="blacknwhite tile">
+<%--        <g:form controller="project" action="showCampaign" title="${project.title}" name="${project.title}" novalidate="novalidate" id="${project.id}">--%>
+<%--            <g:hiddenField name="fr" value="${username }" id="fr:${project.id}"/>--%>
+<%--            <g:hiddenField name="id" value="${project.id}" id="id:${project.id}"/>--%>
+<%--            <div class="imageWithTag">--%>
+<%--                <div class="under">--%>
+<%--                    <a href="javascript:void(0);" onclick="submitCampaignShowForm('show', '${project.id}','${username }');" id="show:${project.id}">--%>
+<%--                      <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>--%>
+<%--                    </a>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </g:form>--%>
+ 		 <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">
             <div class="imageWithTag">
                 <div class="under">
-                    <a href="javascript:void(0)" onclick="submitCampaignShowForm('show', '${project.id}','${username }');" id="show:${project.id}">
-                      <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
-                    </a>
+                    <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
                 </div>
             </div>
-        </g:form>
+        </g:link>
     </div>
 
     <div class="caption tile-title-descrp project-title project-story-span tile-min-height">
-        <a href="javascript:void(0)" onclick="submitCampaignShowForm('show','${project.id}','${username }');" id="title:${project.id}">
+<%--        <a href="javascript:void(0);" onclick="submitCampaignShowForm('show','${project.id}','${username }');" id="title:${project.id}">--%>
+<%--            ${project.title.toUpperCase()}--%>
+<%--        </a>--%>
+   		<g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}">
             ${project.title.toUpperCase()}
-        </a>
+        </g:link>
         <div class="campaign-title-margin-bottom"></div>
             <span>${project.description}</span>
         </div>

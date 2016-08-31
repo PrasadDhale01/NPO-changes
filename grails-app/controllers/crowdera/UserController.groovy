@@ -1,9 +1,11 @@
 package crowdera
 
 import grails.plugin.springsecurity.annotation.Secured
-import org.springframework.security.core.context.SecurityContextHolder;
 import grails.util.Environment
+
 import javax.servlet.http.Cookie
+
+import org.springframework.security.core.context.SecurityContextHolder
 
 class UserController {
     def userService
@@ -18,7 +20,7 @@ class UserController {
     def admindashboard() {
         User user = (User)userService.getCurrentUser()
         def totalContribution
-        def environment = Environment.current.getName()
+        def environment = projectService.getCurrentEnvironment()
         if ( environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
             totalContribution = contributionService.getTotalINRContributions()
             render view: 'admin/dashboard', model: [user: user, currency:'INR', amount:totalContribution, environment: environment]
@@ -64,7 +66,7 @@ class UserController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def userprofile(String userViews, String activeTab){
         User user = (User)userService.getCurrentUser()
-        def environment = Environment.current.getName()
+        def environment = projectService.getCurrentEnvironment()
 
         if (flash.prj_validate_message) {
             flash.prj_validate_message= "Campaign Discarded Successfully"
@@ -79,7 +81,7 @@ class UserController {
             def projectAdmins
             def teams
             def project = []
-            def sortByOptions = []
+            def sortByOptions
             if (user.email == 'campaignadmin@crowdera.co') {
                 if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
                     project = projectService.getValidatedProjectsForCampaignAdmin('Pending', 'INDIA')
@@ -87,15 +89,7 @@ class UserController {
                     project = projectService.getValidatedProjectsForCampaignAdmin('Pending', 'USA')
                 }
                 
-                def sortingList =projectService.getSortingList()
-                
-                sortingList.each {
-                    
-                    if(it.value!="Homepage"){
-                        if(it.value!="Deadline")
-                            sortByOptions.add(it.value)
-                    }
-                }
+                sortByOptions =projectService.getSortingList()
                 
             } else {
                 projects = projectService.getAllProjectByUser(user, environment)
@@ -150,6 +144,7 @@ class UserController {
             }
             
             def partner = userService.getPartnerByUser(user)
+            def settingList = userService.getUserSettingList()
                 
             render view: userViews, model: [user: user, totalprojects: project, totalCampaings: totalCampaings,country: country, fundRaised: fundRaised, 
                                             state: state, activeTab:activeTab, environment: environment, contributedAmount: contributedAmount, 
@@ -160,7 +155,7 @@ class UserController {
                                             contributorListForProject:contributorListForProject, totalContributions:totalContributions, sortList:sortList,
                                             userHasContributedToNonProfitOrNgo:userHasContributedToNonProfitOrNgo, vanityTitle:vanityTitle,
                                             contributionList:contributionList, totalTaxReceiptContributions:taxReceiptRecievedList.totalTaxReceiptContributions,
-                                            taxReceiptContribution:taxReceiptRecievedList.taxReceiptList, campaign: campaign]
+                                            taxReceiptContribution:taxReceiptRecievedList.taxReceiptList, campaign: campaign, settingList:settingList]
         }
     }
 
@@ -328,7 +323,9 @@ class UserController {
     
     def logout() {
         SecurityContextHolder.clearContext()
-        render(view: '/login/error', model: [facelogoutmsg: 'A user with that email id already exists. Please log into your account.'])
+//        render(view: '/login/error', model: [facelogoutmsg: 'A user with that email id already exists. Please log into your account.'])
+		  flash.message = "A user with that email Id already exists. Please,log into your account."
+		  render view: '/login/auth', model:[message: '']
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -371,7 +368,7 @@ class UserController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def campaignpagination() {
         User user = userService.getCurrentUser()
-        def environment = Environment.current.getName()
+        def environment = projectService.getCurrentEnvironment()
         def projects = projectService.getAllProjectByUser(user, environment)
         def projectAdmins = projectService.getProjectAdminEmail(user)
         def teams = projectService.getEnabledAndValidatedTeam(user)
@@ -390,7 +387,7 @@ class UserController {
     def contributionspagination() {
         User user = userService.getUserById(params.int('userId'))
         if (user) {
-            def environment = Environment.current.getName()
+            def environment = projectService.getCurrentEnvironment()
             def max = Math.min(params.int('max') ?: 6, 100)
             def campaignsSupported = projectService.getPaginatedCampaignsContributedByUser(user, environment,params, max)
             def multiplier = projectService.getCurrencyConverter();
@@ -595,12 +592,33 @@ class UserController {
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def getSortedCampaigns() {
+        
         def projects = projectService.getValidatedProjectsForCampaignAdmin(params.selectedSortValue, params.country)
         def multiplier = projectService.getCurrencyConverter();
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
         def model = [projects: projects, multiplier: multiplier]
-        if (request.xhr) {
-            render(template: "/user/user/grid", model: model, currentEnv: currentEnv)
+        switch (params.selectedSortValue){
+            case 'Pending':
+            case 'Draft':
+            case 'Ended':
+            case 'Live':
+            case 'Rejected':
+                render(template: "/user/user/grid", model: model, currentEnv: currentEnv)
+            break;
+            case 'Deadline':
+                def deadlinDays = projectService.getInDays()
+                render(template: "/project/validate/deadline", model: [projects: projects, multiplier: multiplier,
+                     deadlinDays:deadlinDays, extendDays:params.extendDays], currentEnv: currentEnv)
+            break;
+            case 'Homepage':
+                render(template: "/project/validate/homepage", model: model, currentEnv: currentEnv)
+            break;
+            case 'Deleted':
+                render(template: "/project/validate/deletedCampaigns", model: model, currentEnv: currentEnv)
+            break;
+            case 'Carousel':
+                render(template: "/project/validate/homepagecarousel", model: model, currentEnv: currentEnv)
+            break;
         }
     }
 	
@@ -1027,7 +1045,7 @@ class UserController {
         def contribution = Contribution.get(params.id)
         
         if (contribution) {
-            def title = contribution.project.organizationName
+            def title = contribution?.project.organizationName
             def reportDef = userService.generateTaxreceiptPdf(contribution);
             ByteArrayOutputStream bytes = jasperService.generateReport(reportDef)
             response.setHeader("Content-Disposition", 'attachment; filename="taxreceipt-"'+title+'".pdf"');
@@ -1322,4 +1340,30 @@ class UserController {
             render view:'/404error'
         }
     }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def settingOption(){
+        if("Profile".equalsIgnoreCase(params.option)){
+            def user = userService.getCurrentUser()
+            render (template:"common/accountsettings", model:[user:user])
+        }else{
+            userprofile('/user/user/mycontribution', null)
+        }
+        
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def managedisbursement() {
+        List projects = projectService.getCitrusCampaigns()
+        
+        render view:'/user/disbursement/index', model:[projects: projects]
+    }
+    
+    def getcontribution() {
+        if (request.xhr) {
+            List contributions = projectService.getContributionsListByProjectId(params.projectId);
+            render template:'/user/disbursement/contributions', model:[contributions: contributions, sellerId: params.sellerId]
+        }
+    }
+    
 }

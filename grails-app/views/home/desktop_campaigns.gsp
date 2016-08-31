@@ -11,14 +11,10 @@
         <div class='item active home-campaign-tile-container home-tile-mobile hidden-xs'>
             <div class='row'>
                 <ul class='thumbnails list-unstyled home-campaign-tile'>
-                    <% def index1 = 1
-                        def projects
+                    <% 
+                        def index1 = 1
                         def currentEnv = projectService.getCurrentEnvironment()
-                        if(currentEnv=='test' || currentEnv=='testIndia' || currentEnv=='development'){
-                            projects = projectService.showProjects(currentEnv)
-                        }else{
-                            projects= projectService.getHomePageCampaignByEnv(currentEnv)
-                        }            
+                        def projects = projectService.getHomePageCampaignListByEnv(currentEnv)
                      %>
                     <g:each in='${projects}' var='project'>
                         <li class='<g:if test='${index1++ > 2}'>hidden-md col-lg-4 hidden-sm col-sm-6 col-xs-12</g:if><g:else>col-md-6 col-sm-6 col-lg-4 col-xs-12</g:else>'>

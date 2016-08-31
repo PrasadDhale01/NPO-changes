@@ -2,7 +2,8 @@
 <head>
     <title>Crowdera- User list</title>
     <meta name="layout" content="main" />
-    <r:require modules="projectcreatejs"/>
+    <r:require modules="projectcreatejs, userlistjs"/>
+    <r:require module="datatablecss"/>
 </head>
 <body>
 <div class="feducontent">
@@ -25,13 +26,13 @@
                 </div>
             </g:if>
             <g:link controller="project" action="sendEmailToNonUserContributors">
-                <button class="sendMail all-users btn-sm" id="sendEmailButton"><span class="glyphicon glyphicon-envelope"></span> Send email to non registered contributors</button>
+                <div class="sendMail all-users btn btn-sm" id="sendEmailButton"><span class="glyphicon glyphicon-envelope"></span> Send email to non registered contributors</div>
             </g:link><br>
             <h4>Verified Users</h4>
             <div class="table table-responsive">
-            	<table class="table table-bordered">
+            	<table class="table table-bordered table-striped" id="verifiedUserList">
             	    <thead>
-                	<tr class="alert alert-title">
+                	<tr class="">
                    	    <th>Id</th>
                    	    <th class="col-sm-2 text-center">Email</th>
                    	    <th class="col-sm-2 text-center">First Name</th>
@@ -51,14 +52,14 @@
                 <div class="col-sm-6">
                     <h5>Send an email to all non-verified users</h5>
                     <g:link action="resendToUsers" controller="User">
-                        <button class="sendMail all-users btn-sm" ><span class="glyphicon glyphicon-envelope"></span> Send Mail</button>
+                        <div class="sendMail all-users btn btn-sm" ><span class="glyphicon glyphicon-envelope"></span> Send Mail</div>
                     </g:link>
                 </div>
             </div>
             <div class="table table-responsive">
-            	<table class="table table-bordered">
+            	<table class="table table-bordered table-striped" id="unVerifiedUserList">
             	    <thead>
-                	<tr class="alert alert-title">
+                	<tr class="">
                    	    <th>Id</th>
                    	    <th class="col-sm-2 text-center">Email</th>
                    	    <th class="col-sm-2 text-center">First Name</th>

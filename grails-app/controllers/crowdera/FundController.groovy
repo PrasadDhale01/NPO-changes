@@ -9,6 +9,7 @@ import groovyx.net.http.Method
 import org.apache.http.HttpEntity
 import org.apache.http.HttpResponse
 import org.apache.http.client.HttpClient
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
@@ -30,47 +31,74 @@ class FundController {
     def conId
     def frId
     String str
+    CampaignService campaignService;
 
     def fund() {
         Project project
         User user = userService.getCurrentUser()
         def fundraiser = userService.getUserFromVanityName(params.fr)
         def currentEnv = Environment.current.getName()
-		def state = projectService.getState()
-		def country = projectService.getCountry()
+        def state = projectService.getState()
+        def country = projectService.getCountry()
 
         def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
         if (projectId) {
             project = Project.findById(projectId)
         }
-        
-          def team = userService.getTeamByUser(fundraiser, project)
-		def reward = (params.rewardId) ? rewardService.getRewardById(params.long('rewardId')) : rewardService.getNoReward()
-		def perk = rewardService.getRewardById(params.long('rewardId'))
 
-		def shippingInfo = rewardService.getShippingInfo(reward)
+        def team = userService.getTeamByUser(fundraiser, project)
+        def reward = (params.rewardId) ? rewardService.getRewardById(params.long('rewardId')) : rewardService.getNoReward()
+        def perk = rewardService.getRewardById(params.long('rewardId'))
+
+        def shippingInfo = rewardService.getShippingInfo(reward)
 
         boolean fundingAchieved = contributionService.isFundingAchievedForProject(project)
         boolean ended = projectService.isProjectDeadlineCrossed(project)
 
         if (!project) {
-           def previousPage = 'campaign details'
-           render (view: '/project/manageproject/error', model: [project: project, currentEnv:currentEnv, previousPage:previousPage])
+            def previousPage = 'campaign details'
+            render (view: '/project/manageproject/error', model: [project: project, currentEnv:currentEnv, previousPage:previousPage])
         } else if (fundingAchieved || ended) {
             redirect(controller: 'project', action: 'showCampaign', id: project.id)
         } else {
-        
+
+            def request_url = request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+            def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+
             if (project.payuStatus){
-                def key = grailsApplication.config.crowdera.PAYU.KEY
-                def salt = grailsApplication.config.crowdera.PAYU.SALT
-                def service_provider = "payu_paisa"
-                render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, key:key, salt:salt, service_provider:service_provider]
+                
+                boolean isTaxReceipt = campaignService.isTaxReceiptExist(project.id);
+
+                if (project.payuEmail) {
+                    def key = grailsApplication.config.crowdera.PAYU.KEY
+                    def salt = grailsApplication.config.crowdera.PAYU.SALT
+                    def service_provider = "payu_paisa"
+
+
+                    render view: 'fund/index', model: [team:team, project: project, state:state, country:country,
+                        perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
+                        vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, key:key, salt:salt,
+                        service_provider:service_provider, isTaxReceipt: isTaxReceipt]
+                    
+                } else if (project.citrusEmail) {
+
+                    def cardTypes = projectService.getcardtypes()
+                    def title = projectService.getTitle()
+                    def month = contributionService.getMonth()
+                    def year = contributionService.getYear()
+                    def defaultCountry = 'US'
+
+                    render view: 'fund/citruscheckout', model: [team:team, project: project, state:state, country:country,
+                        perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
+                        vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, cardTypes: cardTypes, title: title,
+                        month: month, year: year, defaultCountry: defaultCountry, isTaxReceipt: isTaxReceipt]
+                }
             } else {
                 render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo]
             }
-        
         }
     }
+
 
     def checkout() {
         Project project
@@ -86,6 +114,7 @@ class FundController {
         def defaultCountry = 'US'
         perk = rewardService.getRewardById(params.long('rewardId'))
         def user1 = userService.getUserByUsername(params.tempValue)
+
         def currentEnv = Environment.current.getName()
 
         def user = userService.getUserById(params.long('userId'))
@@ -96,10 +125,10 @@ class FundController {
             project = projectService.getProjectById(params.projectId)
             vanityTitle = projectService.getVanityTitleFromId(params.projectId)
         }
-        
+
         def anonymous = params.anonymous
-		
-	    User fundraiser = userService.getUserFromVanityName(params.fr)
+
+        User fundraiser = userService.getUserFromVanityName(params.fr)
         def team = userService.getTeamByUser(fundraiser, project)
 
         def totalContribution= contributionService.getTotalContributionForProject(project)
@@ -108,50 +137,50 @@ class FundController {
         def reqAmt=(999/100)*amt
         def remainAmt=reqAmt- totalContribution
         def percentage=((totalContribution + contPrice)/ amt)*100
-        
+
         def vanityUserName = params.fr
-        
+
         if(percentage>999) {
             flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
             redirect action: 'fund', params:['fr': vanityUserName, 'rewardId': perk.id, 'projectTitle': vanityTitle]
         }
         else{
-        if (project) {
-            if (params.int('rewardId')) {
-                reward = project.rewards.find {
-                    it.id == params.int('rewardId')
+            if (project) {
+                if (params.int('rewardId')) {
+                    reward = project.rewards.find {
+                        it.id == params.int('rewardId')
+                    }
+                } else {
+                    reward = rewardService.getNoReward()
+                }
+            }
+
+            def amount = params.double(('amount'))
+            if (amount < reward.price) {
+                render view: 'error', model: [message: 'Funding amount cannot be smaller than reward price. Please choose a smaller reward, or increase the funding amount.']
+                return
+            }
+
+            if (project && reward) {
+                if(!team || ! project.user){
+                    def previousPage = 'fund'
+                    render (view: '/project/manageproject/error', model: [project: project, currentEnv:currentEnv, previousPage:previousPage])
+                }else{
+                    render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry, month:month, year:year, fundraiser:fundraiser, user1:user1, anonymous:anonymous, projectTitle:params.projectTitle, username:params.fr]
                 }
             } else {
-                reward = rewardService.getNoReward()
+                render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
             }
         }
-
-        def amount = params.double(('amount'))
-        if (amount < reward.price) {
-            render view: 'error', model: [message: 'Funding amount cannot be smaller than reward price. Please choose a smaller reward, or increase the funding amount.']
-            return
-        }
-
-        if (project && reward) {
-            if(!team || ! project.user){
-                def previousPage = 'fund'
-                render (view: '/project/manageproject/error', model: [project: project, currentEnv:currentEnv, previousPage:previousPage]) 
-            }else{
-                render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry, month:month, year:year, fundraiser:fundraiser, user1:user1, anonymous:anonymous, projectTitle:params.projectTitle, username:params.fr]
-            }
-        } else {
-            render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
-        }
-        }   
     }
 
     def charge() {
         Project project
         Reward reward
         def vanityTitle
-        
-        def currentEnv = Environment.current.getName()
-        
+
+        def currentEnv = projectService.getCurrentEnvironment()
+
         if (params.campaignId) {
             project = projectService.getProjectById(params.campaignId)
             vanityTitle = projectService.getVanityTitleFromId(params.campaignId)
@@ -162,7 +191,7 @@ class FundController {
             if (user == null){
                 user = userService.getUserByUsername('anonymous@example.com')
             }
-        
+
             User fundraiser = userService.getUserFromVanityName(params.fr)
 
             if (params.int('rewardId')) {
@@ -172,7 +201,9 @@ class FundController {
             } else {
                 reward = rewardService.getNoReward()
             }
-            
+
+            def amount = params.double(('amount'))
+
             def totalContribution= contributionService.getTotalContributionForProject(project)
             def contPrice = params.double(('amount'))
             def amt =project.amount
@@ -181,7 +212,7 @@ class FundController {
             def percentage=((totalContribution + contPrice)/ amt)*100
             perk = Reward.get(params.long('rewardId'))
             def vanityUserName = params.fr
-			
+
             if(percentage > 999) {
                 flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
                 redirect action: 'fund', params:['fr': vanityUserName, 'rewardId': perk.id, 'projectTitle': vanityTitle]
@@ -204,27 +235,26 @@ class FundController {
 
     def acknowledge() {
         Contribution contribution = contributionService.getContributionById(params.long('cb'))
-        
+
         Project project = contribution?.project
         Reward reward = contribution?.reward
         User user = contribution?.user
         User fundraiser = userService.getUserById(params.long('fr'))
-        
+
         String request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         String base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-        
+
         if (userService.getCurrentUser()){
-        
+
             def vanityusername = userService.getVanityNameFromUsername(fundraiser?.username, project?.id)
             def shortUrl = projectService.getShortenUrl(project?.id, vanityusername)
             def twitterShareUrl = base_url+"/c"+shortUrl
             mandrillService.sendThankYouMailToContributors(contribution, project, contribution.amount, fundraiser)
             render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser, projectTitle:params.projectTitle, twitterShareUrl:twitterShareUrl]
-        
         } else {
-            
+
             def reqUrl = base_url+"/fund/sendEmail?cb=${params.cb}&fr=${params.fr}&projectTitle=${params.projectTitle}"
-            
+
             def loginSignUpCookie = projectService.setLoginSignUpCookie()
             def campaignNameCookie = projectService.setCampaignNameCookie(project?.title)
             def fundingAmountCookie = projectService.setFundingAmountCookie(contribution?.amount)
@@ -289,7 +319,7 @@ class FundController {
             if(contributorEmailCookie){
                 response.addCookie(contributorEmailCookie)
             }
-                redirect (controller:'home', action:'index')
+            redirect (controller:'home', action:'index')
         } else {
             render view:'404error'
         }
@@ -302,11 +332,11 @@ class FundController {
         def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
         def project = projectService.getProjectById(projectId)
         def fundRaiser = userService.getUserById(params.long('fr'))
-        
+
         if(contribution == null ){
-           return false
+            return false
         }
-        
+
         def user = contribution?.user
         def reward = contribution?.reward
 
@@ -334,22 +364,21 @@ class FundController {
                 def message = "Something went wrong saving comment. Please try again later."
                 render view: 'error', model: [message: message]
             }
-            
         }
     }
-    
+
     def saveCommentRedirect() {
         Contribution contribution = contributionService.getContributionById(params.long('id'))
         def projectComment = projectService.getProjectCommentById(params.long('commentId'))
         def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
         def project = projectService.getProjectById(projectId)
         def fundRaiser = userService.getUserById(params.long('fr'))
-        
+
         def user = contribution?.user
         def reward = contribution?.reward
         render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundRaiser,projectTitle:params.projectTitle, comment: projectComment]
     }
-    
+
     def saveTeamCommentRedirect() {
         Contribution contribution = contributionService.getContributionById(params.long('id'))
         def teamComment = projectService.getTeamCommentById(params.long('teamCommentId'))
@@ -361,14 +390,14 @@ class FundController {
         def reward = contribution.reward
         render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundRaiser,projectTitle:params.projectTitle, teamComment:teamComment]
     }
-    
+
     def editContributionComment(){
         Contribution contribution = contributionService.getContributionById(params.long('id'))
-        
+
         if(contribution ==null){
-            return false    
+            return false
         }
-        
+
         if(Contribution){
             def project = contribution?.project
             def reward = contribution?.reward
@@ -382,15 +411,14 @@ class FundController {
             def message = "Something went wrong saving comment. Please try again later."
             render view: 'error', model: [message: message]
         }
-        
     }
-    
+
     def deleteContributionComment() {
         def projectComment = projectService.getProjectCommentById(params.long('commentId'))
         def teamComment = projectService.getTeamCommentById(params.long('teamCommentId'))
         def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
         def project = projectService.getProjectById(projectId)
-        
+
         def fundraiser = userService.getUserById(params.long('fr'))
         Team team = projectService.getTeamByUserAndProject(project, fundraiser)
         if(params.id) {
@@ -400,11 +428,11 @@ class FundController {
         }
         redirect (action:"acknowledge", params:[cb : params.id, fr : params.fr, projectTitle:params.projectTitle])
     }
-    
+
     def sendemail() {
         projectService.getEmailDetails(params)
-        
-		flash.sentmessage= "Email sent successfully."
+
+        flash.sentmessage= "Email sent successfully."
         redirect(controller:'fund',action: 'acknowledge', params:[cb : params.cb, fr: params.fr, projectTitle: params.projectTitle])
     }
 
@@ -428,14 +456,14 @@ class FundController {
 
     def payByFirstGiving(def params, Project project,Reward reward,User user,User fundraiser,def address){
         user = userService.getUserForContributors(params.billToEmail, user.id)
-        
+
         def BASE_URL = grailsApplication.config.crowdera.firstgiving.BASE_URL
 
         def http = new HTTPBuilder(BASE_URL)
         def amount = params.double('amount')
-        
+
         String ipAddress =  request.getRemoteAddr();
-        
+
         def transactionId = null
         def result = null
         def state
@@ -478,7 +506,6 @@ class FundController {
             // response handler for a success response code
             response.success = { resp, reader ->
                 result = true
-                //TODO: fix this logic
                 def responseXML
                 reader.each{ key, value ->
                     if(reader[key]) {
@@ -545,12 +572,12 @@ class FundController {
         if(json){
             ack = json?.responseEnvelope?.ack
             paykey = json?.payKey
-        
+
             PaykeyTemp paykeytemp = new PaykeyTemp(
-                timestamp: timestamp,
-                paykey:paykey,
-                )
-           paykeytemp.save(failOnError: true)
+                    timestamp: timestamp,
+                    paykey:paykey,
+                    )
+            paykeytemp.save(failOnError: true)
         }
     }
 
@@ -561,19 +588,18 @@ class FundController {
         } else {
             projectTitle = request.getParameter('projectTitle')
         }
-        
+
         Transaction transaction = contributionService.getTransactionByTransactionId(transactionId)
         if (transaction) {
             conId = transaction.contribution.id
-            frId = fundraiser.id
+            frId = fundraiser?.id
             redirect(controller: 'fund', action: 'acknowledge' , params: [cb: transaction.contribution.id, fr:fundraiser.id, projectTitle: projectTitle])
         } else {
             def contributionId = projectService.getUserContributionDetails(project, reward, amount, transactionId, users, fundraiser, params,  address, request)
             conId = contributionId
-            frId = fundraiser.id
+            frId = fundraiser?.id
             redirect(controller: 'fund', action: 'acknowledge' , params: [cb: contributionId, fr:fundraiser.id, projectTitle: projectTitle])
         }
-        
     }
 
     def paypalurl(def params, User fundraiser, User user){
@@ -600,34 +626,34 @@ class FundController {
         def amount = request.getParameter('amount')
         def timestamp = request.getParameter('timestamp')
         def userid = request.getParameter('userId')
-		def fundraiserId = request.getParameter('fundraiser')
+        def fundraiserId = request.getParameter('fundraiser')
         def address = request.getParameter('address')
 
         Project project = projectService.getProjectFromVanityTitle(projectTitle)
-        
+
         User user = userService.getUserForContributors(request.getParameter('email') , userid)
-        
-		User fundraiser = userService.getUserById(fundraiserId)
+
+        User fundraiser = userService.getUserById(fundraiserId)
         Reward reward = rewardService.getRewardById(rewardId)
 
         def paykeytemp = projectService.getpayKeytempObject(timestamp)
         def payKey = paykeytemp?.paykey
         paykeytemp?.delete()
-        
+
         if (result) {
             userContribution(project,reward,amount,payKey,user,fundraiser,request,address)
         } else {
             render view: 'fund/index', model: [project: project]
         }
     }
-    
+
     def getOnlyTwitterHandlerRewards(){
         def project = projectService.getProjectById(request.getParameter('projectId'))
         def reward = rewardService.getOnlytwitterHandlerReward(project)
         def rewardId = reward.id
         render rewardId
     }
-    
+
     def getRewardsHavingTwitterHandler(){
         def project = projectService.getProjectById(request.getParameter('projectId'))
         def reward = rewardService.getTwitterHandlerReward(project)
@@ -640,28 +666,28 @@ class FundController {
         def transactionSort = contributionService.transactionSort()
         def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-        
+
         def multiplier = projectService.getCurrencyConverter();
         if (params.currency == 'INR'){
             def contributionINR = contributionService.getINRContributions(params)
-            render view: '/user/admin/transactionIndex', model: [multiplier: multiplier, contribution: contributionINR.contributions, 
-                                                         totalContributions: contributionINR.totalContributions, currency:'INR', transactionSort:transactionSort, url:base_url]
+            render view: '/user/admin/transactionIndex', model: [multiplier: multiplier, contribution: contributionINR.contributions,
+                totalContributions: contributionINR.totalContributions, currency:'INR', transactionSort:transactionSort, url:base_url]
         } else {
             def contributionUSD = contributionService.getUSDContributions(params)
             render view: '/user/admin/transactionIndex', model: [multiplier: multiplier, contribution: contributionUSD.contributions,
-                                                         totalContributions: contributionUSD.totalContributions, currency:'USD', transactionSort:transactionSort, url:base_url]
+                totalContributions: contributionUSD.totalContributions, currency:'USD', transactionSort:transactionSort, url:base_url]
         }
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def generateCSV(){
-        def result = projectService.generateCSV(response, params)          
+        def result = projectService.generateCSV(response, params)
         render (contentType:"text/csv", text:result)
     }
-    
+
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def saveOfflineContribution() {
-		def fundRaiser = userService.getCurrentUser()
+        def fundRaiser = userService.getCurrentUser()
         def title = projectService.getVanityTitleFromId(params.id)
         def name = userService.getVanityNameFromUsername(fundRaiser.username, params.id)
         projectService.getOfflineDetails(params)
@@ -672,8 +698,8 @@ class FundController {
             redirect (controller: 'project', action: 'show' ,fragment: 'contributions', params:['projectTitle':title,'fr':name])
         }
     }
-	
-	def payByPayUmoney(){
+
+    def payByPayUmoney(){
         def project= Project.get(params.projectId)
         def user = User.get(params.userId)
         def reward = Reward.get(params.rewardId)
@@ -718,14 +744,14 @@ class FundController {
         render view:"checkout/payu" ,model:['service_provider': service_provider, 'key': key, 'salt': salt, 'amount':amount,'project':project, 'reward':reward, 'fundraiser':fundraiser, 'user':user,'projectTitle':projectTitle,'anonymous':anonymous, 'country':country, 'state':state]
     }
 
-	 def payupayment(){
+    def payupayment(){
         JSONObject json = new JSONObject();
         def request_url = request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
         json = projectService.getPayuInfo(params, base_url)
         render json
     }
-	
+
     def payureturn(){
         def result = (boolean)request.getParameter('result')
         def paramss = request.getParameter('params')
@@ -739,7 +765,7 @@ class FundController {
 
         Project project = Project.get(projectId)
         User user = userService.getUserForContributors(request.getParameter('email'), userid)
-        
+
         User fundraiser = User.get(fundraiserId)
         Reward reward = Reward.get(rewardId)
         if (result){
@@ -749,17 +775,17 @@ class FundController {
         }
     }
 
-	def getRewardShippingDetails(){
-		def anonymous = request.getParameter('anonymous')
-		def reward = rewardService.getRewardById(params.long('rewardId'));
-		def shippingInfo = rewardService.getShippingInfo(reward);
-		def state = projectService.getState()
-		def country = projectService.getCountry()
-		if(request.xhr){
-			render(template: "fund/perkShippingDetails", model:[shippingInfo:shippingInfo, anonymous:anonymous, state:state, country:country])
-		}
-	}
-	
+    def getRewardShippingDetails(){
+        def anonymous = request.getParameter('anonymous')
+        def reward = rewardService.getRewardById(params.long('rewardId'));
+        def shippingInfo = rewardService.getShippingInfo(reward);
+        def state = projectService.getState()
+        def country = projectService.getCountry()
+        if(request.xhr){
+            render(template: "fund/perkShippingDetails", model:[shippingInfo:shippingInfo, anonymous:anonymous, state:state, country:country])
+        }
+    }
+
     @Secured(['ROLE_ADMIN'])
     def getSortedContributions(){
         def sortedList = contributionService.getContributionSortedResult(params, params.selectedSortValue, params.currency)
@@ -767,19 +793,19 @@ class FundController {
             render(template:"/user/admin/transactionGrid", model: [contribution: sortedList.contributions, totalContributions: sortedList.totalContributions]);
         }
     }
-    
+
     @Secured(['ROLE_ADMIN'])
     def sendEmailToContributors(){
         projectService.makeContributorsUser()
         flash.contributorUsernameAndPwdmessage = "Email has been send to the non-registered contributors with their username and password and registered contributors are now able to watch their contribution on their dashboard."
         redirect(action:'transaction')
     }
-    
+
     @Secured(['ROLE_ADMIN'])
     def transactionList() {
         def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-        
+
         def multiplier = projectService.getCurrencyConverter();
         def model
         if (params.currency == 'INR'){
@@ -795,12 +821,481 @@ class FundController {
             render ''
         }
     }
-    
+
+    def getSellerIdForCampaign() {
+        def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.BASE_URL
+
+        def sellerUrl = citrusBaseUrl + "/marketplace/seller/"
+
+        def sellername = "John Smith"
+        def address1 = "City Garden"
+        def address2 = "Link Road"
+        def city = "Mumbai"
+        def state = "MH"
+        def country = "India"
+        def zip = "41234"
+        def businessurl = "www.rediff.com"
+        def sellermobile = "9422173793"
+        def ifsccode = "ICIC0001206"
+        def accountnumber = "123456"
+        def payoutmode = "WALLET"
+        def selleremail = "johnsmith@gmail.com"
+
+        HttpClient httpclient = new DefaultHttpClient()
+        HttpPost httppost = new HttpPost(sellerUrl)
+
+        StringEntity input = new StringEntity("{\"sellername\":\"${sellername}\",\"address1\":\"${address1}\",\"address2\":\"${address2}\",\"city\":\"${city}\",\"state\":\"${state}\",\"country\":\"${country}\",\"zip\":\"${zip}\",\"businessurl\":\"${businessurl}\",\"sellermobile\":\"${sellermobile}\",\"ifsccode\":\"${ifsccode}\",\"accountnumber\":\"${accountnumber}\",\"active\":1,\"payoutmode\":\"${payoutmode}\",\"selleremail\":\"${selleremail}\"}")
+
+        input.setContentType("application/json")
+        httppost.setEntity(input)
+
+        HttpResponse httpres = httpclient.execute(httppost)
+        int status = httpres.getStatusLine().getStatusCode()
+        def sellerId
+
+        if (status == 200){
+            HttpEntity entity = httpres.getEntity()
+            if (entity != null){
+                sellerId = EntityUtils.toString(entity)
+            }
+        }
+
+        return sellerId
+    }
+
+
+    def citrusCheckout() {
+        Project project
+        Reward reward
+        def vanityTitle
+
+        def country = projectService.getCountry()
+        def cardTypes = projectService.getcardtypes()
+        def title = projectService.getTitle()
+        def state = projectService.getState()
+        def month = contributionService.getMonth()
+        def year = contributionService.getYear()
+        def defaultCountry = 'US'
+
+        perk = rewardService.getRewardById(params.long('rewardId'))
+        def user1 = userService.getUserByUsername(params.tempValue)
+
+        def user = userService.getUserById(params.long('userId'))
+        if (user == null){
+            user = userService.getUserByUsername('anonymous@example.com')
+        }
+
+        if (params.projectId) {
+            project = projectService.getProjectById(params.projectId)
+            vanityTitle = projectService.getVanityTitleFromId(params.projectId)
+        }
+
+        def anonymous = params.anonymous
+
+        User fundraiser = userService.getUserFromVanityName(params.fr)
+        def team = userService.getTeamByUser(fundraiser, project)
+
+        def totalContribution= contributionService.getTotalContributionForProject(project)
+        def contPrice = params.double(('amount'))
+        def amt = project.amount
+        def reqAmt = (999/100) * amt
+        def remainAmt = reqAmt- totalContribution
+        def percentage = ((totalContribution + contPrice)/ amt) * 100
+
+        def vanityUserName = params.fr
+
+        if(percentage > 999) {
+            flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
+            redirect action: 'fund', params:['fr': vanityUserName, 'rewardId': perk.id, 'projectTitle': vanityTitle]
+        }
+        else{
+            if (project) {
+                if (params.int('rewardId')) {
+                    reward = project.rewards.find {
+                        it.id == params.int('rewardId')
+                    }
+                } else {
+                    reward = rewardService.getNoReward()
+                }
+            }
+
+            def amount = params.double(('amount'))
+            String citrusAmount = ''+amount
+
+            if (project && reward) {
+                if(!team || ! project.user){
+                    render view:"error", model: [message:'User not found']
+                } else{
+                    String txnID = String.valueOf(System.currentTimeMillis());
+                    String secret_key = grailsApplication.config.crowdera.CITRUS.SECRETE_KEY
+                    String access_Key = grailsApplication.config.crowdera.CITRUS.ACCESS_KEY
+
+                    def securitySignature = contributionService.getSecuritySignature(txnID, secret_key, access_Key, citrusAmount)
+                    render view: 'checkout/citrus',
+                    model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title,
+                        state:state, defaultCountry:defaultCountry, month:month, year:year, fundraiser:fundraiser, user1:user1, anonymous:anonymous,
+                        projectTitle:params.projectTitle, username:params.fr, txnID: txnID, securitySignature: securitySignature]
+                }
+            } else {
+                render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
+            }
+        }
+    }
+
+
+    def setCitrusInfo() {
+        projectService.setCitrusInfo(session, params)
+        render ''
+    }
+
+    def getBillingInfo() {
+
+        def anonymous = request.getParameter('anonymous')
+        def reward = rewardService.getRewardById(params.long('rewardId'));
+        def shippingInfo = rewardService.getShippingInfo(reward);
+        def state = projectService.getState()
+        def country = projectService.getCountry()
+
+        if(request.xhr){
+            render(template: "fund/shippinginfo", model:[shippingInfo:shippingInfo, anonymous:anonymous, state:state, country:country])
+        }
+    }
+
+    def getCitrusSignature() {
+        String txnID = String.valueOf(System.currentTimeMillis());
+        String secret_key = grailsApplication.config.crowdera.CITRUS.SECRETE_KEY
+        String access_Key = grailsApplication.config.crowdera.CITRUS.ACCESS_KEY
+        
+        def citrusAmount = params.amount
+        def securitySignature = contributionService.getSecuritySignature(txnID, secret_key, access_Key, citrusAmount)
+        def model = [txnID: txnID, securitySignature: securitySignature];
+        
+        JSONObject json = new JSONObject();
+        json.put('txnID',txnID)
+        json.put('securitySignature',securitySignature)
+        render json
+    }
+
+
+    def citrusreturn() {
+        String secret_key = grailsApplication.config.crowdera.CITRUS.SECRETE_KEY
+        def fr = session.getAttribute('fr');
+        User fundraiser  = userService.getUserFromVanityName(fr)
+
+        def contributionId = projectService.getCitrusTransactionDetails(secret_key, request, session, fundraiser)
+        def projectTitle = session.getAttribute('projectTitle')
+
+        if (contributionId && fundraiser) {
+            redirect(controller: 'fund', action: 'acknowledge' , params: [cb: contributionId, fr:fundraiser.id, projectTitle: projectTitle])
+        }
+    }
+
+
+    /*def payByCitrus() {
+     def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.BASE_URL
+     Date date = new Date()
+     def transactionDate = date.format("YYYY-MM-DD HH:mm:ss")
+     def contributorEmail = params.email;
+     def project
+     def reward
+     def user
+     def fundraiser
+     def address = projectService.getAddress(params)
+     def amount = params.amount
+     def merchantOrderRef = "ABC123"
+     def auth_token = contributionService.getAccessTokenForCitrus()
+     def transactionUrl = citrusBaseUrl + "/marketplace/trans/"
+     HttpClient httpclient = new DefaultHttpClient()
+     HttpPost httppost = new HttpPost(transactionUrl)
+     httppost.setHeader("auth_token","${auth_token}")
+     StringEntity input = new StringEntity("{\"merc_order_ref\":\"${merchantOrderRef}\",\"trans_datetime\":\"${transactionDate}\", \"trans_amount\":${amount}, \"trans_paymode\":\"Credit Card\", \"trans_pay_source\":\"CITRUS\", \"trans_customer\":\"${contributorEmail}\", \"trans_note\":\"Sale Transaction\"}")
+     input.setContentType("application/json")
+     httppost.setEntity(input)
+     HttpResponse httpres = httpclient.execute(httppost)
+     int status = httpres.getStatusLine().getStatusCode()
+     def transactionId
+     if (status == 200){
+     HttpEntity entity = httpres.getEntity()
+     if (entity != null){
+     transactionId = EntityUtils.toString(entity)
+     }
+     }
+     render transactionId
+     userContribution(project, reward, amount, transactionId, user, fundraiser, params, address)
+     }*/
+
+    /*def addCitrusTransaction() {
+     def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
+     def url = citrusBaseUrl +"/marketplace/trans/"
+     Date date = new Date()
+     def mercOrderRef = '2gxvaj'
+     def transactionDate = date.format("yyyy-MM-dd HH:mm:ss")
+     def amount = 10000
+     def paymode = 'Credit Card'
+     def transCustomer = 'krishna.sahu@crowdera.co'
+     HttpClient httpclient = new DefaultHttpClient()
+     HttpPost httppost = new HttpPost(url)
+     def auth_token = contributionService.getAccessTokenForCitrus()
+     httppost.setHeader("auth_token","${auth_token}")
+     StringEntity input = new StringEntity("{\"merc_order_ref\":\"${mercOrderRef}\",\"trans_datetime\":\"${transactionDate}\",\"merchant_split_ref\":\"abcddcjc\",\"trans_amount\": 1000,\"trans_paymode\":\"${paymode}\",\"trans_pay_source\":\"CITRUS\", \"trans_customer\":\"${transCustomer}\", \"trans_note\":\"Sale Transaction\"}")
+     input.setContentType("application/json")
+     httppost.setEntity(input)
+     HttpResponse httpres = httpclient.execute(httppost)
+     int status = httpres.getStatusLine().getStatusCode()
+     def transactionId
+     if (status == 200){
+     HttpEntity entity = httpres.getEntity()
+     if (entity != null){
+     transactionId = EntityUtils.toString(entity)
+     }
+     }
+     render transactionId
+     }*/
+
+
+    def getseller() {
+        def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
+        String sellerId = params.sellerId
+        def url = citrusBaseUrl +"/marketplace/seller/${sellerId}"
+        
+        HttpClient httpclient = new DefaultHttpClient()
+        HttpGet httpGet = new HttpGet(url)
+        def auth_token = contributionService.getAccessTokenForCitrus()
+        def seller
+        
+        httpGet.setHeader("auth_token","${auth_token}")
+        HttpResponse httpres = httpclient.execute(httpGet)
+
+        int status = httpres.getStatusLine().getStatusCode()
+        if (status == 200) {
+            HttpEntity entity = httpres.getEntity();
+            if (entity != null){
+                def jsonString = EntityUtils.toString(entity)
+                def slurper = new JsonSlurper()
+                def json = slurper.parseText(jsonString)
+                seller = json
+            }
+        }
+        render seller
+    }
+
+    def getSellerAccountBalance() {
+        def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
+        String sellerId = params.sellerId
+        def url = citrusBaseUrl +"/marketplace/seller/getbalance/${sellerId}"
+        
+        HttpClient httpclient = new DefaultHttpClient()
+        HttpGet httpGet = new HttpGet(url)
+        def auth_token = contributionService.getAccessTokenForCitrus()
+        def seller
+        
+        httpGet.setHeader("auth_token","${auth_token}")
+        HttpResponse httpres = httpclient.execute(httpGet)
+
+        int status = httpres.getStatusLine().getStatusCode()
+        if (status == 200) {
+            HttpEntity entity = httpres.getEntity();
+            if (entity != null){
+                def jsonString = EntityUtils.toString(entity)
+                def slurper = new JsonSlurper()
+                def json = slurper.parseText(jsonString)
+                seller = json.account_balance
+                // json.account_id
+            }
+        }
+        render seller
+    }
+
+    /*def getSplitIdForTransactionId() {
+     def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
+     def url = citrusBaseUrl +"/marketplace/split/"
+     HttpClient httpclient = new DefaultHttpClient()
+     HttpPost httppost = new HttpPost(url)
+     def trans_id = 6908
+     def seller_id = 623
+     def merchant_split_ref = "65297"
+     def split_amount = 900
+     def fee_amount = 20
+     def auto_payout = 1
+     StringEntity input = new StringEntity("{\"trans_id\":${trans_id},\"seller_id\":${seller_id},\"merchant_split_ref\":\"${merchant_split_ref}\",\"split_amount\":${split_amount},\"fee_amount\":${fee_amount},\"auto_payout\":${auto_payout}}")
+     input.setContentType("application/json")
+     httppost.setEntity(input)
+     def auth_token = contributionService.getAccessTokenForCitrus()
+     httppost.setHeader("auth_token","${auth_token}")
+     HttpResponse httpres = httpclient.execute(httppost)
+     def splitId
+     int status = httpres.getStatusLine().getStatusCode()
+     if (status == 200){
+     HttpEntity entity = httpres.getEntity()
+     if (entity != null){
+     def jsonString = EntityUtils.toString(entity)
+     def slurper = new JsonSlurper()
+     def json = slurper.parseText(jsonString)
+     splitId = json.split_id
+     }
+     }
+     render httpres.toString()
+     }*/
+
+    /*def getTransactionsSplit() {
+     def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
+     def splitId = params.splitId
+     def url = citrusBaseUrl +"/marketplace/split/${splitId}"
+     HttpClient httpclient = new DefaultHttpClient()
+     HttpGet httpGet = new HttpGet(url)
+     def auth_token = contributionService.getAccessTokenForCitrus()
+     httpGet.setHeader("auth_token","${auth_token}")
+     HttpResponse httpres = httpclient.execute(httpGet)
+     int status = httpres.getStatusLine().getStatusCode()
+     def json
+     if (status == 200) {
+     HttpEntity entity = httpres.getEntity();
+     if (entity != null){
+     def jsonString = EntityUtils.toString(entity)
+     def slurper = new JsonSlurper()
+     json = slurper.parseText(jsonString)
+     }
+     }
+     render json
+     }*/
+
+    def settleMent() {
+
+        Contribution contribution = contributionService.getContributionById(params.long("contributionId"));
+        boolean flag = false;
+        if (contribution && contribution.splitId == params.splitId) {
+
+            def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
+            def url = citrusBaseUrl +"/marketplace/pgsettlement/"
+            HttpClient httpclient = new DefaultHttpClient()
+            HttpPost httppost = new HttpPost(url)
+            Date date = new Date();
+
+            def settlementDate = date.format("yyyy-MM-dd HH:mm:ss") /*"2016-06-18 17:18:00"*/
+            println "settlementDate ===== "+ settlementDate
+            def merchantTxId = Integer.parseInt(contribution?.merchantTxId)
+            def settlementRef = contribution?.splitRef
+            def settlementAmount = (contribution?.amount * 0.955).round(2)
+            def feeAmount = (contribution?.amount - settlementAmount).round(2)
+            
+            println "settlementAmount =====  "+ settlementAmount+ "   feeAmount ====== "+ feeAmount
+
+            // Ref#CIT615829206695 Ref#CIT61153280367
+            StringEntity input = new StringEntity("{\"trans_id\": ${merchantTxId},\"settlement_ref\": \"${settlementRef}\" ,\"trans_source\": \"CITRUS\",\"settlement_amount\": ${settlementAmount},\"fee_amount\": ${feeAmount},\"settlement_date_time\":\"${settlementDate}\"}")
+            input.setContentType("application/json")
+            httppost.setEntity(input)
+
+            def auth_token = contributionService.getAccessTokenForCitrus()
+            httppost.setHeader("auth_token","${auth_token}")
+            HttpResponse httpres = httpclient.execute(httppost)
+
+            def json
+            int status = httpres.getStatusLine().getStatusCode()
+            def settlementId;
+            
+            if (status == 200) {
+                HttpEntity entity = httpres.getEntity();
+                if (entity != null){
+                    def jsonString = EntityUtils.toString(entity)
+                    def slurper = new JsonSlurper()
+                    json = slurper.parseText(jsonString)
+                    settlementId = json.settlement_id;
+                    println "result  ===== "+ json
+                    if (settlementId != null) {
+                        flag = true;
+                        contribution.settlementId = settlementId;
+                        contribution.settlementDate = settlementDate;
+                        contribution.save();
+                    }
+                }
+            }
+            println "status  == "+ status
+            println "settlementId  === "+ settlementId
+
+        } 
+        render flag
+    }
+
+    def releaseFundToSeller() {
+        Contribution contribution = contributionService.getContributionById(params.long("contributionId"));
+        def payout = false;
+
+        if (contribution && contribution.splitId == params.splitId) {
+            def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
+            def url = citrusBaseUrl +"/marketplace/funds/release/"
+            HttpClient httpclient = new DefaultHttpClient()
+            HttpPost httppost = new HttpPost(url)
+
+            def splitId = contribution.splitId
+
+            StringEntity input = new StringEntity("{\"split_id\":${splitId}}")
+            input.setContentType("application/json")
+            httppost.setEntity(input)
+
+            def auth_token = contributionService.getAccessTokenForCitrus()
+            httppost.setHeader("auth_token","${auth_token}")
+
+            HttpResponse httpres = httpclient.execute(httppost)
+            int status = httpres.getStatusLine().getStatusCode()
+
+            if (status == 200) {
+                HttpEntity entity = httpres.getEntity();
+                if (entity != null){
+                    def jsonString = EntityUtils.toString(entity)
+                    def slurper = new JsonSlurper()
+                    def json = slurper.parseText(jsonString)
+                    
+                    payout = json.payout
+                    println "result ====== "+ json
+                    if (payout == true || payout == "true") {
+                        contribution.payout = true;
+                        contribution.releaseFundRef = json.releasefund_ref
+                        contribution.save();
+                    }
+                }
+            }
+
+        } 
+        render payout;
+    }
+
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def moveContributions(){
         def title = projectService.getVanityTitleFromId(params.id)
         contributionService.moveContribution(params, userService.getCurrentUser());
         redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
+    }
+    
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def loadAckCampaignTile(){
+        
+        if(request.method=='POST' && params.projectId && params.contributionId){
+            def project = Project.get(params.projectId)
+            Contribution contribution = contributionService.getContributionById(params.long('contributionId'))
+            Reward reward = contribution?.reward
+            
+            render template:'/fund/acknowledge/ackcampaigntile', model:[project:project, reward:reward]
+        }else{
+            render 'Campaign tile is not rendered. Please, refresh to load again.'
+        }
+        
+    }
+
+
+    def ipnHandler(){
+
+        println "paypal ipn response data : - " + params
+
+        if("verified".equalsIgnoreCase(params.payer_status)){
+            contributionService.setPaypalIPNData(params)
+        }
+    }
+
+    def mandrillHandler(){
+
+        //For debugging purpose as Mandrill callback url not work in localhost
+        println "Mandrill response handler " + params
     }
 
 }

@@ -27,10 +27,10 @@
                 <div class="col-lg-12 show-team-prfl">
                    <div class="col-sm-2 col-md-2 col-lg-2 show-tab-imgfundraiser">
                       <g:if test="${currentFundraiser.userImageUrl==null}">
-                          <img class="user-img-header" src="${alphabet.userImage}" alt="User-Alphabet">
+                          <img class="user-img-header" src="${alphabet.userImage}" alt="user alphabet icon">
                       </g:if>
                       <g:else>
-                          <img class="user-img-header" src="${currentFundraiser.userImageUrl}" alt="User-Alphabet">
+                          <img class="user-img-header" src="${currentFundraiser.userImageUrl}" alt="user alphabet icon">
                       </g:else>
                   </div>
                   <div class="col-sm-10 col-lg-10 col-md-10 show-fundrasier-namepadding">

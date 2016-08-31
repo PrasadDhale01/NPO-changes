@@ -73,6 +73,7 @@
     <g:hiddenField id="projectamount" name="projectamount" value="${project.amount.round()}"/>
     <g:hiddenField id="payuStatus" name="payuStatus" value="${project.payuStatus}"/>
 	<g:hiddenField id="b_url" name="b_url" value="${base_url}"/>
+	<g:hiddenField id="prjId" name="prjId" value="${project.id}"/>
 	<g:hiddenField name="fbShareUrlupdatePage" value="${fbShareUrlupdatePage}" id="fbShareUrlupdatePage"/>
 	
 	<div class="feducontent">
@@ -87,7 +88,7 @@
 					<g:if test="${project.rejected}">
 						<div class="alert alert-info">
 							<h2 class="text-center">Sorry, but this project is not
-								validated by admin</h2>
+								validated by admin<br><a href="javascript:void(0);" id="restoreCampaign">Click here to restore</a></h2>
 						</div>
 					</g:if>
 					<g:if test="${flash.teamvalidationmessage}">
@@ -113,12 +114,14 @@
                     <div class="col-md-12">
                         <g:if test="${!project.validated}">
                             <div class="mange-campaigntitle-mobile">
-                                <h1 class="green-heading text-center"><a href="javascript:void(0)">${projectTitle}</a></h1>
+                                <h1 class="green-heading text-center"><g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">${projectTitle}</g:link></h1>
+<%--                                <a href="javascript:void(0)">${projectTitle}</a></h1>--%>
                             </div>
                         </g:if>
                         <g:else>
                             <div class="mange-campaigntitle-mobile">
-                                <h1 class="green-heading text-center"><a href="javascript:void(0)">${project.title}</a></h1>
+                                <h1 class="green-heading text-center"><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}</g:link></h1>
+<%--                                <a href="javascript:void(0)">${project.title}</a></h1>--%>
                             </div>
                         </g:else>
 					</div>
@@ -184,7 +187,7 @@
                             <ul class="nav navbar-nav navbar-right col-lg-6 col-md-6 <g:if test="${project.payuStatus}">hidden-sm manage-submitapprov-india</g:if><g:else>col-sm-6 manage-submitapprove-edit</g:else>">
                                 <li>
                                     <div class="submitForApprovalSectionbtn">
-                                        <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                                        <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail || project.citrusEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                                             <g:form controller="project" action="saveasdraft" id="${project.id}">
                                                 <button class="btn btn-block btn-primary manage-submitaprroval mange-btnsubmitapprov-size"><i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL</button>
                                             </g:form>

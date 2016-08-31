@@ -69,12 +69,13 @@ class ProjectController {
 		SECRETKEY:'secretKey',
 		FACEBOOKURl:'facebookUrl',
 		TWITTERURl:'twitterUrl',
-		LINKEDINURL:'linkedinUrl'
+		LINKEDINURL:'linkedinUrl',
+        CITRUSEMAIL: 'citrusEmail'
 	]
 
 	def list = {
 		def countryOptions = projectService.getCountry()
-		def currentEnv = Environment.current.getName()
+		def currentEnv = projectService.getCurrentEnvironment()
 		def discoverLeftCategoryOptions
 		if(currentEnv =="testIndia" || currentEnv=="stagingIndia" || currentEnv=="prodIndia"){
 			discoverLeftCategoryOptions = projectService.getIndiaCategory()
@@ -103,7 +104,7 @@ class ProjectController {
 	}
 
 	def search () {
-		def currentEnv = Environment.current.getName()
+		def currentEnv = projectService.getCurrentEnvironment()
 		def query = params.q
 		def countryOptions = projectService.getCountry()
 		def discoverLeftCategoryOptions
@@ -441,7 +442,7 @@ class ProjectController {
     def delete() {
         def project = projectService.getProjectById(params.id)
         User user = userService.getCurrentUser()
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
         
         if (project) {
             if (userService.isAdmin()) {
@@ -545,7 +546,7 @@ class ProjectController {
 
 	@Secured(['ROLE_ADMIN'])
 	def validateList() {
-		def currentEnv = Environment.current.getName()
+		def currentEnv = projectService.getCurrentEnvironment()
 		def projects = projectService.getNonValidatedProjects(currentEnv)
         if (flash.prj_validate_message) {
             flash.prj_validate_message = "Campaign validated successfully"
@@ -590,12 +591,6 @@ class ProjectController {
                 render(template: "/project/validate/validategrid", model: model)
             }else if(params.selectedSortValue=='Homepage'){
             
-                if(params.country.equalsIgnoreCase('INDIA')){
-                    currentEnv ="prodIndia"
-                }else{
-                    currentEnv = 'production'
-                }
-                
                 def homePageCampaigns = projectService.getHomePageCampaignByEnv(currentEnv)
                 
                 if(homePageCampaigns){
@@ -607,36 +602,20 @@ class ProjectController {
                 
             }else if(params.selectedSortValue=='Deadline'){
             
-                if(params.country.equalsIgnoreCase('INDIA')){
-                    currentEnv ="prodIndia"
-                }else{
-                    currentEnv = 'production'
-                }
+                def deadlinDays= projectService.getInDays()
+                render(template: "/project/validate/deadline", model: [projects:projects, currentEnv:currentEnv, deadlinDays: deadlinDays])
                 
-                render(template: "/project/validate/deadline", model: [projects:projects, currentEnv:currentEnv])
+            }else if(params.selectedSortValue=='Deleted'){
+            
+                render(template:"/project/validate/deletedcampaigns", model:[projects:projects, currentEnv:currentEnv])
                 
-            } else {
+            }else if(params.selectedSortValue== 'Carousel'){
+            
+                render(template:"/project/validate/homepagecarousel", model:[projects:projects, currentEnv:currentEnv])
+                
+            }  else {
                 render(template: "/user/user/grid", model: model)
             }
-        }
-    }
-    
-    @Secured(['ROLE_USER'])
-    def ContributedAmounts(){
-        def amount
-        def fundraiser = params.fundraiser
-        def contributor = params.contributor
-        def project = Project.get(params.projectId)
-        def fundraiserName = projectService.getFundraiserByFirstnameAndLastName(fundraiser, project.teams)
-        
-        if(fundraiserName){
-            amount= contributionService.getContributionAmount(fundraiserName, contributor, project)
-        }
-        
-        if(amount){
-            render(contentType: 'text/json') {['data': amount]}
-        }else{
-            render(contentType: 'text/json') {['data': 0]}
         }
     }
     
@@ -651,7 +630,7 @@ class ProjectController {
         }
     }
     
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def manageCampaignDeadline(){
         
         def project
@@ -661,14 +640,14 @@ class ProjectController {
             project = projectService.getProjectFromTitle(params.campaignSelection)
             
             if(project){
-                projectService.setCampaignDeadline(project, params.int('deadline'), params.int('daysLeft'))
+                projectService.setCampaignDeadline(project, params.int('deadline'), params.int('extendDays'))
             }
         }
         
-        render(template: "/project/validate/deadline", model:[projects: projects, project:project])
+        render(template: "/project/validate/deadline", model:[projects: projects.title, project:project, extendDays: params.extendDays])
     }
     
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def setCampaignCurrentDays(){
         def campaign = projectService.getProjectFromTitle(params.campaign)
         
@@ -681,10 +660,11 @@ class ProjectController {
         }
     }
     
-    @Secured(['ROLE_ADMIN'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def manageHomePageCampaigns(){
         
         def projects = projectService.getValidatedProjects()
+        def liveProjects = projectService.getLiveProjects(projects)
         def currentEnv = params.currentEnv
         def homePageCampaigns = projectService.getHomePageCampaignByEnv(currentEnv)
         
@@ -699,15 +679,15 @@ class ProjectController {
                 new HomePageCampaigns(campaignOne:campaignOneId, campaignTwo:campaignTwoId, campaignThree:campaignThreeId, currentEnv:currentEnv).save()
             }
             
-            render(template: "/project/validate/homepage", model:[projects:projects, campaignOne:campaignOneId, 
+            render(template: "/project/validate/homepage", model:[projects:liveProjects, campaignOne:campaignOneId,
                 campaignTwo: campaignTwoId, campaignThree: campaignThreeId])
         }else{
         
             if(homePageCampaigns){
-                render(template: "/project/validate/homepage", model:[projects:projects, campaignOne:campaignOneId,
+                render(template: "/project/validate/homepage", model:[projects:liveProjects, campaignOne:campaignOneId,
                      campaignTwo: campaignTwoId, campaignThree: campaignThreeId])
             }else{
-                render(template: "/project/validate/homepage", model:[projects:projects])
+                render(template: "/project/validate/homepage", model:[projects:liveProjects])
             }
         }
     }
@@ -796,7 +776,7 @@ class ProjectController {
 
 
 	def create() {
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
         String partnerInviteCode = g.cookie(name: 'inviteCode')
         def inDays = projectService.getInDays()
 		render(view: 'create/index1', model: [FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv, partnerInviteCode: partnerInviteCode, inDays:inDays])
@@ -902,7 +882,7 @@ class ProjectController {
             def spends = project.spend
             spends = spends.sort{it.numberAvailable}
             if (user == currentUser) {
-                def currentEnv = Environment.current.getName()
+                def currentEnv = projectService.getCurrentEnvironment()
                 def categoryOptions 
                 if(currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
                     categoryOptions = projectService.getIndiaCategoryList()
@@ -969,7 +949,7 @@ class ProjectController {
         if (project) {
             User user = userService.getCurrentUser()
             if (project.user == user) {
-                def currentEnv = Environment.current.getName()
+                def currentEnv = projectService.getCurrentEnvironment()
                 if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
                     if(params.payuEmail){
                         project.payuEmail = params.payuEmail
@@ -1027,7 +1007,7 @@ class ProjectController {
 	def launch() {
 		def vanityTitle = params.title
 		def project = projectService. getProjectFromVanityTitle(vanityTitle)
-		def currentEnv = Environment.current.getName()
+		def currentEnv = projectService.getCurrentEnvironment()
         
         if(project) {
     		if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
@@ -1065,7 +1045,7 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def edit() {
         Project project = projectService.getProjectFromVanityTitle(params.projectTitle)
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
         def vanityTitle = params.projectTitle
         
         if (project) {
@@ -1103,8 +1083,14 @@ class ProjectController {
             } else {
                 payOpts = projectService.getPayment()
             }
-            def selectedCountry = (project.beneficiary.country) ? projectService.getCountryKey(project.beneficiary.country) : null;
-        
+            
+            //Country Issue for India site
+            //India: Map key is fetching for country like, AL is fetching for AL:"ALBANIA"
+            //USA: Map value is fetching for country like, ALBANIA is fetching for AL:"ALBANIA"
+            def selectedCountry;
+            if (project.beneficiary.country != null) {
+                selectedCountry = (project.beneficiary.country?.length() > 3 ) ? projectService.getCountryKey(project.beneficiary.country) : project.beneficiary.country
+            }
             def beneficiary = project.beneficiary
             def reasonsToFund = projectService.getProjectReasonsToFund(project)
             def qA = projectService.getProjectQA(project)
@@ -1133,7 +1119,7 @@ class ProjectController {
 	def update() {
 		Project project = projectService.getProjectFromVanityTitle(params.vanityTitle)
         def vanityTitle = projectService.getProjectUpdateDetails(params, project)
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
         
 		if(project) {
 			rewardService.saveRewardDetails(params);
@@ -1362,7 +1348,7 @@ class ProjectController {
 					discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset, day: day,
 					ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
 					unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, vanityUsername:vanityUsername, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo,
-					tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier, reasons: reasons,
+					tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier, reasons: reasons, isAdmin: isAdmin,
                     spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, isDeviceMobileOrTab: isDeviceMobileOrTab,
                     hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
                     hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, enableTeamNames: enableTeamNamesList, teamNames:teamNameList])
@@ -1386,7 +1372,7 @@ class ProjectController {
 	def projectdelete() {
 		Project project = projectService.getProjectById(params.id)
 		def currentUser= userService.getCurrentUser()
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
         def vanityTitle = projectService.getProjectUpdateDetails(params, project)
         
 		if (project) {
@@ -1420,7 +1406,7 @@ class ProjectController {
 		def reward = rewardService.getRewardByParams(params)
 		RewardShipping shippingInfo = rewardService.getRewardShippingByParams(params)
 		def title = projectService.getVanityTitleFromId(params.id)
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
 
 		if(reward.save()) {
 			def project= projectService.getProjectById(params.id)
@@ -1497,7 +1483,7 @@ class ProjectController {
 		def projectUpdate = projectService.getProjectUpdateById(params.id)
 		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
 		def projectUpdates = project.projectUpdates
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
         
 		if (projectUpdates.contains(projectUpdate)) {
 			flash.editUpdateSuccessMsg = "Campaign Update Edited Successfully"
@@ -1535,7 +1521,7 @@ class ProjectController {
 		def project = projectService.getProjectById(params.id)
 		def story = params.story
 		def title = projectService.getVanityTitleFromId(params.id)
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
 
 		if(project) {
 			if (params.imageList || !story.isAllWhitespace()) {
@@ -1579,7 +1565,7 @@ class ProjectController {
 
 	def categoryFilter() {
 		def countryOptions = projectService.getCountry()
-		def currentEnv = Environment.current.getName()
+		def currentEnv = projectService.getCurrentEnvironment()
 		def discoverLeftCategoryOptions
 		if(currentEnv =="testIndia" || currentEnv=="stagingIndia" || currentEnv=="prodIndia"){
 			discoverLeftCategoryOptions = projectService.getIndiaCategory()
@@ -1854,7 +1840,7 @@ class ProjectController {
 
 	def sortCampaign(){
 		def countryOptions = projectService.getCountry()
-		def environment = Environment.current.getName()
+		def environment = projectService.getCurrentEnvironment()
 		def discoverLeftCategoryOptions
 		if(environment =="testIndia" || environment=="stagingIndia" || environment=="prodIndia"){
 			discoverLeftCategoryOptions = projectService.getIndiaCategory()
@@ -2060,8 +2046,11 @@ class ProjectController {
 			}
 
 			def multiplier = projectService.getCurrencyConverter();
+             def currentEnv = projectService.getCurrentEnvironment()
+            
 			def model = [totalContributions : totalContributions, CurrentUserTeam: CurrentUserTeam,isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, contributions: contributions, project: project,
-				team: currentTeam, multiplier: multiplier, vanityUsername:params.fr, currentUser: currentUser]
+				team: currentTeam, multiplier: multiplier, currentEnv: currentEnv, vanityUsername:params.fr, currentUser: currentUser]
+            
 			if (request.xhr) {
 				render(template: "show/contributionlist", model: model)
 			}
@@ -2416,14 +2405,14 @@ class ProjectController {
         render ''
     }
 
-    def getImpactText(){
+    /*def getImpactText(){
         Project project = projectService.getProjectById(params.projectId)
         def currentEnv = projectService.getCurrentEnvironment()
         projectService.getCategoryAndHashTagsSaved(project, currentEnv, params.selectedCategory)
         if(request.xhr){
             render(template: "create/impactAnalysisText", model:[project:project, currentEnv:currentEnv, loadjs:true])
         }
-    }
+    }*/
 
     def saveRecipientAndHashTags(){
         projectService.saveRecipientAndHashTags(params)
@@ -2499,25 +2488,25 @@ class ProjectController {
                     render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
                 }
             break;
-            case 'testIndia':
-            if(provider.equals('google')){
-                def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
-                def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
-                def scope = grailsApplication.config.crowdera.gmail.SCOPE
-                def redirectUri=base_url+'/project/getSocialContactsCode'
-                render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
-            }else if(provider.equals("constant")){
-                def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
-                def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
-                def redirectUri='http%3A%2F%2ftest%2Ecrowdera%2Eco%2Fproject%2FgetSocialContactsCode'
-                render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
-            }else if(provider.equals('mailchimp')){
-                def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
-                def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
-                def redirectUri=base_url+'/project/getSocialContactsCode'
-                render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
-            }
-            break;
+			case 'testIndia':
+			if(provider.equals('google')){
+				def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+				def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+				def scope = grailsApplication.config.crowdera.gmail.SCOPE
+				def redirectUri=base_url+'/project/getSocialContactsCode'
+				render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+			}else if(provider.equals("constant")){
+				def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+				def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+				def redirectUri='http%3A%2F%2ftest%2Ecrowdera%2Eco%2Fproject%2FgetSocialContactsCode'
+				render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+			}else if(provider.equals('mailchimp')){
+				def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
+				def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+				def redirectUri=base_url+'/project/getSocialContactsCode'
+				render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
+			}
+		    break;
             case 'staging':
                 if(provider.equals('google')){
                     def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
@@ -2723,7 +2712,6 @@ class ProjectController {
         }else{
             contacts =projectService.getDataFromImportedCSV(params.filecsv, user)
             render(contentType: 'text/json') {['contacts': contacts]}
-            jQuery.parseJSON(JSON.stringify(data));
         }  
     }
     
@@ -2883,4 +2871,47 @@ class ProjectController {
 		
 		render ''
 	}
+    @Secured(["IS_AUTHENTICATED_FULLY"])
+    def manageDeletedCamapaigns(){
+        
+        if(request.method == 'POST' && params.deletedCampaign){
+            def project = projectService.getProjectFromTitle(params.deletedCampaign)
+            def status = projectService.setCampaignActive(project, 'deleted')
+            if(status){
+                render 'true'
+            }else{
+                render 'false'
+            }
+        }else {
+            render ''
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def restoreCampaign(){
+        if(request.method=='POST' && params.projectId){
+            Project project =Project.get(params.projectId)
+            def status =projectService.setCampaignActive(project, 'rejected')
+            if(status){
+                render 'true'
+            }else{
+                render 'false'
+            }
+        }
+        render ''
+    }
+    
+    @Secured(['ROLE_USER'])
+    def updateSendMailModal(){
+        if(request.method=='POST'){
+            Project project = Project.get(params.projectId)
+            if(project){
+                def vanityTitle = projectService.getVanityTitleFromId(params.projectId)
+                render (template:'show/updatesendmailmodal', model:[project:project, vanityTitle:vanityTitle])
+            }
+        }else{
+            render ''
+        }
+    }
+    
 }

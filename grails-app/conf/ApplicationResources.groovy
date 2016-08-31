@@ -45,6 +45,16 @@ modules = {
         resource url: 'tablecloth/js/jquery.tablesorter.js'
         resource url: 'tablecloth/js/jquery.tablecloth.js'
     }
+    /* DataTable Js*/
+    datatablejs {
+        dependsOn 'corejs'
+        resource url: 'js/external/jquery.dataTables.min.js'
+        resource url: 'js/external/dataTables.bootstrap.min.js'
+    }
+    easywizardjs {
+        resource url: 'js/jquery.easyWizard.js'
+        dependsOn 'corejs'
+    }
 
     /* Page-specific JS */
     /* Home */
@@ -122,6 +132,7 @@ modules = {
         dependsOn 'crowderajs'
         resource url: 'js/user.js'
     }
+    
 	/* Survey/Feedback*/
 	feedbackjs{
 		dependsOn 'crowderajs'
@@ -151,8 +162,30 @@ modules = {
         resource url: 'js/redactor/plugins/fontfamily.js'
         resource url: 'js/redactor/plugins/fontcolor.js'
     }
-
+    
+    disbursementjs {
+        resource url: 'js/disbursement.js'
+        dependsOn 'crowderajs','datatablejs'
+    }
+    
+    citrusfundjs {
+        resource url: 'js/fund/citrusfund.js'
+        dependsOn 'underscorejs', 'crowderajs', 'easywizardjs', 'jqueryPaymentjs'
+    }
+    
+    userlistjs {
+        resource url: 'js/userlist.js'
+        dependsOn 'crowderajs','datatablejs'
+    }
+    
+    jqueryPaymentjs {
+        resource url: 'js/jquery.payment.min.js'
+    }
     /* CSS */
+    datatablecss {
+        resource url: 'css/dataTables.bootstrap.min.css', attrs: [media: 'screen']
+    }
+    
     fontawesomecss {
         resource url: 'vendor/font-awesome-4.2.0/css/font-awesome.min.css', attrs: [media: 'screen']
     }

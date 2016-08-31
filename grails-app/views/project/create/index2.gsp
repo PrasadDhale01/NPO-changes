@@ -120,6 +120,9 @@
                             <g:elseif test="${project.paypalEmail}">
                                 <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAY" optionKey="key" optionValue="value" />
                             </g:elseif>
+                            <g:elseif test="${project.citrusEmail}">
+                                <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="CITRUS" optionKey="key" optionValue="value" />
+                            </g:elseif>
                             <g:else>
                                 <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="${FORMCONSTANTS.PAYMENT}" optionKey="key" optionValue="value" noSelection="['null':'Payment']"/>
                             </g:else>
@@ -398,17 +401,15 @@
                 </div>
             </div>
             
-            <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
-                <div class="col-sm-12 padding-right-xs">
-                    <div class="cr-spend-matrix">
-                        <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-impact-analysis"><span class="cr-spend-matrix-font">Impact Assessment</span></label>
-                        <label class="col-sm-9 hidden-xs cr-panel-spend-matrix-guide cr-impact-guide"></label>
-                    </div>
-                    <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-impact-analysis">
-                        <g:render template="create/impactAnalysisText"/>
-                    </div>
+            <div class="col-sm-12 padding-right-xs">
+                <div class="cr-spend-matrix">
+                    <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-impact-analysis"><span class="cr-spend-matrix-font">Impact Assessment</span></label>
+                    <label class="col-sm-9 hidden-xs cr-panel-spend-matrix-guide cr-impact-guide"></label>
                 </div>
-            </g:if>
+                <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-impact-analysis">
+                    <g:render template="create/impactAnalysisText"/>
+                </div>
+            </div>
 
             <div class="col-sm-12 padding-right-xs">
                 <div class="cr-spend-matrix">
@@ -516,8 +517,9 @@
                                     </div>
                                     <label class="docfile-orglogo-css" id="logomsg">Please select image file.</label>
                                     <label class="docfile-orglogo-css" id="iconfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
-                                    <label class="docfile-orglogo-css" id="iconfilesizeSmaller">The file you are attempting to upload is not smaller than the permitted size of 1MB.</label>                                
-</div>
+
+                                    <label class="docfile-orglogo-css" id="iconfilesizeSmaller">The file you are attempting to upload is smaller than the permitted size of 1MB.</label>
+                                </div>
                                 <g:if test="${project.organizationIconUrl}">
                             <div class="pr-1con-thumbnail-div edit-image-mobile col-sm-2">
                                         <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}">
@@ -848,6 +850,21 @@
                             </div>
                         </div>
                     </div>
+                    <g:if test ="${currentEnv == 'testIndia'}">
+	                    <div id="CitrusPay">
+	                        <div class="form-group">
+	                            <label class="col-sm-4 control-label">Email</label>
+	                            <div class="col-sm-6 col-xs-10">
+	                                <g:if test="${project.citrusEmail}">
+	                                    <input type="email" id="citrusemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.CITRUSEMAIL}" value="${project.citrusEmail}">
+	                                </g:if>
+	                                <g:else>
+	                                    <input type="email" id="citrusemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.CITRUSEMAIL}">
+	                                </g:else>
+	                            </div>
+	                        </div>
+	                    </div>
+                    </g:if>
                 </g:if>
                 <g:else>
                     <div class="col-sm-12" id="paypalemail">
@@ -984,6 +1001,11 @@
                                      </div>
                              
                                      <div class="col-sm-12 col-xs-12 col-xs-pl-0 rowseperator">
+                                         <div class="col-sm-4">
+	                                         <div class="form-group form-group-tax-reciept-dropdown form-group-dropdown">
+	                                             <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" noSelection="['null':'Deductible Status']"/>
+	                                         </div>
+	                                     </div>
                                          <div class="form-group col-sm-8 col-xs-12">
                                              <div class="col-sm-5 col-md-4 col-xs-9 col-plr-0">
                                                  <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
@@ -1119,6 +1141,11 @@
                                      </div>
                              
                                      <div class="col-sm-12 col-xs-12 rowseperator col-xs-pl-0">
+                                         <div class="col-sm-4">
+		                                     <div class="form-group form-group-tax-reciept-dropdown form-group-dropdown">
+		                                         <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" value="${taxReciept.deductibleStatus}" noSelection="['null':'Deductible Status']"/>
+		                                     </div>
+		                                 </div>
                                          <div class="form-group col-sm-8 col-xs-12">
                                              <div class="col-sm-5 col-md-4 col-xs-9 col-plr-0">
                                                  <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
@@ -1239,7 +1266,7 @@
                                  <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
                                     <div class="col-sm-4 col-xs-12">
                                         <div class="form-group form-group-tax-reciept">
-                                            <input type="text" placeholder="Phone Number" class="form-control" name="tax-reciept-holder-phone">
+                                            <input type="text" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone" value="${taxReciept.phone}">
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-8 col-xs-12">
@@ -1392,6 +1419,7 @@
                                 <div class="form-group col-xs-text-box-with-button">
                                     <div class="col-sm-10 col-xs-9 col-xs-textbox">
                                         <input class="form-control form-control-no-border text-color videoUrl" id="videoUrlTextModal" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
+                                        <span id="video-error-msg">This field is required.</span>
                                     </div>
                                     <div class="col-sm-2 col-xs-2 col-xs-button">
                                         <button type="button" class="btn btn-info btn-sm cr-btn-color add btn-center" id="addVideoFromModal">Add</button>
@@ -1450,17 +1478,30 @@
 
     var j = jQuery.noConflict();
     j(function(){
+
+    	var nowTemp = new Date();
+    	var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+    	
         j('.datepicker-reg').datepicker({
+        	onRender: function(date) {
+                return date.valueOf() > now.valueOf() ? 'disabled' : '';
+            }
         }).on('changeDate', function(){
             autoSave('regDate', $('.datepicker-reg').val());
         });
         
         j('.datepicker-expiry').datepicker({
+        	onRender: function(date) {
+        	    return date.valueOf() < now.valueOf() ? 'disabled' : '';
+        	}
         }).on('changeDate', function(){
             autoSave('expiryDate', $('.datepicker-expiry').val());
         });
 
         j('.fcra-reg-date').datepicker({
+        	onRender: function(date) {
+                return date.valueOf() > now.valueOf() ? 'disabled' : '';
+            }
         }).on('changeDate', function(){
             autoSave('fcraRegDate', $('.fcra-reg-date').val());
         });

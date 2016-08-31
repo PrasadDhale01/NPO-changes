@@ -52,11 +52,11 @@
                         <h4 class="modal-title">Recipient Email ID's</h4>
                     </div>
                     <div class="modal-body">
-                        <g:hiddenField name="amount" value="${project.amount}" />
-                        <g:hiddenField name="ismanagepage" value="managepage" />
-                        <g:hiddenField name="fr" value="${fundRaiser}" />
-                        <g:hiddenField name="vanityTitle" value="${vanityTitle}"/>
-                        <g:hiddenField name="projectUpdateId"/>
+                        <input type="hidden" name="amount" value="${project.amount}" />
+                        <input type="hidden" name="ismanagepage" value="managepage" />
+                        <input type="hidden" name="fr" value="${fundRaiser}" />
+                        <input type="hidden" name="vanityTitle" value="${vanityTitle}"/>
+                        <input type="hidden" name="projectUpdateId"/>
                         
                         <div class="form-group">
                             <label>Your Name</label> <input type="text" class="form-control all-place" name="name" placeholder="Name">
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary btn-block" id="btnSendMailMng">Send Email</button>
+                        <button type="submit" class="btn btn-primary btn-block" >Send Email</button>
                     </div>
                 </div>
             </div>

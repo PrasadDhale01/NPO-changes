@@ -75,16 +75,16 @@
     <meta name="keywords" content="Crowdera, crowdfunding, contribute online, raise funds free, film crowdfunding, raise money online, fundraising site, fundraising website, fundraising project, online fundraising, raise money for a cause, global crowdfunding, (${project.organizationName}, ${project.beneficiary.country}, ${project.category} ,${project.usedFor})" />
     
     <meta property="og:site_name" content="Crowdera" />
-    <meta property="og:type" content="Crowdera:Campaign" />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content="${project.title} by ${project?.beneficiary?.firstName}" />
     <g:if test="${project.description}">
         <meta property="og:description" content="${project.description} Crowdfunding is a practical and inspiring way to support the fundraising needs of a cause or community. Do some good. Make a Contribution Today!" />
     </g:if>
     <g:if test="${project.organizationIconUrl}">
-        <meta property="og:image" content="${project.organizationIconUrl}" />
+        <meta property="og:image:url" content="${project.organizationIconUrl}" />
     </g:if>
     <g:elseif test="${imageUrl}">
-        <meta property="og:image" content="${imageUrl}" />
+        <meta property="og:image:url" content="${imageUrl}" />
     </g:elseif>
     <meta property="og:url" content="${fbShareUrl}" />
     
@@ -224,8 +224,8 @@
                 
                 <div class="col-xs-12 col-md-4 mobileview-top sh-mobiles-top campaign-tile-xs">
                   
-                    <div class="visible-xs">
-                        <g:render model="['project': project]" template="/layouts/tile_for_mobile"></g:render>
+                    <div class="visible-xs loadmobileCampaignTile">
+                        <g:render template="/layouts/tile_for_mobile"  model="['project': project]"/>
                     </div>
                     
                     <div class="hidden-xs">
@@ -238,7 +238,7 @@
                         </div>
                         
                         <div class="submitForApprovalSection">
-                            <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                            <g:if test="${project?.organizationIconUrl && project?.webAddress && (project?.charitableId || project?.paypalEmail || project?.payuEmail || project?.citrusEmail) && (!project?.imageUrl?.isEmpty()) && project?.organizationName && project?.beneficiary?.country && (projectService?.getRemainingDay(project) > 0)}">
                                 <g:form controller="project" action="saveasdraft" id="${project.id}">
                                     <g:if test="${!project.touAccepted}">
                                         <div class="form-group hidden">
@@ -275,7 +275,7 @@
                     </g:elseif>
                     <g:else>
                         <div class="show-mobile-button">
-                            <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
+                              <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail || project.citrusEmail}">
                                 <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
                                     <div class="redirectCampaign">
                                         <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="fundSubmit"><button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri" id="btnFundDesktop">Fund Now!</button></g:link>
@@ -329,8 +329,8 @@
                    </g:if>
                    
                    <div class="hidden-xs">
-                       <g:if test="${(project?.rewards?.size()>1 && !isPreview) || (project?.rewards?.size()>1 && project.validated) }">
-                           <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
+                       <g:if test="${(project?.rewards?.size()>1 && !isPreview) || (project?.rewards?.size()>1 && project?.validated) }">
+                           <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail || project.citrusEmail}">
                                <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
                            </g:if>
                        </g:if>
@@ -394,7 +394,7 @@
                         <ul class="nav navbar-nav navbar-right col-lg-6 col-sm-6 col-md-6 show-paddingsbtn-submitapprov">
                             <li class="show-margin-right">
                                 <div class="submitForApprovalSectionbtn show-headerApproval-tooltip show-submit-tabs">
-                                    <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                                     <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail || project.citrusEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                                         <g:form controller="project" action="saveasdraft" id="${project.id}">
                                             <g:if test="${!project.touAccepted}">
                                                 <div class="form-group hidden">
@@ -421,7 +421,7 @@
                         <g:if test="${percentage!=999 && !ended}">
                             <ul class="nav navbar-nav navbar-right col-lg-6 col-sm-6 col-md-6 show-paddingsbtn">
                                 <li class="show-margin-right">
-                                    <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
+                                     <g:if test="${project?.paypalEmail || project?.charitableId || project?.payuEmail || project?.citrusEmail}">
                                         <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
                                             <div class="redirectCampaign">
                                                 <g:link class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js sh-fund-donate-contri" controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="btnFundDesktop">FUND NOW</g:link>
@@ -639,9 +639,6 @@
                         <div class="tab-pane tab-pane-active" id="contributions">
                             <g:render template="show/contributions" model="['team':currentTeam]"/>
                         </div>
-<%--                        <div class="tab-pane tab-pane-active hidden-xs" id="comments">--%>
-<%--                            <g:render template="show/comments"/>--%>
-<%--                        </div>--%>
                     </div>
                     
                     <div class="row"> 
@@ -698,9 +695,9 @@
                                         <div class="col-sm-7">
                                             <p>Video preview</p>
                                                 <textarea class="textarea-embed-video form-control" onclick="this.select()">${embedVideoCode}</textarea><br><br>
-                                                
-               
-                                              
+                                                  <g:link target="_blank" controller="project" action="show" params="['fr': vanityUsername, 'projectTitle':vanityTitle]">
+                                          		    <img class="embed-logo" id="embedHover"  alt="Crowdera" src="https://s3.amazonaws.com/crowdera/project-images/7054ed14-deb4-4be9-a273-43b49c9a3d18.png"/>
+                                                  </g:link>
                                                 <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>
                                                         
                                                 <p>After choosing a video size, copy and paste the embed code above.</p>
@@ -780,9 +777,9 @@
 <%--                          <g:render template="/layouts/orgDetails"/>--%>
 <%--                      </div>--%>
                  
-                      <g:if test="${isPreview && !project.validated}">
+                      <g:if test="${isPreview && !project?.validated}">
                           <div class="submitForApprovalSectionbtn" id="submitForApprovalSectionbtn">
-                              <g:if test="${project?.organizationIconUrl && project?.webAddress && (project?.charitableId || project?.paypalEmail || project?.payuEmail) && (!project?.imageUrl.isEmpty()) && project?.organizationName && project?.beneficiary?.country && (projectService.getRemainingDay(project) > 0)}">
+                              <g:if test="${project?.organizationIconUrl && project?.webAddress && (project?.charitableId || project?.paypalEmail || project?.payuEmail || project?.citrusEmail) && (!project?.imageUrl?.isEmpty()) && project?.organizationName && project?.beneficiary?.country && (projectService?.getRemainingDay(project) > 0)}">
                                   <g:form controller="project" action="saveasdraft" id="${project.id}">
                                       <g:if test="${!project?.touAccepted}">
                                           <div class="form-group show-submit-margin hidden-xs">
@@ -837,7 +834,7 @@
                           <button type="button" class="btn btn-warning btn-lg btn-block show-campaign-sucess-endedbtn mob-show-sucessend hidden-xs show-campaign-ended-funded" disabled>CAMPAIGN ENDED!</button>
                       </g:elseif>
                       <g:else>
-                          <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
+                          <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail || project.citrusEmail}">
                               <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
                                   <div class="redirectCampaign">
                                       <div class="show-A-fund"> </div>
@@ -914,12 +911,11 @@
                           </g:else>
                       </g:if>
                       
-                      <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
-                          <g:if test="${project.impactNumber > 0 && project?.impactAmount > 0}">
-                              <div class="show-impact">
-                                  <g:render template="show/showImpactstatement"/>
-                              </div>
-                          </g:if>
+                      <g:if test="${project?.impactNumber > 0}">
+                          <div class="show-impact">
+                              <g:render template="show/impactstatement"/>
+<%--                              impactassessment--%>
+                          </div>
                       </g:if>
                       
                       <g:if test="${project.hashtags}">
@@ -1005,7 +1001,7 @@
                     
                       <div class="sh-mobperks">    
                           <g:if test="${(project?.rewards?.size()>1 && !isPreview) || (project?.rewards?.size()>1 && project?.validated) }">
-                              <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
+                              <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail || project.citrusEmail}">
                                   <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
                               </g:if>
                           </g:if>

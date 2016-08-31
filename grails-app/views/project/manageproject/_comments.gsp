@@ -30,8 +30,8 @@
                         <div class="editAndDeleteBtn deleteComment">
 	                       <div class="pull-right">
                                <g:form controller="project" action="commentdelete" method="post" params="['projectId':projectId]">
-                   	                <g:hiddenField name="manageCampaign" value="${manageCampaign}" id="comments${comment.id}"></g:hiddenField>
-                   	                <g:hiddenField name='commentId' value="${comment.id}" id="commentId${comment.id}"></g:hiddenField>
+                   	                <input type="hidden" name="manageCampaign" value="${manageCampaign}" id="comments${comment.id}"/>
+                   	                <input type="hidden" name='commentId' value="${comment.id}" id="commentId${comment.id}"/>
                        	            <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this comment?&#39;);">
                                  	   <i class="glyphicon glyphicon-trash"></i>
                        	            </button>

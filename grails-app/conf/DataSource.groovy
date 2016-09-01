@@ -23,12 +23,12 @@ environments {
 
             // MySQL
 
-            dbCreate = "update"
-            url = "jdbc:mysql://localhost:3306/crowderaold"
+            /*dbCreate = "update"
+            url = "jdbc:mysql://localhost:3306/crowderadbdev"
             driverClassName = "com.mysql.jdbc.Driver"
             dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
-            username = 'root'
-            password = ''
+            username = 'crowderadbmaster'
+            password = 'crowderadbpass'*/
             
         }
     }

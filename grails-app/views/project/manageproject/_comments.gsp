@@ -23,7 +23,7 @@
                         <g:else>
                             <span class="dt">By ${userService.getFriendlyFullName(comment.user)}, on ${date}</span>
                         </g:else>
-                        <br><span class="dd">${comment.comment}</span>
+                        <br><span class="dd">${comment.comment}</span><br>
                         <input type="checkbox" name="link" id="${i}" value="${comment.id}" 
                             <g:if test="${comment.status }">checked="checked"</g:if>><span id="check${i}"> Hide</span>
                         <% i++ %>

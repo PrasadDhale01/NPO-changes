@@ -150,7 +150,7 @@
             imageUpload:'/project/getRedactorImage',
             imageResizable: true,
             plugins: ['video','fontsize', 'fontfamily', 'fontcolor'],
-            buttonsHide: ['indent', 'outdent', 'horizontalrule', 'deleted']
+            buttonsHide: ['indent', 'outdent', 'horizontalrule', 'deleted', 'formatting']
         });
     });
     

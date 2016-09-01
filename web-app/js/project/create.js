@@ -99,7 +99,7 @@ $(function() {
             autoSave('story', this.code.get());
         },
         plugins: ['video','fontsize','fontfamily','fontcolor'],
-        buttonsHide: ['indent', 'outdent', 'horizontalrule', 'deleted']
+        buttonsHide: ['indent', 'outdent', 'horizontalrule', 'deleted', 'formatting']
     });
 
 

@@ -83,7 +83,7 @@
                         <label class="pull-right taxreceiptdetailsfont">PAN no. of Contributor:</label>
                     </div>
                     <div class="col-xs-6 taxreceipttop">
-                        <div class="form-control"></div>
+                        <div class="form-control">${contribution?.panNumber}</div>
                     </div>
                 </div>
             </div>

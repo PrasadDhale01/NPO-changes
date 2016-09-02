@@ -40,10 +40,10 @@
 <g:if test="${project.validated}">
     <h3><b>Comments</b></h3>
     <g:if test="${projectComment || teamcomment}">
-        <div id="commentBox">
-            <g:form controller="project" action="editCommentSave" role="form" params="['projectTitle': vanityTitle, 'fr': fundRaiser]">
-                <g:hiddenField name='teamCommentId' value="${teamCommentId}"></g:hiddenField>
-                <g:hiddenField name='commentId' value="${commentId}"></g:hiddenField>
+        <div class="commentBox">
+            <g:form controller="project" action="editCommentSave"  params="['projectTitle': vanityTitle, 'fr': fundRaiser]">
+                <input type="hidden" name='teamCommentId' value="${teamCommentId}"/>
+                <input type="hidden" name='commentId' value="${commentId}"/>
 
                 <div class="form-group">
                     <textarea class="form-control" name="comment" rows="4" required>${commentval}</textarea>
@@ -54,7 +54,7 @@
         </div>
     </g:if>
 	<g:else>
-	     <div id="commentBox">
+	     <div class="commentBox">
 	         <g:if test="${team?.user!=project?.user}">
 	             <g:form controller="project" action="teamcomment"  id="${project.id}" params="['fr': fundRaiser]">
 	                 <div class="form-group">
@@ -103,18 +103,20 @@
                                 <g:if test="${comment?.user == currentUser || project?.user == currentUser}">
                                     <div class="editAndDeleteBtn deleteComment">
                                         <g:form controller="project" action="commentdelete" method="post" params="['projectId':projectId, 'fr': fundRaiser]">
-                                            <g:hiddenField name='commentId' value="${comment.id}"></g:hiddenField>
+                                            <input type="hidden" name='commentId' value="${comment.id}"/>
                                             <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this comment?&#39;);">
-                                            <i class="glyphicon glyphicon-trash"></i>
+                                           <i class="glyphicon glyphicon-trash"></i>
                                             </button>
                                         </g:form>
                                         <g:if test="${comment?.user == currentUser}">
-                                            <g:form controller="project" name="editComment" action="editComment" method="post" params="['projectTitle': vanityTitle, 'fr': fundRaiser]">
-                                                <g:hiddenField name='commentId' value="${comment.id}"></g:hiddenField>
-                                                <button type="submit" class="projectedit close" id="projectedit">
+                                            <form name="editComment" action="/project/editComment" method="post"  >
+                                                <input type="hidden" name='projectTitle' value="${vanityTitle}"/>
+                                                <input type="hidden" name='fr' value="${fundRaiser}"/>
+                                                <input type="hidden" name='commentId' value="${comment.id}"/>
+                                                <button type="submit" class="projectedit close">
                                                     <i class="glyphicon glyphicon-edit glyphicon-lg projectedit"></i>
                                                 </button>
-                                            </g:form>
+                                            </form>
                                         </g:if>
                                     </div>
                                 </g:if>
@@ -134,18 +136,20 @@
                                 <g:if test="${team?.user == currentUser || comment?.user == currentUser}">
                                     <div class="editAndDeleteBtn deleteComment">
                                         <g:form controller="project" action="commentdelete" method="post" params="['projectId':projectId, 'fr': fundRaiser]">
-                                            <g:hiddenField name='teamCommentId' value="${comment.id}"></g:hiddenField>
+                                            <input type="hidden" name='teamCommentId' value="${comment.id}"/>
                                             <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this comment?&#39;);">
                                             <i class="glyphicon glyphicon-trash"></i>
                                             </button>
                                         </g:form>
                                         <g:if test="${comment?.user == currentUser}">
-                                            <g:form controller="project" name="editcomment" action="editComment" method="post" params="['projectTitle': vanityTitle, 'fr': fundRaiser]">
-                                                <g:hiddenField name='teamCommentId' value="${comment.id}"></g:hiddenField>
-                                                    <button type="submit" class="projectedit close pull-right" id="projectedit">
+                                            <form  name="editcomment" action="/project/editComment" method="post">
+                                                <input type="hidden" name='projectTitle' value="${vanityTitle}"/>
+                                                <input type="hidden" name='fr' value="${fundRaiser}"/>
+                                                <input type="hidden" name='teamCommentId' value="${comment.id}"/>
+                                                    <button type="submit" class="projectedit close pull-right">
                                                         <i class="glyphicon glyphicon-edit glyphicon-lg projectedit"></i>
                                                     </button>
-                                            </g:form>
+                                            </form>
                                         </g:if>
                                     </div>
                                 </g:if>

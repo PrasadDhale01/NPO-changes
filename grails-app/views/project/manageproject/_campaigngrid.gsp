@@ -5,9 +5,9 @@
     def shareUrl = base_url+'/c/'+shortUrl
     def updateImageUrl = projectUpdate?.imageUrls?.url
 %>
-<g:hiddenField name="title" value="${projectUpdate.title}"/>
-<g:hiddenField name="story" value="${projectUpdate.story }"/> 
-<g:hiddenField name="image" value="${updateImageUrl}"/>
+<input type="hidden" name="title" value="${projectUpdate.title}"/>
+<input type="hidden" name="story" value="${projectUpdate.story }"/> 
+<input type="hidden" name="image" value="${updateImageUrl}"/>
 
 <div class="col-md-6 col-sm-6 col-xs-12">
     <span><b>Update #${i}</b></span>&nbsp;&nbsp;&nbsp;&nbsp;<b>${projectUpdate.title}</b>

@@ -184,7 +184,7 @@ $(function() {
     	}
     });
 
-    $('#comments').find('#commentBox').find('form').validate({
+    $('#comments').find('.commentBox').find('form').validate({
     	rules: {
     		comment: {
     			required: true,
@@ -192,7 +192,7 @@ $(function() {
     		}
     	}
     });
-    $('#scrollToComment').find('#commentBox').find('form').validate({
+    $('#scrollToComment').find('.commentBox').find('form').validate({
         rules: {
             comment: {
                 required: true,
@@ -200,7 +200,7 @@ $(function() {
             }
         }
     });
-    $('#comment-mobile').find('#commentBox').find('form').validate({
+    $('#comment-mobile').find('.commentBox').find('form').validate({
     	rules: {
     		comment: {
     			required: true,

@@ -5680,18 +5680,34 @@ class ProjectService {
         List sortedProjects = []
         def finalList
         boolean ended
+        
+        boolean doProjectHaveAnyContribution;
 
-        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
-            def projects= Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:true, offeringTaxReciept:true)
+        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+            def projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:true, offeringTaxReciept:true)
             projects.each { project->
-                if (project.contributions && project.offeringTaxReciept){
-                    ended = isProjectDeadlineCrossed(project)
-                    if (ended) {
-                        endedProjects.add(project)
-                    } else if(project.validated==true && project.inactive==false){
-                        activeProjects.add(project)
+                
+                doProjectHaveAnyContribution = false;
+                
+                if (project.contributions && project.offeringTaxReciept) {
+                    
+                    project.contributions?.each { contribution ->
+                        if (contribution.panNumber != null) {
+                            doProjectHaveAnyContribution = true
+                        }
                     }
+                    
+                    if (doProjectHaveAnyContribution) {
+                        ended = isProjectDeadlineCrossed(project);
+                        if (ended) {
+                            endedProjects.add(project)
+                        } else if(project.validated==true && project.inactive==false){
+                            activeProjects.add(project)
+                        }
+                    }
+                    
                 }
+                
             }
         } else {
             def projects= Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:false, offeringTaxReciept:true)

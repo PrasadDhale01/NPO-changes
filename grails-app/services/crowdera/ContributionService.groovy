@@ -13,12 +13,12 @@ class ContributionService {
     
     private UserService userService;
     
+    def grailsApplication
+    
     Transaction getTransactionByTransactionId(String transactionId) {
         return Transaction.findByTransactionId(transactionId)
     }
 
-    def grailsApplication
-    
     def getBankInfoByProject(Project project) {
         return BankInfo.findByProject(project)
     }
@@ -601,7 +601,22 @@ class ContributionService {
     
     def getContributorsForProject(def id, def params){
         Project project = Project.get(id)
-        def totalContributions =  Contribution.findAllWhere(project:project)
+        /*def totalContributions = Contribution.createCriteria().list {
+            createAlias('project', 'project')
+            eq("project.id", id)
+            ne("panNumber", null)
+        }*/
+        
+        List<Contribution> totalContributions =  Contribution.findAllWhere(project:project)
+        List<Contribution> contributionList = new ArrayList<>();
+        totalContributions.each {
+            if (it.panNumber != null) {
+                contributionList.add(it);
+            }
+        }
+        
+        totalContributions = contributionList;
+        
         List contributions
         if (!totalContributions.empty){
             def offset = params.offset ? params.int('offset') : 0
@@ -616,7 +631,7 @@ class ContributionService {
             }
             contributions = totalContributions.reverse().subList(offset, maxrange)
         }
-
+        
         return [totalContributions:totalContributions, contributions:contributions]
     }
     

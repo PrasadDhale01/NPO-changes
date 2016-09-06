@@ -179,6 +179,10 @@ div.citrusfundbody .open > .dropdown-toggle.btn-default {
 div.citrusfundbody .dropdown-menu.open {
     margin-left: -0.8%;
 }
+div.citrusfundbody .dropdown-menu{
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
 
 div.citrusfundbody .bootstrap-select.btn-group .dropdown-menu {
     height: 130px;

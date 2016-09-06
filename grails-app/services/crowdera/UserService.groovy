@@ -1480,44 +1480,57 @@ class UserService {
 
     def isUserProjectHavingContribution(User user, def environment){
         Boolean doProjectHaveAnyContribution = false
-        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
+        
+        List<Contribution> contributions = []
+        
+        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
             List projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:true, offeringTaxReciept:true)
-            projects.each{
-                if (it.contributions){
-                    doProjectHaveAnyContribution = true
+            projects.each { project ->
+                project.contributions?.each { contribution ->
+                    if (contribution.panNumber != null) {
+                        doProjectHaveAnyContribution = true
+                    }
                 }
             }
+            
         } else {
             List projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:false, offeringTaxReciept:true)
-            projects.each{
-                if (it.contributions){
+            projects.each { project ->
+                if (project.contributions) {
                     doProjectHaveAnyContribution = true
                 }
             }
         }
-        return doProjectHaveAnyContribution
+        return doProjectHaveAnyContribution;
     }
 
-    def userHasContributedToNonProfitOrNgo(User user){
-        Boolean result = false
-        def contributions = Contribution.findAllWhere(user:user)
-        if (contributions){
-            contributions.each{
-                if (it.receiptSent){
-                    result = true;
+    def userHasContributedToNonProfitOrNgo(User user) {
+        List<Contribution> contributions = [];
+        boolean result = false;
+        String environment = projectService.getCurrentEnvironment();
+        
+        contributions = Contribution.findAllWhere(user:user, receiptSent: true);
+        if (contributions) {
+            if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+                contributions.each {
+                    if (it.panNumber != null) {
+                        result = true;
+                    }
                 }
+            } else {
+                result = true;
             }
-        }
-        return result
+        } 
+        return result;
     }
 
     def getContributionsForWhichTaxReceiptreceived(User user, def params){
         def contributions = Contribution.findAllWhere(user:user)
         List contributionList = []
         def contributionsOffset
-        if (contributions){
+        if (contributions) {
             contributions.each{
-                if (it.receiptSent){
+                if (it.receiptSent && it.panNumber != null){
                     contributionList.add(it);
                 }
             }

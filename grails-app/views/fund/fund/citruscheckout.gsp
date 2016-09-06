@@ -257,8 +257,8 @@
 					                            <div class="clear-both"></div>
 					                        </div>
 					                        <div class="rightcard-column">
-					                            <span class="input-group-addon card-details"><span class="glyphicon glyphicon-credit-card"></span> </span>
-					                            <g:select class="selectpicker card-number card-number-width" name="citrusScheme" id="citrusScheme" from="${citrusSchemes}" optionKey="key" optionValue="value"/>
+					                            <input type="hidden" value="" name="citrusScheme" id="citrusScheme" />
+					                            <img src="//s3.amazonaws.com/crowdera/assets/2d87664b-d1c9-4fae-a015-fc02d3333dbb.png" alt="card" id="cardType">
 					                            <div class="clear-both"></div>
 					                        </div>
 					                        <div class="clear-both"></div>

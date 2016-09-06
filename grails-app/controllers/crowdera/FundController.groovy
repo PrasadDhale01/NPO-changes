@@ -893,10 +893,7 @@ class FundController {
 
         def totalContribution= contributionService.getTotalContributionForProject(project)
         def contPrice = params.double(('amount'))
-        def amt = project.amount
-        def reqAmt = (999/100) * amt
-        def remainAmt = reqAmt- totalContribution
-        def percentage = ((totalContribution + contPrice)/ amt) * 100
+        def percentage = contributionService.getPercentage(contPrice, totalContribution, project)
 
         def vanityUserName = params.fr
 

@@ -1597,6 +1597,7 @@ $(function() {
 
     $("#iconfile").change(function() {
         var file =this.files[0];
+        
         if(validateExtension(file.name) === false){
 	        $('#icondiv').hide();
 	        $('#iconfilesize').hide();
@@ -1614,6 +1615,7 @@ $(function() {
 	        this.value=null;
 	    } else{
 	        if (file.size > 1024 * 1024 * 3) {
+	        	
 	            $('#icondiv').hide();
 	            $('#logomsg').hide();
 	            if($('#iconfilesize')){

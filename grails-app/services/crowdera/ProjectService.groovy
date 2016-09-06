@@ -4,6 +4,9 @@ import static java.util.Calendar.*
 import grails.transaction.Transactional
 import grails.util.Environment
 import groovy.json.JsonSlurper
+import groovyx.net.http.ContentType
+import groovyx.net.http.HTTPBuilder
+import groovyx.net.http.Method
 
 import java.security.MessageDigest
 import java.text.DateFormat
@@ -21,7 +24,7 @@ import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
 
 import org.hibernate.Session
-import org.hibernate.SessionFactory;
+import org.hibernate.SessionFactory
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.model.*
 import grails.util.Environment
@@ -385,14 +388,17 @@ class ProjectService {
 
     def getCommentsDetails(params){
         def project = Project.get(params.id)
+        
         if (project && params.comment) {
             new ProjectComment(
                 comment: params.comment,
                 user: userService.getCurrentUser(),
                 project: project,
+                attachFile: params.fileComment,
                 date: new Date()).save(failOnError: true)
         }
     }
+    
 
      def getUpdateCommentDetails(def request){
          def checkid= request.getParrmeter('checkID')
@@ -445,11 +451,13 @@ class ProjectService {
          User user = User.findByUsername(fundRaiser)
          Project project = Project.get(params.id)
          Team team = getTeamByUserAndProject(project, user)
+         
          if (team) {
              TeamComment teamComment = new TeamComment(
                  comment: params.comment,
                  user: userService.getCurrentUser(),
                  team: team,
+                 attachteamfile: params.teamfileComment,
                  date: new Date())
              team.addToComments(teamComment).save(failOnError: true)
          } else {
@@ -493,6 +501,31 @@ class ProjectService {
 		def vanityUserName = userService.getVanityNameFromUsername(fundraiser.username, project.id)
 		def url = base_url+'/campaigns/'+vanityTitle+'/'+vanityUserName
 		return url
+	}
+	
+	
+	int getFacebookShareCountForCampaign(String campaignUrl){
+		def httpFb = new HTTPBuilder('http://graph.facebook.com/?id=' + campaignUrl)
+		int facebookCount= 0;
+		
+		try{
+			httpFb.request(Method.GET, ContentType.JSON) {
+				response.success = { resp, reader ->
+					facebookCount = reader.share?.share_count?:0
+				}
+				
+				response.failure = { resp, json ->
+					return facebookCount
+				}
+			}
+		}catch(UnknownHostException e){
+			return facebookCount
+		}catch(Exception e){
+			return facebookCount
+		}
+		
+			
+		return facebookCount
 	}
 
     def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
@@ -2068,7 +2101,7 @@ class ProjectService {
         def bucketName = "crowdera"
         def s3Bucket = new S3Bucket(bucketName)
 
-        def Folder = "project-images"
+        def Folder = "assets"
 
         def tempImageUrl
         def imageUrl = new ImageUrl()
@@ -2795,6 +2828,35 @@ class ProjectService {
                      log.error("Error: " + e)
                 }
             }
+        }
+    }
+    
+    def setAttachedFileForProject(CommonsMultipartFile attachFile) {
+        if (!attachFile?.empty && attachFile.size < 1024 * 1024 * 3) {
+            def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+            def awsSecretKey = "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"
+            def bucketName = "crowdera"
+            def folder = "Attachments"
+
+            def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+            def s3Service = new RestS3Service(awsCredentials);
+            def s3Bucket = new S3Bucket(bucketName)
+
+            int index = attachFile.getOriginalFilename().lastIndexOf(".")
+            String extName = attachFile.getOriginalFilename().substring(index);
+            def fileName =  UUID.randomUUID().toString() + extName
+            
+            def tempFile = new File("${fileName}")
+            def key = "${folder}/${fileName}"
+            key = key.toLowerCase()
+            attachFile.transferTo(tempFile)
+            def object = new S3Object(tempFile)
+            object.key = key
+
+            s3Service.putObject(s3Bucket, object)
+            tempFile.delete()
+
+            return "//s3.amazonaws.com/crowdera/${key}";
         }
     }
     

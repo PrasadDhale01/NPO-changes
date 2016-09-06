@@ -517,10 +517,11 @@
                                     </div>
                                     <label class="docfile-orglogo-css" id="logomsg">Please select image file.</label>
                                     <label class="docfile-orglogo-css" id="iconfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
+
                                     <label class="docfile-orglogo-css" id="iconfilesizeSmaller">The file you are attempting to upload is smaller than the permitted size of 1MB.</label>
                                 </div>
                                 <g:if test="${project.organizationIconUrl}">
-                                    <div class="pr-icon-thumbnail-div edit-image-mobile col-sm-2">
+                            <div class="pr-1con-thumbnail-div edit-image-mobile col-sm-2">
                                         <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}">
                                         <div class="deleteicon orgicon-css-styles">
                                             <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');" src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete">

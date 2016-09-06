@@ -67,6 +67,7 @@
         }
     </script>
 	
+	
 </head>
 <body>
     <g:hiddenField id="projectamount" name="projectamount" value="${project.amount.round()}"/>
@@ -206,18 +207,20 @@
                              <div class="col-lg-6 col-lg-push-3  col-md-push-3 col-md-6 mange-social-all">
                                  <%-- Social features --%>
                                  <a class="share-mail pull-left social" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank">
-                                     <img src="//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png" class="show-email" alt="Email Share">
+                                     <img src="///s3.amazonaws.com/crowdera/assets/0fea8e3c-7e84-4369-a5a0-451585c06492.png" class="show-email" alt="Email Share">
                                  </a>
                                  <a class="twitter-share pull-left social" target="_blank">
-                                     <img src="//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png" class="show-twitter" alt="Twitter Share">
+                                     <img src="//s3.amazonaws.com/crowdera/assets/543485b8-21d6-4144-9c30-c0e49c95c4e6.png" class="show-twitter" alt="Twitter Share">
                                  </a>
                                  <a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${shareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-                                     <img src="//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png" class="show-linkedin" alt="LinkedIn Share">
+                                     <img src="//s3.amazonaws.com/crowdera/assets/0d661ddc-4d08-4ad9-a707-cf2e22349989.png" class="show-linkedin" alt="LinkedIn Share">
                                  </a>
                                  <a class="social google-plus-share pull-left" href="https://plus.google.com/share?url=${shareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-                                     <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
+                                     <img src="//s3.amazonaws.com/crowdera/assets/0c536e08-376d-4965-a901-ca42a4b6c4d5.png" class="show-google" alt="Google+ Share">
                                  </a>
-                                 <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left embedIcon-manage-left social hidden-xs"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" class="show-embedIcon" alt="embedicon"></a>
+                                 <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left embedIcon-manage-left social hidden-xs">
+                                      <img src="//s3.amazonaws.com/crowdera/assets/75ed76bc-3275-4b00-a534-9c4a324cc04e.png" class="show-embedIcon" alt="embedicon">
+                                 </a>
                                  <div class="popoverClass">
                                      <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphiconheader glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color manage-urlshort"></span>
                                      <div class="hidden popoverConent">

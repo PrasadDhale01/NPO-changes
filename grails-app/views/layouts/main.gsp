@@ -13,7 +13,8 @@
     <title><g:layoutTitle default="Crowdera- The Free Global Crowdfunding & Fundraising Website"/></title>
     
     <!-- font-family:Ubuntu Condensed -->
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu+Condensed" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" />
 
     <!-- Twitter Bootstrap CSS -->
     <!--

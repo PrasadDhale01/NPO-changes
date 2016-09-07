@@ -18,7 +18,10 @@
 			</div>
 		</div>
 	</div>
-</div><br><br><br>
+</div>
+<br>
+<br>
+<br>
 
 <g:if test="${campaign}">
     <%

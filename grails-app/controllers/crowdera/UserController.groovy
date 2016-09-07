@@ -132,7 +132,7 @@ class UserController {
                 campaign = projectList.totalProjects[0]
                 vanityTitle = projectService.getVanityTitleFromId(campaign.id)
                 
-                contributorListForProject = contributionService.getContributorsForProject(campaign.id, params)
+                contributorListForProject = contributionService.getContributorsForProject(campaign.id, params, environment)
                 totalContributions = contributorListForProject.totalContributions
                 contributionList = contributorListForProject.contributions
                 
@@ -454,7 +454,7 @@ class UserController {
         def sortList
         
         if (projectList.totalProjects.size() == 1) {
-            contributorListForProject = contributionService.getContributorsForProject(projectList.totalProjects[0].id, params)
+            contributorListForProject = contributionService.getContributorsForProject(projectList.totalProjects[0].id, params, environment)
             activeTab = 'sendtaxReciept'
             totalContributions = contributorListForProject.totalContributions
             contributionList = contributorListForProject.contributions
@@ -834,7 +834,7 @@ class UserController {
                 campaign = projectList.totalProjects[0]
                 vanityTitle = projectService.getVanityTitleFromId(campaign.id)
                 
-                contributorListForProject = contributionService.getContributorsForProject(campaign.id, params)
+                contributorListForProject = contributionService.getContributorsForProject(campaign.id, params, currentEnv)
                 totalContributions = contributorListForProject.totalContributions
                 contributionList = contributorListForProject.contributions
             } else {

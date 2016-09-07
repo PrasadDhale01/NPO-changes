@@ -599,23 +599,20 @@ class ContributionService {
         return ['highestContributionDay':highestContributionDay , 'highestContributionHour': highestContributionHour]
     }
     
-    def getContributorsForProject(def id, def params){
+    def getContributorsForProject(def id, def params, String environment){
         Project project = Project.get(id)
-        /*def totalContributions = Contribution.createCriteria().list {
-            createAlias('project', 'project')
-            eq("project.id", id)
-            ne("panNumber", null)
-        }*/
         
         List<Contribution> totalContributions =  Contribution.findAllWhere(project:project)
         List<Contribution> contributionList = new ArrayList<>();
-        totalContributions.each {
-            if (it.panNumber != null) {
-                contributionList.add(it);
-            }
-        }
         
-        totalContributions = contributionList;
+        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+            totalContributions.each {
+                if (it.panNumber != null) {
+                    contributionList.add(it);
+                }
+            }
+            totalContributions = contributionList;
+        } 
         
         List contributions
         if (!totalContributions.empty){

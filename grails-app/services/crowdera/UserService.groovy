@@ -1603,6 +1603,19 @@ class UserService {
             default:
             contributions = Contribution.findAllWhere(project:project)
         }
+        
+        List<Contribution> contributionList = new ArrayList<>();
+        String environment = projectService.getCurrentEnvironment();
+        
+        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+            contributions.each {
+                if (it.panNumber != null) {
+                    contributionList.add(it);
+                }
+            }
+            contributions = contributionList;
+        }
+        
         if (contributions && !contributions.empty){
             def offset = params.offset ? params.int('offset') : 0
             def max = 10
@@ -1926,7 +1939,7 @@ class UserService {
             reportParams.put("amountInNo", "INR "+contribution.amount.round().toString());
             reportParams.put("orgStatus", "INR "+taxReciept.taxRecieptHolderState);
             reportParams.put("panNumber", taxReciept.panCardNumber);
-            reportParams.put("panOfContributor", "");
+            reportParams.put("panOfContributor", contribution?.panNumber);
             reportParams.put("receiptNo", transaction.transactionId);
             
             reportDef = new JasperReportDef(name:'taxreceiptIndia.jasper',fileFormat:JasperExportFormat.PDF_FORMAT,

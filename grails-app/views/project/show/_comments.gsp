@@ -40,7 +40,9 @@
 		} else {
 			userImage = '//s3.amazonaws.com/crowdera/assets/6667f492-acde-4f1c-b9d5-d66f5282baad.png'
 		}
-	}
+	}else {
+        userImage = '//s3.amazonaws.com/crowdera/assets/6667f492-acde-4f1c-b9d5-d66f5282baad.png'
+    }
 %>
 
 <g:if test="${flash.commentmessage}">
@@ -70,7 +72,7 @@
                             <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
                         </g:elseif>
                         <g:else>
-                             <span><img class="show-cmment-box-imgheight" src="//s3.amazonaws.com/crowdera/assets/6667f492-acde-4f1c-b9d5-d66f5282baad.png" alt="userImage"></span>
+                             <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
                         </g:else>
                     </div>
                     <div class="col-lg-11 col-sm-11 col-md-11 col-xs-10 show-all-padding">
@@ -140,7 +142,7 @@
                                  <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
                              </g:elseif>
                              <g:else>
-                                  <span><img class="show-cmment-box-imgheight" src="//s3.amazonaws.com/crowdera/assets/6667f492-acde-4f1c-b9d5-d66f5282baad.png" alt="userImage"></span>
+                                  <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
                              </g:else>
                          </div>
                          <div class="col-lg-11 col-sm-11 col-md-11 col-xs-10 show-all-padding">
@@ -185,7 +187,7 @@
                                 <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
                             </g:elseif>
                             <g:else>
-                                <span><img class="show-cmment-box-imgheight" src="//s3.amazonaws.com/crowdera/assets/6667f492-acde-4f1c-b9d5-d66f5282baad.png" alt="userImage"></span>
+                                <span><img class="show-cmment-box-imgheight" src="${userImage}" alt="userImage"></span>
                             </g:else>
 	                     </div>
 	                     

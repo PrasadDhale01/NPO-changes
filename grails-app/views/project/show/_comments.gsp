@@ -85,22 +85,16 @@
                             </div>
                         </div>
                         <g:if test="${projectComment?.attachFile != null && projectComment?.attachFile != 'null'}">
-	                        <div class="col-sm-6 commentResultId">
+	                        <div class="col-sm-6">
 	                             <div  class="comment-imgdiv comment-thumb-div sh-tabs-iconleft">
-                                        <img alt="image" class='img-thumbnail pr-thumbnail' src='${projectComment?.attachFile}'>
-                                        <div class="deleteicon comment-deleteicon">
-                                            <img class="commentImgEdit" alt="cross"  src="//s3.amazonaws.com/crowdera/assets/delete.ico">
-                                        </div>
+                                        <img alt="image" class='comment-img-id img-thumbnail pr-thumbnail' src='${projectComment?.attachFile}'>
                                  </div>
 		                     </div>
 	                     </g:if>
 	                     <g:elseif test="${teamcomment?.attachteamfile !=null && teamcomment?.attachteamfile !='null'}">
-	                     	<div class="col-sm-6 commentResultId">
+	                     	<div class="col-sm-6">
 	                             <div  class="comment-imgdiv comment-thumb-div sh-tabs-iconleft">
-                                        <img alt="image" class='img-thumbnail pr-thumbnail' src='${teamcomment?.attachteamfile}'>
-                                        <div class="deleteicon comment-deleteicon">
-                                            <img class="commentImgEdit" alt="cross"  src="//s3.amazonaws.com/crowdera/assets/delete.ico">
-                                        </div>
+                                        <img alt="image" class='comment-img-id img-thumbnail pr-thumbnail' src='${teamcomment?.attachteamfile}'>
                                  </div>
 		                     </div>
 	                     </g:elseif>

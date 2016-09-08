@@ -13,12 +13,12 @@ class ContributionService {
     
     private UserService userService;
     
+    def grailsApplication
+    
     Transaction getTransactionByTransactionId(String transactionId) {
         return Transaction.findByTransactionId(transactionId)
     }
 
-    def grailsApplication
-    
     def getBankInfoByProject(Project project) {
         return BankInfo.findByProject(project)
     }
@@ -607,9 +607,21 @@ class ContributionService {
         return ['highestContributionDay':highestContributionDay , 'highestContributionHour': highestContributionHour]
     }
     
-    def getContributorsForProject(def id, def params){
+    def getContributorsForProject(def id, def params, String environment){
         Project project = Project.get(id)
-        def totalContributions =  Contribution.findAllWhere(project:project)
+        
+        List<Contribution> totalContributions =  Contribution.findAllWhere(project:project)
+        List<Contribution> contributionList = new ArrayList<>();
+        
+        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+            totalContributions.each {
+                if (it.panNumber != null) {
+                    contributionList.add(it);
+                }
+            }
+            totalContributions = contributionList;
+        } 
+        
         List contributions
         if (!totalContributions.empty){
             def offset = params.offset ? params.int('offset') : 0
@@ -624,7 +636,7 @@ class ContributionService {
             }
             contributions = totalContributions.reverse().subList(offset, maxrange)
         }
-
+        
         return [totalContributions:totalContributions, contributions:contributions]
     }
     
@@ -769,4 +781,18 @@ class ContributionService {
         return Seller.findByEmail(email)
     }
     
+
+    def setPaypalIPNData(def params){
+        PaypalIPNData ipnData = new PaypalIPNData( itemNumber: params.item_number, residenceCountry: params.residence_country,
+                                           invoice: params.invoice, addressCountry: params.address_country, addressCity: params.address_city,
+                                           paymentStatus: params.payment_status, payerId: params.payer_id, firstName : params.first_name,
+                                           shipping: params.shipping, payerEmail: params.payer_email, txnId: params.txn_id, receiverEmail: params.receiver_email,
+                                           txnType: params.txn_type, mcGross: params.mc_gross, mcCurrency: params.mc_currency, payerStatus: params.payer_status,
+                                           paymentDate: params.payment_date, addressZip: params.address_zip, addressState: params.address_state, itemName: params.item_name,
+                                           addressName: params.address_name, lastName: params.last_name, paymentType: params.payment_type,
+                                           addressStreet: params.address_street, receiverId: params.receiver_id
+                                         )
+        ipnData.save()
+    }
+
 }

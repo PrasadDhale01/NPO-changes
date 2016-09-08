@@ -132,7 +132,7 @@ class UserController {
                 campaign = projectList.totalProjects[0]
                 vanityTitle = projectService.getVanityTitleFromId(campaign.id)
                 
-                contributorListForProject = contributionService.getContributorsForProject(campaign.id, params)
+                contributorListForProject = contributionService.getContributorsForProject(campaign.id, params, environment)
                 totalContributions = contributorListForProject.totalContributions
                 contributionList = contributorListForProject.contributions
                 
@@ -323,7 +323,9 @@ class UserController {
     
     def logout() {
         SecurityContextHolder.clearContext()
-        render(view: '/login/error', model: [facelogoutmsg: 'A user with that email id already exists. Please log into your account.'])
+//        render(view: '/login/error', model: [facelogoutmsg: 'A user with that email id already exists. Please log into your account.'])
+		  flash.message = "A user with that email Id already exists. Please,log into your account."
+		  render view: '/login/auth', model:[message: '']
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -452,7 +454,7 @@ class UserController {
         def sortList
         
         if (projectList.totalProjects.size() == 1) {
-            contributorListForProject = contributionService.getContributorsForProject(projectList.totalProjects[0].id, params)
+            contributorListForProject = contributionService.getContributorsForProject(projectList.totalProjects[0].id, params, environment)
             activeTab = 'sendtaxReciept'
             totalContributions = contributorListForProject.totalContributions
             contributionList = contributorListForProject.contributions
@@ -832,7 +834,7 @@ class UserController {
                 campaign = projectList.totalProjects[0]
                 vanityTitle = projectService.getVanityTitleFromId(campaign.id)
                 
-                contributorListForProject = contributionService.getContributorsForProject(campaign.id, params)
+                contributorListForProject = contributionService.getContributorsForProject(campaign.id, params, currentEnv)
                 totalContributions = contributorListForProject.totalContributions
                 contributionList = contributorListForProject.contributions
             } else {
@@ -1043,7 +1045,7 @@ class UserController {
         def contribution = Contribution.get(params.id)
         
         if (contribution) {
-            def title = contribution.project.organizationName
+            def title = contribution?.project.organizationName
             def reportDef = userService.generateTaxreceiptPdf(contribution);
             ByteArrayOutputStream bytes = jasperService.generateReport(reportDef)
             response.setHeader("Content-Disposition", 'attachment; filename="taxreceipt-"'+title+'".pdf"');

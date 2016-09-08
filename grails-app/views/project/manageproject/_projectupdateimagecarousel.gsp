@@ -35,7 +35,7 @@
                                         <img class="imagestyle" src="${img}" alt="manage carousel">
                          	    </g:if>
                               	    <g:elseif test="${img.toString().contains('.png')}">
-                                        <img class="imagestyle" src="${img}"alt="manage carousel">
+                                        <img class="imagestyle" src="${img}" alt="manage carousel">
                          	   </g:elseif>
 			        </div>
 	        	</div>

@@ -4,6 +4,9 @@ import static java.util.Calendar.*
 import grails.transaction.Transactional
 import grails.util.Environment
 import groovy.json.JsonSlurper
+import groovyx.net.http.ContentType
+import groovyx.net.http.HTTPBuilder
+import groovyx.net.http.Method
 
 import java.security.MessageDigest
 import java.text.DateFormat
@@ -21,7 +24,7 @@ import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
 
 import org.hibernate.Session
-import org.hibernate.SessionFactory;
+import org.hibernate.SessionFactory
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.model.*
 import grails.util.Environment
@@ -385,14 +388,17 @@ class ProjectService {
 
     def getCommentsDetails(params){
         def project = Project.get(params.id)
+        
         if (project && params.comment) {
             new ProjectComment(
                 comment: params.comment,
                 user: userService.getCurrentUser(),
                 project: project,
+                attachFile: params.fileComment,
                 date: new Date()).save(failOnError: true)
         }
     }
+    
 
      def getUpdateCommentDetails(def request){
          def checkid= request.getParrmeter('checkID')
@@ -445,11 +451,13 @@ class ProjectService {
          User user = User.findByUsername(fundRaiser)
          Project project = Project.get(params.id)
          Team team = getTeamByUserAndProject(project, user)
+         
          if (team) {
              TeamComment teamComment = new TeamComment(
                  comment: params.comment,
                  user: userService.getCurrentUser(),
                  team: team,
+                 attachteamfile: params.teamfileComment,
                  date: new Date())
              team.addToComments(teamComment).save(failOnError: true)
          } else {
@@ -494,9 +502,34 @@ class ProjectService {
 		def url = base_url+'/campaigns/'+vanityTitle+'/'+vanityUserName
 		return url
 	}
+	
+	
+	int getFacebookShareCountForCampaign(String campaignUrl){
+		def httpFb = new HTTPBuilder('http://graph.facebook.com/?id=' + campaignUrl)
+		int facebookCount= 0;
+		
+		try{
+			httpFb.request(Method.GET, ContentType.JSON) {
+				response.success = { resp, reader ->
+					facebookCount = reader.share?.share_count?:0
+				}
+				
+				response.failure = { resp, json ->
+					return facebookCount
+				}
+			}
+		}catch(UnknownHostException e){
+			return facebookCount
+		}catch(Exception e){
+			return facebookCount
+		}
+		
+			
+		return facebookCount
+	}
 
     def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
-        def emailId, twitter,custom, userId,anonymous
+        def emailId, twitter,custom, userId,anonymous,panNumber
         def currency
         if (project.payuEmail) {
             currency = 'INR'
@@ -505,6 +538,7 @@ class ProjectService {
             custom =  request.getParameter('shippingCustom')
             userId = request.getParameter('tempValue')
             anonymous = request.getParameter('anonymous')
+            panNumber = request.getParameter('panNumber')
         } else {
             currency = 'USD'
             emailId = request.getParameter('shippingEmail')
@@ -545,7 +579,8 @@ class ProjectService {
             contributorName: name,
             contributorEmail:username,
             physicalAddress: shippingDetail.address,
-            currency : currency
+            currency : currency,
+            panNumber : panNumber
         )
         project.addToContributions(contribution).save(failOnError: true)
 		 
@@ -2066,7 +2101,7 @@ class ProjectService {
         def bucketName = "crowdera"
         def s3Bucket = new S3Bucket(bucketName)
 
-        def Folder = "project-images"
+        def Folder = "assets"
 
         def tempImageUrl
         def imageUrl = new ImageUrl()
@@ -2796,6 +2831,35 @@ class ProjectService {
         }
     }
     
+    def setAttachedFileForProject(CommonsMultipartFile attachFile) {
+        if (!attachFile?.empty && attachFile.size < 1024 * 1024 * 3) {
+            def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+            def awsSecretKey = "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"
+            def bucketName = "crowdera"
+            def folder = "Attachments"
+
+            def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+            def s3Service = new RestS3Service(awsCredentials);
+            def s3Bucket = new S3Bucket(bucketName)
+
+            int index = attachFile.getOriginalFilename().lastIndexOf(".")
+            String extName = attachFile.getOriginalFilename().substring(index);
+            def fileName =  UUID.randomUUID().toString() + extName
+            
+            def tempFile = new File("${fileName}")
+            def key = "${folder}/${fileName}"
+            key = key.toLowerCase()
+            attachFile.transferTo(tempFile)
+            def object = new S3Object(tempFile)
+            object.key = key
+
+            s3Service.putObject(s3Bucket, object)
+            tempFile.delete()
+
+            return "//s3.amazonaws.com/crowdera/${key}";
+        }
+    }
+    
     def getEnabledAndValidatedTeamsForCampaign(Project project, def params) {
         List teams = Team.findAllWhere(project : project,enable:true, validated: true);
         List teamList = []
@@ -2944,7 +3008,7 @@ class ProjectService {
                 }
             }
             sortedProjects =activeProjects.sort{contributionService.getPercentageContributionForProject(it)}
-            finalList = draftProjects.reverse()+ pendingProjects.reverse() + sortedProjects.reverse() + endedProjects.reverse() 
+            finalList = draftProjects.sort{it.created}.reverse() + pendingProjects.sort{it.created}.reverse() + sortedProjects.sort{it.created}.reverse() + endedProjects.sort{it.created}.reverse()
         }
         return finalList
     }
@@ -3312,7 +3376,27 @@ class ProjectService {
         }
         return projects;
     }
-    
+
+	def getLiveProjects(def projects){
+        List liveProjects = []
+		projects.each{project ->
+			if(!isProjectDeadlineCrossed(project) && project.validated){
+				liveProjects.add(project);
+			}
+		}
+		return liveProjects
+	}
+	
+	def getEndedCampaigns(def projects){
+		List endedCampaigns = []
+		projects.each{project ->
+			if(isProjectDeadlineCrossed(project)){
+				endedCampaigns.add(project);
+			}
+		}
+		return endedCampaigns
+	}
+
     def setHomePageCampaignByEnv(def campaignOne, def campaingTwo, def campaingThree, def currentEnv){
         def homePageCampaigns = getHomePageCampaignByEnv(currentEnv)
         
@@ -4372,7 +4456,7 @@ class ProjectService {
         def firstname =  params.firstname
         def email = params.email
         def productinfo = params.productinfo
-        def surl = base_url + "/fund/payureturn?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&fundraiser=${fundraiser.id}&physicalAddress=${address}&shippingCustom=${params.shippingCustom}&shippingEmail=${params.shippingEmail}&shippingTwitter=${params.twitterHandle}&name=${params.firstname} ${params.lastname}&email=${params.email}&anonymous=${params.anonymous}&projectTitle=${params.projectTitle}"
+        def surl = base_url + "/fund/payureturn?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&fundraiser=${fundraiser.id}&physicalAddress=${address}&shippingCustom=${params.shippingCustom}&shippingEmail=${params.shippingEmail}&shippingTwitter=${params.twitterHandle}&name=${params.firstname} ${params.lastname}&email=${params.email}&anonymous=${params.anonymous}&projectTitle=${params.projectTitle}&panNumber=${params.panNumber}"
 
         def furl = base_url + "/error"
         def txnid = generateTransId()
@@ -5008,7 +5092,6 @@ class ProjectService {
         
         List projects = []
         List totalProjects = []
-        List endedCampaigns = []
         List activeCampaigns = []
         if (condition == 'Live' || condition == 'Ended' || condition=="Homepage" || condition=='Deadline') {
             if (country == 'INDIA') {
@@ -5018,51 +5101,54 @@ class ProjectService {
                 
                 totalProjects = Project.findAllWhere(payuStatus: false, validated: true, inactive: false)
             }
-            totalProjects.each { project->
-                if (isProjectDeadlineCrossed(project)) {
-                    endedCampaigns.add(project)
-                } else {
-                    activeCampaigns.add(project)
-                }
-            }
+//            totalProjects.each { project->
+//                if (isProjectDeadlineCrossed(project)) {
+//                    endedCampaigns.add(project)
+//                } else {
+//                    activeCampaigns.add(project)
+//                }
+//            }
         }
         
         switch (condition) {
             case 'Ended':
-                projects = endedCampaigns
+                def endedCampaigns= getEndedCampaigns(totalProjects)
+                projects = endedCampaigns.sort{it.created}.reverse()
                 break;
             case 'Pending':
                 if (country == 'INDIA') {
-                    projects = Project.findAllWhere(payuStatus: true, draft: false, inactive: false, rejected: false, validated: false)
+                    projects = Project.findAllWhere(payuStatus: true, draft: false, inactive: false, rejected: false, validated: false).sort{it.created}.reverse()
                     checkProjectExistence(projects)
                 } else if(country == 'USA') {
-                    projects = Project.findAllWhere(payuStatus: false, draft: false, inactive: false, rejected: false, validated: false)
+                    projects = Project.findAllWhere(payuStatus: false, draft: false, inactive: false, rejected: false, validated: false).sort{it.created}.reverse()
                     checkProjectExistence(projects)
                 }
                 break;
             case 'Live':
-                projects = activeCampaigns
+                def liveProjects = getLiveProjects(totalProjects)
+                projects = liveProjects.sort{it.created}.reverse()
                 break;
             case 'Homepage':
-                projects = totalProjects.title.sort{it.toLowerCase()}
+                def liveProjects = getLiveProjects(totalProjects)
+                projects = liveProjects.title.sort{it.toLowerCase()}
                 break;
             case 'Deadline':
                 projects= totalProjects.title.sort{it.toLowerCase()}
                 break;
             case 'Draft':
                 if (country == 'INDIA') {
-                    projects = Project.findAllWhere(payuStatus: true, draft: true, inactive: false, rejected: false)
+                    projects = Project.findAllWhere(payuStatus: true, draft: true, inactive: false, rejected: false).sort{it.created}.reverse()
                     checkProjectExistence(projects)
                 } else if(country == 'USA') {
-                    projects = Project.findAllWhere(payuStatus: false, draft: true, inactive: false, rejected: false)
+                    projects = Project.findAllWhere(payuStatus: false, draft: true, inactive: false, rejected: false).sort{it.created}.reverse()
                     checkProjectExistence(projects)
                 }
                 break;
             case 'Rejected':
                 if (country == 'INDIA') {
-                    projects = Project.findAllWhere(payuStatus: true, rejected: true)
+                    projects = Project.findAllWhere(payuStatus: true, rejected: true).sort{it.created}.reverse()
                 } else if(country == 'USA') {
-                    projects = Project.findAllWhere(payuStatus: false, rejected: true)
+                    projects = Project.findAllWhere(payuStatus: false, rejected: true).sort{it.created}.reverse()
                 }
                 break;
             case 'Deleted':
@@ -5656,18 +5742,34 @@ class ProjectService {
         List sortedProjects = []
         def finalList
         boolean ended
+        
+        boolean doProjectHaveAnyContribution;
 
-        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
-            def projects= Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:true, offeringTaxReciept:true)
+        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+            def projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:true, offeringTaxReciept:true)
             projects.each { project->
-                if (project.contributions && project.offeringTaxReciept){
-                    ended = isProjectDeadlineCrossed(project)
-                    if (ended) {
-                        endedProjects.add(project)
-                    } else if(project.validated==true && project.inactive==false){
-                        activeProjects.add(project)
+                
+                doProjectHaveAnyContribution = false;
+                
+                if (project.contributions && project.offeringTaxReciept) {
+                    
+                    project.contributions?.each { contribution ->
+                        if (contribution.panNumber != null) {
+                            doProjectHaveAnyContribution = true
+                        }
                     }
+                    
+                    if (doProjectHaveAnyContribution) {
+                        ended = isProjectDeadlineCrossed(project);
+                        if (ended) {
+                            endedProjects.add(project)
+                        } else if(project.validated==true && project.inactive==false){
+                            activeProjects.add(project)
+                        }
+                    }
+                    
                 }
+                
             }
         } else {
             def projects= Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:false, offeringTaxReciept:true)
@@ -5956,6 +6058,7 @@ class ProjectService {
         session['twitterHandle'] = params.twitterHandle
         session['shippingCustom'] = params.shippingCustom
         session['projectTitle'] = params.projectTitle
+        session['panNumber'] = params.panNumber
         def address = getAddress(params)
         session['address'] = address
     }

@@ -11,15 +11,14 @@ if (!conversionMultiplier) {
 %>
 
 <div class="tile-footer show-perksRewardtabs">
-    <div class="modal-footer tile-footer perks-style perk-title">
-        <g:if test="${isFundingOpen || isPreview}">
-            <h2 class="rewardsectionheading text-center">SELECT PERKS</h2>
+
+    <div class="rewardsection">
+    <g:if test="${isFundingOpen || isPreview}">
+            <span class="rewardsectionheading">Choose a Perks</span>
         </g:if>
         <g:else>
-            <h2 class="rewardsectionheading text-center sh-fundclosed-mobile">FUNDING CLOSED</h2>
+            <h2 class="rewardsectionheading sh-fundclosed-mobile">Funding Closed</h2>
         </g:else>
-    </div>
-    <div class="rewardsection">
         <g:each in="${rewards}" var="reward">
         <%
              def backers = contributionService.getBackersForProjectByReward(project, reward);

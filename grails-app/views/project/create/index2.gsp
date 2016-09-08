@@ -517,10 +517,11 @@
                                     </div>
                                     <label class="docfile-orglogo-css" id="logomsg">Please select image file.</label>
                                     <label class="docfile-orglogo-css" id="iconfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
+
                                     <label class="docfile-orglogo-css" id="iconfilesizeSmaller">The file you are attempting to upload is smaller than the permitted size of 1MB.</label>
                                 </div>
                                 <g:if test="${project.organizationIconUrl}">
-                                    <div class="pr-icon-thumbnail-div edit-image-mobile col-sm-2">
+                            <div class="pr-1con-thumbnail-div edit-image-mobile col-sm-2">
                                         <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}">
                                         <div class="deleteicon orgicon-css-styles">
                                             <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');" src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete">
@@ -1000,6 +1001,11 @@
                                      </div>
                              
                                      <div class="col-sm-12 col-xs-12 col-xs-pl-0 rowseperator">
+                                         <div class="col-sm-4">
+	                                         <div class="form-group form-group-tax-reciept-dropdown form-group-dropdown">
+	                                             <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" noSelection="['null':'Deductible Status']"/>
+	                                         </div>
+	                                     </div>
                                          <div class="form-group col-sm-8 col-xs-12">
                                              <div class="col-sm-5 col-md-4 col-xs-9 col-plr-0">
                                                  <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
@@ -1135,6 +1141,11 @@
                                      </div>
                              
                                      <div class="col-sm-12 col-xs-12 rowseperator col-xs-pl-0">
+                                         <div class="col-sm-4">
+		                                     <div class="form-group form-group-tax-reciept-dropdown form-group-dropdown">
+		                                         <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" value="${taxReciept.deductibleStatus}" noSelection="['null':'Deductible Status']"/>
+		                                     </div>
+		                                 </div>
                                          <div class="form-group col-sm-8 col-xs-12">
                                              <div class="col-sm-5 col-md-4 col-xs-9 col-plr-0">
                                                  <div class="fileUpload btn btn-info btn-sm cr-btn-color ">

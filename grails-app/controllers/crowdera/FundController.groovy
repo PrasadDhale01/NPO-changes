@@ -31,6 +31,7 @@ class FundController {
     def conId
     def frId
     String str
+    CampaignService campaignService;
 
     def fund() {
         Project project
@@ -65,6 +66,8 @@ class FundController {
             def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
 
             if (project.payuStatus){
+                
+                boolean isTaxReceipt = campaignService.isTaxReceiptExist(project.id);
 
                 if (project.payuEmail) {
                     def key = grailsApplication.config.crowdera.PAYU.KEY
@@ -75,7 +78,8 @@ class FundController {
                     render view: 'fund/index', model: [team:team, project: project, state:state, country:country,
                         perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
                         vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, key:key, salt:salt,
-                        service_provider:service_provider]
+                        service_provider:service_provider, isTaxReceipt: isTaxReceipt]
+                    
                 } else if (project.citrusEmail) {
 
                     def cardTypes = projectService.getcardtypes()
@@ -87,7 +91,7 @@ class FundController {
                     render view: 'fund/citruscheckout', model: [team:team, project: project, state:state, country:country,
                         perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
                         vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, cardTypes: cardTypes, title: title,
-                        month: month, year: year, defaultCountry: defaultCountry]
+                        month: month, year: year, defaultCountry: defaultCountry, isTaxReceipt: isTaxReceipt]
                 }
             } else {
                 render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo]
@@ -1273,6 +1277,22 @@ class FundController {
             render 'Campaign tile is not rendered. Please, refresh to load again.'
         }
         
+    }
+
+
+    def ipnHandler(){
+
+        println "paypal ipn response data : - " + params
+
+        if("verified".equalsIgnoreCase(params.payer_status)){
+            contributionService.setPaypalIPNData(params)
+        }
+    }
+
+    def mandrillHandler(){
+
+        //For debugging purpose as Mandrill callback url not work in localhost
+        println "Mandrill response handler " + params
     }
 
 }

@@ -105,18 +105,18 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-xs">
         <div class="col-xs-12 <g:if test="${hashTagsDesktop || hashTagsTabs}">managecampaign-hashtag </g:if> manage-social">
 	        <a class="share-mail pull-left social" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
-	            <img src="//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png" class="show-email" alt="Email Share">
+	            <img src="//s3.amazonaws.com/crowdera/assets/0fea8e3c-7e84-4369-a5a0-451585c06492.png" class="show-email" alt="Email Share">
 	        </a>
 	        <a class="twitter-share pull-left social" id="twitterShare" target="_blank">
-	            <img src="//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png" class="show-twitter" alt="Twitter Share">
+	            <img src="//s3.amazonaws.com/crowdera/assets/543485b8-21d6-4144-9c30-c0e49c95c4e6.png" class="show-twitter" alt="Twitter Share">
 	        </a>
 	        <a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${shareUrl}"  id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-	            <img src="//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png" class="show-linkedin" alt="LinkedIn Share">
+	            <img src="//s3.amazonaws.com/crowdera/assets/0d661ddc-4d08-4ad9-a707-cf2e22349989.png" class="show-linkedin" alt="LinkedIn Share">
 	        </a>
 	        <a class="social google-plus-share pull-left" id="googlePlusShare" href="https://plus.google.com/share?url=${shareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-	            <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
+	            <img src="//s3.amazonaws.com/crowdera/assets/0c536e08-376d-4965-a901-ca42a4b6c4d5.png" class="show-google" alt="Google+ Share">
 	        </a>
-	        <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left embedIcon-manage-left social hidden-xs"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" class="show-embedIcon" alt="embedicon"></a>
+	        <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left embedIcon-manage-left social hidden-xs"><img src="//s3.amazonaws.com/crowdera/assets/75ed76bc-3275-4b00-a534-9c4a324cc04e.png" class="show-embedIcon" alt="embedicon"></a>
 	        <div class="popoverClassManagePage">
 	            <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphicon pull-left glyphicon glyphicon-link glyphicon-design glyphicon-show-link-color"></span>
 	            <div id="popoverConent" class="hidden">
@@ -140,18 +140,18 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-xs">
         <div class="col-xs-12 <g:if test="${hashTagsDesktop || hashTagsTabs}">managecampaign-hashtag </g:if> manage-social">
             <span class="pull-left social show-pointer-not" href="#">
-                <img src="//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png" class="show-email" alt="Email Share">
+                <img src="//s3.amazonaws.com/crowdera/assets/0fea8e3c-7e84-4369-a5a0-451585c06492.png" class="show-email" alt="Email Share">
             </span>
             <span class="pull-left social show-pointer-not">
-                <img src="//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png" class="show-twitter" alt="Twitter Share">
+                <img src="//s3.amazonaws.com/crowdera/assets/543485b8-21d6-4144-9c30-c0e49c95c4e6.png" class="show-twitter" alt="Twitter Share">
             </span>
             <span class="social share-linkedin pull-left show-pointer-not">
-                <img src="//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png" class="show-linkedin" alt="LinkedIn Share">
+                <img src="//s3.amazonaws.com/crowdera/assets/0d661ddc-4d08-4ad9-a707-cf2e22349989.png" class="show-linkedin" alt="LinkedIn Share">
             </span>
             <span class="social google-plus-share pull-left show-pointer-not">
-                <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
+                <img src="//s3.amazonaws.com/crowdera/assets/0c536e08-376d-4965-a901-ca42a4b6c4d5.png" class="show-google" alt="Google+ Share">
             </span>
-            <span href="#" class="pull-left embedIcon-manage-left social hidden-xs show-pointer-not"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" class="show-embedIcon" alt="embedicon"></span>
+            <span href="#" class="pull-left embedIcon-manage-left social hidden-xs show-pointer-not"><img src="//s3.amazonaws.com/crowdera/assets/75ed76bc-3275-4b00-a534-9c4a324cc04e.png" class="show-embedIcon" alt="embedicon"></span>
             <div class="popoverClassManagePage">
                 <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="pull-left glyphicon glyphicon-link glyphicon-design glyphicon-show-link-color show-pointer-not"></span>
             </div>
@@ -275,7 +275,10 @@
                         <div class="col-sm-7">
                             <p>Video preview</p>
                             <textarea class="textarea-embed-video form-control" onclick="this.select()">${embedVideoCode}</textarea><br><br>
-                            <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>
+                                <g:link  target="_blank" controller="project" action="show" params="['fr': vanityUsername, 'projectTitle':vanityTitle]">
+                                      <img class="embed-logo" id="embedHover"  alt="Crowdera" src="https://s3.amazonaws.com/crowdera/project-images/7054ed14-deb4-4be9-a273-43b49c9a3d18.png"/>
+                                 </g:link>
+                                 <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>
                             <p>After choosing a video size, copy and paste the embed code above.</p>
                             <div class="row desktop-video-play">
                                 <div class="col-sm-2 margin-sm-left video-play video-play-sm video-play-hover selected text-center">

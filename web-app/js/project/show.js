@@ -4,12 +4,52 @@ $(function() {
     changeTeamStatus();
     $('#editimg').hide();
     $('#editTeamImg').hide();
+    
+    
+    
+    $('.fileforcomments').hide();
+    $('#resultOutput').hide();
 
     var currentEnv=$('#currentEnv').val();
     var isIndianCampaign = ($('#isIndianCampaign').val() === 'true') ? true : false;
 
     var hash = window.location.hash;
     hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+    
+    /********ON-Browsers-refreshing-mode-show-tabs-active-tile*********/
+    
+
+    if($('#essentials')){
+    	if(loadOrganizationTemplate("story")){
+    		loadOrganizationTemplate("story");
+    	}
+    }else if($('#projectupdates')){
+    	if(loadOrganizationTemplate("update")){
+    		loadOrganizationTemplate("update");
+    	}
+    }else if($('#manageTeam')){
+    	if(loadOrganizationTemplate("team")){
+    		loadOrganizationTemplate("team");
+    	}
+    }else if($('#contributions')){
+    	if(loadOrganizationTemplate("contribution")){
+    		loadOrganizationTemplate("contribution");
+    	}
+    }
+    
+    if($('li.active').find('a.show-tabs-text').hasClass('showStoryTemplate')){
+    	loadOrganizationTemplate("story");
+    	$('button.sh-fund-donate-contri').text('Fund Now!');
+    }else if($('li.active').find('a.show-tabs-text').hasClass('showTeamTemplate')){
+    	loadOrganizationTemplate("team");
+    	$('button.sh-fund-donate-contri').text('DONATE');
+    }else if($('li.active').find('a.show-tabs-text').hasClass('showContributionTemplate')){
+    	loadOrganizationTemplate("contribution");
+    	$('button.sh-fund-donate-contri').text('CONTRIBUTE');
+    }else if($('li.active').find('a.show-tabs-text').hasClass('showCommentTemplate')){
+    	loadOrganizationTemplate("story");
+    }
+    
 
     var videoVal = $('#youtubeVideoUrl').val();
     if(videoVal && videoVal.length > 0) {
@@ -46,17 +86,41 @@ $(function() {
             }
         }
     });
-
-    $('#updatesendmailmodal').find('form').validate({
-        rules: {
-        	name: {
-        		required: true
-        	},
-            emails: {
-                required: true,
-                validateMultipleEmailsCommaSeparated: true
-            }
-        }
+    
+    $('.commentImgFile').change(function(event){
+    	var file = this.files[0];
+    	
+    	 var picReader = new FileReader();
+         picReader.addEventListener("load",function(event) {
+             var picFile = event.target;
+             $('.comment-img-id').attr('src',picFile.result);
+             $('.commentResultId').show();
+        });
+        // Read the image
+        picReader.readAsDataURL(file);
+        
+    });
+    
+    $('.commentImgDelete').click(function(){
+    	$('.commentImgFile').val('');
+    	$('.commentResultId').find('#resultOutput').html('');
+    	$('.commentResultId').hide();
+    });
+    
+    $('.scommentImgEdit').click(function(){
+    	
+    	var commentId= $('#commentId').val();
+    	var teamCommentId = $('#teamCommentId').val();
+    	
+    	$.ajax({
+    		url:$('#b_url').val()+'/project/deleteCommentImage',
+    		type:'post',
+    		data:'commentId='+commentId+"&teamCommentId="+ teamCommentId,
+    		success:function(response){
+    			$('.commentResultId').hide();
+    		}
+    	});
+    	
     });
 
     $('.submitForApprovalSection').find('form').validate({
@@ -120,7 +184,7 @@ $(function() {
     	}
     });
 
-    $('#comments').find('#commentBox').find('form').validate({
+    $('#comments').find('.commentBox').find('form').validate({
     	rules: {
     		comment: {
     			required: true,
@@ -128,7 +192,7 @@ $(function() {
     		}
     	}
     });
-    $('#scrollToComment').find('#commentBox').find('form').validate({
+    $('#scrollToComment').find('.commentBox').find('form').validate({
         rules: {
             comment: {
                 required: true,
@@ -136,7 +200,7 @@ $(function() {
             }
         }
     });
-    $('#comment-mobile').find('#commentBox').find('form').validate({
+    $('#comment-mobile').find('.commentBox').find('form').validate({
     	rules: {
     		comment: {
     			required: true,
@@ -393,7 +457,28 @@ $(function() {
 
     $('a.show-emailjsid').click(function(){
     	var updateId = $(this).attr('id');
-        $('#projectUpdateId').val(updateId);
+    	$.ajax({
+        	url:$("#b_url").val()+"/project/updateSendMailModal",
+        	type:"post",
+        	data:"projectId="+$("#projectId").val(),
+        	success: function(response){
+        		$("div.updatesendmaildiv").html(response);
+        		$('#updatesendmailmodal').modal('show');
+        		$('#projectUpdateId').val(updateId);
+        	}
+        }).done(function(){
+        	$('#updatesendmailmodal').find('form').validate({
+                rules: {
+                	name: {
+                		required: true
+                	},
+                    emails: {
+                        required: true,
+                        validateMultipleEmailsCommaSeparated: true
+                    }
+                }
+            });
+        });
     });
 
     /***********************Enable or Disable a Team********************************/
@@ -428,6 +513,8 @@ $(function() {
          }).error(function(){
          });
      }
+     
+    
 
     /***********************Youtube url********************************/
 
@@ -479,6 +566,33 @@ $(function() {
         	}
         }
     });
+    
+    $(".attachfileforcomments").change(function(event) {
+    	
+    	
+        var file =this.files[0];
+        if(validateExtension(file.name) == false){
+	        $('#resultOutput').hide();
+	        $(".fileforcomments").show();
+        	$(".fileforcomments").html("Attach image file.");
+	        this.value=null;
+	        return;
+	    }
+	    else{
+	        if (file.size > 1024 * 1024 * 3) {
+	            $('#resultOutput').hide();
+	            $('.fileforcomments').show();
+	            $(".fileforcomments").html("The file \"" +file.name+ "\" you are attempting to upload is larger than the permitted size of 3MB.");
+	            $('#resumefile').val('');
+	        } else {
+                $('#resultOutput').show();
+                $('.fileforcomments').hide();
+                $("#resultOutput").html(""+file.name);
+                
+	        }
+	    } 
+    });
+    
 
     $('#teamSaveButton').on('click', function() {
         if($('#teamImages').find('#imgdiv').length < 1) {
@@ -624,7 +738,6 @@ $(function() {
             }
         }
     });
-
     function validateExtension(imgExt) {
           var allowedExtensions = new Array("jpg","JPG","png","PNG");
           for(var imgExtImg=0;imgExtImg<allowedExtensions.length;imgExtImg++)
@@ -636,7 +749,6 @@ $(function() {
           }
           return false;
     }
-
     /*************************Edit video for team*************************/
 
     $('#videoUrl').blur(function(){
@@ -663,41 +775,87 @@ $(function() {
 
     /*******************************Show-page-share icons hover***************************/
     $('.show-email').hover(function(){
-    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-email-color.png");
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/4df7ed58-1d91-419b-ad9c-1d71a6192d00.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0fea8e3c-7e84-4369-a5a0-451585c06492.png");
     });
 
     $('.show-twitter').hover(function(){
-    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-twitter-color.png");
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/e227b5d5-edad-46ff-ac0b-3234035e8120.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/543485b8-21d6-4144-9c30-c0e49c95c4e6.png");
     });
 
     $('.show-like').hover(function(){
-    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-like-color.png");
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/ae504306-b6fe-4665-b1bd-4b2f83af87f6.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-like-gray.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/c8836846-373f-45af-a660-ece7f1110ba0.png");
     });
 
     $('.show-linkedin').hover(function(){
-    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-linkedin-color.png");
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/fcd2d0b1-d459-4974-8227-0b137784a5cc.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0d661ddc-4d08-4ad9-a707-cf2e22349989.png");
     });
 
     $('.show-google').hover(function(){
-    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-google-color.png");
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/3f7fd05e-6dea-4d32-aca2-3d9d45ef9eaa.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-google-gray.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0c536e08-376d-4965-a901-ca42a4b6c4d5.png");
     });
 
     $('.show-embedIcon').hover(function(){
-    	$(this).attr('src',"//s3.amazonaws.com/crowdera/user-images/embedicon.png");
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/7c6e7ddd-e0ad-4a6c-bd43-89bd567bb989.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/embedicon-grey.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/75ed76bc-3275-4b00-a534-9c4a324cc04e.png");
+    });
+    
+    
+/*****************************Show-page-Hover-functinos-of-Social-media***********************************/
+    $('.show-email-social').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/4df7ed58-1d91-419b-ad9c-1d71a6192d00.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0fea8e3c-7e84-4369-a5a0-451585c06492.png");
+    });
+    
+    $('.show-twitter-social').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/e227b5d5-edad-46ff-ac0b-3234035e8120.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/543485b8-21d6-4144-9c30-c0e49c95c4e6.png");
+    });
+    
+    $('.show-like-social').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/ae504306-b6fe-4665-b1bd-4b2f83af87f6.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/c8836846-373f-45af-a660-ece7f1110ba0.png");
+    });
+    
+    $('.show-linkedin-social').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/fcd2d0b1-d459-4974-8227-0b137784a5cc.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0d661ddc-4d08-4ad9-a707-cf2e22349989.png");
+    });
+    
+    $('.show-google-social').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/3f7fd05e-6dea-4d32-aca2-3d9d45ef9eaa.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0c536e08-376d-4965-a901-ca42a4b6c4d5.png");
+    });
+    
+    $('.show-embedIcon-social').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/7c6e7ddd-e0ad-4a6c-bd43-89bd567bb989.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/75ed76bc-3275-4b00-a534-9c4a324cc04e.png");
     });
 
+    $("#embedHover").hover(function (){
+
+        $(this).attr('src','https://s3.amazonaws.com/crowdera/project-images/8cc54bde-504b-430c-9276-f7722f606eec.png');
+
+    }).mouseleave(function(){
+
+        $(this).attr('src','https://s3.amazonaws.com/crowdera/project-images/7054ed14-deb4-4be9-a273-43b49c9a3d18.png');
+    });
     /*******************************Description text length*********************/
         $('#descarea').on('keydown', function(event) {
             event.altKey==true;
@@ -805,7 +963,30 @@ $(function() {
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
     });
-
+    
+    
+    $("a.show-tabs-text").click(function(){
+    	if ($(this).hasClass('showStoryTemplate')){
+    		loadOrganizationTemplate("story");
+    		 $('button.sh-fund-donate-contri').text('Fund Now!');
+    	}
+    	if ($(this).hasClass('showUpdateTemplate')){
+    		loadOrganizationTemplate("story");
+    	}
+    	if ($(this).hasClass('showTeamTemplate')){
+    		loadOrganizationTemplate("team");
+    		$('button.sh-fund-donate-contri').text('DONATE');
+    	}
+    	if ($(this).hasClass('showContributionTemplate')){
+    		loadOrganizationTemplate("contribution");
+    		$('button.sh-fund-donate-contri').text('CONTRIBUTE');
+    	}
+    	if ($(this).hasClass('showCommentTemplate')){
+    		loadOrganizationTemplate("story");
+    		 $('button.sh-fund-donate-contri').text('Fund Now!');
+    	}
+    });
+    
     $("a.show-tabs-text").click(function(){
     	$('.choose-error').html('');
     	$(".sh-tabs").find("a.show-tabs-text").removeClass('sh-selected');
@@ -1463,6 +1644,14 @@ $(function() {
 
    });
     
+    if($('.checkStory').hasClass('read-more')){
+    	showMoreOrLess("read-more", 5000);
+    }
+    
+    if($('.checkStory').hasClass('read-more-team')){
+    	showMoreOrLess("read-more-team", 5000);
+    }
+    
 	/**Restore rejected campaign**/
 	$('#restoreCampaign').one("click", function(){
 	   var projectId = $('#prjId').val();
@@ -1479,6 +1668,7 @@ $(function() {
 	 	   console.log('Campaign not restored');
 	    });
 	});
+	
 });
 
 function showNavigation(){
@@ -1530,6 +1720,39 @@ function hideNavigation() {
     }
 }
 
+function loadOrganizationTemplate(activeTab){
+	if(activeTab){
+		$.ajax({
+			url:$("#b_url").val()+"/project/loadOrganizationTemplate",
+			type:"post",
+			data:"activeTab="+activeTab+"&campaignId="+$('#campaignId').val()+'&teamId='+$('#teamId').val(),
+			success:function(res){
+				$('#organizationTemplateId').html(res);
+			}
+		});
+	}
+}
+
+function showMoreOrLess(divClass, strLength){
+	var readMoreHtml = $("."+divClass).html();
+	var lessText = readMoreHtml.substr(0,strLength);
+	
+	if(readMoreHtml.length > strLength){
+		$("."+divClass).html(lessText).append("<a href='' class='read-more-link' style='color:green;'> Read More</a>");
+	}else{
+		$("."+divClass).html(readMoreHtml);
+	}
+	
+	$("body").on("click",".read-more-link", function(event){
+		event.preventDefault();
+		$(this).parent("."+divClass).html(readMoreHtml).append("<a href='' class='read-less-link' style='color:red;'> Read Less</a>")
+	});
+	
+	$("body").on("click",".read-less-link", function(event){
+		event.preventDefault();
+		$(this).parent("."+divClass).html(readMoreHtml.substr(0,strLength)).append("<a href='' style='color:green;' class='read-more-link'> Read More</a>")
+	});
+}
 function bannerClose(){
 	$('.info-banner').css('display','none');
 	$('.home-header-section').removeClass('banner-nav');

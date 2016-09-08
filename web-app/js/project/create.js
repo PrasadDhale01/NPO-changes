@@ -99,7 +99,7 @@ $(function() {
             autoSave('story', this.code.get());
         },
         plugins: ['video','fontsize','fontfamily','fontcolor'],
-        buttonsHide: ['indent', 'outdent', 'horizontalrule', 'deleted']
+        buttonsHide: ['indent', 'outdent', 'horizontalrule', 'deleted', 'formatting']
     });
 
 
@@ -1597,6 +1597,7 @@ $(function() {
 
     $("#iconfile").change(function() {
         var file =this.files[0];
+        
         if(validateExtension(file.name) === false){
 	        $('#icondiv').hide();
 	        $('#iconfilesize').hide();
@@ -1614,6 +1615,7 @@ $(function() {
 	        this.value=null;
 	    } else{
 	        if (file.size > 1024 * 1024 * 3) {
+	        	
 	            $('#icondiv').hide();
 	            $('#logomsg').hide();
 	            if($('#iconfilesize')){
@@ -1621,7 +1623,7 @@ $(function() {
 	                $('#iconfilesizeSmaller').hide();
 	            }
 	            $('#iconfile').val('');
-	        }else if(file.size < 1024){
+	        }else if(file.size < 1024 * 1024 * 1){
 	        	 $('#icondiv').hide();
 		         $('#logomsg').hide();
 		         if($('#iconfilesizeSmaller')){

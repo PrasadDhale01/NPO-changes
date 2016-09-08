@@ -27,6 +27,21 @@ $(function() {
             }
         }
     });
+    
+    $("#isTaxreceipt").change(function() {
+    	if ($(this).is(':checked')) {
+    		$(".pannumberdiv").slideDown();
+    		
+    		$('[name="panNumber"]').rules( "add", {
+                required: true,
+                minlength: 10,
+                maxlength: 10
+            });
+    	} else {
+    		$(".pannumberdiv").slideUp();
+    		$('[name="panNumber"]').rules('remove');
+    	}
+    });
 
     $("form").on("change", ".states", function () {
     	var option = $(this).val();
@@ -172,7 +187,8 @@ $(function() {
                  'otherstate'    : $('input[name= otherstate]').val(),
                  'shippingEmail' : $('input[name= shippingEmail]').val(),
                  'twitterHandle' : $('input[name= twitterHandle]').val(),
-                 'shippingCustom': $('input[name= shippingCustom]').val()
+                 'shippingCustom': $('input[name= shippingCustom]').val(),
+                 'panNumber'     : $('input[name= panNumber]').val()
              };
 
               $.ajax({
@@ -223,6 +239,7 @@ $(function() {
         $('.list-group.twitterHandler').find('a.list-group-item').removeClass('active');
         $(this).addClass('active');
         var rewardId = $('a.list-group-item.active').attr('id');
+        $("#rewardId").val(rewardId);
         showShippingDetails(rewardId);
     });
     

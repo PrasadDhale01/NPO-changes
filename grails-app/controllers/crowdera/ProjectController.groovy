@@ -157,6 +157,7 @@ class ProjectController {
 	}
 
 	def show() {
+		
 		def projectId
 		def username
 		if (params?.projectTitle){
@@ -165,6 +166,7 @@ class ProjectController {
 			projectId = params?.id
 		}
 		Project project = projectService.getProjectById(projectId)
+		
         def vanityUsername
         
 		if (project) {
@@ -198,6 +200,10 @@ class ProjectController {
 			List contributions = []
 			List totalContributions = []
 
+			String campaignUrl =  grailsApplication.config.crowdera.BASE_URL +'/'+params.projectTitle
+			int facebookCount = projectService.getFacebookShareCountForCampaign(campaignUrl)
+			String facebookShare= (facebookCount > 1)?facebookCount + ' shares': facebookCount + ' share'
+			
 			/*Send feedback email before campaign end date */
 			//projectService.sendFeedbackEmailToOwners(project, base_url)
 
@@ -230,7 +236,9 @@ class ProjectController {
 			def webUrl = projectService.getWebUrl(project)
 
 			if (params?.commentId) {
+               
 				projectComment = projectService.getProjectCommentById(params.long('commentId'))
+				
 			}
 			if (params?.teamCommentId) {
 				teamcomment = projectService.getTeamCommentById(params.long('teamCommentId'))
@@ -250,7 +258,7 @@ class ProjectController {
             def isDeviceMobileOrTab = isDeviceMobileOrTab();
             
             if((currentUser == project.user) && (project.draft || project.validated==false)){
-                render (view: 'show/index',
+                render (view: 'show/preview',
                 model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, 
                         isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
                         totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, 
@@ -279,7 +287,7 @@ class ProjectController {
                                isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier,
                                spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, reasons:reasons,
                                isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
-                               remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList, projectimages: projectimages])
+                               remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList, projectimages: projectimages, facebookShare: facebookShare])
                }else{
                   render(view: '/404error', model: [message: 'This campaign is under process.'])
                }
@@ -656,6 +664,7 @@ class ProjectController {
     def manageHomePageCampaigns(){
         
         def projects = projectService.getValidatedProjects()
+        def liveProjects = projectService.getLiveProjects(projects)
         def currentEnv = params.currentEnv
         def homePageCampaigns = projectService.getHomePageCampaignByEnv(currentEnv)
         
@@ -670,15 +679,15 @@ class ProjectController {
                 new HomePageCampaigns(campaignOne:campaignOneId, campaignTwo:campaignTwoId, campaignThree:campaignThreeId, currentEnv:currentEnv).save()
             }
             
-            render(template: "/project/validate/homepage", model:[projects:projects, campaignOne:campaignOneId, 
+            render(template: "/project/validate/homepage", model:[projects:liveProjects, campaignOne:campaignOneId,
                 campaignTwo: campaignTwoId, campaignThree: campaignThreeId])
         }else{
         
             if(homePageCampaigns){
-                render(template: "/project/validate/homepage", model:[projects:projects, campaignOne:campaignOneId,
+                render(template: "/project/validate/homepage", model:[projects:liveProjects, campaignOne:campaignOneId,
                      campaignTwo: campaignTwoId, campaignThree: campaignThreeId])
             }else{
-                render(template: "/project/validate/homepage", model:[projects:projects])
+                render(template: "/project/validate/homepage", model:[projects:liveProjects])
             }
         }
     }
@@ -686,23 +695,28 @@ class ProjectController {
     def comment() {
         User user = userService.getCurrentUser()
         def base_url = grailsApplication.config.crowdera.BASE_URL
-
+       
+        CommonsMultipartFile projectcomment = params.attachedFileForProject
+        def fileUrl = projectService.setAttachedFileForProject(projectcomment)
+        
         def reqUrl
         if (!user) {
-            
             Cookie cookie = new Cookie("requestUrl", reqUrl)
             cookie.path = '/'
             cookie.maxAge= 600
             response.addCookie(cookie)
         }
-        reqUrl = base_url+"/project/savecomment?comment=${params.comment}&id=${params.id}&fr=${params.fr}"
+        reqUrl = base_url+"/project/savecomment?comment=${params.comment}&id=${params.id}&fr=${params.fr}&fileComment=${fileUrl}"
         redirect (url: reqUrl)
     }
 
     def teamcomment() {
         User user = userService.getCurrentUser()
         def base_url = grailsApplication.config.crowdera.BASE_URL
-
+        
+        CommonsMultipartFile projectcomment = params.teamAttachFile
+        def teamfileUrl = projectService.setAttachedFileForProject(projectcomment)
+        
         def reqUrl
         if (!user) {
             Cookie cookie = new Cookie("requestUrl", reqUrl)
@@ -710,7 +724,7 @@ class ProjectController {
             cookie.maxAge= 600
             response.addCookie(cookie)
         }
-        reqUrl = base_url+"/project/saveteamcomment?comment=${params.comment}&id=${params.id}&fr=${params.fr}"
+        reqUrl = base_url+"/project/saveteamcomment?comment=${params.comment}&id=${params.id}&fr=${params.fr}&teamfileComment=${teamfileUrl}"
         redirect (url: reqUrl)
     }
 
@@ -718,8 +732,9 @@ class ProjectController {
 	def savecomment() {
 		def title = projectService.getVanityTitleFromId(params.id)
 		def name = userService.getVanityNameFromUsername(params.fr, params.id)
+        
 		if (params.id) {
-			projectService.getCommentsDetails(params)
+		    projectService.getCommentsDetails(params)
 		} else {
 			flash.sentmessage = "Something went wrong saving comment. Please try again later."
 		}
@@ -1072,7 +1087,10 @@ class ProjectController {
             //Country Issue for India site
             //India: Map key is fetching for country like, AL is fetching for AL:"ALBANIA"
             //USA: Map value is fetching for country like, ALBANIA is fetching for AL:"ALBANIA"
-            def selectedCountry = (project.beneficiary.country.length() > 3 ) ? projectService.getCountryKey(project.beneficiary.country) : project.beneficiary.country
+            def selectedCountry;
+            if (project.beneficiary.country != null) {
+                selectedCountry = (project.beneficiary.country?.length() > 3 ) ? projectService.getCountryKey(project.beneficiary.country) : project.beneficiary.country
+            }
             def beneficiary = project.beneficiary
             def reasonsToFund = projectService.getProjectReasonsToFund(project)
             def qA = projectService.getProjectQA(project)
@@ -1690,9 +1708,11 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def saveteamcomment() {
+		
 		def message = projectService.getTeamCommentsDetails(params)
 		def title = projectService.getVanityTitleFromId(params.id)
 		def username = userService.getVanityNameFromUsername(params.fr, params.id)
+        
 		flash.prj_mngprj_message = message
 
 		if (!params.ismanagepage) {
@@ -1923,7 +1943,9 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def editComment() {
+		
 		def vanityUserName = userService.getVanityNameFromUsername(params.fr, params.projectId)
+        
 		if (params.commentId || params.teamCommentId) {
 			if (params.commentId) {
 				redirect (action:'show', controller:'project', fragment: 'comments', params:[projectTitle:params.projectTitle, fr: vanityUserName, commentId: params.commentId])
@@ -1938,19 +1960,29 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def editCommentSave() {
+		
 		ProjectComment projectComment
 		TeamComment teamcomment
 		def vanityUserName = userService.getVanityNameFromUsername(params.fr, params.projectId)
 
 		if (params.commentId) {
 			projectComment = projectService.getProjectCommentById(params.long('commentId'))
+            
 			if (projectComment) {
+                CommonsMultipartFile attachFileUrl = params.attachFileUrls
+                String fileUrl = projectService.setAttachedFileForProject(attachFileUrl)
+                
+                projectComment.attachFile = fileUrl?fileUrl:projectComment.attachFile;;
 				projectComment.comment = params.comment
 			}
 		}
 		if (params.teamCommentId) {
 			teamcomment = projectService.getTeamCommentById(params.long('teamCommentId'))
 			if (teamcomment) {
+                CommonsMultipartFile attachFileUrl = params.attachFileUrls
+                String fileUrl = projectService.setAttachedFileForProject(attachFileUrl)
+
+                teamcomment.attachteamfile = fileUrl?fileUrl:teamcomment.attachteamfile;
 				teamcomment.comment = params.comment
 			}
 		}
@@ -2143,6 +2175,11 @@ class ProjectController {
             json = projectService.getTaxRecieptFile(file, taxReciept)
         }
         render json
+    }
+    
+    def uploadUpdateAttachFile(){
+        def file = params.file
+        println"file===="+file
     }
     
     def uploadOrganizationIcon() {
@@ -2757,6 +2794,83 @@ class ProjectController {
         }
     }
     
+    def loadOrganizationTemplate(){
+		
+		 def currentEnv = projectService.getCurrentEnvironment()
+         def user =userService.getCurrentUser()
+		 def project = projectService.getProjectById(params.campaignId)
+		 Team team = projectService.getTeamById(params.int('teamId'))
+		 def currentFundraiser = userService.getCurrentFundRaiser(team.user, project)
+		 Team currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
+		 def totalContribution = contributionService.getTotalContributionForProject(project)
+		 def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
+		 def day= projectService.getRemainingDay(project)
+		 def conversionMultiplier = projectService.getCurrencyConverter()
+		 boolean ended = projectService.isProjectDeadlineCrossed(project)
+		 
+		 def isTeamExist, percent, cents, contributedSoFar, amount
+		 
+         if(!user){
+             user = userService.getUserByEmail("anonymous@example.com")
+         }
+		 
+         if(user){
+              isTeamExist = userService.isValidatedTeamExist(project, currentTeam?.user)
+         }
+		 
+	    if (project?.user == currentTeam?.user){
+	        percent = percentage
+	        contributedSoFar = totalContribution
+	        amount = project?.amount?.round()
+	    } else {
+			def teamContribution = contributionService.getTotalContributionForUser(currentTeam?.contributions)
+	        percent = contributionService.getPercentageContributionForTeam(teamContribution, currentTeam)
+	        contributedSoFar = teamContribution
+	        amount = currentTeam?.amount?.round()
+	    }
+	    
+	    if(percent >= 100) {
+	        cents = 100
+	    } else {
+	        cents = percent
+	    }
+         
+         def model =[project:project, totalContribution:totalContribution, percentage:percentage, user:user, day:day, isTeamExist: isTeamExist,
+			 contributedSoFar: contributedSoFar, percent:percent, cents:cents, amount:amount, currentEnv: currentEnv, conversionMultiplier: conversionMultiplier]
+         
+        if(request.method=="POST"&& params.activeTab){
+            switch(params.activeTab){
+                case "story":
+                    render template:"/layouts/showTilesanstitleForOrg", model:[currentEnv:currentEnv, payuStatus: project?.payuStatus, conversionMultiplier:conversionMultiplier,
+						percent: percent, cents:cents, amount:amount, ended:ended, day:day, totalContribution:totalContribution, contributedSoFar:contributedSoFar]
+                break;
+                case "team":
+                  render template:"/layouts/show_teamtileInfo", model:model
+                break;
+                case "contribution":
+                    render template:"/layouts/contributions_tilesanstitle" , model:model
+                break;
+            }
+        }else {
+            render "Organization template not loaded. Please, refresh to load again."
+        }
+    }
+	
+	
+	def deleteCommentImage(){
+		
+		if(request.method== 'POST'){
+			if(params.commentId){
+				def projectComment = projectService.getProjectCommentById(params.commentId)
+				projectComment.attachFile = null
+			}else if(params.teamCommentId){
+				def teamComment = projectService.getTeamCommentById(params.teamCommentId)
+				teamComment.attachteamfile = null
+			}
+		}
+		
+		render ''
+	}
     @Secured(["IS_AUTHENTICATED_FULLY"])
     def manageDeletedCamapaigns(){
         
@@ -2785,6 +2899,19 @@ class ProjectController {
             }
         }
         render ''
+    }
+    
+    @Secured(['ROLE_USER'])
+    def updateSendMailModal(){
+        if(request.method=='POST'){
+            Project project = Project.get(params.projectId)
+            if(project){
+                def vanityTitle = projectService.getVanityTitleFromId(params.projectId)
+                render (template:'show/updatesendmailmodal', model:[project:project, vanityTitle:vanityTitle])
+            }
+        }else{
+            render ''
+        }
     }
     
 }

@@ -13,7 +13,8 @@
     <title><g:layoutTitle default="Crowdera- The Free Global Crowdfunding & Fundraising Website"/></title>
     
     <!-- font-family:Ubuntu Condensed -->
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu+Condensed" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" />
 
     <!-- Twitter Bootstrap CSS -->
     <!--
@@ -77,13 +78,11 @@
         <g:layoutBody />
     </div>
     <div id="loadFooter"></div>
+    <g:render template="/layouts/ga"/>
 
     <!-- Include all javascript assets -->
     <r:require modules="crowderajs"/>
-    <r:require module="googleanalytics"/>
-    
-    
-    
+<%--    <r:require module="googleanalytics"/>--%>
     <r:layoutResources/>
 </body>
 </html>

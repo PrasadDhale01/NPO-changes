@@ -1,33 +1,33 @@
 $(function() {
 
-	$("#citrusNumber").keyup(function(){
-		
-		$("#payment-form").validate();
-		$("#citrusNumber").rules("add","checkCard");
-		$.validator.addMethod("checkCard", function(value, element) {
+    $("#citrusNumber").keyup(function(){
+
+        $("#payment-form").validate();
+        $("#citrusNumber").rules("add","checkCard");
+        $.validator.addMethod("checkCard", function(value, element) {
 			
-			if(value[0]==="4" || value[0]==="5" || value[0]==="6"){
-				return true;
-			}else {
-				return false;
-			}
-		}, "Please specify the correct card number.");
-		
-		if(/^4\d{14}/.test($(this).val())){
-			$("#citrusScheme").val("visa");
-			$("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/954456ca-1012-4d8d-86e8-f4979ff4b330.png");
-		}else if(/^6\d{14}/.test($(this).val())){
-			$("#citrusScheme").val("maestro");
-			$("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/f0cf3a78-60b5-4224-9b93-092b4046c690.png");
-		}else if(/^5\d{14}/.test($(this).val())){
-			$("#citrusScheme").val("mastercard");
-			$("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/34bfdb13-f40a-4e3f-bcf0-3a83625bda5c.png");
-		}else{
-			$("#citrusScheme").val("");
-			$("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/2d87664b-d1c9-4fae-a015-fc02d3333dbb.png");
-		}
-		
-	});
+            if(value[0]==="4" || value[0]==="5" || value[0]==="6"){
+                return true;
+            }else {
+                return false;
+            }
+        }, "Please specify the correct card number.");
+	
+        if(/^4\d{14}/.test($(this).val())){
+            $("#citrusScheme").val("visa");
+            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/954456ca-1012-4d8d-86e8-f4979ff4b330.png");
+        }else if(/^6\d{14}/.test($(this).val())){
+            $("#citrusScheme").val("maestro");
+            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/f0cf3a78-60b5-4224-9b93-092b4046c690.png");
+        }else if(/^5\d{14}/.test($(this).val())){
+            $("#citrusScheme").val("mastercard");
+            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/34bfdb13-f40a-4e3f-bcf0-3a83625bda5c.png");
+        }else{
+            $("#citrusScheme").val("");
+            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/2d87664b-d1c9-4fae-a015-fc02d3333dbb.png");
+        }
+	
+    });
 	
     function getSelectedRewardId() {
         return $('.list-group-item.active').attr('id');
@@ -36,6 +36,11 @@ $(function() {
     function getSelectedRewardPrice() {
         return $('.list-group-item.active').data('rewardprice');
     }
+    
+    var optionChosen = 'visa';
+    $('#citrusScheme').change(function() {
+        optionChosen = $(this).val();
+    });
     
     $('#myWizard').easyWizard({
         showButtons: false,
@@ -53,6 +58,21 @@ $(function() {
     		$(".ostate").show();
     	} else {
     		$(".ostate").hide();
+    	}
+    });
+    
+    $("#isTaxreceipt").change(function() {
+    	if ($(this).is(':checked')) {
+    		$(".pannumberdiv").slideDown();
+    		
+    		$('[name="panNumber"]').rules( "add", {
+                required: true,
+                minlength: 10,
+                maxlength: 10
+            });
+    	} else {
+    		$(".pannumberdiv").slideUp();
+    		$('[name="panNumber"]').rules('remove');
     	}
     });
     
@@ -134,7 +154,6 @@ $(function() {
             },
             citrusNumber: {
                 required: true,
-                number: true,
                 minlength: 16,
                 maxlength: 18
             },
@@ -142,8 +161,14 @@ $(function() {
                 required: true
             },
             citrusCvv: {
-                required: true,
-                maxlength: 4
+            	required: true,
+                maxlength: function(){
+                    if (optionChosen === 'visa' || optionChosen === 'mastercard') {
+                        return 3;
+                    } else {
+                        return 4;
+                    }
+                }
             },
             citrusCardHolder: {
                 required: true,
@@ -562,7 +587,8 @@ $(function() {
                     'shippingEmail' : $('input[name= shippingEmail]').val(),
                     'twitterHandle' : $('input[name= twitterHandle]').val(),
                     'shippingCustom': $('input[name= shippingCustom]').val(),
-                    'projectTitle'  : $('input[name= projectTitle]').val()
+                    'projectTitle'  : $('input[name= projectTitle]').val(),
+                    'panNumber'     : $('input[name= panNumber]').val()
                 };
 
                 $.ajax({
@@ -636,6 +662,25 @@ $(function() {
 //        .focus(showPopover)
 //        .blur(hidePopover)
 //        .hover(showPopover, hidePopover);
+        
+     // setup card inputs;       
+        $('#citrusExpiry').payment('formatCardExpiry');
+        $('#citrusCvv').payment('formatCardCVC');
+//        $('#citrusNumber').keyup(function() {
+//            
+//	        var cardNum = $('#citrusNumber').val().replace(/\s+/g, '');        
+//	        var type = $.payment.cardType(cardNum);
+//	        console.log(type);
+//	        if(type!='amex')
+//	        	$("#citrusCvv").attr("maxlength","3");
+//	        else
+//	        	$("#citrusCvv").attr("maxlength","4");
+//	        
+//	        $('#citrusNumber').payment('formatCardNumber');                                            
+//	        $("#citrusScheme").val(type);
+//            
+//        });
+        
 
 });
 
@@ -782,4 +827,3 @@ function dateValidator(value) {
 	 	 return false;
 	 }
 }
-

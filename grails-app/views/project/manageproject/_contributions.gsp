@@ -26,7 +26,7 @@
             Manage contribution
             <span class="caret"></span></button>
             
-            <ul class="dropdown-menu cdra-mng-dropwidth" aria-labelleby="dropdownMenu1">
+            <ul class="dropdown-menu cdra-mng-dropwidth" aria-labelledby="dropdownMenu1">
             <g:if test="${!ended}">
                <li> <a href="#" class="" data-toggle="modal" data-target="#offlineContributionModal">
                     Manage Offline Contribution
@@ -141,7 +141,7 @@
          <g:hiddenField name="projectId" value="${project.id}" id="projectId${project.id}"/>
          <div class="modal-body">
            <g:if test="${!totalContributions.empty}">
-                <dl class="dl">
+                <div class="dl">
                     <div class="table table-responsive">
                         <table class="table table-bordered">
                             <thead>
@@ -227,7 +227,7 @@
                             </tbody>
                         </table>
                     </div>
-                </dl>
+                </div>
             </g:if>
             
         </div>

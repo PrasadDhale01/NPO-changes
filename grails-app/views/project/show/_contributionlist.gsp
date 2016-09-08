@@ -19,8 +19,8 @@
     }
 %>
 <g:if test="${!contributions.empty}">
-    <div class="row contributions-panel contribution-center-alignment sh-contrialignment">
-        <div class="col-sm-12 contribution-inner-tile">
+    <div class="row contributions-panel contribution-center-alignment">
+        <div class="col-sm-12 contribution-inner-tile show-contributions-top">
             <g:each in="${contributions}" var="contribution">
             <%
                 def date = dateFormat.format(contribution.date)
@@ -41,7 +41,7 @@
                 }
             %>
             <g:if test="${!contribution.isContributionOffline}">
-                <div class="col-sm-6 col-lg-6 col-md-6 top-pan">
+                <div class="col-sm-6 col-lg-6 col-md-6 show-contributionpadding">
                     <g:if test="${!contribution.isAnonymous}">
                  	    <%
                             def contributorEmail = contribution.contributorEmail
@@ -255,7 +255,7 @@
                 <%
                     def contributorEmail = contribution.contributorEmail
                 %>
-                    <div class="col-sm-6 col-lg-6 col-md-6 top-pan">
+                    <div class="col-sm-6 col-lg-6 col-md-6 show-contributionpadding">
                         <div class ="pan ${alphabet}">
                             <div class ="col-sm-4 col-xs-4 img-panel">
                                 <img class="user-img-header" src="${imageUrl}" alt="alphabet">
@@ -335,7 +335,7 @@
                                                 <div class="form-group">
                                                     <label class="text col-sm-3">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control contributioninput offlineAmount" name="amount" value="${contribution.amount.round()}" id="offlineAmount">
+                                                        <input type="text" class="form-control contributioninput offlineAmount" name="amount" value="${contribution.amount.round()}">
                                                     </div>
                                                 </div>
                                                 <div class="contributionerrormsg"></div>
@@ -345,7 +345,7 @@
                                         
                                         <div class="modal-footer">
                                             <button data-dismiss="modal" class="btn btn-primary">Close</button>
-                                            <button class="btn btn-primary" type="submit" id="saveButton">Save</button>
+                                            <button class="btn btn-primary" type="submit">Save</button>
                                         </div>
                                     </div>
                                 </div>

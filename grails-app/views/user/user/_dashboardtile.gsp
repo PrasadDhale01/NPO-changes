@@ -22,7 +22,7 @@
     <div class="fedu thumbnail grow userdashboard-tiles">
         <g:hiddenField name="projectId" class="projectId" id="projectId" value="${project.id}"/>
         <div class="blacknwhite dashboardtileheight">
-            <a href="javascript:void(0)" onclick="submitCampaignShowForm('show','${project.id}','${username}');" id="${project.id}" >
+            <a href="javascript:void(0)" onclick="submitCampaignShowForm('show','${project.id}','${username}');"  >
                 <div class="dashboard-imageWithTag">
                     <div class="under">
                         <img alt="${project.title}" class="dashboard-project-img" src="${projectService.getProjectImageLink(project)}">
@@ -41,7 +41,7 @@
         </div>
     
         <div class="tile-title-descrp project-title project-story-span">
-            <a href="javascript:void(0)" onclick="submitCampaignShowForm('show','${project.id}','${username}');" id="${project.id}">
+            <a href="javascript:void(0)" onclick="submitCampaignShowForm('show','${project.id}','${username}');">
                 ${project.title.toUpperCase()}
             </a>
             <div class="campaign-title-margin-bottom"></div>
@@ -72,7 +72,7 @@
             </span>
         </div>
         
-        <a target="_blank" class="btn btn-block btn-social btn-facebook fbshareUrl" id="fbshare${index}" href="http://www.facebook.com/sharer.php?p[url]=${fbShareUrl}">
+        <a target="_blank" class="btn btn-block btn-social btn-facebook fbshareUrl"  href="http://www.facebook.com/sharer.php?p&#91;url&#93;=${fbShareUrl}">
             <i class="fa fa-facebook fa-facebook-styles"></i> Share on Facebook
         </a>
     </div>

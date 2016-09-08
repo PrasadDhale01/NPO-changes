@@ -228,8 +228,15 @@
                 </g:form>
             </g:if>
             <g:else>
-                <button class="projectedit close pull-right" id="editproject" name="editproject" data-toggle="popover"><i class="glyphicon glyphicon-edit"></i></button>
-                <button class="projectedit close pull-right" id="projectpreview" name="projectpreview" data-toggle="popover"><i class="glyphicon glyphicon-picture"></i></button>
+<%--                <button class="projectedit close pull-right" id="editproject" name="editproject" data-toggle="popover"><i class="glyphicon glyphicon-edit"></i></button>--%>
+<%--                <button class="projectedit close pull-right" id="projectpreview" name="projectpreview" data-toggle="popover"><i class="glyphicon glyphicon-picture"></i></button>--%>
+
+                <g:link controller="project" action="editCampaign" method="post" id="${project.id}">
+                    <button class="projectedit close pull-right" id="editproject"><i class="glyphicon glyphicon-edit"></i></button>
+                </g:link>
+                <g:form controller="project" action="showCampaign" method="post" id="${project.id}" params='[isPreview:true, tile:true, fr:username]'>
+                    <button class="projectedit close pull-right" id="projectpreview"><i class="glyphicon glyphicon-picture"></i></button>
+                </g:form>
             </g:else>
         </div>
     </div>

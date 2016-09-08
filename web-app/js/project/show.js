@@ -5,8 +5,6 @@ $(function() {
     $('#editimg').hide();
     $('#editTeamImg').hide();
     
-    
-    
     $('.fileforcomments').hide();
     $('#resultOutput').hide();
 

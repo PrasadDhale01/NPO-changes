@@ -241,9 +241,11 @@ a.show-campaigndetails-font {
 }
 .show-org-name {
     font-size: 10px;
+    height: 34px;
+    line-height: 12px;
+    overflow: hidden;
     padding: 0;
     width: 117px;
-    overflow: hidden;
 }
 .show-lbl-orgname {
     padding-left: 14px;
@@ -499,4 +501,3 @@ textarea.show-textareawidth {
 .col-sm-6.comment-attach-img {
     padding: 0 !important;
 }
-s

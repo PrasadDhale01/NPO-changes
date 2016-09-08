@@ -1,5 +1,34 @@
 $(function() {
 
+    $("#citrusNumber").keyup(function(){
+
+        $("#payment-form").validate();
+        $("#citrusNumber").rules("add","checkCard");
+        $.validator.addMethod("checkCard", function(value, element) {
+			
+            if(value[0]==="4" || value[0]==="5" || value[0]==="6"){
+                return true;
+            }else {
+                return false;
+            }
+        }, "Please specify the correct card number.");
+	
+        if(/^4\d{14}/.test($(this).val())){
+            $("#citrusScheme").val("visa");
+            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/954456ca-1012-4d8d-86e8-f4979ff4b330.png");
+        }else if(/^6\d{14}/.test($(this).val())){
+            $("#citrusScheme").val("maestro");
+            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/f0cf3a78-60b5-4224-9b93-092b4046c690.png");
+        }else if(/^5\d{14}/.test($(this).val())){
+            $("#citrusScheme").val("mastercard");
+            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/34bfdb13-f40a-4e3f-bcf0-3a83625bda5c.png");
+        }else{
+            $("#citrusScheme").val("");
+            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/2d87664b-d1c9-4fae-a015-fc02d3333dbb.png");
+        }
+	
+    });
+	
     function getSelectedRewardId() {
         return $('.list-group-item.active').attr('id');
     }
@@ -125,7 +154,8 @@ $(function() {
             },
             citrusNumber: {
                 required: true,
-                maxlength: 35
+                minlength: 16,
+                maxlength: 18
             },
             citrusCardType: {
                 required: true
@@ -177,6 +207,8 @@ $(function() {
             },
             citrusZip: {
             	required: true,
+            	number: true,
+            	minlength: 6,
                 maxlength: 8
             }
         },
@@ -219,7 +251,7 @@ $(function() {
         });
         
         $('#btnCheckoutContinue').click(function() {
-            if($('#amount').valid() && $("#panNumber").valid()) {
+            if($('#amount').valid()) {
             	var rewardId = getSelectedRewardId();
             	if (rewardId === undefined) {
                 	rewardId = 1;
@@ -634,20 +666,20 @@ $(function() {
      // setup card inputs;       
         $('#citrusExpiry').payment('formatCardExpiry');
         $('#citrusCvv').payment('formatCardCVC');
-        $('#citrusNumber').keyup(function() {
-            
-	        var cardNum = $('#citrusNumber').val().replace(/\s+/g, '');        
-	        var type = $.payment.cardType(cardNum);
-	        console.log(type);
-	        if(type!='amex')
-	        	$("#citrusCvv").attr("maxlength","3");
-	        else
-	        	$("#citrusCvv").attr("maxlength","4");
-	        
-	        $('#citrusNumber').payment('formatCardNumber');                                            
-	        $("#citrusScheme").val(type);
-            
-        });
+//        $('#citrusNumber').keyup(function() {
+//            
+//	        var cardNum = $('#citrusNumber').val().replace(/\s+/g, '');        
+//	        var type = $.payment.cardType(cardNum);
+//	        console.log(type);
+//	        if(type!='amex')
+//	        	$("#citrusCvv").attr("maxlength","3");
+//	        else
+//	        	$("#citrusCvv").attr("maxlength","4");
+//	        
+//	        $('#citrusNumber').payment('formatCardNumber');                                            
+//	        $("#citrusScheme").val(type);
+//            
+//        });
         
 
 });
@@ -732,7 +764,7 @@ function validateshippingInfo() {
 		$('#city').valid() ? '' : status= false; 
 	}
 	if ($('#zip').length) {
-		$('#zip').valid() ? '' : status= false; 
+		$('#zip').valid() ? '' : status= false;
 	}
 	if ($('#shippingEail').length) {
 		$('#shippingmEmail').valid() ? '' : status= false;

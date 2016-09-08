@@ -222,6 +222,14 @@ class ContributionService {
         return percentage
     }
     
+    def getPercentage(def contPrice, def totalContribution, def project){
+        def amt = project.amount
+        def reqAmt = (999/100) * amt
+        def remainAmt = reqAmt- totalContribution
+        def percentage = ((totalContribution + contPrice)/ amt) * 100
+        return percentage
+    }
+    
     def getPercentageContributionForTeam(def totalContribution, def team){
         if (!team) {
             return null

@@ -388,7 +388,7 @@ class ProjectController {
                 def taxReceipt = projectService.getTaxRecieptOfProject(project)
                 def deductibleStatus
                 if (taxReceipt){
-                    deductibleStatus = projectService.getDeductibleStatus(taxReceipt.deductibleStatus)
+                    deductibleStatus = projectService.getDeductibleStatus(taxReceipt?.deductibleStatus)
                 }
                 
                 if(project.validated == false) {

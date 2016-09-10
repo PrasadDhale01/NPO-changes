@@ -563,7 +563,7 @@ $(function() {
         .hover(showPopover, hidePopover);
         
 
-        $('form').submit(function() {
+        $('form').submit(function(event) {
             if($(".payment-form").valid(event)) {
             	
                 event.preventDefault();

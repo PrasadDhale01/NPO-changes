@@ -276,16 +276,16 @@
 					                        </div>
 					                        <div class="leftcard-column-two">
 					                        <span class="input-group-addon card-details"><span class="glyphicon glyphicon-calendar"></span> </span>
-					                                <g:select class="selectpicker card-number-width" name="ccExpDateMonth" id="ccExpDateMonth" from="${month}" optionKey="key" data-stripe="exp-month" optionValue="value"/>
+					                                <g:select class="selectpicker card-number-width" name="ccExpDateMonth" id="ccExpDateMonth" from="${month}"  value="${currentMonthByWeek}" optionKey="key" data-stripe="exp-month" optionValue="value"/>
 					                            <div class="clear"></div>   
 					                        </div>
 					                        <div class="leftcard-column-three">
 					                        <span class="input-group-addon card-details"><span class="glyphicon glyphicon-calendar"></span> </span>
-					                                <g:select class="selectpicker card-number-width" name="ccExpDateYear" id="ccExpDateYear" from="${year}" optionKey="key" data-stripe="exp-year" optionValue="value"/>
+					                                <g:select class="selectpicker card-number-width" name="ccExpDateYear" id="ccExpDateYear" from="${year}" value="${currentYearByWeek}" optionKey="key" data-stripe="exp-year" optionValue="value"/>
 					                            <div class="clear"></div>
 					                        </div>
 					                        <div class="clear"></div>
-					                        <div class="dateErrorMsg">Please select valid date. It should be greater than current date.</div>
+					                        <div class="dateErrorMsg">Please select valid expiry date.</div>
 					                        <input type="hidden" id="isValidDate" value="true"/>
 					                    </div>
 					                    

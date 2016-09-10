@@ -86,12 +86,15 @@ class FundController {
                     def title = projectService.getTitle()
                     def month = contributionService.getMonth()
                     def year = contributionService.getYear()
+                    Calendar now = Calendar.getInstance();
+                    def currentMonthByWeek ="0"+ (now.get(Calendar.MONTH )+1)
+                    def currentYearByWeek = Calendar.getInstance().getWeekYear()
                     def defaultCountry = 'US'
 
                     render view: 'fund/citruscheckout', model: [team:team, project: project, state:state, country:country,
                         perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
-                        vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, cardTypes: cardTypes, title: title,
-                        month: month, year: year, defaultCountry: defaultCountry, isTaxReceipt: isTaxReceipt]
+                        vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, cardTypes: cardTypes, title: title,currentMonthByWeek:currentMonthByWeek,
+                        month: month, year: year, defaultCountry: defaultCountry, isTaxReceipt: isTaxReceipt, currentYearByWeek:currentYearByWeek]
                 }
             } else {
                 render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo]

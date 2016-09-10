@@ -5883,9 +5883,10 @@ class ProjectService {
         }
         
         
-        if (flag && txnStatus == 'SUCCESS') {
+        if (flag && 'SUCCESS'.equalsIgnoreCase(txnStatus)) {
             def contributionId = createTransactionIdForCitrus(txnId, request, session, fundraiser, issuerRefNo)
             return contributionId
+            
         } else {
             return null
         }

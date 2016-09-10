@@ -1366,7 +1366,7 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group form-group-tax-reciept-dropdown form-group-dropdown">
-                                                <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" value="${taxReciept.deductibleStatus}" noSelection="['null':'Deductible Status']"/>
+                                                <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" value="${taxReciept?.deductibleStatus}" noSelection="['null':'Deductible Status']"/>
                                             </div>
                                         </div>
                                     </div>

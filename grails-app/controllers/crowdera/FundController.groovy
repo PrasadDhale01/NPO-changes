@@ -86,9 +86,10 @@ class FundController {
                     def title = projectService.getTitle()
                     def month = contributionService.getMonth()
                     def year = contributionService.getYear()
-                    Calendar now = Calendar.getInstance();
-                    def currentMonthByWeek ="0"+ (now.get(Calendar.MONTH )+1)
-                    def currentYearByWeek = Calendar.getInstance().getWeekYear()
+                    Calendar calendar = Calendar.getInstance();
+                    def currentMonth = (calendar.get(Calendar.MONTH )+1)
+                    def currentMonthByWeek =(currentMonth > 9)?currentMonth:("0"+ (calendar.get(Calendar.MONTH )+1))
+                    def currentYearByWeek = calendar.getWeekYear()
                     def defaultCountry = 'US'
 
                     render view: 'fund/citruscheckout', model: [team:team, project: project, state:state, country:country,

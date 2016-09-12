@@ -8486,6 +8486,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	img#cardType {
+	    width: 174px;
+	}
     div.show-impact {
         padding-top: 28px;
     }

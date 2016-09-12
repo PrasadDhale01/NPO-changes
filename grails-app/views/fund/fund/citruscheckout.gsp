@@ -63,6 +63,7 @@
                                 <g:hiddenField name="url" value="${base_url}" id="url"/>
                                 <g:hiddenField name="anonymous" value="false" id="anonymous"/>
                                 <g:hiddenField name="projectTitle" value="${vanityTitle}"/>
+                                <input type="hidden" name="projectAmount" id="projectAmount" value="${project.amount.round() }"/>
                                 
                                 <g:hiddenField type="hidden" name="projectTitle" value="${projectTitle}"/>
                                 

@@ -250,8 +250,12 @@ $(function() {
             }
         });
         
+        
         $('#btnCheckoutContinue').click(function() {
-            if($('#amount').valid()) {
+        	
+             var amountStatus = checkAmount();
+        	
+            if(amountStatus== true) {
             	var rewardId = getSelectedRewardId();
             	if (rewardId === undefined) {
                 	rewardId = 1;
@@ -563,7 +567,7 @@ $(function() {
         .hover(showPopover, hidePopover);
         
 
-        $('form').submit(function() {
+        $('form').submit(function(event) {
             if($(".payment-form").valid(event)) {
             	
                 event.preventDefault();
@@ -859,4 +863,26 @@ function dateValidator(value) {
 		 $('.dateErrorMsg').show();
 	 	 return false;
 	 }
+}
+
+function checkAmount(){
+	
+	$.validator.addMethod("checkAmount", function(value, element){
+		var projectAmount = parseInt($("#projectAmount").val());
+		
+		if(parseInt(value) < projectAmount){
+			return true;
+		}
+		
+		return false;
+	},"Please enter amount less than campaign amount.");
+	
+	$("#payment-form").validate();
+	$("#amount").rules("add","checkAmount");
+	
+	if($("#amount").valid()){
+		return true;
+	}else{
+		return false;
+	}
 }

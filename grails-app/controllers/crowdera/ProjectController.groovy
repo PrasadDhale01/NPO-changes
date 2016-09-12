@@ -2904,7 +2904,7 @@ class ProjectController {
     @Secured(['ROLE_USER'])
     def updateSendMailModal(){
         if(request.method=='POST'){
-            Project project = Project.get(params.projectId)
+            Project project = projectService.getProjectById(params.projectId)
             if(project){
                 def vanityTitle = projectService.getVanityTitleFromId(params.projectId)
                 render (template:'show/updatesendmailmodal', model:[project:project, vanityTitle:vanityTitle])

@@ -1003,7 +1003,7 @@
                                      <div class="col-sm-12 col-xs-12 col-xs-pl-0 rowseperator">
                                          <div class="col-sm-4">
 	                                         <div class="form-group form-group-tax-reciept-dropdown form-group-dropdown">
-	                                             <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" noSelection="['null':'Deductible Status']"/>
+	                                             <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" value="${taxReciept.deductibleStatus}" noSelection="['null':'Deductible Status']"/>
 	                                         </div>
 	                                     </div>
                                          <div class="form-group col-sm-8 col-xs-12">
@@ -1143,7 +1143,7 @@
                                      <div class="col-sm-12 col-xs-12 rowseperator col-xs-pl-0">
                                          <div class="col-sm-4">
 		                                     <div class="form-group form-group-tax-reciept-dropdown form-group-dropdown">
-		                                         <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" value="${taxReciept.deductibleStatus}" noSelection="['null':'Deductible Status']"/>
+		                                         <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" noSelection="['null':'Deductible Status']"/>
 		                                     </div>
 		                                 </div>
                                          <div class="form-group col-sm-8 col-xs-12">
@@ -1299,10 +1299,10 @@
                                         <label class="docfile-orglogo-css" id="signaturemsgsize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
                                     </div>
                                 </div>
-
+                                
                             </g:if>
                             <g:else>
-                            
+                                
                                 <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
                                     <div class="col-sm-4">
                                         <div class="form-group form-group-tax-reciept">

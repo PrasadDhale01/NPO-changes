@@ -17,36 +17,36 @@ $(function() {
     /********ON-Browsers-refreshing-mode-show-tabs-active-tile*********/
     
 
-    if($('#essentials')){
-    	if(loadOrganizationTemplate("story")){
-    		loadOrganizationTemplate("story");
-    	}
-    }else if($('#projectupdates')){
-    	if(loadOrganizationTemplate("update")){
-    		loadOrganizationTemplate("update");
-    	}
-    }else if($('#manageTeam')){
-    	if(loadOrganizationTemplate("team")){
-    		loadOrganizationTemplate("team");
-    	}
-    }else if($('#contributions')){
-    	if(loadOrganizationTemplate("contribution")){
-    		loadOrganizationTemplate("contribution");
-    	}
-    }
+//    if($('#essentials')){
+//    	if(loadOrganizationTemplate("story")){
+//    		loadOrganizationTemplate("story");
+//    	}
+//    }else if($('#projectupdates')){
+//    	if(loadOrganizationTemplate("update")){
+//    		loadOrganizationTemplate("update");
+//    	}
+//    }else if($('#manageTeam')){
+//    	if(loadOrganizationTemplate("team")){
+//    		loadOrganizationTemplate("team");
+//    	}
+//    }else if($('#contributions')){
+//    	if(loadOrganizationTemplate("contribution")){
+//    		loadOrganizationTemplate("contribution");
+//    	}
+//    }
     
-    if($('li.active').find('a.show-tabs-text').hasClass('showStoryTemplate')){
-    	loadOrganizationTemplate("story");
-    	$('button.sh-fund-donate-contri').text('Fund Now!');
-    }else if($('li.active').find('a.show-tabs-text').hasClass('showTeamTemplate')){
-    	loadOrganizationTemplate("team");
-    	$('button.sh-fund-donate-contri').text('DONATE');
-    }else if($('li.active').find('a.show-tabs-text').hasClass('showContributionTemplate')){
-    	loadOrganizationTemplate("contribution");
-    	$('button.sh-fund-donate-contri').text('CONTRIBUTE');
-    }else if($('li.active').find('a.show-tabs-text').hasClass('showCommentTemplate')){
-    	loadOrganizationTemplate("story");
-    }
+//    if($('li.active').find('a.show-tabs-text').hasClass('showStoryTemplate')){
+//    	loadOrganizationTemplate("story");
+//    	$('button.sh-fund-donate-contri').text('Fund Now!');
+//    }else if($('li.active').find('a.show-tabs-text').hasClass('showTeamTemplate')){
+//    	loadOrganizationTemplate("team");
+//    	$('button.sh-fund-donate-contri').text('DONATE');
+//    }else if($('li.active').find('a.show-tabs-text').hasClass('showContributionTemplate')){
+//    	loadOrganizationTemplate("contribution");
+//    	$('button.sh-fund-donate-contri').text('CONTRIBUTE');
+//    }else if($('li.active').find('a.show-tabs-text').hasClass('showCommentTemplate')){
+//    	loadOrganizationTemplate("story");
+//    }
     
 
     var videoVal = $('#youtubeVideoUrl').val();
@@ -963,27 +963,27 @@ $(function() {
     });
     
     
-    $("a.show-tabs-text").click(function(){
-    	if ($(this).hasClass('showStoryTemplate')){
-    		loadOrganizationTemplate("story");
-    		 $('button.sh-fund-donate-contri').text('Fund Now!');
-    	}
-    	if ($(this).hasClass('showUpdateTemplate')){
-    		loadOrganizationTemplate("story");
-    	}
-    	if ($(this).hasClass('showTeamTemplate')){
-    		loadOrganizationTemplate("team");
-    		$('button.sh-fund-donate-contri').text('DONATE');
-    	}
-    	if ($(this).hasClass('showContributionTemplate')){
-    		loadOrganizationTemplate("contribution");
-    		$('button.sh-fund-donate-contri').text('CONTRIBUTE');
-    	}
-    	if ($(this).hasClass('showCommentTemplate')){
-    		loadOrganizationTemplate("story");
-    		 $('button.sh-fund-donate-contri').text('Fund Now!');
-    	}
-    });
+//    $("a.show-tabs-text").click(function(){
+//    	if ($(this).hasClass('showStoryTemplate')){
+//    		loadOrganizationTemplate("story");
+//    		 $('button.sh-fund-donate-contri').text('Fund Now!');
+//    	}
+//    	if ($(this).hasClass('showUpdateTemplate')){
+//    		loadOrganizationTemplate("story");
+//    	}
+//    	if ($(this).hasClass('showTeamTemplate')){
+//    		loadOrganizationTemplate("team");
+//    		$('button.sh-fund-donate-contri').text('DONATE');
+//    	}
+//    	if ($(this).hasClass('showContributionTemplate')){
+//    		loadOrganizationTemplate("contribution");
+//    		$('button.sh-fund-donate-contri').text('CONTRIBUTE');
+//    	}
+//    	if ($(this).hasClass('showCommentTemplate')){
+//    		loadOrganizationTemplate("story");
+//    		 $('button.sh-fund-donate-contri').text('Fund Now!');
+//    	}
+//    });
     
     $("a.show-tabs-text").click(function(){
     	$('.choose-error').html('');
@@ -1718,18 +1718,18 @@ function hideNavigation() {
     }
 }
 
-function loadOrganizationTemplate(activeTab){
-	if(activeTab){
-		$.ajax({
-			url:$("#b_url").val()+"/project/loadOrganizationTemplate",
-			type:"post",
-			data:"activeTab="+activeTab+"&campaignId="+$('#campaignId').val()+'&teamId='+$('#teamId').val(),
-			success:function(res){
-				$('#organizationTemplateId').html(res);
-			}
-		});
-	}
-}
+//function loadOrganizationTemplate(activeTab){
+//	if(activeTab && $('#campaignId').val()!=undefined){
+//		$.ajax({
+//			url:$("#b_url").val()+"/project/loadOrganizationTemplate",
+//			type:"post",
+//			data:"activeTab="+activeTab+"&campaignId="+$('#campaignId').val()+'&teamId='+$('#teamId').val(),
+//			success:function(res){
+//				$('#organizationTemplateId').html(res);
+//			}
+//		});
+//	}
+//}
 
 function showMoreOrLess(divClass, strLength){
 	var readMoreHtml = $("."+divClass).html();

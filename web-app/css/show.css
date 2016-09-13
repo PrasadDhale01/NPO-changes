@@ -501,3 +501,6 @@ textarea.show-textareawidth {
 .col-sm-6.comment-attach-img {
     padding: 0 !important;
 }
+.manage-impact {
+    height: 101px !important;
+}

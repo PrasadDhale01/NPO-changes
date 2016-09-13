@@ -773,9 +773,9 @@
                   </div>
                
                   <div class="col-xs-12 col-md-4 col-sm-4 show-desk-org-tile show-tops-corsal">
-<%--                      <div class="hidden-xs">--%>
-<%--                          <g:render template="/layouts/orgDetails"/>--%>
-<%--                      </div>--%>
+                      <div class="hidden-xs">
+                          <g:render template="/layouts/orgDetails"/>
+                      </div>
                  
                       <g:if test="${isPreview && !project?.validated}">
                           <div class="submitForApprovalSectionbtn" id="submitForApprovalSectionbtn">
@@ -855,7 +855,7 @@
                       </g:else>
                       
 <%--               user profile code  --%>
-                   <div class="col-lg-12 col-sm-12 col-md-12 show-profile-padding show-org-profiletile hidden-xs">
+                         <%--   <div class="col-lg-12 col-sm-12 col-md-12 show-profile-padding show-org-profiletile hidden-xs">
 	                   <div class="col-lg-4 col-sm-4 col-md-4 show-profile-imagewidth">
 		                   <g:if test="${user?.userImageUrl}">
 		                        <div id="partnerImageEditDeleteIcon">
@@ -891,11 +891,14 @@
                                 </div>
                             </div>
 	                    </div> 
-                    </div>
+                    </div>--%>
                     <div class="clear"></div>
                     
                       <g:if test="${!isPreview || project.validated}">
-                          <div class="hidden-xs" id="organizationTemplateId"></div>
+<%--                          <div class="hidden-xs" id="organizationTemplateId"></div>--%>
+                          <div class="hidden-xs">
+                              <g:render template="/layouts/show_tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
+                          </div>
                         <div class="clear"></div>
                           <g:if test="${isPreview}">
                               <div class="showfacebooksAA"></div>
@@ -913,7 +916,7 @@
                       
                       <g:if test="${project?.impactNumber > 0}">
                           <div class="show-impact">
-                              <g:render template="show/impactstatement"/>
+                              <g:render template="show/showImpactstatement"/>
 <%--                              impactassessment--%>
                           </div>
                       </g:if>

@@ -17535,7 +17535,7 @@ textarea.textarea-embed-video {
 .show-tiles-padding {
     padding-top: 20px;
     border-top: medium none;
-    border-left: 0 none;
+/*     border-left: 0 none; */
 }
 .show-icons {
     left: 103px;

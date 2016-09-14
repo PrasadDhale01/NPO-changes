@@ -1154,9 +1154,14 @@
                                                 <input type="text" class="form-control country" placeholder="Country" name="country" value="India" readonly>
                                             </div>
                                         </div>
-                                        
-                                        <div class="col-sm-12 col-xs-12 col-xs-pl-0 rowseperator">
-                                            <div class="form-group col-sm-8 col-xs-12">
+                                        <div class="col-sm-4">
+                                             <div class="col-sm-12 form-group form-group-tax-reciept">
+                                                 <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}"
+                                                  optionKey="key" optionValue="value" value="${taxReciept?.deductibleStatus}" noSelection="['null':'Deductible Status']"/>
+                                             </div>
+                                         </div>
+                                        <div class="col-sm-8 col-xs-12 col-xs-pl-0 rowseperator">
+                                            <div class="form-group col-sm-12 col-xs-12">
                                                 <div class="col-sm-5 col-md-4 col-xs-9 col-plr-0">
                                                     <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
                                                         Add Digital Signature

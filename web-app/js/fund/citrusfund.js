@@ -573,7 +573,38 @@ $(function() {
                 event.preventDefault();
                 needToConfirm = false;
 
-                var formData = {
+                var formData;
+                
+                var formDataObj = new FormData();
+                
+                formDataObj.append("anonymous", $('input[name= anonymous]').val());
+                if ($('input[name= userId]').length > 0) {
+                	formDataObj.append("userId", $('input[name= userId]').val());
+                }
+                formDataObj.append("rewardId", $('input[name= rewardId]').val());
+                formDataObj.append("fr", $('input[name= fr]').val());
+                formDataObj.append("tempValue", $('input[name= tempValue]').val());
+                formDataObj.append("email", $('input[name= email]').val());
+                formDataObj.append("campaignId", $('input[name= projectId]').val());
+                formDataObj.append("addressLine1", $('input[name= addressLine1]').val());
+                formDataObj.append("addressLine2", $('input[name= addressLine2]').val());
+                
+                formDataObj.append("city", $('input[name= city]').val());
+                formDataObj.append("zip", $('input[name= zip]').val());
+                formDataObj.append("country", $('input[name= country]').val());
+                formDataObj.append("state", $('input[name= state]').val());
+                formDataObj.append("otherstate", $('input[name= otherstate1]').val());
+                
+                formDataObj.append("shippingEmail", $('input[name= shippingEmail]').val());
+                formDataObj.append("twitterHandle", $('input[name= twitterHandle]').val());
+                formDataObj.append("shippingCustom", $('input[name= shippingCustom]').val());
+                formDataObj.append("projectTitle", $('input[name= projectTitle]').val());
+                
+                if ($('input[name= panNumber]').length > 0) {
+                	formDataObj.append("panNumber", $('input[name= panNumber]').val());
+                }
+                
+                /*formData = {
                     'anonymous'     : $('input[name= anonymous]').val(),
                     'userId'        : $('input[name= userId]').val(),
                     'rewardId'      : $('input[name= rewardId]').val(),
@@ -593,12 +624,14 @@ $(function() {
                     'shippingCustom': $('input[name= shippingCustom]').val(),
                     'projectTitle'  : $('input[name= projectTitle]').val(),
                     'panNumber'     : $('input[name= panNumber]').val()
-                };
+                };*/
 
                 $.ajax({
                     type    :'post',
                     url     : $("#b_url").val()+'/fund/setCitrusInfo',
-                    data    : formData,
+                    data    : formDataObj,
+                    processData	: false,
+                    contentType: false,
                     async: false,
                     success : function(){
                     	$('#citrusCardPayButton').click();

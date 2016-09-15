@@ -1890,10 +1890,12 @@ class UserService {
             }
             
             if (!user) {
-                user = getUserById(userId)
+                user = getUserById(Long.parseLong(userId))
             }
         } else {
-            user = getUserById(userId)
+            if (userId != null) {
+                user = getUserById(Long.parseLong(userId))
+            }
         }
         return user
     }

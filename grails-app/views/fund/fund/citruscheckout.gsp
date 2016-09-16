@@ -34,7 +34,7 @@
                 %>
                 <div id="myWizard">
                     <g:form action="charge" method="POST" class="payment-form" id="payment-form" name="payment-form">
-                        <div class="step" data-step-title="Transaction Amount">
+                        <div class="step" data-step-title="Transaction Amount" id="citrusTransactionAmount">
                             <div class="col-md-5">
                                 <g:if test="${flash.amt_message}">
                                     <div class="alert alert-danger">
@@ -104,6 +104,13 @@
                                     <div class="col-md-12 col-sm-12 col-xs-12 eazywizard-bottom-margin">
                                         <div  class="amount-button"><button type="button" class="btn btn-info btn-md btn-block" id="btnCheckoutContinue">Continue</button></div>
                                     </div>
+                                    
+                                    <div class="col-sm-12">
+                                        <h4><b>Powered by Citrus</b></h4>
+                                    </div>
+                                    <div class="col-sm-12 eazywizard-bottom-margin">
+                                        <img src="//s3.amazonaws.com/crowdera/assets/2d87664b-d1c9-4fae-a015-fc02d3333dbb.png" alt="citrus">
+                                    </div>
                                 </div>
                             
                             </div>
@@ -115,7 +122,7 @@
                             </div>
                         </div>
                         
-                        <div class="step" data-step-title="Billing Information">
+                        <div class="step" data-step-title="Billing Information" id="billingInformation">
                             <div class="panel panel-primary billing-panel">
                                 <div class="panel-heading shipping-heading">
                                     <h3 class="panel-title">Billing Information <g:if test="${currentUser == null}">(Your contact details are used to send a receipt)</g:if></h3>
@@ -196,7 +203,7 @@
                                         </div>
             
                                         <div class="form-group">
-                                            <div class="input-group col-md-12">
+                                            <div class="input-group col-md-12 citrusStateDiv">
                                                 <g:select class="selectpicker" name="billToState" id="billToState" from="${state}" optionKey="key" optionValue="value"/>
                                             </div>
                                         </div>
@@ -210,7 +217,7 @@
                                         
                                         <div class="form-group">
                                             <div class="input-group col-md-12">
-                                                <g:select class="selectpicker" name="citrusCountry" id="citrusCountry" from="${country}" value="${defaultCountry}" optionKey="key" optionValue="value"/>
+                                                <input class="form-control all-place" type="text" placeholder="Country" name="citrusCountry" id="citrusCountry" value="${defaultCountry}" readonly>
                                             </div>
                                         </div>
                                         
@@ -224,13 +231,17 @@
                             </div>
                             
                             <div class="col-xs-12 eazywizard-bottom-margin">
-                                <div class="col-sm-offset-8 col-sm-4 col-xs-offset-0 col-xs-12">
-                                    <div class="amount-button"><button type="button" class="btn btn-info btn-md btn-block" id="btnShippingContinue">Continue</button></div>
+                                <div class="col-sm-6">
+                                    <h4><b>Powered by Citrus</b></h4>
+                                    <img src="//s3.amazonaws.com/crowdera/assets/2d87664b-d1c9-4fae-a015-fc02d3333dbb.png" alt="citrus">
+                                </div>
+                                <div class="col-sm-4 pull-right col-xs-offset-0 col-xs-12">
+                                    <div class="amount-button"><button type="button" class="btn btn-info btn-lg btn-block" id="btnShippingContinue">Continue</button></div>
                                 </div>
                             </div>
 				        </div>
 				    
-				        <div class="step" data-step-title="Card Details">
+				        <div class="step" data-step-title="Card Details" id="citrusCardDetails">
 				            <div class="panel panel-primary billing-panel">
 				                <div class="panel-heading shipping-heading">
 				                    <h3 class="panel-title">Card Details</h3>
@@ -302,6 +313,8 @@
 	                                        <div class="center-fund">
 	                                            <button type="submit" class="btn btn-info btn-block btn-lg citruscheckoutsubmitbtn" name="fund-button" id="submitButton">Fund this Campaign</button>
 	                                            <button type="button" class="btn btn-info btn-block btn-lg hidden citruscheckoutsubmitbtn" name="fund-button" id="citrusCardPayButton"></button>
+	                                            <br>
+	                                            <h4><b>Powered by Citrus</b></h4>
 	                                        </div>
 	                                    </div>
 	                                    

@@ -90,9 +90,10 @@ class FundController {
                     def currentMonth = (calendar.get(Calendar.MONTH )+1)
                     def currentMonthByWeek =(currentMonth > 9)?currentMonth:("0"+ (calendar.get(Calendar.MONTH )+1))
                     def currentYearByWeek = calendar.getWeekYear()
-                    def defaultCountry = 'US'
+                    def defaultCountry = 'India'
+                    def indiaStates = projectService.getIndianState()
 
-                    render view: 'fund/citruscheckout', model: [team:team, project: project, state:state, country:country,
+                    render view: 'fund/citruscheckout', model: [team:team, project: project, state:indiaStates, country:country,
                         perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
                         vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, cardTypes: cardTypes, title: title,currentMonthByWeek:currentMonthByWeek,
                         month: month, year: year, defaultCountry: defaultCountry, isTaxReceipt: isTaxReceipt, currentYearByWeek:currentYearByWeek]

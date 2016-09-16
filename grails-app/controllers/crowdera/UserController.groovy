@@ -1045,10 +1045,11 @@ class UserController {
         def contribution = Contribution.get(params.id)
         
         if (contribution) {
-            def title = contribution?.project.organizationName
+            def title = contribution?.project.organizationName.replaceAll(" ", "_")
             def reportDef = userService.generateTaxreceiptPdf(contribution);
+            
             ByteArrayOutputStream bytes = jasperService.generateReport(reportDef)
-            response.setHeader("Content-Disposition", 'attachment; filename="taxreceipt-"'+title+'".pdf"');
+            response.setHeader("Content-Disposition", 'attachment; filename=taxreceipt-'+title+'.pdf');
             response.setContentType("application/pdf")
             response.outputStream << bytes.toByteArray()
         
@@ -1061,7 +1062,6 @@ class UserController {
         def taxReciept = projectService.getTaxRecieptOfProject(contribution.project)
         def transaction = contributionService.getTransactionByContribution(contribution)
         def amountInWords = userService.convert((long)contribution.amount)
-        
         render template:"/user/user/taxReceipt", model:[pdfRendering:true, contribution: contribution, project: contribution.project,
                                                             taxReciept:taxReciept, transaction: transaction, amountInWords: amountInWords]
     }
@@ -1133,8 +1133,13 @@ class UserController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def sendTaxReceiptToContributors(){
-       projectService.sendTaxReceiptToContributors(params);
-       render ''
+        
+        if(params.list==''){
+            render ''
+        }else{
+            projectService.sendTaxReceiptToContributors(params);
+            render 'true'
+        }
     }
 
     def partners() {

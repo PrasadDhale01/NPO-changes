@@ -113,7 +113,7 @@
                         <label class="pull-right taxreceiptdetailsfont">% of Exemption:</label>
                     </div>
                     <div class="col-xs-6 taxreceipttop">
-                        <div class="form-control"></div>
+                        <div class="form-control">${taxReciept?.deductibleStatus }</div>
                     </div>
                 </div>
             </div>
@@ -221,10 +221,10 @@
                         <div class="form-control">${taxReciept.ein}</div>
                     </div>
                     <div class="col-xs-6 taxreceipttop">
-                        <label class="pull-right taxreceiptdetailsfont">Legal Status / % of Exemption:</label>
+                        <label class="pull-right taxreceiptdetailsfont">ffff Legal Status / % of Exemption:</label>
                     </div>
                     <div class="col-xs-6 taxreceipttop">
-                        <div class="form-control">${taxReciept.deductibleStatus}</div>
+                        <div class="form-control">${(taxReciept.deductibleStatus!=null || !'null'.equalsIgnoreCase(taxReciept?.deductibleStatus.toString()))  ? taxReciept.deductibleStatus : "N/A"}</div>
                     </div>
                     <div class="col-xs-6 taxreceipttop">
                         <label class="pull-right taxreceiptdetailsfont">Name and Signature of</label>

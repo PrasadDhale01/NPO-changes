@@ -1933,11 +1933,18 @@ class UserService {
         reportParams.put("authorizedPerson", taxReciept.name);
         
         reportParams.put("regDate", dateFormat.format(taxReciept.regDate).toString());
-        reportParams.put("exemptionPer", taxReciept.deductibleStatus ? taxReciept.deductibleStatus : " ");
+        
+        if(taxReciept.deductibleStatus==null || 'null'.equalsIgnoreCase(taxReciept?.deductibleStatus.toString())){
+            reportParams.put("exemptionPer", "N/A");
+        }else{
+            reportParams.put("exemptionPer", taxReciept?.deductibleStatus);
+        }
+       
         
         def reportDef
         
         if (contribution.project.payuStatus) {
+            reportParams.put("amountInWord", "INR "+convert((long)contribution.amount));
             reportParams.put("amountInNo", "INR "+contribution.amount.round().toString());
             reportParams.put("orgStatus", "INR "+taxReciept.taxRecieptHolderState);
             reportParams.put("panNumber", taxReciept.panCardNumber);
@@ -1947,6 +1954,7 @@ class UserService {
             reportDef = new JasperReportDef(name:'taxreceiptIndia.jasper',fileFormat:JasperExportFormat.PDF_FORMAT,
                 parameters: reportParams)
         } else {
+            reportParams.put("webUrl", contribution.project.webAddress);
             reportParams.put("amountInNo", "USD "+ contribution.amount.round().toString());
             reportParams.put("amountInWord", "USD "+convert((long)contribution.amount));
             reportParams.put("contributorName", contribution.contributorName)

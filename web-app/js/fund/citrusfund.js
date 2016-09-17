@@ -1,5 +1,59 @@
 $(function() {
 
+	$.validator.addMethod("checkCity", function(value,element){
+		var cityRegex= /^(?:[a-zA-Z]\s?)+$/;
+		
+		if(cityRegex.test(value)){
+			return true;
+		}
+		
+		return false;
+	}, "Please enter valid city.");
+	
+	$.validator.addMethod("checkCardHolderName", function(value,element){
+		var nameRegex= /^[a-zA-z]+\s[a-zA-z]+$/;
+		
+		if(nameRegex.test(value)){
+			return true;
+		}
+		
+		return false;
+	}, "Please enter valid card holder name.");
+	
+	
+	$.validator.addMethod("checkAddress", function(value, element){
+		
+		var addressRegex =/^(?:[a-zA-Z0-9]+(?:[.'\-,])?\s?)+$/;
+		
+		if(addressRegex.test(value)){
+			return true;
+		}
+		
+		return false;
+		
+	},"Please enter valid address.");
+	
+	$.validator.addMethod("checkFirstName", function(value,element){
+		var cityRegex= /^(?:[a-zA-Z])+$/;
+		
+		if(cityRegex.test(value)){
+			return true;
+		}
+		
+		return false;
+	}, "Please enter valid firstName.");
+	
+	$.validator.addMethod("checkLastName", function(value,element){
+		var cityRegex= /^(?:[a-zA-Z])+$/;
+		
+		if(cityRegex.test(value)){
+			return true;
+		}
+		
+		return false;
+	}, "Please enter valid lastName.");
+	
+	
     $("#citrusNumber").keyup(function(){
 
         $("#payment-form").validate();
@@ -119,7 +173,9 @@ $(function() {
             },
             city: {
             	required: true,
-            	maxlength: 30
+            	minlength:3,
+            	maxlength: 15,
+            	checkCity:true
             },
             zip: {
             	required: true,
@@ -172,15 +228,18 @@ $(function() {
             },
             citrusCardHolder: {
                 required: true,
+                checkCardHolderName: true,
                 minlength: 3,
                 maxlength: 30
             },
             citrusFirstName: {
                 required: true,
+                checkFirstName: true,
                 maxlength: 20
             },
             citrusLastName: {
                 required: true,
+                checkLastName: true,
                 maxlength: 20
             },
             citrusEmail: {
@@ -196,6 +255,7 @@ $(function() {
             },
             citrusStreet1: {
                 required: true,
+                checkAddress:true,
                 maxlength: 50
             },
             citrusStreet2: {
@@ -203,7 +263,9 @@ $(function() {
             },
             citrusCity: {
                 required: true,
-                maxlength: 30
+                checkCity:true,
+                minlength:3,
+                maxlength: 15
             },
             citrusZip: {
             	required: true,
@@ -275,6 +337,7 @@ $(function() {
         			success: function(data){
         				$(grid).html(data);
         				$('#myWizard').easyWizard('goToStep', 2);
+        				$('#billingInformation').show();
         			}
         		}).error(function(){
         		});
@@ -304,6 +367,7 @@ $(function() {
         				$('#citrusSignature').val(json.securitySignature);
         				$('#citrusAmount').val($('#amount').val());
         				$('#myWizard').easyWizard('goToStep', 3);
+        				$('#citrusCardDetails').show();
         			}
         		}).error(function(){
         		});

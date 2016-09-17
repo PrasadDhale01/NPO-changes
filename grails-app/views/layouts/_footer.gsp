@@ -22,6 +22,7 @@
                 <li><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></li>
                 <li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
                 <li><a href="http://gocrowdera.com" target="_blank">Blog</a></li>
+                
             </ul>
             </div>
             <div class="col-md-6 footer-mid-section-menu">
@@ -33,6 +34,7 @@
                     <li><g:link controller="user" action="partners">Partner Pages</g:link></li>
                 </g:if>
                 <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
+                <li><a href="${resource(dir: '/Learning-Center')}">Learn More</a></li>
             </ul>
         
             </div>

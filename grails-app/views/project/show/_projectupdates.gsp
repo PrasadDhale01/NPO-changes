@@ -22,7 +22,7 @@
 	</g:else>
 	
 <%--	<div class="col-sm-12">--%>
-      Modal 
+<%--      Modal --%>
 <%--    <div class="modal fade" id="updatesendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">--%>
 <%--        <g:form action="sendupdateemail" id="${project.id}" class="sendMailFormMng">--%>
 <%--            <div class="modal-dialog">--%>

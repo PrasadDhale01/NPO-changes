@@ -4639,7 +4639,7 @@ ul.personalDetailClasses, menu, dir {
 	font-size: 25px;
 	line-height:26px;
 	word-wrap: break-word;
-	font-family: Ubuntu Condensed;
+	font-family: open sans;
 }
 p {
     word-wrap: break-word;
@@ -8242,7 +8242,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /*         margin-top: 120px; */
 /*     } */
     div.show-description {
-        margin-top: 9px;
+        margin-top: 20px;
 /*         height: 90px; */
         line-height: 26px;
     }
@@ -8490,7 +8490,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    width: 174px;
 	}
     div.show-impact {
-        padding-top: 28px;
+        padding-top: 24px;
     }
     div.sh-tabs-iconleft {
         left: 26px;
@@ -8558,7 +8558,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         top: 16px;
     }
     div.show-impact .panel-default {
-        height: 180px;
+        height: 150px;
     }
     div.show-social-icons {
         padding-left: 92px;
@@ -8583,7 +8583,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         left: -11px;
     }
     div.show-lbl-orgname {
-        padding-top: 0;
+        padding-top: 4px;
     }
     span.show-contact-ofOwner {
         font-size: 9px;
@@ -9303,15 +9303,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     button.show-campaign-sucessbtn {
         font-size: 14px;
-        height: 56px;
+        height: 60px;
     }
     button.show-campaign-sucess-endedbtn {
         font-size: 19px;
-        height: 55px;
+        height: 60px;
     }
     button.show-fund-size {
         font-size: 29px;
-        height: 70px;
+        height: 60px;
         margin-top: 0px;
     }
     div.sh-mobprogressbar{
@@ -11577,10 +11577,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.show-description {
 /*         background-color: #e7e7e7; */
 /*         height: 89px; */
-        margin-top: 33px;
-        padding-bottom: 9px;
-        padding-left: 9px;
-        padding-top: 6px;
+        margin-top: 20px;
+/*         padding-bottom: 9px; */
+/*         padding-left: 9px; */
+/*         padding-top: 6px; */
         color: #000;
         line-height: 26px;
     }
@@ -11739,7 +11739,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     button.show-fund-size {
         font-size: 30px;
         margin-top: 0px;
-        height: 70px;
+        height: 60px;
     }
     .fund-tile .tile-pad {
         padding: 0px;
@@ -17446,7 +17446,7 @@ textarea.textarea-embed-video {
 .show-btn-sh-fb{
 	 background-color: #4c69ba;
 /* 	 margin-bottom: 103px; */
-	 height: 50px;
+	 height: 48px;
      padding-top: 8px;
 }
 .show-btn-sh-fb:hover,
@@ -17462,7 +17462,7 @@ textarea.textarea-embed-video {
        height: 100px;
        border-bottom: 2px solid #e7e7e7;
        border-right: 2px solid #e7e7e7;
-       height: 152px;
+       height: 150px;
        margin-top:20px;
        padding: 15px;
 }
@@ -17533,7 +17533,9 @@ textarea.textarea-embed-video {
     color: #6d6e6e;
 }
 .show-tiles-padding {
-    padding-top: 20px;
+/*     height: 184px; */
+    padding-bottom: 5px;
+    padding-top: 5px;
     border-top: medium none;
 /*     border-left: 0 none; */
 }
@@ -17935,14 +17937,14 @@ a#downloadEbook{
     padding-right: 6px;
 }
 .sh-fb-icons{
-    font-size: 23px;
-    padding-right: 24px;
-    padding-top: 2px;
+   font-size: 17px;
+    padding-right: 6px;
+    padding-top: 10px;
 }
 .sho-fb-color{
     background-color: #3b5998;
     font-size: 17px;
-    padding-top: 9px;
+    padding-top: 5px;
     font-weight: bold;
 }
 .show-tabs-text:hover, .sh-selected{
@@ -18461,7 +18463,8 @@ li.sh-button-fund-secandaryheader{
 }
 .sh-iconsfb-header {
     font-size: 14px;
-    padding-right: 5px;
+    padding-left: 12px;
+    padding-right: 25px;
 }
 .show-icons-secandheader img{
     padding-top: 3px;

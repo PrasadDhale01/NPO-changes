@@ -28,22 +28,22 @@
             <g:if test="${isPreview || isvalidateShow}">
                 <div class="show-social-icons">
                 <a class="share-mail pull-left show-icons show-email-hover show-pointer-not">
-                    <img src="//s3.amazonaws.com/crowdera/assets/0fea8e3c-7e84-4369-a5a0-451585c06492.png" class="show-email-social" alt="Mail Share">
+                    <img src="//s3.amazonaws.com/crowdera/assets/82677812-3c6f-404d-80c2-7e3f77c60cf9.png" class="show-email-social" alt="Mail Share">
                 </a>
                 <a class="pull-left show-icons show-pointer-not">
-                     <img src="//s3.amazonaws.com/crowdera/assets/543485b8-21d6-4144-9c30-c0e49c95c4e6.png" class="show-twitter-social" alt="Twitter Share">
+                     <img src="//s3.amazonaws.com/crowdera/assets/823f1cf6-49fe-4ec2-a0dd-2d2a437ad081.png" class="show-twitter-social" alt="Twitter Share">
                 </a>
                 <a class="pull-left show-icons show-pointer-not">
-                    <img src="//s3.amazonaws.com/crowdera/assets/c8836846-373f-45af-a660-ece7f1110ba0.png" class="show-like-social" alt="campaign-supporter">
+                    <img src="//s3.amazonaws.com/crowdera/assets/9520477b-5b92-475a-ba79-9b35c1a16d3c.png" class="show-like-social" alt="campaign-supporter">
                 </a>
                 <a class="social share-linkedin pull-left show-icons show-pointer-not" target="_blank">
-                    <img src="//s3.amazonaws.com/crowdera/assets/0d661ddc-4d08-4ad9-a707-cf2e22349989.png" class="show-linkedin-social" alt="LinkedIn Share">
+                    <img src="//s3.amazonaws.com/crowdera/assets/8a7fbe36-68f8-401e-8644-5780d656d298.png" class="show-linkedin-social" alt="LinkedIn Share">
                 </a>
                 <a class="social google-plus-share pull-left show-icons show-pointer-not">
-                    <img src="//s3.amazonaws.com/crowdera/assets/0c536e08-376d-4965-a901-ca42a4b6c4d5.png" class="show-google-social" alt="Google+ Share">
+                    <img src="//s3.amazonaws.com/crowdera/assets/ccda789b-4001-4c95-a65f-38c0b9a7a474.png" class="show-google-social" alt="Google+ Share">
                 </a>
             
-               <span class="pull-left show-icons show-pointer-not"><img src="//s3.amazonaws.com/crowdera/assets/75ed76bc-3275-4b00-a534-9c4a324cc04e.png" alt="embedicon" class="show-embedIcon-social"></span>
+               <span class="pull-left show-icons show-pointer-not"><img src="//s3.amazonaws.com/crowdera/assets/264961c1-5e35-4357-a68b-8494e63ac04e.png" alt="embedicon" class="show-embedIcon-social"></span>
                <span class="shortUrlglyphicon glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color show-pointer-not"></span>
             </div>
             <div>
@@ -63,21 +63,21 @@
         <g:else>
           <div class="show-social-icons">
 	             <a class="share-mail pull-left show-icons" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
-	                <img src="//s3.amazonaws.com/crowdera/assets/0fea8e3c-7e84-4369-a5a0-451585c06492.png" alt="Mail Share" class="show-email-social">
+	                <img src="//s3.amazonaws.com/crowdera/assets/82677812-3c6f-404d-80c2-7e3f77c60cf9.png" alt="Mail Share" class="show-email-social">
 	            </a>
 	            <a class="twitter-share pull-left show-icons" id="twitterShare" data-url="${shareUrl}" target="_blank">
-	                <img src="//s3.amazonaws.com/crowdera/assets/543485b8-21d6-4144-9c30-c0e49c95c4e6.png" class="show-twitter-social" alt="Twitter Share">
+	                <img src="//s3.amazonaws.com/crowdera/assets/823f1cf6-49fe-4ec2-a0dd-2d2a437ad081.png" class="show-twitter-social" alt="Twitter Share">
 	            </a>
 	            <g:link absolute="true" uri="/campaign/supporter/${project.id}/${username}" class="pull-left show-icons">
-	                <img src="//s3.amazonaws.com/crowdera/assets/c8836846-373f-45af-a660-ece7f1110ba0.png" class="show-like-social" alt="campaign-supporter" id="add-campaign-supporter">
+	                <img src="//s3.amazonaws.com/crowdera/assets/9520477b-5b92-475a-ba79-9b35c1a16d3c.png" class="show-like-social" alt="campaign-supporter" id="add-campaign-supporter">
 	            </g:link>
 	            <a class="social share-linkedin pull-left show-icons" href="https://www.linkedin.com/cws/share?url=${shareUrl}" target="_blank" id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-	                <img src="//s3.amazonaws.com/crowdera/assets/0d661ddc-4d08-4ad9-a707-cf2e22349989.png" class="show-linkedin-social" alt="LinkedIn Share">
+	                <img src="//s3.amazonaws.com/crowdera/assets/8a7fbe36-68f8-401e-8644-5780d656d298.png" class="show-linkedin-social" alt="LinkedIn Share">
 	            </a>
 	            <a class="social google-plus-share pull-left show-icons" id="googlePlusShare" href="https://plus.google.com/share?url=${shareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-	                <img src="//s3.amazonaws.com/crowdera/assets/0c536e08-376d-4965-a901-ca42a4b6c4d5.png" class="show-google-social" alt="Google+ Share">
+	                <img src="//s3.amazonaws.com/crowdera/assets/ccda789b-4001-4c95-a65f-38c0b9a7a474.png" class="show-google-social" alt="Google+ Share">
 	            </a>
-	            <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left show-icons"><img src="//s3.amazonaws.com/crowdera/assets/75ed76bc-3275-4b00-a534-9c4a324cc04e.png" class="show-embedIcon-social" alt="embedicon"></a>
+	            <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left show-icons"><img src="//s3.amazonaws.com/crowdera/assets/264961c1-5e35-4357-a68b-8494e63ac04e.png" class="show-embedIcon-social" alt="embedicon"></a>
 	            <g:hiddenField name="urlShortenValue" value="${shareUrl}" id="urlShortenValue"/>
 	            <div class="popoverClass">
 	                <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphicon glyphicon glyphicon-link glyphicon-show-design-ract glyphicon-show-link-color"></span>

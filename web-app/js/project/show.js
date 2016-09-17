@@ -35,20 +35,38 @@ $(function() {
 //    	}
 //    }
     
-//    if($('li.active').find('a.show-tabs-text').hasClass('showStoryTemplate')){
+    if($('#essentials')){
+	    if($('div.bannerSloganText')){
+		    $('div.bannerSloganText').html("Start your Campaign <br> to Support our Mission");
+	    }
+    }
+    
+    if($('li.active').find('a.show-tabs-text').hasClass('showStoryTemplate')){
 //    	loadOrganizationTemplate("story");
 //    	$('button.sh-fund-donate-contri').text('Fund Now!');
-//    }else if($('li.active').find('a.show-tabs-text').hasClass('showTeamTemplate')){
+    	
+		$('div.bannerSloganText').html("Start your Campaign <br> to Support our Mission");
+		
+    }else if($('li.active').find('a.show-tabs-text').hasClass('showUpdateTemplate')){
+    	$('div.bannerSloganText').html("Start your Campaign <br> to Support our Mission");
+    	
+    }else if($('li.active').find('a.show-tabs-text').hasClass('showTeamTemplate')){
 //    	loadOrganizationTemplate("team");
 //    	$('button.sh-fund-donate-contri').text('DONATE');
-//    }else if($('li.active').find('a.show-tabs-text').hasClass('showContributionTemplate')){
+    	var projectTitle = $('#projectTitle').val();
+		$('div.bannerSloganText').html("This is Campaign is supporting <br>"+projectTitle);
+    	
+    }else if($('li.active').find('a.show-tabs-text').hasClass('showContributionTemplate')){
 //    	loadOrganizationTemplate("contribution");
 //    	$('button.sh-fund-donate-contri').text('CONTRIBUTE');
-//    }else if($('li.active').find('a.show-tabs-text').hasClass('showCommentTemplate')){
-//    	loadOrganizationTemplate("story");
-//    }
+		$('div.bannerSloganText').html("Start your Campaign <br> to Support our Mission");
     
+    }else if($('li.active').find('a.show-tabs-text').hasClass('showCommentTemplate')){
+//    	loadOrganizationTemplate("story");
 
+    	$('div.bannerSloganText').html("Start your Campaign <br> to Support our Mission");
+    }
+       
     var videoVal = $('#youtubeVideoUrl').val();
     if(videoVal && videoVal.length > 0) {
         $('.carousel').carousel({
@@ -775,37 +793,37 @@ $(function() {
     $('.show-email').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/4df7ed58-1d91-419b-ad9c-1d71a6192d00.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0fea8e3c-7e84-4369-a5a0-451585c06492.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/82677812-3c6f-404d-80c2-7e3f77c60cf9.png");
     });
 
     $('.show-twitter').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/e227b5d5-edad-46ff-ac0b-3234035e8120.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/543485b8-21d6-4144-9c30-c0e49c95c4e6.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/823f1cf6-49fe-4ec2-a0dd-2d2a437ad081.png");
     });
 
     $('.show-like').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/ae504306-b6fe-4665-b1bd-4b2f83af87f6.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/c8836846-373f-45af-a660-ece7f1110ba0.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/9520477b-5b92-475a-ba79-9b35c1a16d3c.png");
     });
 
     $('.show-linkedin').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/fcd2d0b1-d459-4974-8227-0b137784a5cc.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0d661ddc-4d08-4ad9-a707-cf2e22349989.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/8a7fbe36-68f8-401e-8644-5780d656d298.png");
     });
 
     $('.show-google').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/3f7fd05e-6dea-4d32-aca2-3d9d45ef9eaa.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0c536e08-376d-4965-a901-ca42a4b6c4d5.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/ccda789b-4001-4c95-a65f-38c0b9a7a474.png");
     });
 
     $('.show-embedIcon').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/7c6e7ddd-e0ad-4a6c-bd43-89bd567bb989.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/75ed76bc-3275-4b00-a534-9c4a324cc04e.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/264961c1-5e35-4357-a68b-8494e63ac04e.png");
     });
     
     
@@ -813,37 +831,43 @@ $(function() {
     $('.show-email-social').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/4df7ed58-1d91-419b-ad9c-1d71a6192d00.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0fea8e3c-7e84-4369-a5a0-451585c06492.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/82677812-3c6f-404d-80c2-7e3f77c60cf9.png");
     });
     
     $('.show-twitter-social').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/e227b5d5-edad-46ff-ac0b-3234035e8120.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/543485b8-21d6-4144-9c30-c0e49c95c4e6.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/823f1cf6-49fe-4ec2-a0dd-2d2a437ad081.png");
     });
     
     $('.show-like-social').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/ae504306-b6fe-4665-b1bd-4b2f83af87f6.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/c8836846-373f-45af-a660-ece7f1110ba0.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/9520477b-5b92-475a-ba79-9b35c1a16d3c.png");
     });
     
     $('.show-linkedin-social').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/fcd2d0b1-d459-4974-8227-0b137784a5cc.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0d661ddc-4d08-4ad9-a707-cf2e22349989.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/8a7fbe36-68f8-401e-8644-5780d656d298.png");
     });
     
     $('.show-google-social').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/3f7fd05e-6dea-4d32-aca2-3d9d45ef9eaa.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0c536e08-376d-4965-a901-ca42a4b6c4d5.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/ccda789b-4001-4c95-a65f-38c0b9a7a474.png");
     });
     
     $('.show-embedIcon-social').hover(function(){
     	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/7c6e7ddd-e0ad-4a6c-bd43-89bd567bb989.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/75ed76bc-3275-4b00-a534-9c4a324cc04e.png");
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/264961c1-5e35-4357-a68b-8494e63ac04e.png");
+    });
+    
+    $('.update-share-fbimg').hover(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/0e6fc661-4ec7-4210-aa7a-b0656776d533.png");
+        }).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/87908047-8496-40ee-9f44-7af06f2df03d.png");
     });
 
     $("#embedHover").hover(function (){
@@ -961,29 +985,34 @@ $(function() {
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
     });
-    
-    
-//    $("a.show-tabs-text").click(function(){
-//    	if ($(this).hasClass('showStoryTemplate')){
+   
+    $("a.show-tabs-text").click(function(){
+    	if ($(this).hasClass('showStoryTemplate')){
 //    		loadOrganizationTemplate("story");
 //    		 $('button.sh-fund-donate-contri').text('Fund Now!');
-//    	}
-//    	if ($(this).hasClass('showUpdateTemplate')){
+    		$('div.bannerSloganText').html("Start your Campaign <br> to Support our Mission");
+    	}
+    	if ($(this).hasClass('showUpdateTemplate')){
 //    		loadOrganizationTemplate("story");
-//    	}
-//    	if ($(this).hasClass('showTeamTemplate')){
+    		$('div.bannerSloganText').html("Start your Campaign <br> to Support our Mission");
+    	}
+    	if ($(this).hasClass('showTeamTemplate')){
 //    		loadOrganizationTemplate("team");
 //    		$('button.sh-fund-donate-contri').text('DONATE');
-//    	}
-//    	if ($(this).hasClass('showContributionTemplate')){
+    		var projectTitle = $('#projectTitle').val();
+    		$('div.bannerSloganText').html("This is Campaign is supporting <br>"+projectTitle);
+    	}
+    	if ($(this).hasClass('showContributionTemplate')){
 //    		loadOrganizationTemplate("contribution");
 //    		$('button.sh-fund-donate-contri').text('CONTRIBUTE');
-//    	}
-//    	if ($(this).hasClass('showCommentTemplate')){
+    		$('div.bannerSloganText').html("Start your Campaign <br> to Support our Mission");
+    	}
+    	if ($(this).hasClass('showCommentTemplate')){
 //    		loadOrganizationTemplate("story");
 //    		 $('button.sh-fund-donate-contri').text('Fund Now!');
-//    	}
-//    });
+    		$('div.bannerSloganText').html("Start your Campaign <br> to Support our Mission");
+    	}
+    });
     
     $("a.show-tabs-text").click(function(){
     	$('.choose-error').html('');
@@ -1730,6 +1759,17 @@ function hideNavigation() {
 //		});
 //	}
 //}
+
+//$("li").click(function(){
+//    var activeTab = $(this).text();
+//    $("#bannerSloganText").text('prasad');
+//    
+//    if(activeTab==='STORY'){
+//    	$("#bannerSloganText").text('prasad');
+//    }else if(activeTab==='STORY') {
+//    	$("#bannerSloganText").text("Storyyyyyyyyy");
+//    }
+//});
 
 function showMoreOrLess(divClass, strLength){
 	var readMoreHtml = $("."+divClass).html();

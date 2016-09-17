@@ -1,3 +1,35 @@
+<%@ page import="java.text.SimpleDateFormat" %>
+<g:set var="contributionService" bean="contributionService"/>
+<g:set var="projectService" bean="projectService"/>
+<%
+    def percent
+    def contributedSoFar
+    def amount
+    if (project.user == currentFundraiser){
+        percent = percentage
+        contributedSoFar = totalContribution
+        amount = project?.amount.round()
+    } else {
+        percent = teamPercentage
+        contributedSoFar = teamContribution
+        amount = currentTeamAmount?.round()
+    }
+    
+    def cents
+    if(percent >= 100) {
+        cents = 100
+    } else {
+        cents = percent
+    }
+
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
+    username = currentFundraiser.email
+    def currentEnv = projectService.getCurrentEnvironment()
+    def conversionMultiplier = multiplier
+    if (!conversionMultiplier) {
+        conversionMultiplier = projectService.getCurrencyConverter();
+    }
+%>
 <div class="modal-footer tile-footer tileanstitle-goals tileanstitle-goal-margin show-tiles-padding">
 <%--    <div class="row icons-centering sh-moballamt">--%>
         <div class="col-lg-12 col-sm-12 col-md-12 show-org-tile-padding" data-percent="43">

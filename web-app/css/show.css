@@ -59,7 +59,7 @@
     border-left: medium none;
     border-top: medium none;
     height: 150px;
-    margin-top: -3px;
+/*     margin-top: 1px; */
     padding: 15px;
     border-left: medium none;
     border-top: medium none;
@@ -129,7 +129,7 @@ a.show-campaigndetails-font {
     font-weight: bold;
 }
 .show-impact {
-    padding-top: 22px;
+    padding-top: 21px;
 }
 .show-perks-style-reasons {
     background-color: #fff;
@@ -168,7 +168,7 @@ a.show-campaigndetails-font {
 .show-reasons {
     border-bottom: 2px solid #e7e7e7;
     border-right: 2px solid #e7e7e7;
-    margin-top:18px;
+    margin-top:22px;
 }
 .rewardsection {
     background-color: #fff;
@@ -189,7 +189,7 @@ a.show-campaigndetails-font {
     line-height: 0.8;
 }
 .show-org-tile-padding {
-    padding-bottom: 12px;
+    padding-bottom: 7px;
 }
 .show-progressbar {
     padding-top: 6px;
@@ -208,7 +208,7 @@ a.show-campaigndetails-font {
     padding-top: 11px;
 }
 .show-user-profile-hw{
-	height: 65px;
+	height: 58px;
     width: 75px;
 }
 .show-image-dp img {
@@ -225,7 +225,7 @@ a.show-campaigndetails-font {
 .show-org-profiletile {
     background-color: #f0f2f3;
     border-right: 2px solid #e7e7e7;
-    height: 66px;
+    height: 58px;
     overflow: hidden;
 }
 .show-contact-ofOwner{
@@ -235,21 +235,21 @@ a.show-campaigndetails-font {
     padding-top: 3px;
 }
 .show-profile {
-    font-size: 9px;
+    font-size: 12px;
     padding: 0;
-    width: 65px;
+/*     width: 65px; */
 }
 .show-org-name {
-    font-size: 10px;
+    font-size: 12px;
     height: 34px;
-    line-height: 12px;
+    line-height: 14px;
     overflow: hidden;
     padding: 0;
-    width: 117px;
+/*     width: 117px; */
 }
 .show-lbl-orgname {
     padding-left: 14px;
-    padding-top: 8px;
+    padding-top: 4px;
 }
 /* img.show-profile-imgs{ */
 /*     left: 6px; */
@@ -503,4 +503,34 @@ textarea.show-textareawidth {
 }
 .manage-impact {
     height: 101px !important;
+}
+.sh-mission-script {
+    background-color: #f6bf0c;
+/*     border-left: 2px solid #e7e7e7; */
+/*     border-right: 2px solid #e7e7e7; */
+    height: 52px;
+    text-align: center;
+    margin-top: 0;
+    padding-top: 3px;
+    overflow:hidden;
+}
+.sh-mission-slogan {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 23px;
+    overflow: hidden;
+    height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.sh-social-fbEllipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.bannerSloganText {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }

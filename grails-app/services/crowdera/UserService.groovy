@@ -1948,7 +1948,7 @@ class UserService {
             reportParams.put("panOfContributor", contribution?.panNumber);
             reportParams.put("receiptNo", transaction.transactionId);
             
-            reportParams.put("exemptionPer", taxReciept.exemptionPercentage);
+            reportParams.put("exemptionPer", taxReciept.exemptionPercentage?.toString());
             
             if(taxReciept.deductibleStatus == null || 'null'.equalsIgnoreCase(taxReciept?.deductibleStatus)){
                 reportParams.put("orgStatus", "N/A");

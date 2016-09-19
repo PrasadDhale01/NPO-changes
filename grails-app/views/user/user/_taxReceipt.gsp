@@ -117,7 +117,7 @@
                         <label class="pull-right taxreceiptdetailsfont">Status of Organization:</label>
                     </div>
                     <div class="col-xs-6 taxreceipttop">
-                        <div class="taxreceipttop">${'INR '+taxReciept.taxRecieptHolderState}</div>
+                        <div class="taxreceipttop">${taxReciept?.deductibleStatus}</div>
                     </div>
                     <div class="clear"></div>
                     
@@ -125,7 +125,7 @@
                         <label class="pull-right taxreceiptdetailsfont">% of Exemption:</label>
                     </div>
                     <div class="col-xs-6 taxreceipttop">
-                        <div class="taxreceipttop">${taxReciept?.deductibleStatus }</div>
+                        <div class="taxreceipttop">${taxReciept?.exemptionPercentage}</div>
                     </div>
                 </div>
             </div>

@@ -712,6 +712,17 @@ $(function() {
             $( '[name="fcra-reg-date"]' ).rules( "add", {
                 required: true
             });
+            
+            $( '[name="tax-reciept-orgStatus"]' ).rules( "add", {
+	            required: true,
+	            minlength:2
+	        });
+	         
+	        $( '[name="tax-reciept-exemptionPercentage"]' ).rules( "add", {
+	            required: true,
+	            min:0,
+	            number: true
+	        });
 
         } else {
         	$( '[name="ein"]' ).rules( "add", {
@@ -1040,6 +1051,18 @@ $(function() {
                 $( '[name="fcra-reg-date"]' ).rules( "add", {
                     required: true
                 });
+                
+                $( '[name="tax-reciept-orgStatus"]' ).rules( "add", {
+                    required: true,
+                    minlength:2
+                });
+                
+                $( '[name="tax-reciept-exemptionPercentage"]' ).rules( "add", {
+                    required: true,
+                    min:0,
+                    number: true
+                });
+                	 
             } else {
             	$( '[name="ein"]' ).rules( "add", {
                     required: true,
@@ -1315,6 +1338,18 @@ $(function() {
     $('.tax-reciept-holder-country').change(function(){
         var taxRecieptHolderCountry = $(this).val();
         autoSave('taxRecieptHolderCountry', taxRecieptHolderCountry);
+    });
+    
+    $('.tax-reciept-orgStatus').blur(function(){
+     	var orgStatus = $(this).val();
+     	autoSave('deductibleStatus', orgStatus);
+    });
+     
+    $('.tax-reciept-exemptionPercentage').blur(function(){
+     	var exemptionPercentage = $(this).val();
+     	if ($('.tax-reciept-exemptionPercentage').valid()) {
+     		autoSave('exemptionPercentage', exemptionPercentage);
+     	}
     });
 
     function renameAndemptyRewardFields(){
@@ -3299,13 +3334,15 @@ $(function() {
 
      $('#previewButton, #previewButtonXS').on('click', function(){
       	$('#isSubmitButton').val(false);
-      	if (currentEnv == "testIndia") {
+      	if (isIndianCampaign) {
 	       	$('[name="pay"], [name="digitalSign"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name="citrusEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
 	             $(this).rules('remove');
+	             $(this).closest('.form-group').removeClass('has-error');
 	        });
       	} else {
       		$('[name="pay"], [name="digitalSign"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
 	             $(this).rules('remove');
+	             $(this).closest('.form-group').removeClass('has-error');
 	        });
       	}
 
@@ -3319,16 +3356,6 @@ $(function() {
         });
 
        	$( "#projectImageFile" ).rules("remove");
-       	
-       	if (currentEnv == "testIndia") {
-	       	$('[name="pay"], [name="digitalSign"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name="citrusEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
-	             $(this).closest('.form-group').removeClass('has-error');
-	        });
-       	} else {
-       		$('[name="pay"], [name="digitalSign"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
-	             $(this).closest('.form-group').removeClass('has-error');
-	        });
-       	}
        	
        	$('.rewardNumberAvailable').each(function () {
             $(this).rules("remove");

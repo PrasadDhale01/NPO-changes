@@ -212,7 +212,7 @@ a.show-campaigndetails-font {
     width: 75px;
 }
 .show-image-dp img {
-    height: 65px;
+    height: 57px;
     width: 75px;
 }
 .show-profile-padding {
@@ -245,11 +245,13 @@ a.show-campaigndetails-font {
     line-height: 14px;
     overflow: hidden;
     padding: 0;
-/*     width: 117px; */
+    width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .show-lbl-orgname {
     padding-left: 14px;
-    padding-top: 4px;
+    padding-top: 10px;
 }
 /* img.show-profile-imgs{ */
 /*     left: 6px; */
@@ -533,4 +535,11 @@ textarea.show-textareawidth {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+.fa-inr-block {
+    display: inline !important;
+    font-size: 25px !important;
+}
+.sh-width-control {
+    padding: 0;
 }

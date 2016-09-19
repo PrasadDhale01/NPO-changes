@@ -4881,7 +4881,7 @@ a.customer-support-a {
     font-size: 16px !important;
 }
 .show-contribution-amt-tile .fa-inr{
-    font-size: 16px !important;
+    font-size: 16px;
 }
 .teamtile .fa-inr {
     font-size: 14px !important;
@@ -8489,11 +8489,23 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    span.fa-inr-block {
+        font-size: 20px !important;
+    }
+    div.show-tiles-padding {
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+    span.show-raised-amt {
+        font-size: 22px;
+        font-weight: 900;
+        line-height: 0.8;
+    }
 	img#cardType {
 	    width: 174px;
 	}
     div.show-impact {
-        padding-top: 24px;
+        padding-top: 22px;
     }
     div.sh-tabs-iconleft {
         left: 26px;
@@ -8582,11 +8594,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 140px;
     }
     span.show-org-name {
-        font-size: 9px;
+        font-size: 10px;
         left: -11px;
+        width: 129px;
     }
     div.show-lbl-orgname {
-        padding-top: 4px;
+        padding-top: 10px;
     }
     span.show-contact-ofOwner {
         font-size: 9px;
@@ -9306,11 +9319,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     button.show-campaign-sucessbtn {
         font-size: 14px;
-        height: 60px;
+        height: 58px;
     }
     button.show-campaign-sucess-endedbtn {
         font-size: 19px;
-        height: 60px;
+        height: 58px;
     }
     button.show-fund-size {
         font-size: 29px;
@@ -11736,12 +11749,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	button.show-campaign-sucess-endedbtn{
 	    font-size: 21px;
 	    padding-left: 14px;
-	    height: 55px;
+	    height: 57px;
 	}
 	button.show-campaign-sucessbtn{
         font-size: 17px;
         padding-left: 10px;
-        height: 56px;
+        height: 58px;
 	}
     div.show-icons {
         left: 35%;
@@ -11923,7 +11936,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-right: 0px;
     }
     .show-contribution-amt-tile .fa-inr {
-	font-size: 12px !important;
+	font-size: 12px;
     }
     .table-responsive {
         width: 100%;

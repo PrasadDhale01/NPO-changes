@@ -521,7 +521,7 @@
                                     <label class="docfile-orglogo-css" id="iconfilesizeSmaller">The file you are attempting to upload is smaller than the permitted size of 1MB.</label>
                                 </div>
                                 <g:if test="${project.organizationIconUrl}">
-                            <div class="pr-1con-thumbnail-div edit-image-mobile col-sm-2">
+                            <div class="pr-icon-thumbnail-div edit-image-mobile col-sm-2">
                                         <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}">
                                         <div class="deleteicon orgicon-css-styles">
                                             <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');" src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete">
@@ -944,7 +944,7 @@
                          </label>
                     </div>
                     <div class="panel panel-body cr-panel-body-spend-matrix form-group cr-panel-body cr-hash-tags">
-                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                        <g:if test="${project.payuStatus}">
                              <g:if test="${taxReciept}">
                                  <div class="row">
                                      <div class="col-sm-4">
@@ -1000,46 +1000,48 @@
                                          </div>
                                      </div>
                              
-                                     <div class="col-sm-12 col-xs-12 col-xs-pl-0 rowseperator">
-                                         <div class="col-sm-4">
-	                                         <div class="form-group form-group-tax-reciept-dropdown form-group-dropdown">
-	                                             <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" value="${taxReciept.deductibleStatus}" noSelection="['null':'Deductible Status']"/>
+                                     <div class="col-sm-4">
+                                         <div class="col-sm-12 form-group form-group-tax-reciept">
+	                                          <input type="text" class="form-control tax-reciept-orgStatus" placeholder="Status of Organization" name="tax-reciept-orgStatus" value="${taxReciept?.deductibleStatus}" >
+	                                      </div>
+	                                 </div>
+	                                 <div class="col-sm-4">
+	                                     <div class="col-sm-12 form-group form-group-tax-reciept">
+	                                         <input type="text" class="form-control tax-reciept-exemptionPercentage" placeholder="% of Exemption" name="tax-reciept-exemptionPercentage" value="${taxReciept?.exemptionPercentage}" >
+	                                     </div>
+	                                 </div>
+	                                      
+	                                 <div class="col-sm-4 col-xs-12">
+	                                     <div class="col-sm-12 col-md-7 col-xs-9 digital_signature">
+	                                         <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
+	                                             Add Digital Signature
+	                                             <input type="file" class="upload" id="digitalSign" name="digitalSign" accept="image/jpeg, image/png">
 	                                         </div>
 	                                     </div>
-                                         <div class="form-group col-sm-8 col-xs-12">
-                                             <div class="col-sm-5 col-md-4 col-xs-9 col-plr-0">
-                                                 <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
-                                                     Add Digital Signature
-                                                     <input type="file" class="upload" id="digitalSign" name="digitalSign" accept="image/jpeg, image/png">
+	                                     <div class="signature_img_seperator"></div>
+	                                     <g:if test="${taxReciept.signatureUrl}">
+	                                         <div class="pr-icon-thumbnail-div edit-image-mobile col-sm-12 col-md-5 col-xs-3">
+	                                             <img id="editsignatureIcon" alt="cross" class="pr-icon-thumbnail" src="${taxReciept.signatureUrl}">
+	                                             <div class="deleteicon orgicon-css-styles">
+	                                                 <img alt="cross" id="deleditsignature" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
+	                                             </div>
+	                                         </div>
+	                                     </g:if>
+	                                     <g:else>
+	                                         <div id="signaturediv" class="pr-icon-thumbnail-div cr-image-mobile col-sm-12 col-md-5 col-xs-3">
+	                                             <img id="signatureIcon" alt="cross" class="pr-icon-thumbnail">
+	                                             <div class="deleteicon orgicon-css-styles">
+	                                                 <img alt="cross" id="delsignature" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
                                                  </div>
                                              </div>
+                                         </g:else>
                                              
-                                             <g:if test="${taxReciept.signatureUrl}">
-                                                 <div class="pr-icon-thumbnail-div edit-image-mobile col-sm-4 col-xs-3">
-                                                     <img id="editsignatureIcon" alt="cross" class="pr-icon-thumbnail" src="${taxReciept.signatureUrl}">
-                                                     <div class="deleteicon orgicon-css-styles">
-                                                         <img alt="cross" id="deleditsignature" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
-                                                     </div>
-                                                 </div>
-                                             </g:if>
-                                             <g:else>
-                                                 <div id="signaturediv" class="pr-icon-thumbnail-div cr-image-mobile col-sm-4 col-xs-3">
-                                                     <img id="signatureIcon" alt="cross" class="pr-icon-thumbnail">
-                                                     <div class="deleteicon orgicon-css-styles">
-                                                         <img alt="cross" id="delsignature" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
-                                                     </div>
-                                                 </div>
-                                             </g:else>
-                                             
-                                             <div class="clear"></div>
-                                             <label class="docfile-orglogo-css" id="signaturemsg">Please select image file.</label>
-                                             <label class="docfile-orglogo-css" id="signaturemsgsize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
-                                         </div>
+                                         <div class="clear"></div>
+                                         <label class="docfile-orglogo-css" id="signaturemsg">Please select image file.</label>
+                                         <label class="docfile-orglogo-css" id="signaturemsgsize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
                                      </div>
-                             
                                  </div>
-                                 
-                                 
+                             
                                  <div class="row">
                                      <div class="col-sm-12 col-sm-fcra">
                                          <input type="checkbox" name="fcra-checkbox" class="fcra-checkbox" <g:if test="${taxReciept.fcraRegNum}">checked="checked"</g:if>>&nbsp;&nbsp;Are you FCRA registered ?
@@ -1140,33 +1142,35 @@
                                          </div>
                                      </div>
                              
-                                     <div class="col-sm-12 col-xs-12 rowseperator col-xs-pl-0">
-                                         <div class="col-sm-4">
-		                                     <div class="form-group form-group-tax-reciept-dropdown form-group-dropdown">
-		                                         <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" noSelection="['null':'Deductible Status']"/>
-		                                     </div>
-		                                 </div>
-                                         <div class="form-group col-sm-8 col-xs-12">
-                                             <div class="col-sm-5 col-md-4 col-xs-9 col-plr-0">
-                                                 <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
-                                                     Add Digital Signature
-                                                     <input type="file" class="upload" id="digitalSign" name="digitalSign" accept="image/jpeg, image/png">
-                                                 </div>
-                                             </div>
-                                             
-                                             <div id="signaturediv" class="pr-icon-thumbnail-div cr-image-mobile col-sm-4 col-xs-3">
-                                                 <img id="signatureIcon" alt="cross" class="pr-icon-thumbnail">
-                                                 <div class="deleteicon orgicon-css-styles">
-                                                     <img alt="cross" id="delsignature" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
-                                                 </div>
-                                             </div>
-                                             
-                                             <div class="clear"></div>
-                                             <label class="docfile-orglogo-css" id="signaturemsg">Add only PNG or JPG extension image.</label>
-                                             <label class="docfile-orglogo-css" id="signaturemsgsize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
+                                     <div class="col-sm-4">
+                                         <div class="col-sm-12 form-group form-group-tax-reciept">
+                                             <input type="text" class="form-control tax-reciept-orgStatus" placeholder="Status of Organization" name="tax-reciept-orgStatus">
                                          </div>
                                      </div>
-                                     
+                                     <div class="col-sm-4">
+                                         <div class="col-sm-12 form-group form-group-tax-reciept">
+                                             <input type="text" class="form-control tax-reciept-exemptionPercentage" placeholder="% of Exemption" name="tax-reciept-exemptionPercentage">
+                                         </div>
+                                      </div>
+                                      <div class="form-group col-sm-4 col-md-4 col-xs-12">
+                                          <div class="col-sm-12 col-md-7 col-xs-9 digital_signature">
+                                              <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
+                                                  Add Digital Signature
+                                                  <input type="file" class="upload" id="digitalSign" name="digitalSign" accept="image/jpeg, image/png">
+                                              </div>
+                                          </div>
+                                          <div id="signaturediv" class="pr-icon-thumbnail-div cr-image-mobile col-sm-12 col-md-5 col-xs-3">
+                                              <img id="signatureIcon" alt="cross" class="pr-icon-thumbnail">
+                                              <div class="deleteicon orgicon-css-styles">
+                                                  <img alt="cross" id="delsignature" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
+                                               </div>
+                                          </div>
+                                          
+                                          <div class="clear"></div>
+                                          <label class="docfile-orglogo-css" id="signaturemsg">Add only PNG or JPG extension image.</label>
+                                          <label class="docfile-orglogo-css" id="signaturemsgsize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
+                                      </div>
+                                           
                                  </div>
                              
                                  <div class="row">

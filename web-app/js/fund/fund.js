@@ -231,7 +231,7 @@ $(function() {
               $.ajax({
                  type    :'post',
                  url     : $("#b_url").val()+'/fund/payupayment',
-                 data    : formData,
+                 data    : formDataObj,
                  processData : false,
                  contentType: false,
                  dataType: 'json',

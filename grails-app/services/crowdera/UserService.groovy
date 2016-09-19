@@ -1525,18 +1525,22 @@ class UserService {
     }
 
     def getContributionsForWhichTaxReceiptreceived(User user, def params){
-        def contributions = Contribution.findAllWhere(user:user)
+        def contributions = Contribution.findAllWhere(user:user, receiptSent: true)
         List contributionList = []
         def contributionsOffset
-        if (contributions) {
-            contributions.each{
-                if (it.receiptSent && it.panNumber != null){
+        
+        String environment = projectService.getCurrentEnvironment()         
+        contributions?.each {
+            if (it.project?.payuStatus) {
+                if (it.panNumber != null) {
                     contributionList.add(it);
                 }
+            } else {
+                contributionList.add(it);
             }
         }
         
-        if (contributionList && !contributionList.empty){
+        if (contributionList && !contributionList.empty) {
             def offset = params.offset ? params.int('offset') : 0
             def max = 10
             def count = contributionList.size()
@@ -1893,7 +1897,9 @@ class UserService {
                 user = getUserById(userId)
             }
         } else {
-            user = getUserById(userId)
+            if (userId != null) {
+                user = getUserById(userId)
+            }
         }
         return user
     }
@@ -1931,20 +1937,29 @@ class UserService {
         reportParams.put("authorizedPerson", taxReciept.name);
         
         reportParams.put("regDate", dateFormat.format(taxReciept.regDate).toString());
-        reportParams.put("exemptionPer", taxReciept.deductibleStatus ? taxReciept.deductibleStatus : " ");
         
         def reportDef
         
         if (contribution.project.payuStatus) {
+            reportParams.put("amountInWord", "INR "+convert((long)contribution.amount));
             reportParams.put("amountInNo", "INR "+contribution.amount.round().toString());
-            reportParams.put("orgStatus", "INR "+taxReciept.taxRecieptHolderState);
+            
             reportParams.put("panNumber", taxReciept.panCardNumber);
             reportParams.put("panOfContributor", contribution?.panNumber);
             reportParams.put("receiptNo", transaction.transactionId);
             
+            reportParams.put("exemptionPer", taxReciept.exemptionPercentage?.toString());
+            
+            if(taxReciept.deductibleStatus == null || 'null'.equalsIgnoreCase(taxReciept?.deductibleStatus)){
+                reportParams.put("orgStatus", "N/A");
+            } else {
+                reportParams.put("orgStatus", taxReciept?.deductibleStatus);
+            }
+            
             reportDef = new JasperReportDef(name:'taxreceiptIndia.jasper',fileFormat:JasperExportFormat.PDF_FORMAT,
                 parameters: reportParams)
         } else {
+            reportParams.put("webUrl", contribution.project.webAddress);
             reportParams.put("amountInNo", "USD "+ contribution.amount.round().toString());
             reportParams.put("amountInWord", "USD "+convert((long)contribution.amount));
             reportParams.put("contributorName", contribution.contributorName)
@@ -1952,6 +1967,13 @@ class UserService {
             reportParams.put("email", contribution.contributorEmail)
             reportParams.put("federalId", taxReciept.ein)
             reportParams.put("phone", taxReciept.phone)
+            
+            if(taxReciept.deductibleStatus == null || 'null'.equalsIgnoreCase(taxReciept?.deductibleStatus)){
+                reportParams.put("exemptionPer", "N/A");
+            } else {
+                reportParams.put("exemptionPer", taxReciept?.deductibleStatus);
+            }
+            
             reportDef = new JasperReportDef(name:'taxreceiptUSA.jasper',fileFormat:JasperExportFormat.PDF_FORMAT,
                 parameters: reportParams)
         }

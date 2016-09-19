@@ -86,12 +86,17 @@ class FundController {
                     def title = projectService.getTitle()
                     def month = contributionService.getMonth()
                     def year = contributionService.getYear()
-                    def defaultCountry = 'US'
+                    Calendar calendar = Calendar.getInstance();
+                    def currentMonth = (calendar.get(Calendar.MONTH )+1)
+                    def currentMonthByWeek =(currentMonth > 9)?currentMonth:("0"+ (calendar.get(Calendar.MONTH )+1))
+                    def currentYearByWeek = calendar.getWeekYear()
+                    def defaultCountry = 'India'
+                    def indiaStates = projectService.getIndianState()
 
-                    render view: 'fund/citruscheckout', model: [team:team, project: project, state:state, country:country,
+                    render view: 'fund/citruscheckout', model: [team:team, project: project, state:indiaStates, country:country,
                         perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
-                        vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, cardTypes: cardTypes, title: title,
-                        month: month, year: year, defaultCountry: defaultCountry, isTaxReceipt: isTaxReceipt]
+                        vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, cardTypes: cardTypes, title: title,currentMonthByWeek:currentMonthByWeek,
+                        month: month, year: year, defaultCountry: defaultCountry, isTaxReceipt: isTaxReceipt, currentYearByWeek:currentYearByWeek]
                 }
             } else {
                 render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo]
@@ -897,10 +902,7 @@ class FundController {
 
         def totalContribution= contributionService.getTotalContributionForProject(project)
         def contPrice = params.double(('amount'))
-        def amt = project.amount
-        def reqAmt = (999/100) * amt
-        def remainAmt = reqAmt- totalContribution
-        def percentage = ((totalContribution + contPrice)/ amt) * 100
+        def percentage = contributionService.getPercentage(contPrice, totalContribution, project)
 
         def vanityUserName = params.fr
 

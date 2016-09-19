@@ -396,7 +396,7 @@ class ProjectController {
                 def taxReceipt = projectService.getTaxRecieptOfProject(project)
                 def deductibleStatus
                 if (taxReceipt){
-                    deductibleStatus = projectService.getDeductibleStatus(taxReceipt.deductibleStatus)
+                    deductibleStatus = projectService.getDeductibleStatus(taxReceipt?.deductibleStatus)
                 }
                 
                 if(project.validated == false) {
@@ -2794,68 +2794,67 @@ class ProjectController {
         }
     }
     
-    def loadOrganizationTemplate(){
-		
-		 def currentEnv = projectService.getCurrentEnvironment()
-         def user =userService.getCurrentUser()
-		 def project = projectService.getProjectById(params.campaignId)
-		 Team team = projectService.getTeamById(params.int('teamId'))
-		 def currentFundraiser = userService.getCurrentFundRaiser(team.user, project)
-		 Team currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
-		 def totalContribution = contributionService.getTotalContributionForProject(project)
-		 def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
-		 def day= projectService.getRemainingDay(project)
-		 def conversionMultiplier = projectService.getCurrencyConverter()
-		 boolean ended = projectService.isProjectDeadlineCrossed(project)
-		 
-		 def isTeamExist, percent, cents, contributedSoFar, amount
-		 
-         if(!user){
-             user = userService.getUserByEmail("anonymous@example.com")
-         }
-		 
-         if(user){
-              isTeamExist = userService.isValidatedTeamExist(project, currentTeam?.user)
-         }
-		 
-	    if (project?.user == currentTeam?.user){
-	        percent = percentage
-	        contributedSoFar = totalContribution
-	        amount = project?.amount?.round()
-	    } else {
-			def teamContribution = contributionService.getTotalContributionForUser(currentTeam?.contributions)
-	        percent = contributionService.getPercentageContributionForTeam(teamContribution, currentTeam)
-	        contributedSoFar = teamContribution
-	        amount = currentTeam?.amount?.round()
-	    }
-	    
-	    if(percent >= 100) {
-	        cents = 100
-	    } else {
-	        cents = percent
-	    }
-         
-         def model =[project:project, totalContribution:totalContribution, percentage:percentage, user:user, day:day, isTeamExist: isTeamExist,
-			 contributedSoFar: contributedSoFar, percent:percent, cents:cents, amount:amount, currentEnv: currentEnv, conversionMultiplier: conversionMultiplier]
-         
-        if(request.method=="POST"&& params.activeTab){
-            switch(params.activeTab){
-                case "story":
-                    render template:"/layouts/showTilesanstitleForOrg", model:[currentEnv:currentEnv, payuStatus: project?.payuStatus, conversionMultiplier:conversionMultiplier,
-						percent: percent, cents:cents, amount:amount, ended:ended, day:day, totalContribution:totalContribution, contributedSoFar:contributedSoFar]
-                break;
-                case "team":
-                  render template:"/layouts/show_teamtileInfo", model:model
-                break;
-                case "contribution":
-                    render template:"/layouts/contributions_tilesanstitle" , model:model
-                break;
-            }
-        }else {
-            render "Organization template not loaded. Please, refresh to load again."
-        }
-    }
-	
+//    def loadOrganizationTemplate(){
+//		
+//		 def currentEnv = projectService.getCurrentEnvironment()
+//         def user =userService.getCurrentUser()
+//		 def project = projectService.getProjectById(params.campaignId)
+//		 Team team = projectService.getTeamById(params.int('teamId'))
+//		 def currentFundraiser = userService.getCurrentFundRaiser(team.user, project)
+//		 Team currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
+//		 def totalContribution = contributionService.getTotalContributionForProject(project)
+//		 def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
+//		 def day= projectService.getRemainingDay(project)
+//		 def conversionMultiplier = projectService.getCurrencyConverter()
+//		 boolean ended = projectService.isProjectDeadlineCrossed(project)
+//		 
+//		 def isTeamExist, percent, cents, contributedSoFar, amount
+//		 
+//         if(!user){
+//             user = userService.getUserByEmail("anonymous@example.com")
+//         }
+//		 
+//         if(user){
+//              isTeamExist = userService.isValidatedTeamExist(project, currentTeam?.user)
+//         }
+//		 
+//	    if (project?.user == currentTeam?.user){
+//	        percent = percentage
+//	        contributedSoFar = totalContribution
+//	        amount = project?.amount?.round()
+//	    } else {
+//			def teamContribution = contributionService.getTotalContributionForUser(currentTeam?.contributions)
+//	        percent = contributionService.getPercentageContributionForTeam(teamContribution, currentTeam)
+//	        contributedSoFar = teamContribution
+//	        amount = currentTeam?.amount?.round()
+//	    }
+//	    
+//	    if(percent >= 100) {
+//	        cents = 100
+//	    } else {
+//	        cents = percent
+//	    }
+//         
+//         def model =[project:project, totalContribution:totalContribution, percentage:percentage, user:user, day:day, isTeamExist: isTeamExist,
+//			 contributedSoFar: contributedSoFar, percent:percent, cents:cents, amount:amount, currentEnv: currentEnv, conversionMultiplier: conversionMultiplier]
+//         
+//        if(request.method=="POST"&& params.activeTab){
+//            switch(params.activeTab){
+//                case "story":
+//                    render template:"/layouts/showTilesanstitleForOrg", model:[currentEnv:currentEnv, payuStatus: project?.payuStatus, conversionMultiplier:conversionMultiplier,
+//						percent: percent, cents:cents, amount:amount, ended:ended, day:day, totalContribution:totalContribution, contributedSoFar:contributedSoFar]
+//                break;
+//                case "team":
+//                  render template:"/layouts/show_teamtileInfo", model:model
+//                break;
+//                case "contribution":
+//                    render template:"/layouts/contributions_tilesanstitle" , model:model
+//                break;
+//            }
+//        }else {
+//            render "Organization template not loaded. Please, refresh to load again."
+//        }
+//    }
 	
 	def deleteCommentImage(){
 		
@@ -2904,7 +2903,7 @@ class ProjectController {
     @Secured(['ROLE_USER'])
     def updateSendMailModal(){
         if(request.method=='POST'){
-            Project project = Project.get(params.projectId)
+            Project project = projectService.getProjectById(params.projectId)
             if(project){
                 def vanityTitle = projectService.getVanityTitleFromId(params.projectId)
                 render (template:'show/updatesendmailmodal', model:[project:project, vanityTitle:vanityTitle])

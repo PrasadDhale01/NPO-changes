@@ -2101,7 +2101,7 @@ class ProjectService {
         def bucketName = "crowdera"
         def s3Bucket = new S3Bucket(bucketName)
 
-        def Folder = "assets"
+        def Folder = "project-images"
 
         def tempImageUrl
         def imageUrl = new ImageUrl()
@@ -4318,19 +4318,33 @@ class ProjectService {
                     }
                 }
                 break;
+                
+            case 'exemptionPercentage':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                        taxReciept.exemptionPercentage = null
+                        taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.exemptionPercentage = Double.parseDouble((varValue != null) ? varValue : "0");
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.exemptionPercentage = Double.parseDouble((varValue != null) ? varValue : "0");
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+
+                break;
 
             case 'offeringTaxReciept':
                 project.offeringTaxReciept = (varValue == 'true' || varValue == true) ? true : false;
                 isValueChanged = true
                 break;
 
-           /* case 'impactAmount':
-                if (varValue.isNumber()) {
-                    project.impactAmount = Integer.parseInt(varValue);
-                    isValueChanged = true
-                }
-                break;*/
-                
             case 'impactNumber':
                 if (varValue.isNumber()) {
                     project.impactNumber = Integer.parseInt(varValue);
@@ -5883,9 +5897,10 @@ class ProjectService {
         }
         
         
-        if (flag && txnStatus == 'SUCCESS') {
+        if (flag && 'SUCCESS'.equalsIgnoreCase(txnStatus)) {
             def contributionId = createTransactionIdForCitrus(txnId, request, session, fundraiser, issuerRefNo)
             return contributionId
+            
         } else {
             return null
         }

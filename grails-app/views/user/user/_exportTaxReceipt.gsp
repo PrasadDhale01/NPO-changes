@@ -4,7 +4,7 @@
 
 <div class="tax-receipt-background">
 	<g:each in="${taxReceiptContribution}" var="contribution">
-		<div class="col-sm-4 col-md-3 col-lg-3 col-xs-6 text-center file-thumbnail-div" data-contribution="${contribution.id}" data-toggle="modal" data-target="#tax-receipt${contribution.id}">
+		<div class="col-sm-4 col-md-3 col-lg-2 col-xs-6 text-center file-thumbnail-div" data-contribution="${contribution.id}" data-toggle="modal" data-target="#tax-receipt${contribution.id}">
 			<div class="tax-receipt-thumbnail-container file-thumbnail-container ">
 				<div class="tax-receipt-thumbnail">
 				    <span class="glyphicon glyphicon-file"></span>
@@ -24,10 +24,9 @@
 	            <div class="modal-content">
 	                <div class="modal-header">
 	                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	                    <h3 class="modal-title"><b>Tax Receipt</b></h3>
+	                    <h3 class="modal-title text-center"><b>Tax Receipt</b></h3>
 	                </div>
 	                <div class="modal-body taxreceiptmodalbody">
-	                    <g:link controller="user" action="exportTaxReceiptPdf" params="['id': contribution.id]" class="btn btn-primary btn-sm pull-right">Download Receipt</g:link><br>
 	                    <g:render template="user/taxReceipt" model="['taxReciept': taxReciept, 'transaction': transaction, 'amountInWords': amountInWords, 'contribution': contribution, 'project': contribution.project, 'ismodal': 'true']"></g:render>
 	                </div>
 	            </div>

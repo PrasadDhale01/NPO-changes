@@ -162,7 +162,44 @@ $(function() {
          if(validator.form()) {
              needToConfirm = false;
              event.preventDefault();
-             var formData = {
+             
+             var formDataObj = new FormData();
+             formDataObj.append("anonymous", $('input[name= anonymous]').val());
+             
+             if ($('input[name= userId]').length > 0) {
+             	formDataObj.append("userId", $('input[name= userId]').val());
+             }
+             
+             formDataObj.append("rewardId", $('input[name= rewardId]').val());
+             formDataObj.append("fr", $('input[name= fr]').val());
+             formDataObj.append("projectAmount", $('input[name= projectAmount]').val());
+             formDataObj.append("projectTitle", $('input[name= projectTitle]').val());
+             formDataObj.append("tempValue", $('input[name= tempValue]').val());
+             formDataObj.append("billToTitle", $('input[name= billToTitle]').val());
+             formDataObj.append("firstname", $('input[name= firstname]').val());
+             formDataObj.append("lastname", $('input[name= lastname]').val());
+             formDataObj.append("email", $('input[name= email]').val());
+             formDataObj.append("phone", $('input[name= phone]').val());
+             formDataObj.append("productinfo", $('input[name= productinfo]').val());
+             formDataObj.append("amount", $('input[name= amount]').val());
+             formDataObj.append("campaignId", $('input[name= campaignId]').val());
+             formDataObj.append("addressLine1", $('input[name= addressLine1]').val());
+             formDataObj.append("addressLine2", $('input[name= addressLine1]').val());
+             formDataObj.append("city", $('input[name= city]').val());
+             formDataObj.append("zip", $('input[name= zip]').val());
+             formDataObj.append("country", $('#payuCountry').val());
+             formDataObj.append("state", $('#payuStates').val());
+             formDataObj.append("otherstate", $('input[name= otherstate]').val());
+             formDataObj.append("shippingEmail", $('input[name= shippingEmail]').val());
+             formDataObj.append("twitterHandle", $('input[name= twitterHandle]').val());
+             formDataObj.append("shippingCustom", $('input[name= shippingCustom]').val());
+             
+             if ($('input[name= panNumber]').length > 0) {
+            	 formDataObj.append("panNumber", $('input[name= panNumber]').val());
+             }
+             
+             /*var formData;
+        	 formData = {
                  'anonymous'     : $('input[name= anonymous]').val(),
                  'userId'        : $('input[name= userId]').val(),
                  'rewardId'      : $('input[name= rewardId]').val(),
@@ -189,12 +226,14 @@ $(function() {
                  'twitterHandle' : $('input[name= twitterHandle]').val(),
                  'shippingCustom': $('input[name= shippingCustom]').val(),
                  'panNumber'     : $('input[name= panNumber]').val()
-             };
+             };*/
 
               $.ajax({
                  type    :'post',
                  url     : $("#b_url").val()+'/fund/payupayment',
-                 data    : formData,
+                 data    : formDataObj,
+                 processData : false,
+                 contentType: false,
                  dataType: 'json',
                  success : function(response){
                  	$('input[name = txnid]').val(response.txnid);

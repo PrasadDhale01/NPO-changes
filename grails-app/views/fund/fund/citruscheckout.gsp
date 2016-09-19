@@ -34,7 +34,7 @@
                 %>
                 <div id="myWizard">
                     <g:form action="charge" method="POST" class="payment-form" id="payment-form" name="payment-form">
-                        <div class="step" data-step-title="Transaction Amount">
+                        <div class="step" data-step-title="Transaction Amount" id="citrusTransactionAmount">
                             <div class="col-md-5">
                                 <g:if test="${flash.amt_message}">
                                     <div class="alert alert-danger">
@@ -63,6 +63,7 @@
                                 <g:hiddenField name="url" value="${base_url}" id="url"/>
                                 <g:hiddenField name="anonymous" value="false" id="anonymous"/>
                                 <g:hiddenField name="projectTitle" value="${vanityTitle}"/>
+                                <input type="hidden" name="projectAmount" id="projectAmount" value="${project.amount.round() }"/>
                                 
                                 <g:hiddenField type="hidden" name="projectTitle" value="${projectTitle}"/>
                                 
@@ -103,6 +104,13 @@
                                     <div class="col-md-12 col-sm-12 col-xs-12 eazywizard-bottom-margin">
                                         <div  class="amount-button"><button type="button" class="btn btn-info btn-md btn-block" id="btnCheckoutContinue">Continue</button></div>
                                     </div>
+                                    
+                                    <div class="col-sm-12">
+                                        <h4><b>Powered by Citrus</b></h4>
+                                    </div>
+                                    <div class="col-sm-12 eazywizard-bottom-margin">
+                                        <img src="//s3.amazonaws.com/crowdera/assets/2d87664b-d1c9-4fae-a015-fc02d3333dbb.png" alt="citrus">
+                                    </div>
                                 </div>
                             
                             </div>
@@ -114,7 +122,7 @@
                             </div>
                         </div>
                         
-                        <div class="step" data-step-title="Billing Information">
+                        <div class="step" data-step-title="Billing Information" id="billingInformation">
                             <div class="panel panel-primary billing-panel">
                                 <div class="panel-heading shipping-heading">
                                     <h3 class="panel-title">Billing Information <g:if test="${currentUser == null}">(Your contact details are used to send a receipt)</g:if></h3>
@@ -195,7 +203,7 @@
                                         </div>
             
                                         <div class="form-group">
-                                            <div class="input-group col-md-12">
+                                            <div class="input-group col-md-12 citrusStateDiv">
                                                 <g:select class="selectpicker" name="billToState" id="billToState" from="${state}" optionKey="key" optionValue="value"/>
                                             </div>
                                         </div>
@@ -209,7 +217,7 @@
                                         
                                         <div class="form-group">
                                             <div class="input-group col-md-12">
-                                                <g:select class="selectpicker" name="citrusCountry" id="citrusCountry" from="${country}" value="${defaultCountry}" optionKey="key" optionValue="value"/>
+                                                <input class="form-control all-place" type="text" placeholder="Country" name="citrusCountry" id="citrusCountry" value="${defaultCountry}" readonly>
                                             </div>
                                         </div>
                                         
@@ -223,88 +231,93 @@
                             </div>
                             
                             <div class="col-xs-12 eazywizard-bottom-margin">
-                                <div class="col-sm-offset-8 col-sm-4 col-xs-offset-0 col-xs-12">
-                                    <div class="amount-button"><button type="button" class="btn btn-info btn-md btn-block" id="btnShippingContinue">Continue</button></div>
+                                <div class="col-sm-6">
+                                    <h4><b>Powered by Citrus</b></h4>
+                                    <img src="//s3.amazonaws.com/crowdera/assets/2d87664b-d1c9-4fae-a015-fc02d3333dbb.png" alt="citrus">
+                                </div>
+                                <div class="col-sm-4 pull-right col-xs-offset-0 col-xs-12">
+                                    <div class="amount-button"><button type="button" class="btn btn-info btn-lg btn-block" id="btnShippingContinue">Continue</button></div>
                                 </div>
                             </div>
-                        
-                        </div>
-                    
-                        <div class="step" data-step-title="Card Details">
-                            <div class="panel panel-primary billing-panel">
-                                <div class="panel-heading shipping-heading">
-                                    <h3 class="panel-title">Card Details</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="col-md-offset-1 col-md-10 col-sm-offset-0 col-sm-12 col-xs-12 col-xs-offset-0">
-                                        <div class="form-group">
-                                            <div class="leftcard-column">
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
-                                                <input type="text" class="card-number form-control all-place" placeholder="Card Holder Name" name="citrusCardHolder" id="citrusCardHolder" maxlength="30" required>
-                                                <div class="clear-both"></div>
-                                            </div>
-                                            <div class="rightcard-column citrusCardType-column">
-                                                <span class="input-group-addon card-details"><span class="glyphicon glyphicon-credit-card"></span> </span>
-                                                <g:select class="selectpicker card-number card-number-width" name="citrusCardType" id="citrusCardType" from="${citrusCardTypes}" optionKey="key" optionValue="value"/>
-                                                <div class="clear-both"></div>
-                                            </div>
-                                            <div class="clear-both"></div>
-                                        </div>
-                                        
-                                        <div class="clear"></div>
-                                        
-                                        <div class="form-group">
-                                            <div class="leftcard-column">
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
-                                                <input type="text" class="card-number form-control all-place" placeholder="Card Number" name="citrusNumber" id="citrusNumber" data-stripe="number" required>
-                                                <div class="clear-both"></div>
-                                            </div>
-                                            <div class="rightcard-column">
-                                                <span class="input-group-addon card-details"><span class="glyphicon glyphicon-credit-card"></span> </span>
-                                                <g:select class="selectpicker card-number card-number-width" name="citrusScheme" id="citrusScheme" from="${citrusSchemes}" optionKey="key" optionValue="value"/>
-                                                <div class="clear-both"></div>
-                                            </div>
-                                            <div class="clear-both"></div>
-                                        </div>
-                                        
-                                        <div class="clear"></div>
-                                        
-                                        <div class="form-group cvc-width">
-                                            <div class="leftcard-column-one">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </span>
-                                                    <input class="form-control all-place" type="password" placeholder="CVV" data-stripe="cvc" name="citrusCvv" id="citrusCvv" required>
-                                                <div class="clear"></div>       
-                                            </div>
-                                            <div class="leftcard-column-two">
-                                            <span class="input-group-addon card-details"><span class="glyphicon glyphicon-calendar"></span> </span>
-                                                    <g:select class="selectpicker card-number-width" name="ccExpDateMonth" id="ccExpDateMonth" from="${month}" optionKey="key" data-stripe="exp-month" optionValue="value"/>
-                                                <div class="clear"></div>   
-                                            </div>
-                                            <div class="leftcard-column-three">
-                                            <span class="input-group-addon card-details"><span class="glyphicon glyphicon-calendar"></span> </span>
-                                                    <g:select class="selectpicker card-number-width" name="ccExpDateYear" id="ccExpDateYear" from="${year}" optionKey="key" data-stripe="exp-year" optionValue="value"/>
-                                                <div class="clear"></div>
-                                            </div>
-                                            <div class="clear"></div>
-                                            <div class="dateErrorMsg">Please select valid date. It should be greater than current date.</div>
-                                            <input type="hidden" id="isValidDate" value="true"/>
-                                        </div>
-                                        
-                                        
-                                        <div class="col-xsl-0 col-md-4 col-xs-12 box fund-campaign-tile-center-align eazywizard-bottom-margin">
-                                        
-                                            <div class="form-group term-of-use-center-alignment">
-                                                <label class="checkbox control-label">
-                                                    <input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse">By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
-                                                </label>
-                                            </div>
-                                            
-                                            <div class="center-fund">
-                                                <button type="submit" class="btn btn-info btn-block btn-lg citruscheckoutsubmitbtn" name="fund-button" id="submitButton">Fund this Campaign</button>
-                                                <button type="button" class="btn btn-info btn-block btn-lg hidden citruscheckoutsubmitbtn" name="fund-button" id="citrusCardPayButton"></button>
-                                            </div>
-                                        </div>
-                                        
+				        </div>
+				    
+				        <div class="step" data-step-title="Card Details" id="citrusCardDetails">
+				            <div class="panel panel-primary billing-panel">
+				                <div class="panel-heading shipping-heading">
+				                    <h3 class="panel-title">Card Details</h3>
+				                </div>
+				                <div class="panel-body">
+					                <div class="col-md-offset-1 col-md-10 col-sm-offset-0 col-sm-12 col-xs-12 col-xs-offset-0">
+					                    <div class="form-group">
+					                        <div class="leftcard-column">
+					                            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
+					                            <input type="text" class="card-number form-control all-place" placeholder="Card Holder Name" name="citrusCardHolder" id="citrusCardHolder" maxlength="30" required>
+					                            <div class="clear-both"></div>
+					                        </div>
+					                        <div class="rightcard-column citrusCardType-column">
+					                            <span class="input-group-addon card-details"><span class="glyphicon glyphicon-credit-card"></span> </span>
+					                            <g:select class="selectpicker card-number card-number-width" name="citrusCardType" id="citrusCardType" from="${citrusCardTypes}" optionKey="key" optionValue="value"/>
+					                            <div class="clear-both"></div>
+					                        </div>
+					                        <div class="clear-both"></div>
+					                    </div>
+					                    
+					                    <div class="clear"></div>
+					                    
+					                    <div class="form-group">
+					                        <div class="leftcard-column">
+					                            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
+					                            <input type="text" class="card-number form-control all-place" placeholder="Card Number" name="citrusNumber" id="citrusNumber" data-stripe="number" required>
+					                            <div class="clear-both"></div>
+					                        </div>
+					                        <div class="rightcard-column">
+					                            <input type="hidden" value="" name="citrusScheme" id="citrusScheme" />
+					                            <img src="//s3.amazonaws.com/crowdera/assets/2d87664b-d1c9-4fae-a015-fc02d3333dbb.png" alt="card" id="cardType">
+					                            <div class="clear-both"></div>
+					                        </div>
+					                        <div class="clear-both"></div>
+					                    </div>
+					                    
+					                    <div class="clear"></div>
+					                    
+					                    <div class="form-group cvc-width">
+					                        <div class="leftcard-column-one">
+					                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </span>
+					                                <input class="form-control all-place" type="text" placeholder="CVV" data-stripe="cvc" name="citrusCvv" id="citrusCvv" required>
+					                            <div class="clear"></div>       
+					                        </div>
+					                        <div class="leftcard-column-two">
+					                        <span class="input-group-addon card-details"><span class="glyphicon glyphicon-calendar"></span> </span>
+					                                <g:select class="selectpicker card-number-width" name="ccExpDateMonth" id="ccExpDateMonth" from="${month}"  value="${currentMonthByWeek}" optionKey="key" data-stripe="exp-month" optionValue="value"/>
+					                            <div class="clear"></div>   
+					                        </div>
+					                        <div class="leftcard-column-three">
+					                        <span class="input-group-addon card-details"><span class="glyphicon glyphicon-calendar"></span> </span>
+					                                <g:select class="selectpicker card-number-width" name="ccExpDateYear" id="ccExpDateYear" from="${year}" value="${currentYearByWeek}" optionKey="key" data-stripe="exp-year" optionValue="value"/>
+					                            <div class="clear"></div>
+					                        </div>
+					                        <div class="clear"></div>
+					                        <div class="dateErrorMsg">Please select valid expiry date.</div>
+					                        <input type="hidden" id="isValidDate" value="true"/>
+					                    </div>
+					                    
+					                    
+					                    <div class="col-xsl-0 col-md-4 col-xs-12 box fund-campaign-tile-center-align eazywizard-bottom-margin">
+					                    
+	                                        <div class="form-group term-of-use-center-alignment">
+	                                            <label class="checkbox control-label">
+	                                                <input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse">By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
+	                                            </label>
+	                                        </div>
+	                                        
+	                                        <div class="center-fund">
+	                                            <button type="submit" class="btn btn-info btn-block btn-lg citruscheckoutsubmitbtn" name="fund-button" id="submitButton">Fund this Campaign</button>
+	                                            <button type="button" class="btn btn-info btn-block btn-lg hidden citruscheckoutsubmitbtn" name="fund-button" id="citrusCardPayButton"></button>
+	                                            <br>
+	                                            <h4><b>Powered by Citrus</b></h4>
+	                                        </div>
+	                                    </div>
+	                                    
                                         <g:select class="selectpicker hidden" name="citrusAvailableOptions" id="citrusAvailableOptions" from="${citrusAvailableOptions}" optionKey="key" optionValue="value"/>
                                     </div>
                                     

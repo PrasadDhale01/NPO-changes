@@ -30,14 +30,14 @@
 		
 		<g:if test="${!isTeamExist && project.validated}">
 		    <g:if test="${!ended}">
-			    <li class="col-md-4 col-sm-4 col-xs-4 hidden show-team-button button-team-show hidden-xs">
+			    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show hidden-xs">
 			        <g:form controller="project" action="addTeam" id="${project.id}">
 					    <input type="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md manage-team all-place">
 					</g:form> 
 			    </li>
 		    </g:if>
 		    <g:else>
-		        <li class="col-md-4 col-sm-4 col-xs-4 hidden show-team-button hidden-xs">
+		        <li class="col-md-4 col-sm-4 col-xs-4 show-team-button hidden-xs">
                     <input value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember disableteambutton text-center btn btn-md all-place" readonly/>
                 </li>
 		    </g:else>

@@ -5637,6 +5637,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    h4.faqSubtitle {
+        font-size: 16px;
+    }
+    div.learnContainer {
+        background-color: white;
+        padding: 40px;
+        width: 320px;
+	}
     button.show-button-cmt {
         margin-top: 15px;
     }
@@ -8047,6 +8055,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+    button.prive-submitapproval-btn {
+        margin-left: -26px;
+        width: 183px;
+        font-size: 14px;
+    }
 	div.digital_signature .btn-sm {
         padding: 8px 28px;
     }
@@ -8253,9 +8266,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 22px;
         line-height: 28px;
     }
-    a.show-btn-sh-fb {
-        margin-bottom: 108px;
-    }
+/*     a.show-btn-sh-fb { */
+/*         margin-bottom: 108px; */
+/*     } */
     div.organization-details h4 {
         margin-top: 0px;
         overflow:hidden;
@@ -8489,6 +8502,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    
     span.fa-inr-block {
         font-size: 20px !important;
     }
@@ -8501,6 +8515,31 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-weight: 900;
         line-height: 0.8;
     }
+	a.viewTopics {
+        background-color: #e7e7e7;
+        border-radius: 10px;
+        color: black;
+        font-size: 10px !important;
+        font-weight: bold;
+        padding: 5px;
+        text-decoration: none;
+        width: 100%;
+    }
+    a.viewTopics:hover{
+	   color: #fff;
+	   background-color: #4292cb;
+	   border-radius: 10px 10px 10px 10px;
+       font-size: 10px !important;
+       font-weight: bold;
+       padding: 5px;
+       width: 100%;
+       text-decoration: none;
+    }
+	div.learnContainer {
+        background-color: white;
+        padding: 40px;
+        width: 640px;
+	}
 	img#cardType {
 	    width: 174px;
 	}
@@ -11529,6 +11568,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	button.prive-submitapproval-btn {
+        width: 220px;
+        font-size: 14px;
+    }
     .digital_signature .btn-sm {
         padding: 8px 28px;
     }
@@ -13577,6 +13620,26 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /*Screen resolution 644 x 767 */
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    a.viewTopics {
+	   background-color: #e7e7e7;
+       border-radius: 10px 10px 10px 10px;
+       color: black;
+       font-size: 10px !important;
+       font-weight: bold;
+       padding: 5px;
+       width: 100%;
+	   text-decoration: none;
+    }
+    a.viewTopics:hover{
+	   color: #fff;
+	   background-color: #4292cb;
+	   border-radius: 10px 10px 10px 10px;
+       font-size: 10px !important;
+       font-weight: bold;
+       padding: 5px;
+       width: 100%;
+       text-decoration: none;
+    }
     div.TW-ack-commentBox {
         margin-bottom: 55px;
         margin-top: 30px;
@@ -15138,6 +15201,42 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    h4.faqSubtitle {
+       font-size: 16px;
+       font-weight: bold;
+    }
+    a.viewTopics {
+	   background-color: #e7e7e7;
+       border-radius: 10px 10px 10px 10px;
+       color: black;
+       font-size: 10px !important;
+       font-weight: bold;
+       padding: 5px;
+       width: 100%;
+	   text-decoration: none;
+    }
+    a.viewTopics:hover{
+	   color: #fff;
+	   background-color: #4292cb;
+	   border-radius: 10px 10px 10px 10px;
+       font-size: 10px !important;
+       font-weight: bold;
+       padding: 5px;
+       width: 100%;
+       text-decoration: none;
+    }
+    ul.articles li a {
+	   font-size: 14px;
+	   font-family: Georgia;
+   }
+   div.learnBg-color{
+       background-color: #f5f5f5;
+   }
+    div.learnContainer{
+	   background-color: white;
+       padding: 40px;
+       width: 320px;
+    }
     button.show-button-cmt {
         margin-top: 15px;
     }
@@ -17591,7 +17690,7 @@ textarea.textarea-embed-video {
     height: 60px;
 }
 .sh-submitapproval{
-	height: 56px !important;
+	height: 61px !important;
     margin-bottom: 0;
 }
 .sh-perks-preview {
@@ -18663,4 +18762,83 @@ input[readonly] {
     float: left;
     position: absolute;
     margin-top: 30px;
+}
+
+                                       /* learning center styles */
+
+a.viewTopics {
+	background-color: #e7e7e7;
+    border-radius: 10px 10px 10px 10px;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px;
+    width: 100%;
+	text-decoration: none;
+}
+
+a.viewTopics:hover{
+	color: #fff;
+	background-color: #4292cb;
+	border-radius: 10px 10px 10px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px;
+    width: 100%;
+    text-decoration: none;
+}
+
+.faqTitle{
+	font-size: 35px;
+}
+
+.faqSubtitle{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.article1 {
+    height: 100px;
+    overflow: hidden;
+}
+
+.articles li a {
+	font-size: 15px;
+	font-family: Georgia;
+}
+
+.articles:hover li a{
+	text-decoration: none;
+}
+
+.articless {
+	font-size: 17px;
+	font-family: Georgia;
+}
+
+.articlePic img{
+    border: 1px solid #cfc5c5 !important;
+    border-radius: 4px !important;
+    display: block;
+    margin: 30px auto ;
+}
+
+.learnContainer{
+	background-color: white;
+    padding: 40px;
+    width: 1000px;
+}
+
+.learnBg-color{
+	background-color: #f5f5f5;
+}
+
+div.nexxt{
+	margin-top: -21px;
+}
+
+strong.learnMore-Subheading {
+	font-size: 26px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }

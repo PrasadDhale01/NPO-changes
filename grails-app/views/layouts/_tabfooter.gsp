@@ -36,6 +36,7 @@
                     <li><g:link controller="user" action="partners">Partner Pages</g:link></li>
                 </g:if>
                 <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
+                <li><a href="${resource(dir: '/Learning-Center')}">Learn More</a></li>
             </ul>
             </div>
         </div>

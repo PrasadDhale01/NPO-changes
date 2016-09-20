@@ -315,6 +315,16 @@ function loadHeaderCallback(){
    });
 }
 
+function toggleSearch(){
+    if($("#search-bar").width()===0){
+        desktopSearch();
+    }else if($("#search-barr1").width()===0){
+        mobileSearch();
+    }else{
+        onSearchLeave();
+    }
+}
+
 function desktopSearch(){
 	
 	var slider_width = $('#hiddensearch').width();

@@ -53,7 +53,7 @@
                    </g:each>
                 </span>
             
-                <span class="showing-hashtags showing-hashtags-tabs">
+                <span class="showing-hashtags showing-hashtags-tabs hidden">
                    <g:each in="${firstThreeHashtag}" var="hashtag">
                         ${hashtag}
                    </g:each>

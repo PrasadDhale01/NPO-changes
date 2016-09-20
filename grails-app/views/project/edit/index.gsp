@@ -257,7 +257,7 @@
                                 crowdera.in/campaigns/
                             </g:if>
                             <g:else>
-                                crowdera.co/campaigns/
+                                gocrowdera.com/campaigns/
                             </g:else>
                         </label>
                         <div class="col-sm-12 col-xs-12 cr1-mobile-indx1 col-web-url">
@@ -266,7 +266,7 @@
                                     crowdera.in/campaigns/
                                 </g:if>
                                 <g:else>
-                                    crowdera.co/campaigns/
+                                    gocrowdera.com/campaigns/
                                 </g:else>
                             </div>
                             <input class="form-control form-control-no-border editsweb-margin-mobile  cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd customVanityUrl" name="customVanityUrl" maxlength="55" value="${project?.customVanityUrl}" id="customVanityUrl" placeholder="Your-Campaign-web-url" <g:if test="${project?.validated && project?.customVanityUrl}">readonly</g:if>>

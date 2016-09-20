@@ -213,7 +213,7 @@ environments {
         grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
         grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
-        crowdera.BASE_URL = 'http://test.crowdera.co'
+        crowdera.BASE_URL = 'http://test.gocrowdera.com'
 
         grails.logging.jul.usebridge = false
         grails.dbconsole.enabled = true
@@ -291,7 +291,7 @@ environments {
                     secret = '0fE42pditvlL8Yzgw9Jw1PhL'
                     successUri = '/login/googleSuccess'
                     failureUri = '/login/googleFailure'
-                    callback = "http://test.crowdera.co/oauth/google/callback"
+                    callback = "http://test.gocrowdera.com/oauth/google/callback"
                     scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
                 }
             }
@@ -321,7 +321,7 @@ environments {
         grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
         grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
-        crowdera.BASE_URL = 'http://staging.crowdera.co'
+        crowdera.BASE_URL = 'http://staging.gocrowdera.com'
 
         grails.logging.jul.usebridge = false
         grails.dbconsole.enabled = true
@@ -395,7 +395,7 @@ environments {
                     secret = 'zbanKIejo4qofwXdtyaOnaq-'
                     successUri = '/login/googleSuccess'
                     failureUri = '/login/googleFailure'
-                    callback = "http://staging.crowdera.co/oauth/google/callback"
+                    callback = "http://staging.gocrowdera.com/oauth/google/callback"
                     scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
                 }
             }
@@ -409,8 +409,8 @@ environments {
         grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
         grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
-        crowdera.BASE_URL = 'https://crowdera.co'
-        crowdera.BASE_URL1 = 'https://www.crowdera.co'
+        crowdera.BASE_URL = 'https://gocrowdera.com'
+        crowdera.BASE_URL1 = 'https://www.gocrowdera.com'
 
         grails.logging.jul.usebridge = false
         grails.dbconsole.enabled = true
@@ -490,7 +490,7 @@ environments {
                     secret = 'zIubdLkqqwlATWRESK6BYssK'
                     successUri = '/login/googleSuccess'
                     failureUri = '/login/googleFailure'
-                    callback = "https://crowdera.co/oauth/google/callback"
+                    callback = "https://gocrowdera.com/oauth/google/callback"
                     scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
                 }
             }

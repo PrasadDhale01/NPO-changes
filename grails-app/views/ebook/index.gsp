@@ -68,7 +68,7 @@
 							    <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo">
 							    <div  class="TW-ebook-footer-links">
 							    	<g:if test="${currentEnv == 'production' || currentEnv=='development'}">
-							    		<a href="https://crowdera.co">www.crowdera.co</a>
+							    		<a href="https://gocrowdera.com">www.gocrowdera.com</a>
 							    	</g:if>
 							    	<g:elseif test="${currentEnv == 'prodIndia' || currentEnv=='development'}">
 							    		<a href="https://crowdera.in">www.crowdera.in</a>
@@ -102,7 +102,7 @@
 					    <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo">
 					    <div  class="TW-ebook-footer-links">
 						<g:if test="${currentEnv == 'production' || currentEnv == 'staging'|| currentEnv == 'test'|| currentEnv=='development'}">
-						    <a href="https://crowdera.co">www.crowdera.co</a>
+						    <a href="https://gocrowdera.com">www.gocrowdera.com</a>
 						</g:if>
 						<g:else>
 						    <a href="https://crowdera.in">www.crowdera.in</a>
@@ -136,7 +136,7 @@
 					    <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo">
 					    <div  class="TW-ebook-footer-links">
 					    	<g:if test="${currentEnv == 'production' || currentEnv == 'staging'|| currentEnv == 'test'|| currentEnv=='development'}">
-							    <a href="https://crowdera.co">www.crowdera.co</a>
+							    <a href="https://gocrowdera.com">www.gocrowdera.com</a>
 							</g:if>
 							<g:else>
 							    <a href="https://crowdera.in">www.crowdera.in</a>
@@ -176,7 +176,7 @@
 					    <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo">
 					    <div  class="TW-ebook-footer-links">
 							<g:if test="${currentEnv == 'production' || currentEnv == 'staging'|| currentEnv == 'test'|| currentEnv=='development'}">
-							    <a href="https://crowdera.co">www.crowdera.co</a>
+							    <a href="https://gocrowdera.com">www.gocrowdera.com</a>
 							</g:if>
 							<g:else>
 							    <a href="https://crowdera.in">www.crowdera.in</a>
@@ -205,7 +205,7 @@
 					    <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo">
 					    <div  class="TW-ebook-footer-links">
 							<g:if test="${currentEnv == 'production' || currentEnv == 'staging'|| currentEnv == 'test'|| currentEnv=='development'}">
-							    <a href="https://crowdera.co">www.crowdera.co</a>
+							    <a href="https://gocrowdera.com">www.gocrowdera.com</a>
 							</g:if>
 							<g:else>
 							    <a href="https://crowdera.in">www.crowdera.in</a>
@@ -244,7 +244,7 @@
 					    <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo">
 					    <div  class="TW-ebook-footer-links">
 					    	<g:if test="${currentEnv == 'production' || currentEnv == 'staging'|| currentEnv == 'test'|| currentEnv=='development'}">
-							    <a href="https://crowdera.co">www.crowdera.co</a>
+							    <a href="https://gocrowdera.com">www.gocrowdera.com</a>
 							</g:if>
 							<g:else>
 							    <a href="https://crowdera.in">www.crowdera.in</a>
@@ -272,7 +272,7 @@
 					    <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo">
 					    <div  class="TW-ebook-footer-links">
 					        <g:if test="${currentEnv == 'production' || currentEnv == 'staging'|| currentEnv == 'test'|| currentEnv=='development'}">
-							    <a href="https://crowdera.co">www.crowdera.co</a>
+							    <a href="https://gocrowdera.com">www.gocrowdera.com</a>
 							</g:if>
 							<g:else>
 							    <a href="https://crowdera.in">www.crowdera.in</a>
@@ -317,7 +317,7 @@
 					    <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo">
 					    <div  class="TW-ebook-footer-links">
 							<g:if test="${currentEnv == 'production' || currentEnv == 'staging'|| currentEnv == 'test'|| currentEnv=='development'}">
-							    <a href="https://crowdera.co">www.crowdera.co</a>
+							    <a href="https://gocrowdera.com">www.gocrowdera.com</a>
 							</g:if>
 							<g:else>
 							    <a href="https://crowdera.in">www.crowdera.in</a>
@@ -345,7 +345,7 @@
 					    <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo">
 					    <div  class="TW-ebook-footer-links">
 						<g:if test="${currentEnv == 'production' || currentEnv == 'staging'|| currentEnv == 'test'|| currentEnv=='development'}">
-						    <a href="https://crowdera.co">www.crowdera.co</a>
+						    <a href="https://gocrowdera.com">www.gocrowdera.com</a>
 						</g:if>
 						<g:else>
 						    <a href="https://crowdera.in">www.crowdera.in</a>
@@ -386,7 +386,7 @@
 					    <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo">
 					    <div  class="TW-ebook-footer-links">
 					    	<g:if test="${currentEnv == 'production' || currentEnv == 'staging'|| currentEnv == 'test'|| currentEnv=='development'}">
-							    <a href="https://crowdera.co">www.crowdera.co</a>
+							    <a href="https://gocrowdera.com">www.gocrowdera.com</a>
 							</g:if>
 							<g:else>
 							    <a href="https://crowdera.in">www.crowdera.in</a>
@@ -421,7 +421,7 @@
 					    <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo">
 					    <div  class="TW-ebook-footer-links">
 					        <g:if test="${currentEnv == 'production' || currentEnv == 'staging'|| currentEnv == 'test'|| currentEnv=='development'}">
-							    <a href="https://crowdera.co">www.crowdera.co</a>
+							    <a href="https://gocrowdera.com">www.gocrowdera.com</a>
 							</g:if>
 							<g:else>
 							    <a href="https://crowdera.in">www.crowdera.in</a>
@@ -457,7 +457,7 @@
 					    <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo">
 					    <div  class="TW-ebook-footer-links">
 						<g:if test="${currentEnv == 'production' || currentEnv == 'staging'|| currentEnv == 'test'|| currentEnv=='development'}">
-						    <a href="https://crowdera.co">www.crowdera.co</a>
+						    <a href="https://gocrowdera.com">www.gocrowdera.com</a>
 						</g:if>
 						<g:else>
 						    <a href="https://crowdera.in">www.crowdera.in</a>
@@ -492,7 +492,7 @@
 					    <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo">
 					    <div  class="TW-ebook-footer-links">
 					        <g:if test="${currentEnv == 'production' || currentEnv == 'staging'|| currentEnv == 'test'|| currentEnv=='development'}">
-							    <a href="https://crowdera.co">www.crowdera.co</a>
+							    <a href="https://gocrowdera.com">www.gocrowdera.com</a>
 							</g:if>
 							<g:else>
 							    <a href="https://crowdera.in">www.crowdera.in</a>
@@ -539,7 +539,7 @@
 					     <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo">
 					     <div  class="TW-ebook-footer-links">
 					    	<g:if test="${currentEnv == 'production' || currentEnv == 'staging'|| currentEnv == 'test'|| currentEnv=='development'}">
-							    <a href="https://crowdera.co">www.crowdera.co</a>
+							    <a href="https://gocrowdera.com">www.gocrowdera.com</a>
 							</g:if>
 							<g:else>
 							    <a href="https://crowdera.in">www.crowdera.in</a>
@@ -571,7 +571,7 @@
 					    <img class="img-reponsive" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo-small.png" alt="Ebook footer logo">
 					    <div  class="TW-ebook-footer-links">
 						<g:if test="${currentEnv == 'production' || currentEnv == 'staging'|| currentEnv == 'test'|| currentEnv=='development'}">
-						    <a href="https://crowdera.co">www.crowdera.co</a>
+						    <a href="https://gocrowdera.com">www.gocrowdera.com</a>
 						</g:if>
 						<g:else>
 						    <a href="https://crowdera.in">www.crowdera.in</a>

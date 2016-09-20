@@ -33,18 +33,24 @@
 	                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 	                            crowdera.in/partners/
 	                        </g:if>
-	                        <g:else>
-	                            crowdera.co/partners/
-	                        </g:else>
+	                        <g:elseif test="${currentEnv == 'staging'}">
+                       			staging.gocrowdera.com/partners/
+                       		</g:elseif>
+	                       <g:else>
+	                            gocrowdera.com/partners/
+	                       </g:else>
 	                    </label>
 	                    <div class="col-sm-12 col-xs-12 form-group col-partner-page">
 	                        <div class="cr1-vanityUrl-indx1 hidden-xs">
 	                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 	                                crowdera.in/partners/
 	                            </g:if>
-	                            <g:else>
-	                                crowdera.co/partners/
-	                            </g:else>
+	                           <g:elseif test="${currentEnv == 'staging'}">
+                       					staging.gocrowdera.com/partners/
+                       			</g:elseif>
+		                       <g:else>
+		                            gocrowdera.com/partners/
+		                       </g:else>
 	                        </div>
 	                        <input class="form-control form-control-no-border partnercustomUrl cr-placeholder cr-chrome-place text-color" name="customUrl" id="customUrl" value="${partner.customUrl}" placeholder="Your-partner-page-url">
 	                        <label class="pull-right " id="titleLength"></label>

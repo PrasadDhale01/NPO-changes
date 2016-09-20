@@ -379,7 +379,7 @@ $(function() {
     $.validator.addMethod('isPaypalEmailVerified', function () {
         var ack = $("#paypalEmailAck").val();
         var base_url = $("#b_url").val();
-        if (base_url !== 'https://crowdera.co' && ack === 'Failure'){
+        if (base_url !== 'https://gocrowdera.com' && ack === 'Failure'){
             return (ack === 'Success') ? ack : false;
         }
         return true;
@@ -2773,7 +2773,7 @@ $(function() {
 
    $('#paypalEmailId').change(function(){
        var base_url = $("#b_url").val();
-       if (base_url !== 'https://crowdera.co'){
+       if (base_url !== 'https://gocrowdera.com'){
            var email =  $('#paypalEmailId').val();
            $.ajax({
                type:'post',

@@ -247,7 +247,7 @@ $(function() {
     		$('#campaign-select-alert').fadeOut(3000);
     	} else {
             if(currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'production' || currentEnv === 'staging'){
-                url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.co!"&url='+encodeURIComponent(selectedUrl);
+                url = 'https://twitter.com/intent/tweet?text="Check campaign at gocrowdera.com!"&url='+encodeURIComponent(selectedUrl);
             } else {
                 url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.in!"&url='+encodeURIComponent(selectedUrl);
             }

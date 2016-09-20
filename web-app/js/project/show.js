@@ -385,18 +385,18 @@ $(function() {
         var url = $(this).attr('href');
         var redirectUrl;
         if (currentEnv === 'testIndia') {
-            redirectUrl = 'http://test.crowdera.co'+url;
-            if (confirm('You are being redirected to our global site www.test.crowdera.co')) {
+            redirectUrl = 'http://test.gocrowdera.com'+url;
+            if (confirm('You are being redirected to our global site www.test.gocrowdera.com')) {
                 window.location.href = redirectUrl;
             }
         } else if(currentEnv === 'stagingIndia') {
-            redirectUrl = 'http://staging.crowdera.co'+url;
-            if (confirm('You are being redirected to our global site www.staging.crowdera.co')) {
+            redirectUrl = 'http://staging.gocrowdera.com'+url;
+            if (confirm('You are being redirected to our global site www.staging.gocrowdera.com')) {
                 window.location.href = redirectUrl;
             }
         } else if(currentEnv === 'prodIndia') {
-            redirectUrl = 'https://crowdera.co'+url;
-            if (confirm('You are being redirected to our global site www.crowdera.co')) {
+            redirectUrl = 'https://gocrowdera.com'+url;
+            if (confirm('You are being redirected to our global site www.gocrowdera.com')) {
                 window.location.href = redirectUrl;
             }
         }
@@ -1057,7 +1057,7 @@ $(function() {
         var shareUrl = $('#shareUrl').val();
         var url;
         if(currentEnv === 'development' || currentEnv === 'test' || currentEnv === 'production' || currentEnv === 'staging'){
-            url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.co!"&url='+shareUrl;
+            url = 'https://twitter.com/intent/tweet?text="Check campaign at gocrowdera.com!"&url='+shareUrl;
         } else {
             url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.in!"&url='+shareUrl;
         }
@@ -1077,7 +1077,7 @@ $(function() {
     	
         var shareUrl = $('#shareUrl').val()
         if(currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
-            var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.co!"&url='+shareUrl+'%23projectupdates&';
+            var url = 'https://twitter.com/intent/tweet?text="Check campaign at gocrowdera.com!"&url='+shareUrl+'%23projectupdates&';
         } else {
             var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.in!"&url='+shareUrl+'%23projectupdates&';
         }
@@ -1608,12 +1608,12 @@ $(function() {
 				$('.banner-link').attr('href','http://test.crowdera.in');
    			} else if(location.country.code == 'IN' && currentEnv == 'staging'){
    				$('.info-banner').css('display','block');
-   				$('.banner-link').text('staging.crowdera.in');
-   				$('.banner-link').attr('href','http://staging.crowdera.in');
+   				$('.banner-link').text('staging.gocrowdera.com');
+   				$('.banner-link').attr('href','http://staging.gocrowdera.com');
    			} else if(location.country.code == 'IN' && currentEnv == 'production'){
    				$('.info-banner').css('display','block');
-   				$('.banner-link').text('www.crowdera.in');
-   				$('.banner-link').attr('href','http://crowdera.in');
+   				$('.banner-link').text('www.gocrowdera.com');
+   				$('.banner-link').attr('href','https://gocrowdera.com');
    			} else if(location.country.code == 'IN' && currentEnv == 'development'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('www.crowdera.in');

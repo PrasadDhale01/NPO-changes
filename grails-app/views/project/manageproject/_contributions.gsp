@@ -12,7 +12,7 @@
     def projectId = project.id
 %>
 <g:if test="${project.validated}">
-<div class="col-md-12 col-md-12 col-sm-12 col-xs-12 cdra-mng-ftpadding">
+<div class="col-md-12 col-md-12 col-sm-12 col-xs-12 cdra-mng-ftpadding manage-contribution-bgcolor">
     <g:hiddenField name="isIndianCampaign" value="${project.payuStatus}" id="isIndianCampaign"/>
     <g:if test="${totalContributions.empty}">
         <div class="alert alert-info">No contributions yet.</div>

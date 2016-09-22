@@ -210,6 +210,7 @@ $(function() {
             },
             citrusNumber: {
                 required: true,
+                minlength: 12
             },
             citrusCardType: {
                 required: true
@@ -319,6 +320,7 @@ $(function() {
             if ($('input[name= panNumber]').length > 0) {
            	    validatePanNumber = $("#panNumber").valid();
             } else {
+                validatePanNumber = true;
             }
         	
             if(amountStatus == true && validatePanNumber) {

@@ -283,7 +283,7 @@
 					                    <div class="form-group cvc-width">
 					                        <div class="leftcard-column-one">
 					                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </span>
-					                                <input class="form-control all-place" type="text" placeholder="CVV" data-stripe="cvc" name="citrusCvv" id="citrusCvv" required>
+					                                <input class="form-control all-place" type="password" placeholder="CVV" data-stripe="cvc" name="citrusCvv" id="citrusCvv" required>
 					                            <div class="clear"></div>       
 					                        </div>
 					                        <div class="leftcard-column-two">

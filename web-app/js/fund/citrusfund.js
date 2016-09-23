@@ -218,10 +218,17 @@ $(function() {
             citrusCvv: {
             	required: true,
                 maxlength: function(){
-                    if (optionChosen == 'amex' || optionChosen == "maestro") {
-                        return 4;
-                    } else {
+                    if (optionChosen != 'amex') {
                         return 3;
+                    } else {
+                        return 4;
+                    }
+                },
+                minlength: function(){
+                    if (optionChosen != 'amex') {
+                    	return 3;
+                    } else {
+                    	return 4;
                     }
                 }
             },
@@ -802,7 +809,7 @@ $(function() {
 	        if (type === "visa") {
 	            $("#citrusScheme").val("visa").change();
 	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/954456ca-1012-4d8d-86e8-f4979ff4b330.png");
-	        } else if(type === "amex" || type === "maestro") {
+	        } else if(type === "maestro") {
 	            $("#citrusScheme").val("maestro").change();
 	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/f0cf3a78-60b5-4224-9b93-092b4046c690.png");
 	        } else if(type === "mastercard") {

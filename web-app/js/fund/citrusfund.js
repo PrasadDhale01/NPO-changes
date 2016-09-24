@@ -817,10 +817,13 @@ $(function() {
 	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/34bfdb13-f40a-4e3f-bcf0-3a83625bda5c.png");
 	        }  else if(type === "rupay") {
 	            $("#citrusScheme").val("rupay").change();
-	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/34bfdb13-f40a-4e3f-bcf0-3a83625bda5c.png");
+	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/b79da825-40e6-4175-b0a5-5eba978854eb.png");
+	        }  else if(type === "amex") {
+	            $("#citrusScheme").val("amex").change();
+	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/785a4a0d-1c99-4425-82dc-1451d35727fa.png");
 	        } else {
 	            $("#citrusScheme").val("");
-	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/2d87664b-d1c9-4fae-a015-fc02d3333dbb.png");
+	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/4479bc5f-f890-4cf4-8429-567ed2a1b58e.png");
 	        }
             
         });

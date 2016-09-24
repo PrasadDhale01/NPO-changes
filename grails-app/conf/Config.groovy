@@ -315,8 +315,8 @@ environments {
 
     }
     staging {
-        crowdera.facebook.appId = '354215177926850'
-        crowdera.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
+        crowdera.facebook.appId = '554475128028127'
+        crowdera.facebook.secret = 'f1991f7bf85d445a346821967e2b1251'
 
         grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
         grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'

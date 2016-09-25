@@ -324,9 +324,9 @@ class FundController {
                 def cookie = projectService.deleteContributorName(contributorNameCookieValue)
                 response.addCookie(cookie)
             }
-            if(contributorEmailCookie){
+            /*if(contributorEmailCookie){
                 response.addCookie(contributorEmailCookie)
-            }
+            }*/
             redirect (controller:'home', action:'index')
         } else {
             render view:'404error'

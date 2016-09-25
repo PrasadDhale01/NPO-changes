@@ -12,29 +12,27 @@ class HomeController {
     def userService
 
     def index() {
-        def contributorEmail = g.cookie(name: 'contributorEmailCookie')
+        /*def contributorEmail = g.cookie(name: 'contributorEmailCookie')*/
         def currentEnv = projectService.getCurrentEnvironment();
         def fb = params.fb
 
-        if(contributorEmail){
+        /*if(contributorEmail){
             Cookie cookie = projectService.deleteContributorEmailCookie(contributorEmail)
             response.addCookie(cookie)
-        }
+        }*/
 
         if( currentEnv == 'development'|| currentEnv == 'test' ||currentEnv == 'testIndia'){
             def projects = projectService.showProjects(currentEnv)
-            return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv, contributorEmail:contributorEmail]
+            return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv]
         } else {
             def projects = projectService.projectOnHomePage(currentEnv)
             if(projects){
-                return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv, contributorEmail:contributorEmail]
+                return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv]
             }else{
                 projects = projectService.showProjects(currentEnv)
-                return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv, contributorEmail:contributorEmail]
+                return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv]
             }
         }
-        
-        
     }
 
     def crowderacustomerhelp() {

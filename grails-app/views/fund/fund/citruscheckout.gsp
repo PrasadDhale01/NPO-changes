@@ -22,7 +22,7 @@
                 
                 <%
                     def citrusCardTypes = ['credit': 'Credit', 'debit': 'Debit']
-                    def citrusSchemes = ['visa': 'VISA', 'mastercard' :'MASTER', 'maestro':'MAESTRO', 'rupay':'RUPAY']
+                    def citrusSchemes = ['visa': 'VISA', 'mastercard' :'MASTER', 'maestro':'MAESTRO', 'rupay':'RUPAY', 'amex': 'AMEX']
                     def citrus = true;
                     SimpleDateFormat dateFormat = new SimpleDateFormat("MM/YYYY");
                     def currentDate = dateFormat.format(new Date());
@@ -104,12 +104,12 @@
                                     <div class="col-md-12 col-sm-12 col-xs-12 eazywizard-bottom-margin">
                                         <div  class="amount-button"><button type="button" class="btn btn-info btn-md btn-block" id="btnCheckoutContinue">Continue</button></div>
                                     </div>
-                                    
+                                    <div class="clear"></div>
                                     <div class="col-sm-12">
                                         <h4><b>Powered by Citrus</b></h4>
                                     </div>
                                     <div class="col-sm-12 eazywizard-bottom-margin">
-                                        <img src="//s3.amazonaws.com/crowdera/assets/2d87664b-d1c9-4fae-a015-fc02d3333dbb.png" alt="citrus">
+                                        <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/4479bc5f-f890-4cf4-8429-567ed2a1b58e.png" alt="citrus">
                                     </div>
                                 </div>
                             
@@ -233,7 +233,7 @@
                             <div class="col-xs-12 eazywizard-bottom-margin">
                                 <div class="col-sm-6">
                                     <h4><b>Powered by Citrus</b></h4>
-                                    <img src="//s3.amazonaws.com/crowdera/assets/2d87664b-d1c9-4fae-a015-fc02d3333dbb.png" alt="citrus">
+                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/4479bc5f-f890-4cf4-8429-567ed2a1b58e.png" alt="citrus">
                                 </div>
                                 <div class="col-sm-4 pull-right col-xs-offset-0 col-xs-12">
                                     <div class="amount-button"><button type="button" class="btn btn-info btn-lg btn-block" id="btnShippingContinue">Continue</button></div>
@@ -272,7 +272,7 @@
 					                        </div>
 					                        <div class="rightcard-column">
 					                            <input type="hidden" value="" name="citrusScheme" id="citrusScheme" />
-					                            <img src="//s3.amazonaws.com/crowdera/assets/2d87664b-d1c9-4fae-a015-fc02d3333dbb.png" alt="card" id="cardType">
+					                            <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/4479bc5f-f890-4cf4-8429-567ed2a1b58e.png" alt="card" id="cardType">
 					                            <div class="clear-both"></div>
 					                        </div>
 					                        <div class="clear-both"></div>

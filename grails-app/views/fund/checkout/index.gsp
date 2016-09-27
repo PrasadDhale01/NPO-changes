@@ -8,6 +8,7 @@
 %>
 <html>
 <head>
+    <link rel="canonical" href="${grailsApplication.config.crowdera.BASE_URL}/fund"/>
     <meta name="layout" content="main" />
     <r:require modules="checkoutjs"/>
 

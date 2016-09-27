@@ -42,6 +42,7 @@
 <html>
 <head>
     <meta name="layout" content="main" />
+    <link rel="canonical" href="${base_url}/campaign/edit"/>
     <r:require modules="projectcreatejs" />
     <link rel="stylesheet" href="/css/datepicker.css">
     <title>Crowdera- Campaign edit</title>

@@ -14,7 +14,7 @@ modules = {
         resource url: 'vendor/underscore/underscore.string.min.js'
     }
     corejs {
-        dependsOn 'jquery'//, 'handlebarsjs'
+        dependsOn 'productionminjs'//, 'handlebarsjs'
         resource url: 'vendor/bootstrap-3.2.0-dist/js/bootstrap.min.js'
         resource url: 'vendor/bootstrap-hover-dropdown-master/bootstrap-hover-dropdown.min.js'
     }
@@ -22,8 +22,11 @@ modules = {
         dependsOn 'corejs'
         resource url: 'vendor/jquery.validate/jquery.validate.min.js'
     }
+    productionminjs{
+        resource url:'vendor/production_min/crowdera_all.min.js'
+    }
     crowderajs {
-        dependsOn 'corejs', 'bootstrapselectjs', 'bootstrapmultiselectjs', 'jqueryvalidate'
+        dependsOn 'corejs'
         resource url: 'js/crowdera.js'
     }
     googleanalytics {

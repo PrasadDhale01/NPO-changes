@@ -25,7 +25,7 @@
                 <li class="searchengine hidden-xs">
                     <form action="/campaign" name="SearchForm">
                         <div class="inner-addon left-addon search-icon-header search-image-header">
-                           <img src="//s3.amazonaws.com/crowdera/assets/search-icon.png" alt="search" class="trigger" id="trigger" onmouseover="desktopSearch()" onmouseleave="onSearchLeave()">
+                           <img src="//s3.amazonaws.com/crowdera/assets/search-icon.png" alt="search" class="trigger" id="trigger" onclick="toggleSearch();">
                            <input type="text" class="form-control form-control-no-border search-box" name="q" value="${params.q}" id="search-bar" placeholder="Search....."/>
                         </div>
                     </form>

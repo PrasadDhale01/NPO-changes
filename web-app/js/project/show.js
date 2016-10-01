@@ -54,7 +54,7 @@ $(function() {
 //    	loadOrganizationTemplate("team");
 //    	$('button.sh-fund-donate-contri').text('DONATE');
     	var projectTitle = $('#projectTitle').val();
-		$('div.bannerSloganText').html("This is Campaign is supporting <br>"+projectTitle);
+		$('div.bannerSloganText').html("This campaign is supporting <br>"+projectTitle);
     	
     }else if($('li.active').find('a.show-tabs-text').hasClass('showContributionTemplate')){
 //    	loadOrganizationTemplate("contribution");
@@ -1000,17 +1000,17 @@ $(function() {
 //    		loadOrganizationTemplate("team");
 //    		$('button.sh-fund-donate-contri').text('DONATE');
     		var projectTitle = $('#projectTitle').val();
-    		$('div.bannerSloganText').html("This is Campaign is supporting <br>"+projectTitle);
+    		$('div.bannerSloganText').html("This campaign is supporting <br>"+projectTitle);
     	}
     	if ($(this).hasClass('showContributionTemplate')){
 //    		loadOrganizationTemplate("contribution");
 //    		$('button.sh-fund-donate-contri').text('CONTRIBUTE');
-    		$('div.bannerSloganText').html("Start your Campaign <br> to Support our Mission");
+    		$('div.bannerSloganText').html("Start Your Campaign <br> to Support our Mission");
     	}
     	if ($(this).hasClass('showCommentTemplate')){
 //    		loadOrganizationTemplate("story");
 //    		 $('button.sh-fund-donate-contri').text('Fund Now!');
-    		$('div.bannerSloganText').html("Start your Campaign <br> to Support our Mission");
+    		$('div.bannerSloganText').html("Start Your Campaign <br> to Support our Mission");
     	}
     });
     

@@ -6,6 +6,7 @@
     def shareUrl = base_url+'/c/'+shortUrl;
     def vimeoInt
     def campaignVideoUrl
+    def projectTitle = project.title
     if (project.videoUrl){
         if (project.videoUrl.contains('vimeo.com')) {
             def video = project.videoUrl.split('/')
@@ -23,8 +24,8 @@
 <div class="col-xs-12 col-md-4 col-sm-4 mobileview-top">
     <g:render template="/project/manageproject/tilesanstitle" />
     <g:if test="${project.validated}">
-        <span class="btn btn-default fbShareForSmallDevices manage-fb-color fbshare-header mange-mobile-fb">
-            <i class="fa fa-facebook manage-fb-padding"></i> SHARE ON FACEBOOK
+        <span class="btn btn-default fbShareForSmallDevices manage-fb-color fbshare-header mange-mobile-fb sh-social-fbEllipsis">
+            <i class="fa fa-facebook manage-fb-padding"></i> I Support ${projectTitle}
         </span>
     </g:if>
     <g:if test="${project.draft}">
@@ -37,7 +38,7 @@
                         </div>
                     </g:if><br/>
                     <div class="clear"></div>
-                    <button class="btn btn-block btn-primary mange-submitapprovs  mange-submitapp-margin">
+                    <button class="btn btn-block btn-primary mange-submitapprovs  mange-submitapp-margin manage-submintappro-checkbox">
                         <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
                     </button>
                 </g:form>
@@ -60,17 +61,17 @@
 </div>
 
 <div class="col-xs-12 col-md-4 col-sm-4 mobileview-bottom-mange">
-    <g:render template="/project/manageproject/tilesanstitle" />
+    <g:render template="/project/manageproject/manageTilesansTitle" />
     <g:if test="${project.validated && !project.draft}">
         <div class="manage-socials-facebook"></div>
-        <span class="btn btn-default fbShareForLargeDevices manage-fb-color mange-size-FBbtn" id="fbshare">
-            <i class="fa fa-facebook manage-fb-padding"></i> SHARE ON FACEBOOK
+        <span class="btn btn-default fbShareForLargeDevices manage-fb-color mange-size-FBbtn sh-social-fbEllipsis" id="fbshare">
+            <i class="fa fa-facebook manage-fb-padding"></i> I Support ${projectTitle}
         </span>
     </g:if>
     <g:if test="${!project.draft && !project.validated}">
         <div class="manage-socials-facebook"></div>
-        <span class="btn btn-default fbShareForLargeDevices manage-fb-color mange-size-FBbtn show-pointer-not">
-            <i class="fa fa-facebook manage-fb-padding"></i> SHARE ON FACEBOOK
+        <span class="btn btn-default fbShareForLargeDevices manage-fb-color mange-size-FBbtn show-pointer-not sh-social-fbEllipsis">
+            <i class="fa fa-facebook manage-fb-padding"></i> I Support ${projectTitle}
         </span>
     </g:if>
     <g:if test="${project.draft}">
@@ -84,12 +85,12 @@
                     </g:if>
                     <div class="clear"></div>
                     <div class="mange-btn-submitapproval"></div>
-                    <button class="btn btn-block btn-primary mange-submitapprovs"><i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL</button>
+                    <button class="btn btn-block btn-primary mange-submitapprovs manage-submintappro-checkbox"><i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL</button>
                 </g:form>
             </g:if>
             <g:else>
                 <div class="mange-btn-submitapproval"></div>
-                <button class="btn btn-block btn-primary mange-submitapprovs" id="submitForApprovalBtn"><i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL</button>
+                <button class="btn btn-block btn-primary mange-submitapprovs manage-submit" id="submitForApprovalBtn"><i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL</button>
             </g:else>
         </div>
     </g:if>
@@ -101,79 +102,91 @@
 <g:hiddenField name="shareUrl" id="shareUrl" value="${shareUrl}"/>
 <g:hiddenField name="embedTileUrl" id="embedTileUrl" value="${embedTileUrl}"/>
 
+
+<div class="col-md-8 col-sm-8 col-xs-12 mange-story-imgs">
+
+
 <g:if test="${project.validated}">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-xs">
-        <div class="col-xs-12 <g:if test="${hashTagsDesktop || hashTagsTabs}">managecampaign-hashtag </g:if> manage-social">
-	        <a class="share-mail pull-left social" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
-	            <img src="//s3.amazonaws.com/crowdera/assets/0fea8e3c-7e84-4369-a5a0-451585c06492.png" class="show-email" alt="Email Share">
-	        </a>
-	        <a class="twitter-share pull-left social" id="twitterShare" target="_blank">
-	            <img src="//s3.amazonaws.com/crowdera/assets/543485b8-21d6-4144-9c30-c0e49c95c4e6.png" class="show-twitter" alt="Twitter Share">
-	        </a>
-	        <a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${shareUrl}"  id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-	            <img src="//s3.amazonaws.com/crowdera/assets/0d661ddc-4d08-4ad9-a707-cf2e22349989.png" class="show-linkedin" alt="LinkedIn Share">
-	        </a>
-	        <a class="social google-plus-share pull-left" id="googlePlusShare" href="https://plus.google.com/share?url=${shareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-	            <img src="//s3.amazonaws.com/crowdera/assets/0c536e08-376d-4965-a901-ca42a4b6c4d5.png" class="show-google" alt="Google+ Share">
-	        </a>
-	        <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left embedIcon-manage-left social hidden-xs"><img src="//s3.amazonaws.com/crowdera/assets/75ed76bc-3275-4b00-a534-9c4a324cc04e.png" class="show-embedIcon" alt="embedicon"></a>
-	        <div class="popoverClassManagePage">
-	            <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphicon pull-left glyphicon glyphicon-link glyphicon-design glyphicon-show-link-color"></span>
-	            <div id="popoverConent" class="hidden">
-	                <button type="button" class="close">&times;</button>
-	                <p>${shareUrl}</p>
-	            </div>
-	        </div>
-	        <div class="popoverClassMobManagePage">
-	            <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphiconMob pull-left glyphicon glyphicon-link glyphicon-design glyphicon-show-link-color"></span>
-	            <div id="popoverConentMob" class="hidden">
-	                <button type="button" class="close">&times;</button>
-	                <p>${shareUrl}</p>
-	            </div>
-	        </div>
-	        <span class="showing-hashtags showing-hashtags-desktop hashtags-padding-left">${hashTagsDesktop}</span>
+    <div class="hidden-xs">
+        <div class="<g:if test="${hashTagsDesktop || hashTagsTabs}">managecampaign-hashtag </g:if> manage-social">
+            <div class="show-social-icons">
+            <a class="share-mail pull-left social" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
+                <img src="//s3.amazonaws.com/crowdera/assets/82677812-3c6f-404d-80c2-7e3f77c60cf9.png" class="show-email" alt="Email Share">
+            </a>
+            <a class="twitter-share pull-left social" id="twitterShare" target="_blank">
+                <img src="//s3.amazonaws.com/crowdera/assets/823f1cf6-49fe-4ec2-a0dd-2d2a437ad081.png" class="show-twitter" alt="Twitter Share">
+            </a>
+            <a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${shareUrl}"  id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                <img src="//s3.amazonaws.com/crowdera/assets/8a7fbe36-68f8-401e-8644-5780d656d298.png" class="show-linkedin" alt="LinkedIn Share">
+            </a>
+            <a class="social google-plus-share pull-left" id="googlePlusShare" href="https://plus.google.com/share?url=${shareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                <img src="//s3.amazonaws.com/crowdera/assets/ccda789b-4001-4c95-a65f-38c0b9a7a474.png" class="show-google" alt="Google+ Share">
+            </a>
+            <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left embedIcon-manage-left social hidden-xs"><img src="//s3.amazonaws.com/crowdera/assets/264961c1-5e35-4357-a68b-8494e63ac04e.png" class="show-embedIcon" alt="embedicon"></a>
+            <div class="popoverClassManagePage">
+                <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphicon pull-left glyphicon glyphicon-link glyphicon-design glyphicon-show-link-color"></span>
+                <div id="popoverConent" class="hidden">
+                    <button type="button" class="close">&times;</button>
+                    <p>${shareUrl}</p>
+                </div>
+            </div>
+            <div class="popoverClassMobManagePage">
+                <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphiconMob pull-left glyphicon glyphicon-link glyphicon-design glyphicon-show-link-color"></span>
+                <div id="popoverConentMob" class="hidden">
+                    <button type="button" class="close">&times;</button>
+                    <p>${shareUrl}</p>
+                </div>
+            </div>
+            </div>
+            
+            <span class="showing-hashtags showing-hashtags-desktop hashtags-padding-left">${hashTagsDesktop}</span>
             <span class="showing-hashtags showing-hashtags-tabs hashtags-padding-left">${hashTagsTabs}</span>
         </div>
     </div>
 </g:if>
 <g:else>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-xs">
-        <div class="col-xs-12 <g:if test="${hashTagsDesktop || hashTagsTabs}">managecampaign-hashtag </g:if> manage-social">
+    <div class="hidden-xs">
+        <div class="<g:if test="${hashTagsDesktop || hashTagsTabs}">managecampaign-hashtag </g:if> manage-social">
+            <div class="show-social-icons">
             <span class="pull-left social show-pointer-not" href="#">
-                <img src="//s3.amazonaws.com/crowdera/assets/0fea8e3c-7e84-4369-a5a0-451585c06492.png" class="show-email" alt="Email Share">
+                <img src="//s3.amazonaws.com/crowdera/assets/82677812-3c6f-404d-80c2-7e3f77c60cf9.png" class="show-email" alt="Email Share">
             </span>
             <span class="pull-left social show-pointer-not">
-                <img src="//s3.amazonaws.com/crowdera/assets/543485b8-21d6-4144-9c30-c0e49c95c4e6.png" class="show-twitter" alt="Twitter Share">
+                <img src="//s3.amazonaws.com/crowdera/assets/823f1cf6-49fe-4ec2-a0dd-2d2a437ad081.png" class="show-twitter" alt="Twitter Share">
             </span>
             <span class="social share-linkedin pull-left show-pointer-not">
-                <img src="//s3.amazonaws.com/crowdera/assets/0d661ddc-4d08-4ad9-a707-cf2e22349989.png" class="show-linkedin" alt="LinkedIn Share">
+                <img src="//s3.amazonaws.com/crowdera/assets/8a7fbe36-68f8-401e-8644-5780d656d298.png" class="show-linkedin" alt="LinkedIn Share">
             </span>
             <span class="social google-plus-share pull-left show-pointer-not">
-                <img src="//s3.amazonaws.com/crowdera/assets/0c536e08-376d-4965-a901-ca42a4b6c4d5.png" class="show-google" alt="Google+ Share">
+                <img src="//s3.amazonaws.com/crowdera/assets/ccda789b-4001-4c95-a65f-38c0b9a7a474.png" class="show-google" alt="Google+ Share">
             </span>
-            <span href="#" class="pull-left embedIcon-manage-left social hidden-xs show-pointer-not"><img src="//s3.amazonaws.com/crowdera/assets/75ed76bc-3275-4b00-a534-9c4a324cc04e.png" class="show-embedIcon" alt="embedicon"></span>
+            <span href="#" class="pull-left embedIcon-manage-left social hidden-xs show-pointer-not"><img src="//s3.amazonaws.com/crowdera/assets/264961c1-5e35-4357-a68b-8494e63ac04e.png" class="show-embedIcon" alt="embedicon"></span>
             <div class="popoverClassManagePage">
                 <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="pull-left glyphicon glyphicon-link glyphicon-design glyphicon-show-link-color show-pointer-not"></span>
             </div>
             <div class="popoverClassMobManagePage">
             </div>
+            </div>
             <span class="showing-hashtags showing-hashtags-desktop hashtags-padding-left">${hashTagsDesktop}</span>
             <span class="showing-hashtags showing-hashtags-tabs hashtags-padding-left">${hashTagsTabs}</span>
+            
         </div>
     </div>
 </g:else>
 
-<div class="clear"></div>
 
-<div class="col-md-8 col-sm-8 col-xs-12 mange-story-imgs">
-    <div class="panel panel-default managecampaignDescription">
-        <div class="panel-body">
+
+
+    <div class="manage-Descriptions">
+       
             <p class="campaignDescription justify">${raw(project.description)}</p>
-        </div>
+            <div class="checkStory read-more">
+                <p class="campaignStory justify">${raw(project.story)}</p>
+             </div>
     </div>
-    <p class="campaignStory justify">${raw(project.story)}</p>
+   
     
-    <div class="hidden-xs manage-tags-topbottom">
+    <div class="hidden-xs visible-sm manage-extra-moretags">
         <g:if test="${remainingTagsDesktop}">
             <h4 class="moretags-desktop col-lg-3 col-sm-3 col-md-3 tags-managepagewidth"><b>More tags:</b></h4>
             <p class="moretags-desktop col-lg-9 col-sm9 col-md-9">${remainingTagsDesktop}</p>
@@ -185,77 +198,80 @@
     </div>
    
     <br>
-    <div class="visible-xs">
+    <div class="visible-xs mobile-mngcmpg-tags">
         <g:if test="${project.hashtags}">
             <h3 class="moretags-tabs"><b>#More tags</b></h3>
             <p class="moretags-tabs">${project.hashtags}</p>
         </g:if>
     </div>
     
-    <g:if test="${spendCauseList && spendAmountPerList}">
-        <h4><b>Campaign money will be used as</b></h4>
-        <div id="chart-container">
-            <g:hiddenField name="spendCauseList" value="${spendCauseList}" id="spendCauseList"/>
-            <g:hiddenField name="spendAmountPerList" value="${spendAmountPerList}" id="spendAmountPerList"/>
-<%--            <g:hiddenField name="payuStatus" id="payuStatus" value="${project.payuStatus}"/>--%>
-            <div id="graph"></div>
-        </div>
-        <script src="/js/raphel-pie/raphael-min.js"></script>
-        <script src="/js/raphel-pie/g.raphael.js"></script>
-        <script src="/js/raphel-pie/g.pie.js"></script>
-    </g:if>
-    
+    <div class="show-matrix-bg">
+        <g:if test="${spendCauseList && spendAmountPerList}">
+            <h4><b>Campaign money will be used as</b></h4>
+            <div id="chart-container">
+                <g:hiddenField name="spendCauseList" value="${spendCauseList}" id="spendCauseList"/>
+                <g:hiddenField name="spendAmountPerList" value="${spendAmountPerList}" id="spendAmountPerList"/>
+    <%--            <g:hiddenField name="payuStatus" id="payuStatus" value="${project.payuStatus}"/>--%>
+                <div id="graph"></div>
+            </div>
+            <script src="/js/raphel-pie/raphael-min.js"></script>
+            <script src="/js/raphel-pie/g.raphael.js"></script>
+            <script src="/js/raphel-pie/g.pie.js"></script>
+        </g:if>
+    </div>
+    <br>
 </div>
 
 <div class="col-sm-4 col-xs-12">
     <g:if test="${project.impactNumber > 0}">
-        <div class="impactassessment">
-            <g:render template="show/impactstatement"/>
+        <div class="show-impact">
+            <g:render template="show/showImpactstatement"/>
         </div>
     </g:if>
     
-    <g:if test="${reasons && (reasons.reason1 || reasons.reason2 || reasons.reason3)}">
-        <div class="modal-footer tile-footer perks-style reasons-title">
-            <h2 class="rewardsectionheading text-center">3 Reasons to Fund Our Campaign</h2>
-        </div>
-        <g:if test="${reasons.reason1}">
-            <div class="reasonsToFund">
-                <div class="reasonspadding">
-                    <div class="col-xs-2 col-plr-0">
-                        <span class="badge1">#1</span>
-                    </div>
-                    <div class="col-xs-10 col-p-5">
-                        ${reasons.reason1}
+    <div class="show-reasons-fund-bgpadding">
+        <g:if test="${reasons && (reasons.reason1 || reasons.reason2 || reasons.reason3)}">
+            <div class="tile-footer reasons-title">
+                <h2 class="rewardsectionheading text-center">3 Reasons to Fund Our Campaign</h2>
+            </div>
+            <g:if test="${reasons.reason1}">
+                <div class="reasonsToFund">
+                    <div class="reasonspadding">
+                        <div class="col-xs-2 col-plr-0">
+                            <span class="badge1">#1</span>
+                        </div>
+                        <div class="manage-reasons-des">
+                            ${reasons.reason1}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </g:if>
-        <g:if test="${reasons.reason2}">
-            <div class="reasonsToFund">
-                <div class="reasonspadding">
-                    <div class="col-xs-2 col-plr-0">
-                        <span class="badge1">#2</span>
-                    </div>
-                    <div class="col-xs-10 col-p-5">
-                        ${reasons.reason2}
-                    </div>
-                </div>
-            </div>
-        </g:if>
-        <g:if test="${reasons.reason3}">
-            <div class="reasonsToFund">
-                <div class="reasonspadding">
-                    <div class="col-xs-2 col-plr-0">
-                        <span class="badge1">#3</span>
-                    </div>
-                    <div class="col-xs-10 col-p-5">
-                        ${reasons.reason3}
+            </g:if>
+            <g:if test="${reasons.reason2}">
+                <div class="reasonsToFund">
+                    <div class="reasonspadding">
+                        <div class="col-xs-2 col-plr-0">
+                            <span class="badge1">#2</span>
+                        </div>
+                        <div class="manage-reasons-des">
+                            ${reasons.reason2}
+                        </div>
                     </div>
                 </div>
-            </div>
+            </g:if>
+            <g:if test="${reasons.reason3}">
+                <div class="reasonsToFund">
+                    <div class="reasonspadding">
+                        <div class="col-xs-2 col-plr-0">
+                            <span class="badge1">#3</span>
+                        </div>
+                        <div class="manage-reasons-des">
+                            ${reasons.reason3}
+                        </div>
+                    </div>
+                </div>
+            </g:if>
         </g:if>
-    </g:if>
-    
+    </div>
     
 </div>
 

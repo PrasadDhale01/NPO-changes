@@ -57,9 +57,9 @@
 	<g:hiddenField id="googlPlusUser-login" name="googlPlusUser-login" value="${isDuplicate}"/>
 	<g:hiddenField id="userEmail" name='userEmail' value="${email}"/>
 	<g:hiddenField name='currentEnv' value='${currentEnv}' id='currentEnv'/>
-	<g:hiddenField name="contributorEmail" value="${contributorEmail}" id="contributorEmail"/>
+	<%--<g:hiddenField name="contributorEmail" value="${contributorEmail}" id="contributorEmail"/>
     
-     <div id="homepage-carousel"></div>
+     --%><div id="homepage-carousel"></div>
      <div class="hm-image-header"></div>  
     <div class="hidden-xs">
        <g:render template="banner"></g:render>

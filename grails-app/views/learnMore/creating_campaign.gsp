@@ -37,7 +37,7 @@
                     <div id="collapseProTen" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                                 <ul>
-                                    <li>Go to the <a href="${resource(dir: '/')}">Crowdera homepage</a></li>
+                                    <li>Go to the <a href="/">Crowdera homepage</a></li>
                                     <li>Click on Sign up on the Upper right hand corner</li>
                                     <li class="noBullet articlePic">                                    
                                     <br>

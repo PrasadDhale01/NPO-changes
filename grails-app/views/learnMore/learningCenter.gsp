@@ -66,7 +66,7 @@
 				                    </li>
 				                  
 				                    <li>
-				                      <a href="/Learning-Center/What_is_display_name?How_do_I_add_and_edit_my_display_name_for_a_campaign?">What is display name? How do I add and edit my display name for a campaign?</a>
+				                      <a href="/Learning-Center/What_is_display_name_How_do_I_add_and_edit_my_display_name_for_a_campaign?">What is display name? How do I add and edit my display name for a campaign?</a>
 				                    </li>
 				                    
 				                    <li>
@@ -78,7 +78,7 @@
 				                    </li>
 				                  
 				                    <li>
-				                      <a href="/Learning-Center/How_do_I_add_a_video_to_my_campaign?Can_I_add_more_than_one_video?">How do I add a video to my campaign? Can I add more than one video?</a>
+				                      <a href="/Learning-Center/How_do_I_add_a_video_to_my_campaign_Can_I_add_more_than_one_video?">How do I add a video to my campaign? Can I add more than one video?</a>
 				                    </li>
 				                  
 				                    <li>

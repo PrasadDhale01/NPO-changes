@@ -12,6 +12,8 @@ class HomeController {
     def userService
 
     def index() {
+		
+		log.info("country_code: " + request.getHeader("HTTP_CF_IPCOUNTRY"))
         def contributorEmail = g.cookie(name: 'contributorEmailCookie')
         def currentEnv = projectService.getCurrentEnvironment();
         def fb = params.fb

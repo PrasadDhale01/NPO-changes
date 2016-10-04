@@ -38,6 +38,10 @@ grails.mime.types = [ // the first one is the default format
 grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*']
 grails.resources.adhoc.excludes = ['/WEB-INF/**']
 
+//To accept the header information 
+grails.mime.use.accept.header = true // Default value is true.
+grails.mime.disable.accept.header.userAgents = []
+
 // Legacy setting for codec used to encode data with ${}
 grails.views.default.codec = "html"
 

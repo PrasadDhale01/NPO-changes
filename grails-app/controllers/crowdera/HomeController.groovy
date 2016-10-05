@@ -12,8 +12,18 @@ class HomeController {
     def userService
 
     def index() {
+		Enumeration<String> headerNames = request.getHeaderNames();
+		while (headerNames.hasMoreElements()) {
+			String headerName = headerNames.nextElement();
+			log.info("First level headers: " + headerName)
+			Enumeration<String> headers = request.getHeaders(headerName);
+			while (headers.hasMoreElements()) {
+				String headerValue = headers.nextElement();
+				log.info("Second level headers: " + headerValue)
+			}
+			
+		}
 		
-		log.info("country_code: " + request.getHeader("CF_IPCOUNTRY"))
         def contributorEmail = g.cookie(name: 'contributorEmailCookie')
         def currentEnv = projectService.getCurrentEnvironment();
         def fb = params.fb

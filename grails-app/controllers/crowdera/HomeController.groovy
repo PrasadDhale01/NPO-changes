@@ -13,7 +13,7 @@ class HomeController {
 
     def index() {
 		
-		log.info("country_code: " + request.getHeader("HTTP_CF_IPCOUNTRY"))
+		log.info("country_code: " + request.getHeader("CF_IPCOUNTRY"))
         def contributorEmail = g.cookie(name: 'contributorEmailCookie')
         def currentEnv = projectService.getCurrentEnvironment();
         def fb = params.fb

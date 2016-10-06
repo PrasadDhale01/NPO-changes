@@ -7,6 +7,8 @@ import org.hibernate.criterion.Restrictions;
 
 class CampaignService {
     
+    def projectService
+    
     public List<Project> getValidatedProjectsForCampaignAdmin(String condition, boolean payuStatus) {
         
         def raised = 0;
@@ -107,10 +109,14 @@ class CampaignService {
     }
     
     public boolean isTaxReceiptExist(String projectId) {
-        Long rowCount = (Long) TaxReciept.createCriteria().add(Restrictions.eq("project.id", projectId))
-                        .createAlias("project", "project").setProjection(Projections.rowCount()).uniqueResult();
-        return (rowCount.intValue() != 0) ? true : false;
-        
+        String currentEnv = projectService.getCurrentEnvironment();
+        if (currentEnv == "testIndia" || currentEnv == "stagingIndia" || currentEnv == "prodIndia") {
+            Long rowCount = (Long) TaxReciept.createCriteria().add(Restrictions.eq("project.id", projectId))
+                            .createAlias("project", "project").setProjection(Projections.rowCount()).uniqueResult();
+            return (rowCount.intValue() != 0) ? true : false;
+        } else {
+            return false;
+        }
     }
     
 }

@@ -16,25 +16,6 @@ $(function() {
     
     /********ON-Browsers-refreshing-mode-show-tabs-active-tile*********/
     
-
-//    if($('#essentials')){
-//    	if(loadOrganizationTemplate("story")){
-//    		loadOrganizationTemplate("story");
-//    	}
-//    }else if($('#projectupdates')){
-//    	if(loadOrganizationTemplate("update")){
-//    		loadOrganizationTemplate("update");
-//    	}
-//    }else if($('#manageTeam')){
-//    	if(loadOrganizationTemplate("team")){
-//    		loadOrganizationTemplate("team");
-//    	}
-//    }else if($('#contributions')){
-//    	if(loadOrganizationTemplate("contribution")){
-//    		loadOrganizationTemplate("contribution");
-//    	}
-//    }
-    
     if($('#essentials')){
 	    if($('div.bannerSloganText')){
 		    $('div.bannerSloganText').html("Start your Campaign <br> to Support our Mission");
@@ -42,31 +23,22 @@ $(function() {
     }
     
     if($('li.active').find('a.show-tabs-text').hasClass('showStoryTemplate')){
-//    	loadOrganizationTemplate("story");
-//    	$('button.sh-fund-donate-contri').text('Fund Now!');
-    	
 		$('div.bannerSloganText').html("Start your Campaign <br> to Support our Mission");
 		
     }else if($('li.active').find('a.show-tabs-text').hasClass('showUpdateTemplate')){
     	$('div.bannerSloganText').html("Start your Campaign <br> to Support our Mission");
     	
     }else if($('li.active').find('a.show-tabs-text').hasClass('showTeamTemplate')){
-//    	loadOrganizationTemplate("team");
-//    	$('button.sh-fund-donate-contri').text('DONATE');
     	var projectTitle = $('#projectTitle').val();
 		$('div.bannerSloganText').html("This campaign is supporting <br>"+projectTitle);
     	
     }else if($('li.active').find('a.show-tabs-text').hasClass('showContributionTemplate')){
-//    	loadOrganizationTemplate("contribution");
-//    	$('button.sh-fund-donate-contri').text('CONTRIBUTE');
 		$('div.bannerSloganText').html("Start your Campaign <br> to Support our Mission");
     
     }else if($('li.active').find('a.show-tabs-text').hasClass('showCommentTemplate')){
-//    	loadOrganizationTemplate("story");
-
     	$('div.bannerSloganText').html("Start your Campaign <br> to Support our Mission");
     }
-       
+    
     var videoVal = $('#youtubeVideoUrl').val();
     if(videoVal && videoVal.length > 0) {
         $('.carousel').carousel({
@@ -250,6 +222,38 @@ $(function() {
                 }
             }
         }
+    });
+    
+    $("#isTaxreceipt").change(function() {
+    	if ($(this).is(':checked')) {
+    		$(".pannumberdiv").slideDown();
+    		
+    		$('[name="panNumber"]').rules( "add", {
+                required: true,
+                minlength: 10,
+                maxlength: 10
+            });
+    	} else {
+    		$(".pannumberdiv").slideUp();
+    		$('[name="panNumber"]').rules('remove');
+    		$('[name="panNumber"]').val("");
+    	}
+    });
+    
+    $("#isTaxreceiptEdit").change(function() {
+    	if ($(this).is(':checked')) {
+    		$(".pannumberEditDiv").slideDown();
+    		
+    		$('[name="panNumber1"]').rules( "add", {
+                required: true,
+                minlength: 10,
+                maxlength: 10
+            });
+    	} else {
+    		$(".pannumberEditDiv").slideUp();
+    		$('[name="panNumber1"]').rules('remove');
+    		$('[name="panNumber1"]').val("");
+    	}
     });
     
     $('#moveContributionModal').find('form').validate({

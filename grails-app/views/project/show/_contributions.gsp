@@ -210,6 +210,28 @@
                             </div>
                             <div id="errormsg1"></div>
                         </div>
+                        
+                        <g:if test="${isTaxReceipt}">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="text col-sm-12">
+                                        <input type="checkbox" name="isTaxreceipt" id="isTaxreceipt" > Do you want to provide tax receipt?
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                <br/>
+                                    <label class="text col-sm-3 pannumberdiv">
+                                        PAN Number
+                                    </label>
+                                    <div class="col-sm-9 pannumberdiv">
+                                        <input class="form-control" id="panNumber" name="panNumber" type="text" placeholder="Enter PAN Number" maxlength="10"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </g:if>
+                        
                         <div class="clear"></div>
                     </div>
                     <div class="clear"></div>

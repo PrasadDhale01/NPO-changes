@@ -32,6 +32,7 @@ class ProjectController {
 	def mandrillService
 	def contributionService
 	def socialAuthService
+    CampaignService campaignService;
 
 	def FORMCONSTANTS = [
 		/* Beneficiary */
@@ -70,7 +71,8 @@ class ProjectController {
 		FACEBOOKURl:'facebookUrl',
 		TWITTERURl:'twitterUrl',
 		LINKEDINURL:'linkedinUrl',
-        CITRUSEMAIL: 'citrusEmail'
+        CITRUSEMAIL: 'citrusEmail',
+        WEPAYEMAIL: 'wePayEmail'
 	]
 
 	def list = {
@@ -257,6 +259,8 @@ class ProjectController {
             def reasons = projectService.getReasonsToFundFromProject(project)
             def isDeviceMobileOrTab = isDeviceMobileOrTab();
             
+            boolean isTaxReceipt = campaignService.isTaxReceiptExist(project.id);
+            
             if((currentUser == project.user) && (project.draft || project.validated==false)){
                 render (view: 'show/preview',
                 model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, 
@@ -271,7 +275,7 @@ class ProjectController {
                         isPreview:params?.isPreview, tile:params?.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier,
                         spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, reasons:reasons,
                         isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
-                        remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList, projectimages: projectimages])
+                        remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList, projectimages: projectimages, isTaxReceipt: isTaxReceipt])
             }else{
                if(project.validated){
                    render (view: 'show/index',
@@ -287,7 +291,8 @@ class ProjectController {
                                isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier,
                                spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, reasons:reasons,
                                isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
-                               remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList, projectimages: projectimages, facebookShare: facebookShare])
+                               remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList, projectimages: projectimages,
+                               facebookShare: facebookShare, isTaxReceipt: isTaxReceipt])
                }else{
                   render(view: '/404error', model: [message: 'This campaign is under process.'])
                }
@@ -1341,6 +1346,8 @@ class ProjectController {
             
             def isDeviceMobileOrTab = isDeviceMobileOrTab();
             def isAdmin = userService.isAdmin();
+            
+            boolean isTaxReceipt = campaignService.isTaxReceiptExist(project.id);
 
 			if(project.user==user || isCampaignOwnerOrAdmin || isAdmin){
 				render (view: 'manageproject/index',
@@ -1351,7 +1358,8 @@ class ProjectController {
 					tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier, reasons: reasons, isAdmin: isAdmin,
                     spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, isDeviceMobileOrTab: isDeviceMobileOrTab,
                     hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
-                    hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, enableTeamNames: enableTeamNamesList, teamNames:teamNameList])
+                    hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, enableTeamNames: enableTeamNamesList, 
+                    teamNames:teamNameList, isTaxReceipt: isTaxReceipt])
 			} else {
 				flash.prj_mngprj_message = 'Campaign Not Found'
                 

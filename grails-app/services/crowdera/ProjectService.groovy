@@ -688,11 +688,13 @@ class ProjectService {
          def amount = params.amount1
          def contributorLastName = params.contributorLastName
          
-		 def user = createUserForNonRegisteredContributors(contributorFirstName, contributorEmail1, contributorLastName)
+         User contributor = User.findByEmail(contributorEmail1.trim())
+         def user;
          
-         if(user==true){
-             user =User.findByUsername(contributorEmail1.trim())
+         if(contributor != null){
              userExist =true
+         } else {
+             user = createUserForNonRegisteredContributors(contributorFirstName, contributorEmail1, contributorLastName)
          }
          
 		 def reward = rewardService.getNoReward()
@@ -710,13 +712,14 @@ class ProjectService {
 		 if (amount && contributorFirstName && contributorEmail1 && contributorLastName) {
 			 Contribution contribution = new Contribution(
                     date: new Date(),
-                    user: (userExist)?user:user.user,
+                    user: (userExist) ? contributor : user.user,
                     reward: reward,
                     amount: amount,
                     contributorFirstName: contributorFirstName,
                     contributorLastName: contributorLastName,
                     contributorName: contributorFirstName +" "  + contributorLastName,
                     contributorEmail: contributorEmail1,
+                    panNumber: params.panNumber,
                     isContributionOffline: true,
                     fundRaiser: username,
                     currency:currency
@@ -765,13 +768,16 @@ class ProjectService {
     }
 
     def getContributionEditedDetails(def params){
-        def contribution = Contribution.get(params.long('id'))
-        contribution.contributorFirstName= params.contributorName
-        contribution.contributorLastName = params.contributorLastName
-        contribution.contributorName = params.contributorName+" "+params.contributorLastName
-        contribution.amount = Double.parseDouble(params.amount)
-        contribution.contributorEmail = params.contributorEmail
-        contribution.save()
+        def contribution = Contribution.get(params.long('contributionId'))
+        if (contribution) {
+            contribution.contributorFirstName= params.contributorName
+            contribution.contributorLastName = params.contributorLastName
+            contribution.contributorName = params.contributorName+" "+params.contributorLastName
+            contribution.amount = Double.parseDouble(params.amount)
+            contribution.contributorEmail = params.contributorEmail
+            contribution.panNumber = params.panNumber1
+            contribution.save()
+        }
     }
 
     def getNumberOfProjects() {
@@ -1166,10 +1172,20 @@ class ProjectService {
     }
 
     def getPayment(){
-        def payment = [
-            PAY:'Paypal',
-            FIR:'FirstGiving',
-        ]
+        def currentEnv = getCurrentEnvironment();
+        def payment;
+        if (currentEnv == "test") {
+            payment = [
+                PAY:'Paypal',
+                FIR:'FirstGiving',
+                WEPAY:'WePay'
+            ]
+        } else {
+            payment = [
+                PAY:'Paypal',
+                FIR:'FirstGiving',
+            ]
+        }
         return payment
     }
 	
@@ -5615,28 +5631,20 @@ class ProjectService {
     }
     
     def createUserForNonRegisteredContributors(String contributorFirstName, String contributorEmail1, String contributorLastName){
-        User user
-        def password
         def contributorEmail = contributorEmail1.trim()
-        user = User.findByEmail(contributorEmail)
+        def password = getAlphaNumbericRandomUrl()
+        User user = new User(
+            firstName : contributorFirstName,
+            lastName : contributorLastName,
+            username : contributorEmail,
+            email : contributorEmail,
+            password : password,
+            confirmCode : UUID.randomUUID().toString()
+        ).save(failOnError:true)
         
-        if (user) {
-            return true
-        } else {
-            password = getAlphaNumbericRandomUrl()
-            user = new User(
-                firstName : contributorFirstName,
-                lastName : contributorLastName,
-                username : contributorEmail,
-                email : contributorEmail,
-                password : password,
-                confirmCode : UUID.randomUUID().toString()
-            ).save(failOnError:true)
-            
-            userService.createUserRole(user, roleService)
-            
-            return [user:user, password:password]
-        }
+        userService.createUserRole(user, roleService)
+        
+        return [user:user, password:password]
     }
     
     def getDataFromImportedCSV(def file, def user){
@@ -6015,7 +6023,6 @@ class ProjectService {
         )
         
         transaction.save(failOnError: true)
-        
         
         return contribution.id
     }

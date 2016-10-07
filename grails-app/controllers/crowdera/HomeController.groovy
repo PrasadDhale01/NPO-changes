@@ -14,6 +14,8 @@ class HomeController {
     def index() {
 		
 		log.info("country_code: "+ request.getHeader("cf-ipcountry"))
+		grailsApplication.config.crowdera.COUNTRY_CODE = request.getHeader("cf-ipcountry")
+		log.info("country_code from config: " + grailsApplication.config.crowdera.COUNTRY_CODE)
         def contributorEmail = g.cookie(name: 'contributorEmailCookie')
         def currentEnv = projectService.getCurrentEnvironment();
         def fb = params.fb

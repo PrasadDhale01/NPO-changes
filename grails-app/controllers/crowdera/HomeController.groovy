@@ -209,4 +209,10 @@ class HomeController {
             render 'Header not loaded. Please, refresh to load again.'
         }
     }
+	
+	def getLearnMore(){
+		String question =params.question.replaceAll("20%", " ")
+		def learnMore = LearnMore.findByArticleTitle(question+"?");
+		render  (view:"/learnMore/database", model:[articleContent:learnMore.articleContent])
+	}
 }

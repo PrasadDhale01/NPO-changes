@@ -48,13 +48,14 @@ class UrlMappings {
         "/faq"(view:'/faq/index')
 		
 		/* Learn More */
-		"/fcontent"(view: '/learnMore/learnmore')
-		"/learnMore"(view: '/learnMore/index')
 		"/Creating-Campaign"(view: '/learnMore/creating_campaign')
 		"/Perks"(view: '/learnMore/perks')
 		"/Contributor"(view: '/learnMore/contributor')
 		"/Managing-Campaign"(view:'learnMore/managingCampaign')
 		"/Learning-Center"(view: 'learnMore/learningCenter')
+		"/Learning-Center/${question}"(controller:"home", action:'getLearnMore')
+		
+		
 
         /*Url shortener*/
         "/c/$url"(controller: 'project', action:'getCampaignFromShortUrl')

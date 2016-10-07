@@ -356,7 +356,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #576774;
 }
 .searchbox {
-    position: relative;
+    position: relative;	
     height: 30px;
     margin-left: 20px;
 }
@@ -2014,10 +2014,10 @@ button.projectedit.close{
 }
 
 .campaignupdate {
-	background-color: #f7f7f7;
-	margin-bottom: 15px;
-	padding: 15px 0;
-	margin-top: 4px;
+	background-color: #fff;
+    box-shadow: 2px 2px 1px #e7e7e7;
+    margin-bottom: 15px;
+    padding: 15px 0;
 }
 .campaignupdatedimages {
 	overflow: hidden;
@@ -2423,6 +2423,7 @@ a.footerlink {
 }
 .manage-comments-footer{
 	text-align: left;
+	padding: 30px;
 }
 .essen-story{
 	margin-top: 30px;
@@ -4545,7 +4546,7 @@ div.ie-cr-perks {
     margin-top : 6px;
 }
 .commentsoncampaign .tile-footer {
-    background-color: #f5f5f5 !important;
+    background-color: #fff;
 }
 .alert {
     margin-bottom: 10px !important;
@@ -4660,6 +4661,7 @@ p {
         height: 200px !important;
     }
 }
+
 .rewardsection-row:hover {
 	background-color: #f5f5f5;
     border-color: #fff !important;
@@ -5637,6 +5639,22 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	strong.faq-subheading {
+       font-size: 15px;
+       margin-bottom: 20px;
+       margin-top: 20px;
+    }
+	
+	div.learnmorecontainer {
+       background-color: white;
+       height: 520px;
+       margin: 0 auto;
+       padding: 40px;
+       width: 460px;
+    }
+	div.paneWidth {
+       width: 100%;
+    }
     h4.faqSubtitle {
         font-size: 16px;
     }
@@ -5677,7 +5695,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         height: 115px;
     }
     div.campaign-bg-color {
-        background-color: #fff;
+        background-color: #f5f5f5;
     }
     div.show-padding-commentsbox {
         height: 115px;
@@ -8063,6 +8081,37 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	div.digital_signature .btn-sm {
         padding: 8px 28px;
     }
+    div.paneWidth {
+       width: 70%;
+    }
+    div.learnmorecontainer {
+       background-color: white;
+       height: 520px;
+       margin-left: 171px;
+       padding: 40px;
+       width: 590px;
+    }
+	a.sidemenuFont {
+       color: white;
+       display: block;
+       font-family: georgia;
+       font-size: 12px;
+       font-weight: bolder;
+       list-style: outside none none;
+       padding: 10px 20px;
+       text-decoration: none;
+       background-color: #5a5a5a;
+    }
+	ul.learnmorerSideMenu {
+       background-color: #5a5a5a;
+       height: 523px;
+       list-style: outside none none;
+       margin-bottom: 0;
+       padding-left: 0;
+       padding-top: 10px;
+       position: relative;
+       width: 89%;
+    }
     div.show-fundrasier-namepadding > h5 {
         font-size: 12px;
         padding-left: 0;
@@ -8502,7 +8551,48 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-    
+	div.learnmorecontainer {
+        background-color: white;
+        height: 520px;
+        margin-left: 171px;
+        padding: 40px;
+        width: 80%;
+    }
+    .faq-subheading {
+        font-size: 28px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+	a.sidemenuFont {
+        color: white;
+        display: block;
+        font-family: georgia;
+        font-size: 12px;
+        font-weight: bolder;
+        list-style: outside none none;
+        padding: 10px 20px;
+        text-decoration: none;
+        background-color: #5a5a5a;
+    }
+	ul.learnmorerSideMenu {
+        background-color: #5a5a5a;
+        height: 523px;
+        list-style: outside none none;
+        margin-bottom: 0;
+        padding-left: 0;
+        padding-top: 10px;
+        position: relative;
+        width: 89%;
+	}
+    div.manage-bg-color {
+        background-color: #fff;
+        left: 13px;
+        padding: 0;
+        width: 96%;
+    }
+    div.manage-reasons-des {
+        margin-left: 40px;
+    }
     span.fa-inr-block {
         font-size: 20px !important;
     }
@@ -8526,14 +8616,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 100%;
     }
     a.viewTopics:hover{
-	   color: #fff;
-	   background-color: #4292cb;
-	   border-radius: 10px 10px 10px 10px;
-       font-size: 10px !important;
-       font-weight: bold;
-       padding: 5px;
-       width: 100%;
-       text-decoration: none;
+        color: #fff;
+        background-color: #4292cb;
+        border-radius: 10px 10px 10px 10px;
+        font-size: 10px !important;
+        font-weight: bold;
+        padding: 5px;
+        width: 100%;
+        text-decoration: none;
     }
 	div.learnContainer {
         background-color: white;
@@ -10339,6 +10429,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: 3px !important;
         padding-left: 0px;
     }
+    div.paneWidth {
+       margin-right: 40px;
+       width: 78%;
+    }
     ul.manage-submitapprove-edit {
         margin-right: -183px !important;
         margin-top: 3px !important;
@@ -11578,6 +11672,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .signature_img_seperator {
         display: block;
         clear: both;
+    }
+    div.paneWidth {
+        width: 63%;
+    }
+    div.learnmorecontainer {
+        background-color: white;
+        height: 520px;
+        margin-left: 175px;
+        padding: 40px;
+        width: 80%;
     }
 	div.show-fundrasier-namepadding > h5 {
         font-size: 12px;
@@ -15201,6 +15305,48 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	strong.faq-subheading {
+       font-size: 15px;
+       margin-bottom: 20px;
+       margin-top: 20px;
+    }
+	
+	.paneWidth {
+       width: 100%;
+    }
+	
+	strong.learnMore-Subheading {
+	   font-size: 22px;
+	   margin-top: 20px;
+	   margin-bottom: 20px;
+    }
+	
+    div.learnmorecontainer{
+       background-color: white;
+       height: 100%;
+       padding: 40px;
+       width: 320px;
+       margin: 0 auto;
+    }
+    
+    div.learnmore-bg-color{
+       background-color: #f5f5f5;
+       height: 100%;
+    }
+    
+    div.paneWidth{
+       width: 100%;
+    }	
+	
+    div.manage-bg-color {
+        background-color: #fff;
+        left: 16px;
+        padding: 15px;
+        width: 90%;
+    }
+    div.manage-mobile-margine {
+        margin-bottom: 22px;
+    }
     h4.faqSubtitle {
        font-size: 16px;
        font-weight: bold;
@@ -15214,6 +15360,7 @@ textarea.textarea-embed-video {
        padding: 5px;
        width: 100%;
 	   text-decoration: none;
+	   margin-left: 30px;
     }
     a.viewTopics:hover{
 	   color: #fff;
@@ -15269,7 +15416,7 @@ textarea.textarea-embed-video {
         height: 115px;
     }
     div.campaign-bg-color {
-        background-color: #fff;
+        background-color: #f5f5f5;
     }
 	span.cdr-ft-contactnum-in{
         color: #fff;
@@ -15281,7 +15428,6 @@ textarea.textarea-embed-video {
         padding-right: 28px;
         padding-left: 0;
     }
-	
      .bg-color-white.homepagTempHeight {
         height: 340px;
      }
@@ -17648,11 +17794,9 @@ textarea.textarea-embed-video {
 /*     color:#01bbd3;  */
 /* } */
 .show-tabs-count{
-	text-decoration:none !important;
-    font-family: Futura-Condensed Normal;
-    font-size: 16px;
-    font-weight: 900;
-    color: #6d6e6e;
+	color: #787878;
+    font-size: 20px;
+    text-decoration: none !important;
 }
 .show-tiles-padding {
 /*     height: 184px; */
@@ -18743,7 +18887,7 @@ input[readonly] {
 }
 
 .moveContribution{
-	font-size: 14px;
+    font-size: 14px;
     line-height: 34px;
     text-align:right;
 }
@@ -18814,6 +18958,7 @@ a.viewTopics:hover{
 .articless {
 	font-size: 17px;
 	font-family: Georgia;
+	font-weight: bold;
 }
 
 .articlePic img{
@@ -18826,7 +18971,11 @@ a.viewTopics:hover{
 .learnContainer{
 	background-color: white;
     padding: 40px;
-    width: 1000px;
+    width: 980px;
+}
+
+.learnMorewidth{
+	width: 218px;
 }
 
 .learnBg-color{
@@ -18837,8 +18986,123 @@ div.nexxt{
 	margin-top: -21px;
 }
 
-strong.learnMore-Subheading {
+.learnMore-Subheading {
 	font-size: 26px;
 	margin-top: 20px;
 	margin-bottom: 20px;
+}
+
+li.learnMoreEllipses{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    list-style-position: inside;
+}
+
+.learnmorecontainer{
+    background-color: white;
+    height: 520px;
+    margin-left: 230px;
+    padding: 40px;
+    width: 80%;
+}
+
+.learnmorerSideMenu {
+    position: relative;
+    height: 523px;
+    background-color: #5a5a5a;
+    list-style: outside none none;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-top: 10px;
+    width: 200px;
+}
+
+a.sidemenuFont {
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    font-size: 15px;
+    font-weight: bolder;
+    font-family: georgia;
+    text-decoration: none;
+    list-style: outside none none;
+    background-color: #5a5a5a;
+}
+
+.sideBorder{
+    border: medium none;
+    box-shadow: none;
+}
+
+a.sidemenuFont:hover,
+a.sidemenuFont:focus{
+	background-color: #696969;
+	text-decoration: none;
+	color: white;
+}
+
+.sidemenuFontInner{
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: georgia;
+    text-decoration: none;
+    padding-left:20px;
+    background-color: gray;
+}
+
+.sidemenuFontInner:hover,
+.sidemenuFontInner:focus{
+	background-color: #c0c0c0;
+	text-decoration: none;
+	color: white;
+}
+
+h4.sidex{
+	font-family: georgia;
+	color: white;
+	text-align: center;
+	padding-top: 40px;
+	font-size: 16px;
+	font-weight: bolder;
+	margin-top: 7px;
+}
+
+.learnmore-bg-color{
+	background-color: #f5f5f5;
+    height: 582px;
+}
+
+.accordion-toggle .chevron:after {
+    content: "\f078";   
+}
+
+.accordion-toggle.collapsed .chevron:after {
+    content: "\f054"; 
+}  
+
+.paneWidth{
+	width: 80%;
+}
+
+.greyColor{
+	background-color: #5a5a5a;
+}
+
+.whitefont{
+	font-family: georgia;
+	color: white;
+}
+
+li.noBullet{
+	list-style-type: none; 
+}
+
+.articleContent{
+	font-size: 16px;
+    font-family: sans-serif;
+    font-weight: normal;
 }

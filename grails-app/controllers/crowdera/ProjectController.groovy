@@ -1072,8 +1072,12 @@ class ProjectController {
             //Country Issue for India site
             //India: Map key is fetching for country like, AL is fetching for AL:"ALBANIA"
             //USA: Map value is fetching for country like, ALBANIA is fetching for AL:"ALBANIA"
-            def selectedCountry = (project.beneficiary.country.length() > 3 ) ? projectService.getCountryKey(project.beneficiary.country) : project.beneficiary.country
-            def beneficiary = project.beneficiary
+           // def selectedCountry = (project.beneficiary.country.length() > 3 ) ? projectService.getCountryKey(project.beneficiary.country) : project.beneficiary.country
+            def selectedCountry;
+		if (project.beneficiary.country != null) {
+			selectedCountry = (project.beneficiary.country?.length() > 3 ) ? projectService.getCountryKey(project.beneficiary.country) : project.beneficiary.country
+		}
+		def beneficiary = project.beneficiary
             def reasonsToFund = projectService.getProjectReasonsToFund(project)
             def qA = projectService.getProjectQA(project)
             def taxReciept = projectService.getTaxRecieptOfProject(project)

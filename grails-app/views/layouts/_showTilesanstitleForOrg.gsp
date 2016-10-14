@@ -5,7 +5,7 @@
     def percent
     def contributedSoFar
     def amount
-    if (project.user == currentFundraiser){
+    if (project.user == currentFundraiser || isCampaignOwnerOrAdmin || isAdmin){
         percent = percentage
         contributedSoFar = totalContribution
         amount = project?.amount.round()

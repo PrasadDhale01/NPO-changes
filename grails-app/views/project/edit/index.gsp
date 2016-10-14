@@ -1,6 +1,6 @@
 <g:set var="rewardService" bean="rewardService"/>
 <%@ page import="java.text.SimpleDateFormat" %>
-<% 
+<%
     def iteratorCount = 1
     def lastrewardCount = 1
     def rewardItrCount = projectRewards.size()

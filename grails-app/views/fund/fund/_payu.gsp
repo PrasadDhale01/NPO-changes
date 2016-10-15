@@ -144,7 +144,7 @@
                          <div class="col-md-12 col-sm-6 col-xs-12">
                              <div class="form-group">
                                  <div class="input-group col-md-12">
-                                     <input class="form-control" type="email" placeholder="Email" name="email" required>
+                                     <input class="form-control" type="email" placeholder="Email" name="email" value="${user?.email}" required>
                                  </div>
                              </div>
                          </div>
@@ -207,7 +207,7 @@
                         <div class="col-md-12 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <div class="input-group col-md-12">
-                                    <input class="form-control" type="text" placeholder="Email" name="email">
+                                    <input class="form-control" type="text" placeholder="Email" name="email" value="${user?.email}">
                                 </div>
                             </div>
                         </div>

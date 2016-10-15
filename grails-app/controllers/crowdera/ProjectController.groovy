@@ -901,7 +901,10 @@ class ProjectController {
                 def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
 
                 def usedForCreate = project.usedFor
-                def selectedCountry = (project.beneficiary.country) ? projectService.getCountryValue(project.beneficiary.country) : null;
+                def selectedCountry
+                if (project.beneficiary.country != null) {
+                    selectedCountry = (project.beneficiary.country?.length() > 3 ) ? projectService.getCountryKey(project.beneficiary.country) : project.beneficiary.country
+                }
 
                 def endDate = projectService.getProjectEndDate(project)
                 def campaignEndDate = endDate.getTime().format('MM/dd/yyyy')

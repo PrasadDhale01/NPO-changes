@@ -1,6 +1,7 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <g:set var="projectService" bean="projectService" />
 <g:set var="userService" bean="userService" />
+<%@ page import="java.text.SimpleDateFormat" %>
 <%
     def projectTitle = project.title
     if (projectTitle) {
@@ -8,6 +9,8 @@
     }
     def currentTeamAmount = currentTeam.amount
     boolean isvalidateShow = true
+    
+    SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM, YYYY");
 %>
 <html>
 <head>
@@ -142,14 +145,50 @@
                             <div class="visible-md visible-lg visible-xs">
                             <g:if test="${taxReceipt}">
 	                            <h6 class="text-center "><b>Tax Receipt Details</b></h6>
-	                            <g:if test="${taxReceipt.ein}">
-                                    <label><b>EIN : </b></label> ${taxReceipt.ein}<br>
+                                <g:if test="${project.payuStatus}">
+		                            <label><b>Name of Organization: </b></label> ${taxReceipt.name}<br>
+	                                <label><b>Registration Number : </b></label> ${taxReceipt.regNum}<br>
+	                                <g:if test="${taxReceipt.regDate}">
+                                    <label><b>Registration Date : </b></label> ${dateFormat.format(taxReceipt.regDate)}<br>
+                                    </g:if>
+                                    <label><b>Address : </b></label>${taxReceipt.addressLine1} , 
+                                                            <g:if test="${taxReceipt.addressLine2}">
+                                                                ${taxReceipt.addressLine2},
+                                                            </g:if>
+                                                            ${taxReceipt.city}- ${taxReceipt.zip},
+                                                            ${taxReceipt.taxRecieptHolderState}, India
+                                                            <br>
+                                    <g:if test="${taxReceipt.phone}">
+                                        <label><b>Phone Number : </b></label> ${taxReceipt.phone}<br>
+                                    </g:if>
+                                    <g:if test="${taxReceipt.panCardNumber}">
+	                                    <label><b>PanNumber : </b></label> ${taxReceipt.panCardNumber}<br>
+	                                </g:if>
+	                                <g:if test="${taxReceipt.deductibleStatus}">
+	                                    <label><b>Deductible Status : </b></label> ${taxReceipt.deductibleStatus}<br>
+	                                </g:if>
+	                                <g:if test="${taxReceipt.exemptionPercentage.round()}">
+	                                    <label><b>% Exempt : </b></label> ${taxReceipt.exemptionPercentage?.round()}<br>
+	                                </g:if>
                                 </g:if>
-	                            <label><b>Name : </b></label> ${taxReceipt.name}<br>
-	                             <g:if test="${deductibleStatus}">
-                                    <label><b>Deductible Status : </b></label> ${deductibleStatus}<br>
-                                </g:if>
-	                            <label><b>Address : </b></label> ${taxReceipt.city}, ${taxReceipt.taxRecieptHolderState}, ${taxReceipt.country}<br>
+                                <g:else>
+                                    <label><b>Name of Organization: </b></label> ${taxReceipt.name}<br>
+	                                <label><b>EIN : </b></label> ${taxReceipt.ein}<br>
+	                                <label><b>Address : </b></label>${taxReceipt?.addressLine1} , 
+                                                            <g:if test="${taxReceipt?.addressLine2}">
+                                                                ${taxReceipt?.addressLine2},
+                                                            </g:if>
+                                                            ${taxReceipt?.city}- ${taxReceipt?.zip},
+                                                            ${taxReceipt?.taxRecieptHolderState}, India
+                                                            <br>
+                                    <g:if test="${taxReceipt.phone}">
+                                        <label><b>Phone Number : </b></label> ${taxReceipt.phone}<br>
+                                    </g:if>
+                                    <g:if test="${taxReceipt.deductibleStatus}">
+                                        <label><b>Deductible Status : </b></label> ${taxReceipt.deductibleStatus}<br>
+                                    </g:if>
+                                </g:else>
+                                
                             </g:if>
                             </div>
                             <div class="visible-sm">
@@ -179,14 +218,50 @@
                         <div class="panel panel-default organization-panel org-panel-4 org-padding">
                             <g:if test="${taxReceipt}">
                                 <h6 class="text-center "><b>Tax Receipt Details</b></h6>
-                                <g:if test="${taxReceipt.ein}">
+                                <g:if test="${project.payuStatus}">
+                                    <label><b>Name of Organization: </b></label> ${taxReceipt.name}<br>
+                                    <label><b>Registration Number : </b></label> ${taxReceipt.regNum}<br>
+                                    <g:if test="${taxReceipt.regDate}">
+                                    <label><b>Registration Date : </b></label> ${dateFormat.format(taxReceipt.regDate)}<br>
+                                    </g:if>
+                                    <label><b>Address : </b></label>${taxReceipt.addressLine1} , 
+                                                            <g:if test="${taxReceipt.addressLine2}">
+                                                                ${taxReceipt.addressLine2},
+                                                            </g:if>
+                                                            ${taxReceipt.city}- ${taxReceipt.zip},
+                                                            ${taxReceipt.taxRecieptHolderState}, India
+                                                            <br>
+                                    <g:if test="${taxReceipt.phone}">
+                                        <label><b>Phone Number : </b></label> ${taxReceipt.phone}<br>
+                                    </g:if>
+                                    <g:if test="${taxReceipt.panCardNumber}">
+                                        <label><b>PanNumber : </b></label> ${taxReceipt.panCardNumber}<br>
+                                    </g:if>
+                                    <g:if test="${taxReceipt.deductibleStatus}">
+                                        <label><b>Deductible Status : </b></label> ${taxReceipt.deductibleStatus}<br>
+                                    </g:if>
+                                    <g:if test="${taxReceipt.exemptionPercentage.round()}">
+                                        <label><b>% Exempt : </b></label> ${taxReceipt.exemptionPercentage?.round()}<br>
+                                    </g:if>
+                                </g:if>
+                                <g:else>
+                                    <label><b>Name of Organization: </b></label> ${taxReceipt.name}<br>
                                     <label><b>EIN : </b></label> ${taxReceipt.ein}<br>
-                                </g:if>
-                                <label><b>Name : </b></label> ${taxReceipt.name}<br>
-                                <g:if test="${deductibleStatus}">
-                                    <label><b>Deductible Status : </b></label> ${deductibleStatus}<br>
-                                </g:if>
-                                <label><b>Address : </b></label> ${taxReceipt.city}, ${taxReceipt.taxRecieptHolderState}, ${taxReceipt.country}<br>
+                                    <label><b>Address : </b></label>${taxReceipt?.addressLine1} , 
+                                                            <g:if test="${taxReceipt?.addressLine2}">
+                                                                ${taxReceipt?.addressLine2},
+                                                            </g:if>
+                                                            ${taxReceipt?.city}- ${taxReceipt?.zip},
+                                                            ${taxReceipt?.taxRecieptHolderState}, India
+                                                            <br>
+                                    <g:if test="${taxReceipt.phone}">
+                                        <label><b>Phone Number : </b></label> ${taxReceipt.phone}<br>
+                                    </g:if>
+                                    <g:if test="${taxReceipt.deductibleStatus}">
+                                        <label><b>Deductible Status : </b></label> ${taxReceipt.deductibleStatus}<br>
+                                    </g:if>
+                                </g:else>
+                                
                             </g:if>
                             <g:else>
 								<g:if test="${project.projectAdmins.email.size() > 1}">

@@ -211,8 +211,8 @@ class HomeController {
     }
 	
 	def getLearnMore(){
-		String question =params.question.replaceAll("20%", " ")
+		String question =params.question?.replaceAll("20%", " ")
 		def learnMore = LearnMore.findByArticleTitle(question+"?");
-		render  (view:"/learnMore/database", model:[articleContent:learnMore.articleContent])
+		render  (view:"/learnMore/database", model:[articleContent:learnMore?.articleContent])
 	}
 }

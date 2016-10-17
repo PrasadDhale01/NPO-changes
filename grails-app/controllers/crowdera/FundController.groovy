@@ -706,6 +706,15 @@ class FundController {
             redirect (controller: 'project', action: 'show' ,fragment: 'contributions', params:['projectTitle':title,'fr':name])
         }
     }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def getOfflineContribution() {
+        JSONObject json = new JSONObject();
+        Contribution contribution = contributionService.getContributionById(params.id);
+        json = ["firstName": contribution.contributorFirstName, "lastName": contribution.contributorLastName, "email": contribution.contributorEmail, 
+            "amount": contribution.amount.round(), "panNumber": contribution.panNumber]
+        render json;
+    }
 
     def payByPayUmoney(){
         def project= Project.get(params.projectId)

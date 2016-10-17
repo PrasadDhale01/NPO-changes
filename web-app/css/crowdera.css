@@ -5542,7 +5542,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 @media only screen and (min-width: 768px){
 	.col-contributor {
-		width: 362px;
+		width: 450px;
 		float: right;
 	}
 
@@ -5554,7 +5554,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	input.search-contributors {
 		height: 36px;
 		padding-left: 38px;
-		width:185px;
+		width:200px;
 	}
 
 	span.glyphicon-contributor-search {
@@ -8504,7 +8504,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-bottom: 20px;
     }
     .validate-show-div .organization-panel.org-panel-3.panel, .validate-show-div .organization-panel.org-panel-4.panel {
-        height: 270px;
+        height: 320px;
     }
     #page-content-wrapper {
         padding: 15px 0 15px 0;
@@ -10866,7 +10866,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 	#sendReceipt .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),
 	.sendTaxReceiptBoard .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
-	   width:105px;    
+	   width:165px;    
 	}
 	
 	div.how-it-work--title {
@@ -10883,7 +10883,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		height: 33px;
 		margin-top: 2px;
 		padding-left: 31px;
-		width: 172px;
+		width: 285px;
 	}
 	
 	span.glyphicon-contributor-search {
@@ -10895,6 +10895,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.col-contributor, .contributor-search-box{
 	    padding-left:0px;
 	    padding-right: 15px;
+	    margin-bottom: 15px;
 	}
 
 	.img-size-xs{

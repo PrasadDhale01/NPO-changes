@@ -2799,6 +2799,7 @@ $(function() {
    });
 
     $('#category').change(function(){
+    	autoSave('category', $(this).val());
         changeHashTags();
     });
 

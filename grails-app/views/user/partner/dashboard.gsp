@@ -136,17 +136,17 @@
                     </li>
                     <g:if test="${(isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
                         <li>
-                            <a href="#taxReceipt" data-toggle="tab">Tax Receipt</a>
+                            <a href="#taxReceipt" data-toggle="tab">Donation Receipts</a>
                         </li>
                     </g:if>
                     <g:elseif test="${isUserProjectHavingContribution && !userHasContributedToNonProfitOrNgo && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
                         <li>
-                            <a href="#sendtaxReceipt" data-toggle="tab">Send Tax Receipt</a>
+                            <a href="#sendtaxReceipt" data-toggle="tab">Donation Receipts</a>
                         </li>
                     </g:elseif>
                     <g:elseif test="${!isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
 						<li>
-                            <a href="#exporttaxReceipt" data-toggle="tab">Export Tax Receipt</a>
+                            <a href="#exporttaxReceipt" data-toggle="tab">Donation Receipts</a>
 						</li>
                     </g:elseif>
                     <li>

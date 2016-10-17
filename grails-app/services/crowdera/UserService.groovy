@@ -94,7 +94,6 @@ class UserService {
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
             
-            
             int index = imageFile.getOriginalFilename().lastIndexOf(".")
             String extName = imageFile.getOriginalFilename().substring(index);
 
@@ -111,7 +110,7 @@ class UserService {
             s3Service.putObject(s3Bucket, object)
             file.delete()
             def imageUrl = "//s3.amazonaws.com/crowdera/${key}"
-
+            
             return imageUrl
         }
     }
@@ -1948,7 +1947,12 @@ class UserService {
             reportParams.put("panOfContributor", contribution?.panNumber);
             reportParams.put("receiptNo", transaction.transactionId);
             
-            reportParams.put("exemptionPer", taxReciept.exemptionPercentage?.toString());
+            if (taxReciept?.exemptionPercentage % 1 == 0) {
+                reportParams.put("exemptionPer", taxReciept.exemptionPercentage?.round().toString());
+            } else {
+                reportParams.put("exemptionPer", taxReciept.exemptionPercentage?.toString());
+            }
+            
             
             if(taxReciept.deductibleStatus == null || 'null'.equalsIgnoreCase(taxReciept?.deductibleStatus)){
                 reportParams.put("orgStatus", "N/A");

@@ -543,13 +543,13 @@ span.cr-label-spend-matrix {
     background-color: #F3F3F3;
 }
 .validate-show-div .organization-panel.org-panel-1.panel {
-	   height: 380px;
+	   height: 400px;
 }
 .validate-show-div .organization-panel.org-panel-2.panel {
-    height: 380px;
+    height: 400px;
 }
 .validate-show-div .organization-panel.org-panel-3.panel {
-    height: 380px;
+    height: 400px;
 }
 .organization-panel h5 {
     margin-top: 20px;
@@ -1437,6 +1437,9 @@ img.how-it-success-img{
     margin-top: 20px;
     margin-bottom: 20px;
 }
+.tax-receipt-logo {
+	margin-bottom: 10px;
+}
 .modal-body .taxreceiptcontainer {
     width: 800px;
 }
@@ -1467,15 +1470,25 @@ img.how-it-success-img{
     min-height: 170px
 }
 .taxreceiptcontributiondetail .taxreceipttop {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.organizationdetails .taxreceipttop {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.organizationdetails .taxreceiptdetailsfont {
+    margin-top: 2px;
 }
 .taxreceiptdetailsfont {
-    margin-top: 8px;
+    margin-top: 5px;
     margin-bottom: 0px;
     font-size: 16px;
     font-weight: 500;
     text-align:right;
+}
+.panel.taxreceiptcontributiondetail {
+	margin-bottom: 0px;
 }
 .taxreceiptdetailsfont.zerotopmargin {
     margin-top: 0px;
@@ -1802,6 +1815,13 @@ a.thankyou-textdeco {
 }
 .signature_img_seperator {
     display: none;
+}
+
+.pannumberEditDiv {
+	display: none;
+}
+.margin-btm-10 {
+	margin-bottom: 10px;
 }
 .manage-Descriptions{
     background-color: #fff;

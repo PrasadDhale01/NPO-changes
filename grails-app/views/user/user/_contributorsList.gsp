@@ -1,6 +1,6 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%  
-    SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY:MM:dd hh:mm:ss");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY:MM:dd");
     def date = dateFormat.format(contribution.date);
  %>
 <tr>
@@ -20,4 +20,12 @@
 		<g:else>$</g:else>${contribution.amount.round()}
     </td>
 	<td class="text-center">${date}</td>
+	<td class="text-center">
+	    <g:if test="${contribution.receiptSent}">
+	        resend
+	    </g:if>
+	    <g:else>
+	        send now
+	    </g:else>
+	</td>
 </tr>

@@ -132,6 +132,7 @@ class UrlMappings {
         "/fund/$projectTitle/acknowledge/comment/$fr/$id"(controller:'fund', action:'saveContributionComent')
         "/fund/$projectTitle/acknowledge/savecomment/$fr/$id/$commentId"(controller:'fund', action:'saveCommentRedirect')
         "/fund/$projectTitle/acknowledge/saveteamcomment/$fr/$id/$teamCommentId"(controller:'fund', action:'saveTeamCommentRedirect')
+        "/fund/getOfflineContribution/$id"(controller:'fund', action:'getOfflineContribution')
         
         /*User*/
         "/user/mycampaigns"(controller:'user', action:'myproject')

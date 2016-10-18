@@ -9,15 +9,19 @@
 	</g:if>
 	<div class=" <g:if test="${isBackRequired}">col-sm-12</g:if><g:else>col-sm-10</g:else> search-sort">
 		<div class="col-contributor col-xs-12 col-plr-0">
-			<div class="contributor-search-box col-sm-6 col-xs-12">
+			<div class="contributor-search-box col-sm-4 col-xs-8">
 				<input type="text" class="search-contributors form-control all-place" placeholder="Search....">
 				<span class="glyphicon glyphicon-search glyphicon-contributor-search"></span>
 			</div>
-			<div class="col-sm-2 col-xs-5 col-plr-0">
+			<div class="col-sm-2 col-xs-4 col-plr-0 selectall-btn-div">
 		        <input type="button" value="Select all" class="btn btn-primary btn-sm selectAllCheckbox">
 		    </div>
-			<div class="col-sm-4 col-xs-7 col-contributor-search">
-    			<g:select class="selectpicker contributorsSort" value="${sort}" name="contributorsSort" from="${sortList}" optionKey="key" optionValue="value"/>
+		    <div class="receipt-btn-seperator clear"></div>
+		    <div class="col-sm-2 col-xs-4 col-plr-0">
+		        <button class="btn btn-primary btn-sm sendEmailToContributors">Send Email</button>
+		    </div>
+			<div class="col-sm-4 col-xs-8 col-contributor-search col-plr-0">
+    			<g:select class="selectpicker contributorsSort pull-right" value="${sort}" name="contributorsSort" from="${sortList}" optionKey="key" optionValue="value"/>
 			</div>
 		</div>
 	</div>
@@ -70,7 +74,7 @@
 
 	<div class="clear"></div>
 	<div class="pull-right col-send-email">
-    	<button class="btn btn-primary btn-sm sendEmailToContributors">Send Email</button>
+    	
 	</div>
 
 	<span class="pull-right" id="selectedLength"></span>

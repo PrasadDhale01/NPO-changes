@@ -1882,3 +1882,6 @@ a.manage-campaigndetails-font{
 .manage-submit {
     padding: 19px;
 }
+.receipt-btn-seperator {
+    display : none;
+}

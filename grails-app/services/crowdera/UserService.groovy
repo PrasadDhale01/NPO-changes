@@ -1560,51 +1560,86 @@ class UserService {
     def getSortedContributorsForProject(def params, Project project){
         List contributions = []
         def contributionsOffset
-        switch (params.sort){
+        
+        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        
+        switch (params.sort) {
+            case '1':
+                def criteria = Contribution.createCriteria();
+                Calendar now = Calendar.getInstance();
+                now.set(Calendar.HOUR, 0);
+                now.set(Calendar.MINUTE, 0);
+                now.set(Calendar.SECOND, 0);
+                now.set(Calendar.HOUR_OF_DAY, 0);
+                contributions = criteria.list {
+                    createAlias('project', 'project')
+                    eq("project.id", project.id)
+                    between("date", now.getTime() , (now.getTime() + 1))
+                }
+                
+                break;
+                
+            case '2':
+                def criteria = Contribution.createCriteria();
+                Calendar now = Calendar.getInstance();
+                now.set(Calendar.HOUR, 0);
+                now.set(Calendar.MINUTE, 0);
+                now.set(Calendar.SECOND, 0);
+                now.set(Calendar.HOUR_OF_DAY, 0);
+                contributions = criteria.list {
+                    createAlias('project', 'project')
+                    eq("project.id", project.id)
+                    between("date", (now.getTime() - 7) , (now.getTime() + 1))
+                }
+                break;
+                
+            case '3' :
+                break;
+                
             case 'Anonymous':
-            contributions = Contribution.findAllWhere(project:project, isAnonymous:true)
-            break;
+                contributions = Contribution.findAllWhere(project:project, isAnonymous:true)
+                break;
 
             case 'Non-Anonymous':
-            contributions = Contribution.findAllWhere(project:project, isAnonymous:false)
-            break;
+                contributions = Contribution.findAllWhere(project:project, isAnonymous:false)
+                break;
 
-            case 'Receipt Sent':
-            contributions = Contribution.findAllWhere(project:project, receiptSent:true)
-            break;
+            case ('Receipt Sent' || '4'):
+                contributions = Contribution.findAllWhere(project:project, receiptSent:true)
+                break;
 
-            case 'Receipt Not Sent':
-            contributions = Contribution.findAllWhere(project:project, receiptSent:false)
-            break;
+            case ('Receipt Not Sent' || '5' ):
+                contributions = Contribution.findAllWhere(project:project, receiptSent:false)
+                break;
 
             case 'Perk Selected':
-            def contributionList = Contribution.findAllWhere(project:project)
-            contributionList.each{
-                if (it.reward.id != 1){
-                    contributions.add(it)
+                def contributionList = Contribution.findAllWhere(project:project)
+                contributionList.each{
+                    if (it.reward.id != 1){
+                        contributions.add(it)
+                    }
                 }
-            }
-            break;
+                break;
 
             case 'No Perk Selected':
-            def contributionList = Contribution.findAllWhere(project:project)
-            contributionList.each{
-                if (it.reward.id == 1){
-                    contributions.add(it)
+                def contributionList = Contribution.findAllWhere(project:project)
+                contributionList.each{
+                    if (it.reward.id == 1){
+                        contributions.add(it)
+                    }
                 }
-            }
-            break;
+                break;
 
             case 'Online':
-            contributions = Contribution.findAllWhere(project:project, isContributionOffline:false)
-            break;
+                contributions = Contribution.findAllWhere(project:project, isContributionOffline:false)
+                break;
 
             case 'Offline':
-            contributions = Contribution.findAllWhere(project:project, isContributionOffline:true)
-            break;
+                contributions = Contribution.findAllWhere(project:project, isContributionOffline:true)
+                break;
 
             default:
-            contributions = Contribution.findAllWhere(project:project)
+                contributions = Contribution.findAllWhere(project:project)
         }
         
         List<Contribution> contributionList = new ArrayList<>();

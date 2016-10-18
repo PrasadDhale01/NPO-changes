@@ -352,7 +352,7 @@
                                  <div class="col-sm-12 margin-btm-10">
                                      <div class="form-group">
                                          <label class="text col-sm-12">
-                                             <input type="checkbox" name="isTaxreceipt" id="isTaxreceiptEdit" > Do you want to provide tax receipt?
+                                             <input type="checkbox" name="isTaxreceipt" id="isTaxreceiptEdit" > Do you want to provide donation receipt?
                                          </label>
                                      </div>
                                  </div>
@@ -379,7 +379,7 @@
                  </div>
              </g:form>
          </div>
-                        
+         
        </div>
     </div>
 </g:if>

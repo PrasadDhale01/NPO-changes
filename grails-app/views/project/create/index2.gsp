@@ -932,14 +932,14 @@
                     <div class="col-md-offset-4 col-md-8 col-sm-offset-3 col-sm-9">
                         <div class="form-group form-group-termsOfUse <g:if test="${(project.fundsRecievedBy != 'NGO' && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')) || (project.fundsRecievedBy != 'NON-PROFIT' && (currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv == 'development'))}">tax-reciept</g:if>" id="tax-reciept">
                             <input type="checkbox" name="tax-reciept-checkbox" class="tax-reciept-checkbox" id="tax-reciept-checkbox" <g:if test="${project.offeringTaxReciept}">checked="checked"</g:if>>
-                            Do you want to offer receipt to your contributors?
+                            Do you want to offer donation receipt to your contributors?
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-sm-12 padding-tax-reciept-xs col-tax-reciept-panel <g:if test="${!project.offeringTaxReciept}">col-reciept-display-none</g:if>">
                     <div class="cr-spend-matrix">
-                         <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Tax receipts</span></label>
+                         <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Donation receipts</span></label>
                          <label class="col-md-10 col-sm-9 hidden-xs cr-panel-spend-matrix-guide">
                          </label>
                     </div>

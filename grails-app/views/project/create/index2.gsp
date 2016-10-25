@@ -105,7 +105,7 @@
                     
                    <div class="col-sm-3 cr2-width-dropdown3  cr2-width-city">
                         <div class="input-group enddate">
-                            <input class="cr2-width-height-city cr-mob-datepicker form-control cr2-input-placeholder city cr2-text-city" name="city" value="${project.beneficiary.city}" placeholder="City"> 
+                            <input class="cr2-width-height-city cr-mob-datepicker form-control cr2-input-placeholder city cr2-text-city" name="city" value="${project.beneficiary.city}" maxlength="32" placeholder="City"> 
                         </div>
                     </div>
                     
@@ -257,7 +257,9 @@
                             <g:each in="${spends}" var="spend">
                                 <div class="spend-matrix-template" id="spend-matrix-template${spend.numberAvailable}">
                                     <g:if test="${spend.numberAvailable > 1}"><br class="hidden-lg hidden-md hidden-sm"></g:if>
+                                    
                                     <div class="col-sm-amt col-sm-12">
+                                    
                                         <span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>
                                         <div class="form-group col-sm-3 col-xs-4 col-sm-input-group">
                                             <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
@@ -271,7 +273,7 @@
                                         </div>
                                         <span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>
                                         <div class="col-sm-5 col-xs-7 col-input-for form-group">
-                                            <input type="text" class="form-control form-control-input-for spendCause" id="spendCause${spend.numberAvailable}" name="spendCause${spend.numberAvailable}" value="${spend.cause}">
+                                            <input type="text" class="form-control form-control-input-for spendCause" maxlength="64" id="spendCause${spend.numberAvailable}" name="spendCause${spend.numberAvailable}" value="${spend.cause}">
                                         </div>&nbsp;&nbsp;
                                         <div class="clear visible-xs"></div>
                                         <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
@@ -309,7 +311,7 @@
                                 </div>
                                 <span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>
                                 <div class="col-sm-5 col-xs-7 col-input-for form-group">
-                                <input type="text" class="form-control form-control-input-for spendCause" id="spendCause1" name="spendCause1">
+                                <input type="text" class="form-control form-control-input-for spendCause" maxlength="64" id="spendCause1" name="spendCause1">
                                 </div>&nbsp;&nbsp;
                                 <div class="clear visible-xs"></div>
                                 <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
@@ -351,13 +353,13 @@
                         </div><br>
                         2. Why do you want to crowdfund ?
                         <div class="question-ans form-group">
-                            <textarea class="ansText ansText2 form-control" name="ansText2" placeholder="">${ans2val}</textarea>
+                            <textarea class="ansText ansText2 form-control" name="ansText2" maxlength="128">${ans2val}</textarea>
                         </div><br>
                         3. Have you crowdfunded before ?
                         <div class="question-ans question-ans-3 form-group">
                             <p><input type="radio" name="ans3" class="ans3 yes" value="yes" <g:if test="${qA && qA.ans3 && qA.ans3 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
                             <input type="radio" name="ans3" class="ans3 no" value="no" <g:if test="${qA && qA.ans3 && qA.ans3 == 'NO'}">checked="checked"</g:if>>&nbsp;NO</p>
-                            <textarea class="ansText ansText3 form-control <g:if test="${ans3val}">display-block-text3</g:if><g:else>display-none-text3</g:else>" name="ansText3" placeholder="">${ans3val}</textarea>
+                            <textarea maxlength="128" class="ansText ansText3 form-control <g:if test="${ans3val}">display-block-text3</g:if><g:else>display-none-text3</g:else>" name="ansText3" placeholder="">${ans3val}</textarea>
                         </div><br>
                         4. If you don't recieve 100% goal what will you do.
                         <div class="question-ans form-group">
@@ -368,27 +370,28 @@
                         
                         5. What are the issues you or your organization is facing with regards to funding?
                         <div class="question-ans form-group">
-                            <textarea class="ansText ansText5 form-control" name="ansText5">${ans5val}</textarea>
+                            <textarea class="ansText ansText5 form-control" name="ansText5" maxlength="128">${ans5val}</textarea>
                         </div>
                         
                         6. Why are you crowdfunding at this moment?
                         <div class="question-ans form-group">
-                            <textarea class="ansText ansText6 form-control" name="ansText6">${ans6val}</textarea>
+                            <textarea class="ansText ansText6 form-control" name="ansText6" maxlength="128">${ans6val}</textarea>
                         </div>
                         
                         7. What will you do if you do not reach your goal within the chosen deadline? Will you still complete your project?
                         <div class="question-ans form-group">
-                            <textarea class="ansText ansText7 form-control" name="ansText7">${ans7val}</textarea>
+                            <textarea class="ansText ansText7 form-control" name="ansText7" maxlength="128">${ans7val}</textarea>
                         </div>
                         
                         8. Why should the contributors trust you?
                         <div class="question-ans form-group">
-                            <textarea class="ansText ansText8 form-control" name="ansText8">${ans8val}</textarea>
+                            <textarea class="ansText ansText8 form-control" name="ansText8" maxlength="128">${ans8val}</textarea>
                         </div>
                     </div>
                 </div>
             </div>
         </g:if>    
+        
             <div class="col-sm-12 padding-right-xs">
                 <div class="cr-spend-matrix">
                     <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-reasons-to-fund"><span class="cr-spend-matrix-font">3 Reason to Fund</span></label>

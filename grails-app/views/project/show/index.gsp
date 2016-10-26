@@ -134,6 +134,8 @@
     
 </head>
 <body>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<a href="javascript:" id="returnTotop"> <i class="icon-chevron-up"></i></a>
 <div class="feducontent campaign-bg-color">
     <g:if test="${isPreview}">
         <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
@@ -1035,7 +1037,19 @@
         </g:else>
     </div>
 </div>
-
-</body>
+<script type="text/javascript">
+	$(window).scroll(function() {
+	    if ($(this).scrollTop() >= 50) {        
+	        $('#returnTotop').fadeIn(200);   
+	    } else {
+	        $('#returnTotop').fadeOut(200);   
+	    }
+	});
+	$('#returnTotop').click(function() {      
+	    $('body,html').animate({
+	        scrollTop : 0                       
+	    }, 500);
+	});
+</script> 
+   </body>
 </html>
-                         

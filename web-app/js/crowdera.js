@@ -340,8 +340,8 @@ function desktopSearch(){
         $('.search-image-header').css('paddingRight', '40px');
     } else {
         $('.search-box').show();
-        $('.discover').hide();
-        $('.learn').hide();
+        $('.discover').show();
+        $('.learn').show();
         $(".search-box").animate({width: slider_width},function(){
             $(this).focus(); // For bonus, the input will now get autofocus
         });
@@ -375,3 +375,7 @@ function onSearchLeave(){
      }, delay);
 //         $('.search-image-header').css('paddingRight', '40px');
 }
+
+
+
+

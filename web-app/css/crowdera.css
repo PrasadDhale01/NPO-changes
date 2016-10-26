@@ -912,7 +912,7 @@ div.abt-imgs .thumbnail img {
 }
 
 .inner-addon {
-    position: relative;
+    position: fixed;
 }
 
 /* style icon */
@@ -3448,6 +3448,7 @@ i.glyphicon.glyphicon-search.search-glyph-icon{
 }
 
 ul.nav.navbar-nav.nav-icon-bar{
+	padding-left: 0px;
     width: 36%;
 }
 
@@ -19107,3 +19108,66 @@ li.noBullet{
     font-family: sans-serif;
     font-weight: normal;
 }
+
+#returnTotop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #01bbd3;
+    width: 50px;
+    height: 50px;
+    display: block;
+    text-decoration: none;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    display: none;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+a#returnTotop:hover {
+    background-color: #e74c3c;
+}
+
+#returnTotop i {
+	outline: none;
+    color: #fff;
+    margin: 0;
+    position: relative;
+    left: 16px;
+    top: 13px;
+    font-size: 19px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+a< #returnTotop:focus{
+    text-decoration: none;
+    outline: none;
+}
+
+#returnTotop:hover i{
+	outline: none;
+    color: #fff;
+    top: 5px;
+    text-decoration: none;
+    
+}
+
+#returnTotop i:focus{
+    outline: none;
+	text-decoration: none;
+}
+
+/* to remove outline border on click in mozilla */
+:-moz-any-link:focus {
+  outline: none;
+}
+

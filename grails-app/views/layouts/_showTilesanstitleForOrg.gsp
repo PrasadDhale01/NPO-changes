@@ -47,7 +47,7 @@
                 <span class="show-tile-raised">Raised</span><br>
                 <span class="show-raised-amt show-contribution-amt-tile">
                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                        <span class="fa fa-inr fa-inr-block"></span><span><g:if test="${payuStatus}">${contributedSoFar}</g:if><g:else>${contributedSoFar * conversionMultiplier}</g:else></span>
+                        <span class="fa fa-inr fa-inr-block"></span><span><g:if test="${project.payuStatus}">${contributedSoFar}</g:if><g:else>${contributedSoFar * conversionMultiplier}</g:else></span>
 <%--                                            span class---class="lead show-contribution-amt-tile"--%>
                     </g:if>
                     <g:else>
@@ -66,7 +66,7 @@
                  <span class="show-tile-raised">Goal</span><br>
                 <span class="show-raised-amt">
                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                        <span class="fa fa-inr fa-inr-block"></span><span><g:if test="${payuStatus}">${amount}</g:if><g:else>${amount * conversionMultiplier}</g:else></span>
+                        <span class="fa fa-inr fa-inr-block"></span><span><g:if test="${project.payuStatus}">${amount}</g:if><g:else>${amount * conversionMultiplier}</g:else></span>
                     </g:if>
                     <g:else>
                         $<span class="show-raised-amt">${amount}</span>

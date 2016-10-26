@@ -668,6 +668,18 @@ class ContributionService {
         ]
     }
     
+    
+    def donationReceiptSortOption(){
+        def sort = [
+            0 :'All',
+            1 :'Todays contribution',
+            2 :'Last 7 days',
+            3 :'Select Custom Date',
+            4 :'Receipt Sent',
+            5 :'Receipt Not Sent',
+        ]
+    }
+    
     def getTransactionByContribution(def contribution) {
         return Transaction.findByContribution(contribution)
     }

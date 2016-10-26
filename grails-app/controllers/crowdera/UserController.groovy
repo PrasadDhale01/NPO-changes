@@ -126,7 +126,7 @@ class UserController {
             def userHasContributedToNonProfitOrNgo = userService.userHasContributedToNonProfitOrNgo(user)
             def contributorListForProject, totalContributions, contributionList
             
-            def sortList = (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') ? contributionService.contributorsSortInd() : contributionService.contributorsSortUs();
+            def sortList = contributionService.donationReceiptSortOption();
             def vanityTitle
             def taxReceiptRecievedList = userService.getContributionsForWhichTaxReceiptreceived(user, params)
             
@@ -1103,7 +1103,7 @@ class UserController {
         def contributorListForProject = userService.getSortedContributorsForProject(params, project)
         def environment = projectService.getCurrentEnvironment()
        
-        def sortList = (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') ? contributionService.contributorsSortInd() : contributionService.contributorsSortUs();
+        def sortList = contributionService.donationReceiptSortOption();
         def offset = params.int('offset') ?: 0
         
         if (contributorListForProject.isEmpty()){

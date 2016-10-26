@@ -152,10 +152,12 @@ $(function() {
         rules: {
             firstName: {
                 minlength: 2,
+                maxlength: 32,
                 required: true
             },
             lastName: {
                 minlength: 2,
+                maxlength: 32,
                 required: true
             },
             email: {
@@ -289,6 +291,15 @@ $(function() {
         }
 
     });
+    
+  //For Number Only
+	jQuery.validator.addMethod("num", function(value, element) {
+		return this.optional(element) || /^[0-9]+$/i.test(value); 
+	}, "Please Enter Numbers Only.");
+	
+	$.validator.addClassRules("numbersOnly", {
+		num : true
+	});
 
     $.validator.addMethod('isFacebookUrl', function (value) {
         if(value && value.length !== 0){
@@ -530,12 +541,14 @@ $(function() {
         }
 
         $('[name="ansText2"]').rules( "add", {
-            required: true
+            required: true,
+            maxlength: 128
         });
 
         if($('[name="ansText2"]').length > 0){
             $('[name="ansText3"]').rules( "add", {
-                required: true
+                required: true,
+                maxlength: 128
             });
         }
 
@@ -572,7 +585,8 @@ $(function() {
 
         $( '[name="city"]' ).rules( "add", {
             required: true,
-            minlength:3
+            minlength:3,
+            maxlength: 32
         });
 
         $( '[name="organizationName"]' ).rules( "add", {
@@ -678,6 +692,7 @@ $(function() {
 
         $( '[name="tax-reciept-holder-city"]' ).rules( "add", {
             required: true,
+            maxlength: 32,
             minlength:2
         });
 
@@ -858,6 +873,7 @@ $(function() {
 
         $( '[name="city"]' ).rules( "add", {
             required: true,
+            maxlength: 32,
             minlength:3
         });
 
@@ -884,7 +900,8 @@ $(function() {
 
 
         $('[name="ansText2"]').rules( "add", {
-            required: true
+            required: true,
+            maxlength: 128
         });
 
         $('[name="ans3"]').rules( "add", {
@@ -1011,12 +1028,14 @@ $(function() {
 
             if($('[name="ansText3"]').length > 0){
                $('[name="ansText3"]').rules( "add", {
-                  required: true
+                  required: true,
+                  maxlength: 128
                });
             }
 
             $( '[name="tax-reciept-holder-city"]' ).rules( "add", {
                 required: true,
+                maxlength: 32,
                 minlength:2
             });
 
@@ -2542,7 +2561,7 @@ $(function() {
 						'</div>&nbsp;&nbsp;&nbsp;'+
 						'<span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>'+
 						'<div class="form-group col-sm-5 col-xs-7 col-input-for">'+
-						'	<input type="text" class="form-control form-control-input-for spendCause" id="spendCause'+nextCount+'" name="spendCause'+nextCount+'">'+
+						'	<input type="text" class="form-control form-control-input-for spendCause" maxlength="64" id="spendCause'+nextCount+'" name="spendCause'+nextCount+'">'+
 						'</div>'+
 						'<div class="clear visible-xs"></div>'+
 						'<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">'+

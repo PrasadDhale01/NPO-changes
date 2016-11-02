@@ -279,7 +279,7 @@ $(function() {
                 error.appendTo(element.parent().parent());
             } else if(element.is(":checkbox")) {
                 error.appendTo(element.parent());
-            } else if($(element).prop("id") === "projectImageFile") {
+            } else if($(element).prop("id") === "projectImageFile" || $(element).prop("id") === "projectEditImageFile") {
                 error.appendTo(document.getElementById("col-error-placement"));
             }else if($(element).prop("id") === "iconfile" || $(element).prop("id") === "digitalSign" || $(element).prop("id") === "projectEditImageFile") {
                 error.appendTo(element.parent().parent());
@@ -1677,7 +1677,7 @@ $(function() {
 	                $('#iconfilesizeSmaller').hide();
 	            }
 	            $('#iconfile').val('');
-	        }else if(file.size < 1024 * 1024 * 1){
+	        } else if (file.size < 1024 * 10) {
 	        	 $('#icondiv').hide();
 		         $('#logomsg').hide();
 		         if($('#iconfilesizeSmaller')){

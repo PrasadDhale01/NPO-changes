@@ -953,7 +953,7 @@
 <%--                              --%>
 <%--                          </div>--%>
                           <div class="show-reasons-fund-bgpadding">
-                          <span class="show-tri-reasons-to-fund text-center">3 Reasons to Fund Our Campaign</span>
+                          <span class="show-tri-reasons-to-fund">3 Reasons to Fund Our Campaign</span>
                           <g:if test="${reasons.reason1}">
                               <div class="show-reasonsToFund">
                                   <div class="reasonspadding">

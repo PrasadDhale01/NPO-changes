@@ -70,6 +70,15 @@ $(function() {
         });
     });
     
+  //For Number Only
+	jQuery.validator.addMethod("num", function(value, element) {
+		return this.optional(element) || /^[0-9]+$/i.test(value); 
+	}, "Please Enter Numbers Only.");
+	
+	$.validator.addClassRules("numbersOnly", {
+		num : true
+	});
+    
     $('.perkPrice').each(function () {
     	$(this).keypress(function (e) {
             //if the letter is not digit then display error and don't type anything

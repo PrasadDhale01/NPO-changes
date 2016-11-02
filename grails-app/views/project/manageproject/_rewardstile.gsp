@@ -89,7 +89,7 @@
                     </div>
                     <div class="form-group">
                         <label>Number available</label>
-                        <input type="text" class="form-control all-place" name="numberAvailable" value="${reward.numberAvailable}" placeholder="Number available">
+                        <input type="text" class="form-control all-place numbersOnly" maxlength="5" name="numberAvailable" value="${reward.numberAvailable}" placeholder="Number available">
                     </div>
                     <div class="form-group descriptionDiv createDescDiv">
                         <label>Description</label>

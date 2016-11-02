@@ -37,16 +37,16 @@
 		</g:if>
 		
 
-        <div class="tab-content">
+        <div class="tab-content team_grid_background">
             <div class="tab-pane active col-md-12 col-sm-12 col-xs-12 col-xs-p-0 manage-back-color" id="manageTeam">
                 <div class="teamList" id="teamList">
                     <g:render template="manageproject/teamgrid"/>
                 </div>
             </div>
-            <div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamValidation">
+            <div class="tab-pane col-md-12 col-sm-12 col-xs-12 team_grid_background" id="teamValidation">
                 <g:render template="manageproject/teamvalidationIndex"/>
             </div>
-            <div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="campaignStatistics">
+            <div class="tab-pane col-md-12 col-sm-12 col-xs-12 team_grid_background" id="campaignStatistics">
                 <g:render template="manageproject/campaignStatisticsIndex" model="[teams:totalteams]"/>
             </div>
         </div>

@@ -631,9 +631,9 @@ $(function() {
 
     $.validator.addMethod('islessThanProjectAmount', function (value) {
     	var amountRaised = value;
-        var projectAmount = $("#projectAmount").val();
-        if (parseFloat(amountRaised) > parseFloat(projectAmount)) {
-        	 return (parseFloat(amountRaised) <= parseFloat(projectAmount)) ? amountRaised : false;
+        var projectAmount = $("#projectamount").val();
+        if (parseInt(amountRaised) > parseInt(projectAmount)) {
+        	 return (parseInt(amountRaised) <= parseInt(projectAmount)) ? amountRaised : false;
         }
         return true;
     },"Team goal can not be greater than project goal.");

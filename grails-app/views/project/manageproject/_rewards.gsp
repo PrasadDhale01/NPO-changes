@@ -35,7 +35,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Number available</label>
-                                <input type="text" class="form-control all-place" name="numberAvailable" placeholder="Number available">
+                                <input type="text" class="form-control all-place numbersOnly" name="numberAvailable" maxlength="5" placeholder="Number available">
                             </div>
                             <div class="form-group descriptionDiv createDescDiv">
                                 <label>Description</label>

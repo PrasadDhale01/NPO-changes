@@ -580,7 +580,7 @@
                                     <img class="show-profile-imgs" src="//s3.amazonaws.com/crowdera/assets/1c19404a-4627-4479-94b0-46e49e62471b.png" alt="emails">
                                 </div>
                                 <div class="col-lg-10 col-sm-10 col-md-10 show-contact-profilefixes">
-                                    <span class="col-lg-12 col-sm-12 col-md-12 show-contact-ofOwner">Contact Campaign of Owner</span>
+                                    <span class="col-lg-12 col-sm-12 col-md-12 show-contact-ofOwner">Contact Campaign Owner</span>
                                 </div>
                             </div>
 	                    </div> 

@@ -121,7 +121,7 @@ class ProjectService {
         return ProjectAdmin.findByEmail(email)
     } 
 
-    def getProjectCommentById(def commentId){
+    def getProjectCommentById(def commentId) {
         if (commentId) {
             return ProjectComment.get(commentId)
         }
@@ -304,7 +304,7 @@ class ProjectService {
         def teamId = params.teamId
         def team = Team.get(teamId)
 
-        if(team!=null){
+        if(team!=null) {
             if(project.user==team.user){
                 contributions = project.contributions.reverse()
             } else {
@@ -320,7 +320,7 @@ class ProjectService {
         def payMode
         def shippingDetails=""
         def contributorEmail
-        contributions.each{
+        contributions.each {
             if(it.isContributionOffline){
                 payMode="offline"
                 contributorName= it.contributorName
@@ -330,7 +330,7 @@ class ProjectService {
                 payMode="Online"
                 contributorName= it.contributorName
                 contributorEmail=it.contributorEmail
-                shippingDetails=getShippingDetails(it)
+                shippingDetails = getShippingDetails(it)
             }
             def fundRaiserName = contributionService.getFundRaiserName(it, project)
             if(project.rewards.size()>1){
@@ -343,6 +343,7 @@ class ProjectService {
                 shippingDetails=""
             }
         }
+        
         def result
         if(project.rewards.size()>1){
             result='CAMPAIGN, FUNDRAISER, DATE AND TIME, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, PERK , SHIPPING DETAILS, AMOUNT, MODE, \n'

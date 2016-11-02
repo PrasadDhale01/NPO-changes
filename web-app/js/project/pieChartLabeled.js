@@ -3,12 +3,12 @@ var spendAmountPerList = $('#spendAmountPerList').val();
 var payuStatus = $('#payuStatus').val();
 var projectAmount = $('#projectamount').val();
 var list1;
-if (spendCauseList !== null || spendCauseList !== undefined) {
+if (spendCauseList !== null && spendCauseList !== undefined) {
     list1 = spendCauseList.split(",");
 }
 
 var list2 ;
-if (spendAmountPerList !== null || spendAmountPerList !== undefined) {
+if (spendAmountPerList !== null && spendAmountPerList !== undefined) {
     list2 = spendAmountPerList.split(",");
 }
 var percentageList = [] ;

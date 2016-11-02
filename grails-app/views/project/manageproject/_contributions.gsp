@@ -189,7 +189,7 @@
                                         <th class="col-sm-2 text-center">SHIPPING DETAILS</th>
                                     </g:if>
 
-                                    <th class="text-center">AMOUNT</th>
+                                    <th class="text-center">AMOUNT(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</th>
                                     <th class="text-center">MODE</th>                            
                                 </tr>
                             </thead>

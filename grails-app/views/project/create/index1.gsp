@@ -118,7 +118,7 @@
                     </g:if>
                     <g:else>
                         <div class="col-lg-1 col-md-1 col-sm-1 amount-popover cr1-mobile-padding-amt col-xs-1">
-                            <img class="cr1-amountInfo-img amountInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
+                            <img class="cr1-amountInfo-img amountInfoInd-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                         </div>
                     </g:else>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 cr1-in-days">

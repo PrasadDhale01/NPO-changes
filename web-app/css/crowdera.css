@@ -5123,11 +5123,7 @@ img.cr1-amountInfo-img{
     padding-left: 0;
     margin-left: 13px;
 }
-img.amountInfoInd-img {
-  padding-top: 102px;
-  padding-left: 0;
-  margin-left: -25px;
-}
+
 
 div.amount-popover .popover{
 	width:700px;
@@ -8227,9 +8223,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     button.sh-submitaproval-2header {
         font-size: 13px;
         height: 42px;
-        margin-left: -23px;
+        margin-left: 0px;
         padding: 6px;
-        width: 181px;
+        width: 220px;
     }
     ul.show-paddingsbtn {
         margin-right: -183px !important;

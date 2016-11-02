@@ -654,55 +654,65 @@ $(function() {
                 
                 var formDataObj = new FormData();
                 
-                formDataObj.append("anonymous", $('input[name= anonymous]').val());
-                if ($('input[name= userId]').length > 0) {
+                if ($('input[name= anonymous]').length > 0 && $('input[name= anonymous]').val() != undefined) {
+                	formDataObj.append("anonymous", $('input[name= anonymous]').val());
+                }
+                if ($('input[name= userId]').length > 0 && $('input[name= userId]').val() != undefined) {
                 	formDataObj.append("userId", $('input[name= userId]').val());
                 }
-                formDataObj.append("rewardId", $('input[name= rewardId]').val());
-                formDataObj.append("fr", $('input[name= fr]').val());
-                formDataObj.append("tempValue", $('input[name= tempValue]').val());
-                formDataObj.append("email", $('input[name= email]').val());
-                formDataObj.append("campaignId", $('input[name= projectId]').val());
-                formDataObj.append("addressLine1", $('input[name= addressLine1]').val());
-                formDataObj.append("addressLine2", $('input[name= addressLine2]').val());
-                
-                formDataObj.append("city", $('input[name= city]').val());
-                formDataObj.append("zip", $('input[name= zip]').val());
-                formDataObj.append("country", $('input[name= country]').val());
-                formDataObj.append("state", $('input[name= state]').val());
-                formDataObj.append("otherstate", $('input[name= otherstate1]').val());
-                
-                formDataObj.append("shippingEmail", $('input[name= shippingEmail]').val());
-                formDataObj.append("twitterHandle", $('input[name= twitterHandle]').val());
-                formDataObj.append("shippingCustom", $('input[name= shippingCustom]').val());
-                formDataObj.append("projectTitle", $('input[name= projectTitle]').val());
+                if ($('input[name= rewardId]').length > 0 && $('input[name= rewardId]').val() != undefined) {
+                	formDataObj.append("rewardId", $('input[name= rewardId]').val());
+                }
+                if ($('input[name= fr]').length > 0 && $('input[name= fr]').val() != undefined) {
+                	formDataObj.append("fr", $('input[name= fr]').val());
+                }
+                if ($('input[name= tempValue]').length > 0 && $('input[name= tempValue]').val() != undefined) {
+                	formDataObj.append("tempValue", $('input[name= tempValue]').val());
+                }
+                if ($('input[name= email]').length > 0 && $('input[name= email]').val() != undefined) {
+                	formDataObj.append("email", $('input[name= email]').val());
+                }
+                if ($('input[name= projectId]').length > 0 && $('input[name= projectId]').val() != undefined) {
+                	formDataObj.append("campaignId", $('input[name= projectId]').val());
+                }
+                if ($('input[name= addressLine1]').length > 0 && $('input[name= addressLine1]').val() != undefined) {
+                	formDataObj.append("addressLine1", $('input[name= addressLine1]').val());
+                }
+                if ($('input[name= addressLine2]').length > 0 && $('input[name= addressLine2]').val() != undefined) {
+                	formDataObj.append("addressLine2", $('input[name= addressLine2]').val());
+                }
+                if ($('input[name= city]').length > 0 && $('input[name= city]').val() != undefined) {
+                	formDataObj.append("city", $('input[name= city]').val());
+                }
+                if ($('input[name= zip]').length > 0 && $('input[name= zip]').val() != undefined) {
+                	formDataObj.append("zip", $('input[name= zip]').val());
+                }
+                if ($('input[name= country]').length > 0 && $('input[name= country]').val() != undefined) {
+                	formDataObj.append("country", $('input[name= country]').val());
+                }
+                if ($('input[name= state]').length > 0 && $('input[name= state]').val() != undefined) {
+                	formDataObj.append("state", $('input[name= state]').val());
+                }
+                if ($('input[name= otherstate1]').length > 0 && $('input[name= otherstate1]').val() != undefined) {
+                	formDataObj.append("otherstate", $('input[name= otherstate1]').val());
+                }
+                if ($('input[name= shippingEmail]').length > 0 && $('input[name= shippingEmail]').val() != undefined) {
+                	formDataObj.append("shippingEmail", $('input[name= shippingEmail]').val());
+                }
+                if ($('input[name= twitterHandle]').length > 0 && $('input[name= twitterHandle]').val() != undefined) {
+                	formDataObj.append("twitterHandle", $('input[name= twitterHandle]').val());
+                }
+                if ($('input[name= shippingCustom]').length > 0 && $('input[name= shippingCustom]').val() != undefined) {
+                	formDataObj.append("shippingCustom", $('input[name= shippingCustom]').val());
+                }
+                if ($('input[name= projectTitle]').length > 0 && $('input[name= projectTitle]').val() != undefined) {
+                	formDataObj.append("projectTitle", $('input[name= projectTitle]').val());
+                }
                 
                 if ($('input[name= panNumber]').length > 0) {
                 	formDataObj.append("panNumber", $('input[name= panNumber]').val());
                 }
                 
-                /*formData = {
-                    'anonymous'     : $('input[name= anonymous]').val(),
-                    'userId'        : $('input[name= userId]').val(),
-                    'rewardId'      : $('input[name= rewardId]').val(),
-                    'fr'            : $('input[name= fr]').val(),
-                    'tempValue'     : $('input[name= tempValue]').val(),
-                    'email'         : $('input[name= email]').val(),
-                    'campaignId'    : $('input[name= projectId]').val(),
-                    'addressLine1'  : $('input[name= addressLine1]').val(),
-                    'addressLine2'  : $('input[name= addressLine2]').val(),
-                    'city'          : $('input[name= city]').val(),
-                    'zip'           : $('input[name= zip]').val(),
-                    'country'       : $('input[name= country]').val(),
-                    'state'         : $('input[name= state]').val(),
-                    'otherstate'    : $('input[name= otherstate1]').val(),
-                    'shippingEmail' : $('input[name= shippingEmail]').val(),
-                    'twitterHandle' : $('input[name= twitterHandle]').val(),
-                    'shippingCustom': $('input[name= shippingCustom]').val(),
-                    'projectTitle'  : $('input[name= projectTitle]').val(),
-                    'panNumber'     : $('input[name= panNumber]').val()
-                };*/
-
                 $.ajax({
                     type    :'post',
                     url     : $("#b_url").val()+'/fund/setCitrusInfo',

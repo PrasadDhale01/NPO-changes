@@ -3,6 +3,7 @@
 <html>
 <head>
 	<meta name="layout" content="main" />
+	<link rel="canonical" href="${grailsApplication.config.crowdera.BASE_URL}/campaign"/>
 	<r:require modules="fundjs" />
 	<r:require modules="fundcss" />
 	<title>Crowdera- Contribute</title>

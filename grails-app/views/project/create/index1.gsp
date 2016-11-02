@@ -12,6 +12,7 @@
 <html>
 <head>
     <title>Crowdera- Create campaign</title>
+    <link rel="canonical" href="${base_url}/campaign/create"/>
     <meta name="layout" content="main"/>
     <meta property="og:site_name" content="Crowdera"/>
     <meta property="og:type" content="Crowdera:Campaign"/>

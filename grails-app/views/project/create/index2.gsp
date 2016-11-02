@@ -40,6 +40,7 @@
 <html>
 <head>
 <title>Crowdera- Create campaign</title>
+<link rel="canonical" href="${base_url}/campaign/start"/>
 <meta name="layout" content="main" />
 <r:require modules="projectcreatejs" />
 

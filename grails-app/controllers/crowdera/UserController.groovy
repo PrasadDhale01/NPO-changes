@@ -15,6 +15,8 @@ class UserController {
     def rewardService
     def roleService
     def jasperService
+    
+    CampaignService campaignService;
 
     @Secured(['ROLE_ADMIN'])
     def admindashboard() {
@@ -78,7 +80,7 @@ class UserController {
             redirect action: 'partnerdashboard'
         } else {
             def projects
-            def projectAdmins
+            def projectAdmins = []
             def teams
             def project = []
             def sortByOptions
@@ -116,13 +118,15 @@ class UserController {
             def multiplier = projectService.getCurrencyConverter();
             def countryOpts = [India: 'INDIA', USA: 'USA']
             
-            def projectList = projectService.getAllProjectByUserHavingContribution(user, environment, params)
+            /*projectService.getAllProjectByUserHavingContribution(user, environment, params)*/
             
-            def isUserProjectHavingContribution = userService.isUserProjectHavingContribution(user, environment)
+            def projectList = campaignService.getAllProjectByUserHavingContribution(user, projectAdmins, environment, params)
+            
+            def isUserProjectHavingContribution = projectList.isProjectHaveAnyContribution /*userService.isUserProjectHavingContribution(user, environment)*/
             def userHasContributedToNonProfitOrNgo = userService.userHasContributedToNonProfitOrNgo(user)
             def contributorListForProject, totalContributions, contributionList
             
-            def sortList = (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') ? contributionService.contributorsSortInd() : contributionService.contributorsSortUs();
+            def sortList = contributionService.donationReceiptSortOption();
             def vanityTitle
             def taxReceiptRecievedList = userService.getContributionsForWhichTaxReceiptreceived(user, params)
             
@@ -441,7 +445,10 @@ class UserController {
         User user = (User)userService.getCurrentUser()
         def environment = projectService.getCurrentEnvironment()
         
-        def projectList = projectService.getAllProjectByUserHavingContribution(user, environment, params)
+        def projectAdmins = projectService.getProjectAdminEmail(user)
+        
+        /*def projectList = projectService.getAllProjectByUserHavingContribution(user, environment, params)*/
+        def projectList = campaignService.getAllProjectByUserHavingContribution(user, projectAdmins, environment, params)
         def contributions = projectService.getContibutionByUser(user, environment)
         def contributedAmount = projectService.getContributedAmount(contributions)
         def fundRaised = projectService.getTotalFundRaisedByUser(projectList.totalProjects)
@@ -476,7 +483,10 @@ class UserController {
     def loadCampaignTile(){
         User user = (User)userService.getCurrentUser()
         def environment = projectService.getCurrentEnvironment()
-        def projectList = projectService.getAllProjectByUserHavingContribution(user, environment, params)
+        def projectAdmins = projectService.getProjectAdminEmail(user)
+        
+        def projectList = campaignService.getAllProjectByUserHavingContribution(user, projectAdmins, environment, params)
+        /*def projectList = projectService.getAllProjectByUserHavingContribution(user, environment, params)*/
         if (request.xhr) {
             render template:'/user/user/userCampaignTile',
             model : [projects:projectList.projects, totalProjects:projectList.totalProjects, user:user]
@@ -818,8 +828,13 @@ class UserController {
                 flash.receipt_sent_msg = flash.receipt_sent_msg
             }
             
-            def projectList = projectService.getAllProjectByUserHavingContribution(user, currentEnv, params)
-            def isUserProjectHavingContribution = userService.isUserProjectHavingContribution(user, currentEnv)
+            def projectAdmins = projectService.getProjectAdminEmail(user)
+            
+            /*def projectList = projectService.getAllProjectByUserHavingContribution(user, currentEnv, params)
+            def isUserProjectHavingContribution = userService.isUserProjectHavingContribution(user, currentEnv)*/
+            def projectList = campaignService.getAllProjectByUserHavingContribution(user, projectAdmins, currentEnv, params)
+            def isUserProjectHavingContribution = projectList.isProjectHaveAnyContribution
+            
             def userHasContributedToNonProfitOrNgo = userService.userHasContributedToNonProfitOrNgo(user)
             def contributorListForProject, totalContributions, contributionList
             
@@ -1088,7 +1103,7 @@ class UserController {
         def contributorListForProject = userService.getSortedContributorsForProject(params, project)
         def environment = projectService.getCurrentEnvironment()
        
-        def sortList = (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') ? contributionService.contributorsSortInd() : contributionService.contributorsSortUs();
+        def sortList = contributionService.donationReceiptSortOption();
         def offset = params.int('offset') ?: 0
         
         if (contributorListForProject.isEmpty()){

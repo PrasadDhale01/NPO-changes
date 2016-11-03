@@ -46,6 +46,16 @@ class UrlMappings {
 
         /* FAQ */
         "/faq"(view:'/faq/index')
+		
+		/* Learn More */
+		"/Creating-Campaign"(view: '/learnMore/creating_campaign')
+		"/Perks"(view: '/learnMore/perks')
+		"/Contributor"(view: '/learnMore/contributor')
+		"/Managing-Campaign"(view:'learnMore/managingCampaign')
+		"/Learning-Center"(view: 'learnMore/learningCenter')
+		"/Learning-Center/${question}"(controller:"home", action:'getLearnMore')
+		
+		
 
         /*Url shortener*/
         "/c/$url"(controller: 'project', action:'getCampaignFromShortUrl')
@@ -122,6 +132,7 @@ class UrlMappings {
         "/fund/$projectTitle/acknowledge/comment/$fr/$id"(controller:'fund', action:'saveContributionComent')
         "/fund/$projectTitle/acknowledge/savecomment/$fr/$id/$commentId"(controller:'fund', action:'saveCommentRedirect')
         "/fund/$projectTitle/acknowledge/saveteamcomment/$fr/$id/$teamCommentId"(controller:'fund', action:'saveTeamCommentRedirect')
+        "/fund/getOfflineContribution/$id"(controller:'fund', action:'getOfflineContribution')
         
         /*User*/
         "/user/mycampaigns"(controller:'user', action:'myproject')

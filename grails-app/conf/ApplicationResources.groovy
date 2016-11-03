@@ -14,16 +14,19 @@ modules = {
         resource url: 'vendor/underscore/underscore.string.min.js'
     }
     corejs {
-        dependsOn 'jquery', 'handlebarsjs'
+        dependsOn 'productionminjs'//, 'handlebarsjs'
         resource url: 'vendor/bootstrap-3.2.0-dist/js/bootstrap.min.js'
         resource url: 'vendor/bootstrap-hover-dropdown-master/bootstrap-hover-dropdown.min.js'
     }
     jqueryvalidate {
         dependsOn 'corejs'
-        resource url: 'vendor/jquery.validate/jquery.validate.js'
+        resource url: 'vendor/jquery.validate/jquery.validate.min.js'
+    }
+    productionminjs{
+        resource url:'vendor/production_min/crowdera_all.min.js'
     }
     crowderajs {
-        dependsOn 'corejs', 'bootstrapselectjs', 'bootstrapmultiselectjs', 'jqueryvalidate'
+        dependsOn 'corejs'
         resource url: 'js/crowdera.js'
     }
     googleanalytics {
@@ -59,7 +62,7 @@ modules = {
     /* Page-specific JS */
     /* Home */
     homejs {
-        dependsOn 'crowderajs', 'blacknwhitejs'
+        dependsOn 'crowderajs'//, 'blacknwhitejs'
         resource url: 'js/home/home.js'
     }
     /* Login */
@@ -73,7 +76,7 @@ modules = {
     }
     /* Project */
     projectcreatejs {
-        dependsOn 'crowderajs', 'handlebarsjs'
+        dependsOn 'crowderajs'//, 'handlebarsjs'
         resource url: 'js/project/create.js'
         resource url: 'js/redactor/redactor.js'
         resource url: 'js/redactor/plugins/video.js'
@@ -92,11 +95,11 @@ modules = {
         resource url: 'js/project/pieChartLabeled.js'
     }
     projectlistjs {
-        dependsOn 'crowderajs', 'blacknwhitejs'
+        dependsOn 'crowderajs'//, 'blacknwhitejs'
         resource url: 'js/project/list.js'
     }
     projecteditjs {
-        dependsOn 'crowderajs', 'blacknwhitejs'
+        dependsOn 'crowderajs'//, 'blacknwhitejs'
         resource url: 'js/project/edit.js'
         resource url: 'js/redactor/redactor.js'
         resource url: 'js/redactor/plugins/video.js'
@@ -106,7 +109,8 @@ modules = {
     }
     /* Fund */
     fundjs {
-        dependsOn 'underscorejs', 'crowderajs'
+       // dependsOn 'underscorejs', 'crowderajs'
+        dependsOn 'crowderajs'
         resource url: 'js/fund/fund.js'
     }
     checkoutjs {

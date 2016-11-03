@@ -16,28 +16,27 @@ class HomeController {
 		log.info("country_code: "+ request.getHeader("cf-ipcountry"))
 		grailsApplication.config.crowdera.COUNTRY_CODE = request.getHeader("cf-ipcountry")
 		log.info("country_code from config: " + grailsApplication.config.crowdera.COUNTRY_CODE)
-        def contributorEmail = g.cookie(name: 'contributorEmailCookie')
+        /*def contributorEmail = g.cookie(name: 'contributorEmailCookie')*/
         def currentEnv = projectService.getCurrentEnvironment();
         def fb = params.fb
-        if(contributorEmail){
+
+        /*if(contributorEmail){
             Cookie cookie = projectService.deleteContributorEmailCookie(contributorEmail)
             response.addCookie(cookie)
-        }
+        }*/
 
         if( currentEnv == 'development'|| currentEnv == 'test' ||currentEnv == 'testIndia'){
             def projects = projectService.showProjects(currentEnv)
-            return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv, contributorEmail:contributorEmail]
+            return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv]
         } else {
             def projects = projectService.projectOnHomePage(currentEnv)
             if(projects){
-                return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv, contributorEmail:contributorEmail]
+                return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv]
             }else{
                 projects = projectService.showProjects(currentEnv)
-                return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv, contributorEmail:contributorEmail]
+                return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv]
             }
         }
-        
-        
     }
 
     def crowderacustomerhelp() {
@@ -214,4 +213,10 @@ class HomeController {
             render 'Header not loaded. Please, refresh to load again.'
         }
     }
+	
+	def getLearnMore(){
+		String question =params.question?.replaceAll("20%", " ")
+		def learnMore = LearnMore.findByArticleTitle(question+"?");
+		render  (view:"/learnMore/database", model:[articleContent:learnMore?.articleContent])
+	}
 }

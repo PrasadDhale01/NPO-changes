@@ -12,6 +12,7 @@
 <html>
 <head>
     <title>Crowdera- Create campaign</title>
+    <link rel="canonical" href="${base_url}/campaign/create"/>
     <meta name="layout" content="main"/>
     <meta property="og:site_name" content="Crowdera"/>
     <meta property="og:type" content="Crowdera:Campaign"/>
@@ -47,7 +48,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-6">
                        <label class="col-sm-12 text-color cr-padding-index1">My Name is...</label>
                        <div class="col-sm-12 cr-padding-index1">
-                           <input type="text" class="form-control form-control-no-border text-color cr1-box-size" id="name" name="${FORMCONSTANTS.FIRSTNAME}" placeholder="Display Name">
+                           <input type="text" maxlength= "32" class="form-control form-control-no-border text-color cr1-box-size" id="name" name="${FORMCONSTANTS.FIRSTNAME}" placeholder="Display Name">
                        </div>
                     </div>
                     
@@ -118,7 +119,7 @@
                     </g:if>
                     <g:else>
                         <div class="col-lg-1 col-md-1 col-sm-1 amount-popover cr1-mobile-padding-amt col-xs-1">
-                            <img class="cr1-amountInfo-img amountInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
+                            <img class="cr1-amountInfo-img amountInfoInd-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                         </div>
                     </g:else>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 cr1-in-days">

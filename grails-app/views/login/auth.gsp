@@ -9,6 +9,7 @@
 %>
 <head>
     <title>Crowdera- Login</title>
+    <link rel="canonical" href="${grailsApplication.config.crowdera.BASE_URL}/login"/>
     <meta name='layout' content='main'/>
     <r:require modules="bootstrapsocialcss, loginjs, registrationjs"/>
 </head>
@@ -18,7 +19,7 @@
         <g:if test="${loginSignUpCookie}">
             <div class="campaignloginheading text-center">
                 <g:if test="${campaignNameCookieValue}">
-                    <h4><b><p>Welcome ${contributorNameCookieValue},</p><p>Thank you for your compassionate contribution of ${fundingAmountCookieValue}<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"> INR</g:if><g:else> USD</g:else> to ${campaignNameCookieValue}. Please Sign Up or Sign In to track the progress of the campaign, share on social media and receive your receipt.</p></b></h4>
+                    <h4><b><p>Welcome ${contributorNameCookieValue},</p><p>Thank you for your compassionate contribution of ${fundingAmountCookieValue}<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"> INR</g:if><g:else> USD</g:else> to ${campaignNameCookieValue}. Please Sign Up or Sign In to track the progress of the campaign and share on social media.</p></b></h4>
                 </g:if>
                 <g:else>
                     <h4><b class="campaignloginboldheading">Great!</b> <b class="campaignloginlightheading">You are almost there please sign up or sign in to complete your campaign & raise money free.</b></h4>

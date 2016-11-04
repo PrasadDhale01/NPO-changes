@@ -7,6 +7,7 @@
 <html>
 <head>
     <title>Crowdera- Registration</title>
+    <link rel="canonical" href="${base_url}/login"/>
     <meta name="layout" content="main" />
     <r:require modules="bootstrapsocialcss, registrationjs"/>
 </head>

@@ -356,7 +356,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #576774;
 }
 .searchbox {
-    position: relative;
+    position: relative;	
     height: 30px;
     margin-left: 20px;
 }
@@ -912,7 +912,7 @@ div.abt-imgs .thumbnail img {
 }
 
 .inner-addon {
-    position: relative;
+    position: fixed;
 }
 
 /* style icon */
@@ -2014,10 +2014,10 @@ button.projectedit.close{
 }
 
 .campaignupdate {
-	background-color: #f7f7f7;
-	margin-bottom: 15px;
-	padding: 15px 0;
-	margin-top: 4px;
+	background-color: #fff;
+    box-shadow: 2px 2px 1px #e7e7e7;
+    margin-bottom: 15px;
+    padding: 15px 0;
 }
 .campaignupdatedimages {
 	overflow: hidden;
@@ -2423,6 +2423,7 @@ a.footerlink {
 }
 .manage-comments-footer{
 	text-align: left;
+	padding: 30px;
 }
 .essen-story{
 	margin-top: 30px;
@@ -3447,6 +3448,7 @@ i.glyphicon.glyphicon-search.search-glyph-icon{
 }
 
 ul.nav.navbar-nav.nav-icon-bar{
+	padding-left: 0px;
     width: 36%;
 }
 
@@ -4545,7 +4547,7 @@ div.ie-cr-perks {
     margin-top : 6px;
 }
 .commentsoncampaign .tile-footer {
-    background-color: #f5f5f5 !important;
+    background-color: #fff;
 }
 .alert {
     margin-bottom: 10px !important;
@@ -4660,6 +4662,7 @@ p {
         height: 200px !important;
     }
 }
+
 .rewardsection-row:hover {
 	background-color: #f5f5f5;
     border-color: #fff !important;
@@ -4881,7 +4884,7 @@ a.customer-support-a {
     font-size: 16px !important;
 }
 .show-contribution-amt-tile .fa-inr{
-    font-size: 16px !important;
+    font-size: 16px;
 }
 .teamtile .fa-inr {
     font-size: 14px !important;
@@ -5120,11 +5123,7 @@ img.cr1-amountInfo-img{
     padding-left: 0;
     margin-left: 13px;
 }
-img.amountInfoInd-img {
-  padding-top: 102px;
-  padding-left: 0;
-  margin-left: -25px;
-}
+
 
 div.amount-popover .popover{
 	width:700px;
@@ -5540,19 +5539,19 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 @media only screen and (min-width: 768px){
 	.col-contributor {
-		width: 362px;
+		width: 525px;
 		float: right;
 	}
 
 	#sendReceipt .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),
 	.sendTaxReceiptBoard .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
-	   width:140px;    
+	   width:152px;    
 	}
 
 	input.search-contributors {
 		height: 36px;
 		padding-left: 38px;
-		width:185px;
+		/* width:200px; */
 	}
 
 	span.glyphicon-contributor-search {
@@ -5637,6 +5636,30 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	strong.faq-subheading {
+       font-size: 15px;
+       margin-bottom: 20px;
+       margin-top: 20px;
+    }
+	
+	div.learnmorecontainer {
+       background-color: white;
+       height: 520px;
+       margin: 0 auto;
+       padding: 40px;
+       width: 460px;
+    }
+	div.paneWidth {
+       width: 100%;
+    }
+    h4.faqSubtitle {
+        font-size: 16px;
+    }
+    div.learnContainer {
+        background-color: white;
+        padding: 40px;
+        width: 320px;
+	}
     button.show-button-cmt {
         margin-top: 15px;
     }
@@ -5669,7 +5692,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         height: 115px;
     }
     div.campaign-bg-color {
-        background-color: #fff;
+        background-color: #f5f5f5;
     }
     div.show-padding-commentsbox {
         height: 115px;
@@ -8047,8 +8070,44 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+    button.prive-submitapproval-btn {
+        margin-left: -26px;
+        width: 183px;
+        font-size: 14px;
+    }
 	div.digital_signature .btn-sm {
         padding: 8px 28px;
+    }
+    div.paneWidth {
+       width: 70%;
+    }
+    div.learnmorecontainer {
+       background-color: white;
+       height: 520px;
+       margin-left: 171px;
+       padding: 40px;
+       width: 590px;
+    }
+	a.sidemenuFont {
+       color: white;
+       display: block;
+       font-family: georgia;
+       font-size: 12px;
+       font-weight: bolder;
+       list-style: outside none none;
+       padding: 10px 20px;
+       text-decoration: none;
+       background-color: #5a5a5a;
+    }
+	ul.learnmorerSideMenu {
+       background-color: #5a5a5a;
+       height: 523px;
+       list-style: outside none none;
+       margin-bottom: 0;
+       padding-left: 0;
+       padding-top: 10px;
+       position: relative;
+       width: 89%;
     }
     div.show-fundrasier-namepadding > h5 {
         font-size: 12px;
@@ -8164,9 +8223,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     button.sh-submitaproval-2header {
         font-size: 13px;
         height: 42px;
-        margin-left: -23px;
+        margin-left: 0px;
         padding: 6px;
-        width: 181px;
+        width: 220px;
     }
     ul.show-paddingsbtn {
         margin-right: -183px !important;
@@ -8253,9 +8312,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 22px;
         line-height: 28px;
     }
-    a.show-btn-sh-fb {
-        margin-bottom: 108px;
-    }
+/*     a.show-btn-sh-fb { */
+/*         margin-bottom: 108px; */
+/*     } */
     div.organization-details h4 {
         margin-top: 0px;
         overflow:hidden;
@@ -8442,7 +8501,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-bottom: 20px;
     }
     .validate-show-div .organization-panel.org-panel-3.panel, .validate-show-div .organization-panel.org-panel-4.panel {
-        height: 270px;
+        height: 320px;
     }
     #page-content-wrapper {
         padding: 15px 0 15px 0;
@@ -8489,11 +8548,90 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	div.learnmorecontainer {
+        background-color: white;
+        height: 520px;
+        margin-left: 171px;
+        padding: 40px;
+        width: 80%;
+    }
+    .faq-subheading {
+        font-size: 28px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+	a.sidemenuFont {
+        color: white;
+        display: block;
+        font-family: georgia;
+        font-size: 12px;
+        font-weight: bolder;
+        list-style: outside none none;
+        padding: 10px 20px;
+        text-decoration: none;
+        background-color: #5a5a5a;
+    }
+	ul.learnmorerSideMenu {
+        background-color: #5a5a5a;
+        height: 523px;
+        list-style: outside none none;
+        margin-bottom: 0;
+        padding-left: 0;
+        padding-top: 10px;
+        position: relative;
+        width: 89%;
+	}
+    div.manage-bg-color {
+        background-color: #fff;
+        left: 13px;
+        padding: 0;
+        width: 96%;
+    }
+    div.manage-reasons-des {
+        margin-left: 40px;
+    }
+    span.fa-inr-block {
+        font-size: 20px !important;
+    }
+    div.show-tiles-padding {
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+    span.show-raised-amt {
+        font-size: 22px;
+        font-weight: 900;
+        line-height: 0.8;
+    }
+	a.viewTopics {
+        background-color: #e7e7e7;
+        border-radius: 10px;
+        color: black;
+        font-size: 10px !important;
+        font-weight: bold;
+        padding: 5px;
+        text-decoration: none;
+        width: 100%;
+    }
+    a.viewTopics:hover{
+        color: #fff;
+        background-color: #4292cb;
+        border-radius: 10px 10px 10px 10px;
+        font-size: 10px !important;
+        font-weight: bold;
+        padding: 5px;
+        width: 100%;
+        text-decoration: none;
+    }
+	div.learnContainer {
+        background-color: white;
+        padding: 40px;
+        width: 640px;
+	}
 	img#cardType {
 	    width: 174px;
 	}
     div.show-impact {
-        padding-top: 24px;
+        padding-top: 22px;
     }
     div.sh-tabs-iconleft {
         left: 26px;
@@ -8582,11 +8720,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 140px;
     }
     span.show-org-name {
-        font-size: 9px;
+        font-size: 10px;
         left: -11px;
+        width: 129px;
     }
     div.show-lbl-orgname {
-        padding-top: 4px;
+        padding-top: 10px;
     }
     span.show-contact-ofOwner {
         font-size: 9px;
@@ -9306,11 +9445,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     button.show-campaign-sucessbtn {
         font-size: 14px;
-        height: 60px;
+        height: 58px;
     }
     button.show-campaign-sucess-endedbtn {
         font-size: 19px;
-        height: 60px;
+        height: 58px;
     }
     button.show-fund-size {
         font-size: 29px;
@@ -10287,6 +10426,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: 3px !important;
         padding-left: 0px;
     }
+    div.paneWidth {
+       margin-right: 40px;
+       width: 78%;
+    }
     ul.manage-submitapprove-edit {
         margin-right: -183px !important;
         margin-top: 3px !important;
@@ -10720,7 +10863,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 	#sendReceipt .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),
 	.sendTaxReceiptBoard .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
-	   width:105px;    
+	   width:165px;    
 	}
 	
 	div.how-it-work--title {
@@ -10734,10 +10877,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 
 	input.search-contributors{
-		height: 33px;
-		margin-top: 2px;
+		height: 37px;
 		padding-left: 31px;
-		width: 172px;
+		width: 175px;
+	}
+	
+	.col-contributor .col-plr-0.selectall-btn-div {
+	    padding-left: 5px;
+	}
+	
+	.receipt-btn-seperator {
+	    display : block;
+	    height: 10px;
 	}
 	
 	span.glyphicon-contributor-search {
@@ -10748,7 +10899,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	
 	.col-contributor, .contributor-search-box{
 	    padding-left:0px;
-	    padding-right: 15px;
+	    padding-right: 0px;
+	    margin-bottom: 15px;
 	}
 
 	.img-size-xs{
@@ -11516,12 +11668,26 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	button.prive-submitapproval-btn {
+        width: 220px;
+        font-size: 14px;
+    }
     .digital_signature .btn-sm {
         padding: 8px 28px;
     }
     .signature_img_seperator {
         display: block;
         clear: both;
+    }
+    div.paneWidth {
+        width: 63%;
+    }
+    div.learnmorecontainer {
+        background-color: white;
+        height: 520px;
+        margin-left: 175px;
+        padding: 40px;
+        width: 80%;
     }
 	div.show-fundrasier-namepadding > h5 {
         font-size: 12px;
@@ -11736,12 +11902,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	button.show-campaign-sucess-endedbtn{
 	    font-size: 21px;
 	    padding-left: 14px;
-	    height: 55px;
+	    height: 57px;
 	}
 	button.show-campaign-sucessbtn{
         font-size: 17px;
         padding-left: 10px;
-        height: 56px;
+        height: 58px;
 	}
     div.show-icons {
         left: 35%;
@@ -11923,7 +12089,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-right: 0px;
     }
     .show-contribution-amt-tile .fa-inr {
-	font-size: 12px !important;
+	font-size: 12px;
     }
     .table-responsive {
         width: 100%;
@@ -13564,6 +13730,26 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /*Screen resolution 644 x 767 */
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    a.viewTopics {
+	   background-color: #e7e7e7;
+       border-radius: 10px 10px 10px 10px;
+       color: black;
+       font-size: 10px !important;
+       font-weight: bold;
+       padding: 5px;
+       width: 100%;
+	   text-decoration: none;
+    }
+    a.viewTopics:hover{
+	   color: #fff;
+	   background-color: #4292cb;
+	   border-radius: 10px 10px 10px 10px;
+       font-size: 10px !important;
+       font-weight: bold;
+       padding: 5px;
+       width: 100%;
+       text-decoration: none;
+    }
     div.TW-ack-commentBox {
         margin-bottom: 55px;
         margin-top: 30px;
@@ -15125,6 +15311,85 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	strong.faq-subheading {
+       font-size: 15px;
+       margin-bottom: 20px;
+       margin-top: 20px;
+    }
+	
+	.paneWidth {
+       width: 100%;
+    }
+	
+	strong.learnMore-Subheading {
+	   font-size: 22px;
+	   margin-top: 20px;
+	   margin-bottom: 20px;
+    }
+	
+    div.learnmorecontainer{
+       background-color: white;
+       height: 100%;
+       padding: 40px;
+       width: 320px;
+       margin: 0 auto;
+    }
+    
+    div.learnmore-bg-color{
+       background-color: #f5f5f5;
+       height: 100%;
+    }
+    
+    div.paneWidth{
+       width: 100%;
+    }	
+	
+    div.manage-bg-color {
+        background-color: #fff;
+        left: 16px;
+        padding: 15px;
+        width: 90%;
+    }
+    div.manage-mobile-margine {
+        margin-bottom: 22px;
+    }
+    h4.faqSubtitle {
+       font-size: 16px;
+       font-weight: bold;
+    }
+    a.viewTopics {
+	   background-color: #e7e7e7;
+       border-radius: 10px 10px 10px 10px;
+       color: black;
+       font-size: 10px !important;
+       font-weight: bold;
+       padding: 5px;
+       width: 100%;
+	   text-decoration: none;
+	   margin-left: 30px;
+    }
+    a.viewTopics:hover{
+	   color: #fff;
+	   background-color: #4292cb;
+	   border-radius: 10px 10px 10px 10px;
+       font-size: 10px !important;
+       font-weight: bold;
+       padding: 5px;
+       width: 100%;
+       text-decoration: none;
+    }
+    ul.articles li a {
+	   font-size: 14px;
+	   font-family: Georgia;
+   }
+   div.learnBg-color{
+       background-color: #f5f5f5;
+   }
+    div.learnContainer{
+	   background-color: white;
+       padding: 40px;
+       width: 320px;
+    }
     button.show-button-cmt {
         margin-top: 15px;
     }
@@ -15157,7 +15422,7 @@ textarea.textarea-embed-video {
         height: 115px;
     }
     div.campaign-bg-color {
-        background-color: #fff;
+        background-color: #f5f5f5;
     }
 	span.cdr-ft-contactnum-in{
         color: #fff;
@@ -15169,7 +15434,6 @@ textarea.textarea-embed-video {
         padding-right: 28px;
         padding-left: 0;
     }
-	
      .bg-color-white.homepagTempHeight {
         height: 340px;
      }
@@ -17536,11 +17800,9 @@ textarea.textarea-embed-video {
 /*     color:#01bbd3;  */
 /* } */
 .show-tabs-count{
-	text-decoration:none !important;
-    font-family: Futura-Condensed Normal;
-    font-size: 16px;
-    font-weight: 900;
-    color: #6d6e6e;
+	color: #787878;
+    font-size: 20px;
+    text-decoration: none !important;
 }
 .show-tiles-padding {
 /*     height: 184px; */
@@ -17578,7 +17840,7 @@ textarea.textarea-embed-video {
     height: 60px;
 }
 .sh-submitapproval{
-	height: 56px !important;
+	height: 61px !important;
     margin-bottom: 0;
 }
 .sh-perks-preview {
@@ -18631,7 +18893,7 @@ input[readonly] {
 }
 
 .moveContribution{
-	font-size: 14px;
+    font-size: 14px;
     line-height: 34px;
     text-align:right;
 }
@@ -18651,3 +18913,265 @@ input[readonly] {
     position: absolute;
     margin-top: 30px;
 }
+
+                                       /* learning center styles */
+
+a.viewTopics {
+	background-color: #e7e7e7;
+    border-radius: 10px 10px 10px 10px;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px;
+    width: 100%;
+	text-decoration: none;
+}
+
+a.viewTopics:hover{
+	color: #fff;
+	background-color: #4292cb;
+	border-radius: 10px 10px 10px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px;
+    width: 100%;
+    text-decoration: none;
+}
+
+.faqTitle{
+	font-size: 35px;
+}
+
+.faqSubtitle{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.article1 {
+    height: 100px;
+    overflow: hidden;
+}
+
+.articles li a {
+	font-size: 15px;
+	font-family: Georgia;
+}
+
+.articles:hover li a{
+	text-decoration: none;
+}
+
+.articless {
+	font-size: 17px;
+	font-family: Georgia;
+	font-weight: bold;
+}
+
+.articlePic img{
+    border: 1px solid #cfc5c5 !important;
+    border-radius: 4px !important;
+    display: block;
+    margin: 30px auto ;
+}
+
+.learnContainer{
+	background-color: white;
+    padding: 40px;
+    width: 980px;
+}
+
+.learnMorewidth{
+	width: 218px;
+}
+
+.learnBg-color{
+	background-color: #f5f5f5;
+}
+
+div.nexxt{
+	margin-top: -21px;
+}
+
+.learnMore-Subheading {
+	font-size: 26px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+li.learnMoreEllipses{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    list-style-position: inside;
+}
+
+.learnmorecontainer{
+    background-color: white;
+    height: 520px;
+    margin-left: 230px;
+    padding: 40px;
+    width: 80%;
+}
+
+.learnmorerSideMenu {
+    position: relative;
+    height: 523px;
+    background-color: #5a5a5a;
+    list-style: outside none none;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-top: 10px;
+    width: 200px;
+}
+
+a.sidemenuFont {
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    font-size: 15px;
+    font-weight: bolder;
+    font-family: georgia;
+    text-decoration: none;
+    list-style: outside none none;
+    background-color: #5a5a5a;
+}
+
+.sideBorder{
+    border: medium none;
+    box-shadow: none;
+}
+
+a.sidemenuFont:hover,
+a.sidemenuFont:focus{
+	background-color: #696969;
+	text-decoration: none;
+	color: white;
+}
+
+.sidemenuFontInner{
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: georgia;
+    text-decoration: none;
+    padding-left:20px;
+    background-color: gray;
+}
+
+.sidemenuFontInner:hover,
+.sidemenuFontInner:focus{
+	background-color: #c0c0c0;
+	text-decoration: none;
+	color: white;
+}
+
+h4.sidex{
+	font-family: georgia;
+	color: white;
+	text-align: center;
+	padding-top: 40px;
+	font-size: 16px;
+	font-weight: bolder;
+	margin-top: 7px;
+}
+
+.learnmore-bg-color{
+	background-color: #f5f5f5;
+    height: 582px;
+}
+
+.accordion-toggle .chevron:after {
+    content: "\f078";   
+}
+
+.accordion-toggle.collapsed .chevron:after {
+    content: "\f054"; 
+}  
+
+.paneWidth{
+	width: 80%;
+}
+
+.greyColor{
+	background-color: #5a5a5a;
+}
+
+.whitefont{
+	font-family: georgia;
+	color: white;
+}
+
+li.noBullet{
+	list-style-type: none; 
+}
+
+.articleContent{
+	font-size: 16px;
+    font-family: sans-serif;
+    font-weight: normal;
+}
+
+#returnTotop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #01bbd3;
+    width: 50px;
+    height: 50px;
+    display: block;
+    text-decoration: none;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    display: none;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+a#returnTotop:hover {
+    background-color: #e74c3c;
+}
+
+#returnTotop i {
+	outline: none;
+    color: #fff;
+    margin: 0;
+    position: relative;
+    left: 16px;
+    top: 13px;
+    font-size: 19px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+a< #returnTotop:focus{
+    text-decoration: none;
+    outline: none;
+}
+
+#returnTotop:hover i{
+	outline: none;
+    color: #fff;
+    top: 5px;
+    text-decoration: none;
+    
+}
+
+#returnTotop i:focus{
+    outline: none;
+	text-decoration: none;
+}
+
+/* to remove outline border on click in mozilla */
+:-moz-any-link:focus {
+  outline: none;
+}
+

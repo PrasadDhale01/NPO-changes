@@ -1,5 +1,5 @@
 .reasonsToFund {
-    border: 5px solid #f7f7f7;
+/*     border: 5px solid #f7f7f7; */
     margin-top: 4px;
     margin-bottom: 4px;
     text-align: left;
@@ -13,10 +13,12 @@
     overflow: auto;
 }
 .reasonsToFund .badge1 {
-    font-size: 38px;
+    color: #01bbd3;
+    font-family: open sans;
+    font-size: 30px;
     font-weight: 900;
-    font-family: Ubuntu Condensed;
-    color: #01BBD3;
+    padding: 0;
+    top: 5px;
 }
 .col-plr-0 {
     padding-left: 0px;
@@ -163,7 +165,8 @@ a.show-campaigndetails-font {
 }
 .show-reasons-fund-bgpadding{
 	background-color: #fff;
-    padding: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 .show-reasons {
     border-bottom: 2px solid #e7e7e7;
@@ -212,7 +215,7 @@ a.show-campaigndetails-font {
     width: 75px;
 }
 .show-image-dp img {
-    height: 65px;
+    height: 57px;
     width: 75px;
 }
 .show-profile-padding {
@@ -245,11 +248,13 @@ a.show-campaigndetails-font {
     line-height: 14px;
     overflow: hidden;
     padding: 0;
-/*     width: 117px; */
+    width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .show-lbl-orgname {
     padding-left: 14px;
-    padding-top: 4px;
+    padding-top: 10px;
 }
 /* img.show-profile-imgs{ */
 /*     left: 6px; */
@@ -533,4 +538,16 @@ textarea.show-textareawidth {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+.fa-inr-block {
+    display: inline !important;
+    font-size: 25px !important;
+}
+.sh-width-control {
+    padding: 0;
+}
+.mobile-mngcmpg-tags{
+	background-color: white;
+    margin-bottom: 10px;
+    padding: 15px;
 }

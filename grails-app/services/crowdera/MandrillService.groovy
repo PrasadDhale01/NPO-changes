@@ -1053,7 +1053,7 @@ class MandrillService {
     public def sendEmailToDevGroup(def exception, def currentEnv) {
         
         def exceptionString = " "+ exception
-        def devList = ['krishna.sahu@crowdera.co','tushar@crowdera.co','minal.ganatra@crowdera.co','priya@crowdera.co']
+        def devList = ['krishna.sahu@crowdera.co','priya@crowdera.co','minal.ganatra@crowdera.co']
         def date = new Date()
         def site 
         if (currentEnv == 'prodIndia'){

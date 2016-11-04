@@ -659,10 +659,24 @@ class ContributionService {
             'All':'All',
             'Anonymous':'Anonymous',
             'Non-Anonymous':'Non-Anonymous',
+            'Online':'Online',
+            'Offline':'Offline',
             'Receipt Sent':'Receipt Sent',
             'Receipt Not Sent':'Receipt Not Sent',
             'Perk Selected':'Perk Selected',
             'No Perk Selected':'No Perk Selected',
+        ]
+    }
+    
+    
+    def donationReceiptSortOption(){
+        def sort = [
+            0 :'All',
+            1 :'Todays contribution',
+            2 :'Last 7 days',
+            3 :'Select Custom Date',
+            4 :'Receipt Sent',
+            5 :'Receipt Not Sent',
         ]
     }
     
@@ -720,7 +734,7 @@ class ContributionService {
                 StringEntity input = new StringEntity("{\"seller_name\":\"${sellername}\",\"seller_add1\":\"${address1}\",\"seller_add2\":\"${address2}\",\"seller_city\":\"${city}\",\"seller_state\":\"${state}\",\"seller_country\":\"${country}\",\"zip\":\"${zip}\",\"businessurl\":\"${businessurl}\",\"seller_mobile\":\"${sellermobile}\",\"seller_ifsc_code\":\"${ifsccode}\",\"selleremail\":\"${selleremail}\",\"payoutmode\":\"${payoutmode}\",\"seller_acc_num\":\"${accountnumber}\",\"active\":1}")
                 input.setContentType("application/json")
                 httppost.setEntity(input)
-        
+                
                 HttpResponse httpres = httpclient.execute(httppost)
                 
                 int status = httpres.getStatusLine().getStatusCode()
@@ -731,7 +745,6 @@ class ContributionService {
                         def slurper = new JsonSlurper()
                         def json = slurper.parseText(jsonString)
                         sellerId = json.sellerid
-                        
                         if (sellerId != null) {
                             new Seller(email: selleremail, sellerId: sellerId).save();
                         }

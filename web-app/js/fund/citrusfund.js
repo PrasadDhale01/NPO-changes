@@ -54,7 +54,7 @@ $(function() {
 	}, "Please enter valid lastName.");
 	
 	
-    $("#citrusNumber").keyup(function(){
+   /* $("#citrusNumber").keyup(function(){
 
         $("#payment-form").validate();
         $("#citrusNumber").rules("add","checkCard");
@@ -81,7 +81,7 @@ $(function() {
             $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/2d87664b-d1c9-4fae-a015-fc02d3333dbb.png");
         }
 	
-    });
+    });*/
 	
     function getSelectedRewardId() {
         return $('.list-group-item.active').attr('id');
@@ -210,8 +210,7 @@ $(function() {
             },
             citrusNumber: {
                 required: true,
-                minlength: 16,
-                maxlength: 18
+                minlength: 12
             },
             citrusCardType: {
                 required: true
@@ -219,10 +218,17 @@ $(function() {
             citrusCvv: {
             	required: true,
                 maxlength: function(){
-                    if (optionChosen === 'visa' || optionChosen === 'mastercard') {
+                    if (optionChosen != 'amex') {
                         return 3;
                     } else {
                         return 4;
+                    }
+                },
+                minlength: function(){
+                    if (optionChosen != 'amex') {
+                    	return 3;
+                    } else {
+                    	return 4;
                     }
                 }
             },
@@ -315,9 +321,16 @@ $(function() {
         
         $('#btnCheckoutContinue').click(function() {
         	
-             var amountStatus = checkAmount();
+            var amountStatus = checkAmount();
+            var validatePanNumber = false;
+             
+            if ($('input[name= panNumber]').length > 0) {
+           	    validatePanNumber = $("#panNumber").valid();
+            } else {
+                validatePanNumber = true;
+            }
         	
-            if(amountStatus== true) {
+            if(amountStatus == true && validatePanNumber) {
             	var rewardId = getSelectedRewardId();
             	if (rewardId === undefined) {
                 	rewardId = 1;
@@ -641,55 +654,65 @@ $(function() {
                 
                 var formDataObj = new FormData();
                 
-                formDataObj.append("anonymous", $('input[name= anonymous]').val());
-                if ($('input[name= userId]').length > 0) {
+                if ($('input[name= anonymous]').length > 0 && $('input[name= anonymous]').val() != undefined) {
+                	formDataObj.append("anonymous", $('input[name= anonymous]').val());
+                }
+                if ($('input[name= userId]').length > 0 && $('input[name= userId]').val() != undefined) {
                 	formDataObj.append("userId", $('input[name= userId]').val());
                 }
-                formDataObj.append("rewardId", $('input[name= rewardId]').val());
-                formDataObj.append("fr", $('input[name= fr]').val());
-                formDataObj.append("tempValue", $('input[name= tempValue]').val());
-                formDataObj.append("email", $('input[name= email]').val());
-                formDataObj.append("campaignId", $('input[name= projectId]').val());
-                formDataObj.append("addressLine1", $('input[name= addressLine1]').val());
-                formDataObj.append("addressLine2", $('input[name= addressLine2]').val());
-                
-                formDataObj.append("city", $('input[name= city]').val());
-                formDataObj.append("zip", $('input[name= zip]').val());
-                formDataObj.append("country", $('input[name= country]').val());
-                formDataObj.append("state", $('input[name= state]').val());
-                formDataObj.append("otherstate", $('input[name= otherstate1]').val());
-                
-                formDataObj.append("shippingEmail", $('input[name= shippingEmail]').val());
-                formDataObj.append("twitterHandle", $('input[name= twitterHandle]').val());
-                formDataObj.append("shippingCustom", $('input[name= shippingCustom]').val());
-                formDataObj.append("projectTitle", $('input[name= projectTitle]').val());
+                if ($('input[name= rewardId]').length > 0 && $('input[name= rewardId]').val() != undefined) {
+                	formDataObj.append("rewardId", $('input[name= rewardId]').val());
+                }
+                if ($('input[name= fr]').length > 0 && $('input[name= fr]').val() != undefined) {
+                	formDataObj.append("fr", $('input[name= fr]').val());
+                }
+                if ($('input[name= tempValue]').length > 0 && $('input[name= tempValue]').val() != undefined) {
+                	formDataObj.append("tempValue", $('input[name= tempValue]').val());
+                }
+                if ($('input[name= email]').length > 0 && $('input[name= email]').val() != undefined) {
+                	formDataObj.append("email", $('input[name= email]').val());
+                }
+                if ($('input[name= projectId]').length > 0 && $('input[name= projectId]').val() != undefined) {
+                	formDataObj.append("campaignId", $('input[name= projectId]').val());
+                }
+                if ($('input[name= addressLine1]').length > 0 && $('input[name= addressLine1]').val() != undefined) {
+                	formDataObj.append("addressLine1", $('input[name= addressLine1]').val());
+                }
+                if ($('input[name= addressLine2]').length > 0 && $('input[name= addressLine2]').val() != undefined) {
+                	formDataObj.append("addressLine2", $('input[name= addressLine2]').val());
+                }
+                if ($('input[name= city]').length > 0 && $('input[name= city]').val() != undefined) {
+                	formDataObj.append("city", $('input[name= city]').val());
+                }
+                if ($('input[name= zip]').length > 0 && $('input[name= zip]').val() != undefined) {
+                	formDataObj.append("zip", $('input[name= zip]').val());
+                }
+                if ($('input[name= country]').length > 0 && $('input[name= country]').val() != undefined) {
+                	formDataObj.append("country", $('input[name= country]').val());
+                }
+                if ($('input[name= state]').length > 0 && $('input[name= state]').val() != undefined) {
+                	formDataObj.append("state", $('input[name= state]').val());
+                }
+                if ($('input[name= otherstate1]').length > 0 && $('input[name= otherstate1]').val() != undefined) {
+                	formDataObj.append("otherstate", $('input[name= otherstate1]').val());
+                }
+                if ($('input[name= shippingEmail]').length > 0 && $('input[name= shippingEmail]').val() != undefined) {
+                	formDataObj.append("shippingEmail", $('input[name= shippingEmail]').val());
+                }
+                if ($('input[name= twitterHandle]').length > 0 && $('input[name= twitterHandle]').val() != undefined) {
+                	formDataObj.append("twitterHandle", $('input[name= twitterHandle]').val());
+                }
+                if ($('input[name= shippingCustom]').length > 0 && $('input[name= shippingCustom]').val() != undefined) {
+                	formDataObj.append("shippingCustom", $('input[name= shippingCustom]').val());
+                }
+                if ($('input[name= projectTitle]').length > 0 && $('input[name= projectTitle]').val() != undefined) {
+                	formDataObj.append("projectTitle", $('input[name= projectTitle]').val());
+                }
                 
                 if ($('input[name= panNumber]').length > 0) {
                 	formDataObj.append("panNumber", $('input[name= panNumber]').val());
                 }
                 
-                /*formData = {
-                    'anonymous'     : $('input[name= anonymous]').val(),
-                    'userId'        : $('input[name= userId]').val(),
-                    'rewardId'      : $('input[name= rewardId]').val(),
-                    'fr'            : $('input[name= fr]').val(),
-                    'tempValue'     : $('input[name= tempValue]').val(),
-                    'email'         : $('input[name= email]').val(),
-                    'campaignId'    : $('input[name= projectId]').val(),
-                    'addressLine1'  : $('input[name= addressLine1]').val(),
-                    'addressLine2'  : $('input[name= addressLine2]').val(),
-                    'city'          : $('input[name= city]').val(),
-                    'zip'           : $('input[name= zip]').val(),
-                    'country'       : $('input[name= country]').val(),
-                    'state'         : $('input[name= state]').val(),
-                    'otherstate'    : $('input[name= otherstate1]').val(),
-                    'shippingEmail' : $('input[name= shippingEmail]').val(),
-                    'twitterHandle' : $('input[name= twitterHandle]').val(),
-                    'shippingCustom': $('input[name= shippingCustom]').val(),
-                    'projectTitle'  : $('input[name= projectTitle]').val(),
-                    'panNumber'     : $('input[name= panNumber]').val()
-                };*/
-
                 $.ajax({
                     type    :'post',
                     url     : $("#b_url").val()+'/fund/setCitrusInfo',
@@ -767,20 +790,53 @@ $(function() {
      // setup card inputs;       
         $('#citrusExpiry').payment('formatCardExpiry');
         $('#citrusCvv').payment('formatCardCVC');
-//        $('#citrusNumber').keyup(function() {
-//            
-//	        var cardNum = $('#citrusNumber').val().replace(/\s+/g, '');        
-//	        var type = $.payment.cardType(cardNum);
-//	        console.log(type);
-//	        if(type!='amex')
-//	        	$("#citrusCvv").attr("maxlength","3");
-//	        else
-//	        	$("#citrusCvv").attr("maxlength","4");
-//	        
-//	        $('#citrusNumber').payment('formatCardNumber');                                            
-//	        $("#citrusScheme").val(type);
-//            
-//        });
+        
+        $('#citrusNumber').keyup(function() {
+            
+	        var cardNum = $('#citrusNumber').val().replace(/\s+/g, '');        
+	        var type = $.payment.cardType(cardNum);
+	        
+	       /* console.log(type);*/
+	        if(type != 'amex')
+	        	$("#citrusCvv").attr("maxlength","3");
+	        else
+	        	$("#citrusCvv").attr("maxlength","4");
+	        
+	        $('#citrusNumber').payment('formatCardNumber');                                            
+	        $("#citrusScheme").val(type);
+	        
+	        $("#payment-form").validate();
+	        $("#citrusNumber").rules("add","checkCard");
+	        
+	        $.validator.addMethod("checkCard", function() {
+	            if(type === "visa" || type === "mastercard" || type === "amex" || type === "maestro" || type === "rupay") {
+	                return true;
+	            } else {
+	                return false;
+	            }
+	        }, "Please specify the correct card number.");
+		
+	        if (type === "visa") {
+	            $("#citrusScheme").val("visa").change();
+	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/954456ca-1012-4d8d-86e8-f4979ff4b330.png");
+	        } else if(type === "maestro") {
+	            $("#citrusScheme").val("maestro").change();
+	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/f0cf3a78-60b5-4224-9b93-092b4046c690.png");
+	        } else if(type === "mastercard") {
+	            $("#citrusScheme").val("mastercard").change();
+	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/34bfdb13-f40a-4e3f-bcf0-3a83625bda5c.png");
+	        }  else if(type === "rupay") {
+	            $("#citrusScheme").val("rupay").change();
+	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/b79da825-40e6-4175-b0a5-5eba978854eb.png");
+	        }  else if(type === "amex") {
+	            $("#citrusScheme").val("amex").change();
+	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/785a4a0d-1c99-4425-82dc-1451d35727fa.png");
+	        } else {
+	            $("#citrusScheme").val("");
+	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/4479bc5f-f890-4cf4-8429-567ed2a1b58e.png");
+	        }
+            
+        });
         
 
 });

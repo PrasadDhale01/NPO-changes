@@ -6,11 +6,10 @@
 
 <g:if test="${project.payuStatus}">
     <div class="row">
-        <div class="col-sm-9 taxreceiptbgcolor">
+        <div class="col-sm-4 col-xs-6 taxreceiptbgcolor tax-receipt-logo">
             <img class="img-responsive img-thumbnail" src="${project.organizationIconUrl}" alt="orglogo"/>
-            <label class="taxdetailslabel"><b>${project.organizationName}</b></label>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-8 col-xs-6">
             <g:link controller="user" action="exportTaxReceiptPdf"
              params="['id': contribution.id]" class="btn btn-primary btn-sm pull-right">Download Receipt</g:link><br>
         </div>
@@ -18,38 +17,51 @@
     <div class="row">
         <div class="col-sm-12 taxreceiptheader">Tax Receipt</div>
         <div class="row taxleftrightmargin">
-            <div class="col-sm-12 col-plr-0">
-                <div class="col-sm-8">
-	                <div class="col-sm-12">
-	                    <label class="taxdetailslabel"><b>Organization Name:</b></label>
-	                    <div class="">
-	                        ${project.organizationName}
-	                    </div><br>
-	                </div>
-                    <div class="col-sm-12">
-	                    <label class="taxdetailslabel"><b>Organization Address:</b></label>
-	                    <div class="taxorgaddress">
-	                        ${taxReciept?.addressLine1},<br/>
-	                        ${taxReciept?.addressLine2},<br/>
-	                        ${taxReciept?.city}- ${taxReciept?.zip},<br/>
-	                        ${taxReciept?.taxRecieptHolderState}, India
-	                    </div><br>
+            <div class="col-sm-12 col-plr-0 organizationdetails">
+                <div class="col-xs-6 taxreceipttop">
+                    <label class="pull-right taxreceiptdetailsfont">Organization Name:</label>
+                </div>
+                <div class="col-xs-6 taxreceipttop">
+                    <div class="taxreceipttop">${project.organizationName}</div>
+                </div>
+                <div class="clear"></div>
+                <div class="col-xs-6 taxreceipttop">
+                    <label class="pull-right taxreceiptdetailsfont">Organization Address:</label>
+                </div>
+                <div class="col-xs-6 taxreceipttop">
+                    <div class="taxreceipttop">
+                       ${taxReciept?.addressLine1} ,<br/>
+                       <g:if test="${taxReciept?.addressLine2}">${taxReciept?.addressLine2},<br/></g:if>
+                       ${taxReciept?.city}- ${taxReciept?.zip},<br/>
+                       ${taxReciept?.taxRecieptHolderState}, India
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <label class="taxdetailslabel"><b>Registration Date:</b></label>
-                    <div class="">
-                        ${dateFormat.format(taxReciept?.regDate)}
-                    </div><br>
-                    <label class="taxdetailslabel"><b>PAN no. of Organization:</b></label>
-                    <div class="">
-                        ${taxReciept?.panCardNumber}
-                    </div><br>
-                    <label class="taxdetailslabel"><b>Receipt Number / Transaction Number:</b></label>
-                    <div class="">
-                        ${transaction?.transactionId}
-                    </div><br>
+                <div class="clear"></div>
+                
+                <div class="col-xs-6 taxreceipttop">
+                    <label class="pull-right taxreceiptdetailsfont">Registration Date:</label>
                 </div>
+                <div class="col-xs-6 taxreceipttop">
+                    <div class="taxreceipttop">${dateFormat.format(taxReciept?.regDate)}</div>
+                </div>
+                <div class="clear"></div>
+                
+                <div class="col-xs-6 taxreceipttop">
+                    <label class="pull-right taxreceiptdetailsfont">PAN no. of Organization:</label>
+                </div>
+                <div class="col-xs-6 taxreceipttop">
+                    <div class="taxreceipttop">${taxReciept?.panCardNumber}</div>
+                </div>
+                <div class="clear"></div>
+                
+                <div class="col-xs-6 taxreceipttop">
+                    <label class="pull-right taxreceiptdetailsfont">Receipt Number / Transaction Number:</label>
+                </div>
+                <div class="col-xs-6 taxreceipttop">
+                    <div class="taxreceipttop">${transaction?.transactionId}</div>
+                </div>
+                <div class="clear"></div>
+                
             </div>
             
         </div>
@@ -65,7 +77,7 @@
                         <label class="pull-right taxreceiptdetailsfont">Contributed amount in words:</label>
                     </div>
                     <div class="col-xs-6 taxreceipttop">
-                        <div class="taxreceipttop">${amountInWords}</div>
+                        <div class="taxreceipttop"><span class="fa fa-inr"></span> ${amountInWords}</div>
                     </div>
                     <div class="clear"></div>
                     
@@ -125,7 +137,13 @@
                         <label class="pull-right taxreceiptdetailsfont">% of Exemption:</label>
                     </div>
                     <div class="col-xs-6 taxreceipttop">
-                        <div class="taxreceipttop">${taxReciept?.exemptionPercentage}</div>
+                        <div class="taxreceipttop">
+                        <g:if test="${taxReciept?.exemptionPercentage % 1 == 0}">
+                            ${taxReciept?.exemptionPercentage?.round()}
+                        </g:if>
+                        <g:else>
+                            ${taxReciept?.exemptionPercentage}
+                        </g:else></div>
                     </div>
                 </div>
             </div>
@@ -136,11 +154,10 @@
 </g:if>
 <g:else>
     <div class="row">
-        <div class="col-sm-9 taxreceiptbgcolor">
+        <div class="col-sm-4 col-xs-6 taxreceiptbgcolor tax-receipt-logo">
             <img class="img-responsive img-thumbnail" src="${project.organizationIconUrl}" alt="orglogo"/>
-            <label class="taxdetailslabel"><b>${project.organizationName}</b></label>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-8 col-xs-6">
             <g:link controller="user" action="exportTaxReceiptPdf"
              params="['id': contribution.id]" class="btn btn-primary btn-sm pull-right">Download Receipt</g:link><br>
         </div>
@@ -148,37 +165,46 @@
     <div class="row">
         <div class="col-sm-12 taxreceiptheader">Tax Receipt</div>
         <div class="row taxleftrightmargin">
-            <div class="col-sm-12 col-plr-0">
-                <div class="col-sm-8">
-                   <div class="c0l-sm-12">
-	                    <label class="taxdetailslabel"><b>Organization Name:</b></label>
-	                    <div class="">
-	                        ${project.organizationName}
-	                    </div><br>
-                    </div>
-                    <div class="col-sm-12">
-	                    <label class="taxdetailslabel"><b>Organization Address:</b></label>
-	                    <div class="taxorgaddress">
-	                        ${taxReciept?.addressLine1},<br/>
-	                        ${taxReciept?.addressLine2},<br/>
-	                        ${taxReciept?.city}- ${taxReciept?.zip},<br/>
-	                        ${taxReciept?.taxRecieptHolderState}, ${taxReciept?.country}
-	                    </div><br>
+            <div class="col-sm-12 col-plr-0 organizationdetails">
+                <div class="col-xs-6 taxreceipttop">
+                    <label class="pull-right taxreceiptdetailsfont">Organization Name:</label>
+                </div>
+                <div class="col-xs-6 taxreceipttop">
+                    <div class="taxreceipttop">${project.organizationName}</div>
+                </div>
+                <div class="clear"></div>
+                <div class="col-xs-6 taxreceipttop">
+                    <label class="pull-right taxreceiptdetailsfont">Organization Address:</label>
+                </div>
+                <div class="col-xs-6 taxreceipttop">
+                    <div class="taxreceipttop">
+                        ${taxReciept?.addressLine1},<br/>
+                        <g:if test="${taxReciept?.addressLine2}">${taxReciept?.addressLine2},<br/></g:if>
+                        ${taxReciept?.city}- ${taxReciept?.zip},<br/>
+                        ${taxReciept?.taxRecieptHolderState}, ${taxReciept?.country}
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <label class="taxdetailslabel"><b>Website</b></label>
-                    <div class="">
-                        ${project.webAddress}
-                    </div><br>
-                    <label class="taxdetailslabel"><b>Email</b></label>
-                    <div class="">
-                        ${project.user.email}
-                    </div><br>
-                    <label class="taxdetailslabel"><b>Phone</b></label>
-                    <div class="">
-                        ${taxReciept?.phone}
-                    </div><br>
+                <div class="clear"></div>
+                
+                <div class="col-xs-6 taxreceipttop">
+                    <label class="pull-right taxreceiptdetailsfont">Website:</label>
+                </div>
+                <div class="col-xs-6 taxreceipttop">
+                    <div class="taxreceipttop">${project.webAddress}</div>
+                </div>
+                <div class="clear"></div>
+                <div class="col-xs-6 taxreceipttop">
+                    <label class="pull-right taxreceiptdetailsfont">Email:</label>
+                </div>
+                <div class="col-xs-6 taxreceipttop">
+                    <div class="taxreceipttop">${project.user.email}</div>
+                </div>
+                <div class="clear"></div>
+                <div class="col-xs-6 taxreceipttop">
+                    <label class="pull-right taxreceiptdetailsfont">Phone:</label>
+                </div>
+                <div class="col-xs-6 taxreceipttop">
+                    <div class="taxreceipttop">${taxReciept?.phone}</div>
                 </div>
             </div>
             
@@ -195,7 +221,7 @@
                         <label class="pull-right taxreceiptdetailsfont">Contributed amount in words:</label>
                     </div>
                     <div class="col-xs-6 taxreceipttop">
-                        <div class="taxreceipttop">${amountInWords}</div>
+                        <div class="taxreceipttop"><span class="fa fa-usd"></span> ${amountInWords}</div>
                     </div>
                     <div class="clear"></div>
                     
@@ -245,7 +271,7 @@
                         <label class="pull-right taxreceiptdetailsfont">Federal ID Number:</label>
                     </div>
                     <div class="col-xs-6 taxreceipttop">
-                        <div class="">${taxReciept?.ein}</div>
+                        <div class="taxreceipttop">${taxReciept?.ein}</div>
                     </div>
                     <div class="clear"></div>
                     
@@ -253,7 +279,7 @@
                         <label class="pull-right taxreceiptdetailsfont">Legal Status / % of Exemption:</label>
                     </div>
                     <div class="col-xs-6 taxreceipttop">
-                        <div class="">${(taxReciept.deductibleStatus!=null || !'null'.equalsIgnoreCase(taxReciept?.deductibleStatus.toString())) ? taxReciept.deductibleStatus : "N/A"}</div>
+                        <div class="taxreceipttop">${(taxReciept.deductibleStatus!=null || !'null'.equalsIgnoreCase(taxReciept?.deductibleStatus.toString())) ? taxReciept.deductibleStatus : "N/A"}</div>
                     </div>
                     <div class="clear"></div>
                     

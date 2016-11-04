@@ -156,6 +156,8 @@
         <g:hiddenField name="fbShareUrlupdatePage" value="${fbShareUrlupdatePage}" id="fbShareUrlupdatePage"/>
         <g:hiddenField id="payuStatus" name="payuStatus" value="${project.payuStatus}"/>
         
+        <g:hiddenField name="projectTitle" value="${projectTitle}" id="projectTitle"/>
+        
         <g:if test="${project}">
         	<g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>
             <div class="redirectUrl">
@@ -339,13 +341,13 @@
                                             </g:if>
                                             <div class="clear"></div>
                                                         
-                                            <button class="btn btn-block btn-lg btn-primary sh-submitaproval-2header-btn sh-aproval-btn hidden-xs">
+                                            <button class="btn btn-block btn-lg btn-primary sh-submitaproval-2header-btn sh-aproval-btn hidden-xs prive-submitapproval-btn">
                                                 <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
                                             </button>
                                         </g:form>
                                     </g:if>
                                     <g:else>
-                                        <button class="btn btn-block btn-lg btn-primary sh-submitaproval-2header-btn sh-aproval-btn hidden-xs" id="submitForApprovalBtnright">
+                                        <button class="btn btn-block btn-lg btn-primary sh-submitaproval-2header-btn sh-aproval-btn hidden-xs prive-submitapproval-btn" id="submitForApprovalBtnright">
                                             <i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL
                                         </button>
                                     </g:else>
@@ -520,7 +522,6 @@
                <div class="col-xs-12 col-md-4 col-sm-4 show-desk-org-tile show-tops-corsal">
                     <div class="submitForApprovalSectionbtn" id="submitForApprovalSectionbtn">
                         <g:if test="${project?.organizationIconUrl && project?.webAddress && (project?.charitableId || project?.paypalEmail || project?.payuEmail) && (!project?.imageUrl.isEmpty()) && project?.organizationName && project?.beneficiary?.country && (projectService.getRemainingDay(project) > 0)}">
-                            inside if
                             <g:form controller="project" action="saveasdraft" id="${project.id}">
                                 <g:if test="${!project?.touAccepted}">
                                     <div class="form-group show-submit-margin hidden-xs">
@@ -566,7 +567,7 @@
 	                    </div>
 	                    <div class="col-lg-8 col-sm-8 col-md-8 show-profile-padding show-tabs-profiledesp">
 	                        <div class="show-lbl-orgname">
-	                            <label class="col-lg-5 col-sm-5 col-md-5 show-profile">Campaign by:</label>
+	                            <label class="col-lg-8 col-sm-8 col-md-8 show-profile">Campaign by:</label>
 	                            <g:if test="${project.organizationName && currentFundraiser == beneficiary}">
                                     <span class="col-lg-8 col-sm-8 col-md-8 show-org-name">${project?.organizationName}</span>
                                 </g:if>
@@ -579,15 +580,20 @@
                                     <img class="show-profile-imgs" src="//s3.amazonaws.com/crowdera/assets/1c19404a-4627-4479-94b0-46e49e62471b.png" alt="emails">
                                 </div>
                                 <div class="col-lg-10 col-sm-10 col-md-10 show-contact-profilefixes">
-                                    <span class="col-lg-12 col-sm-12 col-md-12 show-contact-ofOwner">Contact Campaign of Owner</span>
+                                    <span class="col-lg-12 col-sm-12 col-md-12 show-contact-ofOwner">Contact Campaign Owner</span>
                                 </div>
                             </div>
 	                    </div> 
                     </div>
                     <div class="clear"></div>
                     
-                    <div class="hidden-xs" id="organizationTemplateId"></div>
-                        
+<%--                    <div class="hidden-xs" id="organizationTemplateId"></div>--%>
+                   <div class="hidden-xs">
+                       <g:render template="/layouts/showTilesanstitleForOrg" model="['currentTeamAmount':currentTeamAmount]"/>
+                   </div>
+                   <div class="sh-mission-script hidden-xs"> 
+                       <div class="sh-mission-slogan bannerSloganText" id="bannerSloganText"></div>
+                   </div>     
                    <g:if test="${isPreview}">
                        <div class="clear" ></div>
                        <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb sho-fb-color hidden-xs show-pointer-not">

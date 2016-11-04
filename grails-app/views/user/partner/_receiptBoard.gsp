@@ -4,13 +4,13 @@
     <ul class="nav nav-pills nav-tab-doc">
         <li><span class="active doc-tab-right-border doc-tab-padding">
             <a href="#sendReceipt" data-toggle="tab" class="active tab-data-toggle doc-tab-files">
-                Send Tax Receipt
+                Send Donation Receipt
             </a>
             </span>
         </li>
         <li><span class="doc-tab-padding">
             <a href="#exportReceipt" data-toggle="tab" class="tab-data-toggle">
-                Export Tax Receipt
+                Export Donation Receipt
             </a>
             </span>
         </li>
@@ -52,7 +52,7 @@
 			<div class="col-sm-12">
 				<br>
 				<div class="alert alert-info">
-				    You do have any tax receipt to export.
+				    You don't have any donation receipt to export.
 				</div>
 			</div>
 		</g:else>

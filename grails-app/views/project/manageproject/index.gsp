@@ -37,6 +37,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
     <title>Crowdera- ${project.title}</title>
+      <link rel="canonical" href="${base_url}/campaign/managecampaign"/>
 	<meta property="og:title" content="Crowdera : ${project.title}" />
 	<meta property="og:url" content="${fbShareUrl}" />
 	<g:if test="${project.organizationIconUrl}">
@@ -76,7 +77,7 @@
 	<g:hiddenField id="prjId" name="prjId" value="${project.id}"/>
 	<g:hiddenField name="fbShareUrlupdatePage" value="${fbShareUrlupdatePage}" id="fbShareUrlupdatePage"/>
 	
-	<div class="feducontent">
+	<div class="feducontent campaign-bg-color">
 		<div class="container manage-container-page show-css">
 			<g:if test="${project}">
 				<div class="row">
@@ -114,13 +115,13 @@
                     <div class="col-md-12">
                         <g:if test="${!project.validated}">
                             <div class="mange-campaigntitle-mobile">
-                                <h1 class="green-heading text-center"><g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">${projectTitle}</g:link></h1>
+                                <h1 class="green-heading text-center campaignTitle"><g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">${projectTitle}</g:link></h1>
 <%--                                <a href="javascript:void(0)">${projectTitle}</a></h1>--%>
                             </div>
                         </g:if>
                         <g:else>
                             <div class="mange-campaigntitle-mobile">
-                                <h1 class="green-heading text-center"><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}</g:link></h1>
+                                <h1 class="green-heading text-center campaignTitle "><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}</g:link></h1>
 <%--                                <a href="javascript:void(0)">${project.title}</a></h1>--%>
                             </div>
                         </g:else>
@@ -207,19 +208,19 @@
                              <div class="col-lg-6 col-lg-push-3  col-md-push-3 col-md-6 mange-social-all">
                                  <%-- Social features --%>
                                  <a class="share-mail pull-left social" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank">
-                                     <img src="///s3.amazonaws.com/crowdera/assets/0fea8e3c-7e84-4369-a5a0-451585c06492.png" class="show-email" alt="Email Share">
+                                     <img src="//s3.amazonaws.com/crowdera/assets/82677812-3c6f-404d-80c2-7e3f77c60cf9.png" class="show-email" alt="Email Share">
                                  </a>
                                  <a class="twitter-share pull-left social" target="_blank">
-                                     <img src="//s3.amazonaws.com/crowdera/assets/543485b8-21d6-4144-9c30-c0e49c95c4e6.png" class="show-twitter" alt="Twitter Share">
+                                     <img src="//s3.amazonaws.com/crowdera/assets/823f1cf6-49fe-4ec2-a0dd-2d2a437ad081.png" class="show-twitter" alt="Twitter Share">
                                  </a>
                                  <a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${shareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-                                     <img src="//s3.amazonaws.com/crowdera/assets/0d661ddc-4d08-4ad9-a707-cf2e22349989.png" class="show-linkedin" alt="LinkedIn Share">
+                                     <img src="//s3.amazonaws.com/crowdera/assets/8a7fbe36-68f8-401e-8644-5780d656d298.png" class="show-linkedin" alt="LinkedIn Share">
                                  </a>
                                  <a class="social google-plus-share pull-left" href="https://plus.google.com/share?url=${shareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-                                     <img src="//s3.amazonaws.com/crowdera/assets/0c536e08-376d-4965-a901-ca42a4b6c4d5.png" class="show-google" alt="Google+ Share">
+                                     <img src="//s3.amazonaws.com/crowdera/assets/ccda789b-4001-4c95-a65f-38c0b9a7a474.png" class="show-google" alt="Google+ Share">
                                  </a>
                                  <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left embedIcon-manage-left social hidden-xs">
-                                      <img src="//s3.amazonaws.com/crowdera/assets/75ed76bc-3275-4b00-a534-9c4a324cc04e.png" class="show-embedIcon" alt="embedicon">
+                                      <img src="//s3.amazonaws.com/crowdera/assets/264961c1-5e35-4357-a68b-8494e63ac04e.png" class="show-embedIcon" alt="embedicon">
                                  </a>
                                  <div class="popoverClass">
                                      <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphiconheader glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color manage-urlshort"></span>
@@ -230,8 +231,8 @@
                                  </div>
                              </div>
                              <div class="col-lg-6 col-md-6 col-sm-6 manage-fbheader-size">
-                                 <span class="btn btn-default fbShareForLargeDevices manage-fb-color manage-fb-btn-width fbshare-header">
-                                     <i class="fa fa-facebook manage-fb-padding"></i> SHARE ON FACEBOOK
+                                 <span class="btn btn-default fbShareForLargeDevices manage-fb-color manage-fb-btn-width fbshare-header sh-social-fbEllipsis">
+                                     <i class="fa fa-facebook manage-fb-padding"></i> I Support ${projectTitle}
                                  </span>
                              </div>
                          </div>
@@ -302,7 +303,7 @@
                             <ul class="nav nav-pills manage-projects nav-justified mobile-justified sh-tabs nav-justi mng-safari-mobile mng-safari-tabs <g:if test="${!project.payuStatus}"> manage-bottom-top</g:if><g:else>mange-tabs-payu</g:else>">
                                 <li class="active show-tabs">
                                     <span class="manage-tbs-right-borders ">
-                                        <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials"><span class="hidden-xs">STORY</span> 
+                                        <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials manage-campaigndetails-font"><span class="hidden-xs">STORY</span> 
                                             <span class="glyphicon glyphicon-leaf visible-xs show-tab-right-border"></span>
                                         </a>
                                          <span class="show-ids-header"></span>
@@ -310,7 +311,7 @@
                                 </li>
                                 <li>
                                     <span class="manage-tbs-right-borders ">
-                                        <a href="#projectupdates" data-toggle="tab" class="show-tabs-text projectupdates"><span class="hidden-xs">UPDATES</span> 
+                                        <a href="#projectupdates" data-toggle="tab" class="show-tabs-text projectupdates manage-campaigndetails-font"><span class="hidden-xs">UPDATES</span> 
                                             <span class="glyphicon glyphicon-asterisk visible-xs"></span>
                                         </a>
                                          <span class="show-ids-header"></span>
@@ -319,7 +320,7 @@
                                 </li>
                                 <li>
                                     <span class="manage-tbs-right-borders ">
-                                        <a href="#manageTeams" data-toggle="tab" class="show-tabs-text manageTeams"><span class="hidden-xs">TEAMS</span>
+                                        <a href="#manageTeams" data-toggle="tab" class="show-tabs-text manageTeams manage-campaigndetails-font"><span class="hidden-xs">TEAMS</span>
                                              <span class="fa fa-users visible-xs"></span>
                                         </a>
                                          <span class="show-ids-header"></span>
@@ -327,7 +328,7 @@
                                 </li>
                                 <li>
                                     <span class="manage-tbs-right-borders ">
-                                        <a href="#rewards" data-toggle="tab" class="show-tabs-text rewards"><span class="hidden-xs">PERKS</span>
+                                        <a href="#rewards" data-toggle="tab" class="show-tabs-text rewards manage-campaigndetails-font"><span class="hidden-xs">PERKS</span>
                                             <span class="fa fa-gift fa-lg visible-xs"></span>
                                         </a>
                                          <span class="show-ids-header"></span>
@@ -336,7 +337,7 @@
                                 <g:if test="${project.payuStatus}">
                                     <li>
                                         <span class="manage-tbs-right-borders ">
-                                            <a href="#payments" data-toggle="tab" class="show-tabs-text payments"><span class="hidden-xs">PAYMENTS</span>
+                                            <a href="#payments" data-toggle="tab" class="show-tabs-text payments manage-campaigndetails-font"><span class="hidden-xs">PAYMENTS</span>
                                                 <span class="glyphicon glyphicon-credit-card visible-xs"></span>
                                             </a>
                                              <span class="show-ids-header"></span>
@@ -345,7 +346,7 @@
                                 </g:if>
                                 <li>
                                     <span class="manage-tbs-right-borders ">
-                                        <a href="#contributions" data-toggle="tab" class="show-tabs-text contributions"><span class="hidden-xs">CONTRIBUTIONS</span>
+                                        <a href="#contributions" data-toggle="tab" class="show-tabs-text contributions manage-campaigndetails-font"><span class="hidden-xs">CONTRIBUTIONS</span>
                                             <span class="glyphicon glyphicon-tint visible-xs"></span>
                                         </a> 
                                         <span class="show-tabs-count hidden-xs"><g:if test="${project.contributions.size() > 0}">${project.contributions.size()}</g:if></span>
@@ -354,7 +355,7 @@
                                 </li>
                                 <li>
                                     <span class="manage-comit-lft">
-                                        <a href="#comments" data-toggle="tab" class="show-tabs-text comments"><span class="hidden-xs">COMMENTS</span>
+                                        <a href="#comments" data-toggle="tab" class="show-tabs-text comments manage-campaigndetails-font"><span class="hidden-xs">COMMENTS</span>
                                             <span class="glyphicon glyphicon-comment visible-xs"></span>
                                         </a>
                                          <span class="show-ids-header"></span> 
@@ -376,7 +377,7 @@
                             <div class="tab-pane mange-pane-active" id="manageTeams">
                                 <g:render template="/project/manageproject/manageteam" />
                             </div>
-                            <div class="tab-pane mange-pane-active" id="rewards">
+                            <div class="tab-pane mange-pane-active manage-mobile-margine" id="rewards">
                                 <g:render template="/project/manageproject/rewards" />
                             </div>
                             <g:if test="${project.payuStatus}">

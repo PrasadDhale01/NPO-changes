@@ -1,11 +1,11 @@
 <%@ page import="java.text.SimpleDateFormat" %>
     
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12 manage-bg-color">
         
         <%-- Button trigger modal --%>
         <g:if test="${!ended}">
-	        <a href="#" class="btn btn-primary btn-sm btn-circle pull-right" data-toggle="modal" data-target="#createRewardModal">
+	        <a href="#" class="btn btn-primary btn-sm btn-circle pull-right manage-create-perkpadding" data-toggle="modal" data-target="#createRewardModal">
 	            <i class="fa fa-plus-circle"></i> Create Perk
 	        </a>
         </g:if>
@@ -35,7 +35,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Number available</label>
-                                <input type="text" class="form-control all-place" name="numberAvailable" placeholder="Number available">
+                                <input type="text" class="form-control all-place numbersOnly" name="numberAvailable" maxlength="5" placeholder="Number available">
                             </div>
                             <div class="form-group descriptionDiv createDescDiv">
                                 <label>Description</label>
@@ -70,7 +70,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 col-sm-12 col-xs-12 manage-bg-color">
         <g:render template="manageproject/rewardsgrids" model="['rewards': rewards]"></g:render>
     </div>
 </div>

@@ -24,7 +24,7 @@
 	            <div class="modal-content">
 	                <div class="modal-header">
 	                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	                    <h3 class="modal-title text-center"><b>Tax Receipt</b></h3>
+	                    <h3 class="modal-title text-center"><b>Donation Receipt</b></h3>
 	                </div>
 	                <div class="modal-body taxreceiptmodalbody">
 	                    <g:render template="user/taxReceipt" model="['taxReciept': taxReciept, 'transaction': transaction, 'amountInWords': amountInWords, 'contribution': contribution, 'project': contribution.project, 'ismodal': 'true']"></g:render>

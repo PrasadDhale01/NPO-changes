@@ -189,14 +189,17 @@
     $('.campaignTileClick').click(function (){
         var vanityTitle = $(this).data('vanitytitle');
         var grid = $(".campaignTilePaginate");
+        $('#loading-gif').show();
         $.ajax({
             type: 'post',
             url:baseUrl+'/user/loadContributors',
             data:'vanityTitle='+vanityTitle+'&sort=All',
             success: function(data) {
                 $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+                $('#loading-gif').hide();
             }
         }).error(function(e){
+           $('#loading-gif').hide();
            console.log('Error occured while showing contributor list of '+vanityTitle);
         });
     });

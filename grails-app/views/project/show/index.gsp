@@ -68,6 +68,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
     <title>Crowdera- ${project.title}</title>
+    <link rel="canonical" href="${base_url}/campaigns"/>
     <meta name="title" content="${project.title} - Crowdera" />
     <g:if test="${project.description}">
         <meta name="description" content="${project.description}" />
@@ -134,6 +135,8 @@
     
 </head>
 <body>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<a href="javascript:" id="returnTotop"> <i class="icon-chevron-up"></i></a>
 <div class="feducontent campaign-bg-color">
     <g:if test="${isPreview}">
         <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
@@ -953,7 +956,7 @@
 <%--                              --%>
 <%--                          </div>--%>
                           <div class="show-reasons-fund-bgpadding">
-                          <span class="show-tri-reasons-to-fund text-center">3 Reasons to Fund Our Campaign</span>
+                          <span class="show-tri-reasons-to-fund">3 Reasons to Fund Our Campaign</span>
                           <g:if test="${reasons.reason1}">
                               <div class="show-reasonsToFund">
                                   <div class="reasonspadding">

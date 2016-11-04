@@ -6,7 +6,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.Session
 import org.hibernate.SessionFactory
-
+/*Merging Master branch changes*/
 class CampaignService {
     
     def contributionService

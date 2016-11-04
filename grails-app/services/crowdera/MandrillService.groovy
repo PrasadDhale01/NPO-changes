@@ -16,7 +16,7 @@ class MandrillService {
         def currentEnv
         
         if(crowderaDomain == 'testIndia' || crowderaDomain == 'stagingIndia' || crowderaDomain == 'prodIndia'){
-            currentEnv = 'http://www.crowdera.in'
+            currentEnv = 'https://gocrowdera.com'
         } else {
             currentEnv = 'https://gocrowdera.com'
         }

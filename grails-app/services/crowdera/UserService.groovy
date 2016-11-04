@@ -26,7 +26,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile
 import java.text.DecimalFormat;
 
 import org.codehaus.groovy.grails.plugins.jasper.JasperExportFormat
-
+/*Merging Master branch changes*/
 class UserService {
 
     def imageFile

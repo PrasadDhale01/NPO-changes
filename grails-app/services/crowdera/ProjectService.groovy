@@ -32,7 +32,7 @@ import groovy.json.JsonSlurper
 import static java.util.Calendar.*
 import org.apache.http.util.EntityUtils
 import org.jets3t.service.security.AWSCredentials
-
+/*Merging Master branch changes*/
 class ProjectService {
     def userService
     def contributionService

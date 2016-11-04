@@ -23,7 +23,7 @@
             <div class="searchengine pull-right visible-xs">
                <form name="SearchForm" action="/campaign">
                    <div class="inner-addon left-addon search-icon-header search-image-header mobile-searchengin-header">
-                      <img id="scrolltrigger" class="trigger-mob scrolltrigger" alt="search" src="https://s3.amazonaws.com/crowdera/assets/search-icon.png" onmouseover="mobileSearch()" onmouseleave="onSearchLeave()">
+                      <img id="scrolltrigger" class="trigger-mob scrolltrigger" alt="search" src="https://s3.amazonaws.com/crowdera/assets/search-icon.png" onclick="toggleSearch();">
                       <input type="text" placeholder="Search....." id="search-barr1" value="" name="q" class="search-barr form-control form-control-no-border search-box">
                    </div>
                </form>

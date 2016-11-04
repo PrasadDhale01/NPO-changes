@@ -5,7 +5,7 @@
     def percent
     def contributedSoFar
     def amount
-    if (project.user == currentFundraiser){
+    if (project.user == currentFundraiser || isCampaignOwnerOrAdmin || isAdmin){
         percent = percentage
         contributedSoFar = totalContribution
         amount = project?.amount.round()
@@ -43,11 +43,12 @@
                 </div>
             </div>
             
-            <div class="col-lg-8 col-sm-8 col-md-8">
+            <div class="col-lg-8 col-sm-8 col-md-8 sh-width-control">
                 <span class="show-tile-raised">Raised</span><br>
                 <span class="show-raised-amt show-contribution-amt-tile">
                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                        <span class="fa fa-inr"></span><span class="lead show-contribution-amt-tile"><g:if test="${payuStatus}">${contributedSoFar}</g:if><g:else>${contributedSoFar * conversionMultiplier}</g:else></span>
+                        <span class="fa fa-inr fa-inr-block"></span><span><g:if test="${project.payuStatus}">${contributedSoFar}</g:if><g:else>${contributedSoFar * conversionMultiplier}</g:else></span>
+<%--                                            span class---class="lead show-contribution-amt-tile"--%>
                     </g:if>
                     <g:else>
                         $<span class="show-raised-amt show-contribution-amt-tile">${contributedSoFar}</span>
@@ -61,11 +62,11 @@
                 <img class="show-goal-size" src="//s3.amazonaws.com/crowdera/assets/tile-goal-icon.png" alt="Goal-Icon">
             </div>
             
-            <div class="col-lg-8 col-sm-8 col-md-8">
+            <div class="col-lg-8 col-sm-8 col-md-8 sh-width-control">
                  <span class="show-tile-raised">Goal</span><br>
                 <span class="show-raised-amt">
                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                        <span class="fa fa-inr"></span><span class=""><g:if test="${payuStatus}">${amount}</g:if><g:else>${amount * conversionMultiplier}</g:else></span>
+                        <span class="fa fa-inr fa-inr-block"></span><span><g:if test="${project.payuStatus}">${amount}</g:if><g:else>${amount * conversionMultiplier}</g:else></span>
                     </g:if>
                     <g:else>
                         $<span class="show-raised-amt">${amount}</span>
@@ -79,7 +80,7 @@
                 <img class="show-timeday-size" src="//s3.amazonaws.com/crowdera/assets/timeleft.png" alt="daysleft-icon">
             </div>
             
-            <div class="col-lg-8 col-sm-8 col-md-8">
+            <div class="col-lg-8 col-sm-8 col-md-8 sh-width-control">
                 <g:if test="${ended}">
                     <span class="show-tile-raised">Days Left</span><br>
                     <span class=" show-contribution-amt-tile show-raised-amt">00</span>

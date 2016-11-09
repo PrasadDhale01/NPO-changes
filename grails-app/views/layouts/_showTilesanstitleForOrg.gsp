@@ -43,7 +43,7 @@
                 </div>
             </div>
             
-            <div class="col-lg-8 col-sm-8 col-md-8 sh-width-control">
+            <div class="col-lg-8 col-sm-8 col-md-8 sh-width-control gau-new-color">
                 <span class="show-tile-raised">Raised</span><br>
                 <span class="show-raised-amt show-contribution-amt-tile">
                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
@@ -62,7 +62,7 @@
                 <img class="show-goal-size" src="//s3.amazonaws.com/crowdera/assets/tile-goal-icon.png" alt="Goal-Icon">
             </div>
             
-            <div class="col-lg-8 col-sm-8 col-md-8 sh-width-control">
+            <div class="col-lg-8 col-sm-8 col-md-8 sh-width-control gau-new-color">
                  <span class="show-tile-raised">Goal</span><br>
                 <span class="show-raised-amt">
                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
@@ -80,7 +80,7 @@
                 <img class="show-timeday-size" src="//s3.amazonaws.com/crowdera/assets/timeleft.png" alt="daysleft-icon">
             </div>
             
-            <div class="col-lg-8 col-sm-8 col-md-8 sh-width-control">
+            <div class="col-lg-8 col-sm-8 col-md-8 sh-width-control gau-new-color">
                 <g:if test="${ended}">
                     <span class="show-tile-raised">Days Left</span><br>
                     <span class=" show-contribution-amt-tile show-raised-amt">00</span>

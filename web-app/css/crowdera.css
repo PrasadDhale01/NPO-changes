@@ -12943,7 +12943,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	
 	.form-horizontal .form-group {
 		margin-left: 2px;
-		margin-right: -15px;
+		margin-right: 0px;
 	}
 }
 
@@ -18483,7 +18483,7 @@ span.abt-founderCo{
     padding-right: 10px;
 }
 .cr1-font-list .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="span"] {
-    width: 26% !important;
+    width: 100% !important;
 }
 .createDescDiv.has-error .col-sm-12.col-sm-12.cr1-descriptions-indx1 {
     padding-left: 0;

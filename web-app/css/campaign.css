@@ -1888,3 +1888,28 @@ a.manage-campaigndetails-font{
 .team_grid_background {
     background-color: #ffffff;
 }
+
+.col-lr-0 {
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+.col-l-0 {
+    padding-left: 0px !important;
+}
+.col-r-0 {
+    padding-right: 0px !important;
+}
+.campaign-entities label {
+	font-size: 15px !important;
+    line-height: 24px;
+}
+.margin-bottom-20 {
+	margin-bottom: 20px;
+}
+.campaign-entities .list-group-item:hover, 
+.campaign-entities .list-group-item:focus  {
+	background-color: #efefef !important;
+}
+.campaign-entities .list-group-item.selected-entity {
+    background-color: #efefef !important;
+}

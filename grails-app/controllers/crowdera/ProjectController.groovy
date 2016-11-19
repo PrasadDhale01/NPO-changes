@@ -887,6 +887,9 @@ class ProjectController {
             def spends = project.spend
             spends = spends.sort{it.numberAvailable}
             if (user == currentUser) {
+                
+                def inDays = projectService.getInDays()
+                
                 def currentEnv = projectService.getCurrentEnvironment()
                 def categoryOptions 
                 if(currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
@@ -932,6 +935,7 @@ class ProjectController {
                 def taxReciept = projectService.getTaxRecieptOfProject(project)
                 def deductibleStatusList = projectService.getDeductibleStatusList()
                 def stateInd = projectService.getIndianState()
+                
                 render(view: 'create/index2',
                 model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, 
                     nonIndprofit:nonIndprofit, nonProfit:nonProfit , currentEnv: currentEnv,
@@ -941,7 +945,7 @@ class ProjectController {
                     email2:adminemails.email2, email3:adminemails.email3,reasonsToFund:reasonsToFund, 
                     qA:qA, spends:spends, usedForCreate:usedForCreate, selectedCountry:selectedCountry, 
                     taxReciept:taxReciept, deductibleStatusList:deductibleStatusList,
-                    spendAmountPerList:pieList.spendAmountPerList])
+                    spendAmountPerList:pieList.spendAmountPerList, inDays: inDays])
             } else {
                 render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
             }

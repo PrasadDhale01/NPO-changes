@@ -2196,6 +2196,7 @@ a.footerlink {
 	background-color: #000;
 }
 .fileUpload {
+	font-weight: 600;
 	position: relative;
 	overflow: hidden;
 }
@@ -17759,12 +17760,13 @@ textarea.textarea-embed-video {
 }
 
 .borders {
+	height: 55px;
     background-color: #fff;
     border-bottom: 2px solid #e3e3e3;
     border-right: 2px solid #e3e3e3;
     margin-left: 15px;
     padding-left: 15px;
-    width: 969px;
+    width: 970px;
 }
 .show-new-tabs-alignments{
 	border-right-width: 0;
@@ -17786,7 +17788,7 @@ textarea.textarea-embed-video {
 	border-left: 2px solid #6d6e6e;
 }
 .show-tops-corsal{
-	margin-top: 20px;
+	margin-top: 22px;
 }
 .show-tabs-text{
 	text-decoration:none !important;
@@ -19174,4 +19176,51 @@ a< #returnTotop:focus{
 :-moz-any-link:focus {
   outline: none;
 }
+
+.homepageBanner{
+	position: relative;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-clip: padding-box;
+	
+}
+
+#wePayEmail {
+    display : none;
+}
+
+a.homepage-banner-button{
+	background-color: #FFC300;
+	border-color: #FFC300;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 900;
+}
+
+.homepage-banner-button:hover{
+	background-color: #FFC300;
+	border-color: #FFC300;
+	text-decoration: none;
+}
+
+.bannerText{
+	position: absolute; 
+	bottom: 0; 
+    left: 160px;
+    top: 120px;
+	width: 100%; 
+	font-weight: bold; 
+	color: #fff;"
+}
+
+div.homepage-button{
+    bottom: 45%;
+    position: absolute;
+}
+
+.homepage-button:focus
+.homepage-button:hover{
+	text-decoration: none;
+}
+
 

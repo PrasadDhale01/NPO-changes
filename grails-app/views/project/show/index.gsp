@@ -630,7 +630,7 @@
                 </div> 
                
                
-                <div class="col-xs-12 col-md-8 col-sm-8 Top-tabs-mobile show-tops-corsal">
+                <div class="col-xs-12 col-md-8 col-sm-8 Top-tabs-mobile show-tops-corsal new-gau-width-details">
                 
                     <%-- Tab panes --%>
                     <div class="tab-content">
@@ -779,7 +779,7 @@
                       </g:else>
                   </div>
                
-                  <div class="col-xs-12 col-md-4 col-sm-4 show-desk-org-tile show-tops-corsal">
+                  <div class="col-xs-12 col-md-4 col-sm-4 show-desk-org-tile show-tops-corsal new-show-gau-width">
 <%--                      <div class="hidden-xs">--%>
 <%--                          <g:render template="/layouts/orgDetails"/>--%>
 <%--                      </div>--%>
@@ -913,14 +913,14 @@
                           <g:if test="${isPreview}">
                               <div class="showfacebooksAA"></div>
                               <span class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color sh-social-fbEllipsis">
-                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> I Support ${projectTitle}
+                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> I SUPPORT ${projectTitle}
 <%--                                  Share (${facebookShare})--%>
                               </span>
                           </g:if>
                           <g:else>
                               <div class="showfacebooksAA"></div>
                               <span class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color sh-social-fbEllipsis" id="fbshare">
-                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> I Support ${projectTitle}
+                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> I SUPPORT ${projectTitle}
 <%--                               Share   (${facebookShare})--%>
                               </span>
                           </g:else>

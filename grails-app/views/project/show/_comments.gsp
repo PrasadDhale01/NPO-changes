@@ -80,7 +80,7 @@
                         <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 upload-btn">
                             <div class="fileUpload btn-sm sh-attach-btn">
                                 <img alt="attach-file-img" src="//s3.amazonaws.com/crowdera/assets/61bdcd37-b1f9-4d7c-af21-377063443cab.png " class="sh-attach-file-icon">
-                                <span>Attached File</span>
+                                <span>Attach File</span>
                                 <input type="file" class="commentImgFile upload show-attach-file attachfileforcomments" name="attachFileUrls" accept="image/png, image/jpeg"/>
                             </div>
                         </div>
@@ -144,7 +144,7 @@
                         	<div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 upload-btn">
                             	<div class="fileUpload btn-sm sh-attach-btn">
                                 	<img alt="attach-file-img" src="//s3.amazonaws.com/crowdera/assets/61bdcd37-b1f9-4d7c-af21-377063443cab.png " class="sh-attach-file-icon">
-                                	<span>Attached File</span>
+                                	<span>Attach File</span>
                                 	<input  type="file" class="commentImgFile upload show-attach-file attachfileforcomments" name="teamAttachFile" accept="image/png, image/jpeg"/>
                             	</div>
                         	</div>
@@ -160,7 +160,7 @@
                          	<label class="docfile-orglogo-css show-label-msz fileforcomments"></label>  
                      	</div>
 	                 </div>
-	                 <button type="submit" class="btn  show-btn-font btn-lg pull-right show-button-cmt">Post comment</button>
+	                 <button type="submit" class="btn  show-btn-font btn-lg pull-right show-button-cmt">Post Comment</button>
 	                 <div class="clear"></div>
 	             </g:uploadForm>
 	        </g:if>
@@ -190,7 +190,7 @@
 	                        <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 upload-btn">
 	                            <div class="fileUpload btn-sm sh-attach-btn">
 	                                <img alt="attach-img-file" src="//s3.amazonaws.com/crowdera/assets/61bdcd37-b1f9-4d7c-af21-377063443cab.png " class="sh-attach-file-icon">
-	                                <span>Attached File</span>
+	                                <span>Attach File</span>
 	                                <input  type="file" class="commentImgFile upload show-attach-file attachfileforcomments" name="attachedFileForProject" accept="image/png, image/jpeg"/>
 	                            </div>
 	                         </div>
@@ -206,7 +206,7 @@
 	                         <label class="docfile-orglogo-css show-label-msz fileforcomments"></label> 
 	                     </div>
 	                </div>
-	                <button type="submit" class="btn btn-lg pull-right show-btn-font show-button-cmt">Post comment</button>
+	                <button type="submit" class="btn btn-lg pull-right show-btn-font show-button-cmt">Post Comment</button>
 	                <div class="clear"></div>
 	            </g:uploadForm>
 	        </g:else>

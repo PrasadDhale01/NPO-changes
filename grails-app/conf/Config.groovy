@@ -16,19 +16,19 @@ grails.project.groupId = appName // change this to alter the default package nam
 // The ACCEPT header will not be used for content negotiation for user agents containing the following strings (defaults to the 4 major rendering engines)
 grails.mime.disable.accept.header.userAgents = ['Gecko', 'WebKit', 'Presto', 'Trident']
 grails.mime.types = [ // the first one is the default format
-    all:           '*/*', // 'all' maps to '*' or the first available format in withFormat
-    atom:          'application/atom+xml',
-    css:           'text/css',
-    csv:           'text/csv',
-    form:          'application/x-www-form-urlencoded',
-    html:          ['text/html','application/xhtml+xml'],
-    js:            'text/javascript',
-    json:          ['application/json', 'text/json'],
-    multipartForm: 'multipart/form-data',
-    rss:           'application/rss+xml',
-    text:          'text/plain',
-    hal:           ['application/hal+json','application/hal+xml'],
-    xml:           ['text/xml', 'application/xml']
+	all:           '*/*', // 'all' maps to '*' or the first available format in withFormat
+	atom:          'application/atom+xml',
+	css:           'text/css',
+	csv:           'text/csv',
+	form:          'application/x-www-form-urlencoded',
+	html:          ['text/html','application/xhtml+xml'],
+	js:            'text/javascript',
+	json:          ['application/json', 'text/json'],
+	multipartForm: 'multipart/form-data',
+	rss:           'application/rss+xml',
+	text:          'text/plain',
+	hal:           ['application/hal+json','application/hal+xml'],
+	xml:           ['text/xml', 'application/xml']
 ]
 
 // URL Mapping Cache Max Size, defaults to 5000
@@ -38,7 +38,7 @@ grails.mime.types = [ // the first one is the default format
 grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*']
 grails.resources.adhoc.excludes = ['/WEB-INF/**']
 
-//To accept the header information 
+//To accept the header information
 grails.mime.use.accept.header = true // Default value is true.
 grails.mime.disable.accept.header.userAgents = []
 
@@ -53,31 +53,31 @@ grails.app.context = "/"
 
 // GSP settings
 grails {
-    views {
-        gsp {
-            encoding = 'UTF-8'
-            htmlcodec = 'xml' // use xml escaping instead of HTML4 escaping
-            codecs {
-                expression = 'html' // escapes values inside ${}
-                scriptlet = 'html' // escapes output from scriptlets in GSPs
-                taglib = 'none' // escapes output from taglibs
-                staticparts = 'none' // escapes output from static template parts
-            }
-        }
-        // escapes all not-encoded output at final stage of outputting
-        // filteringCodecForContentType.'text/html' = 'html'
-    }
+	views {
+		gsp {
+			encoding = 'UTF-8'
+			htmlcodec = 'xml' // use xml escaping instead of HTML4 escaping
+			codecs {
+				expression = 'html' // escapes values inside ${}
+				scriptlet = 'html' // escapes output from scriptlets in GSPs
+				taglib = 'none' // escapes output from taglibs
+				staticparts = 'none' // escapes output from static template parts
+			}
+		}
+		// escapes all not-encoded output at final stage of outputting
+		// filteringCodecForContentType.'text/html' = 'html'
+	}
 
-    mail {
-        host = "smtp.gmail.com"
-        port = 465
-        username = "info@fedu.org"
-        password = "FundEdu@2014"
-        props = ["mail.smtp.auth":"true",
-                "mail.smtp.socketFactory.port":"465",
-                "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
-                "mail.smtp.socketFactory.fallback":"false"]
-    }
+	mail {
+		host = "smtp.gmail.com"
+		port = 465
+		username = "info@fedu.org"
+		password = "FundEdu@2014"
+		props = ["mail.smtp.auth":"true",
+				"mail.smtp.socketFactory.port":"465",
+				"mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+				"mail.smtp.socketFactory.fallback":"false"]
+	}
 }
 
 
@@ -104,49 +104,47 @@ grails.plugin.springsecurity.facebook.domain.classname = 'crowdera.FacebookUser'
 grails.plugin.springsecurity.facebook.domain.appUserConnectionPropertyName = 'user'
 grails.plugin.springsecurity.facebook.filter.redirect.failureHandler='facebookRedirectFailureHandler'
 grails.plugin.springsecurity.facebook.filter.redirect.successHandler='facebookRedirectSuccessHandler'
-
 environments {
-    development {
-        crowdera.facebook.appId = '333909376820194'
-        crowdera.facebook.secret = '0965e3232aafa265ff319903efa4c6a5'
+	development {
+		crowdera.facebook.appId = '333909376820194'
+		crowdera.facebook.secret = '0965e3232aafa265ff319903efa4c6a5'
 
-        grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
-        grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
+		grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
+		grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
-        crowdera.BASE_URL = 'http://localhost:8080'
+		/*Addition of an extra forward slash to all the base URL's to accommodate country_code*/
+		crowdera.BASE_URL = 'http://localhost:8080/'
+
+		grails.logging.jul.usebridge = true
+		grails.dbconsole.urlRoot = '/secured/dbconsole'
+
+		/* Stripe test keys */
+		grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
+		grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
+
+		/* FirstGiving Details */
+		crowdera.firstgiving.BASE_URL= 'http://usapisandbox.fgdev.net'
+		crowdera.firstgiving.uriPath= '/donation/creditcard'
+		crowdera.firstgiving.JG_APPLICATIONKEY = 'b1d5db6b-1368-49cc-917c-e98758f28b36'
+		crowdera.firstgiving.JG_SECURITYTOKEN = '277ce2dd-7d4e-4bf2-978d-f91af2624fad'
 		
-		crowdera.COUNTRY_CODE = 'us'
-
-        grails.logging.jul.usebridge = true
-        grails.dbconsole.urlRoot = '/secured/dbconsole'
-
-        /* Stripe test keys */
-        grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
-        grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
-
-        /* FirstGiving Details */
-        crowdera.firstgiving.BASE_URL= 'http://usapisandbox.fgdev.net'
-        crowdera.firstgiving.uriPath= '/donation/creditcard'
-        crowdera.firstgiving.JG_APPLICATIONKEY = 'b1d5db6b-1368-49cc-917c-e98758f28b36'
-        crowdera.firstgiving.JG_SECURITYTOKEN = '277ce2dd-7d4e-4bf2-978d-f91af2624fad'
-        
-        /* Paypal Details */
-        crowdera.paypal.PAYPAL_URL='https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
-        crowdera.paypal.BASE_URL= 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay'
-        crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info-facilitator_api1.crowdera.co'
-        crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'ZSD7Z9TJ4BLP8DBT'
-        crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AYDVpnDtJwzfma0uPoGG8ZXKdkDlAhPPZoBbxVRwh93AGi3eiDDGIznY'
-        crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-80W284485P519543T'
-        crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
-        crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
-        crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
-        crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
+		/* Paypal Details */
+		crowdera.paypal.PAYPAL_URL='https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
+		crowdera.paypal.BASE_URL= 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay'
+		crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info-facilitator_api1.crowdera.co'
+		crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'ZSD7Z9TJ4BLP8DBT'
+		crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AYDVpnDtJwzfma0uPoGG8ZXKdkDlAhPPZoBbxVRwh93AGi3eiDDGIznY'
+		crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-80W284485P519543T'
+		crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
+		crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
+		crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
+		crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
 		
-        /* FreshDesk Details */
-        crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
-        crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
-        crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
-        crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
+		/* FreshDesk Details */
+		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
+		crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
+		crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
+		crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
 		
 		/*MailChimp details*/
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
@@ -164,13 +162,13 @@ environments {
 		crowdera.PAYU.TEST_URL='https://test.payu.in/_payment.php'
 		crowdera.PAYU.KEY='czBDue'
 		crowdera.PAYU.SALT='g57jz4Cw'
-        
-        /*Citrus Credentials*/
-        crowdera.CITRUS.SPLITPAY_URL = "https://splitpaysbox.Citruspay.com"
-        crowdera.CITRUS.BASE_URL = "https://splitpay.citruspay.com"
-        crowdera.CITRUS.ACCESS_KEY = "VVXKH02XVEWHUGWJHAMI"
-        crowdera.CITRUS.SECRETE_KEY = "4c86cabfc7fb68d2261f35087a8edece44f856bd"
-        crowdera.CITRUS.VANITYURL = "8wqhvmq506"
+		
+		/*Citrus Credentials*/
+		crowdera.CITRUS.SPLITPAY_URL = "https://splitpaysbox.Citruspay.com"
+		crowdera.CITRUS.BASE_URL = "https://splitpay.citruspay.com"
+		crowdera.CITRUS.ACCESS_KEY = "VVXKH02XVEWHUGWJHAMI"
+		crowdera.CITRUS.SECRETE_KEY = "4c86cabfc7fb68d2261f35087a8edece44f856bd"
+		crowdera.CITRUS.VANITYURL = "8wqhvmq506"
 		
 		/*ConstantContact details*/
 		crowdera.cc.OAUTH_URL='https://oauth2.constantcontact.com/oauth2/oauth/siteowner/authorize?response_type=code&display=page&'
@@ -186,72 +184,73 @@ environments {
 		crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
 		crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
 		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
-        
-        /*Google client details*/
-        crowdera.Client_Id = '837867811198'
-        crowdera.Client_Id_alphanumeric = '-pjgbmmqbalu9ddqtq6ijtk54u8f6kiuu.apps.googleusercontent.com'
-        crowdera.api_key = 'AIzaSyA6USGi0-RoCLFCDWhnYz8CUa-pF93Z0r4'
-        
-        mandrill {
-            apiKey = "R28ZHu6_5IkJWLFunpsJbw"
-        }
-        
-        /*google plus login*/
-        oauth {
-             providers {
-                 google {
-                     api = org.grails.plugin.springsecurity.oauth.GoogleApi20
-                     key = '837867811198-pjgbmmqbalu9ddqtq6ijtk54u8f6kiuu.apps.googleusercontent.com'
-                     secret = 'xxwHTgLUigJ9BdHFl4c3iouA'
-                     successUri = '/login/googleSuccess'
-                     failureUri = '/login/googleFailure'
-                     callback = "http://localhost:8080/oauth/google/callback"
-                     scope = 'profile https://www.google.com/m8/feeds https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
-                }
-            }
-        }
-    }
-    test {
-        /*  */
-        crowdera.facebook.appId = '554475128028127'
-        crowdera.facebook.secret = 'f1991f7bf85d445a346821967e2b1251'
+		
+		/*Google client details*/
+		crowdera.Client_Id = '837867811198'
+		crowdera.Client_Id_alphanumeric = '-pjgbmmqbalu9ddqtq6ijtk54u8f6kiuu.apps.googleusercontent.com'
+		crowdera.api_key = 'AIzaSyA6USGi0-RoCLFCDWhnYz8CUa-pF93Z0r4'
+		
+		mandrill {
+			apiKey = "R28ZHu6_5IkJWLFunpsJbw"
+		}
+		
+		/*google plus login*/
+		oauth {
+			 providers {
+				 google {
+					 api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+					 key = '837867811198-pjgbmmqbalu9ddqtq6ijtk54u8f6kiuu.apps.googleusercontent.com'
+					 secret = 'xxwHTgLUigJ9BdHFl4c3iouA'
+					 successUri = '/login/googleSuccess'
+					 failureUri = '/login/googleFailure'
+					 callback = "http://localhost:8080/oauth/google/callback"
+					 scope = 'profile https://www.google.com/m8/feeds https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+				}
+			}
+		}
+	}
+	test {
+		/*  */
+		crowdera.facebook.appId = '554475128028127'
+		crowdera.facebook.secret = 'f1991f7bf85d445a346821967e2b1251'
 
-        grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
-        grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
+		grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
+		grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
-        crowdera.BASE_URL = 'http://test.gocrowdera.com'
+		/*Addition of an extra forward slash to all the base URL's to accommodate country_code*/
+		crowdera.BASE_URL = 'http://test.gocrowdera.com/'
 
-        grails.logging.jul.usebridge = false
-        grails.dbconsole.enabled = true
-        grails.dbconsole.urlRoot = '/secured/dbconsole'
+		grails.logging.jul.usebridge = false
+		grails.dbconsole.enabled = true
+		grails.dbconsole.urlRoot = '/secured/dbconsole'
 
-        /* Stripe test keys */
-        grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
-        grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
+		/* Stripe test keys */
+		grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
+		grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
 
-        /* FirstGiving Details */
-        crowdera.firstgiving.BASE_URL= 'http://usapisandbox.fgdev.net'
-        crowdera.firstgiving.uriPath= '/donation/creditcard'
-        crowdera.firstgiving.JG_APPLICATIONKEY = 'b1d5db6b-1368-49cc-917c-e98758f28b36'
-        crowdera.firstgiving.JG_SECURITYTOKEN = '277ce2dd-7d4e-4bf2-978d-f91af2624fad'
-        
-        /* Paypal Details */
-        crowdera.paypal.PAYPAL_URL='https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
-        crowdera.paypal.BASE_URL= 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay'
-        crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info-facilitator_api1.crowdera.co'
-        crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'ZSD7Z9TJ4BLP8DBT'
-        crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AYDVpnDtJwzfma0uPoGG8ZXKdkDlAhPPZoBbxVRwh93AGi3eiDDGIznY'
-        crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-80W284485P519543T'
-        crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
-        crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
-        crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
-        crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
-        
-        /* FreshDesk Details */
-        crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
-        crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
-        crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
-        crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
+		/* FirstGiving Details */
+		crowdera.firstgiving.BASE_URL= 'http://usapisandbox.fgdev.net'
+		crowdera.firstgiving.uriPath= '/donation/creditcard'
+		crowdera.firstgiving.JG_APPLICATIONKEY = 'b1d5db6b-1368-49cc-917c-e98758f28b36'
+		crowdera.firstgiving.JG_SECURITYTOKEN = '277ce2dd-7d4e-4bf2-978d-f91af2624fad'
+		
+		/* Paypal Details */
+		crowdera.paypal.PAYPAL_URL='https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
+		crowdera.paypal.BASE_URL= 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay'
+		crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info-facilitator_api1.crowdera.co'
+		crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'ZSD7Z9TJ4BLP8DBT'
+		crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AYDVpnDtJwzfma0uPoGG8ZXKdkDlAhPPZoBbxVRwh93AGi3eiDDGIznY'
+		crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-80W284485P519543T'
+		crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
+		crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
+		crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
+		crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
+		
+		/* FreshDesk Details */
+		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
+		crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
+		crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
+		crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
 		
 		/*MailChimp details*/
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
@@ -278,30 +277,30 @@ environments {
 		crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
 		crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
 		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
-        
-        /*Google client details*/
-        crowdera.Client_Id = '837867811198'
-        crowdera.Client_Id_alphanumeric = '-t23m00r907r9o4ubsdr3dlsse38gooqd.apps.googleusercontent.com'
-        crowdera.api_key = 'AIzaSyA6USGi0-RoCLFCDWhnYz8CUa-pF93Z0r4'
+		
+		/*Google client details*/
+		crowdera.Client_Id = '837867811198'
+		crowdera.Client_Id_alphanumeric = '-t23m00r907r9o4ubsdr3dlsse38gooqd.apps.googleusercontent.com'
+		crowdera.api_key = 'AIzaSyA6USGi0-RoCLFCDWhnYz8CUa-pF93Z0r4'
 
-        mandrill {
-            apiKey = "R28ZHu6_5IkJWLFunpsJbw"
-        }
-        
-        /*google plus login*/
-        oauth {
-            providers {
-                google {
-                    api = org.grails.plugin.springsecurity.oauth.GoogleApi20
-                    key = '837867811198-t23m00r907r9o4ubsdr3dlsse38gooqd.apps.googleusercontent.com'
-                    secret = '0fE42pditvlL8Yzgw9Jw1PhL'
-                    successUri = '/login/googleSuccess'
-                    failureUri = '/login/googleFailure'
-                    callback = "http://test.gocrowdera.com/oauth/google/callback"
-                    scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
-                }
-            }
-        }
+		mandrill {
+			apiKey = "R28ZHu6_5IkJWLFunpsJbw"
+		}
+		
+		/*google plus login*/
+		oauth {
+			providers {
+				google {
+					api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+					key = '837867811198-t23m00r907r9o4ubsdr3dlsse38gooqd.apps.googleusercontent.com'
+					secret = '0fE42pditvlL8Yzgw9Jw1PhL'
+					successUri = '/login/googleSuccess'
+					failureUri = '/login/googleFailure'
+					callback = "http://test.gocrowdera.com/oauth/google/callback"
+					scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+				}
+			}
+		}
 		
 		/*grails {
 			assets {
@@ -319,49 +318,49 @@ environments {
 
 		grails.assets.url = "http://d1hsbjre03buja.cloudfront.net/crowdera/cdn-assets"*/
 
-    }
-    staging {
-        crowdera.facebook.appId = '554475128028127'
-        crowdera.facebook.secret = 'f1991f7bf85d445a346821967e2b1251'
+	}
+	staging {
+		crowdera.facebook.appId = '554475128028127'
+		crowdera.facebook.secret = 'f1991f7bf85d445a346821967e2b1251'
 
-        grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
-        grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
+		grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
+		grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
-        crowdera.BASE_URL = 'http://staging.gocrowdera.com'
-		crowdera.COUNTRY_CODE = 'in'
+		crowdera.BASE_URL = 'http://staging.gocrowdera.com/'
+		crowdera.COUNTRY_CODE = 'US'
 
-        grails.logging.jul.usebridge = false
-        grails.dbconsole.enabled = true
-        grails.dbconsole.urlRoot = '/secured/dbconsole'
-        // TODO: grails.serverURL = "http://www.changeme.com"
+		grails.logging.jul.usebridge = false
+		grails.dbconsole.enabled = true
+		grails.dbconsole.urlRoot = '/secured/dbconsole'
+		// TODO: grails.serverURL = "http://www.changeme.com"
 
-        /* Stripe test keys */
-        grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
-        grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
+		/* Stripe test keys */
+		grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
+		grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
 
-        /* FirstGiving Details */
-        crowdera.firstgiving.BASE_URL= 'https://api.firstgiving.com'
-        crowdera.firstgiving.uriPath= '/donation/creditcard'
-        crowdera.firstgiving.JG_APPLICATIONKEY = '7d2ba10c-b005-4115-a6e4-8336c5071c9d'
-        crowdera.firstgiving.JG_SECURITYTOKEN = '8724ab81-a4ba-4d52-8374-1e2f6f2311ca'
+		/* FirstGiving Details */
+		crowdera.firstgiving.BASE_URL= 'https://api.firstgiving.com'
+		crowdera.firstgiving.uriPath= '/donation/creditcard'
+		crowdera.firstgiving.JG_APPLICATIONKEY = '7d2ba10c-b005-4115-a6e4-8336c5071c9d'
+		crowdera.firstgiving.JG_SECURITYTOKEN = '8724ab81-a4ba-4d52-8374-1e2f6f2311ca'
 
-        /* Paypal Details */
-        crowdera.paypal.PAYPAL_URL='https://www.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
-        crowdera.paypal.BASE_URL= 'https://svcs.paypal.com/AdaptivePayments/Pay'
-        crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info_api1.crowdera.co'
-        crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'AHEFPRUXWJFMCCDE'
-        crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AFcWxV21C7fd0v3bYYYRCpSSRl31AZyNu3X6Z3O2eTTYLGFEQuwRsUm2'
-        crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-4SR18911AP980871P'
-        crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
-        crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
-        crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
-        crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
-        
-        /* FreshDesk Details */
-        crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
-        crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
-        crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
-        crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
+		/* Paypal Details */
+		crowdera.paypal.PAYPAL_URL='https://www.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
+		crowdera.paypal.BASE_URL= 'https://svcs.paypal.com/AdaptivePayments/Pay'
+		crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info_api1.crowdera.co'
+		crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'AHEFPRUXWJFMCCDE'
+		crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AFcWxV21C7fd0v3bYYYRCpSSRl31AZyNu3X6Z3O2eTTYLGFEQuwRsUm2'
+		crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-4SR18911AP980871P'
+		crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
+		crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
+		crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
+		crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
+		
+		/* FreshDesk Details */
+		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
+		crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
+		crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
+		crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
 		
 		/*MailChimp details*/
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
@@ -389,68 +388,68 @@ environments {
 		crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
 		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
 		 
-        mandrill {
-            apiKey = "R28ZHu6_5IkJWLFunpsJbw"
-        }
-        
-        /*google plus login*/
-        oauth {
-            providers {
-                google {
-                    api = org.grails.plugin.springsecurity.oauth.GoogleApi20
-                    key = '1049378830663-cr6s49lmtiuo29b0rkpj015irpls5rsf.apps.googleusercontent.com'
-                    secret = 'zbanKIejo4qofwXdtyaOnaq-'
-                    successUri = '/login/googleSuccess'
-                    failureUri = '/login/googleFailure'
-                    callback = "http://staging.gocrowdera.com/oauth/google/callback"
-                    scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
-                }
-            }
-        }
-        
-    }
-    production {
-        crowdera.facebook.appId = '354215177926850'
-        crowdera.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
+		mandrill {
+			apiKey = "R28ZHu6_5IkJWLFunpsJbw"
+		}
+		
+		/*google plus login*/
+		oauth {
+			providers {
+				google {
+					api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+					key = '1049378830663-cr6s49lmtiuo29b0rkpj015irpls5rsf.apps.googleusercontent.com'
+					secret = 'zbanKIejo4qofwXdtyaOnaq-'
+					successUri = '/login/googleSuccess'
+					failureUri = '/login/googleFailure'
+					callback = "http://staging.gocrowdera.com/oauth/google/callback"
+					scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+				}
+			}
+		}
+		
+	}
+	production {
+		crowdera.facebook.appId = '354215177926850'
+		crowdera.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
 
-        grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
-        grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
+		grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
+		grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
-        crowdera.BASE_URL = 'https://gocrowdera.com'
-        crowdera.BASE_URL1 = 'https://www.gocrowdera.com'
+		crowdera.BASE_URL = 'https://gocrowdera.com/'
+		crowdera.BASE_URL1 = 'https://www.gocrowdera.com/'
 
-        grails.logging.jul.usebridge = false
-        grails.dbconsole.enabled = true
-        grails.dbconsole.urlRoot = '/secured/dbconsole'
-        // TODO: grails.serverURL = "http://www.changeme.com"
+		grails.logging.jul.usebridge = false
+		grails.dbconsole.enabled = true
+		grails.dbconsole.urlRoot = '/secured/dbconsole'
+		// TODO: grails.serverURL = "http://www.changeme.com"
 
-        /* Stripe test keys */
-        grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
-        grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
+		/* Stripe test keys */
+		grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
+		grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
 
-        /* FirstGiving Details */
-        crowdera.firstgiving.BASE_URL= 'https://api.firstgiving.com'
-        crowdera.firstgiving.uriPath= '/donation/creditcard'
-        crowdera.firstgiving.JG_APPLICATIONKEY = '7d2ba10c-b005-4115-a6e4-8336c5071c9d'
-        crowdera.firstgiving.JG_SECURITYTOKEN = '8724ab81-a4ba-4d52-8374-1e2f6f2311ca'
-        
-        /* Paypal Details */
-        crowdera.paypal.PAYPAL_URL='https://www.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
-        crowdera.paypal.BASE_URL= 'https://svcs.paypal.com/AdaptivePayments/Pay'
-        crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info_api1.crowdera.co'
-        crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'AHEFPRUXWJFMCCDE'
-        crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AFcWxV21C7fd0v3bYYYRCpSSRl31AZyNu3X6Z3O2eTTYLGFEQuwRsUm2'
-        crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-4SR18911AP980871P'
-        crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
-        crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
-        crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
-        crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
-        
-        /* FreshDesk Details */
-        crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
-        crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
-        crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
-        crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
+		/* FirstGiving Details */
+		crowdera.firstgiving.BASE_URL= 'https://api.firstgiving.com'
+		crowdera.firstgiving.uriPath= '/donation/creditcard'
+		crowdera.firstgiving.JG_APPLICATIONKEY = '7d2ba10c-b005-4115-a6e4-8336c5071c9d'
+		crowdera.firstgiving.JG_SECURITYTOKEN = '8724ab81-a4ba-4d52-8374-1e2f6f2311ca'
+		
+		/* Paypal Details */
+		crowdera.paypal.PAYPAL_URL='https://www.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
+		crowdera.paypal.BASE_URL= 'https://svcs.paypal.com/AdaptivePayments/Pay'
+		crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info_api1.crowdera.co'
+		crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'AHEFPRUXWJFMCCDE'
+		crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AFcWxV21C7fd0v3bYYYRCpSSRl31AZyNu3X6Z3O2eTTYLGFEQuwRsUm2'
+		crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-4SR18911AP980871P'
+		crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
+		crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
+		crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
+		crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
+		
+		/* FreshDesk Details */
+		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
+		crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
+		crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
+		crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
 		
 		/*MailChimp details*/
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="https://crowdera.us3.list-manage.com/subscribe/post"
@@ -463,11 +462,11 @@ environments {
 		crowdea.MAILCHIMP.DC_URL ='https://login.mailchimp.com/oauth2/metadata'
 		crowdera.MAILCHIMP.MEMBER_URL ='.api.mailchimp.com/3.0/lists'
 
-        /* Stripe live keys */
-        /*
-        grails.plugins.stripe.secretKey = 'sk_live_UJc8cRZYdv4AasXP3whR6xfX'
-        grails.plugins.stripe.publishableKey = 'pk_live_dABB1ahq9wrYlnUl1fN5wl1j'
-        */
+		/* Stripe live keys */
+		/*
+		grails.plugins.stripe.secretKey = 'sk_live_UJc8cRZYdv4AasXP3whR6xfX'
+		grails.plugins.stripe.publishableKey = 'pk_live_dABB1ahq9wrYlnUl1fN5wl1j'
+		*/
 		
 		/*ConstantContact details*/
 		crowdera.cc.OAUTH_URL='https://oauth2.constantcontact.com/oauth2/oauth/siteowner/authorize?response_type=code&display=page&'
@@ -484,24 +483,24 @@ environments {
 		crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
 		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
 		
-        mandrill {
-            apiKey = "R28ZHu6_5IkJWLFunpsJbw"
-        }
-        
-        /*google plus login*/
-        oauth {
-            providers {
-                google {
-                    api = org.grails.plugin.springsecurity.oauth.GoogleApi20
-                    key = '1049378830663-jqkmicdbahs4rgr7er4013re8mjkd0rd.apps.googleusercontent.com'
-                    secret = 'zIubdLkqqwlATWRESK6BYssK'
-                    successUri = '/login/googleSuccess'
-                    failureUri = '/login/googleFailure'
-                    callback = "https://gocrowdera.com/oauth/google/callback"
-                    scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
-                }
-            }
-        }
+		mandrill {
+			apiKey = "R28ZHu6_5IkJWLFunpsJbw"
+		}
+		
+		/*google plus login*/
+		oauth {
+			providers {
+				google {
+					api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+					key = '1049378830663-jqkmicdbahs4rgr7er4013re8mjkd0rd.apps.googleusercontent.com'
+					secret = 'zIubdLkqqwlATWRESK6BYssK'
+					successUri = '/login/googleSuccess'
+					failureUri = '/login/googleFailure'
+					callback = "https://gocrowdera.com/oauth/google/callback"
+					scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+				}
+			}
+		}
 		
 		/*grails {
 			assets {
@@ -519,7 +518,7 @@ environments {
 		
 		grails.assets.url = "http://d38k0frcj7wnf2.cloudfront.net/crowdera/cdn-assets"*/
 
-    }
+	}
 
 	testIndia {
 		/*  */
@@ -529,7 +528,7 @@ environments {
 		grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
 		grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
-		crowdera.BASE_URL = 'http://test.crowdera.in'
+		crowdera.BASE_URL = 'https://gocrowdera.com/'
 
 		grails.logging.jul.usebridge = false
 		grails.dbconsole.enabled = true
@@ -539,23 +538,23 @@ environments {
 		grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
 		grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
 
-       /* FirstGiving Details */
-       crowdera.firstgiving.BASE_URL= 'http://usapisandbox.fgdev.net'
-       crowdera.firstgiving.uriPath= '/donation/creditcard'
-       crowdera.firstgiving.JG_APPLICATIONKEY = 'b1d5db6b-1368-49cc-917c-e98758f28b36'
-       crowdera.firstgiving.JG_SECURITYTOKEN = '277ce2dd-7d4e-4bf2-978d-f91af2624fad'
+	   /* FirstGiving Details */
+	   crowdera.firstgiving.BASE_URL= 'http://usapisandbox.fgdev.net'
+	   crowdera.firstgiving.uriPath= '/donation/creditcard'
+	   crowdera.firstgiving.JG_APPLICATIONKEY = 'b1d5db6b-1368-49cc-917c-e98758f28b36'
+	   crowdera.firstgiving.JG_SECURITYTOKEN = '277ce2dd-7d4e-4bf2-978d-f91af2624fad'
 
-       /* Paypal Details */
-       crowdera.paypal.PAYPAL_URL='https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
-       crowdera.paypal.BASE_URL= 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay'
-       crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info-facilitator_api1.crowdera.co'
-       crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'ZSD7Z9TJ4BLP8DBT'
-       crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AYDVpnDtJwzfma0uPoGG8ZXKdkDlAhPPZoBbxVRwh93AGi3eiDDGIznY'
-       crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-80W284485P519543T'
-       crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
-       crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
-       crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
-       crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
+	   /* Paypal Details */
+	   crowdera.paypal.PAYPAL_URL='https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
+	   crowdera.paypal.BASE_URL= 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay'
+	   crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info-facilitator_api1.crowdera.co'
+	   crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'ZSD7Z9TJ4BLP8DBT'
+	   crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AYDVpnDtJwzfma0uPoGG8ZXKdkDlAhPPZoBbxVRwh93AGi3eiDDGIznY'
+	   crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-80W284485P519543T'
+	   crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
+	   crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
+	   crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
+	   crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
 
 		/* FreshDesk Details */
 		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
@@ -579,15 +578,15 @@ environments {
 		crowdera.PAYU.TEST_URL='https://test.payu.in/_payment.php'
 		crowdera.PAYU.KEY='czBDue'
 		crowdera.PAYU.SALT='g57jz4Cw'
-        
-        
-        /*Citrus Credentials*/
-        crowdera.CITRUS.SPLITPAY_URL = "https://splitpaysbox.Citruspay.com"
-        crowdera.CITRUS.BASE_URL = "https://splitpay.citruspay.com"
-        crowdera.CITRUS.ACCESS_KEY = "VVXKH02XVEWHUGWJHAMI"
-        crowdera.CITRUS.SECRETE_KEY = "4c86cabfc7fb68d2261f35087a8edece44f856bd"
-        crowdera.CITRUS.VANITYURL = "8wqhvmq506"
-        
+		
+		
+		/*Citrus Credentials*/
+		crowdera.CITRUS.SPLITPAY_URL = "https://splitpaysbox.Citruspay.com"
+		crowdera.CITRUS.BASE_URL = "https://splitpay.citruspay.com"
+		crowdera.CITRUS.ACCESS_KEY = "VVXKH02XVEWHUGWJHAMI"
+		crowdera.CITRUS.SECRETE_KEY = "4c86cabfc7fb68d2261f35087a8edece44f856bd"
+		crowdera.CITRUS.VANITYURL = "8wqhvmq506"
+		
 		
 		/*ConstantContact details*/
 		crowdera.cc.OAUTH_URL='https://oauth2.constantcontact.com/oauth2/oauth/siteowner/authorize?response_type=code&display=page&'
@@ -603,40 +602,40 @@ environments {
 		crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
 		crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
 		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
-        
-        /*Google client details*/
-        crowdera.Client_Id = '837867811198'
-        crowdera.Client_Id_alphanumeric = '-l7ajlniufpo6vovi53ujcrfvq8u86fba.apps.googleusercontent.com'
-        crowdera.api_key = 'AIzaSyA6USGi0-RoCLFCDWhnYz8CUa-pF93Z0r4'
+		
+		/*Google client details*/
+		crowdera.Client_Id = '837867811198'
+		crowdera.Client_Id_alphanumeric = '-l7ajlniufpo6vovi53ujcrfvq8u86fba.apps.googleusercontent.com'
+		crowdera.api_key = 'AIzaSyA6USGi0-RoCLFCDWhnYz8CUa-pF93Z0r4'
 
 		mandrill {
 			apiKey = "R28ZHu6_5IkJWLFunpsJbw"
 		}
-        
-        /*google plus login*/
-        oauth {
-            providers {
-                google {
-                    api = org.grails.plugin.springsecurity.oauth.GoogleApi20
-                    key = '837867811198-l7ajlniufpo6vovi53ujcrfvq8u86fba.apps.googleusercontent.com'
-                    secret = 'ErukSE0YqIHfHfXdLEcM8n5p'
-                    successUri = '/login/googleSuccess'
-                    failureUri = '/login/googleFailure'
-                    callback = "http://test.crowdera.in/oauth/google/callback"
-                    scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
-                }
-            }
-        }
-    }
+		
+		/*google plus login*/
+		oauth {
+			providers {
+				google {
+					api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+					key = '837867811198-l7ajlniufpo6vovi53ujcrfvq8u86fba.apps.googleusercontent.com'
+					secret = 'ErukSE0YqIHfHfXdLEcM8n5p'
+					successUri = '/login/googleSuccess'
+					failureUri = '/login/googleFailure'
+					callback = "http://test.crowdera.in/oauth/google/callback"
+					scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+				}
+			}
+		}
+	}
 	
-    stagingIndia {
+	stagingIndia {
 		crowdera.facebook.appId = '813336405432098'
 		crowdera.facebook.secret = '84e6f667ea73b59ed42fa0b531a1e22a'
 
 		grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
 		grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
-		crowdera.BASE_URL = 'http://staging.crowdera.in'
+		crowdera.BASE_URL = 'https://staging.gocrowdera.com/'
 
 		grails.logging.jul.usebridge = false
 		grails.dbconsole.enabled = true
@@ -646,24 +645,24 @@ environments {
 		/* Stripe test keys */
 		grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
 		grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
-        
-        /* FirstGiving Details */
-        crowdera.firstgiving.BASE_URL= 'https://api.firstgiving.com'
-        crowdera.firstgiving.uriPath= '/donation/creditcard'
-        crowdera.firstgiving.JG_APPLICATIONKEY = '7d2ba10c-b005-4115-a6e4-8336c5071c9d'
-        crowdera.firstgiving.JG_SECURITYTOKEN = '8724ab81-a4ba-4d52-8374-1e2f6f2311ca'
+		
+		/* FirstGiving Details */
+		crowdera.firstgiving.BASE_URL= 'https://api.firstgiving.com'
+		crowdera.firstgiving.uriPath= '/donation/creditcard'
+		crowdera.firstgiving.JG_APPLICATIONKEY = '7d2ba10c-b005-4115-a6e4-8336c5071c9d'
+		crowdera.firstgiving.JG_SECURITYTOKEN = '8724ab81-a4ba-4d52-8374-1e2f6f2311ca'
 
-        /* Paypal Details */
-        crowdera.paypal.PAYPAL_URL='https://www.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
-        crowdera.paypal.BASE_URL= 'https://svcs.paypal.com/AdaptivePayments/Pay'
-        crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info_api1.crowdera.co'
-        crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'AHEFPRUXWJFMCCDE'
-        crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AFcWxV21C7fd0v3bYYYRCpSSRl31AZyNu3X6Z3O2eTTYLGFEQuwRsUm2'
-        crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-4SR18911AP980871P'
-        crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
-        crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
-        crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
-        crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
+		/* Paypal Details */
+		crowdera.paypal.PAYPAL_URL='https://www.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
+		crowdera.paypal.BASE_URL= 'https://svcs.paypal.com/AdaptivePayments/Pay'
+		crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info_api1.crowdera.co'
+		crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'AHEFPRUXWJFMCCDE'
+		crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AFcWxV21C7fd0v3bYYYRCpSSRl31AZyNu3X6Z3O2eTTYLGFEQuwRsUm2'
+		crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-4SR18911AP980871P'
+		crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
+		crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
+		crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
+		crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
 
 		/* FreshDesk Details */
 		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
@@ -687,15 +686,15 @@ environments {
 		crowdera.PAYU.TEST_URL='https://secure.payu.in/_payment.php'
 		crowdera.PAYU.KEY='5geKCB'
 		crowdera.PAYU.SALT='Gtr6fF9A'
-        
-        
-        /*Citrus Credentials*/
-        crowdera.CITRUS.SPLITPAY_URL = "https://splitpaysbox.Citruspay.com"
-        crowdera.CITRUS.BASE_URL = "https://splitpay.citruspay.com"
-        crowdera.CITRUS.ACCESS_KEY = "VVXKH02XVEWHUGWJHAMI"
-        crowdera.CITRUS.SECRETE_KEY = "4c86cabfc7fb68d2261f35087a8edece44f856bd"
-        crowdera.CITRUS.VANITYURL = "8wqhvmq506"
-        
+		
+		
+		/*Citrus Credentials*/
+		crowdera.CITRUS.SPLITPAY_URL = "https://splitpaysbox.Citruspay.com"
+		crowdera.CITRUS.BASE_URL = "https://splitpay.citruspay.com"
+		crowdera.CITRUS.ACCESS_KEY = "VVXKH02XVEWHUGWJHAMI"
+		crowdera.CITRUS.SECRETE_KEY = "4c86cabfc7fb68d2261f35087a8edece44f856bd"
+		crowdera.CITRUS.VANITYURL = "8wqhvmq506"
+		
 		
 		/*ConstantContact details*/
 		crowdera.cc.OAUTH_URL='https://oauth2.constantcontact.com/oauth2/oauth/siteowner/authorize?response_type=code&display=page&'
@@ -716,30 +715,30 @@ environments {
 			apiKey = "R28ZHu6_5IkJWLFunpsJbw"
 		}
 		
-        oauth {
-            providers {
-                google {
-                    api = org.grails.plugin.springsecurity.oauth.GoogleApi20
-                    key = '1049378830663-joskj39vnpba4ju66dvah4q969g6c5ch.apps.googleusercontent.com'
-                    secret = '7h9_YkP2UhVcVxt6OsFYGjxG'
-                    successUri = '/login/googleSuccess'
-                    failureUri = '/login/googleFailure'
-                    callback = "http://staging.crowdera.in/oauth/google/callback"
-                    scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
-                }
-            }
-        }
+		oauth {
+			providers {
+				google {
+					api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+					key = '1049378830663-joskj39vnpba4ju66dvah4q969g6c5ch.apps.googleusercontent.com'
+					secret = '7h9_YkP2UhVcVxt6OsFYGjxG'
+					successUri = '/login/googleSuccess'
+					failureUri = '/login/googleFailure'
+					callback = "http://staging.crowdera.in/oauth/google/callback"
+					scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+				}
+			}
+		}
 	}
 
 	prodIndia {
-        crowdera.facebook.appId = '354215177926850'
+		crowdera.facebook.appId = '354215177926850'
 		crowdera.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
 
 		grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
 		grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
-        crowdera.BASE_URL = 'http://crowdera.in'
-        crowdera.BASE_URL1 = 'http://www.crowdera.in'
+		crowdera.BASE_URL = 'https://gocrowdera.com/'
+		crowdera.BASE_URL1 = 'https://gocrowdera.com/'
 
 		grails.logging.jul.usebridge = false
 		grails.dbconsole.enabled = true
@@ -749,24 +748,24 @@ environments {
 		/* Stripe test keys */
 		grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
 		grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
-        
-        /* FirstGiving Details */
-        crowdera.firstgiving.BASE_URL= 'https://api.firstgiving.com'
-        crowdera.firstgiving.uriPath= '/donation/creditcard'
-        crowdera.firstgiving.JG_APPLICATIONKEY = '7d2ba10c-b005-4115-a6e4-8336c5071c9d'
-        crowdera.firstgiving.JG_SECURITYTOKEN = '8724ab81-a4ba-4d52-8374-1e2f6f2311ca'
+		
+		/* FirstGiving Details */
+		crowdera.firstgiving.BASE_URL= 'https://api.firstgiving.com'
+		crowdera.firstgiving.uriPath= '/donation/creditcard'
+		crowdera.firstgiving.JG_APPLICATIONKEY = '7d2ba10c-b005-4115-a6e4-8336c5071c9d'
+		crowdera.firstgiving.JG_SECURITYTOKEN = '8724ab81-a4ba-4d52-8374-1e2f6f2311ca'
  
-        /* Paypal Details */
-        crowdera.paypal.PAYPAL_URL='https://www.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
-        crowdera.paypal.BASE_URL= 'https://svcs.paypal.com/AdaptivePayments/Pay'
-        crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info_api1.crowdera.co'
-        crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'AHEFPRUXWJFMCCDE'
-        crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AFcWxV21C7fd0v3bYYYRCpSSRl31AZyNu3X6Z3O2eTTYLGFEQuwRsUm2'
-        crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-4SR18911AP980871P'
-        crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
-        crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
-        crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
-        crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
+		/* Paypal Details */
+		crowdera.paypal.PAYPAL_URL='https://www.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
+		crowdera.paypal.BASE_URL= 'https://svcs.paypal.com/AdaptivePayments/Pay'
+		crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info_api1.crowdera.co'
+		crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'AHEFPRUXWJFMCCDE'
+		crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AFcWxV21C7fd0v3bYYYRCpSSRl31AZyNu3X6Z3O2eTTYLGFEQuwRsUm2'
+		crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-4SR18911AP980871P'
+		crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
+		crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
+		crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
+		crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
 
 		/* FreshDesk Details */
 		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
@@ -790,15 +789,15 @@ environments {
 		crowdera.PAYU.TEST_URL='https://secure.payu.in/_payment.php'
 		crowdera.PAYU.KEY='5geKCB'
 		crowdera.PAYU.SALT='Gtr6fF9A'
-        
-        
-        /*Citrus Credentials*/
-        crowdera.CITRUS.SPLITPAY_URL = "https://splitpaysbox.Citruspay.com"
-        crowdera.CITRUS.BASE_URL = "https://splitpay.citruspay.com"
-        crowdera.CITRUS.ACCESS_KEY = "VVXKH02XVEWHUGWJHAMI"
-        crowdera.CITRUS.SECRETE_KEY = "4c86cabfc7fb68d2261f35087a8edece44f856bd"
-        crowdera.CITRUS.VANITYURL = "8wqhvmq506"
-        
+		
+		
+		/*Citrus Credentials*/
+		crowdera.CITRUS.SPLITPAY_URL = "https://splitpaysbox.Citruspay.com"
+		crowdera.CITRUS.BASE_URL = "https://splitpay.citruspay.com"
+		crowdera.CITRUS.ACCESS_KEY = "VVXKH02XVEWHUGWJHAMI"
+		crowdera.CITRUS.SECRETE_KEY = "4c86cabfc7fb68d2261f35087a8edece44f856bd"
+		crowdera.CITRUS.VANITYURL = "8wqhvmq506"
+		
 		
 		/*ConstantContact details*/
 		crowdera.cc.OAUTH_URL='https://oauth2.constantcontact.com/oauth2/oauth/siteowner/authorize?response_type=code&display=page&'
@@ -819,19 +818,19 @@ environments {
 			apiKey = "R28ZHu6_5IkJWLFunpsJbw"
 		}
 		
-        oauth {
-            providers {
-                google {
-                    api = org.grails.plugin.springsecurity.oauth.GoogleApi20
-                    key = '1049378830663-juk0psg991qlapckdegi2pfhieo33gjc.apps.googleusercontent.com'
-                    secret = 'nweSovW1WxgeJ5EHKLPnYi7W'
-                    successUri = '/login/googleSuccess'
-                    failureUri = '/login/googleFailure'
-                    callback = "http://crowdera.in/oauth/google/callback"
-                    scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
-                }
-            }
-        }
+		oauth {
+			providers {
+				google {
+					api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+					key = '1049378830663-juk0psg991qlapckdegi2pfhieo33gjc.apps.googleusercontent.com'
+					secret = 'nweSovW1WxgeJ5EHKLPnYi7W'
+					successUri = '/login/googleSuccess'
+					failureUri = '/login/googleFailure'
+					callback = "http://crowdera.in/oauth/google/callback"
+					scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+				}
+			}
+		}
 		
 	/*	grails {
 			assets {
@@ -854,42 +853,42 @@ environments {
 
 // log4j configuration
 log4j = {
-    // Example of changing the log pattern for the default console appender:
+	// Example of changing the log pattern for the default console appender:
 
-    appenders {
-        console name: 'stdout', layout: pattern(conversionPattern: '%c{2} %m%n')
-        file name: 'file', file: 'crowdera.log'
-    }
+	appenders {
+		console name: 'stdout', layout: pattern(conversionPattern: '%c{2} %m%n')
+		file name: 'file', file: 'crowdera.log'
+	}
 
-    root {
-        info 'stdout', 'file'
-    }
+	root {
+		info 'stdout', 'file'
+	}
 
-    info   'crowdera'
+	info   'crowdera'
 
-    error  'org.codehaus.groovy.grails.web.servlet',        // controllers
-           'org.codehaus.groovy.grails.web.pages',          // GSP
-           'org.codehaus.groovy.grails.web.sitemesh',       // layouts
-           'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-           'org.codehaus.groovy.grails.web.mapping',        // URL mapping
-           'org.codehaus.groovy.grails.commons',            // core / classloading
-           'org.codehaus.groovy.grails.plugins',            // plugins
-           'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
-           'org.springframework',
-           'org.hibernate',
-           'net.sf.ehcache.hibernate'
+	error  'org.codehaus.groovy.grails.web.servlet',        // controllers
+		   'org.codehaus.groovy.grails.web.pages',          // GSP
+		   'org.codehaus.groovy.grails.web.sitemesh',       // layouts
+		   'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
+		   'org.codehaus.groovy.grails.web.mapping',        // URL mapping
+		   'org.codehaus.groovy.grails.commons',            // core / classloading
+		   'org.codehaus.groovy.grails.plugins',            // plugins
+		   'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
+		   'org.springframework',
+		   'org.hibernate',
+		   'net.sf.ehcache.hibernate'
 }
 
 quartz {
-    autoStartup = true
-    jdbcStore = false
+	autoStartup = true
+	jdbcStore = false
 }
 
 aws {
-    domain = "s3.amazonaws.com"
-    accessKey = "AKIAIAZDDDNXF3WLSRXQ"
-    secretKey = "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"
-    bucketName = "crowdera"
+	domain = "s3.amazonaws.com"
+	accessKey = "AKIAIAZDDDNXF3WLSRXQ"
+	secretKey = "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"
+	bucketName = "crowdera"
 }
 
 // Added by the Spring Security Core plugin:
@@ -898,7 +897,7 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'crowdera.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'crowdera.UserRole'
 grails.plugin.springsecurity.authority.className = 'crowdera.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-    '/secured/**':                    ['ROLE_ADMIN'],
+	'/secured/**':                    ['ROLE_ADMIN'],
 	'/**':                            ['permitAll']
 //	'/index':                         ['permitAll'],
 //	'/index.gsp':                     ['permitAll'],

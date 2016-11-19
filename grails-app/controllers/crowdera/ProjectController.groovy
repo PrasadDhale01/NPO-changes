@@ -33,6 +33,7 @@ class ProjectController {
 	def contributionService
 	def socialAuthService
     CampaignService campaignService;
+	def country_code 
 
 	def FORMCONSTANTS = [
 		/* Beneficiary */
@@ -76,27 +77,28 @@ class ProjectController {
 	]
 
 	def list = {
+		def country_code =  projectService.getCountryCodeForCurrentEnv(request)
 		def countryOptions = projectService.getCountry()
 		def currentEnv = projectService.getCurrentEnvironment()
 		def discoverLeftCategoryOptions
-		if(currentEnv =="testIndia" || currentEnv=="stagingIndia" || currentEnv=="prodIndia"){
+		if(currentEnv =="testIndia" || currentEnv=="stagingIndia" || currentEnv=="prodIndia" ||currentEnv=="development" ){
 			discoverLeftCategoryOptions = projectService.getIndiaCategory()
 		}else{
 			discoverLeftCategoryOptions=projectService.getCategory()
 		}
 		def sortsOptions = projectService.getSorts()
         
-        def projects = projectService.getValidatedProjectsByPercentage(currentEnv)
+        def projects = projectService.getValidatedProjectsByPercentage(country_code)
         
 		def selectedCategory = "All Categories"
-		def multiplier = projectService.getCurrencyConverter();
+		//def multiplier = projectService.getCurrencyConverter();
 
 		if (projects.size < 1) {
 			flash.catmessage="There are no campaigns"
-			render (view: 'list/index', model: [countryOptions: countryOptions, sortsOptions: sortsOptions,discoverLeftCategoryOptions: discoverLeftCategoryOptions, multiplier: multiplier])
+			render (view: 'list/index', model: [countryOptions: countryOptions, sortsOptions: sortsOptions,discoverLeftCategoryOptions: discoverLeftCategoryOptions])
 		} else {
 			render (view: 'list/index', model: [projects: projects,selectedCategory: selectedCategory, currentEnv: currentEnv, countryOptions: countryOptions, sortsOptions: sortsOptions,
-				discoverLeftCategoryOptions:discoverLeftCategoryOptions, multiplier: multiplier])
+				discoverLeftCategoryOptions:discoverLeftCategoryOptions,country_code:country_code])
 		}
 	}
 
@@ -110,7 +112,7 @@ class ProjectController {
 		def query = params.q
 		def countryOptions = projectService.getCountry()
 		def discoverLeftCategoryOptions
-		if(currentEnv =="testIndia" || currentEnv=="stagingIndia" || currentEnv=="prodIndia"){
+		if(currentEnv =="testIndia" || currentEnv=="stagingIndia" || currentEnv=="prodIndia" ||currentEnv=="development"){
 			discoverLeftCategoryOptions = projectService.getIndiaCategory()
 		}else{
 			discoverLeftCategoryOptions=projectService.getCategory()
@@ -123,7 +125,7 @@ class ProjectController {
 				redirect(action:"list")
 			} else {
 				searchResults.sort{x,y -> x.title<=>y.title ?: x.story<=>y.story}
-				render(view: "list/index", model:[projects: searchResults, countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
+				render(view: "list/index", model:[projects: searchResults, countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions,country_code:country_code])
 			}
 		} else {
 			redirect(controller: "home", action: "index")
@@ -133,6 +135,9 @@ class ProjectController {
 	def showCampaign() {
 		def title = projectService.getVanityTitleFromId(params.id)
 		def name = userService.getVanityNameFromUsername(params.fr, params.id)
+		def projectId = params?.id
+		Project project = projectService.getProjectById(projectId)
+		
 		if(title && name){
 			if(params.isPreview){
 				if(params.tile){
@@ -141,7 +146,7 @@ class ProjectController {
 					redirect (action :'preview', params:['projectTitle':title, 'fr':name]);
 				}
 			} else {
-				redirect (action:'show', params:['projectTitle':title,'fr':name])
+				redirect (action:'show', params:['projectTitle':title,'fr':name,'country_code':country_code,'category':project.fundsRecievedBy.toLowerCase()])
 			}
 		} else {
 			render(view: '/404error', model: [message: 'This campaign does not exist.'])
@@ -162,6 +167,7 @@ class ProjectController {
 		
 		def projectId
 		def username
+		country_code = params.country_code
 		if (params?.projectTitle){
 			projectId = projectService.getProjectIdFromVanityTitle(params?.projectTitle)
 		} else {
@@ -250,7 +256,7 @@ class ProjectController {
 			def teamComments = projectService.getTeamComments(currentTeam)
 			def offset = params.int('offset') ?: 0
 
-            def multiplier = projectService.getCurrencyConverter();
+          //  def multiplier = projectService.getCurrencyConverter();
             
             def pieList = projectService.getPieList(project);
 
@@ -272,7 +278,7 @@ class ProjectController {
                         isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, 
                         isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,
                         isTeamExist: isTeamExist, vanityTitle: params?.projectTitle, vanityUsername: vanityUsername, FORMCONSTANTS: FORMCONSTANTS, 
-                        isPreview:params?.isPreview, tile:params?.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier,
+                        isPreview:params?.isPreview, tile:params?.tile, shortUrl:shortUrl, base_url:base_url,
                         spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, reasons:reasons,
                         isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
                         remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList, projectimages: projectimages, isTaxReceipt: isTaxReceipt])
@@ -288,11 +294,11 @@ class ProjectController {
                                isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,
                                isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,
                                isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: vanityUsername, FORMCONSTANTS: FORMCONSTANTS,
-                               isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier,
+                               isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url,
                                spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, reasons:reasons,
                                isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
                                remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList, projectimages: projectimages,
-                               facebookShare: facebookShare, isTaxReceipt: isTaxReceipt])
+                               facebookShare: facebookShare, isTaxReceipt: isTaxReceipt,country_code:country_code,fr:username,projectTitle:params?.projectTitle,'category':project.fundsRecievedBy.toLowerCase()])
                }else{
                   render(view: '/404error', model: [message: 'This campaign is under process.'])
                }
@@ -390,7 +396,7 @@ class ProjectController {
                 
                 def projectComments = projectService.getProjectComments(project)
                 def teamComments = projectService.getTeamComments(currentTeam)
-                def multiplier = projectService.getCurrencyConverter();
+                //def multiplier = projectService.getCurrencyConverter();
 
                 def pieList = projectService.getPieList(project);
                 
@@ -413,7 +419,7 @@ class ProjectController {
                     day: day,totalContributions: totalContributions,contributions: contributions, deductibleStatus:deductibleStatus,
                     isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, 
                     isFundingOpen: isFundingOpen, rewards: rewards,validatedPage: validatedPage, isTeamExist: isTeamExist, 
-                    FORMCONSTANTS: FORMCONSTANTS, multiplier: multiplier,spendCauseList:pieList.spendCauseList, 
+                    FORMCONSTANTS: FORMCONSTANTS, spendCauseList:pieList.spendCauseList, 
                     spendAmountPerList:pieList.spendAmountPerList, reasons:reasons, taxReceipt:taxReceipt,
                     firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
                     remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList])
@@ -561,6 +567,7 @@ class ProjectController {
     
     @Secured(['ROLE_ADMIN'])
     def getCampaignList() {
+		def country_code = projectService.getCountryCodeForCurrentEnv(request)
         def countryOpts = [India: 'INDIA', USA: 'USA']
         def sortByOptions = projectService.getSortingList()
         def environment = projectService.getCurrentEnvironment()
@@ -568,7 +575,7 @@ class ProjectController {
         
         def isAdmin = userService.isAdmin()
         
-        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+		if('in'.equalsIgnoreCase(country_code)){
             projects = projectService.getValidatedProjectsForCampaignAdmin('Pending', 'INDIA')
         } else {
             projects = projectService.getValidatedProjectsForCampaignAdmin('Pending', 'USA')
@@ -585,11 +592,11 @@ class ProjectController {
     @Secured(['ROLE_ADMIN'])
     def getCampaignsByFilter() {
         def projects = projectService.getValidatedProjectsForCampaignAdmin(params.selectedSortValue, params.country)
-        def multiplier = projectService.getCurrencyConverter();
+      //  def multiplier = projectService.getCurrencyConverter();
         def currentEnv = projectService.getCurrentEnvironment()
         def isAdmin = userService.isAdmin()
         
-        def model = [projects: projects, multiplier: multiplier, currentEnv: currentEnv, isAdmin: isAdmin]
+        def model = [projects: projects, currentEnv: currentEnv, isAdmin: isAdmin]
         
         if (request.xhr) {
             if (params.selectedSortValue == 'Pending') {
@@ -784,7 +791,8 @@ class ProjectController {
         def currentEnv = projectService.getCurrentEnvironment()
         String partnerInviteCode = g.cookie(name: 'inviteCode')
         def inDays = projectService.getInDays()
-		render(view: 'create/index1', model: [FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv, partnerInviteCode: partnerInviteCode, inDays:inDays])
+		def country = projectService.getCountryCodeForCurrentEnv(request)
+		render(view: 'create/index1', model: [FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv, partnerInviteCode: partnerInviteCode, inDays:inDays,country_code:country])
 	}
 
     def saveCampaign() {
@@ -795,8 +803,8 @@ class ProjectController {
         def currentdays = params.days ? params.days : params.days1
         def days = Integer.parseInt(currentdays)
 
-        def reqUrl = base_url+"/project/createNow?firstName=${params.firstName}&amount=${amount}&title=${params.title}&description=${params.description}&usedFor=${params.usedFor}&days=${days}&customVanityUrl=${params.customVanityUrl}&partnerInviteCode=${params.partnerInviteCode}"
-        def user = userService.getCurrentUser()
+        def reqUrl = base_url+ params.country_code+"/project/createNow?firstName=${params.firstName}&amount=${amount}&title=${params.title}&description=${params.description}&usedFor=${params.usedFor}&days=${days}&customVanityUrl=${params.customVanityUrl}&partnerInviteCode=${params.partnerInviteCode}&country_code=${params.country_code}"
+		def user = userService.getCurrentUser()
         
         if (!user) {
             Cookie cookie = new Cookie("requestUrl", reqUrl)
@@ -826,7 +834,7 @@ class ProjectController {
         }
 		
         def projectTitle
-        Project project
+        Project project = new Project()
         if (params.title && params.amount && params.description && params.firstName) {
             project = projectService.getProjectByParams(params)
             def beneficiary = userService.getBeneficiaryByParams(params)
@@ -841,8 +849,11 @@ class ProjectController {
                 mandrillService.sendDraftInfoEmail(params.title, user, currentEnv, dateFormat.format(project.created), project.beneficiary.telephone )
             }
             
+			def country = projectService.getCountryByCountryCode(params.country_code)
             project.beneficiary = beneficiary;
             project.beneficiary.email = user.email;
+			project.country = country
+			project.fundsRecievedBy = "NGO";
 
             if (params.usedFor == 'SOCIAL_NEEDS'){
                 project.hashtags = '#Social-Innovtion'
@@ -856,15 +867,18 @@ class ProjectController {
 
 		    project.usedFor = params.usedFor;
 
-            if (currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
-                project.payuStatus = true
-            }
-
-            if(project.save(failOnError: true)){
+			if('in'.equalsIgnoreCase(params.country_code)){
+				project.payuStatus = true
+			}else if(currentEnv == 'production' && 'in'.equalsIgnoreCase(params.country_code)){
+				project.payuStatus = true
+			}
+			
+			println("from createNow : " + project.payuStatus)
+			if(project.save(failOnError: true)){
                 projectTitle = (project.customVanityUrl)? projectService.getCustomVanityUrl(project) : projectService.getProjectVanityTitle(project)
                 projectService.getFundRaisersForTeam(project, user)
                 projectService.getdefaultAdmin(project, user)
-                redirect(action:'redirectCreateNow', params:[title:projectTitle])
+                redirect(action:'redirectCreateNow', params:[title:projectTitle,country_code:params.country_code])
             } else {
                 def url = "/campaign/create"
                 def previousPage = "create"
@@ -879,6 +893,7 @@ class ProjectController {
 	
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def redirectCreateNow() {
+		def country_code = params.country_code
         def vanityTitle = params.title
         def project = projectService. getProjectFromVanityTitle(vanityTitle)
         if (project) {
@@ -921,8 +936,8 @@ class ProjectController {
                 }
                 def adminemails = projectService.getAdminEmail(project)
                 def payOpts
-                if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-                    payOpts = projectService.getIndiaPaymentGateway()
+				if('in'.equalsIgnoreCase(country_code)){   
+					payOpts = projectService.getIndiaPaymentGateway()
                 } else {
                     payOpts = projectService.getPayment()
                 }
@@ -941,7 +956,7 @@ class ProjectController {
                     email2:adminemails.email2, email3:adminemails.email3,reasonsToFund:reasonsToFund, 
                     qA:qA, spends:spends, usedForCreate:usedForCreate, selectedCountry:selectedCountry, 
                     taxReciept:taxReciept, deductibleStatusList:deductibleStatusList,
-                    spendAmountPerList:pieList.spendAmountPerList])
+                    spendAmountPerList:pieList.spendAmountPerList,country_code:country_code])
             } else {
                 render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
             }
@@ -952,13 +967,14 @@ class ProjectController {
 	
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def campaignOnDraftAndLaunch() {
+		def country_code = params.country_code
         Project project = projectService.getProjectById(params.projectId)
         def vanitytitle
         if (project) {
             User user = userService.getCurrentUser()
             if (project.user == user) {
                 def currentEnv = projectService.getCurrentEnvironment()
-                if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+				if('in'.equalsIgnoreCase(country_code)){   
                     if(params.payuEmail){
                         project.payuEmail = params.payuEmail
                     }
@@ -974,7 +990,7 @@ class ProjectController {
                 
                 def taxReciept = TaxReciept.findByProject(project)
                 if(taxReciept) {
-                    if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+				if('in'.equalsIgnoreCase(country_code)){   
                         taxReciept.country = 'India'
                     } else {
                         taxReciept.country = (taxReciept.country && taxReciept.country != 'null') ? taxReciept.country : 'United States';
@@ -993,15 +1009,15 @@ class ProjectController {
 				if (params.isSubmitButton == 'true'){
 					project.draft = false;
 					if (!project.beneficiary.country || project.beneficiary.country == 'null') {
-						if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+						if('in'.equalsIgnoreCase(country_code)){   
 							project.beneficiary.country = 'IN'
 						} else {
 							project.beneficiary.country = 'US'
 						}
 					}
-					redirect (action:'launch' ,  params:[title:vanitytitle])
+					redirect (action:'launch' ,  params:[title:vanitytitle,country_code:params.country_code,'category':project.fundsRecievedBy.toLowerCase()])
 				} else {
-					redirect (action:'showCampaign' ,  params:[id:project.id, isPreview:true])
+					redirect (action:'showCampaign' ,  params:[id:project.id, isPreview:true,country_code:params.country_code,'category':project.fundsRecievedBy.toLowerCase()])
 				}
 			} else {
 				render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
@@ -1018,7 +1034,7 @@ class ProjectController {
 		def currentEnv = projectService.getCurrentEnvironment()
         
         if(project) {
-    		if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+				if('in'.equalsIgnoreCase(country_code)){   
     			project.payuStatus = true
     			if (project.fundsRecievedBy == null){
     				project.fundsRecievedBy = "NGO"
@@ -1044,7 +1060,8 @@ class ProjectController {
 		def title = projectService.getVanityTitleFromId(params.id)
         
 		if(title){
-			redirect (action : 'edit', params:['projectTitle':title])
+			println("from editCampaign == " + params.country_code )
+			redirect (action : 'edit', params:['projectTitle':title,country_code:params.country_code])
 		}else{
 			render(view: '/404error', model: [message: 'This campaign does not exist.'])
 		}
@@ -1061,7 +1078,7 @@ class ProjectController {
             def categoryOptions
             def spends = project.spend
             spends = spends.sort{it.numberAvailable}
-            if(currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
+            if('in'.equalsIgnoreCase(country_code)){
                 categoryOptions = projectService.getIndiaCategoryList()
             } else {
                 categoryOptions = projectService.getCategoryList()
@@ -1086,7 +1103,7 @@ class ProjectController {
             }
             def adminemails = projectService.getAdminEmail(project)
             def payOpts
-            if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+            if ('in'.equalsIgnoreCase(country_code)){
                 payOpts = projectService.getIndiaPaymentGateway()
             } else {
                 payOpts = projectService.getPayment()
@@ -1106,6 +1123,8 @@ class ProjectController {
             def deductibleStatusList = projectService.getDeductibleStatusList()
             def stateInd = projectService.getIndianState()
             def pieList = projectService.getPieList(project);
+			println("from edit() == " + params.country_code )
+			def country_code = params.country_code
             render (view: 'edit/index',
             model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,spends:spends,
                 'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit,
@@ -1114,7 +1133,7 @@ class ProjectController {
                 project:project, user:user,campaignEndDate:campaignEndDate,reasonsToFund:reasonsToFund,
                 vanityTitle: vanityTitle, vanityUsername:vanityUsername, selectedCountry: selectedCountry,
                 email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3,
-                deductibleStatusList:deductibleStatusList,spendAmountPerList:pieList.spendAmountPerList])
+                deductibleStatusList:deductibleStatusList,spendAmountPerList:pieList.spendAmountPerList,country_code:country_code])
         } else {
             def previousPage = "manage"
         
@@ -1126,14 +1145,14 @@ class ProjectController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def update() {
 		Project project = projectService.getProjectFromVanityTitle(params.vanityTitle)
-        def vanityTitle = projectService.getProjectUpdateDetails(params, project)
+        def vanityTitle = projectService.getProjectUpdateDetails(params, project,params.country_code)
         def currentEnv = projectService.getCurrentEnvironment()
-        
+        def country_code = params.country_code
 		if(project) {
 			rewardService.saveRewardDetails(params);
 			projectService.saveLastSpendField(params);
 			flash.prj_mngprj_message = "Successfully saved the changes"
-			redirect (action: 'manageproject', params:['projectTitle':vanityTitle])
+			redirect (action: 'manageproject', params:['projectTitle':vanityTitle,country_code:country_code])
 		} else {
             def previousPage = 'edit'
            
@@ -1288,7 +1307,7 @@ class ProjectController {
 	def manageCampaign() {
 		def title = projectService.getVanityTitleFromId(params.id)
 		if(title) {
-			redirect (action:'manageproject', params:['projectTitle':title])
+			redirect (action:'manageproject', params:['projectTitle':title,country_code:params.country_code])
 		} else {
 			render view:'404error', model:[title:title]
 		}
@@ -1298,6 +1317,7 @@ class ProjectController {
 	def manageproject() {
 		def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
 		Project project = projectService.getProjectById(projectId)
+		def country_code = params.country_code
 		User user = userService.getCurrentUser()
 		if (project) {
 			def shortUrl = projectService.getShortenUrl(project.id, params.fr)
@@ -1340,7 +1360,7 @@ class ProjectController {
 			def bankInfo = projectService.getBankInfoByProject(project)
 
 			def day = projectService.getRemainingDay(project)
-			def multiplier = projectService.getCurrencyConverter();
+			//def multiplier = projectService.getCurrencyConverter();
             
             def pieList = projectService.getPieList(project);
             def hasMoreTagsDesktop = projectService.getHashTags(project.hashtags)
@@ -1358,11 +1378,11 @@ class ProjectController {
 					discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset, day: day,
 					ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
 					unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, vanityUsername:vanityUsername, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo,
-					tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier, reasons: reasons, isAdmin: isAdmin,
+					tile:params.tile, shortUrl:shortUrl, base_url:base_url, reasons: reasons, isAdmin: isAdmin,
                     spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, isDeviceMobileOrTab: isDeviceMobileOrTab,
                     hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
                     hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, enableTeamNames: enableTeamNamesList, 
-                    teamNames:teamNameList, isTaxReceipt: isTaxReceipt])
+                    teamNames:teamNameList, isTaxReceipt: isTaxReceipt,country_code:country_code])
 			} else {
 				flash.prj_mngprj_message = 'Campaign Not Found'
                 
@@ -1384,7 +1404,7 @@ class ProjectController {
 		Project project = projectService.getProjectById(params.id)
 		def currentUser= userService.getCurrentUser()
         def currentEnv = projectService.getCurrentEnvironment()
-        def vanityTitle = projectService.getProjectUpdateDetails(params, project)
+        def vanityTitle = projectService.getProjectUpdateDetails(params, project,country_code)
         
 		if (project) {
             def isAdminOrBeneficiary = userService.isCampaignBeneficiaryOrAdmin(project, currentUser)
@@ -1845,15 +1865,16 @@ class ProjectController {
 		if(sorts.equalsIgnoreCase('Sort-by')){
 			redirect(action:'list', controller:'project')
 		}else{
-			redirect(action:'sortCampaign', controller: 'project',params:[query: sorts])
+			redirect(action:'sortCampaign', controller: 'project',params:[query: sorts,country_code:country_code])
 		}
 	}
 
 	def sortCampaign(){
 		def countryOptions = projectService.getCountry()
 		def environment = projectService.getCurrentEnvironment()
+		def country_code = params.country_code
 		def discoverLeftCategoryOptions
-		if(environment =="testIndia" || environment=="stagingIndia" || environment=="prodIndia"){
+		if('in'.equalsIgnoreCase(country_code)){
 			discoverLeftCategoryOptions = projectService.getIndiaCategory()
 		}else{
 			discoverLeftCategoryOptions=projectService.getCategory()
@@ -1861,13 +1882,13 @@ class ProjectController {
 		def sortsOptions = projectService.getSorts()
 		def sorts = params.query.replace(' ','-')
 
-		def campaignsorts = projectService.isCampaignsorts(sorts, environment)
+		def campaignsorts = projectService.isCampaignsorts(sorts, country_code)
 
 		if(!campaignsorts){
 			flash.catmessage="No campaign found."
-			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
+			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions,country_code:country_code])
 		} else {
-			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
+			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions,country_code:country_code])
 		}
 	}
 
@@ -2002,6 +2023,7 @@ class ProjectController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def autoSave() {
+		println("===========why isn't it coming here ========")
         def variable = request.getParameter("variable")
         def varValue = request.getParameter("varValue")
         def projectId = request.getParameter("projectId")
@@ -2056,11 +2078,11 @@ class ProjectController {
 				contributions = contribution.contributions
 			}
 
-			def multiplier = projectService.getCurrencyConverter();
+			//def multiplier = projectService.getCurrencyConverter();
              def currentEnv = projectService.getCurrentEnvironment()
             
 			def model = [totalContributions : totalContributions, CurrentUserTeam: CurrentUserTeam,isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, contributions: contributions, project: project,
-				team: currentTeam, multiplier: multiplier, currentEnv: currentEnv, vanityUsername:params.fr, currentUser: currentUser]
+				team: currentTeam, currentEnv: currentEnv, vanityUsername:params.fr, currentUser: currentUser]
             
 			if (request.xhr) {
 				render(template: "show/contributionlist", model: model)
@@ -2078,10 +2100,10 @@ class ProjectController {
 			def teamOffset = teamObj.maxrange
 			def teams = teamObj.teamList
 			def totalteams = teamObj.teams
-			def multiplier = projectService.getCurrencyConverter();
+		//	def multiplier = projectService.getCurrencyConverter();
             boolean isshow = true;
 
-			def model = [teamOffset : teamOffset, isshow: isshow, teams: teams, totalteams: totalteams, project: project, vanityUsername:params.fr, multiplier: multiplier]
+			def model = [teamOffset : teamOffset, isshow: isshow, teams: teams, totalteams: totalteams, project: project, vanityUsername:params.fr]
 			if (request.xhr) {
 				render(template: "show/teamgrid", model: model)
 			}
@@ -2098,9 +2120,9 @@ class ProjectController {
 			def teamOffset = teamObj.maxrange
 			def teams = teamObj.teamList
 			def totalteams = teamObj.teams
-			def multiplier = projectService.getCurrencyConverter();
+			//def multiplier = projectService.getCurrencyConverter();
 
-			def model = [teamOffset : teamOffset, teams: teams, totalteams: totalteams, project: project, vanityUsername:params.fr, multiplier: multiplier]
+			def model = [teamOffset : teamOffset, teams: teams, totalteams: totalteams, project: project, vanityUsername:params.fr]
 			if (request.xhr) {
 				render(template: "show/teamgridmobile", model: model)
 			}
@@ -2120,9 +2142,9 @@ class ProjectController {
 			def contribution = projectService.getProjectContributions(params, project)
 			totalContributions = contribution.totalContributions
 			contributions = contribution.contributions
-			def multiplier = projectService.getCurrencyConverter();
+			//def multiplier = projectService.getCurrencyConverter();
 
-			def model = [totalContributions : totalContributions, contributions: contributions, project: project, user:user, multiplier: multiplier]
+			def model = [totalContributions : totalContributions, contributions: contributions, project: project, user:user]
 			if (request.xhr) {
 				render(template: "manageproject/contributionlist", model: model)
 			}
@@ -2139,9 +2161,9 @@ class ProjectController {
 			def teamOffset = teamObj.maxrange
 			def validatedTeam = teamObj.teamList
 			def totalteams = teamObj.teams
-			def multiplier = projectService.getCurrencyConverter();
+			//def multiplier = projectService.getCurrencyConverter();
 
-			def model = [teamOffset : teamOffset, validatedTeam: validatedTeam, totalteams: totalteams, project: project, multiplier: multiplier]
+			def model = [teamOffset : teamOffset, validatedTeam: validatedTeam, totalteams: totalteams, project: project]
 			if (request.xhr) {
 				render(template: "manageproject/teamgrid", model: model)
 			}
@@ -2789,10 +2811,10 @@ class ProjectController {
     }
     
     def urlBuilder(){
-        
+        println("country_code : " + params.country_code)
         String title = projectService.getVanityTitleFromId(params?.projectId)
         String name = userService.getVanityNameFromUsername(params?.fr, params?.projectId)
-        StringBuilder url = projectService.getBuildURL(params?.pkey, title, name)
+        StringBuilder url = projectService.getBuildURL(params?.pkey, title, name,params.country_code)
         
         render url?url:''
     }

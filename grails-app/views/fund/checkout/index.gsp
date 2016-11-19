@@ -5,6 +5,7 @@
     def shippingInfo = rewardservice.getShippingInfo(reward)
     def currentUser = userService.getCurrentUser()
     def isAnonymous = userService.isAnonymous(user)
+	def country_code = projectService.getCountryCodeForCurrentEnv(request);
 %>
 <html>
 <head>

@@ -4,7 +4,8 @@
 <%
     def partnerId = partner.id
     def userId = user.id
-    def multiplier = conversionMultiplier
+   // def multiplier = conversionMultiplier
+	def country_code = projectService.getCountryCodeForCurrentEnv(request)
 %>
 <html>
 <head>
@@ -47,8 +48,8 @@
         </div>
         <div class="navbar navbar-default navbar-fixed-top visible-xs" id="partner-third-header">
             <div class="navbar-header">
-                <span class="span-space"><span class="header-text">Raised</span> <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${fundRaised.round()}</span>
-                <span class="span-space"><span class="header-text">Contributed</span> <g:if test="${currentEnv == 'prodIndia' || currentEnv == 'stagingIndia' || currentEnv == 'testIndia'}"><span class="fa fa-inr"></span>${contributedAmount.round() * multiplier}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
+                <span class="span-space"><span class="header-text">Raised</span> <g:if test="${country_code == 'in'}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${fundRaised.round()}</span>
+                <span class="span-space"><span class="header-text">Contributed</span> <g:if test="${country_code == 'in'}"><span class="fa fa-inr"></span>${contributedAmount.round()}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
                 <span class="span-space"><span class="header-text">Campaigns</span> ${totalUserCampaigns.size()}</span>
             </div>
         </div>
@@ -113,7 +114,7 @@
                 <ul id="side-menu">
                     <g:if test="${!isAdmin}">
                         <li>
-                            <a href="${resource(dir: '/campaign/create')}" class="active">Create Campaign</a>
+                            <a href="${resource(dir: '/'+"${country_code}"+'/campaign/create')}" class="active">Create Campaign</a>
                         </li>
                     </g:if>
                     <li>
@@ -186,7 +187,7 @@
                                     </div>
                                     <div class="col-xs-10 col-sm-12 col-md-10 text-right">
                                         <p class="announcement-heading">
-                                            <span class="amountSection-Font"><g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${fundRaised.round()}</span>
+                                            <span class="amountSection-Font"><g:if test="${country_code == 'in'}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${fundRaised.round()}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -206,7 +207,7 @@
                                     </div>
                                     <div class="col-xs-10 col-sm-12 col-md-10 text-right">
                                         <p class="announcement-heading">
-                                            <span class="amountSection-Font"><g:if test="${currentEnv == 'prodIndia' || currentEnv == 'stagingIndia' || currentEnv == 'testIndia'}"><span class="fa fa-inr"></span>${contributedAmount.round() * multiplier}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
+                                            <span class="amountSection-Font"><g:if test="${country_code == 'in'}"><span class="fa fa-inr"></span>${contributedAmount.round()}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
                                         </p>
                                     </div>
                                 </div>

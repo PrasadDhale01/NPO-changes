@@ -1477,12 +1477,12 @@ class UserService {
         return isDeleted
     }
 
-    def isUserProjectHavingContribution(User user, def environment){
+    def isUserProjectHavingContribution(User user, def country_code){
         Boolean doProjectHaveAnyContribution = false
         
         List<Contribution> contributions = []
         
-        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+        if ('in'.equalsIgnoreCase(country_code)) {
             List projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:true, offeringTaxReciept:true)
             projects.each { project ->
                 project.contributions?.each { contribution ->

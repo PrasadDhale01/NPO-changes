@@ -16,7 +16,7 @@
     } else {
         cents = percentage
     }
-    
+	def country_code = projectService.getCountryCodeForCurrentEnv(request)
 %>
 <g:if test="${project.validated}">
     <div class="fedu thumbnail grow userdashboard-tiles">

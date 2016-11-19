@@ -14,6 +14,7 @@
         def username = campaign.user.username
         boolean ended = projectService.isProjectDeadlineCrossed(campaign)
         def vanityTitle = projectService.getVanityTitleFromId(campaign.id)
+		def country_code = projectService.getCountryCodeForCurrentEnv(request)
     %>
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 campaign-tile-seperator">
         <div class="thumbnail campaign-tile-width">
@@ -140,7 +141,7 @@
                 <div class="userprofilecaption">
                     <span class="pull-left">
                         <span class="userdashboard-caption-font">Raised</span>
-                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                        <g:if test="${country_code == 'in'}">
                             <span class="fa fa-inr"></span><g:if test="${campaign.payuStatus}"><span class="lead">${contribution}</span></g:if><g:else><span class="lead">${contribution * conversionMultiplier}</span></g:else>
                         </g:if>
                         <g:else>
@@ -150,7 +151,7 @@
     
                     <span class="pull-right">
                         <span class="userdashboard-caption-font">Goal</span>
-                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                        <g:if test="${country_code == 'in'}">
                             <span class="fa fa-inr"></span><g:if test="${campaign.payuStatus}"><span class="lead">${amount}</span></g:if><g:else><span class="lead">${amount * conversionMultiplier}</span></g:else>
                         </g:if>
                         <g:else>

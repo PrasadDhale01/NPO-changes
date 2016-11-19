@@ -2,7 +2,7 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 + country_code: grailsApplication.config.crowdera.BASE_URL + country_code
     def iteratorCount = 1
     def lastrewardCount = 1
     def rewardItrCount = projectRewards.size()
@@ -63,7 +63,8 @@
     <g:hiddenField name="offeringTaxReciept" id="offeringTaxReciept" value="${project.offeringTaxReciept}"/>
     
     <g:hiddenField name="isIndianCampaign" value="${project.payuStatus}" id="isIndianCampaign"/>
-
+	<g:hiddenField name="country_code" value="${country_code}"/>
+	
     <div class="text-center">
         <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
             <a class=" col-sm-2 col-xs-2 cr-img-start-icon" href="#start"><div class="col-sm-0 cr-subheader-icons"><img class="cr-start TW-cr-sec-header-start-icon-width" src="//s3.amazonaws.com/crowdera/assets/start-Icon-White.png" alt="Start"></div><div class="hidden-xs"><b>Start</b></div></a>
@@ -78,6 +79,7 @@
         <div class="container footer-container" id="campaigncreate">
         <g:uploadForm class="form-horizontal"  controller="project" action="campaignOnDraftAndLaunch" params="['title': vanityTitle, 'userName':vanityUsername]">
            <g:hiddenField name="projectId" id="projectId" value="${project.id}"/>
+           <g:hiddenField name="country_code" value="${country_code}"/>
             <div class="startsection"></div>
 
             <div class="col-sm-12 cr-start-flex cr-lft-mobile cr-safari cr2-padding" id="start">
@@ -132,7 +134,7 @@
                     
                     <div class="col-sm-3 cr2-width-dropdown5">
                         <div class="cr-dropdown-alignment font-list">
-                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                            <g:if test="${country_code == 'in'}">
                                 <g:if test="${project.fundsRecievedBy}">
                                     <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-all-mobile-dropdown recipient cr2-funds-drop" name="#" from="${nonIndprofit}" value="${project.fundsRecievedBy}" optionKey="key" optionValue="value"/>
                                 </g:if>
@@ -263,7 +265,7 @@
                                     
                                         <span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>
                                         <div class="form-group col-sm-3 col-xs-4 col-sm-input-group">
-                                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                           					<g:if test="${country_code == 'in'}">
                                                  <span class="fa fa-inr cr-currency"></span>
                                             </g:if>
                                             <g:else>
@@ -301,7 +303,7 @@
                             <div class="col-sm-amt col-sm-12">
                                 <span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>
                                 <div class="form-group col-sm-3 col-xs-4 col-sm-input-group">
-                                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                           			<g:if test="${country_code == 'in'}">
                                         <span class="fa fa-inr cr-currency"></span>
                                     </g:if>
                                     <g:else>
@@ -666,7 +668,7 @@
                             <div class="col-sm-2">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                           				<g:if test="${country_code == 'in'}">
                                             <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
                                             <input type="text" placeholder="Amount" name="rewardPrice${reward.rewardCount}" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${reward.rewardCount}" value="${price}">
                                         </g:if>
@@ -751,7 +753,7 @@
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <div class="col-sm-12 col-xs-12">
-                                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                           			<g:if test="${country_code == 'in'}">
                                         <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
                                         <input type="text" placeholder="Amount" name="rewardPrice1" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice1">
                                     </g:if>
@@ -840,7 +842,7 @@
             </div><br>
             
             <div class="form-group">
-                <g:if test ="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                  <g:if test="${country_code == 'in'}">
                     <div id="PayUMoney">
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Email</label>
@@ -934,7 +936,7 @@
 
                 <div class="col-sm-12">
                     <div class="col-md-offset-4 col-md-8 col-sm-offset-3 col-sm-9">
-                        <div class="form-group form-group-termsOfUse <g:if test="${(project.fundsRecievedBy != 'NGO' && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')) || (project.fundsRecievedBy != 'NON-PROFIT' && (currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv == 'development'))}">tax-reciept</g:if>" id="tax-reciept">
+                        <div class="form-group form-group-termsOfUse <g:if test="${(project.fundsRecievedBy != 'NGO' && (country_code == 'in')) || (project.fundsRecievedBy != 'NON-PROFIT' && (country_code == 'us'))}">tax-reciept</g:if>" id="tax-reciept">
                             <input type="checkbox" name="tax-reciept-checkbox" class="tax-reciept-checkbox" id="tax-reciept-checkbox" <g:if test="${project.offeringTaxReciept}">checked="checked"</g:if>>
                             Do you want to offer donation receipt to your contributors?
                         </div>
@@ -1516,6 +1518,8 @@
     });
 
     function autoSave(variable, varValue) {
+    	console.log(  variable, "variable-Logged!");
+    	console.log(  varValue, "varValue-Logged!");
         var projectId = $('#projectId').val();
         $.ajax({
             type:'post',

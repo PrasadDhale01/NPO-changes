@@ -27,8 +27,9 @@
                     SimpleDateFormat dateFormat = new SimpleDateFormat("MM/YYYY");
                     def currentDate = dateFormat.format(new Date());
                     def citrusAvailableOptions = ['CID002':'AXIS Bank', 'CID019':'Bank of India']
+					def country_code = projectService.getCountryCodeForCurrentEnv(request);
                     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-                    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+                    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 + country_code : grailsApplication.config.crowdera.BASE_URL + country_code
                     
                     def returnURL = base_url + '/fund/citrusreturn'
                 %>

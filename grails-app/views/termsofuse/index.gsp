@@ -1,6 +1,7 @@
 <g:set var="projectService" bean="projectService"/>
 <%
 	def currentEnv = projectService.getCurrentEnvironment()
+	def country_code = projectService.getCountryCodeForCurrentEnv(request)
 %>
 <html>
 <head>
@@ -10,7 +11,7 @@
 
 <body>
 <div class="container term-use-container">
-<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+<g:if test="${country_code == 'in'}">
 		<div class="static-content">
 			<br><br>
 			<h1 class="text-center">TERMS AND CONDITIONS</h1>

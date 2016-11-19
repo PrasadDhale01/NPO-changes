@@ -5,7 +5,8 @@
 <%
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
     def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-    def beneficiary = project?.user
+	def country_code = projectService.getCountryCodeForCurrentEnv(request)
+	def beneficiary = project?.user
     def beneficiaryUserName = beneficiary?.username
     def fundRaiserName
     if(currentFundraiser.email == project.beneficiary.email){
@@ -136,7 +137,7 @@
 <body>
 <div class="feducontent campaign-bg-color">
     <g:if test="${isPreview}">
-        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+        <g:if test="${country_code == 'in'}">
             <div class="preview-banner-margin" id="preview-banner">
                 You are in preview mode. This is how your campaign will look like once it is live. Please note some links might not work in preview mode. If you like how your campaign has shaped up, Submit it for approval! 
             </div><br>

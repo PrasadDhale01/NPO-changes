@@ -13,7 +13,7 @@
     def username = user?.username
     def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
 	def isTeamAdmin = projectService.isTeamAdmin(project)
-    
+    def country_code = projectService.getCountryCodeForCurrentEnv(request)
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
     def cents
     if(percentage >= 100) {
@@ -124,7 +124,8 @@
     </g:else>
     <div class="blacknwhite tile">
         <g:if test="${iscampaignAdmin || isAdmin}">
-            <g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">
+<%--            <g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">--%>
+            <g:link mapping="managecampaign" params="[country_code: country_code,category : project.fundsRecievedBy, id: project.id, title:project.title]">
                 <div class="imageWithTag">
                     <div class="under">
                         <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>

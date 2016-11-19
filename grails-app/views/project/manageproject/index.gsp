@@ -4,7 +4,7 @@
 <g:set var="userService" bean="userService" />
 <%
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1+country_code : grailsApplication.config.crowdera.BASE_URL+country_code
     def user = project.user
     def username = user.username
 	def projectTitle = project.title
@@ -76,6 +76,7 @@
 	<g:hiddenField id="b_url" name="b_url" value="${base_url}"/>
 	<g:hiddenField id="prjId" name="prjId" value="${project.id}"/>
 	<g:hiddenField name="fbShareUrlupdatePage" value="${fbShareUrlupdatePage}" id="fbShareUrlupdatePage"/>
+	<g:hiddenField name="country_code" value="${country_code}"/>
 	
 	<div class="feducontent campaign-bg-color">
 		<div class="container manage-container-page show-css">
@@ -115,13 +116,22 @@
                     <div class="col-md-12">
                         <g:if test="${!project.validated}">
                             <div class="mange-campaigntitle-mobile">
-                                <h1 class="green-heading text-center campaignTitle"><g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">${projectTitle}</g:link></h1>
+                                <h1 class="green-heading text-center campaignTitle">
+                         			<g:link mapping="managecampaign" params="[country_code: country_code,title:project.title,id: project.id]">
+                         				${projectTitle}
+                         			</g:link>
+                         		</h1>
+<%--                                <g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">${projectTitle}</g:link></h1>--%>
 <%--                                <a href="javascript:void(0)">${projectTitle}</a></h1>--%>
                             </div>
                         </g:if>
                         <g:else>
                             <div class="mange-campaigntitle-mobile">
-                                <h1 class="green-heading text-center campaignTitle "><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}</g:link></h1>
+                                <h1 class="green-heading text-center campaignTitle ">
+<%--                               	 <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}--%>
+                               	     <g:link mapping="showCampaign" params="[country_code: country_code,title:project.title,id: project.id,fr:username]">${project.title}
+                               	 </g:link>
+                                </h1>
 <%--                                <a href="javascript:void(0)">${project.title}</a></h1>--%>
                             </div>
                         </g:else>

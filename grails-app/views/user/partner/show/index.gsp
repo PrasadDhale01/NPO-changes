@@ -19,6 +19,8 @@
         <g:each in="${partners}" var="partner">
             <%
                  def partnerObj = projectService.getFundRaisedByPartner(partner.user)
+				 def country_code = projectService.getCountryCodeForCurrentEnv(request)
+				 
             %>
             <li class="col-md-3 col-lg-3 col-sm-4 col-xs-12">
                 <div class="partner-show-tile thumbnail">
@@ -31,7 +33,7 @@
 
                     <div class="partner-show-info">
                         <div class="partner-org-name"><b>${partner.user.firstName}</b></div>
-                        <div class="partner-raised-amt"><b><g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${partnerObj.raised.round()}</b> Raised</div>
+                        <div class="partner-raised-amt"><b><g:if test="${country_code == 'in'}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${partnerObj.raised.round()}</b> Raised</div>
                         <div class="partner-campaigns"><b>${partnerObj.totalprojects.size()}</b><g:if test="${partnerObj.totalprojects.size() > 1}"> Campaigns</g:if><g:else> Campaign</g:else></div>
                     </div>
                 </div>

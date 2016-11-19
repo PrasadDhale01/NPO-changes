@@ -14,9 +14,13 @@ import java.text.SimpleDateFormat
 
 import javax.servlet.http.Cookie
 import javax.websocket.Session;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.context.request.RequestContextHolder
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 import org.apache.http.HttpEntity
+import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse
 import org.apache.http.client.HttpClient
 import org.apache.http.client.methods.HttpPost
@@ -215,7 +219,7 @@ class ProjectService {
         return [mostSelectedCategory: mostSelectedCategory, mostSelectedCategoryCount: mostSelectedCategoryCount]
     }
 
-    def getProjectUpdateDetails(def params, def project){
+    def getProjectUpdateDetails(def params, def project,def country_code){
         def vanitytitle
         User currentUser = userService.getCurrentUser()
         def fullName = currentUser?.firstName + ' ' + currentUser?.lastName
@@ -230,7 +234,7 @@ class ProjectService {
         
         def taxReciept = TaxReciept.findByProject(project)
         if (project.beneficiary.country == 'null') {
-            if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+            if('in'.equalsIgnoreCase(country_code)) {
                 project.beneficiary.country = 'IN'
                 if (taxReciept){
                     taxReciept.country = 'India'
@@ -245,7 +249,7 @@ class ProjectService {
             }
         }
         
-        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+         if('in'.equalsIgnoreCase(country_code)) {
             if (project.fundsRecievedBy == null){
                 project.fundsRecievedBy = "NGO"
                 project.hashtags = project.hashtags + ", #NGO"
@@ -1194,7 +1198,7 @@ class ProjectService {
         def currentEnv = getCurrentEnvironment();
         
         def payment;
-        if (currentEnv == 'testIndia') {
+        if (currentEnv == 'test') {
             payment = [
                 PAYU  : 'PayUMoney',
                 CITRUS: 'Citrus'
@@ -1319,8 +1323,8 @@ class ProjectService {
         return sortsOptions
 	}
 	
-    def isCampaignsorts(def sorts ,def currentEnv) {
-        List projects = getValidatedProjects(currentEnv)
+    def isCampaignsorts(def sorts ,def country_code) {
+        List projects = getValidatedProjects(country_code)
         List p = []
         if(sorts == 'Most-Funded') {
             projects.each {
@@ -1598,7 +1602,7 @@ class ProjectService {
 		//return finalList
     }
 	
-    def getValidatedProjects(def currentEnv) {
+    def getValidatedProjects(def country_code) {
         def popularProjectsList = getPopularProjects()
         def finalList
         List endedProjects = []
@@ -1610,7 +1614,7 @@ class ProjectService {
 		List usEndedCampaign = []
 		List sortIndiaCampaign = []
 		List sortUsCampaign = []
-        if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+        if ('in'.equalsIgnoreCase(country_code)){
             finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
             finalList.each { project ->
                 boolean ended = isProjectDeadlineCrossed(project)
@@ -1639,7 +1643,7 @@ class ProjectService {
         return finalList
     }
     
-    def getValidatedProjectsByPercentage(def currentEnv) {
+    def getValidatedProjectsByPercentage(def country_code) {
         def popularProjectsList = getPopularProjects()
         def finalList
         List endedProjects = []
@@ -1652,7 +1656,7 @@ class ProjectService {
         List sortIndiaCampaign = []
         List sortUsCampaign = []
         List sortedCampaignByPercentage = []
-        if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+        if ('in'.equalsIgnoreCase(country_code)){
             finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
             finalList.each { project ->
                 boolean ended = isProjectDeadlineCrossed(project)
@@ -1718,12 +1722,12 @@ class ProjectService {
 		return finalList
 	}
 	
-    def showProjects(def currentEnv){
+    def showProjects(def country_code){
         /* Logic to fetch the latest comes first out of the validated projects.*/
         //TO DO
         /* Later on the criteria will be modified in order to display the admin selected projects as the popular projects*/
         List finalList = []
-        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+        if('in'.equalsIgnoreCase(country_code)){
             def popularProjectsList = getPopularProjects()
             finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
         } else {
@@ -1818,13 +1822,13 @@ class ProjectService {
         return list
     }
 	
-    def getProjects(def projects, def projectAdmins, def fundRaisers, def environment) {
+    def getProjects(def projects, def projectAdmins, def fundRaisers, def country_code) {
         def list = []
         List listIndAdmins = []
         List listUsAdmins = []
         List listIndTeams = []
         List listUsTeams = []
-        if(environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
+        if('in'.equalsIgnoreCase(country_code)){
             projects.each {
                 if(it.inactive == false) {
                     list.add(it)
@@ -2974,7 +2978,7 @@ class ProjectService {
       return finalList
     }
 	
-    def getAllProjectByUser(User user, def environment){
+    def getAllProjectByUser(User user, def country_code){
         List activeProjects=[]
         List draftProjects=[]
         List pendingProjects=[]
@@ -2991,8 +2995,9 @@ class ProjectService {
         List activeIndiaProjects = []
         List activeUsProjects = []
         def finalList
+		
         
-        if(environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
+        if('in'.equalsIgnoreCase(country_code)){
             def projects= Project.findAllWhere(user:user)
             projects.each { project->
                 boolean ended = isProjectDeadlineCrossed(project)
@@ -3070,11 +3075,11 @@ class ProjectService {
         return address
     }
 	
-	def getAddress(def params, def currentEnv ){
+	def getAddress(def params, def country_code ){
 		def address
 		def state
 		def country
-		if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+		if('in'.equalsIgnoreCase(country_code)){
 			if (params.addressLine1 !=null){
 				if (params.state == "other") {
 					state = params.otherstate
@@ -3119,7 +3124,7 @@ class ProjectService {
         return contributions
     }
 	
-    def getContibutionByUser(User user,def environment){
+    def getContibutionByUser(User user,def country_code){
         def contributions = Contribution.findAllByUser(user)
         List payuContributions=[]
         List otherContributions=[]
@@ -3130,7 +3135,7 @@ class ProjectService {
                 otherContributions.add(it)
             }
         }
-        if(environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
+        if('in'.equalsIgnoreCase(country_code)){
             return payuContributions
         } else {
             return otherContributions
@@ -4469,14 +4474,14 @@ class ProjectService {
 		
 	}
     
-    def getPayuInfo(def params, def base_url) {
+    def getPayuInfo(def params, def base_url,def country_code) {
         def currentEnv = Environment.current.getName()
         def project = Project.get(params.campaignId)
         def user = User.get(params.userId)
         def reward = Reward.get(params.rewardId)
 
         User fundraiser = userService.getUserFromVanityName(params.fr)
-        def address = getAddress(params, currentEnv)
+        def address = getAddress(params, country_code)
         if (user == null){
             user = userService.getUserByUsername('anonymous@example.com')
         }
@@ -4901,12 +4906,12 @@ class ProjectService {
         return [totalCampaignSupported: totalCampaignSupported, campaignSupported: campaignSupported]
     }
     
-    def getPaginatedCampaignsContributedByUser(User user,def environment, def params, def max) {
+    def getPaginatedCampaignsContributedByUser(User user,def country_code, def params, def max) {
         List contributions = []
         List totalCampaignSupported = []
         List campaignSupported = []
         
-        contributions = getContibutionByUser(user, environment)
+        contributions = getContibutionByUser(user, country_code)
         
         contributions.each { contribution ->
             if (!totalCampaignSupported.contains(contribution.project)) {
@@ -5013,23 +5018,10 @@ class ProjectService {
 
     def getTotalFundRaisedByUser(List projects) {
         double amount = 0;
-        def conversionMultiplier = getCurrencyConverter();
         def currentEnv = getCurrentEnvironment()
         projects.each { project ->
             def contributedAmount = contributionService.getTotalContributionForProject(project)
-            if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
-                if(project.payuStatus) {
-                    amount = amount + contributedAmount 
-                } else {
-                    amount = amount + (contributedAmount * conversionMultiplier)
-                }
-            } else {
-                if(project.payuStatus) {
-                    amount = amount + (contributedAmount / conversionMultiplier)
-                } else {
                     amount = amount + contributedAmount
-                }
-            }
         }
         return amount;
     }
@@ -5759,7 +5751,7 @@ class ProjectService {
         return emails
     }
 
-    def getAllProjectByUserHavingContribution(User user , def environment, def params){
+    def getAllProjectByUserHavingContribution(User user , def country_code, def params){
         List activeProjects=[]
         List endedProjects=[]
         List sortedProjects = []
@@ -5768,8 +5760,8 @@ class ProjectService {
         
         boolean doProjectHaveAnyContribution;
 
-        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
-            def projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:true, offeringTaxReciept:true)
+        if ('in'.equalsIgnoreCase(country_code)) {
+            def projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false,payuStatus:true, offeringTaxReciept:true)
             projects.each { project->
                 
                 doProjectHaveAnyContribution = false;
@@ -6146,31 +6138,35 @@ class ProjectService {
             eq("project.id", projectId)}
     }
     
-    StringBuilder getBuildURL(String pkey, String title, String name) {
+    StringBuilder getBuildURL(String pkey, String title, String name,String country_code) {
         
         StringBuilder builder = new StringBuilder()
         
         if('manage'.equalsIgnoreCase(pkey)){
             
             builder.append(grailsApplication.config.crowdera.BASE_URL)
+			.append(country_code)
             .append("/campaign/managecampaign/")
             .append(title)
             
         }else if('edit'.equalsIgnoreCase(pkey)){
         
             builder.append(grailsApplication.config.crowdera.BASE_URL)
+			.append(country_code)
             .append("/campaign/edit/")
             .append(title)
             
         }else if('usrPrfl'.equalsIgnoreCase(pkey)){
         
             builder.append(grailsApplication.config.crowdera.BASE_URL)
+			.append(country_code)
             .append("/campaigns/")
             .append(title).append("#contributions")
             
         }else{
         
             builder.append(grailsApplication.config.crowdera.BASE_URL)
+			.append(country_code)
             .append("/campaigns/")
             .append(title+"/").append(name)
             
@@ -6199,13 +6195,10 @@ class ProjectService {
         
         String environment = null
         
-        if('USA'.equalsIgnoreCase(currentEnv) || 'development'.equalsIgnoreCase(currentEnv) || 'production'.equalsIgnoreCase(currentEnv) || 'staging'.equalsIgnoreCase(currentEnv) || 'test'.equalsIgnoreCase(currentEnv)){
+        if('USA'.equalsIgnoreCase(currentEnv) || 'INDIA'.equalsIgnoreCase(currentEnv) || 'development'.equalsIgnoreCase(currentEnv) || 'production'.equalsIgnoreCase(currentEnv) || 'staging'.equalsIgnoreCase(currentEnv) || 'test'.equalsIgnoreCase(currentEnv)){
             
             environment = 'production'
             
-        }else if('INDIA'.equalsIgnoreCase(currentEnv) || 'prodIndia'.equalsIgnoreCase(currentEnv) || 'stagingIndia'.equalsIgnoreCase(currentEnv) || 'testIndia'.equalsIgnoreCase(currentEnv)){
-        
-             environment = 'prodIndia'
         }
         
         HomePageCarousel carousel = new HomePageCarousel()
@@ -6225,13 +6218,10 @@ class ProjectService {
         String environment = null
         def carousel
         
-        if('USA'.equalsIgnoreCase(currentEnv) || 'development'.equalsIgnoreCase(currentEnv) || 'production'.equalsIgnoreCase(currentEnv) || 'staging'.equalsIgnoreCase(currentEnv) || 'test'.equalsIgnoreCase(currentEnv)){
+        if('USA'.equalsIgnoreCase(currentEnv) || 'INDIA'.equalsIgnoreCase(currentEnv) || 'development'.equalsIgnoreCase(currentEnv) || 'production'.equalsIgnoreCase(currentEnv) || 'staging'.equalsIgnoreCase(currentEnv) || 'test'.equalsIgnoreCase(currentEnv)){
             
             environment = 'production'
             
-        }else if('INDIA'.equalsIgnoreCase(currentEnv) || 'prodIndia'.equalsIgnoreCase(currentEnv) || 'stagingIndia'.equalsIgnoreCase(currentEnv) || 'testIndia'.equalsIgnoreCase(currentEnv)){
-        
-             environment = 'prodIndia'
         }
         
         if("link".equalsIgnoreCase(data)){
@@ -6251,13 +6241,10 @@ class ProjectService {
         
         String environment = null
         
-        if('USA'.equalsIgnoreCase(currentEnv) || 'development'.equalsIgnoreCase(currentEnv) || 'production'.equalsIgnoreCase(currentEnv) || 'staging'.equalsIgnoreCase(currentEnv) || 'test'.equalsIgnoreCase(currentEnv)){
+        if('USA'.equalsIgnoreCase(currentEnv) ||'INDIA'.equalsIgnoreCase(currentEnv) || 'development'.equalsIgnoreCase(currentEnv) || 'production'.equalsIgnoreCase(currentEnv) || 'staging'.equalsIgnoreCase(currentEnv) || 'test'.equalsIgnoreCase(currentEnv)){
             
             environment = 'production'
             
-        }else if('INDIA'.equalsIgnoreCase(currentEnv) || 'prodIndia'.equalsIgnoreCase(currentEnv) || 'stagingIndia'.equalsIgnoreCase(currentEnv) || 'testIndia'.equalsIgnoreCase(currentEnv)){
-        
-             environment = 'prodIndia'
         }
         
         if(imageName){
@@ -6275,13 +6262,10 @@ class ProjectService {
         
         String environment = null
         
-        if('USA'.equalsIgnoreCase(currentEnv) || 'development'.equalsIgnoreCase(currentEnv) || 'production'.equalsIgnoreCase(currentEnv) || 'staging'.equalsIgnoreCase(currentEnv) || 'test'.equalsIgnoreCase(currentEnv)){
+        if('USA'.equalsIgnoreCase(currentEnv) || 'INDIA'.equalsIgnoreCase(currentEnv) ||'development'.equalsIgnoreCase(currentEnv) || 'production'.equalsIgnoreCase(currentEnv) || 'staging'.equalsIgnoreCase(currentEnv) || 'test'.equalsIgnoreCase(currentEnv)){
             
             environment = 'production'
             
-        }else if('INDIA'.equalsIgnoreCase(currentEnv) || 'prodIndia'.equalsIgnoreCase(currentEnv) || 'stagingIndia'.equalsIgnoreCase(currentEnv) || 'testIndia'.equalsIgnoreCase(currentEnv)){
-        
-             environment = 'prodIndia'
         }
         
         if(oldImage && imageUrl && environment){
@@ -6839,4 +6823,41 @@ class ProjectService {
 				url: 'https://s3.amazonaws.com/crowdera/project-images/Yeshula.png'
         ).save(failOnError: true)
     }
+	
+	def getCountryForProject(def project){
+		def country 
+		if(project)
+		 country = Project.findById(project.id)
+		 return country;
+	}
+	
+	def getCurrencyByCountryId(def country){
+		def currency 
+		if(country){
+			currency = Currency.findById(country.countryId)
+		}
+		
+		return currency.currency_value;
+	}
+	
+	def getCountryByCountryCode(def country_code){
+		if(country_code!=null){
+			 return Country.findByCountryCode(country_code)
+		}
+	}
+	
+	public def getCountryCodeForCurrentEnv(HttpServletRequest request){
+		def country_code = ""
+		/**Change the country to 'in' if you want to test the India flow on development ENV*/
+		def currentEnv = getCurrentEnvironment();
+		if( currentEnv == 'development'|| currentEnv == 'test' || currentEnv == 'staging'){
+			country_code  = "us"
+		}else if (currentEnv == 'testIndia' || currentEnv==''){
+			country_code = "in"
+		}else{
+			country_code = request.getHeader("cf-ipcountry")
+		}
+		return country_code;
+		
+	}
 }

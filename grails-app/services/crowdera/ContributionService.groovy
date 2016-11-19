@@ -607,13 +607,13 @@ class ContributionService {
         return ['highestContributionDay':highestContributionDay , 'highestContributionHour': highestContributionHour]
     }
     
-    def getContributorsForProject(def id, def params, String environment){
+    def getContributorsForProject(def id, def params, String country_code){
         Project project = Project.get(id)
         
         List<Contribution> totalContributions =  Contribution.findAllWhere(project:project)
         List<Contribution> contributionList = new ArrayList<>();
         
-        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+        if ('in'.equalsIgnoreCase(country_code)) {
             totalContributions.each {
                 if (it.panNumber != null) {
                     contributionList.add(it);

@@ -17,18 +17,19 @@ class UserController {
     def jasperService
     
     CampaignService campaignService;
-
+	def country_code 
     @Secured(['ROLE_ADMIN'])
     def admindashboard() {
         User user = (User)userService.getCurrentUser()
+		country_code = projectService.getCountryCodeForCurrentEnv(request)
         def totalContribution
         def environment = projectService.getCurrentEnvironment()
-        if ( environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+        if ('in'.equalsIgnoreCase(country_code)) {
             totalContribution = contributionService.getTotalINRContributions()
-            render view: 'admin/dashboard', model: [user: user, currency:'INR', amount:totalContribution, environment: environment]
+            render view: 'admin/dashboard', model: [user: user, currency:'INR', amount:totalContribution, environment: environment,country_code:country_code]
         } else {
             totalContribution = contributionService.getTotalUSDContributions()
-            render view: 'admin/dashboard', model: [user: user, currency:'USD', amount:totalContribution, environment: environment]
+            render view: 'admin/dashboard', model: [user: user, currency:'USD', amount:totalContribution, environment: environment,country_code:country_code]
         }
     }
     
@@ -68,6 +69,7 @@ class UserController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def userprofile(String userViews, String activeTab){
         User user = (User)userService.getCurrentUser()
+		country_code = projectService.getCountryCodeForCurrentEnv(request)
         def environment = projectService.getCurrentEnvironment()
 
         if (flash.prj_validate_message) {
@@ -85,7 +87,7 @@ class UserController {
             def project = []
             def sortByOptions
             if (user.email == 'campaignadmin@crowdera.co') {
-                if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+                if ('in'.equalsIgnoreCase(country_code)) {
                     project = projectService.getValidatedProjectsForCampaignAdmin('Pending', 'INDIA')
                 } else {
                     project = projectService.getValidatedProjectsForCampaignAdmin('Pending', 'USA')
@@ -94,28 +96,28 @@ class UserController {
                 sortByOptions =projectService.getSortingList()
                 
             } else {
-                projects = projectService.getAllProjectByUser(user, environment)
+                projects = projectService.getAllProjectByUser(user, country_code)
                 projectAdmins = projectService.getProjectAdminEmail(user)
                 teams = projectService.getEnabledAndValidatedTeam(user)
-                project = projectService.getProjects(projects, projectAdmins, teams, environment)
+                project = projectService.getProjects(projects, projectAdmins, teams, country_code)
             }
             
             List totalCampaings = []
             def max = Math.min(params.int('max') ?: 6, 100)
             totalCampaings = projectService.getUsersPaginatedCampaigns(project, params, max)
             
-            def campaignsSupported = projectService.getPaginatedCampaignsContributedByUser(user, environment,params, max)
+            def campaignsSupported = projectService.getPaginatedCampaignsContributedByUser(user, country_code,params, max)
             
             def contributedAmount = projectService.getContributedAmount(campaignsSupported.contributions)
             def fundRaised = projectService.getTotalFundRaisedByUser(projects)
             def country = projectService.getCountry()
             def state
-            if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+            if ('in'.equalsIgnoreCase(country_code)) {
                 state = projectService.getIndianState()
             } else {
                 state = projectService.getState()
             }
-            def multiplier = projectService.getCurrencyConverter();
+           // def multiplier = projectService.getCurrencyConverter();
             def countryOpts = [India: 'INDIA', USA: 'USA']
             
             /*projectService.getAllProjectByUserHavingContribution(user, environment, params)*/
@@ -136,7 +138,7 @@ class UserController {
                 campaign = projectList.totalProjects[0]
                 vanityTitle = projectService.getVanityTitleFromId(campaign.id)
                 
-                contributorListForProject = contributionService.getContributorsForProject(campaign.id, params, environment)
+                contributorListForProject = contributionService.getContributorsForProject(campaign.id, params, country_code)
                 totalContributions = contributorListForProject.totalContributions
                 contributionList = contributorListForProject.contributions
                 
@@ -152,14 +154,14 @@ class UserController {
                 
             render view: userViews, model: [user: user, totalprojects: project, totalCampaings: totalCampaings,country: country, fundRaised: fundRaised, 
                                             state: state, activeTab:activeTab, environment: environment, contributedAmount: contributedAmount, 
-                                            multiplier: multiplier, countryOpts: countryOpts, sortByOptions: sortByOptions, partner: partner,
+                                            countryOpts: countryOpts, sortByOptions: sortByOptions, partner: partner,
                                             isUserProjectHavingContribution:isUserProjectHavingContribution, totalProjects:projectList.totalProjects, 
                                             projects:projectList.projects, currentEnv: environment, totalCampaignSupported: campaignsSupported.totalCampaignSupported,
                                             campaignSupported: campaignsSupported.campaignSupported,
                                             contributorListForProject:contributorListForProject, totalContributions:totalContributions, sortList:sortList,
                                             userHasContributedToNonProfitOrNgo:userHasContributedToNonProfitOrNgo, vanityTitle:vanityTitle,
                                             contributionList:contributionList, totalTaxReceiptContributions:taxReceiptRecievedList.totalTaxReceiptContributions,
-                                            taxReceiptContribution:taxReceiptRecievedList.taxReceiptList, campaign: campaign, settingList:settingList]
+                                            taxReceiptContribution:taxReceiptRecievedList.taxReceiptList, campaign: campaign, settingList:settingList,country_code:country_code]
         }
     }
 
@@ -373,15 +375,16 @@ class UserController {
     def campaignpagination() {
         User user = userService.getCurrentUser()
         def environment = projectService.getCurrentEnvironment()
-        def projects = projectService.getAllProjectByUser(user, environment)
+		country_code = projectService.getCountryCodeForCurrentEnv(request)
+        def projects = projectService.getAllProjectByUser(user, country_code)
         def projectAdmins = projectService.getProjectAdminEmail(user)
         def teams = projectService.getEnabledAndValidatedTeam(user)
-        List project = projectService.getProjects(projects, projectAdmins, teams, environment)
+        List project = projectService.getProjects(projects, projectAdmins, teams, country_code)
         def max = Math.min(params.int('max') ?: 6, 100)
         List totalCampaings = projectService.getUsersPaginatedCampaigns(project, params, max)
-        def multiplier = projectService.getCurrencyConverter();
+    //    def multiplier = projectService.getCurrencyConverter();
         
-        def model = [user: user, totalCampaings: totalCampaings, totalprojects: project, dashboard: 'dashboard', activeTab: 'campaigns', multiplier: multiplier]
+        def model = [user: user, totalCampaings: totalCampaings, totalprojects: project, dashboard: 'dashboard', activeTab: 'campaigns']
         if (request.xhr) {
             render(template: "user/campaigntile", model: model)
         }
@@ -394,9 +397,9 @@ class UserController {
             def environment = projectService.getCurrentEnvironment()
             def max = Math.min(params.int('max') ?: 6, 100)
             def campaignsSupported = projectService.getPaginatedCampaignsContributedByUser(user, environment,params, max)
-            def multiplier = projectService.getCurrencyConverter();
+            //def multiplier = projectService.getCurrencyConverter();
     
-            def model = [totalCampaignSupported: campaignsSupported.totalCampaignSupported, campaignSupported: campaignsSupported.campaignSupported, activeTab: 'contributions', multiplier: multiplier, user: user]
+            def model = [totalCampaignSupported: campaignsSupported.totalCampaignSupported, campaignSupported: campaignsSupported.campaignSupported, activeTab: 'contributions', user: user]
             if (request.xhr) {
                 render(template: "user/campaignssupported", model: model)
             }
@@ -604,9 +607,9 @@ class UserController {
     def getSortedCampaigns() {
         
         def projects = projectService.getValidatedProjectsForCampaignAdmin(params.selectedSortValue, params.country)
-        def multiplier = projectService.getCurrencyConverter();
+       // def multiplier = projectService.getCurrencyConverter();
         def currentEnv = projectService.getCurrentEnvironment()
-        def model = [projects: projects, multiplier: multiplier]
+        def model = [projects: projects]
         switch (params.selectedSortValue){
             case 'Pending':
             case 'Draft':
@@ -617,7 +620,7 @@ class UserController {
             break;
             case 'Deadline':
                 def deadlinDays = projectService.getInDays()
-                render(template: "/project/validate/deadline", model: [projects: projects, multiplier: multiplier,
+                render(template: "/project/validate/deadline", model: [projects: projects,
                      deadlinDays:deadlinDays, extendDays:params.extendDays], currentEnv: currentEnv)
             break;
             case 'Homepage':
@@ -784,6 +787,7 @@ class UserController {
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def partnerdashboard() {
+		country_code = projectService.getCountryCodeForCurrentEnv(request)
         def currentEnv = projectService.getCurrentEnvironment()
         def currentUser = userService.getCurrentUser()
         Partner partner
@@ -801,14 +805,14 @@ class UserController {
             def fundRaised = projectService.getTotalFundRaisedByUser(userCampaign.campaigns)
             def country = projectService.getCountry()
             def state
-            if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+			if('in'.equalsIgnoreCase(country_code)){   
                 state = projectService.getIndianState()
             } else {
                 state = projectService.getState()
             }
             
             def isAdmin = userService.isAdmin()
-            def conversionMultiplier = projectService.getCurrencyConverter();
+           // def conversionMultiplier = projectService.getCurrencyConverter();
             def folders = userService.getFolders(user)
             def files = partner.documents
             
@@ -838,7 +842,7 @@ class UserController {
             def userHasContributedToNonProfitOrNgo = userService.userHasContributedToNonProfitOrNgo(user)
             def contributorListForProject, totalContributions, contributionList
             
-            def sortList = (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') ? contributionService.contributorsSortInd() : contributionService.contributorsSortUs();
+            def sortList = 	('in'.equalsIgnoreCase(country_code)) ? contributionService.contributorsSortInd() : contributionService.contributorsSortUs();
 
             def vanityTitle
             def taxReceiptRecievedList = userService.getContributionsForWhichTaxReceiptreceived(user, params)
@@ -865,7 +869,7 @@ class UserController {
                 render view:'/user/partner/dashboard', 
                 model:[user: user, campaigns: projectObj.projects, totalCampaigns: projectObj.totalprojects, baseUrl: baseUrl,
                 fundRaised: fundRaised, numberOfInvites: numberOfInvites, userCampaigns: userCampaign.projects, folders: folders,
-                country: country, state: state, partner: partner, isAdmin: isAdmin, conversionMultiplier: conversionMultiplier,
+                country: country, state: state, partner: partner, isAdmin: isAdmin,
                 files: files, isUserProjectHavingContribution:isUserProjectHavingContribution, totalProjects:projectList.totalProjects, 
                 projects:projectList.projects, totalUserCampaigns: userCampaign.totalprojects, currentEnv: currentEnv,
                 contributorListForProject:contributorListForProject, totalContributions:totalContributions, sortList:sortList,
@@ -895,10 +899,10 @@ class UserController {
         if (partner) {
             User user = partner.user
             def projectObj = projectService.getPartnerCampaigns(user, params)
-            def conversionMultiplier = projectService.getCurrencyConverter();
+          //  def conversionMultiplier = projectService.getCurrencyConverter();
             def currentEnv = projectService.getCurrentEnvironment()
             
-            def model = [userCampaigns: projectObj.projects, totalUserCampaigns: projectObj.totalprojects, partner: partner, user: user, conversionMultiplier: conversionMultiplier, currentEnv: currentEnv]
+            def model = [userCampaigns: projectObj.projects, totalUserCampaigns: projectObj.totalprojects, partner: partner, user: user, currentEnv: currentEnv]
             render template:"/user/partner/tile", model: model
         }
     }
@@ -1103,6 +1107,7 @@ class UserController {
         def contributorListForProject = userService.getSortedContributorsForProject(params, project)
         def environment = projectService.getCurrentEnvironment()
        
+
         def sortList = contributionService.donationReceiptSortOption();
         def offset = params.int('offset') ?: 0
         

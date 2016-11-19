@@ -9,8 +9,9 @@
 	if (imageUrl) {
 		imageUrl = project.imageUrl[0].getUrl()
 	}
+	def country_code = projectService.getCountryCodeForCurrentEnv(request);
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 + country_code : grailsApplication.config.crowdera.BASE_URL + country_code
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+fundraiser.username
 	def beneficiaryName = (project.beneficiary.lastName) ? project.beneficiary.firstName + ' ' + project.beneficiary.lastName : project.beneficiary.firstName;
 %>

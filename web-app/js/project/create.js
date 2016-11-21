@@ -450,7 +450,7 @@ $(function() {
  		if(value && value.length !== 0){
  			titleUniqueStatus(value.trim());
  			status = $('#titleUniqueStatus').val();
- 	        	return (status === 'true') ? true : false;
+ 	        return (status === 'true') ? true : false;
  		} else {
  			$('#titleUniqueStatus').val('true');
  			status = 'true';
@@ -458,7 +458,6 @@ $(function() {
 
  		return true;
  	 }, "This Project Title is already in use");
-
 
 
     $('#saveButton, #saveButtonXS').on('click', function() {
@@ -3222,104 +3221,6 @@ $(function() {
         });
     });
     
-    
-    
-    
-	
-	$('#top-navbar-1').on('shown.bs.collapse', function(){
-		$.backstretch("resize");
-	});
-	$('#top-navbar-1').on('hidden.bs.collapse', function(){
-		$.backstretch("resize");
-	});
-	
-	/*
-	    Form
-	*/
-	$('.f1 fieldset:first').fadeIn('slow');
-	
-	$('.f1 input[type="text"], .f1 input[type="password"], .f1 textarea').on('focus', function() {
-		$(this).removeClass('input-error');
-	});
-	
-	// next step
-	$('.f1 .btn-next').on('click', function() {
-		var parent_fieldset = $(this).parents('fieldset');
-		var next_step = true;
-		// navigation steps / progress steps
-		var current_active_step = $(this).parents('.f1').find('.f1-step.active');
-		var progress_line = $(this).parents('.f1').find('.f1-progress-line');
-		
-		// fields validation
-		/*parent_fieldset.find('input[type="text"], input[type="password"], textarea').each(function() {
-			if (validator.element('.'+$(this).attr("class"))){
-			if( $(this).valid()) {
-				console.log("fieldName == "+ $(this).attr("id"))
-				$(this).removeClass('input-error');
-			} else {
-				$(this).addClass('input-error');
-				next_step = false;
-			}
-		});*/
-		
-		alert(validator)
-		if ($("#amount1").valid()) {
-			alert($("#amount1").valid());
-		}
-		// fields validation
-		
-		if( next_step ) {
-			parent_fieldset.fadeOut(400, function() {
-				// change icons
-				current_active_step.removeClass('active').addClass('activated').next().addClass('active');
-				
-				// progress bar
-				bar_progress(progress_line, 'right');
-				// show next step
-	    		$(this).next().fadeIn();
-	    		// scroll window to beginning of the form
-				scroll_to_class( $('.f1'), 20 );
-	    	});
-		}
-		
-	});
-	
-	// previous step
-	$('.f1 .btn-previous').on('click', function() {
-		// navigation steps / progress steps
-		var current_active_step = $(this).parents('.f1').find('.f1-step.active');
-		var progress_line = $(this).parents('.f1').find('.f1-progress-line');
-		
-		$(this).parents('fieldset').fadeOut(400, function() {
-			// change icons
-			current_active_step.removeClass('active').prev().removeClass('activated').addClass('active');
-			// progress bar
-			bar_progress(progress_line, 'left');
-			// show previous step
-			$(this).prev().fadeIn();
-			// scroll window to beginning of the form
-			scroll_to_class( $('.f1'), 20 );
-		});
-	});
-	
-	// submit
-	$('.f1').on('submit', function(e) {
-		
-		// fields validation
-		$(this).find('input[type="text"], input[type="password"], textarea').each(function() {
-			if( $(this).val() == "" ) {
-				e.preventDefault();
-				$(this).addClass('input-error');
-			}
-			else {
-				$(this).removeClass('input-error');
-			}
-		});
-		// fields validation
-		
-	});
-
-
     function changeHashTags(){
         var category = $('#category').val();
         var country = $('#selectedCountry').val();
@@ -3461,6 +3362,7 @@ $(function() {
 
      $('#previewButton, #previewButtonXS').on('click', function(){
       	$('#isSubmitButton').val(false);
+      	
       	if (isIndianCampaign) {
 	       	$('[name="pay"], [name="digitalSign"],  [name="tax-reciept-orgStatus"], [name="tax-reciept-exemptionPercentage"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name="citrusEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
 	             $(this).rules('remove');
@@ -3602,6 +3504,124 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
+        
+        
+        
+        // Wizard Code added here
+        $('#top-navbar-1').on('shown.bs.collapse', function(){
+    		$.backstretch("resize");
+    	});
+    	$('#top-navbar-1').on('hidden.bs.collapse', function(){
+    		$.backstretch("resize");
+    	});
+    	
+    	/*
+    	    Form
+    	*/
+    	$('.f1 fieldset:first').fadeIn('slow');
+    	
+    	$('.f1 input[type="text"], .f1 input[type="password"], .f1 textarea').on('focus', function() {
+    		$(this).removeClass('input-error');
+    	});
+    	
+    	// next step
+    	$('.f1 .btn-next').on('click', function() {
+    		var parent_fieldset = $(this).parents('fieldset');
+    		var next_step = true;
+    		// navigation steps / progress steps
+    		var current_active_step = $(this).parents('.f1').find('.f1-step.active');
+    		var progress_line = $(this).parents('.f1').find('.f1-progress-line');
+    		
+    		// fields validation
+    		/*parent_fieldset.find('input[type="text"], input[type="password"], textarea').each(function() {
+    			if (validator.element('.'+$(this).attr("class"))){
+    			if( $(this).valid()) {
+    				console.log("fieldName == "+ $(this).attr("id"))
+    				$(this).removeClass('input-error');
+    			} else {
+    				$(this).addClass('input-error');
+    				next_step = false;
+    			}
+    		});*/
+    		
+    		var groupId = $(this).data("groupid");
+    		var isValid = true;
+    		
+    		switch(groupId) {
+    			case 1: {
+    				isValid = validateCampaignStartInfo();
+    				break;
+    			}
+    			case 2: {
+    				isValid = validateCampaignStorySection();
+    				break;
+    			}
+    			case 3: {
+    				isValid = validateCampaignImpactSection();
+    				break;
+    			}
+    			case 4: {
+    				isValid = validateCampaignSocialSection();
+    				break;
+    			}
+    			case 5: {
+    				isValid = validateCampaignPerkSection();
+    				break;
+    			}
+    			default:
+    				break;
+    		}
+    		
+    		if( isValid ) {
+    			parent_fieldset.fadeOut(400, function() {
+    				// change icons
+    				current_active_step.removeClass('active').addClass('activated').next().addClass('active');
+    				
+    				// progress bar
+    				bar_progress(progress_line, 'right');
+    				// show next step
+    	    		$(this).next().fadeIn();
+    	    		// scroll window to beginning of the form
+    				scroll_to_class( $('.f1'), 20 );
+    	    	});
+    		}
+    		
+    	});
+    	
+    	// previous step
+    	$('.f1 .btn-previous').on('click', function() {
+    		// navigation steps / progress steps
+    		var current_active_step = $(this).parents('.f1').find('.f1-step.active');
+    		var progress_line = $(this).parents('.f1').find('.f1-progress-line');
+    		
+    		$(this).parents('fieldset').fadeOut(400, function() {
+    			// change icons
+    			current_active_step.removeClass('active').prev().removeClass('activated').addClass('active');
+    			// progress bar
+    			bar_progress(progress_line, 'left');
+    			// show previous step
+    			$(this).prev().fadeIn();
+    			// scroll window to beginning of the form
+    			scroll_to_class( $('.f1'), 20 );
+    		});
+    	});
+    	
+    	// submit
+    	$('.f1').on('submit', function(e) {
+    		
+    		// fields validation
+    		$(this).find('input[type="text"], input[type="password"], textarea').each(function() {
+    			if( $(this).val() == "" ) {
+    				e.preventDefault();
+    				$(this).addClass('input-error');
+    			}
+    			else {
+    				$(this).removeClass('input-error');
+    			}
+    		});
+    		// fields validation
+    		
+    	});
 
 });
 
@@ -3626,6 +3646,490 @@ function bar_progress(progress_line_object, direction) {
 	progress_line_object.attr('style', 'width: ' + new_value + '%;').data('now-value', new_value);
 }
 
-jQuery(document).ready(function() {
+function validateCampaignStartInfo() {
+	var status = true;
 	
-});
+	if ($('#name1').length) {
+		$('#name1').valid() ? '' : status= false; 
+	}
+	if ($('#amount1').length) {
+		$('#amount1').valid() ?  '' : status= false; 
+	}
+	if ($('#amount').length) {
+		$('#amount').valid() ? '' : status= false; 
+	}
+	if ($('#customVanityUrl').length) {
+		$('#customVanityUrl').valid() ? '' : status= false; 
+	}
+	if ($('#descarea1').length) {
+		$('#descarea1').valid() ? '' : status= false; 
+	}
+	if ($('#campaignTitle1').length) {
+		$('#campaignTitle1').valid() ? '' : status= false; 
+	}
+	return status;
+}
+
+
+function validateCampaignStorySection() {
+	var status = true;
+	
+	addStorySectionValidation();
+	
+	if ($('#videoUrlText').length) {
+		$('#videoUrlText').valid() ? '' : status= false; 
+	}
+	if ($('#projectImageFile').length) {
+		$('#projectImageFile').valid() ?  '' : status= false; 
+	}
+	
+	if ($('[name="ans1"]').length) {
+		$('[name="ans1"]').valid() ? '' : status= false; 
+	}
+	if ($('[name="ansText1"]').length) {
+		$('[name="ansText1"]').valid() ?  '' : status= false; 
+	}
+	if ($('[name="ansText2"]').length) {
+		$('[name="ansText2"]').valid() ? '' : status= false; 
+	}
+	if ($('[name="ansText3"]').length) {
+		$('[name="ansText3"]').valid() ? '' : status= false; 
+	}
+	
+	if ($('[name="ans3"]').length) {
+		$('[name="ans3"]').valid() ? '' : status= false; 
+	}
+	
+	if ($('[name="ans4"]').length) {
+		$('[name="ans4"]').valid() ? '' : status= false; 
+	}
+	
+	return status;
+}
+
+function addStorySectionValidation() {
+	if($('#campaignthumbnails').find('#imgdiv').length < 1) {
+		$("#projectImageFile").rules( "add", {
+            required: true,
+            messages: {
+                required: "Please upload at least one campaign image."
+            }
+        });
+	}
+	
+	$('[name="ans1"]').rules( "add", {
+        required: true
+    });
+	
+	if($('[name="ansText1"]').length > 0){
+        $('[name="ansText1"]').rules( "add", {
+            required: true
+        });
+    }
+
+    $('[name="ansText2"]').rules( "add", {
+        required: true,
+        maxlength: 128
+    });
+
+    if($('[name="ansText2"]').length > 0){
+        $('[name="ansText3"]').rules( "add", {
+            required: true,
+            maxlength: 128
+        });
+    }
+
+    $('[name="ans3"]').rules( "add", {
+        required: true
+    });
+
+    $('[name="ans4"]').rules( "add", {
+        required: true
+    });
+}
+
+function validateCampaignImpactSection() {
+	var status = true;
+	
+	addImpactSectionValidation();
+	
+	$('.spendAmount').each(function () {
+		$(this).valid() ? '' : status= false;
+	});
+	
+	$('.spendCause').each(function () {
+		$(this).valid() ? '' : status= false;
+	});
+	
+	if ($('[name="reason1"]').length) {
+		$('[name="reason1"]').valid() ? '' : status= false; 
+	}
+	if ($('[name="reason2"]').length) {
+		$('[name="reason2"]').valid() ? '' : status= false; 
+	}
+	if ($('[name="reason3"]').length) {
+		$('[name="reason3"]').valid() ? '' : status= false; 
+	}
+	if ($('[name="impactNumber"]').length) {
+		$('[name="impactNumber"]').valid() ? '' : status= false; 
+	}
+	
+	return status;
+}
+
+function addImpactSectionValidation() {
+	
+    $('[name="reason1"]').rules( "add", {
+        required: true,
+        minlength: 5,
+        maxlength: 140
+    });
+    
+    $('[name="reason2"]').rules( "add", {
+        required: true,
+        minlength: 5,
+        maxlength: 140
+    });
+    
+    $('[name="reason3"]').rules( "add", {
+        required: true,
+        minlength: 5,
+        maxlength: 140
+    });
+    
+    if (isIndianCampaign){
+		$('.spendAmount').each(function () {
+			$(this).rules("add", {
+				required: true,
+				number:true,
+				maxlength: 9,
+				min: 101,
+				max: function() {
+					var campaignAmount = $('#projectamount').val();
+					return Number(campaignAmount);
+				},
+				isTotalSpendAmountGreaterThanProjectAmount : true,
+				messages: {
+					required: 'Required',
+					number: 'Digits only',
+					maxlength: 'max 9 digits',
+					min	:'Please select a value greater than Rs.100'
+				}
+			});
+		});
+	} else {
+		$('.spendAmount').each(function () {
+			$(this).rules("add", {
+				required: true,
+				number:true,
+				maxlength: 6,
+				max: function() {
+					var campaignAmount = $('#projectamount').val();
+					return Number(campaignAmount);
+				},
+				min:51,
+				isTotalSpendAmountGreaterThanProjectAmount : true,
+				messages: {
+					required: 'Required',
+					number: 'Digits only',
+					maxlength: 'max 6 digits',
+					min:'Please select a value greater than $50'
+				}
+			});
+		});
+	}
+
+	$('.spendCause').each(function () {
+		$(this).rules("add", {
+			required: true,
+			minlength: 3,
+			maxlength: 55,
+			messages: {
+				required: 'Required',
+				minlength: 'min 3 characters',
+				maxlength: 'max 55 characters'
+			}
+		});
+	});
+	
+	$('[name="impactNumber"]').rules( "add", {
+        required: true,
+        number:true,
+        min:1,
+        maxlength: 8
+    });
+}
+
+function validateCampaignSocialSection() {
+	var status = true;
+	
+	addSocialSectionValidation();
+	
+    if ($('[name="digitalSign"]').length) {
+    	$('[name="digitalSign"]').valid() ? '' : status= false; 
+	}
+    if ($('[name="city"]').length) {
+        $('[name="city"]').valid() ? '' : status= false; 
+	}
+    if ($('[name="webAddress"]').length) {
+		$('[name="webAddress"]').valid() ? '' : status= false; 
+	}
+    if ($('[name="organizationName"]').length) {
+		$('[name="organizationName"]').valid() ? '' : status= false; 
+	}
+	if ($('#iconfile').length) {
+		$('#iconfile').valid() ? '' : status= false; 
+	}
+	
+	return status;
+}
+
+function addSocialSectionValidation() {
+	var signImgUrl = $('#editsignatureIcon').attr('src');
+    if (!signImgUrl) {
+        $('[name="digitalSign"]').rules( "add", {
+            required: true
+        });
+    }
+    
+    $( '[name="city"]' ).rules( "add", {
+        required: true,
+        maxlength: 32,
+        minlength:3
+    });
+    $( '[name="webAddress"]' ).rules( "add", {
+        required: true,
+        isWebUrl:true
+    });
+
+    $( '[name="organizationName"]' ).rules( "add", {
+        required: true
+    });
+
+    var iconUrl = $('#imgIcon').attr('src');
+
+	if (!iconUrl) {
+        $('#iconfile').rules("add", {
+            required: true
+        });
+	}
+}
+
+
+function validateCampaignPerkSection() {
+	var status = true;
+	
+	addPerkSectionValidation();
+	
+	$('.rewardNumberAvailable').each(function () {
+		$(this).valid() ? '' : status= false;
+    });
+    $('.rewardPrice').each(function () {
+    	$(this).valid() ? '' : status= false;
+    });
+	
+	$('.rewardDescription').each(function () {
+		$(this).valid() ? '' : status= false;
+    });
+
+   	$('.rewardTitle').each(function () {
+   		$(this).valid() ? '' : status= false; 
+   	});
+     
+	return status;
+}
+
+function addPerkSectionValidation() {
+	$('.rewardNumberAvailable').each(function () {
+        $(this).rules("add", {
+            required: true,
+            number: true,
+            min: 1
+        });
+    });
+	
+	if(isIndianCampaign) {
+        $('.rewardPrice').each(function () {
+            $(this).rules("add", {
+                required: true,
+                number: true,
+                maxlength: 8,
+                max: function() {
+                	var campaignAmount = $('#projectamount').val();
+                    return Number(campaignAmount);
+                },
+                min: 100
+            });
+        });
+    } else {
+    	$('.rewardPrice').each(function () {
+            $(this).rules("add", {
+                required: true,
+                number: true,
+                maxlength: 6,
+                max: function() {
+                	var campaignAmount = $('#projectamount').val();
+                    return Number(campaignAmount);
+                },
+                min: 1
+            });
+        });
+    }
+	
+	$('.rewardDescription').each(function () {
+        $(this).rules("add", {
+            required: true,
+            minlength : 5
+        });
+    });
+
+   	$('.rewardTitle').each(function () {
+        $(this).rules("add", {
+            required: true,
+            minlength : 5
+        });
+   	});
+   	
+   	$( '[name="answer"]' ).rules( "add", {
+        required: true
+    });
+}
+
+function validatePaymentSection() {
+	var status = true;
+	
+	addPaymentSectionValidation();
+	
+	if (validator.form()) {
+        $('#campaigncreate').find('form').submit();
+        $('#submitProject').attr('disabled','disabled');
+        $('#previewButton').attr('disabled','disabled');
+        $('#submitProjectXS').attr('disabled','disabled');
+        $('#previewButtonXS').attr('disabled','disabled');
+	}
+}
+
+
+function addPaymentSectionValidation() {
+	
+    $( '[name="checkBox"]' ).rules( "add", {
+        required: true
+    });
+
+    if(isIndianCampaign) {
+        $( '[name="payuEmail"]' ).rules( "add", {
+            required: true,
+            email:true,
+            maxlength: 50
+        });
+        
+        if (currentEnv == "testIndia") {
+            $( '[name="citrusEmail"]' ).rules( "add", {
+                required: true,
+                email:true,
+                maxlength: 50
+            });
+        }
+    } else {
+
+    	$( '[name="paypalEmail"]' ).rules( "add", {
+            required: true,
+            isPaypalEmailVerified : true,
+            email:true
+        });
+
+    	$( '[name="charitableId"]' ).rules( "add", {
+            required: true
+        });
+
+    }
+
+    $( '[name="tax-reciept-holder-city"]' ).rules( "add", {
+        required: true,
+        maxlength: 32,
+        minlength:2
+    });
+
+    $( '[name="tax-reciept-holder-name"]' ).rules( "add", {
+        required: true,
+        minlength:2,
+        isFullName: true
+    });
+
+    if (isIndianCampaign){
+    	$( '[name="reg-date"]' ).rules( "add", {
+            required: true
+        });
+
+        $( '[name="tax-reciept-registration-num"]' ).rules( "add", {
+            required: true
+        });
+
+        $( '[name="tax-reciept-holder-pan-card"]' ).rules( "add", {
+            required: true,
+            minlength:10
+        });
+
+        $( '[name="expiry-date"]' ).rules( "add", {
+            required: true
+        });
+
+        $( '[name="fcra-reg-no"]' ).rules( "add", {
+            required: true
+        });
+
+        $( '[name="fcra-reg-date"]' ).rules( "add", {
+            required: true
+        });
+        
+        $( '[name="tax-reciept-orgStatus"]' ).rules( "add", {
+            required: true,
+            minlength:2
+        });
+        
+        $( '[name="tax-reciept-exemptionPercentage"]' ).rules( "add", {
+            required: true,
+            min:0,
+            number: true
+        });
+        	 
+    } else {
+    	$( '[name="ein"]' ).rules( "add", {
+            required: true,
+            minlength:9
+        });
+
+        $( '[name="tax-reciept-deductible-status"]' ).rules( "add", {
+            required: true,
+            minlength:2
+        });
+
+        $( '[name="tax-reciept-holder-state"]' ).rules( "add", {
+            required: true,
+            minlength:2
+        });
+    }
+    
+    $( '[name="tax-reciept-holder-phone"]' ).rules( "add", {
+        required: true,
+        minlength:9,
+        number:true
+    });
+
+    $( '[name="addressLine1"]' ).rules( "add", {
+        required: true,
+        minlength:5,
+        maxlength: 50
+    });
+
+    $( '[name="addressLine2"]' ).rules( "add", {
+        minlength:5,
+        maxlength: 50
+    });
+
+    $( '[name="zip"]' ).rules( "add", {
+        required: true,
+        maxlength: 30
+    });
+
+}

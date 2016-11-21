@@ -67,9 +67,10 @@
     <g:hiddenField name="taxRecieptId" value="${taxRecieptId}" id="taxRecieptId"/>
     <g:hiddenField name="offeringTaxReciept" id="offeringTaxReciept" value="${project.offeringTaxReciept}"/>
     
+    <g:hiddenField name="titleUniqueStatus" value="true" id="titleUniqueStatus"/>
     <g:hiddenField name="isIndianCampaign" value="${project.payuStatus}" id="isIndianCampaign"/>
 
-    <div class="text-center">
+    <%--<div class="text-center">
         <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
             <a class=" col-sm-2 col-xs-2 cr-img-start-icon" href="#start"><div class="col-sm-0 cr-subheader-icons"><img class="cr-start TW-cr-sec-header-start-icon-width" src="//s3.amazonaws.com/crowdera/assets/start-Icon-White.png" alt="Start"></div><div class="hidden-xs"><b>Start</b></div></a>
             <a class=" col-sm-2 col-xs-2 cr-img-story-icon" href="#story"><div class="col-sm-0 cr-subheader-icons"><img class="cr-story TW-cr-sec-header-icon-width" src="//s3.amazonaws.com/crowdera/assets/story-Icon-White.png" alt="Story"></div><div class="hidden-xs"><b>Story</b></div></a>
@@ -79,13 +80,14 @@
             <a class=" col-sm-2 col-xs-2 cr-img-launch-icon" href="#launch"><div class="col-sm-0 cr-subheader-icons"><img class="cr-launch TW-cr-sec-header-launch-icon-width" src="//s3.amazonaws.com/crowdera/assets/launch-Icon--White.png" alt="Launch"></div><div class="hidden-xs"><b>Launch</b></div></a>
         </header>
     </div>
-    
+    --%>
     <div class="bg-color col-sm-12 col-xs-12 cr-top-space">
         <div class="container footer-container" id="campaigncreate">
         
             <g:hiddenField name="projectId" id="projectId" value="${project.id}"/>
-            <div class="startsection"></div>
+            <%--<div class="startsection"></div>
             
+            --%>
             <div class="top-content">
                 
                 <div class="row">
@@ -246,10 +248,10 @@
 					                    </div>
 					                </div>
 					             </div>
-             
+                                
                                 
                                 <div class="col-xs-12 campaign-btn-div text-center">
-                                     <button type="button" class="btn campaign-btn-primary btn-next">Save And Continue</button>
+                                     <button type="button" class="btn campaign-btn-primary btn-next" data-groupid= "1">Save And Continue</button>
                                 </div>
                             </fieldset>
                             
@@ -282,7 +284,7 @@
                                     </div>
                                     <img class="videoInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                                 </div>
-                    
+                                
                                 <div class="col-sm-6 image-popover">
                                     <div class="panel panel-default panel-create-size upload-campaign-pic panel-pic-uploaded <g:if test="${!project.imageUrl}">panel-hidden</g:if>">
                                         <div class="form-group" id="createthumbnail">
@@ -406,13 +408,13 @@
         
                                 <div class="col-xs-12 campaign-btn-div text-center">
                                     <button type="button" class="btn btn-previous campaign-btn-prev pull-left">Previous</button>
-                                    <button type="button" class="btn btn-next campaign-btn-primary pull-right">Save And Continue</button>
+                                    <button type="button" class="btn btn-next campaign-btn-primary pull-right" data-groupid= "2">Save And Continue</button>
                                 </div>
                             </fieldset>
                             
                             <fieldset>
                             
-                               <div class="col-sm-12 padding-right-xs">
+                               <div class="col-sm-12 padding-right-xs col-lr-0">
                                     <div class="cr-spend-matrix">
                                         <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-panel-spend-xs"><span class="cr-spend-matrix-font">Spend Matrix</span></label>
                                         <label class="col-md-10 col-sm-9 col-xs-12 cr-panel-spend-matrix-guide cr-spend-guide-text">The matrix will be displayed as a pie chart on your campaign page for your contributors to know how the contributions or funds raised will be utilized</label>
@@ -504,7 +506,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="col-sm-12 padding-right-xs">
+                                <div class="col-sm-12 padding-right-xs col-lr-0">
                                     <div class="cr-spend-matrix">
                                         <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-impact-analysis"><span class="cr-spend-matrix-font">Impact Assessment</span></label>
                                         <label class="col-sm-9 hidden-xs cr-panel-spend-matrix-guide cr-impact-guide"></label>
@@ -514,7 +516,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="col-sm-12 padding-right-xs">
+                                <div class="col-sm-12 padding-right-xs col-lr-0">
                                     <div class="cr-spend-matrix">
                                         <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-reasons-to-fund"><span class="cr-spend-matrix-font">3 Reason to Fund</span></label>
                                         <label class="col-sm-9 col-xs-12 cr-panel-spend-matrix-guide cr-reasons-guide">Let your contributors know why they should fund your campaign.</label>
@@ -526,9 +528,9 @@
                                     </div>
                                 </div>
                                 
-                                <div class="col-xs-12 campaign-btn-div text-center">
+                                <div class="col-xs-12 campaign-btn-div text-center col-lr-0">
                                     <button type="button" class="btn btn-previous campaign-btn-prev pull-left">Previous</button>
-                                    <button type="button" class="btn btn-next campaign-btn-primary pull-right">Save And Continue</button>
+                                    <button type="button" class="btn btn-next campaign-btn-primary pull-right" data-groupid= "3">Save And Continue</button>
                                 </div>
                                     
                             </fieldset>
@@ -546,8 +548,8 @@
                                         <textarea name="hashtags" class="hashtags form-control">${project.hashtags}</textarea>
                                     </div>
                                 </div>
-                                    
-                                <div class="col-xs-12">
+                                
+                                <div class="col-xs-12 col-lr-0">
                                 
                                     <div class="col-sm-12 manage-Top-tabs-mobile" id="admins">
                                         <div class="cr-tabs-admins cr-safari">
@@ -767,7 +769,7 @@
                                 
                                 <div class="col-xs-12 campaign-btn-div text-center">
                                     <button type="button" class="btn btn-previous campaign-btn-prev pull-left">Previous</button>
-                                    <button type="button" class="btn btn-next campaign-btn-primary pull-right">Save And Continue</button>
+                                    <button type="button" class="btn btn-next campaign-btn-primary pull-right" data-groupid= "4">Save And Continue</button>
                                 </div>
                                     
                             </fieldset>
@@ -963,7 +965,7 @@
                                 
                                 <div class="col-xs-12 campaign-btn-div text-center">
                                     <button type="button" class="btn btn-previous campaign-btn-prev pull-left">Previous</button>
-                                    <button type="button" class="btn btn-next campaign-btn-primary pull-right">Save And Continue</button>
+                                    <button type="button" class="btn btn-next campaign-btn-primary pull-right" data-groupid= "5">Save And Continue</button>
                                 </div>
             
                            </fieldset>
@@ -1566,12 +1568,14 @@
                             </fieldset>
                             <fieldset>
                             --%>
-                                <div class="col-xs-12">
+                                <%--<div class="col-xs-12">
                                     <div class="f1-buttons">
                                         <button type="button" class="btn btn-previous">Previous</button>
                                         <button type="submit" class="btn btn-submit">Submit</button>
                                     </div>
                                 </div>
+                            --%>
+                            
                             </fieldset>
                             
                             

@@ -86,9 +86,17 @@
     </div>
     <div class="hidden-xs">
         <div class="whycrowderacontainer" id="loadWhyCrowdera"></div>
+        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
         <div class="success-stories-container">
             <g:render template="success-stories"></g:render>
         </div>
+        </g:if>
+        <g:else>
+        <div class="newsSection">
+           <g:render template="newssection"></g:render>
+         </div>
+         </g:else>
+        
 <%--        <div class="proudassociates-container">--%>
 <%--            <g:render template="association"></g:render>--%>
 <%--        </div>--%>

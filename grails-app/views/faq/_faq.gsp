@@ -3,9 +3,10 @@
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
     def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
     def currentEnv = projectService.getCurrentEnvironment()
+	def country_code = projectService.getCountryCodeForCurrentEnv(request)
 %>
 <div class="container footer-container">
-<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+<g:if test="${country_code == 'in'}">
     <div class="row footer-panel-group">
         <div class="col-lg-12">
             <h1 class="page-header">FAQs

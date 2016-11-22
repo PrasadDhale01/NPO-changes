@@ -88,10 +88,10 @@
 <%----%>
 <%--	</div>--%>
 <%--</div>--%>
-
-
-
-
+ <%
+ def country_code = request.getHeader("cf-ipcountry")
+ 
+  %>
 <div class="how">
     <div class="how-A">
         <div class="container howit-container">
@@ -126,7 +126,7 @@
 						Share your ideas and engage with supporters of your cause. Post a
 						description of your campaign, the beginning and end dates of your
 						campaign, and your funding goal. Include content like pictures and
-						video to make your page pop! Get started <a class="how-tipsbuildcampaign" href="/campaign/create" target="_blank">here</a>.
+						video to make your page pop! Get started <a class="how-tipsbuildcampaign" href="${resource(dir: '/'+"${country_code}"+'/campaign/create')}" target="_blank">here</a>.
 			         </h6>
 			    </div>
             </div>

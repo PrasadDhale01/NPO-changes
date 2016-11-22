@@ -6,7 +6,8 @@
     def rewardItrCount = projectRewards.size()
     def amount = (project.amount).round()
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+	def country_code = country_code
+    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 + country_code: grailsApplication.config.crowdera.BASE_URL + country_code
     def spendCount
     def spendLastMatrix
     def spendLastNumAvail
@@ -63,6 +64,7 @@
     <g:hiddenField name="isIndianCampaign" value="${project.payuStatus}" id="isIndianCampaign"/>
     <g:hiddenField name="titleUniqueStatus" value="true" id="titleUniqueStatus"/>
     <g:hiddenField name="prjCategory" value="${project.category }" id="prjCategory"/>
+    <g:hiddenField name="country_code" value="${country_code}"/>
     
 
     <div class="edit-container">
@@ -78,7 +80,7 @@
         </div>
         <div class="bg-color col-sm-12 col-xs-12 cr-top-space">
         <div class="container footer-container" id="campaigncreate">
-            <g:uploadForm class="form-horizontal"  controller="project" action="update" params="['vanityTitle': vanityTitle, 'userName':vanityUsername]">
+            <g:uploadForm class="form-horizontal"  controller="project" action="update" params="['vanityTitle': vanityTitle, 'userName':vanityUsername,'country_code':country_code]">
                 <g:hiddenField name="projectId" id="projectId" value="${project.id}"/>
                 <div class="startsection"></div>
                 
@@ -245,7 +247,7 @@
                         <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 hidden-xs">My campaign web address</label>
                         <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 visible-xs">
                             <g:if test="${project.payuStatus}">
-                                crowdera.in/campaigns/
+                                gocrowdera.com/campaigns/
                             </g:if>
                             <g:else>
                                 gocrowdera.com/campaigns/
@@ -254,7 +256,7 @@
                         <div class="col-sm-12 col-xs-12 cr1-mobile-indx1 col-web-url">
                             <div class="cr1-vanityUrl-indx1 hidden-xs">
                                 <g:if test="${project.payuStatus}">
-                                    crowdera.in/campaigns/
+                                    gocrowdera.com/campaigns/
                                 </g:if>
                                 <g:else>
                                     gocrowdera.com/campaigns/

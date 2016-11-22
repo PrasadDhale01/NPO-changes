@@ -1,7 +1,7 @@
 <div class="col-lg-12 col-sm-12 col-md-12 panel-body panel-bgColor text-center">
      <div class="col-lg-12 show-raised-amt">
-         <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-              <span class="fa fa-inr"></span><span class="lead show-contribution-amt-tile"><g:if test="${project.payuStatus}">${contributedSoFar}</g:if><g:else>${contributedSoFar * conversionMultiplier}</g:else></span>
+         <g:if test="${country_code == 'in'}">
+              <span class="fa fa-inr"></span><span class="lead show-contribution-amt-tile"><g:if test="${project.payuStatus}">${contributedSoFar}</g:if><g:else>${contributedSoFar}</g:else></span>
          </g:if>
          <g:else>
               $<span class="show-raised-amt show-contribution-amt-tile">${contributedSoFar}</span>
@@ -18,7 +18,7 @@
          </div>
          <div class="col-lg-12 col-sm-12 col-md-12 locationandtelephone location-icon-mob">
              <img class="location-icon col-lg-4 col-sm-4 col-md-4" src="//s3.amazonaws.com/crowdera/assets/c9a2645e-0a60-41f0-9f9d-53295a878981.png">
-             <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+             <g:if test="${country_code == 'in'}">
                   <span class="col-lg-8 col-sm-8 col-md-8">206, Sankalp Nagar,Wathoda layout, Nagpur, Maharashtra, India</span>
              </g:if>
              <g:else>

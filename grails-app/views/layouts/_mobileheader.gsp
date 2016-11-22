@@ -1,4 +1,8 @@
 <g:set var="userService" bean="userService"/>
+<g:set var="projectService" bean="projectService"/>
+<%
+def country_code = projectService.getCountryCodeForCurrentEnv(request)
+%>
 <div role="navigation" class="navbar  navbar-fixed-top hidden-lg hidden-md header-section home-header-section scrollHeader header-scrolled hm-headeropicity">
     <div id="opacityremove" class="header-container TW-scrollHeaderBackColor navbar-default ">
   
@@ -54,12 +58,12 @@
             </ul>
             <ul class="nav navbar-nav navbar-right nav-create-button">
                 <li class="hidden-xs">
-                    <a class=" btn btn-info nav-text1 TW-header-helpLink" href="/campaign/create">
+                    <a class=" btn btn-info nav-text1 TW-header-helpLink" href="${resource(dir: '/'+"${country_code}"+'/campaign/create')}">
                      <span class="TW-header-helpTxt">Create</span>
                     </a> 
                 </li>
                 <li class="hidden-lg hidden-md hidden-sm hed-font-sizes">
-                    <a class="nav-item-1" href="/campaign/create"><img alt="create" src="//s3.amazonaws.com/crowdera/assets/create-icon-dropdown.png" class="hidden-sm hidden-lg hidden-md">&nbsp;&nbsp;&nbsp;&nbsp;Create</a>
+                    <a class="nav-item-1" href="${resource(dir: '/'+"${country_code}"+'/campaign/create')}"><img alt="create" src="//s3.amazonaws.com/crowdera/assets/create-icon-dropdown.png" class="hidden-sm hidden-lg hidden-md">&nbsp;&nbsp;&nbsp;&nbsp;Create</a>
                 </li>
             </ul>
             

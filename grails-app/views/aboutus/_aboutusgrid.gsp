@@ -1,3 +1,7 @@
+ <%
+ def country_code = request.getHeader("cf-ipcountry")
+ 
+  %>
   <div class="about-banner-img hidden-xs">
     <img class="abt-us-banner-widd" src="//s3.amazonaws.com/crowdera/assets/about-us-banner-imgs.jpg" alt="about-us-banner">
   </div>
@@ -462,8 +466,8 @@
 </div>
 <div class="container crewpage mentor-container mentor-centering abt-bottom-createdis">
     <div class="row text-center explorebtn col-lg-12 abt-create-discover">
-        <a href="${resource(dir: '/campaign/create')}" class="btn btn-default abt-btn-backcolor">Create a Campaign</a>
-        <a href="${resource(dir: '/campaigns')}" class="btn btn-default abt-discover">Discover</a>
+        <a href="${resource(dir: '/'+"${country_code}"+'/campaign/create')}" class="btn btn-default abt-btn-backcolor">Create a Campaign</a>
+        <a href="${resource(dir:'/'+"${country_code}"+'/campaigns')}" class="btn btn-default abt-discover">Discover</a>
     </div>
     <div class="abt-mobile">
         <div class="col-lg-4 col-md-4 col-sm-4">

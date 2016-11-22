@@ -40,7 +40,8 @@ class FundController {
         def currentEnv = Environment.current.getName()
         def state = projectService.getState()
         def country = projectService.getCountry()
-
+		def country_code = projectService.getCountryCodeForCurrentEnv(request);
+		
         def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
         if (projectId) {
             project = Project.findById(projectId)
@@ -245,7 +246,8 @@ class FundController {
         Reward reward = contribution?.reward
         User user = contribution?.user
         User fundraiser = userService.getUserById(params.long('fr'))
-
+		def country_code = projectService.getCountryCodeForCurrentEnv(request);
+		
         String request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         String base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
 
@@ -675,14 +677,14 @@ class FundController {
         def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
 
-        def multiplier = projectService.getCurrencyConverter();
+      //  def multiplier = projectService.getCurrencyConverter();
         if (params.currency == 'INR'){
             def contributionINR = contributionService.getINRContributions(params)
-            render view: '/user/admin/transactionIndex', model: [multiplier: multiplier, contribution: contributionINR.contributions,
+            render view: '/user/admin/transactionIndex', model: [contribution: contributionINR.contributions,
                 totalContributions: contributionINR.totalContributions, currency:'INR', transactionSort:transactionSort, url:base_url]
         } else {
             def contributionUSD = contributionService.getUSDContributions(params)
-            render view: '/user/admin/transactionIndex', model: [multiplier: multiplier, contribution: contributionUSD.contributions,
+            render view: '/user/admin/transactionIndex', model: [contribution: contributionUSD.contributions,
                 totalContributions: contributionUSD.totalContributions, currency:'USD', transactionSort:transactionSort, url:base_url]
         }
     }
@@ -762,10 +764,11 @@ class FundController {
     }
 
     def payupayment(){
+		def country_code = projectService.getCountryCodeForCurrentEnv(request)
         JSONObject json = new JSONObject();
         def request_url = request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-        json = projectService.getPayuInfo(params, base_url)
+        json = projectService.getPayuInfo(params, base_url,country_code)
         render json
     }
 
@@ -823,14 +826,14 @@ class FundController {
         def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
 
-        def multiplier = projectService.getCurrencyConverter();
+      //  def multiplier = projectService.getCurrencyConverter();
         def model
         if (params.currency == 'INR'){
             def contributionINR = contributionService.getINRContributions(params)
-            model= [multiplier: multiplier, contribution: contributionINR.contributions, totalContributions: contributionINR.totalContributions, currency:'INR', url:base_url, offset: params.offset]
+            model= [contribution: contributionINR.contributions, totalContributions: contributionINR.totalContributions, currency:'INR', url:base_url, offset: params.offset]
         } else {
             def contributionUSD = contributionService.getUSDContributions(params)
-            model = [multiplier: multiplier, contribution: contributionUSD.contributions, totalContributions: contributionUSD.totalContributions, currency:'USD', url:base_url, offset: params.offset]
+            model = [contribution: contributionUSD.contributions, totalContributions: contributionUSD.totalContributions, currency:'USD', url:base_url, offset: params.offset]
         }
         if (request.xhr) {
             render(template: "/user/admin/transactionGrid", model: model)

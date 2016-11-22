@@ -5,7 +5,8 @@
 <%
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
     def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-    def beneficiary = project?.user
+	def country_code = projectService.getCountryCodeForCurrentEnv(request)
+	def beneficiary = project?.user
     def beneficiaryUserName = beneficiary?.username
     def fundRaiserName
     if(currentFundraiser.email == project.beneficiary.email){
@@ -139,7 +140,7 @@
 <a href="javascript:" id="returnTotop"> <i class="icon-chevron-up"></i></a>
 <div class="feducontent campaign-bg-color">
     <g:if test="${isPreview}">
-        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+        <g:if test="${country_code == 'in'}">
             <div class="preview-banner-margin" id="preview-banner">
                 You are in preview mode. This is how your campaign will look like once it is live. Please note some links might not work in preview mode. If you like how your campaign has shaped up, Submit it for approval! 
             </div><br>
@@ -281,7 +282,7 @@
                     <g:else>
                         <div class="show-mobile-button">
                               <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail || project.citrusEmail}">
-                                <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
+                                <g:if test="${(project.payuStatus == false) && (country_code == 'in')}">
                                     <div class="redirectCampaign">
                                         <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="fundSubmit"><button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri" id="btnFundDesktop">Fund Now!</button></g:link>
                                     </div>
@@ -427,7 +428,7 @@
                             <ul class="nav navbar-nav navbar-right col-lg-6 col-sm-6 col-md-6 show-paddingsbtn">
                                 <li class="show-margin-right">
                                      <g:if test="${project?.paypalEmail || project?.charitableId || project?.payuEmail || project?.citrusEmail}">
-                                        <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
+                                        <g:if test="${(project.payuStatus == false) && (country_code == 'in')}">
                                             <div class="redirectCampaign">
                                                 <g:link class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js sh-fund-donate-contri" controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="btnFundDesktop">FUND NOW</g:link>
                                             </div>
@@ -630,7 +631,7 @@
                 </div> 
                
                
-                <div class="col-xs-12 col-md-8 col-sm-8 Top-tabs-mobile show-tops-corsal">
+                <div class="col-xs-12 col-md-8 col-sm-8 Top-tabs-mobile show-tops-corsal  new-gau-width-details">
                 
                     <%-- Tab panes --%>
                     <div class="tab-content">
@@ -779,7 +780,7 @@
                       </g:else>
                   </div>
                
-                  <div class="col-xs-12 col-md-4 col-sm-4 show-desk-org-tile show-tops-corsal">
+                  <div class="col-xs-12 col-md-4 col-sm-4 show-desk-org-tile show-tops-corsal  new-show-gau-width">
 <%--                      <div class="hidden-xs">--%>
 <%--                          <g:render template="/layouts/orgDetails"/>--%>
 <%--                      </div>--%>
@@ -842,7 +843,7 @@
                       </g:elseif>
                       <g:else>
                           <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail || project.citrusEmail}">
-                              <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
+                              <g:if test="${(project.payuStatus == false) && (country_code == 'in')}">
                                   <div class="redirectCampaign">
                                       <div class="show-A-fund"> </div>
                                       <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="btnShowLink"><div class="show-A-fund"> </div><button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri" id="btnFundDesktop">Fund Now!</button></g:link>

@@ -1,6 +1,7 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
+<g:set var="userService" bean="userService"/>
 <%
     
     def percentage = contributionService.getPercentageContributionForProject(project)
@@ -8,7 +9,10 @@
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
     def contribution = projectService.getDataType(contributedSoFar)
     def amount = projectService.getDataType(project.amount)
-    def username = project.user.username
+    def username = userService.getVanityNameFromUsername(project.user.username, project.id)
+	def country = projectService.getCountryForProject(project)
+	def currencyValue = projectService.getCurrencyByCountryId(country)
+	def title = projectService.getVanityTitleFromId(project.id)
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
     def cents
     if(percentage >= 100) {
@@ -18,10 +22,6 @@
     }
     
     def currentEnv = projectService.getCurrentEnvironment()
-    def conversionMultiplier = multiplier
-    if (!conversionMultiplier) {
-        conversionMultiplier = projectService.getCurrencyConverter();
-    }
 %>
 <g:if test="${project.validated}">
 <div class="fedu thumbnail grow tile-pad">
@@ -43,7 +43,8 @@
 <%--                </div>--%>
 <%--            </div>--%>
 <%--        </g:form>--%>
- 		 <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">
+<%-- 		 <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">--%>
+           <g:link mapping="showCampaign" params="[country_code: country_code,projectTitle:title,fr: username,category:project.fundsRecievedBy.toLowerCase()]">
             <div class="imageWithTag">
                 <div class="under">
                     <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
@@ -51,12 +52,12 @@
             </div>
         </g:link>
     </div>
-
     <div class="caption tile-title-descrp project-title project-story-span tile-min-height">
 <%--        <a href="javascript:void(0);" onclick="submitCampaignShowForm('show','${project.id}','${username }');" id="title:${project.id}">--%>
 <%--            ${project.title.toUpperCase()}--%>
 <%--        </a>--%>
-   		<g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}">
+<%--   		<g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}">--%>
+           <g:link mapping="showCampaign" params="['id': project.id,'country_code': country_code,'projectTitle':project.title,'fr': username,'category':project.fundsRecievedBy.toLowerCase()]">
             ${project.title.toUpperCase()}
         </g:link>
         <div class="campaign-title-margin-bottom"></div>
@@ -84,11 +85,18 @@
         <div class="row tilepadding">
             <div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center">
                 <span class="text-center tile-goal">
-                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                        <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${amount}</span></g:if><g:else><span class="lead">${amount * conversionMultiplier}</span></g:else>
+                    <g:if test="${country_code == 'in'}">
+                        <!-- <span class="fa fa-inr"></span>-->
+                        ${currencyValue}
+                        <g:if test="${project.payuStatus}">
+                        	<span class="lead">${amount}</span>
+                        </g:if>
+                        <g:else>
+                        	<span class="lead">${amount}</span>
+                        </g:else>
                     </g:if>
                     <g:else>
-                        $<span class="lead">${amount}</span>
+                        ${currencyValue}<span class="lead">${amount}</span>
                     </g:else>
                 </span>
             </div>
@@ -112,11 +120,18 @@
             </g:else>
             <div class="col-md-4 col-xs-4 amount-alignment amount-text-align text-center">
                 <span class="text-center tile-goal">
-                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                        <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${contribution}</span></g:if><g:else><span class="lead">${contribution * conversionMultiplier}</span></g:else>
+                    <g:if test="${country_code == 'in'}">
+                       <!--  <span class="fa fa-inr"></span>-->
+                       ${currencyValue}
+                        <g:if test="${project.payuStatus}">
+                        	<span class="lead">${contribution}</span>
+                        </g:if>
+                        <g:else>
+                        	<span class="lead">${contribution}</span>
+                        </g:else>
                     </g:if>
                     <g:else>
-                        $<span class="lead">${contribution}</span>
+                        ${currencyValue}<span class="lead">${contribution}</span>
                     </g:else>
                 </span>
             </div>

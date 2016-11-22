@@ -1,12 +1,15 @@
 <g:set var="projectService" bean="projectService"/>
 <%
+	def country_code = projectService.getCountryCodeForCurrentEnv(request)
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-    def fbShareUrl = base_url+"/campaign/create"
-    
+    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL 
+	def fbShareUrl = base_url +country_code +"/campaign/create"
+	
     boolean isIndianCampaign = false
-    if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
-        isIndianCampaign = true
+    if (currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'development' || currentEnv == 'production') {
+		if(country_code == 'in'){
+			isIndianCampaign = true
+		}
     }
 %>
 <html>
@@ -30,6 +33,7 @@
     <g:hiddenField name="baseUrl" value="${base_url}" id="b_url"/>
     <g:hiddenField name="isIndianCampaign" value="${isIndianCampaign}" id="isIndianCampaign"/>
     <g:hiddenField name="titleUniqueStatus" value="true" id="titleUniqueStatus"/>
+    <g:hiddenField name="country_code" value="${country_code}"/>
     
     
     <div class="cr1-header-indx1">
@@ -72,7 +76,7 @@
 			    </div>
                 
                 <g:hiddenField name="partnerInviteCode" value="${partnerInviteCode}"/>
-                
+                <g:hiddenField name="country_code" value="${country_code}"/>
                 <%--Desktop code --%>
                 <div class="form-group">
                     <%--
@@ -89,12 +93,15 @@
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-7">
                             <span class="col-lg-6 col-sm-6 col-md-6 cr-padding-index1">I need</span>
                             <div class="cr-tops">
-	                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-	                                <span class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
+	                            <g:if test="${currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv == 'development'}">
+	                            	<g:if test="${country_code == 'in'}">
+	                            		<span class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
+	                            	</g:if>
+	                            	<g:else>
+	                               		 <span class="i-currency-label-indx1">$</span>
+	                            	</g:else>
 	                            </g:if>
-	                            <g:else>
-	                                <span class="i-currency-label-indx1">$</span>
-	                            </g:else>
+	                            
                                 <input class="form-control form-control-no-border-amt cr-amt-indx1" name="amount1" id="amount2"> 
                                 <span id="errormsg1"></span>
                             </div>
@@ -135,12 +142,14 @@
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-7">
                         <span class="col-lg-6 col-sm-6 col-md-6 cr-padding-index1">I need</span>
                         <div class="cr-tops">
-                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                <span class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
-                            </g:if>
-                            <g:else>
-                                <span class="i-currency-label-indx1">$</span>
-                            </g:else>   
+                        <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'}">
+                           		<g:if test="${country_code == 'in'}">
+                                	<span class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
+                                </g:if>
+                                 <g:else>
+                                	<span class="i-currency-label-indx1">$</span>
+                            	</g:else>  
+                         </g:if>
                             <input class="form-control form-control-no-border-amt cr-amt-indx1" name="amount" id="amount3"> 
                             <span id="errormsg2"></span>
                         </div>

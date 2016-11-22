@@ -25,10 +25,9 @@
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
     username = currentFundraiser.email
     def currentEnv = projectService.getCurrentEnvironment()
-    def conversionMultiplier = multiplier
-    if (!conversionMultiplier) {
-        conversionMultiplier = projectService.getCurrencyConverter();
-    }
+	def country = projectService.getCountryForProject(project)
+	def currencyValue = projectService.getCurrencyByCountryId(country)
+    def country_code = projectService.getCountryCodeForCurrentEnv(request)
 %>
 <div class="modal-footer tile-footer tileanstitle-goals tileanstitle-goal-margin show-tiles-padding">
     <div class="row icons-centering sh-moballamt">
@@ -52,11 +51,19 @@
     <div class="row amount-centering sh-moballamt">
         <div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center">
             <span class="text-center tile-goal show-contribution-amt-tile">
-                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                    <span class="fa fa-inr"></span><span class="lead show-contribution-amt-tile"><g:if test="${project.payuStatus}">${amount}</g:if><g:else>${amount * conversionMultiplier}</g:else></span>
+                <g:if test="${country_code == 'in'}">
+                    <!-- <span class="fa fa-inr"></span>-->
+                     ${currencyValue}
+                    	<span class="lead show-contribution-amt-tile">
+	                    <g:if test="${project.payuStatus}">
+							${amount}
+						</g:if> <g:else>
+							${amount}
+						</g:else>
+					</span>
                 </g:if>
                 <g:else>
-                    $<span class="lead show-contribution-amt-tile">${amount}</span>
+                     ${currencyValue}<span class="lead show-contribution-amt-tile">${amount}</span>
                 </g:else>
             </span>
         </div>
@@ -81,11 +88,16 @@
         </g:else>
         <div class="col-md-4 col-xs-4 amount-alignment amount-text-align text-center sh-amtMob-position">
             <span class="text-center tile-goal show-contribution-amt-tile">
-                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                    <span class="fa fa-inr"></span><span class="lead show-contribution-amt-tile"><g:if test="${project.payuStatus}">${contributedSoFar}</g:if><g:else>${contributedSoFar * conversionMultiplier}</g:else></span>
+                <g:if test="${country_code == 'in'}">
+                    <!--  <span class="fa fa-inr"></span>-->
+                     ${currencyValue}
+                    <span class="lead show-contribution-amt-tile">
+                    	<g:if test="${project.payuStatus}">${contributedSoFar}</g:if>
+                    	<g:else>${contributedSoFar}</g:else>
+                    </span>
                 </g:if>
                 <g:else>
-                    $<span class="lead show-contribution-amt-tile">${contributedSoFar}</span>
+                     ${currencyValue}<span class="lead show-contribution-amt-tile">${contributedSoFar}</span>
                 </g:else>
             </span>
         </div>

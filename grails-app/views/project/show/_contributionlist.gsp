@@ -13,10 +13,10 @@
         fundRaiser = user.username
     }
     def projectId = project.id
-    def conversionMultiplier = multiplier
-    if (!conversionMultiplier) {
-        conversionMultiplier = projectService.getCurrencyConverter();
-    }
+   	def country = projectService.getCountryForProject(project)
+	def currencyValue = projectService.getCurrencyByCountryId(country)
+	def country_code = projectService.getCountryCodeForCurrentEnv(request)
+	
 %>
 <g:if test="${!contributions.empty}">
     <div class="row contributions-panel contribution-center-alignment">
@@ -62,11 +62,12 @@
                                         <g:if test="${isCrUserCampBenOrAdmin && CurrentUserTeam && currentFundraiser == team}">
                                             <h4>${contribution.contributorName}</h4> 
                                             <span class="sso">
-                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                                <g:if test="${country_code == 'in'}">
+                                                    <!--  <span class="fa fa-inr"></span>-->
+                      								 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                                 </g:if>
                                                 <g:else>
-                                                    $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -74,11 +75,12 @@
                                         <g:else>
                                             <h4 class="anonymous-top">Anonymous Good Soul</h4>
                                             <span class="sso">
-                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                                <g:if test="${country_code == 'in'}">
+                                                    <!-- <span class="fa fa-inr"></span>-->
+                       									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                                 </g:if>
                                                 <g:else>
-                                                    $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -88,11 +90,12 @@
                                         <g:if test="${contribution.contributorName}">
                                             <h4>${contribution.contributorName}</h4>
                                             <span class="sso">
-                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                                <g:if test="${country_code == 'in'}">
+                                                    <!-- <span class="fa fa-inr"></span>-->
+                        								${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                                 </g:if>
                                                 <g:else>
-                                                    $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -100,11 +103,12 @@
                                         <g:else>
                                             <h4>${friendlyName}</h4>
                                             <span class="sso">
-                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                                <g:if test="${country_code == 'in'}">
+                                                    <!-- <span class="fa fa-inr"></span>-->
+                       									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                                 </g:if>
                                                 <g:else>
-                                                    $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -130,11 +134,12 @@
                                         <g:if test="${isCrUserCampBenOrAdmin && CurrentUserTeam && currentFundraiser == team}">
                                             <h4>${contribution.contributorName}</h4> 
                                             <span class="sso">
-                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                                <g:if test="${country_code == 'in'}">
+                                                    <!-- <span class="fa fa-inr"></span>-->
+                        ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                                 </g:if>
                                                 <g:else>
-                                                    $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -142,11 +147,12 @@
                                         <g:else>
                                             <h4 class="anonymous-top">Anonymous Good Soul</h4>
                                             <span class="sso">
-                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                               <g:if test="${country_code == 'in'}">
+                                                    <!-- <span class="fa fa-inr"></span>-->
+                       									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                                 </g:if>
                                                 <g:else>
-                                                    $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -156,11 +162,12 @@
                                         <g:if test="${contribution.contributorName}">
                                             <h4>${contribution.contributorName}</h4>
                                             <span class="sso">
-                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                                <g:if test="${country_code == 'in'}">
+                                                    <!--  <span class="fa fa-inr"></span>-->
+                      									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                                 </g:if>
                                                 <g:else>
-                                                    $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -168,11 +175,12 @@
                                         <g:else>
                                             <h4>${friendlyName}</h4>
                                             <span class="sso">
-                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                               <g:if test="${country_code == 'in'}">
+                                                    <!-- <span class="fa fa-inr"></span>-->
+                       										 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                                 </g:if>
                                                 <g:else>
-                                                    $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                   ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -198,11 +206,12 @@
                                 <g:if test="${isCrUserCampBenOrAdmin && CurrentUserTeam && currentFundraiser == team}">
                                     <h4>${contribution.contributorName}</h4> 
                                     <span class="sso">
-                                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                            <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                        <g:if test="${country_code == 'in'}">
+                                            <!-- <span class="fa fa-inr"></span>-->
+                        						${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                         </g:if>
                                         <g:else>
-                                            $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                         </g:else>
                                     </span>
                                     <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -210,11 +219,12 @@
                                 <g:else>
                                     <h4 class="anonymous-top">Anonymous Good Soul</h4>
                                     <span class="sso">
-                                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                            <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                        <g:if test="${country_code == 'in'}">
+                                            <!-- <span class="fa fa-inr"></span>-->
+                       							 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                         </g:if>
                                         <g:else>
-                                            $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                         </g:else>
                                     </span>
                                     <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -224,11 +234,12 @@
                                 <g:if test="${contribution.contributorName}">
                                     <h4>${contribution.contributorName}</h4>
                                     <span class="sso">
-                                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                            <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                        <g:if test="${country_code == 'in'}">
+                                            <!--  <span class="fa fa-inr"></span>-->
+                       							${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                         </g:if>
                                         <g:else>
-                                            $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                         </g:else>
                                     </span>
                                     <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -236,11 +247,12 @@
                                 <g:else>
                                     <h4>${friendlyName}</h4>
                                     <span class="sso">
-                                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                            <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                        <g:if test="${country_code == 'in'}">
+                                            <!--  <span class="fa fa-inr"></span>-->
+                      								 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                         </g:if>
                                         <g:else>
-                                            $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                         </g:else>
                                     </span>
                                     <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -263,11 +275,12 @@
                             <div class="col-sm-8 col-xs-8 pn-word contribution-inr">
                                 <h4>${contribution.contributorName}</h4> 
                                 <span class="sso">
-                                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                        <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else>${amount * conversionMultiplier}</g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                    <g:if test="${country_code == 'in'}">
+                                        <!--  <span class="fa fa-inr"></span>-->
+                      						 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else>${amount}</g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                     </g:if>
                                     <g:else>
-                                        $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                        ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                     </g:else>
                                 </span>
                                 <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>

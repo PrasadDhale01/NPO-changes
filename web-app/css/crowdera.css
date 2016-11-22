@@ -5,7 +5,7 @@
 body {
     margin-top: 50px;
     /* padding-bottom: 40px; */
-    color: #5a5a5a;
+    color: #0e0e0e;
     /* background-image: url('https://www.candiedphotography.co.uk/wp-content/uploads/paper_background.jpg'); */
 }
 
@@ -2196,6 +2196,7 @@ a.footerlink {
 	background-color: #000;
 }
 .fileUpload {
+	font-weight: 600;
 	position: relative;
 	overflow: hidden;
 }
@@ -17759,12 +17760,13 @@ textarea.textarea-embed-video {
 }
 
 .borders {
+	height: 55px;
     background-color: #fff;
     border-bottom: 2px solid #e3e3e3;
     border-right: 2px solid #e3e3e3;
     margin-left: 15px;
     padding-left: 15px;
-    width: 969px;
+    width: 970px;
 }
 .show-new-tabs-alignments{
 	border-right-width: 0;
@@ -17786,7 +17788,7 @@ textarea.textarea-embed-video {
 	border-left: 2px solid #6d6e6e;
 }
 .show-tops-corsal{
-	margin-top: 20px;
+	margin-top: 22px;
 }
 .show-tabs-text{
 	text-decoration:none !important;

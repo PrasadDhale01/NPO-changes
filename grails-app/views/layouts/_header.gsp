@@ -1,6 +1,9 @@
 <!-- Fixed navbar -->
 <g:set var="userService" bean="userService"/>
-
+<g:set var="projectService" bean="projectService"/>
+<%
+def country_code = projectService.getCountryCodeForCurrentEnv(request)
+%>
 <input type="hidden" id="currentEnvironment" value="${currentEnv}" />
 <input type="text" name="search" id="hiddensearch"/>
 <div class="hidden-xs navbar navbar-default navbar-fixed-top header-default-height show-header-heights header-section home-header-section noScrollHeader" role="navigation">
@@ -22,7 +25,11 @@
         </div>
         <div class="navbar-collapse collapse" id="TW-navbar-collapse">
             <ul class="nav navbar-nav nav-icon-bar">
-                <li class="discover"><a href="${resource(dir: '/campaigns')}" class="nav-text2 hm-back-width hed-font-sizes"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/icon-discover-new.png" alt="discover">&nbsp;&nbsp;&nbsp;&nbsp;Discover</a></li>
+                <li class="discover">
+				  	<g:link mapping="listCampaigns" params="[country_code: country_code]" class="nav-text2 hm-back-width hed-font-sizes">
+						<img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/icon-discover-new.png" alt="discover">&nbsp;&nbsp;&nbsp;&nbsp;Discover</img>
+					</g:link>	
+				</li>
                 <li class="learn"><a href="${resource(dir: '/howitworks')}" class="nav-text3 hm-back-width hed-font-sizes"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/learn-icon-dropdowns.png" alt="learn">&nbsp;&nbsp;&nbsp;&nbsp;Learn</a></li>
                 <li class="searchengine hidden-xs">
                     <form action="/campaign" name="SearchForm">
@@ -44,7 +51,8 @@
             </ul>
             <ul class="nav navbar-nav navbar-right nav-create-button">
                 <li class="hidden-xs noscrollHeaderHelpLink">
-                    <g:link controller="project" action="create" class=" btn btn-info nav-text1 TW-header-helpLinkLogged">
+<%--                    <g:link controller="project" action="create" class=" btn btn-info nav-text1 TW-header-helpLinkLogged">--%>
+                    <g:link mapping="createCampaign" params="[country_code: country_code]" class="btn btn-info nav-text1 TW-header-helpLinkLogged">
                         <span class="TW-header-helpTxtLogged">Create</span>
                     </g:link>
                 </li> 

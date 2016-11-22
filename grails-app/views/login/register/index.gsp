@@ -1,7 +1,8 @@
 <g:set var="projectService" bean="projectService"/>
 <%
+	def country_code = projectService.getCountryCodeForCurrentEnv(request)
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 + country_code : grailsApplication.config.crowdera.BASE_URL + country_code
     def currentEnv = projectService.getCurrentEnvironment()
 %>
 <html>
@@ -18,7 +19,7 @@
 
         <g:form class="form-signin regForm" controller="login" action="create" id="regForm">
             <h2 class="form-signin-heading register register-logo">Please sign up</h2>
-            <g:if test="${currentEnv != 'prodIndia'}">
+            <g:if test="${country_code == 'in'}">
                 <a class="btn btn-block btn-social btn-facebook" href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
                     <i class="fa fa-facebook fa-facebook-styles"></i> Register with Facebook
                 </a><br>

@@ -1155,8 +1155,8 @@ $(function() {
             $('#previewButtonXS').attr('disabled','disabled');
     	}
 	     
-    	if(!validator.form()){
-    	    requiredFieldMessages();
+    	if(validator.form()){
+    	    /*requiredFieldMessages();*/
     	}
     	  
     });

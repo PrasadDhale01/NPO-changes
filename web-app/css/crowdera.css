@@ -3624,7 +3624,7 @@ input#datepicker {
 }
 .cr1-header-indx1{
     background-color: #f6bf0b;
-    padding: 7px;
+    padding: 20px 0px 9px;
 }
 h1.text-center.cr-header-name {
   color: white;
@@ -5604,7 +5604,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
     input.editsweb-margin-mobile {
         height: 45px;
-        padding-left: 182px;
+        padding-left: 215px;
+        padding-bottom: 8px;
         width: 100% !important;
     }
 
@@ -10519,8 +10520,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         left: 2px;
     }
     input.cr1-paddings-lft {
-        margin-left: 8px;
-        width: 142% !important;
+        padding-left: 215px;
+        padding-bottom: 10px;
+        width: 143% !important;
     }
     div.cr1-url-lft {
         padding-left: 15px !important;
@@ -12958,7 +12960,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	
 	.form-horizontal .form-group {
 		margin-left: 2px;
-		margin-right: -15px;
+		margin-right: 0px;
 	}
 }
 
@@ -18500,7 +18502,7 @@ span.abt-founderCo{
     padding-right: 10px;
 }
 .cr1-font-list .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="span"] {
-    width: 26% !important;
+    width: 100% !important;
 }
 .createDescDiv.has-error .col-sm-12.col-sm-12.cr1-descriptions-indx1 {
     padding-left: 0;
@@ -19935,4 +19937,10 @@ a.morereasonsButton:focus{
 .reasonButtontwo{
     margin-right: 23%;
     padding-top: 90px;
+}
+
+.selectOption {
+    width: 100%;
+    height: 43px;
+    border-color: #e3e3e3;
 }

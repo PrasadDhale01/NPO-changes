@@ -34,6 +34,7 @@
     <g:hiddenField name="isIndianCampaign" value="${isIndianCampaign}" id="isIndianCampaign"/>
     <g:hiddenField name="titleUniqueStatus" value="true" id="titleUniqueStatus"/>
     <g:hiddenField name="country_code" value="${country_code}"/>
+    <g:hiddenField name="fundsRecievedBy" value="" id="fundsRecievedBy"/>
     
     
     <div class="cr1-header-indx1">
@@ -45,11 +46,10 @@
         <div class="container footer-container" id="campaigncreate">
             <g:uploadForm class="form-horizontal cr-top-spaces" controller="project" action="saveCampaign">
                 
-                
                 <div class="list-group campaign-entities">
                     <div class="col-sm-12 col-r-0 margin-bottom-20">
 	                    <div class="col-sm-6 col-lr-0">
-					        <a href="#" class="list-group-item text-center">
+					        <a href="#" class="list-group-item text-center" data-fundraisedby="NON-PROFIT">
 					            <label><b>Nonprofit</b></label>
                                 <label>
 	                                Crowdera helps you to raise money for charity and make a real-life impact. 
@@ -61,7 +61,7 @@
 					        </a>
 				        </div>
 				        <div class="col-sm-6 col-lr-0">
-					        <a href="#" class="list-group-item text-center">
+					        <a href="#" class="list-group-item text-center" data-fundraisedby="INDIVIDUAL">
 						        <label><b>Individual</b></label>
 						        <label>
 		                            You can use Crowdera for funding anyone's creative passion, personal needs, 
@@ -191,8 +191,8 @@
 	           <div class="createTitleDiv col-lg-4 col-md-4 col-sm-4 col-xs-12 cr1-indx1-mobileTpadding">
                     <label class="col-sm-12 text-color cr-padding-index1 cr1-myplane-padding col-r-0">I am Based in:</label>
                     <div class="col-sm-12  form-group col-lr-0">
-                        <select name="category" id="category" class="selectOption">
-                            <option value="">Please Select Country</option>
+                        <select name="country" id="country" class="selectOption">
+                            <option value="">Select One</option>
                             <g:each in="${countryList}" var="countryObj">
                                 <option value="${countryObj.key}">${countryObj.value}</option>
                             </g:each>
@@ -204,7 +204,7 @@
                     <label class="col-sm-12 text-color cr-padding-index1 cr1-myplane-padding col-r-0">Fundraiser Category:</label>
                     <div class="col-sm-12  form-group col-lr-0">
                         <select name="category" id="category" class="selectOption">
-                            <option value="">Please Select Category</option>
+                            <option value="">Select One</option>
                             <g:each in="${categoryOptions}" var="category">
                                 <option value="${category.key}">${category.value}</option>
                             </g:each>

@@ -19,6 +19,8 @@ $(function() {
     	})
     	
     	$(this).addClass("selected-entity");
+    	var fundReceivedBy = $(this).data("fundraisedby");
+    	$("#fundsRecievedBy").val(fundReceivedBy);
     })
     
     var rewardIteratorCount = $('#rewardCount').val();
@@ -179,7 +181,8 @@ $(function() {
                 maxlength: 20
             },
             country: {
-                required: true
+                required: true,
+                selectcheck: true
             },
             description : {
             	required: true,
@@ -276,6 +279,10 @@ $(function() {
                         return 200000;
                     }
                 }
+            },
+            category: {
+            	required: true,
+            	selectcheck: true
             }
         },
         messages:{
@@ -300,6 +307,10 @@ $(function() {
         }
 
     });
+    
+    jQuery.validator.addMethod('selectcheck', function(value) {
+		return (value != '0' && value != '' && value != 0);
+	}, "");
     
   //For Number Only
 	jQuery.validator.addMethod("num", function(value, element) {

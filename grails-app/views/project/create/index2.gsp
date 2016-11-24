@@ -36,6 +36,8 @@
     if (taxReciept){
         taxRecieptId = taxReciept.id
     }
+    
+    String beneficiaryName = (project.beneficiary.lastName)? project.beneficiary.firstName +' ' +project.beneficiary.lastName :  project.beneficiary.firstName
 %>
 <html>
 <head>
@@ -128,7 +130,7 @@
 								</div>
 								<div class="f1-step">
 									<div class="f1-step-icon">
-										<i class="fa fa-twitter"></i>
+										<a class=" col-sm-2 col-xs-2 cr-img-story-icon" href="#story"><div class="col-sm-0 cr-subheader-icons"><img class="cr-story TW-cr-sec-header-icon-width" src="//s3.amazonaws.com/crowdera/assets/story-Icon-White.png" alt="S"></div></a>
 									</div>
 									<p>Impact</p>
 								</div>
@@ -160,10 +162,8 @@
 										<div class="col-lg-6 col-md-6 col-sm-6">
 											<label class="col-sm-12 text-color cr-padding-index1">My Name is...</label>
 											<div class="col-sm-12 cr-padding-index1">
-												<input type="text"
-													class="form-control form-control-no-border text-color cr1-box-size"
-													id="name1" name="${FORMCONSTANTS.FIRSTNAME}"
-													placeholder="Display Name" value="${beneficiaryName}">
+												<input type="text" class="form-control form-control-no-border text-color cr1-box-size"
+													id="name1" name="${FORMCONSTANTS.FIRSTNAME}" placeholder="Display Name" value="${beneficiaryName}">
 											</div>
 										</div>
 										
@@ -203,13 +203,13 @@
 											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-7">
 												<span class="col-sm-12 cr-padding-index1">Fundraising Goal:</span>
 												<div class="cr-tops">
-													<g:if test="${project.payuStatus}">
+													<g:if test="${country_code == 'in'}">
 														<span
 															class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
 													</g:if>
-													<g:else>
+													<g:elseif test="${country_code == 'us'}">
 														<span class="i-currency-label-indx1">$</span>
-													</g:else>
+													</g:elseif>
 													<input
 														class="form-control form-control-no-border-amt cr-amt-indx1"
 														name="amount1" value="${project.amount.round()}"
@@ -240,13 +240,13 @@
 										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-7">
 											<span class="col-sm-12 cr-padding-index1">Fundraising Goal:</span>
 											<div class="cr-tops">
-												<g:if test="${project.payuStatus}">
+												<g:if test="${country_code == 'in'}">
 													<span
 														class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
 												</g:if>
-												<g:else>
+												<g:elseif test="${country_code == 'us'}">
 													<span class="i-currency-label-indx1">$</span>
-												</g:else>
+												</g:elseif>
 												<input
 													class="form-control form-control-no-border-amt cr-amt-indx1"
 													name="amount" value="${project.amount.round()}"
@@ -290,7 +290,7 @@
 						                    <label class="col-sm-12 text-color cr-padding-index1 cr1-myplane-padding col-r-0">I am Based in:</label>
 						                    <div class="col-sm-12  form-group col-lr-0">
 						                        <select name="category" id="category" class="selectOption">
-						                            <option value="">Please Select Country</option>
+						                            <option value="">Select One</option>
 						                            <g:each in="${countryList}" var="countryObj">
 						                                <option value="${countryObj.key}">${countryObj.value}</option>
 						                            </g:each>
@@ -302,7 +302,7 @@
 						                    <label class="col-sm-12 text-color cr-padding-index1 cr1-myplane-padding col-r-0">Fundraiser Category:</label>
 						                    <div class="col-sm-12  form-group col-lr-0">
 						                        <select name="category" id="category" class="selectOption">
-						                            <option value="">Please Select Category</option>
+						                            <option value="">Select One</option>
 						                            <g:each in="${categoryOptions}" var="category">
 						                                <option value="${category.key}">${category.value}</option>
 						                            </g:each>

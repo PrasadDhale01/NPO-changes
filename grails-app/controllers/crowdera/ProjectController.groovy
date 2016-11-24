@@ -806,8 +806,13 @@ class ProjectController {
         def amount = params.amount ? params.amount : params.amount1;
         def currentdays = params.days ? params.days : params.days1
         def days = Integer.parseInt(currentdays)
+        
+        String fundsRecievedBy = params.fundsRecievedBy
+        String category = params.category
+        String country = params.country
 
-        def reqUrl = base_url+ params.country_code+"/project/createNow?firstName=${params.firstName}&amount=${amount}&title=${params.title}&description=${params.description}&usedFor=${params.usedFor}&days=${days}&customVanityUrl=${params.customVanityUrl}&partnerInviteCode=${params.partnerInviteCode}&country_code=${params.country_code}"
+        def reqUrl = base_url+ params.country_code+"/project/createNow?firstName=${params.firstName}&amount=${amount}&title=${params.title}&description=${params.description}&usedFor=${params.usedFor}&days=${days}&customVanityUrl=${params.customVanityUrl}&partnerInviteCode=${params.partnerInviteCode}&country_code=${params.country_code}"+
+                    "&fundsRecievedBy=${fundsRecievedBy}&category=${category}&countryName=${country}"
 		def user = userService.getCurrentUser()
         
         if (!user) {
@@ -839,12 +844,15 @@ class ProjectController {
 		
         def projectTitle
         Project project = new Project()
-        if (params.title && params.amount && params.description && params.firstName) {
+        
+        if (params.title && params.amount && params.description) {
             project = projectService.getProjectByParams(params)
-            def beneficiary = userService.getBeneficiaryByParams(params)
-            def user = userService.getCurrentUser()
-            project.draft = true;
             
+            Beneficiary beneficiary = userService.getBeneficiaryByParams(params)
+            beneficiary.country = params.countryName;
+            
+            User user = userService.getCurrentUser()
+            project.draft = true;
             
             //Send draft creation email to info@crowdera.co
             def currentEnv = projectService.getCurrentEnvironment()
@@ -2027,7 +2035,6 @@ class ProjectController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def autoSave() {
-		println("===========why isn't it coming here ========")
         def variable = request.getParameter("variable")
         def varValue = request.getParameter("varValue")
         def projectId = request.getParameter("projectId")

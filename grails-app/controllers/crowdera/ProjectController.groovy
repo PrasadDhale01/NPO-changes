@@ -792,7 +792,11 @@ class ProjectController {
         String partnerInviteCode = g.cookie(name: 'inviteCode')
         def inDays = projectService.getInDays()
 		def country = projectService.getCountryCodeForCurrentEnv(request)
-		render(view: 'create/index1', model: [FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv, partnerInviteCode: partnerInviteCode, inDays:inDays,country_code:country])
+        
+        def categoryOptions = projectService.getIndiaCategoryList();
+        def countryList = projectService.getCountry()
+        
+		render(view: 'create/index1', model: [FORMCONSTANTS: FORMCONSTANTS, countryList: countryList, currentEnv: currentEnv, partnerInviteCode: partnerInviteCode, inDays:inDays,country_code:country, categoryOptions: categoryOptions])
 	}
 
     def saveCampaign() {
@@ -873,7 +877,6 @@ class ProjectController {
 				project.payuStatus = true
 			}
 			
-			println("from createNow : " + project.payuStatus)
 			if(project.save(failOnError: true)){
                 projectTitle = (project.customVanityUrl)? projectService.getCustomVanityUrl(project) : projectService.getProjectVanityTitle(project)
                 projectService.getFundRaisersForTeam(project, user)
@@ -906,12 +909,6 @@ class ProjectController {
                 def inDays = projectService.getInDays()
                 
                 def currentEnv = projectService.getCurrentEnvironment()
-                def categoryOptions 
-                if(currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
-                    categoryOptions = projectService.getIndiaCategoryList()
-                } else {
-                    categoryOptions = projectService.getCategoryList()
-                }
 
                 def country = projectService.getCountry()
                 def nonProfit = projectService.getRecipientOfFunds()
@@ -951,8 +948,11 @@ class ProjectController {
                 def deductibleStatusList = projectService.getDeductibleStatusList()
                 def stateInd = projectService.getIndianState()
                 
+                def categoryOptions = projectService.getIndiaCategoryList();
+                def countryList = projectService.getCountry()
+                
                 render(view: 'create/index2',
-                model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, 
+                model: [categoryOptions: categoryOptions, countryList: countryList, 'payOpts':payOpts, 'country': country, 
                     nonIndprofit:nonIndprofit, nonProfit:nonProfit , currentEnv: currentEnv,
                     FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards, project:project, 
                     user:user,campaignEndDate:campaignEndDate, pieList:pieList,stateInd:stateInd,

@@ -228,7 +228,7 @@
                              src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                     </div>
                     
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 cr1-in-days">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 col-l-0 cr1-in-days padding-r-28">
                         <span class="col-lg-12 col-sm-12 col-md-12 cr-padding-index1 cr1-mobile">In Days</span>
                         <div class="cr1-font-list">
                             <g:select class="selectpicker cr-drop-color days" name="${FORMCONSTANTS.DAYS}" from="${inDays}" value="${project.days}" optionKey="key" optionValue="value" id="edit-days-desktop"/>

@@ -5590,7 +5590,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
     input.editsweb-margin-mobile {
         height: 45px;
-        padding-left: 182px;
+        padding-left: 215px;
+        padding-bottom: 8px;
         width: 100% !important;
     }
 
@@ -10506,7 +10507,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     input.cr1-paddings-lft {
         margin-left: 8px;
-        width: 142% !important;
+        padding-left: 215px;
+        padding-bottom: 10px;
+        width: 143% !important;
     }
     div.cr1-url-lft {
         padding-left: 15px !important;
@@ -19177,3 +19180,8 @@ a< #returnTotop:focus{
   outline: none;
 }
 
+.selectOption {
+    width: 100%;
+    height: 43px;
+    border-color: #e3e3e3;
+}

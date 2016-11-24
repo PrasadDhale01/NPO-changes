@@ -1913,3 +1913,6 @@ a.manage-campaigndetails-font{
 .campaign-entities .list-group-item.selected-entity {
     background-color: #efefef !important;
 }
+.padding-r-28 {
+	padding-right: 28px !important;
+}

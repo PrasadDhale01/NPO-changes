@@ -1,5 +1,5 @@
-<g:set var="rewardService" bean="rewardService"/>
-<%@ page import="java.text.SimpleDateFormat" %>
+<g:set var="rewardService" bean="rewardService" />
+<%@ page import="java.text.SimpleDateFormat"%>
 <%
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
     def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 + country_code: grailsApplication.config.crowdera.BASE_URL + country_code
@@ -39,39 +39,45 @@
 %>
 <html>
 <head>
-	<title>Crowdera- Create campaign</title>
-	<link rel="canonical" href="${base_url}/campaign/start"/>
-	<meta name="layout" content="main" />
-	<r:require modules="projectcreatejs, bootstrapwizard" />
-	
-	<link rel="stylesheet" href="/css/datepicker.css">
-    <link rel="stylesheet" href="/css/style.css">
-    
-    <!-- Javascript -->
-    <script src="/js/bootstrap-wizard/jquery-1.11.1.min.js"></script>
+<title>Crowdera- Create campaign</title>
+<link rel="canonical" href="${base_url}/campaign/start" />
+<meta name="layout" content="main" />
+<r:require modules="projectcreatejs, bootstrapwizard" />
+
+<link rel="stylesheet" href="/css/datepicker.css">
+<link rel="stylesheet" href="/css/style.css">
 
 </head>
 <body>
-    <input type="hidden" id="b_url" value="<%=base_url%>" /> 
-    <input type="hidden" name="uuid" id="uuid" />
-    <input type="hidden" name="charity_name" id="charity_name" />
-    <input type="hidden" name="url" value="${currentEnv}" id="currentEnv"/>
-    
-    <g:hiddenField name="payfir" value="${project.charitableId}" id="payfir"/>
-    <g:hiddenField name="paypal" value="${project.paypalEmail}"/>
-    <g:hiddenField name="projectamount" value="${project.amount.round()}" id="projectamount"/>
-    <g:hiddenField name="vanityUrlStatus" id="vanityUrlStatus" value="true"/>
-    <g:hiddenField name="spendMatrix" value="${spends.amount}" id="spendMatrix"/>
-    <g:hiddenField name="usedForCreate" id="usedForCreate" value="${project.usedFor}"/>
-    <g:hiddenField name="selectedCountry" id="selectedCountry" value="${selectedCountry}"/>
-    <g:hiddenField name="taxRecieptId" value="${taxRecieptId}" id="taxRecieptId"/>
-    <g:hiddenField name="offeringTaxReciept" id="offeringTaxReciept" value="${project.offeringTaxReciept}"/>
-    
-    <g:hiddenField name="titleUniqueStatus" value="true" id="titleUniqueStatus"/>
-    <g:hiddenField name="isIndianCampaign" value="${project.payuStatus}" id="isIndianCampaign"/>
+	<input type="hidden" id="b_url" value="<%=base_url%>" />
+	<input type="hidden" name="uuid" id="uuid" />
+	<input type="hidden" name="charity_name" id="charity_name" />
+	<input type="hidden" name="url" value="${currentEnv}" id="currentEnv" />
 
-    <%--<div class="text-center">
-	<g:hiddenField name="country_code" value="${country_code}"/>
+	<g:hiddenField name="payfir" value="${project.charitableId}"
+		id="payfir" />
+	<g:hiddenField name="paypal" value="${project.paypalEmail}" />
+	<g:hiddenField name="projectamount" value="${project.amount.round()}"
+		id="projectamount" />
+	<g:hiddenField name="vanityUrlStatus" id="vanityUrlStatus" value="true" />
+	<g:hiddenField name="spendMatrix" value="${spends.amount}"
+		id="spendMatrix" />
+	<g:hiddenField name="usedForCreate" id="usedForCreate"
+		value="${project.usedFor}" />
+	<g:hiddenField name="selectedCountry" id="selectedCountry"
+		value="${selectedCountry}" />
+	<g:hiddenField name="taxRecieptId" value="${taxRecieptId}"
+		id="taxRecieptId" />
+	<g:hiddenField name="offeringTaxReciept" id="offeringTaxReciept"
+		value="${project.offeringTaxReciept}" />
+
+	<g:hiddenField name="titleUniqueStatus" value="true"
+		id="titleUniqueStatus" />
+	<g:hiddenField name="isIndianCampaign" value="${project.payuStatus}"
+		id="isIndianCampaign" />
+
+	<%--<div class="text-center">
+	
 	
     <div class="text-center">
         <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
@@ -84,324 +90,484 @@
         </header>
     </div>
     --%>
-    <div class="bg-color col-sm-12 col-xs-12 cr-top-space">
-        <div class="container footer-container" id="campaigncreate">
-        
-            <g:hiddenField name="projectId" id="projectId" value="${project.id}"/>
-            <%--<div class="startsection"></div>
+	<div class="bg-color col-sm-12 col-xs-12 cr-top-space">
+		<div class="container footer-container" id="campaigncreate">
+
+
+			<%--<div class="startsection"></div>
             
             --%>
-            <div class="top-content">
-                
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 form-box">
-                    
-                         <g:uploadForm class="form-horizontal f1"  controller="project" action="campaignOnDraftAndLaunch" params="['title': vanityTitle, 'userName':vanityUsername]">
-                         
-                            <div class="f1-steps text-center">
-                                <div class="col-xs-12">
-                                    <div class="f1-progress">
-                                        <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="4" style="width: 16.66%;"></div>
-                                    </div>
-                                </div>
-                                <div class="f1-step active">
-                                    <div class="f1-step-icon"><i class="fa fa-user"></i></div>
-                                    <p>Start</p>
-                                </div>
-                                <div class="f1-step">
-                                    <div class="f1-step-icon"><i class="fa fa-key"></i></div>
-                                    <p>Story</p>
-                                </div>
-                                <div class="f1-step">
-                                    <div class="f1-step-icon"><i class="fa fa-twitter"></i></div>
-                                    <p>Impact</p>
-                                </div>
-                                <div class="f1-step">
-                                    <div class="f1-step-icon"><i class="fa fa-twitter"></i></div>
-                                    <p>social</p>
-                                </div>
-                                <div class="f1-step">
-                                    <div class="f1-step-icon"><i class="fa fa-twitter"></i></div>
-                                    <p>Perks</p>
-                                </div>
-                                <div class="f1-step">
-                                    <div class="f1-step-icon"><i class="fa fa-twitter"></i></div>
-                                    <p>Payments</p>
-                                </div>
-                            </div>
-                                
-                            <fieldset>
-                            
-                                 <%--Desktop code --%>
-					             <div class="col-lg-12 col-md-12 col-sm-12">
-					                <div class="form-group edit-tabsMobile-margin">
-					                    <div class="col-lg-6 col-md-6 col-sm-6">
-					                       <label class="col-sm-12 text-color cr-padding-index1">My Name is...</label>
-					                       <div class="col-sm-12 cr-padding-index1">
-					                           <input type="text" class="form-control form-control-no-border text-color cr1-box-size" id="name1" name="${FORMCONSTANTS.FIRSTNAME}" placeholder="Display Name" value="${beneficiaryName}">
-					                       </div>
-					                    </div>
-					                    
-					                    <%--Mobile-code --%>
-					                    <div class="form-group cr2-form-need visible-xs">
-					                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-7">
-					                            <span class="col-lg-6 col-sm-6 col-md-6 cr-padding-index1">I need</span>
-					                            <div class="cr-tops">
-					                                <g:if test="${project.payuStatus}">
-					                                    <span class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
-					                                </g:if>
-					                                <g:else>
-					                                    <span class="i-currency-label-indx1">$</span>
-					                                </g:else>   
-					                                <input class="form-control form-control-no-border-amt cr-amt-indx1" name="amount1" value="${project.amount.round()}" id="amount1"> 
-					                                <span id="errormsg1"></span>
-					                            </div>
-					                        </div>
-					                        
-					                        <div class="col-lg-1 col-md-1 col-sm-1 amount-popover cr1-mobile-padding-amt col-xs-1">
-					                            <img class="cr1-amountInfo-img <g:if test="${project.payuStatus}">cr1-guidence-indo</g:if><g:else>cr1-guidence-us</g:else>" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
-					                        </div>
-					                        
-					                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 cr1-in-days">
-					                            <span class="col-lg-12 col-sm-12 col-md-12 cr-padding-index1 cr1-mobile">In Days</span>
-					                            <div class="cr1-font-list">
-					                                <g:select class="selectpicker cr-drop-color days" name="${FORMCONSTANTS.DAYS}" from="${inDays}" value="${project.days}" optionKey="key" optionValue="value" id="edit-days-mob"/>
-					                            </div> 
-					                        </div>
-					                    </div>
-					                
-					                    <%--desktop-code --%>
-					                    <div class="col-lg-6 col-md-6 col-sm-6 cr1-and-Iwant-tabs-mobile">
-					                        <div class="btn-group col-sm-12 cr-index1-padding" data-toggle="buttons">
-					                            <div class="cr1-tab-title">and I want to</div>
-					                            <label class="btn btn-default cr1-indx1-inovat cr1-check-btn-indx cr1-tb-color cr1-mob-tb-pd col-sm-3 col-xs-12 <g:if test="${project.usedFor == 'IMPACT'}">active</g:if>" id="impact1"> <input type="radio" value="yes"><span class="cr1-tb-text-sm">Make an</span><br><span class="cr1-tb-text-lg-indx">Impact</span></label> 
-					                            <label class="btn btn-default cr1-indx1-inovat cr1-check-btn-indx cr1-tb-color cr1-indx1-tabs-sm cr1-mob-tb-pd  col-sm-3 col-xs-12 <g:if test="${project.usedFor == 'PASSION'}">active</g:if>" id="passion1"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Follow my</span><br><span class="cr1-tb-text-lg-indx">Passion</span></label>
-					                            <label class="btn btn-default cr1-indx1-inovat cr1-check-btn-indx cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 <g:if test="${project.usedFor == 'SOCIAL_NEEDS'}">active</g:if>"  id="innovating1"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Do Social</span><br><span class="cr1-tb-text-lg-indx">Innovation</span><br></label>
-					                            <label class="btn btn-default cr1-indx1-inovat cr1-check-btn-indx cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 <g:if test="${project.usedFor == 'PERSONAL_NEEDS'}">active</g:if>" id="personal1"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Fullfill Personal</span><br><span class="cr1-tb-text-lg-indx">Needs</span></label>
-					                            <g:hiddenField name="usedFor" id="usedFor" value="${project.usedFor}"/>
-					                        </div>
-					                    </div>
-					                </div>
-					                
-					                <div class="form-group cr2-form-need hidden-xs edit-tabsMobile-margin">
-					                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-7">
-					                        <span class="col-lg-6 col-sm-6 col-md-6 cr-padding-index1">I need</span>
-					                        <div class="cr-tops">
-					                            <g:if test="${project.payuStatus}">
-					                                <span class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
-					                            </g:if>
-					                            <g:else>
-					                                <span class="i-currency-label-indx1">$</span>
-					                            </g:else>   
-					                            <input class="form-control form-control-no-border-amt cr-amt-indx1" name="amount" value="${project.amount.round()}" id="amount2"> 
-					                            <span id="errormsg2"></span>
-					                        </div>
-					                    </div>
-					                    
-					                    <div class="col-lg-1 col-md-1 col-sm-1 amount-popover cr1-mobile-padding-amt col-xs-1">
-					                        <img class="cr1-amountInfo-img <g:if test="${project.payuStatus}">amountInfoInd-img</g:if><g:else>amountInfo-img</g:else>" 
-					                             src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
-					                    </div>
-					                    
-					                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 col-l-0 cr1-in-days">
-					                        <span class="col-lg-12 col-sm-12 col-md-12 cr-padding-index1 cr1-mobile">In Days</span>
-					                        <div class="cr1-font-list">
-					                            <g:select class="selectpicker cr-drop-color days" name="${FORMCONSTANTS.DAYS}" from="${inDays}" value="${project.days}" optionKey="key" optionValue="value" id="edit-days-desktop"/>
-					                        </div> 
-					                    </div>
-					                </div>
-					                <div class="form-group edit-tabsMobile-margin">
-					                    <div class="createTitleDiv col-lg-6 col-md-6 col-sm-6 cr1-indx1-mobileTpadding">
-					                        <label class="col-sm-12 text-color cr-padding-index1">My plan is...</label>
-					                        <div class="col-sm-12 cr-padding-index1 col-edit-title">
-					                            <input class="form-control form-control-no-border cr-myplan-indx1 text-color campaignTitle" name="${FORMCONSTANTS.TITLE}" placeholder="Create an impactful and actionable title. Helps donors find campaign." value="${project.title}" id="campaignTitle1" maxlength="55">
-					                            <label class="pull-right " id="titleLength"></label>
-					                        </div>
-					                    </div>
-					                    <div class="col-lg-6 col-md-6 col-sm-6 editCustomVanityUrl">
-					                        <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 hidden-xs">My campaign web address</label>
-					                        <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 visible-xs">
-					                            <g:if test="${project.payuStatus}">
-					                                crowdera.in/campaigns/
-					                            </g:if>
-					                            <g:else>
-					                                gocrowdera.com/campaigns/
-					                            </g:else>
-					                        </label>
-					                        <div class="col-sm-12 col-xs-12 cr1-mobile-indx1 col-web-url">
-					                            <div class="cr1-vanityUrl-indx1 hidden-xs">
-					                                <g:if test="${project.payuStatus}">
-					                                    crowdera.in/campaigns/
-					                                </g:if>
-					                                <g:else>
-					                                    gocrowdera.com/campaigns/
-					                                </g:else>
-					                            </div>
-					                            <input class="form-control form-control-no-border editsweb-margin-mobile  cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd customVanityUrl" name="customVanityUrl" maxlength="55" value="${project?.customVanityUrl}" id="customVanityUrl" placeholder="Your-Campaign-web-url" <g:if test="${project?.validated && project?.customVanityUrl}">readonly</g:if>>
-					                        </div>
-					                        <div class="clear" id="vanityUrlClear"></div>
-					                        <label class="pull-right" id="vanityUrlLength"></label>
-					                    </div>
-					                </div>
-					
-					                <div class="form-group createDescDiv edit-tabsMobile-margin">
-					                    <div class="col-sm-12 cr1-descriptions-indx1 edit-description">
-					                        <textarea class="form-control form-control-no-border text-color" id="descarea1" name="${FORMCONSTANTS.DESCRIPTION}" rows="2" placeholder="Campaign Description" maxlength="140">${project.description}</textarea>
-					                        <label class="pull-right " id="desclength"></label>
-					                    </div>
-					                </div>
-					             </div>
-                                
-                                
-                                <div class="col-xs-12 campaign-btn-div text-center">
-                                     <button type="button" class="btn campaign-btn-primary btn-next" data-groupid= "1">Save And Continue</button>
-                                </div>
-                            </fieldset>
-                            
-                            <fieldset>
-                            
-                                <g:hiddenField name="campaignvideoUrl" value="${project.videoUrl}" id="addvideoUrl"/>
-                                <div class="col-sm-6 video-popover" id="media">
-                                    <div class="panel panel-default panel-create-size" id="videoBox">
-                                        <div class="form-group">
-                                            <div class="col-md-10 col-xs-8 col-videoUrl-textbox">
-                                                <input class="form-control form-control-no-border text-color videoUrl" id="videoUrlText" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
-                                            </div>
-                                            <div class="col-sm-2 col-xs-2 col-videoUrl-button">
-                                                <button type="button" class="btn btn-info btn-sm cr-btn-color add" id="addVideoButton">Add</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <img class="videoInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
-                                </div>
-                                
-                                <div class="col-sm-6 video-popover" id="media-video">
-                                    <div class="panel panel-default panel-create-size">
-                                        <div class="panel-body">
-                                            <div class="form-group">
-                                                <div class="col-sm-6" id="ytVideo"></div>
-                                            </div>
-                                            <span class="videoUrledit close" id="videoUrledit"><i class="glyphicon glyphicon-edit" ></i></span>
-                                            <span class="videoUrledit close"><i class="glyphicon glyphicon-trash" id="deleteVideo"></i></span>
-                                        </div>
-                                    </div>
-                                    <img class="videoInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
-                                </div>
-                                
-                                <div class="col-sm-6 image-popover">
-                                    <div class="panel panel-default panel-create-size upload-campaign-pic panel-pic-uploaded <g:if test="${!project.imageUrl}">panel-hidden</g:if>">
-                                        <div class="form-group" id="createthumbnail">
-                                            <div class="createpage-img-panel">
-                                                <div class="col-sm-12 pad-result" id="campaignthumbnails">
-                                                    <g:each var="imgurl" in="${project.imageUrl}">
-                                                        <div id="imgdiv" class="pr-thumb-div">
-                                                            <img alt="image" class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}">
-                                                            <div class="deleteicon pictures-edit-deleteicon">
-                                                                <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
-                                                            </div>
-                                                        </div>
-                                                    </g:each>
+			<div class="top-content">
+
+				<div class="row">
+					<div class="col-sm-12 col-md-12 form-box">
+
+						<g:uploadForm class="form-horizontal f1" controller="project" action="campaignOnDraftAndLaunch" params="['title': vanityTitle, 'userName':vanityUsername]">
+
+							<g:hiddenField name="country_code" value="${country_code}" />
+							<g:hiddenField name="projectId" id="projectId" value="${project.id}" />
+							
+							<div class="f1-steps text-center">
+								<div class="col-xs-12">
+									<div class="f1-progress">
+										<div class="f1-progress-line" data-now-value="16.66"
+											data-number-of-steps="4" style="width: 16.66%;"></div>
+									</div>
+								</div>
+								<div class="f1-step active">
+									<div class="f1-step-icon">
+									   <a class=" col-sm-2 col-xs-2 cr-img-start-icon" href="#start"><div class="col-sm-0 cr-subheader-icons"><img class="cr-start TW-cr-sec-header-start-icon-width" src="//s3.amazonaws.com/crowdera/assets/start-Icon-White.png" alt="S"></div></a>
+									</div>
+									<p>Start</p>
+								</div>
+								<div class="f1-step">
+									<div class="f1-step-icon">
+                                        <a class=" col-sm-2 col-xs-2 cr-img-story-icon" href="#story"><div class="col-sm-0 cr-subheader-icons"><img class="cr-story TW-cr-sec-header-icon-width" src="//s3.amazonaws.com/crowdera/assets/story-Icon-White.png" alt="S"></div></a>
+									</div>
+									<p>Story</p>
+								</div>
+								<div class="f1-step">
+									<div class="f1-step-icon">
+										<i class="fa fa-twitter"></i>
+									</div>
+									<p>Impact</p>
+								</div>
+								<div class="f1-step">
+									<div class="f1-step-icon">
+									   <a class=" col-sm-2 col-xs-2 cr-img-admin-icon" href="#admins"><div class="col-sm-0 cr-subheader-icons"><img class="cr-admin TW-cr-sec-header-icon-width" src="//s3.amazonaws.com/crowdera/assets/admin-Icon---White.png" alt="A"></div></a>
+									</div>
+									<p>social</p>
+								</div>
+								<div class="f1-step">
+									<div class="f1-step-icon">
+									   <a class=" col-sm-2 col-xs-2 cr-img-perk-icon" href="#perk"><div class="col-sm-0 cr-subheader-icons"><img class="cr-perk TW-cr-sec-header-icon-width" src="//s3.amazonaws.com/crowdera/assets/perk-Icon-White.png" alt="P"></div></a>
+									</div>
+									<p>Perks</p>
+								</div>
+								<div class="f1-step">
+									<div class="f1-step-icon">
+									<a class=" col-sm-2 col-xs-2 cr-img-payment-icon" href="#payment"><div class="col-sm-0 cr-subheader-icons"><img class="cr-payment TW-cr-sec-header-icon-width" src="//s3.amazonaws.com/crowdera/assets/payment-Icon-White.png" alt="P"></div></a>
+									</div>
+									<p>Payments</p>
+								</div>
+							</div>
+
+							<fieldset>
+
+								<%--Desktop code --%>
+								<div class="col-lg-12 col-md-12 col-sm-12">
+									<div class="form-group edit-tabsMobile-margin">
+										<div class="col-lg-6 col-md-6 col-sm-6">
+											<label class="col-sm-12 text-color cr-padding-index1">My Name is...</label>
+											<div class="col-sm-12 cr-padding-index1">
+												<input type="text"
+													class="form-control form-control-no-border text-color cr1-box-size"
+													id="name1" name="${FORMCONSTANTS.FIRSTNAME}"
+													placeholder="Display Name" value="${beneficiaryName}">
+											</div>
+										</div>
+										
+										<div class="col-lg-6 col-md-6 col-sm-6 editCustomVanityUrl">
+                                            <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 hidden-xs">My
+                                                campaign web address
+                                                </label> 
+                                                <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 visible-xs">
+                                                <g:if test="${project.payuStatus}">
+                                                    crowdera.in/campaigns/
+                                                </g:if> <g:else>
+                                                    gocrowdera.com/campaigns/
+                                                </g:else>
+                                            </label>
+                                            <div class="col-sm-12 col-xs-12 cr1-mobile-indx1 col-web-url">
+                                                <div class="cr1-vanityUrl-indx1 hidden-xs">
+                                                    <g:if test="${project.payuStatus}">
+                                                        crowdera.in/campaigns/
+                                                    </g:if>
+                                                    <g:else>
+                                                        gocrowdera.com/campaigns/
+                                                    </g:else>
                                                 </div>
-                                                <div class="clear"></div>
-                                                <div class="col-md-12">
-                                                    <div id="uploadingCampaignImage">Uploading Image......</div>
-                                                    <div class="imageNumValidation">You cannot upload more than 5 images</div>
-                                                    <label class="docfile-orglogo-css imgmsg"></label>
-                                                    <label class="docfile-orglogo-css campaignfilesize" id="campaignFilesizeID"></label>
-                                                </div>
+                                                <input
+                                                    class="form-control form-control-no-border editsweb-margin-mobile  cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd customVanityUrl"
+                                                    name="customVanityUrl" maxlength="55"
+                                                    value="${project?.customVanityUrl}" id="customVanityUrl"
+                                                    placeholder="Your-Campaign-web-url"
+                                                    <g:if test="${project?.validated && project?.customVanityUrl}">readonly</g:if>>
                                             </div>
-                    
-                                            <div class="col-pictures pull-right">
-                                                <div class="fileUpload btn btn-info btn-sm cr-btn-color">
-                                                    Add Image 
-                                                    <input type="file" class="upload" name="addCampaignImage" id="campaignImage" accept="image/jpeg, image/png">
-                                                </div>
-                                            </div>
+                                            <div class="clear" id="vanityUrlClear"></div>
+                                            <label class="pull-right" id="vanityUrlLength"></label>
                                         </div>
-                                    </div>
-                                    <div class="panel panel-default panel-create-size upload-campaign-pic panel-no-image <g:if test="${project.imageUrl}">panel-hidden</g:if>">
-                                        <div class="col-sm-12 col-add-picture">
-                                            <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
-                                                Add Image
-                                                <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" accept="image/jpeg, image/png">
-                                            </div>
-                                        </div>
-                                        <div class="clear"></div>
-                                        <div class="col-sm-12 col-error-placement" id="col-error-placement">
-                                            <label class="docfile-orglogo-css imgmsg"></label>
-                                            <label class="docfile-orglogo-css campaignfilesize" id="campaignFilesizeID1"></label>
-                                        </div>
-                                    </div>
-                                    <img class="pictureInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
-                                </div>
-                            
-                                <div class="col-sm-12" id="story">
-                                    <div class="form-group">
-                                        <div class="col-sm-12 cr-story-padding">
-                                            <div class="cr-story-flx cr-safari">
-                                                <label class="panel body cr-story-size cr-safari">STORY</label>
-                                                <label class="panel-body cr-panel-story">A good engaging story is the backbone of your Campaign.
-                                                                         You want your readers to be compelled to share your story
-                                                                         and make your campaign go viral. Be passionate and make 
-                                                                         them believe and trust your goal.</label>
-                                            </div>
-                                            <textarea name="${FORMCONSTANTS.STORY}" class="redactorEditor">
-                                                <g:if test="${project.story}">${project.story}</g:if>
+
+										<%--Mobile-code --%>
+										<div class="form-group cr2-form-need visible-xs">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-7">
+												<span class="col-sm-12 cr-padding-index1">Fundraising Goal:</span>
+												<div class="cr-tops">
+													<g:if test="${project.payuStatus}">
+														<span
+															class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
+													</g:if>
+													<g:else>
+														<span class="i-currency-label-indx1">$</span>
+													</g:else>
+													<input
+														class="form-control form-control-no-border-amt cr-amt-indx1"
+														name="amount1" value="${project.amount.round()}"
+														id="amount1"> <span id="errormsg1"></span>
+												</div>
+											</div>
+
+											<div
+												class="col-lg-1 col-md-1 col-sm-1 amount-popover cr1-mobile-padding-amt col-xs-1">
+												<img
+													class="cr1-amountInfo-img <g:if test="${project.payuStatus}">cr1-guidence-indo</g:if><g:else>cr1-guidence-us</g:else>"
+													src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png"
+													alt="Information icon">
+											</div>
+
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 cr1-in-days">
+												<span class="col-lg-12 col-sm-12 col-md-12 cr-padding-index1 cr1-mobile">In Days</span>
+												<div class="cr1-font-list">
+													<g:select class="selectpicker cr-drop-color days" name="${FORMCONSTANTS.DAYS}" from="${inDays}"
+														value="${project.days}" optionKey="key" optionValue="value" id="edit-days-mob" />
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+									<div class="form-group cr2-form-need hidden-xs edit-tabsMobile-margin">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-7">
+											<span class="col-sm-12 cr-padding-index1">Fundraising Goal:</span>
+											<div class="cr-tops">
+												<g:if test="${project.payuStatus}">
+													<span
+														class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
+												</g:if>
+												<g:else>
+													<span class="i-currency-label-indx1">$</span>
+												</g:else>
+												<input
+													class="form-control form-control-no-border-amt cr-amt-indx1"
+													name="amount" value="${project.amount.round()}"
+													id="amount2"> <span id="errormsg2"></span>
+											</div>
+										</div>
+
+										<div
+											class="col-lg-1 col-md-1 col-sm-1 amount-popover cr1-mobile-padding-amt col-xs-1">
+											<img
+												class="cr1-amountInfo-img <g:if test="${project.payuStatus}">amountInfoInd-img</g:if><g:else>amountInfo-img</g:else>"
+												src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png"
+												alt="Information icon">
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 col-l-0 cr1-in-days padding-r-28">
+											<span class="col-lg-12 col-sm-12 col-md-12 cr-padding-index1 cr1-mobile">In
+												Days</span>
+											<div class="cr1-font-list">
+												<g:select class="selectpicker cr-drop-color days"
+													name="${FORMCONSTANTS.DAYS}" from="${inDays}"
+													value="${project.days}" optionKey="key" optionValue="value"
+													id="edit-days-desktop" />
+											</div>
+										</div>
+									</div>
+									<div class="form-group edit-tabsMobile-margin">
+										<div class="createTitleDiv col-lg-4 col-md-4 col-sm-4 cr1-indx1-mobileTpadding">
+											<label class="col-sm-12 text-color cr-padding-index1">Fundraiser Title:</label>
+											<div class="col-sm-12 cr-padding-index1 col-edit-title">
+												<input
+													class="form-control form-control-no-border cr-myplan-indx1 text-color campaignTitle"
+													name="${FORMCONSTANTS.TITLE}"
+													placeholder="Create an impactful and actionable title. Helps donors find campaign."
+													value="${project.title}" id="campaignTitle1" maxlength="55">
+												<label class="pull-right " id="titleLength"></label>
+											</div>
+										</div>
+										
+						               <div class="createTitleDiv col-l-0 col-lg-4 col-md-4 col-sm-4 col-xs-12 cr1-indx1-mobileTpadding">
+						                    <label class="col-sm-12 text-color cr-padding-index1 cr1-myplane-padding col-r-0">I am Based in:</label>
+						                    <div class="col-sm-12  form-group col-lr-0">
+						                        <select name="category" id="category" class="selectOption">
+						                            <option value="">Please Select Country</option>
+						                            <g:each in="${countryList}" var="countryObj">
+						                                <option value="${countryObj.key}">${countryObj.value}</option>
+						                            </g:each>
+						                        </select>
+						                    </div>
+						               </div>
+						               
+						               <div class="createTitleDiv col-lg-4 col-md-4 col-sm-4 col-xs-12 cr1-indx1-mobileTpadding col-l-0">
+						                    <label class="col-sm-12 text-color cr-padding-index1 cr1-myplane-padding col-r-0">Fundraiser Category:</label>
+						                    <div class="col-sm-12  form-group col-lr-0">
+						                        <select name="category" id="category" class="selectOption">
+						                            <option value="">Please Select Category</option>
+						                            <g:each in="${categoryOptions}" var="category">
+						                                <option value="${category.key}">${category.value}</option>
+						                            </g:each>
+						                        </select>
+						                    </div>
+						               </div>
+               
+									</div>
+									
+									
+
+									<div class="form-group createDescDiv edit-tabsMobile-margin">
+										<div class="col-sm-12 cr1-descriptions-indx1 edit-description">
+											<textarea
+												class="form-control form-control-no-border text-color"
+												id="descarea1" name="${FORMCONSTANTS.DESCRIPTION}" rows="2"
+												placeholder="Campaign Description" maxlength="140">
+												${project.description}
+											</textarea>
+											<label class="pull-right " id="desclength"></label>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="col-xs-12 campaign-btn-div text-center">
+									<button type="button" class="btn campaign-btn-primary btn-next"
+										data-groupid="1">Save And Continue</button>
+								</div>
+							</fieldset>
+
+							<fieldset>
+
+								<g:hiddenField name="campaignvideoUrl"
+									value="${project.videoUrl}" id="addvideoUrl" />
+								<div class="col-sm-6 video-popover" id="media">
+									<div class="panel panel-default panel-create-size"
+										id="videoBox">
+										<div class="form-group">
+											<div class="col-md-10 col-xs-8 col-videoUrl-textbox">
+												<input
+													class="form-control form-control-no-border text-color videoUrl"
+													id="videoUrlText" name="${FORMCONSTANTS.VIDEO}"
+													placeholder="Video URL">
+											</div>
+											<div class="col-sm-2 col-xs-2 col-videoUrl-button">
+												<button type="button"
+													class="btn btn-info btn-sm cr-btn-color add"
+													id="addVideoButton">Add</button>
+											</div>
+										</div>
+									</div>
+									<img class="videoInfo-img"
+										src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png"
+										alt="Information icon">
+								</div>
+
+								<div class="col-sm-6 video-popover" id="media-video">
+									<div class="panel panel-default panel-create-size">
+										<div class="panel-body">
+											<div class="form-group">
+												<div class="col-sm-6" id="ytVideo"></div>
+											</div>
+											<span class="videoUrledit close" id="videoUrledit"><i
+												class="glyphicon glyphicon-edit"></i></span> <span
+												class="videoUrledit close"><i
+												class="glyphicon glyphicon-trash" id="deleteVideo"></i></span>
+										</div>
+									</div>
+									<img class="videoInfo-img"
+										src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png"
+										alt="Information icon">
+								</div>
+
+								<div class="col-sm-6 image-popover">
+									<div
+										class="panel panel-default panel-create-size upload-campaign-pic panel-pic-uploaded <g:if test="${!project.imageUrl}">panel-hidden</g:if>">
+										<div class="form-group" id="createthumbnail">
+											<div class="createpage-img-panel">
+												<div class="col-sm-12 pad-result" id="campaignthumbnails">
+													<g:each var="imgurl" in="${project.imageUrl}">
+														<div id="imgdiv" class="pr-thumb-div">
+															<img alt="image" class='pr-thumbnail'
+																src='${imgurl.url }' id="imgThumb${imgurl.id}">
+															<div class="deleteicon pictures-edit-deleteicon">
+																<img alt="cross"
+																	onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');"
+																	src="//s3.amazonaws.com/crowdera/assets/delete.ico">
+															</div>
+														</div>
+													</g:each>
+												</div>
+												<div class="clear"></div>
+												<div class="col-md-12">
+													<div id="uploadingCampaignImage">Uploading
+														Image......</div>
+													<div class="imageNumValidation">You cannot upload
+														more than 5 images</div>
+													<label class="docfile-orglogo-css imgmsg"></label> <label
+														class="docfile-orglogo-css campaignfilesize"
+														id="campaignFilesizeID"></label>
+												</div>
+											</div>
+
+											<div class="col-pictures pull-right">
+												<div class="fileUpload btn btn-info btn-sm cr-btn-color">
+													Add Image <input type="file" class="upload"
+														name="addCampaignImage" id="campaignImage"
+														accept="image/jpeg, image/png">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div
+										class="panel panel-default panel-create-size upload-campaign-pic panel-no-image <g:if test="${project.imageUrl}">panel-hidden</g:if>">
+										<div class="col-sm-12 col-add-picture">
+											<div class="fileUpload btn btn-info btn-sm cr-btn-color ">
+												Add Image <input type="file" class="upload"
+													name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile"
+													accept="image/jpeg, image/png">
+											</div>
+										</div>
+										<div class="clear"></div>
+										<div class="col-sm-12 col-error-placement"
+											id="col-error-placement">
+											<label class="docfile-orglogo-css imgmsg"></label> <label
+												class="docfile-orglogo-css campaignfilesize"
+												id="campaignFilesizeID1"></label>
+										</div>
+									</div>
+									<img class="pictureInfo-img"
+										src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png"
+										alt="Information icon">
+								</div>
+
+								<div class="col-sm-12" id="story">
+									<div class="form-group">
+										<div class="col-sm-12 cr-story-padding">
+											<div class="cr-story-flx cr-safari">
+												<label class="panel body cr-story-size cr-safari">STORY</label>
+												<label class="panel-body cr-panel-story">A good
+													engaging story is the backbone of your Campaign. You want
+													your readers to be compelled to share your story and make
+													your campaign go viral. Be passionate and make them believe
+													and trust your goal.</label>
+											</div>
+											<textarea name="${FORMCONSTANTS.STORY}"
+												class="redactorEditor">
+                                                <g:if
+													test="${project.story}">
+													${project.story}
+												</g:if>
                                             </textarea>
-                                            <span id="storyRequired">Ths field is required</span>
-                                            <g:hiddenField name="projectHasStory" id="projectHasStory" value="${project.story}"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
-                                    <div class="col-sm-12 padding-right-xs">
-                                        <div class="cr-spend-matrix">
-                                            <label class="col-md-4 col-sm-6 col-xs-12 text-center cr-panel-spend-matrix cr-panel-qa"><span class="cr-spend-matrix-font">Your Contributors Want to Know</span></label>
-                                            <label class="col-md-8 col-sm-6 hidden-xs cr-panel-spend-matrix-guide cr-panel-qa-guide"></label>
-                                        </div>
-                                        <div class="panel panel-body cr-panel-body-spend-matrix">
-                                            <div class="col-sm-12 col-xs-12 zero-padding">
-                                                1. Did you try other fundraising methods ?
-                                                <div class="question-ans question-ans-1 form-group">
-                                                    <p><input type="radio" name="ans1" class="ans1 yes" value="yes" <g:if test="${qA && qA.ans1 && qA.ans1 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
-                                                    <input type="radio" name="ans1" class="ans1 no" value="no" <g:if test="${qA && qA.ans1 && qA.ans1 == 'NO'}">checked="checked"</g:if>>&nbsp;NO</p>
-                                                    <textarea class="ansText ansText1 form-control <g:if test="${ans1val}">display-block-text1</g:if><g:else>display-none-text1</g:else>" placeholder="" name="ansText1">${ans1val}</textarea>
-                                                </div><br>
-                                                2. Why do you want to crowdfund ?
-                                                <div class="question-ans form-group">
-                                                    <textarea class="ansText ansText2 form-control" name="ansText2" maxlength="128">${ans2val}</textarea>
-                                                </div><br>
-                                                3. Have you crowdfunded before ?
-                                                <div class="question-ans question-ans-3 form-group">
-                                                    <p><input type="radio" name="ans3" class="ans3 yes" value="yes" <g:if test="${qA && qA.ans3 && qA.ans3 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
-                                                    <input type="radio" name="ans3" class="ans3 no" value="no" <g:if test="${qA && qA.ans3 && qA.ans3 == 'NO'}">checked="checked"</g:if>>&nbsp;NO</p>
-                                                    <textarea maxlength="128" class="ansText ansText3 form-control <g:if test="${ans3val}">display-block-text3</g:if><g:else>display-none-text3</g:else>" name="ansText3" placeholder="">${ans3val}</textarea>
-                                                </div><br>
-                                                4. If you don't recieve 100% goal what will you do.
-                                                <div class="question-ans form-group">
-                                                    <p><input type="radio" name="ans4" class="ans4 extend-deadline" value="extend-deadline" <g:if test="${qA && qA.ans4 && qA.ans4 == 'extend-deadline'}">checked="checked"</g:if>>&nbsp;I would extend my deadline.</p>
-                                                    <p><input type="radio" name="ans4" class="ans4 personally-raising" value="personally-raising" <g:if test="${qA && qA.ans4 && qA.ans4 == 'personally-raising'}">checked="checked"</g:if>>&nbsp;I will personally start walking towards cause using raised funds.</p>
-                                                    <p><input type="radio" name="ans4" class="ans4 contact-admin" value="contact-admin" <g:if test="${qA && qA.ans4 && qA.ans4 == 'contact-admin'}">checked="checked"</g:if>>&nbsp;I will contact crowdera admin.</p>
-                                                </div>
-                                                
-                                                5. What are the issues you or your organization is facing with regards to funding?
-                                                <div class="question-ans form-group">
-                                                    <textarea class="ansText ansText5 form-control" name="ansText5" maxlength="128">${ans5val}</textarea>
-                                                </div>
-                                                
-                                                6. Why are you crowdfunding at this moment?
-                                                <div class="question-ans form-group">
-                                                    <textarea class="ansText ansText6 form-control" name="ansText6" maxlength="128">${ans6val}</textarea>
-                                                </div>
-                                                
-                                                7. What will you do if you do not reach your goal within the chosen deadline? Will you still complete your project?
-                                                <div class="question-ans form-group">
-                                                    <textarea class="ansText ansText7 form-control" name="ansText7" maxlength="128">${ans7val}</textarea>
-                                                </div>
-                                                
-                                                8. Why should the contributors trust you?
-                                                <div class="question-ans form-group">
-                                                    <textarea class="ansText ansText8 form-control" name="ansText8" maxlength="128">${ans8val}</textarea>
+											<span id="storyRequired">Ths field is required</span>
+											<g:hiddenField name="projectHasStory" id="projectHasStory"
+												value="${project.story}" />
+										</div>
+									</div>
+								</div>
+								<g:if
+									test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
+									<div class="col-sm-12 padding-right-xs">
+										<div class="cr-spend-matrix">
+											<label
+												class="col-md-4 col-sm-6 col-xs-12 text-center cr-panel-spend-matrix cr-panel-qa"><span
+												class="cr-spend-matrix-font">Your Contributors Want
+													to Know</span></label> <label
+												class="col-md-8 col-sm-6 hidden-xs cr-panel-spend-matrix-guide cr-panel-qa-guide"></label>
+										</div>
+										<div class="panel panel-body cr-panel-body-spend-matrix">
+											<div class="col-sm-12 col-xs-12 zero-padding">
+												1. Did you try other fundraising methods ?
+												<div class="question-ans question-ans-1 form-group">
+													<p>
+														<input type="radio" name="ans1" class="ans1 yes"
+															value="yes"
+															<g:if test="${qA && qA.ans1 && qA.ans1 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
+														<input type="radio" name="ans1" class="ans1 no" value="no"
+															<g:if test="${qA && qA.ans1 && qA.ans1 == 'NO'}">checked="checked"</g:if>>&nbsp;NO
+													</p>
+													<textarea
+														class="ansText ansText1 form-control <g:if test="${ans1val}">display-block-text1</g:if><g:else>display-none-text1</g:else>"
+														placeholder="" name="ansText1">
+														${ans1val}
+													</textarea>
+												</div>
+												<br> 2. Why do you want to crowdfund ?
+												<div class="question-ans form-group">
+													<textarea class="ansText ansText2 form-control"
+														name="ansText2" maxlength="128">
+														${ans2val}
+													</textarea>
+												</div>
+												<br> 3. Have you crowdfunded before ?
+												<div class="question-ans question-ans-3 form-group">
+													<p>
+														<input type="radio" name="ans3" class="ans3 yes"
+															value="yes"
+															<g:if test="${qA && qA.ans3 && qA.ans3 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
+														<input type="radio" name="ans3" class="ans3 no" value="no"
+															<g:if test="${qA && qA.ans3 && qA.ans3 == 'NO'}">checked="checked"</g:if>>&nbsp;NO
+													</p>
+													<textarea maxlength="128"
+														class="ansText ansText3 form-control <g:if test="${ans3val}">display-block-text3</g:if><g:else>display-none-text3</g:else>"
+														name="ansText3" placeholder="">
+														${ans3val}
+													</textarea>
+												</div>
+												<br> 4. If you don't recieve 100% goal what will you
+												do.
+												<div class="question-ans form-group">
+													<p>
+														<input type="radio" name="ans4"
+															class="ans4 extend-deadline" value="extend-deadline"
+															<g:if test="${qA && qA.ans4 && qA.ans4 == 'extend-deadline'}">checked="checked"</g:if>>&nbsp;I
+														would extend my deadline.
+													</p>
+													<p>
+														<input type="radio" name="ans4"
+															class="ans4 personally-raising"
+															value="personally-raising"
+															<g:if test="${qA && qA.ans4 && qA.ans4 == 'personally-raising'}">checked="checked"</g:if>>&nbsp;I
+														will personally start walking towards cause using raised
+														funds.
+													</p>
+													<p>
+														<input type="radio" name="ans4" class="ans4 contact-admin"
+															value="contact-admin"
+															<g:if test="${qA && qA.ans4 && qA.ans4 == 'contact-admin'}">checked="checked"</g:if>>&nbsp;I
+														will contact crowdera admin.
+													</p>
+												</div>
+
+												5. What are the issues you or your organization is facing
+												with regards to funding?
+												<div class="question-ans form-group">
+													<textarea class="ansText ansText5 form-control"
+														name="ansText5" maxlength="128">
+														${ans5val}
+													</textarea>
+												</div>
+
+												6. Why are you crowdfunding at this moment?
+												<div class="question-ans form-group">
+													<textarea class="ansText ansText6 form-control"
+														name="ansText6" maxlength="128">
+														${ans6val}
+													</textarea>
+												</div>
+
+												7. What will you do if you do not reach your goal within the
+												chosen deadline? Will you still complete your project?
+												<div class="question-ans form-group">
+													<textarea class="ansText ansText7 form-control"
+														name="ansText7" maxlength="128">
+														${ans7val}
+													</textarea>
+												</div>
+
+												8. Why should the contributors trust you?
+												<div class="question-ans form-group">
+													<textarea class="ansText ansText8 form-control"
+														name="ansText8" maxlength="128">
+														${ans8val}
+													</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -552,223 +718,212 @@
                                     </div>
                                 </div>
                                 
-                                <div class="col-xs-12 col-lr-0">
-                                
-                                    <div class="col-sm-12 manage-Top-tabs-mobile" id="admins">
-                                        <div class="cr-tabs-admins cr-safari">
-                                            <label class="panel body cr-admin-title cr-safari">ADMIN</label>
-                                            <ul class="nav nav-tabs manage-projects cr-safari-mobile nav-justified cr-ul-tabs">
-                                                <li class="cr-li-tabs cr-li-tabsss cr-hover-color">
-                                                    <a href="#admin" data-toggle="tab" aria-expanded="false">
-                                                        <span class="glyphicon glyphicon-user cr-icon-tabs-user visible-xs"></span><span class="tab-text hidden-xs cr-add-tabs-title cr-font-title pull-left">Add Campaign Admin</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons hidden-xs pull-right"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="active cr-tabs-update cr-li-tabsss cr-hover-color">
-                                                    <a data-toggle="tab" href="#organization" aria-expanded="true">
-                                                        <span class="glyphicon glyphicon-eye-open cr-icon-tabs-eye visible-xs"></span><span class="tab-text hidden-xs cr-font-title pull-left">Update Display Information</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons hidden-xs pull-right"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="cr-tabs-update cr-li-tabsss cr-hover-color">
-                                                    <a data-toggle="tab" href="#personal"> 
-                                                        <span class="glyphicon glyphicon-info-sign cr-icon-tabs-info visible-xs"></span><span class="tab-text hidden-xs cr-font-title pull-left">Update Personal Information</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons hidden-xs pull-right"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                        
-                                        <!-- Tab panes -->
-                                        <div class="tab-content panel panel-default col-sm-12 cr-tab-panel-top">
-                                            <div class="tab-pane panel-body row" id="admin">
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-12">
-                                                            <g:if test="${email1}">
-                                                                <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email1" id="firstadmin" value="${email1}" placeholder="First Admin" maxlength="64">
-                                                            </g:if>
-                                                            <g:else>
-                                                                <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email1" id="firstadmin" placeholder="First Admin" maxlength="64">
-                                                            </g:else>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                              
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-12">
-                                                            <g:if test="${email2}">
-                                                                <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email2" id="secondadmin" value="${email2}" placeholder="Second Admin" maxlength="64">
-                                                            </g:if>
-                                                            <g:else>
-                                                                <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email2" id="secondadmin" placeholder="Second Admin" maxlength="64">
-                                                            </g:else>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                        
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-12">
-                                                            <g:if test="${email3}">
-                                                                <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email3" id="thirdadmin" value="${email3}" placeholder="Third Admin" maxlength="64">
-                                                            </g:if>
-                                                            <g:else>
-                                                                <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email3" id="thirdadmin" placeholder="Third Admin" maxlength="64">
-                                                            </g:else>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane panel-body active row" id="organization">
-                                                <div class="col-sm-4">
-                                                    <div class="form-group" id="organizationName">
-                                                        <div class="col-sm-12 cr-mobiledisplyorg ">
-                                                            <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.ORGANIZATIONNAME}" value="${project.organizationName}" id="organizationname" placeholder="Individual / Organization Name" maxlength="128">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-12 cr-mobiledisplyorg">
-                                                            <g:if test="${project.webAddress}">
-                                                                <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook" value="${project.webAddress}" maxlength="64">
-                                                            </g:if>
-                                                            <g:else>
-                                                                <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook" maxlength="64">
-                                                            </g:else>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="form-group createOrgIconDiv">
-                                                        <div class="col-lg-6 col-sm-8 col-md-8 col-xs-7 cr-mobiledisplyorg">
-                                                            <div class="fileUpload btn btn-info btn-sm cr-btn-color">
-                                                                Display Picture
-                                                                <input type="file" class="upload" id="iconfile" name="iconfile" accept="image/jpeg, image/png">
-                                                            </div>
-                                                            <label class="docfile-orglogo-css" id="logomsg">Please select image file.</label>
-                                                            <label class="docfile-orglogo-css" id="iconfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
-                        
-                                                            <label class="docfile-orglogo-css" id="iconfilesizeSmaller">The file you are attempting to upload is smaller than the permitted size of 10KB.</label>
-                                                        </div>
-                                                        <g:if test="${project.organizationIconUrl}">
-                                                    <div class="pr-icon-thumbnail-div edit-image-mobile col-sm-2">
-                                                                <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}">
-                                                                <div class="deleteicon orgicon-css-styles">
-                                                                    <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');" src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete">
-                                                                </div>
-                                                            </div>
-                                                        </g:if>
-                                                        <g:else>
-                                                            <div id="icondiv" class="pr-icon-thumbnail-div cr-image-mobile col-sm-2">
-                                                                <img id="imgIcon" alt="cross" class="pr-icon-thumbnail">
-                                                                <div class="deleteicon orgicon-css-styles">
-                                                                    <img alt="cross" onClick="removeLogo();" id="delIcon" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
-                                                                </div>
-                        
-                                                            </div>
-                                                        </g:else>
-                                                        <div class="clear"></div>
-                                                        <div class="col-sm-12">
-                                                            <div id="uploadingCampaignOrgIcon">Uploading Picture....</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                        
-                                            <div class="tab-pane panel-body row" id="personal">
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-12">
-                                                            <input type="text" id="firstName" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="32" name="${FORMCONSTANTS.FIRSTNAME}" value="${user.firstName}" placeholder="First Name" readonly>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                        
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-12">
-                                                            <input type="text" id="lastName" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="32" name="${FORMCONSTANTS.LASTNAME}" value="${user.lastName}" placeholder="Last Name" readonly>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                        
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-12">
-                                                            <g:if test="${project.beneficiary.email}">
-                                                                <input type="email" id="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="64" name="${FORMCONSTANTS.EMAIL}" placeholder="email" value="${project.beneficiary.email}">
-                                                            </g:if>
-                                                            <g:else>
-                                                                <input type="email" id="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="64" name="${FORMCONSTANTS.EMAIL}" placeholder="email">
-                                                            </g:else>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="clear"></div>
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-12">
-                                                            <g:if test="${project.beneficiary.facebookUrl}">
-                                                                <input type="text" id="facebookUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="64" name="${FORMCONSTANTS.FACEBOOKURl}" value="${project.beneficiary.facebookUrl}" placeholder="Facebook Url">
-                                                            </g:if>
-                                                            <g:else>
-                                                                <input type="text" id="facebookUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="64" name="${FORMCONSTANTS.FACEBOOKURl}" placeholder="Facebook Url">
-                                                            </g:else>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                        
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-12">
-                                                            <g:if test="${project.beneficiary.twitterUrl}">
-                                                                <input type="text" id="twitterUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="64" name="${FORMCONSTANTS.TWITTERURl}" value="${project.beneficiary.twitterUrl}" placeholder="Twitter Url">
-                                                            </g:if>
-                                                            <g:else>
-                                                                <input type="text" id="twitterUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="64" name="${FORMCONSTANTS.TWITTERURl}" placeholder="Twitter Url">
-                                                            </g:else>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                        
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-12">
-                                                            <g:if test="${project.beneficiary.linkedinUrl}">
-                                                                <input type="text" id="linkedinUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="64" name="${FORMCONSTANTS.LINKEDINURL}" placeholder="Linkedin Url" value="${project.beneficiary.linkedinUrl}">
-                                                            </g:if>
-                                                            <g:else>
-                                                                <input type="text" id="linkedinUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="64" name="${FORMCONSTANTS.LINKEDINURL}" placeholder="Linkedin Url">
-                                                            </g:else>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="clear"></div>
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-12">
-                                                            <g:if test="${project.beneficiary.telephone}">
-                                                                <input type="tel" id="telephone" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="16" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone" value="${project.beneficiary.telephone}">
-                                                            </g:if>
-                                                            <g:else>
-                                                                <input type="tel" id="telephone" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="16" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone">
-                                                            </g:else>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-12">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-12">
-                                                            <p class="cr-para">We will use this information to contact you if there are any issues with the campaign.This information will not be shared publicly.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                        
+                                <div class="col-sm-12 padding-right-xs">
+                                    <div class="cr-spend-matrix">
+                                        <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-reasons-to-fund"><span class="cr-spend-matrix-font">ADMIN</span></label>
+                                        <label class="col-sm-9 col-xs-12 cr-panel-spend-matrix-guide cr-reasons-guide"></label>
                                     </div>
-                                    
+                                    <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-body">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <g:if test="${email1}">
+                                                        <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email1" id="firstadmin" value="${email1}" placeholder="First Admin" maxlength="64">
+                                                    </g:if>
+                                                    <g:else>
+                                                        <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email1" id="firstadmin" placeholder="First Admin" maxlength="64">
+                                                    </g:else>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <g:if test="${email2}">
+                                                        <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email2" id="secondadmin" value="${email2}" placeholder="Second Admin" maxlength="64">
+                                                    </g:if>
+                                                    <g:else>
+                                                        <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email2" id="secondadmin" placeholder="Second Admin" maxlength="64">
+                                                    </g:else>
+                                                </div>
+                                            </div>
+                                        </div>
+                                                
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <g:if test="${email3}">
+                                                        <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email3" id="thirdadmin" value="${email3}" placeholder="Third Admin" maxlength="64">
+                                                    </g:if>
+                                                    <g:else>
+                                                        <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email3" id="thirdadmin" placeholder="Third Admin" maxlength="64">
+                                                    </g:else>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                
+                                <div class="col-sm-12 padding-right-xs">
+                                    <div class="cr-spend-matrix">
+                                        <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-reasons-to-fund"><span class="cr-spend-matrix-font">Organization</span></label>
+                                        <label class="col-sm-9 col-xs-12 cr-panel-spend-matrix-guide cr-reasons-guide"></label>
+                                    </div>
+                                    <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-body">
+                                        <div class="col-sm-4">
+                                            <div class="form-group" id="organizationName">
+                                                <div class="col-sm-12 cr-mobiledisplyorg ">
+                                                    <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.ORGANIZATIONNAME}" value="${project.organizationName}" id="organizationname" placeholder="Individual / Organization Name" maxlength="128">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <div class="col-sm-12 cr-mobiledisplyorg">
+                                                    <g:if test="${project.webAddress}">
+                                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook" value="${project.webAddress}" maxlength="64">
+                                                    </g:if>
+                                                    <g:else>
+                                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook" maxlength="64">
+                                                    </g:else>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group createOrgIconDiv">
+                                                <div class="col-lg-6 col-sm-8 col-md-8 col-xs-7 cr-mobiledisplyorg">
+                                                    <div class="fileUpload btn btn-info btn-sm cr-btn-color">
+                                                        Display Picture
+                                                        <input type="file" class="upload" id="iconfile" name="iconfile" accept="image/jpeg, image/png">
+                                                    </div>
+                                                    <label class="docfile-orglogo-css" id="logomsg">Please select image file.</label>
+                                                    <label class="docfile-orglogo-css" id="iconfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
+                
+                                                    <label class="docfile-orglogo-css" id="iconfilesizeSmaller">The file you are attempting to upload is smaller than the permitted size of 10KB.</label>
+                                                </div>
+                                                <g:if test="${project.organizationIconUrl}">
+                                                    <div class="pr-icon-thumbnail-div edit-image-mobile col-sm-2">
+                                                        <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}">
+                                                        <div class="deleteicon orgicon-css-styles">
+                                                            <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');" src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete">
+                                                        </div>
+                                                    </div>
+                                                </g:if>
+                                                <g:else>
+                                                    <div id="icondiv" class="pr-icon-thumbnail-div cr-image-mobile col-sm-2">
+                                                        <img id="imgIcon" alt="cross" class="pr-icon-thumbnail">
+                                                        <div class="deleteicon orgicon-css-styles">
+                                                            <img alt="cross" onClick="removeLogo();" id="delIcon" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
+                                                        </div>
+                
+                                                    </div>
+                                                </g:else>
+                                                <div class="clear"></div>
+                                                <div class="col-sm-12">
+                                                    <div id="uploadingCampaignOrgIcon">Uploading Picture....</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-sm-12 padding-right-xs">
+                                    <div class="cr-spend-matrix">
+                                        <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-reasons-to-fund"><span class="cr-spend-matrix-font">Personal</span></label>
+                                        <label class="col-sm-9 col-xs-12 cr-panel-spend-matrix-guide cr-reasons-guide"></label>
+                                    </div>
+                                    <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-body">
+                                        <div class="col-sm-4">
+                                           <div class="form-group">
+                                               <div class="col-sm-12">
+                                                   <input type="text" id="firstName" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="32" name="${FORMCONSTANTS.FIRSTNAME}" value="${user.firstName}" placeholder="First Name" readonly>
+                                               </div>
+                                           </div>
+                                       </div>
+               
+                                       <div class="col-sm-4">
+                                           <div class="form-group">
+                                               <div class="col-sm-12">
+                                                   <input type="text" id="lastName" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="32" name="${FORMCONSTANTS.LASTNAME}" value="${user.lastName}" placeholder="Last Name" readonly>
+                                               </div>
+                                           </div>
+                                       </div>
+               
+                                       <div class="col-sm-4">
+                                           <div class="form-group">
+                                               <div class="col-sm-12">
+                                                   <g:if test="${project.beneficiary.email}">
+                                                       <input type="email" id="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="64" name="${FORMCONSTANTS.EMAIL}" placeholder="email" value="${project.beneficiary.email}">
+                                                   </g:if>
+                                                   <g:else>
+                                                       <input type="email" id="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="64" name="${FORMCONSTANTS.EMAIL}" placeholder="email">
+                                                   </g:else>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <div class="clear"></div>
+                                       <div class="col-sm-4">
+                                           <div class="form-group">
+                                               <div class="col-sm-12">
+                                                   <g:if test="${project.beneficiary.facebookUrl}">
+                                                       <input type="text" id="facebookUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="64" name="${FORMCONSTANTS.FACEBOOKURl}" value="${project.beneficiary.facebookUrl}" placeholder="Facebook Url">
+                                                   </g:if>
+                                                   <g:else>
+                                                       <input type="text" id="facebookUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="64" name="${FORMCONSTANTS.FACEBOOKURl}" placeholder="Facebook Url">
+                                                   </g:else>
+                                               </div>
+                                           </div>
+                                       </div>
+               
+                                       <div class="col-sm-4">
+                                           <div class="form-group">
+                                               <div class="col-sm-12">
+                                                   <g:if test="${project.beneficiary.twitterUrl}">
+                                                       <input type="text" id="twitterUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="64" name="${FORMCONSTANTS.TWITTERURl}" value="${project.beneficiary.twitterUrl}" placeholder="Twitter Url">
+                                                   </g:if>
+                                                   <g:else>
+                                                       <input type="text" id="twitterUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="64" name="${FORMCONSTANTS.TWITTERURl}" placeholder="Twitter Url">
+                                                   </g:else>
+                                               </div>
+                                           </div>
+                                       </div>
+               
+                                       <div class="col-sm-4">
+                                           <div class="form-group">
+                                               <div class="col-sm-12">
+                                                   <g:if test="${project.beneficiary.linkedinUrl}">
+                                                       <input type="text" id="linkedinUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="64" name="${FORMCONSTANTS.LINKEDINURL}" placeholder="Linkedin Url" value="${project.beneficiary.linkedinUrl}">
+                                                   </g:if>
+                                                   <g:else>
+                                                       <input type="text" id="linkedinUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="64" name="${FORMCONSTANTS.LINKEDINURL}" placeholder="Linkedin Url">
+                                                   </g:else>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <div class="clear"></div>
+                                       <div class="col-sm-4">
+                                           <div class="form-group">
+                                               <div class="col-sm-12">
+                                                   <g:if test="${project.beneficiary.telephone}">
+                                                       <input type="tel" id="telephone" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="16" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone" value="${project.beneficiary.telephone}">
+                                                   </g:if>
+                                                   <g:else>
+                                                       <input type="tel" id="telephone" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" maxlength="16" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone">
+                                                   </g:else>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <div class="col-sm-12">
+                                           <div class="form-group">
+                                               <div class="col-sm-12">
+                                                   <p class="cr-para">We will use this information to contact you if there are any issues with the campaign.This information will not be shared publicly.</p>
+                                               </div>
+                                           </div>
+                                       </div>
+                                    </div>
+                                </div>
+                                
                                 
                                 <div class="col-xs-12 campaign-btn-div text-center">
                                     <button type="button" class="btn btn-previous campaign-btn-prev pull-left">Previous</button>

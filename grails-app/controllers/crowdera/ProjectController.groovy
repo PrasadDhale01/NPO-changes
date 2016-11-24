@@ -792,7 +792,11 @@ class ProjectController {
         String partnerInviteCode = g.cookie(name: 'inviteCode')
         def inDays = projectService.getInDays()
 		def country = projectService.getCountryCodeForCurrentEnv(request)
-		render(view: 'create/index1', model: [FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv, partnerInviteCode: partnerInviteCode, inDays:inDays,country_code:country])
+        
+        def categoryOptions = projectService.getIndiaCategoryList();
+        def countryList = projectService.getCountry()
+        
+		render(view: 'create/index1', model: [FORMCONSTANTS: FORMCONSTANTS, countryList: countryList, currentEnv: currentEnv, partnerInviteCode: partnerInviteCode, inDays:inDays,country_code:country, categoryOptions: categoryOptions])
 	}
 
     def saveCampaign() {
@@ -802,8 +806,13 @@ class ProjectController {
         def amount = params.amount ? params.amount : params.amount1;
         def currentdays = params.days ? params.days : params.days1
         def days = Integer.parseInt(currentdays)
+        
+        String fundsRecievedBy = params.fundsRecievedBy
+        String category = params.category
+        String country = params.country
 
-        def reqUrl = base_url+ params.country_code+"/project/createNow?firstName=${params.firstName}&amount=${amount}&title=${params.title}&description=${params.description}&usedFor=${params.usedFor}&days=${days}&customVanityUrl=${params.customVanityUrl}&partnerInviteCode=${params.partnerInviteCode}&country_code=${params.country_code}"
+        def reqUrl = base_url+ params.country_code+"/project/createNow?firstName=${params.firstName}&amount=${amount}&title=${params.title}&description=${params.description}&usedFor=${params.usedFor}&days=${days}&customVanityUrl=${params.customVanityUrl}&partnerInviteCode=${params.partnerInviteCode}&country_code=${params.country_code}"+
+                    "&fundsRecievedBy=${fundsRecievedBy}&category=${category}&countryName=${country}"
 		def user = userService.getCurrentUser()
         
         if (!user) {
@@ -835,12 +844,15 @@ class ProjectController {
 		
         def projectTitle
         Project project = new Project()
-        if (params.title && params.amount && params.description && params.firstName) {
+        
+        if (params.title && params.amount && params.description) {
             project = projectService.getProjectByParams(params)
-            def beneficiary = userService.getBeneficiaryByParams(params)
-            def user = userService.getCurrentUser()
-            project.draft = true;
             
+            Beneficiary beneficiary = userService.getBeneficiaryByParams(params)
+            beneficiary.country = params.countryName;
+            
+            User user = userService.getCurrentUser()
+            project.draft = true;
             
             //Send draft creation email to info@crowdera.co
             def currentEnv = projectService.getCurrentEnvironment()
@@ -873,7 +885,6 @@ class ProjectController {
 				project.payuStatus = true
 			}
 			
-			println("from createNow : " + project.payuStatus)
 			if(project.save(failOnError: true)){
                 projectTitle = (project.customVanityUrl)? projectService.getCustomVanityUrl(project) : projectService.getProjectVanityTitle(project)
                 projectService.getFundRaisersForTeam(project, user)
@@ -902,13 +913,10 @@ class ProjectController {
             def spends = project.spend
             spends = spends.sort{it.numberAvailable}
             if (user == currentUser) {
+                
+                def inDays = projectService.getInDays()
+                
                 def currentEnv = projectService.getCurrentEnvironment()
-                def categoryOptions 
-                if(currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
-                    categoryOptions = projectService.getIndiaCategoryList()
-                } else {
-                    categoryOptions = projectService.getCategoryList()
-                }
 
                 def country = projectService.getCountry()
                 def nonProfit = projectService.getRecipientOfFunds()
@@ -947,8 +955,12 @@ class ProjectController {
                 def taxReciept = projectService.getTaxRecieptOfProject(project)
                 def deductibleStatusList = projectService.getDeductibleStatusList()
                 def stateInd = projectService.getIndianState()
+                
+                def categoryOptions = projectService.getIndiaCategoryList();
+                def countryList = projectService.getCountry()
+                
                 render(view: 'create/index2',
-                model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, 
+                model: [categoryOptions: categoryOptions, countryList: countryList, 'payOpts':payOpts, 'country': country, 
                     nonIndprofit:nonIndprofit, nonProfit:nonProfit , currentEnv: currentEnv,
                     FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards, project:project, 
                     user:user,campaignEndDate:campaignEndDate, pieList:pieList,stateInd:stateInd,
@@ -956,7 +968,7 @@ class ProjectController {
                     email2:adminemails.email2, email3:adminemails.email3,reasonsToFund:reasonsToFund, 
                     qA:qA, spends:spends, usedForCreate:usedForCreate, selectedCountry:selectedCountry, 
                     taxReciept:taxReciept, deductibleStatusList:deductibleStatusList,
-                    spendAmountPerList:pieList.spendAmountPerList,country_code:country_code])
+                    spendAmountPerList:pieList.spendAmountPerList,inDays: inDays, country_code:country_code])
             } else {
                 render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
             }
@@ -2023,7 +2035,6 @@ class ProjectController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def autoSave() {
-		println("===========why isn't it coming here ========")
         def variable = request.getParameter("variable")
         def varValue = request.getParameter("varValue")
         def projectId = request.getParameter("projectId")

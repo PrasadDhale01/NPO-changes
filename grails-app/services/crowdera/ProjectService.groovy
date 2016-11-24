@@ -6837,7 +6837,7 @@ class ProjectService {
 			currency = Currency.findById(country.countryId)
 		}
 		
-		return currency.currency_value;
+		return currency?.currency_value;
 	}
 	
 	def getCountryByCountryCode(def country_code){

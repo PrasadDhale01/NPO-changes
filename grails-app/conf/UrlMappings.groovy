@@ -81,6 +81,10 @@ class UrlMappings {
 			controller = 'project'
 			action = 'create'
 		}
+        
+        
+        "/$country_code/project/autoSave"(controller:'project', action:'autoSave')
+        
 		"/$country_code/project/createNow"(controller:'project', action:'createNow')
 		"/$country_code/campaign/start/$title"(controller:'project', action:'redirectCreateNow')
 		"/$country_code/$category/campaign/success/$title"(controller:'project', action:'launch')

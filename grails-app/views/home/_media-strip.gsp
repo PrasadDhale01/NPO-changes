@@ -1,3 +1,4 @@
+<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 <div class="container">
    <div class="row text-center">
        <div class="hm-media-title text-center"><h3>FEATURED IN</h3></div>
@@ -42,3 +43,4 @@
     </div>
     <hr class="hm-line-color">
 </div>
+</g:if>

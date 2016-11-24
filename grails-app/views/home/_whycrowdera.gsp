@@ -1,3 +1,4 @@
+<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 <div class="container how-it-work-container">
    <div class="row">
     <h1 class="text-center headingtext1">Multiple Reasons to Fundraise on Crowdera</h1>
@@ -95,3 +96,67 @@
         </div>
     </div>
 </div>
+</g:if>
+<g:else>
+   <div class="container homepageusmoreReasons">
+      <h1>Many More Reasons To Fund On Crowdera</h1>
+      <div class="col-lg-5" style="padding-left: 15px; margin-left: 50px;">
+            <ul>
+                <li class="inlineimageReason">
+                      <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/76c6480b-b4c6-45c9-925f-74adf6ce1176.png" title="free-logo">
+                      <b class="inlineTitle">Crowdera Is Free</b>
+                      <p class="reasonInlinetext">We don't dip into your donor dollars.No fee at all</p>
+                   </li>
+                   <li class="inlineimageReason">
+                      <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/8036a0c2-fc42-48b1-93fd-a725715cbc14.png" title="flexible-funding">
+                      <b class="inlineTitle">Flexible Funding</b>
+                      <p class="reasonInlinetext">You keep the money you raised, even if it is just 1% of the goal</p>
+                   </li>
+                   <li class="inlineimageReason">
+                      <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/a0e2ddb6-0871-46da-81dc-b1e96baa47a5.png" title="flexible-deadline">
+                      <b class="inlineTitle">Flexible Deadline</b>
+                      <p class="reasonInlinetext">You can extend your deadline if needed</p>
+                   </li>
+                   <li class="inlineimageReason">
+                      <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/078c84db-e4ac-4052-ab90-3ce78a113c05.png" title="secure---Icon.png">
+                      <b class="inlineTitle">Multiple Secure Payment Gateways</b>
+                      <p class="reasonInlinetext">You select between PayPal, PayU or FirstGiving</p>
+                   </li>
+                </ul>
+      </div>
+      <div class="col-lg-5">
+            <ul>
+                  <li class="inlineimageReason">
+                      <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/2c88fa94-fb3a-4760-ada8-f97e64d66586.png" title="Teams---Icon.png">
+                      <b class="inlineTitle">Teams To Multiply Results</b>
+                      <p class="reasonInlinetext">Your team can share their individual stories, deefine their own goals, and even their own perks(coming soon)</p>
+                   </li>
+                   <li class="inlineimageReason">
+                      <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/35902ae7-8279-4a88-b1dc-e02f2461e37f.png" title="Mobile-Friendly---Icon.png">
+                      <b class="inlineTitle">Mobile Freindly Funding Page</b>
+                      <p class="reasonInlinetext">Your fundraising can be accesses from any phone</p>
+                   </li>
+                   <li class="inlineimageReason">
+                      <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/f5f55c8b-f069-4445-bff0-c4e57b94a316.png" title="Instant-Fund---Icon.png">
+                      <b class="inlineTitle">Instant Fundraising</b>
+                      <p class="reasonInlinetext">Donor funds are instantly transferred to your account</p>
+                   </li>
+                   <li class="inlineimageReason">
+                      <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/834fac72-03b7-4725-9011-51ea62db4b32.png" title="Crowdera-E-book---Icon.png">
+                      <b class="inlineTitle">Free Crowdfunding Ebook</b>
+                      <p class="reasonInlinetext">Step by step guidelines for crowdfunding </p>
+                   </li>
+             </ul>
+      </div>
+      <div>
+      <div class="row">
+          <div class="reasonButton reasonButtonone pull-left col-lg-3">
+	         <a href="/campaign/create" class="pull-left morereasonsButton btn-block hm-howtoCreatecampaign-btn">Start Now</a>
+	      </div>
+	      <div class="reasonButton reasonButtontwo pull-right col-lg-3">
+	         <a href="/us/campaigns" class="pull-right morereasonsButton btn-block hm-howtoCreatecampaign-btn">Explore</a>
+	      </div>
+      </div>
+   </div>
+   </div>
+</g:else>

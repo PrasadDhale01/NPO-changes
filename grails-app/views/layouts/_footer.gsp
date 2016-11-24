@@ -2,6 +2,7 @@
 <div id="footermarker"></div>
 <footer>
     <div class="footer_links">
+    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
         <div class="container footer-container">
     <div class="visible-lg footer-lg">
     <div class="row footer-lg-first-section">
@@ -142,6 +143,226 @@
         </g:if>
     </div>
     </div>
+    </g:if>
+     <g:else>
+        <div class="row newFooteroptions">
+           <div class="col-md-2">
+              <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/8fbfaf2c-44e5-4a93-9a6c-df23bc199467.png" title="Footer-Crowdera---Logo.png">
+              <br>
+              <br>
+              <b class="footerleftsubTitle">Crowdera is <br>World's #1 Truly Free Online Fundraising <br>Platform For Nonprofits,NGOs<br> and Individuals</b>
+              <br>
+              <br>
+                 <p class="cdra-ft-cutomercnt">Customer support:</p>
+                 <p class="cdr-ft-contactnum">+1 (650) 690 2234</p>
+                 <p class="cdra-ft-contactmail">support@crowdera.co</p>
+           </div>
+           <div class="col-md-2">
+              <b><a class="footerTitle">Crowdera</a></b>
+              <br>
+              <ul style="list-style-type:none;display:initial">
+              <li>
+                 <a class="footersubTitle">About Us</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Our Blog</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Media & Press</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Contact Us</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Pricing & Fee</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Success Stories</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Learning Center</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Compassionate Souls</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Careers & Internships</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Support & Helpdesk</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Marketing Partners</a>
+              </li>
+              </ul>
+           </div>
+           <div class="col-md-2">
+           <b><a class="footerTitle">Crowdfunding</a></b>
+              <br>
+              <ul style="list-style-type:none;display:initial">
+              <li>
+                 <a class="footersubTitle">Start A Campaign</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Discover Campaigns</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Crowdfunding Features</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">How It Works</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Fundraising Ideas</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Perk Ideas</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Customer Speak</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Crowdfunding FAQ</a>
+              </li>
+              </ul>
+           </div>
+           <div class="col-md-2">
+           <b><a class="footerTitle">Nonprofits</a></b>
+              <br>
+              <ul style="list-style-type:none;display:initial">
+              <li>
+                 <a class="footersubTitle">Register Nonprofit</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Start Nonprofit Fundraiser</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">How It Works</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Vetting Process</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Volunteer</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Nonprofit FAQs</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Charity Challenges</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Google Grant</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Nonprofit Fundraising Ideas</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Celebrity Supporters</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">United Nation's SDGs</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">CSR Partners</a>
+              </li>
+              </ul>
+           </div>
+           <div class="col-md-2">
+           <b><a class="footerTitle">Products</a></b>
+              <br>
+              <ul style="list-style-type:none;display:initial">
+              <li>
+                 <a class="footersubTitle">Donation Processing</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Donor Management</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Event Management</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Donor Communication</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Team Fundraising</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Third Party Integrations</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Features & Pricing</a>
+              </li>
+              </ul>
+           </div>
+           <div class="col-md-2">
+           <b><a class="footerTitle">Corporation</a></b>
+              <br>
+              <ul style="list-style-type:none;display:initial">
+              <li>
+                 <a class="footersubTitle">Start Giving Page</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Nominate Nonprofit</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Nonprofit Vetting</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Register Your Cause</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Employee Matching</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">CSR Services</a>
+              </li>
+              <li>
+                 <a class="footersubTitle">Partnership Terms</a>
+              </li>
+              </ul>
+           </div>
+           <br><br>
+             <div class="footer-newsletter">
+             <form action="${mailChimpUrl}" method="post" id="mvc-embedded-subscribe-form-lg" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+                 <div class="newsletter-alignment newslettercenterAlligned col-md-8">
+                 <div class="newsletter-input col-md-3">
+                     <input type="text" class="all-place form-control subscriberEmail" name="EMAIL" tabindex="-1" value="" placeholder="Your email">
+                 </div>
+                 <div class="newsletter-button footer-signup-margin col-lg-2">
+                     <input type="submit" value="" name="subscribe" class="button-signup signup-lg">
+                     <br><br>
+                         </div>
+                 </div>
+             </form>
+             </div>
+             <div class="paymentMethods">
+                <div class="row paymentRow">
+                <b>Payment Methods:</b>
+                <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/e1a2d86d-8948-425a-9789-2895678f0407.png" title="Visa---Card.png">
+                <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/2f7a99cb-6c44-47b3-8624-e2913430fd46.png" title="American-Express---Crad.png">
+                <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/a3d99e58-0d10-40a6-afaf-1a46e5cda2d5.png" title="Paypal-Card.png">
+                <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/71e46519-73e2-49f3-8a69-84b1c0fb6e4f.png" title="Master-Card.png">
+                <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/350a25e2-d430-4ab9-b3dc-27d493195ecd.png" title="100%-Secure-Payment.png">
+                <br><br><br><br>
+                </div>
+             </div>
+             <hr class="footer-hr">
+             <br><br><br><br>
+             <b class="pull-right">FOLLOW US</b>
+             <br><br><br>
+             <div class="socialicon pull-right">
+             <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/wordpress-gray.png" alt="blog"></a>
+             <a href="https://plus.google.com/102697810290030135564"  target="_blank"><img class="googleplussocial" src="//s3.amazonaws.com/crowdera/assets/googleplus-gray.png.png" alt="googlepluse"></a>
+             <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>   
+             <a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
+             <a href="https://www.linkedin.com/company/crowdera"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>
+             <a href="https://instagram.com/gocrowdera"  target="_blank"><img class="instagram-footer" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="instagram"></a>
+             
+             <br><br>
+             </div>
+        </div>
+     </g:else>
   </div>
 </footer>
 <script>

@@ -1,3 +1,7 @@
+<g:set var="projectService" bean="projectService"/>
+<%
+def country_code = projectService.getCountryCodeForCurrentEnv(request)
+%>
 <g:if test="${imageUrl.size() == 1 }">
     <div id="singleSlide">
         <img src="${imageUrl.get(0)}" id="us-slide" class="img-responsive home-img-large-size" alt="slide">
@@ -38,7 +42,25 @@
     </g:elseif>
     <g:elseif test="${currentEnv=='prodIndia' || currentEnv=='stagingIndia' || currentEnv=='testIndia' }">
        <img class="img-responsive home-img-large-size" src="//s3.amazonaws.com/crowdera/assets/slider-home-page-india-slider.jpg" alt="India-slide">
+       <div class="hm-how-it-work-img">
+	        <a href="${resource(dir: '/campaign/create')}" class="btn btn-default btn-block hm-start-campaign-btn">Start Your Campaign</a>
+	    </div>
     </g:elseif>
     <g:else>
-       <img class="img-responsive home-img-large-size" src="//s3.amazonaws.com/crowdera/assets/slider-home-page-united-state-slider.jpg" alt="US-slide">
+    <div class="homepageNewcarousel" style="height: 360px;">
+       <img class="img-responsive home-img-large-size" src="//s3.amazonaws.com/crowdera/project-images/8df0df66-9045-4fe7-a71c-c7c4c0a24212.png" alt="US-slide">
+       <div class="homepageTextdiv">
+       <h1 class="bannerBigtext">World's #1 Truly Free Online Fundraising Platform For <br>
+       Nonprofits and Individuals</h1><br>
+       <h3 class="bannerSmalltext">We are the only crowdfunding platform that does not charge any commission on your raise or take any tip from your donors.</h3>
+       <br>
+       <div class="homepagecarouselButton">
+       <g:link mapping="createCampaign" params="[country_code: country_code]" class="btn btn-default btn-block hm-start-campaign-btn">
+                  	CREATE A CAMPAIGN
+       </g:link>
+<%--	        <a href="${resource(dir: '/campaign/create')}" class="btn btn-default btn-block hm-start-campaign-btn">CREATE A CAMPAIGN</a>--%>
+	    </div>
+	    </div>
+	</div>    
     </g:else>
+    

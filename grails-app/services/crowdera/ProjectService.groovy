@@ -142,8 +142,9 @@ class ProjectService {
     def getProjectByParams(def projectParams){
          Project project = new Project(projectParams)
 		 Beneficiary beneficiary = new Beneficiary();
-         project.beneficiary = beneficiary
          
+         project.beneficiary = beneficiary
+         project.hashtags = '#'+getCountryValue(projectParams.country)+",#"+projectParams.category
          project.created = new Date()
          User user = userService.getCurrentUser()
          project.user = user

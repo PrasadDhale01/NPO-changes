@@ -142,8 +142,9 @@ class ProjectService {
     def getProjectByParams(def projectParams){
          Project project = new Project(projectParams)
 		 Beneficiary beneficiary = new Beneficiary();
+         
          project.beneficiary = beneficiary
-         project.category = "OTHER"
+         project.hashtags = '#'+getCountryValue(projectParams.country)+",#"+projectParams.category
          project.created = new Date()
          User user = userService.getCurrentUser()
          project.user = user
@@ -5463,7 +5464,7 @@ class ProjectService {
     
     def autoSaveCountryAndHashTags(def params){
         Project project = Project.get(params.projectId)
-        project.beneficiary.country = (params.country && params.country != 'null' && params.country != '') ? getCountryValue(params.country) : null;
+        project.beneficiary.country = (params.country && params.country != 'null' && params.country != '') ? params.country : null;
 
         def category = project.category
         def country = (params.country) ? getCountryValue(params.country) : null;

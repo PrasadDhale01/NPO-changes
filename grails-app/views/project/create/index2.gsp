@@ -2,7 +2,9 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <%
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 + country_code: grailsApplication.config.crowdera.BASE_URL + country_code
+    String baseUrl = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+    
+    def base_url = baseUrl.substring(0, (baseUrl.length() - 1))
     def iteratorCount = 1
     def lastrewardCount = 1
     def rewardItrCount = projectRewards.size()
@@ -44,7 +46,7 @@
 <title>Crowdera- Create campaign</title>
 <link rel="canonical" href="${base_url}/campaign/start" />
 <meta name="layout" content="main" />
-<r:require modules="projectcreatejs, bootstrapwizard" />
+<r:require modules="projectcreatejs" />
 
 <link rel="stylesheet" href="/css/datepicker.css">
 <link rel="stylesheet" href="/css/style.css">
@@ -289,10 +291,15 @@
 						               <div class="createTitleDiv col-l-0 col-lg-4 col-md-4 col-sm-4 col-xs-12 cr1-indx1-mobileTpadding">
 						                    <label class="col-sm-12 text-color cr-padding-index1 cr1-myplane-padding col-r-0">I am Based in:</label>
 						                    <div class="col-sm-12  form-group col-lr-0">
-						                        <select name="category" id="category" class="selectOption">
+						                        <select name="country" id="country" class="selectOption">
 						                            <option value="">Select One</option>
 						                            <g:each in="${countryList}" var="countryObj">
-						                                <option value="${countryObj.key}">${countryObj.value}</option>
+						                                <g:if test="${project.beneficiary?.country == countryObj.key}">
+						                                    <option value="${countryObj.key}" selected>${countryObj.value}</option>
+						                                </g:if>
+						                                <g:else>
+						                                    <option value="${countryObj.key}">${countryObj.value}</option>
+						                                </g:else>
 						                            </g:each>
 						                        </select>
 						                    </div>
@@ -304,7 +311,12 @@
 						                        <select name="category" id="category" class="selectOption">
 						                            <option value="">Select One</option>
 						                            <g:each in="${categoryOptions}" var="category">
-						                                <option value="${category.key}">${category.value}</option>
+						                                <g:if test="${project.category == category.key}">
+						                                    <option selected value="${category.key}">${category.value}</option>
+						                                </g:if>
+						                                <g:else>
+						                                    <option value="${category.key}">${category.value}</option>
+						                                </g:else>
 						                            </g:each>
 						                        </select>
 						                    </div>
@@ -1717,23 +1729,7 @@
                                     </div>
                                 </div>
                                 
-                                <%--<div class="col-xs-12">
-                                    <div class="f1-buttons">
-                                        <button type="button" class="btn btn-previous">Previous</button>
-                                        <button type="button" class="btn btn-next">Next</button>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <fieldset>
-                            --%>
-                                <%--<div class="col-xs-12">
-                                    <div class="f1-buttons">
-                                        <button type="button" class="btn btn-previous">Previous</button>
-                                        <button type="submit" class="btn btn-submit">Submit</button>
-                                    </div>
-                                </div>
-                            --%>
-                            
+                                
                             </fieldset>
                             
                             

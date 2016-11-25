@@ -2204,7 +2204,6 @@ $(function() {
                     var projectId = $('[name="projectId"]').val();
                     formData.append(name, file);
                     formData.append('projectId', projectId);
-
                     var xhr = new XMLHttpRequest();
                     xhr.open('POST', $("#b_url").val()+'/project/uploadImage');
                     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -3235,11 +3234,11 @@ $(function() {
     function changeHashTags(){
         var category = $('#category').val();
         var country = $('#selectedCountry').val();
-        var usedFor = ($('#usedFor').val() === undefined) ? $('#usedForCreate').val() : $('#usedFor').val();
+        /*var usedFor = ($('#usedFor').val() === undefined) ? $('#usedForCreate').val() : $('#usedFor').val();*/
         var fundRaisedBy = $('.recipient').val();
         var city = $('.city').val();
         var list;
-        if (usedFor === 'SOCIAL_NEEDS') {
+        /*if (usedFor === 'SOCIAL_NEEDS') {
             list = '#Social-Innovation';
         } else if (usedFor === 'PERSONAL_NEEDS') {
             list = '#Personal-Needs';
@@ -3247,7 +3246,7 @@ $(function() {
             list = '#Impact';
         } else if (usedFor === 'PASSION'){
             list = '#Passion';
-        }
+        }*/
 
         (fundRaisedBy && fundRaisedBy !== 'null') ? list = list + ', #'+getStringCaptalised(fundRaisedBy) : ' ' ;
         (category && category !== 'null') ? list = list + ', #'+getStringCaptalised(category) : ' ' ;
@@ -3617,23 +3616,6 @@ $(function() {
     		});
     	});
     	
-    	// submit
-    	$('.f1').on('submit', function(e) {
-    		
-    		// fields validation
-    		$(this).find('input[type="text"], input[type="password"], textarea').each(function() {
-    			if( $(this).val() == "" ) {
-    				e.preventDefault();
-    				$(this).addClass('input-error');
-    			}
-    			else {
-    				$(this).removeClass('input-error');
-    			}
-    		});
-    		// fields validation
-    		
-    	});
-
 });
 
 

@@ -2204,7 +2204,6 @@ $(function() {
                     var projectId = $('[name="projectId"]').val();
                     formData.append(name, file);
                     formData.append('projectId', projectId);
-
                     var xhr = new XMLHttpRequest();
                     xhr.open('POST', $("#b_url").val()+'/project/uploadImage');
                     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -3617,23 +3616,6 @@ $(function() {
     		});
     	});
     	
-    	// submit
-    	$('.f1').on('submit', function(e) {
-    		
-    		// fields validation
-    		$(this).find('input[type="text"], input[type="password"], textarea').each(function() {
-    			if( $(this).val() == "" ) {
-    				e.preventDefault();
-    				$(this).addClass('input-error');
-    			}
-    			else {
-    				$(this).removeClass('input-error');
-    			}
-    		});
-    		// fields validation
-    		
-    	});
-
 });
 
 

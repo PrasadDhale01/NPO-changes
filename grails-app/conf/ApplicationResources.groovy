@@ -84,10 +84,6 @@ modules = {
         resource url: 'js/redactor/plugins/fontfamily.js'
         resource url: 'js/redactor/plugins/fontcolor.js'
     }
-    bootstrapwizard {
-        resource url: 'js/bootstrap-wizard/jquery.backstretch.min.js'
-        resource url: 'js/bootstrap-wizard/retina-1.1.0.min.js'
-    }
     projectshowjs {
         dependsOn 'crowderajs'
         resource url: 'js/project/show.js'

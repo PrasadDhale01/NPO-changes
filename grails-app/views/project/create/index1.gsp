@@ -33,9 +33,6 @@
     <g:hiddenField name="baseUrl" value="${base_url}" id="b_url"/>
     <g:hiddenField name="isIndianCampaign" value="${isIndianCampaign}" id="isIndianCampaign"/>
     <g:hiddenField name="titleUniqueStatus" value="true" id="titleUniqueStatus"/>
-    <g:hiddenField name="country_code" value="${country_code}"/>
-    <g:hiddenField name="fundsRecievedBy" value="" id="fundsRecievedBy"/>
-    
     
     <div class="cr1-header-indx1">
         <h1 class="text-center cr1-headertitle-indx1">Create Campaign</h1>
@@ -45,6 +42,8 @@
     <div class="bg-color">
         <div class="container footer-container" id="campaigncreate">
             <g:uploadForm class="form-horizontal cr-top-spaces" controller="project" action="saveCampaign">
+            
+                <g:hiddenField name="fundsRecievedBy" value="" id="fundsRecievedBy"/>
                 
                 <div class="list-group campaign-entities">
                     <div class="col-sm-12 col-r-0 margin-bottom-20">

@@ -811,7 +811,7 @@ class ProjectController {
         String category = params.category
         String country = params.country
 
-        def reqUrl = base_url+ params.country_code+"/project/createNow?firstName=${params.firstName}&amount=${amount}&title=${params.title}&description=${params.description}&usedFor=${params.usedFor}&days=${days}&customVanityUrl=${params.customVanityUrl}&partnerInviteCode=${params.partnerInviteCode}&country_code=${params.country_code}"+
+        def reqUrl = base_url+ params.country_code+"/project/createNow?amount=${amount}&title=${params.title}&description=${params.description}&days=${days}&customVanityUrl=${params.customVanityUrl}&partnerInviteCode=${params.partnerInviteCode}&country_code=${params.country_code}"+
                     "&fundsRecievedBy=${fundsRecievedBy}&category=${category}&countryName=${country}"
 		def user = userService.getCurrentUser()
         
@@ -841,7 +841,6 @@ class ProjectController {
             def cookie = projectService.deleteLoginSignUpCookie()
             response.addCookie(cookie)
         }
-		
         def projectTitle
         Project project = new Project()
         
@@ -865,9 +864,8 @@ class ProjectController {
             project.beneficiary = beneficiary;
             project.beneficiary.email = user.email;
 			project.country = country
-			project.fundsRecievedBy = "NGO";
 
-            if (params.usedFor == 'SOCIAL_NEEDS'){
+            /*if (params.usedFor == 'SOCIAL_NEEDS'){
                 project.hashtags = '#Social-Innovtion'
             } else if (params.usedFor == 'PERSONAL_NEEDS'){
                 project.hashtags = '#Personal-Needs'
@@ -877,7 +875,7 @@ class ProjectController {
                 project.hashtags = '#Passion';
             }
 
-		    project.usedFor = params.usedFor;
+		    project.usedFor = params.usedFor;*/
 
 			if('in'.equalsIgnoreCase(params.country_code)){
 				project.payuStatus = true
@@ -1027,9 +1025,9 @@ class ProjectController {
 							project.beneficiary.country = 'US'
 						}
 					}
-					redirect (action:'launch' ,  params:[title:vanitytitle,country_code:params.country_code,'category':project.fundsRecievedBy.toLowerCase()])
+					redirect (action:'launch' ,  params:[title:vanitytitle,country_code:params.country_code,'category':project.fundsRecievedBy?.toLowerCase()])
 				} else {
-					redirect (action:'showCampaign' ,  params:[id:project.id, isPreview:true,country_code:params.country_code,'category':project.fundsRecievedBy.toLowerCase()])
+					redirect (action:'showCampaign' ,  params:[id:project.id, isPreview:true,country_code:params.country_code,'category':project.fundsRecievedBy?.toLowerCase()])
 				}
 			} else {
 				render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
@@ -1046,24 +1044,22 @@ class ProjectController {
 		def currentEnv = projectService.getCurrentEnvironment()
         
         if(project) {
-				if('in'.equalsIgnoreCase(country_code)){   
+			if('in'.equalsIgnoreCase(country_code)){   
     			project.payuStatus = true
     			if (project.fundsRecievedBy == null){
-    				project.fundsRecievedBy = "NGO"
-    				project.hashtags = project.hashtags + ", #NGO"
+    				project.hashtags = project.hashtags
     			}
     		} else {
     			if (project.fundsRecievedBy == null){
-    				project.fundsRecievedBy = "NON-PROFIT"
-    				project.hashtags = project.hashtags + ", #NON-PROFIT"
+    				project.hashtags = project.hashtags
     			}
     		}
         
-            render (view: 'create/justcreated', model:[project:project, FORMCONSTANTS: FORMCONSTANTS])
+            render (view: 'create/justcreated', model:[project:project, FORMCONSTANTS: FORMCONSTANTS, country_code:params.country_code])
 	    } else {
            
             def previousPage = "create"
-            render (view: '/project/create/createerror', model:[project: project, currentEnv:currentEnv, previousPage:previousPage])
+            render (view: '/project/create/createerror', model:[project: project, currentEnv:currentEnv, previousPage:previousPage, country_code:params.country_code])
 	    }
 	}
 

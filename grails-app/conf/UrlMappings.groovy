@@ -83,7 +83,8 @@ class UrlMappings {
 		}
         
         
-        "/$country_code/project/autoSave"(controller:'project', action:'autoSave')
+        /*"/$country_code/project/autoSave"(controller:'project', action:'autoSave')*/
+        "/$country_code/project/campaignOnDraftAndLaunch"(controller:'project', action:'campaignOnDraftAndLaunch')
         
 		"/$country_code/project/createNow"(controller:'project', action:'createNow')
 		"/$country_code/campaign/start/$title"(controller:'project', action:'redirectCreateNow')

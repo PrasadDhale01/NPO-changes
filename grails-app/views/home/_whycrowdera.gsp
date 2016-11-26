@@ -1,3 +1,4 @@
+<!-- Changes for new home page -->
 <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 <div class="container how-it-work-container">
    <div class="row">

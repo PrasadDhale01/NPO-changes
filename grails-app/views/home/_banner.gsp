@@ -1,3 +1,4 @@
+<!-- Changes for new home page -->
 <div class="greenbg">
     <div class="testimonialAlligned">
     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">

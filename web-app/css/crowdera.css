@@ -19741,6 +19741,7 @@ a.footerTitle:hover{
 }
 
 b.footerleftsubTitle{
+	display: table;
 	font-family: "Assistant";
 	font-weight: 500;
 	font-size: 14px;
@@ -19939,16 +19940,18 @@ a.newCustomButtonownplan{
 }
 
 p.contactNewbold{
+	width: 180px;
+	text-align: left;
 	font-family: "Assistant";
 	font-weight: 800;
-	font-size: 22px;
+	font-size: 17px;
 	color: #ffffff;
 }
 
 p.contactNewnormal{
 	font-family: "Assistant";
 	font-weight: 500;
-	font-size: 16px;
+	font-size: 14px;
 	color: #ffffff;
 }
 
@@ -20065,12 +20068,13 @@ a.morereasonsButton:focus{
 }
 
 .paymentcardRow{
+    padding-bottom: 20px;
     display: inline-block;
     width: 394px;
     margin-top: 90px;
     padding-left: 0px;
     position: relative;
-    margin-left: 145px;
+    margin-left: 290px;
 }
 
 .followRow{
@@ -20085,12 +20089,10 @@ a.morereasonsButton:focus{
 }
 
 .securityNewcard{
-	padding-left: 0px;
-    margin-left: 0px;
-    left: 0px;
+    right: 15px;
+    top: 5px;
     padding-bottom: 0px;
     margin-bottom: 0px;
-    bottom: 25px;
 }
 
 .newSocialicon{
@@ -20107,6 +20109,7 @@ a.morereasonsButton:focus{
 }
 
 .termsCondition b{
+	padding-right: 5px;
 	font-family: "Assistant";
 	color: white;
 	font-size: 11px;
@@ -20219,9 +20222,17 @@ a.desktopCampaigntext{
     padding-left: 5px;
 }
 
+.newLeftfooter{
+	text-align: center;
+}
+
+img.securetImg{
+    margin-left: 15px;
+}
+
 div.desktopcampaignDivbutton{
 	margin-left: 10%;
-    bottom: 160px;
+    bottom: 180px;
     width: 235px;
     position: relative;
     text-decoration: none;

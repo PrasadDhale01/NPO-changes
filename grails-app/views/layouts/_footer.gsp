@@ -1,3 +1,4 @@
+<!-- Changes for new home page -->
 <input type="hidden" id="b_url" value="${base_url}" />
 <div id="footermarker"></div>
 <footer>
@@ -146,14 +147,12 @@
     </g:if>
      <g:else>
         <div class="row newFooteroptions">
-           <div class="col-md-2">
+           <div class="col-md-2 newLeftfooter">
               <a href="/">
                  <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/8fbfaf2c-44e5-4a93-9a6c-df23bc199467.png" title="Footer-Crowdera---Logo.png">
               </a>
               <br>
-              <br>
               <b class="footerleftsubTitle">Crowdera is <br>World's #1 Truly Free Online Fundraising <br>Platform For Nonprofits,NGOs<br> and Individuals</b>
-              <br>
               <br>
                  <p class="cdra-ft-cutomercnt footersubTitlenew">Customer support:</p>
                  <p class="cdr-ft-contactnum contactNewbold">+1 (650) 690 2234</p>
@@ -339,7 +338,7 @@
              </form>
              </div>
              <div class="row paymentcardRow rowcardBottom">
-                <div class="col-lg-2 paymentTop paymentText" style="width: 160px;padding-right: 0px;">
+                <div class="col-lg-2 paymentTop paymentText" style="width: 140px;padding-right: 0px;">
                    <b>Payment Methods:</b>
                 </div>
                 <div class="col-lg-1 paymentCard paymentTop">
@@ -355,7 +354,7 @@
                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/71e46519-73e2-49f3-8a69-84b1c0fb6e4f.png" title="Master-Card.png">
                 </div>
                 <div class="col-lg-1 paymentCard paymentTop pull-right securityNewcard">
-                   <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/350a25e2-d430-4ab9-b3dc-27d493195ecd.png" title="100%-Secure-Payment.png">
+                   <img class="img-responsive securetImg" src="//s3.amazonaws.com/crowdera/project-images/350a25e2-d430-4ab9-b3dc-27d493195ecd.png" title="100%-Secure-Payment.png">
                 </div>
              </div>
              <hr class="footer-hr rowMargin">
@@ -374,10 +373,18 @@
              </div>
              <br><br>
              <div class="row termsCondition">
-                <b>Terms of Use</b>
-                <b>Privacy Policy</b>
-                <b>Sitemap</b>
-                <b>@ 2016 Crowdera,Inc.</b>
+                <a href="#">
+                   <b>Terms of Use</b>
+                </a>
+                <a href="#">
+                   <b>Privacy Policy</b>
+                </a>
+                <a href="#">
+                   <b>Sitemap</b>
+                </a>
+                <a href="#">
+                   <b>@ 2016 Crowdera,Inc.</b>
+                </a>
              </div>
 <%--             <div class="socialicon pull-right">--%>
 <%--             <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/wordpress-gray.png" alt="blog"></a>--%>

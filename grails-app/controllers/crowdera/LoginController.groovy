@@ -358,7 +358,7 @@ class LoginController {
                 response.addCookie(cookie)
                 redirect (url: requestUrl)
             } else {
-                redirect (controller:'home', action:'index')
+                redirect (controller:'home', action:'index', params:[country_code:country_code])
             }
         } else {
                 redirect (controller:'home', action:'index', params:[country_code:country_code])

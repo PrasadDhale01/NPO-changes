@@ -1,3 +1,4 @@
+<!-- Changes for new home page -->
 <g:set var="projectService" bean="projectService"/>
 <%
 def country_code = projectService.getCountryCodeForCurrentEnv(request)

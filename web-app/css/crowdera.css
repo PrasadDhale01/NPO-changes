@@ -22,9 +22,9 @@ h1.headingtext {
 	text-align: center;
 	color:#44505d;
 	font-size:36px;
-	font-family: "Roboto Condensed";
+	font-family: "Assistant";
 	font-weight: lighter;
-    padding-top: 45px;
+    padding-top: 0px;
 }
 span.headingtext{
 	font-size: 20px;
@@ -550,8 +550,8 @@ footer {
 footer input.subscriberEmail{
     font-size:13px;
     font-weight:normal;
-    height:30px;
-    width:202px;
+    height:29px;
+    width:285px;
 /*     margin-left: 28px; */
 }
 hr.footer-hr{
@@ -642,7 +642,7 @@ input.button-signup{
     width: 75px;
 }
 input.signup-lg{
-	margin-left:-34px;
+	margin-left:60px;
 	height: 30px;
 	width: 75px;
 }
@@ -3367,7 +3367,7 @@ p.anonymous-top {
 	margin-bottom:5px;
 }
 .testimonial-name b{
-	font-family:"Roboto Condensed";
+	font-family:"Assistant";
 	font-size:16px;
 	color: #44505d;
 	font-weight:900;
@@ -3375,12 +3375,13 @@ p.anonymous-top {
 
 .testimonial-name h4{
 	margin-left: 90px;
-	font-family:"Roboto Condensed";
+	font-family:"Assistant";
 	font-style: Italic;
 	font-size:16px;
 	color: #44505d;
 }
 .bannerheadbtmMargin b {
+	line-height: 0;
     color: #7c848d;
     font-family: "Noto Serif";
     font-size: 16px;
@@ -16585,7 +16586,6 @@ textarea.textarea-embed-video {
 		height: 45px;
 	}
 	.TW-discover-banner-decoration {
-		background-color: #01bbd2;
 		color: #fff;
 		display: none;
 		min-height: 87px;
@@ -17927,11 +17927,11 @@ textarea.textarea-embed-video {
 	color: #424242;
 	font-weight: 400;
 }
-.TW-discover-leftpane-menu ul li a:hover {
-	color: #01bbd2;
-	font-weight: 400;
-	text-decoration:none;
-}
+/* .TW-discover-leftpane-menu ul li a:hover { */
+/* 	color: #121619; */
+/* 	font-weight: 600; */
+/* 	text-decoration:none; */
+/* } */
 .TW-discover-tab-decoration{
 	background-color: #f6f8f8 !important;
 	border: 2px solid #e3e3e3 !important;
@@ -17953,7 +17953,6 @@ textarea.textarea-embed-video {
 	width:13%;
 }
 .TW-discover-banner-decoration{
-	background-color: #01bbd2;
 	color: #fff;
 	min-height: 87px;
 	text-align: center;
@@ -18287,10 +18286,9 @@ a#downloadEbook{
 }
 .TW-header-helpTxtLogged{
 	color: #fff !important;
-    font-size: 20px !important; 
-    font-weight: 600;
-    margin-bottom: 2px;
-    margin-top: 6px;
+    font-size: 16px !important; 
+    font-weight: 500;
+    font-family: "Assistant";
 }
 .scrollHeaderHelpLink > a:hover, .scrollHeaderHelpLink > a:focus {
     background-color: #01bbd2 !important;
@@ -19233,14 +19231,19 @@ ul.leftheaderIcons{
 }
 
 h1.bannerBigtext{
+	margin-bottom: -10px;
 	color: #ffffff;
-	font-family: "Roboto Condensed";
+	font-family: "Assistant";
 	font-size: 36px;
 	position: relative; 
 /* 	top: 30%;  */
 	left: 200px; 
 	width: 100%;
 } 
+
+a.necz{
+	padding-top: 20px
+}
 
 h3.bannerSmalltext{
 	color: #ffffff;
@@ -19265,6 +19268,11 @@ h3.bannerSmalltext{
 	height: 90px;
 }
 
+.leftarro img{
+	margin-left: 30px;
+    padding-left: 0;
+}
+
 .rightarro{
 	margin-top: 44px;
 	padding-right: 0px; 
@@ -19275,7 +19283,7 @@ h3.bannerSmalltext{
 
 .howitworkUpdated{
 	background-color: #f0f0f0;
-    height: 490px;
+    height: 460px;
     width: 100%;
 }
 
@@ -19283,7 +19291,7 @@ h3.bannerSmalltext{
 	font-size: 20px;
 	color: #6f7880;
 	text-align: center;
-	font-family: "Roboto Condensed";
+	font-family: "Assistant";
 	
 }
 
@@ -19296,15 +19304,16 @@ h3.bannerSmalltext{
 .threeEqualdiv b{
 	font-weight: 100;
     color: #44505d;
-    font-family: roboto condensed;
+    font-family: Assistant;
     font-size: 24px;
 }
 
 .threeEqualdiv p{
+	padding-top: 10px;
 	width: 100%;
 	font-weight: 100;
     color: #44505d;
-    font-family: roboto condensed;
+    font-family: Assistant;
     font-size: 16px;
     text-align: 
 }
@@ -19316,7 +19325,7 @@ a.hm-howtoCreatecampaign-btn:focus{
     margin-bottom: -85%;
     height: 64px;
     width: 235px;
-    font-family: "Roboto Condensed";
+    font-family: "Assistant";
     background-color: rgba(239, 181, 11, 0);
     color: #ffffff;
     border-width: thick;
@@ -19326,8 +19335,9 @@ a.hm-howtoCreatecampaign-btn:focus{
 }
 
 .creationPlans h1{
+	padding-top: 20px;
 	text-align: center;
-	font-family: "Roboto Condensed";
+	font-family: "Assistant";
 	font-weight: 200;
 	font-size: 36px;
 	color: #44505d;
@@ -19335,7 +19345,7 @@ a.hm-howtoCreatecampaign-btn:focus{
 
 .creationPlans h3{
 	text-align: center;
-	font-family: "Roboto Condensed";
+	font-family: "Assistant";
 	font-weight: 200;
 	font-size: 16px;
 	color: #7c848d;
@@ -19345,7 +19355,7 @@ a.hm-howtoCreatecampaign-btn:focus{
 
 .creationPlans{
 	padding-top: 40px;
-    height: 1040px;
+    height: 1085px;
 }
 
 .waterPlan{
@@ -19405,16 +19415,22 @@ b.waterPlantitle{
 
  h1.planHeader{
 	color: #ffffff;
-    font-weight: 200;
-    font-family: "Roboto Condensed";
+    font-weight: 600;
+    font-family: "Assistant";
     font-size: 24px;
-	
+	padding-top: 25px;
 }
 
 b.verticalL{
-    font-weight: 100;
-    font-size: 26px;
+    font-weight: 600;
+    font-size: 24px;
 }
+
+hr.vertical
+{
+   width: 0px;
+   height: 10%; /* or height in PX */
+} 
 
 .ownplanInnersubtitle {
     text-align: center;
@@ -19424,7 +19440,7 @@ b.verticalL{
 .ownplanInnersubtitle b{
 	color: #ffffff;
     font-size: 16px;
-    font-family: roboto condensed;
+    font-family: Assistant;
     font-weight: 200;
 }
 
@@ -19436,13 +19452,14 @@ b.verticalL{
 .waterInnersubtitle b{
     color: #ffffff;
     font-size: 16px;
-    font-family: roboto condensed;
+    font-family: Assistant;
     font-weight: 200;
 }
 
 hr.planLine{
-    margin-top: 30px;
-    margin-bottom: 25px;
+	width: 420px;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 
@@ -19468,7 +19485,7 @@ p.inlineTextwithimage{
     color: #ffffff;
     font-size: 16px;
     padding-left: 10px;
-    font-family: roboto condensed;
+    font-family: Assistant;
 }
 
 .newCustomButtonone{
@@ -19493,18 +19510,18 @@ p.inlineTextwithimage{
 }
 
 .homepageusCampaigns{
-	height: 1600px;
+	height: 1535px;
 }
 
 .homepageusmoreReasons{
-	height: 700px;
+	height: 630px;
 	width:100%;
 	padding-top: 50px;
 }
 
 .homepageusmoreReasons h1{
 	color: #44505d;
-	font-family: "Roboto Condensed";
+	font-family: "Assistant";
 	font-size: 36px;
 	left: 200px; 
 	text-align: center;
@@ -19513,9 +19530,9 @@ p.inlineTextwithimage{
 b.inlineTitle{
     font-weight: bold;
     color: #44505d;
-    font-size: 18px;
+    font-size: 19px;
     margin-left: 10px;
-    font-family: roboto condensed;
+    font-family: Assistant;
 }
 
 li.inlineimageReason{
@@ -19527,16 +19544,39 @@ li.inlineimageReason{
 }
 
 li.inlineimageReason img{    
-	margin-top: 5px;
 	display: inline;
 	float: left;
+}
+
+b.inOne{
+	margin-left: 16px;
+}
+
+b.inTwo{
+	margin-left: 15px;
+}
+
+b.inThree{
+    margin-left: 10px;
+}
+
+b.inFour{
+    margin-left: 16px;
+}
+
+b.inFive{
+    margin-left: 13px;
+}
+
+b.inSix{
+    margin-left: 20px;
 }
 
 p.reasonInlinetext{
 	font-weight: 300;
     color: #7f7f7f;
     font-size: 13px;
-    font-family: roboto condensed;
+    font-family: Assistant;
     padding-left: 42px;
 }
 
@@ -19566,12 +19606,11 @@ b.newsSectionheader{
 }
 
 .newFooteroptions{
-	width: 100%;
+	width: 1000px; 
+	padding-left: 40px; 
+	margin-left: 127px;
 	height: 700px;
-    margin-left: 0px;
     margin-right: 0px;
-    padding-left: 30px;
-	
 }
 
 .newslettercenterAlligned{
@@ -19604,10 +19643,11 @@ b.newsSectionheader{
 }
 
 .imageCollage{
-	width: 100%;
-    margin-left: 8%;
+	width: 1339px; 
+	margin-left: 0px; 
+	left: 137px;
     position: absolute;
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 .newsInnerimages{
@@ -19615,13 +19655,12 @@ b.newsSectionheader{
 }
 
 .rowOne{
-    padding-bottom: 25px;
+    padding-bottom: 0px;
 }
 
 .rowTwo{
     padding-bottom: 25px;
 }
-
 
 .innerCollage{
     padding-right: 22px;
@@ -19641,11 +19680,12 @@ img.imageEight{
 }
 
 img.imageNine{
-    height: 464px;
+    height: 490px;
 }
 
 .imageCollage h1{
-	font-family: "Roboto Condensed";
+	margin-bottom: -10px;
+	font-family: "Assistant";
 	font-weight: 200;
 	font-size: 36px;
 	color: #44505d;
@@ -19654,7 +19694,7 @@ img.imageNine{
 }
 
 .imageCollage b{
-	font-family: "Roboto Condensed";
+	font-family: "Assistant";
 	font-weight: normal;
 	font-size: 16px;
 	color: #7c848d;
@@ -19670,7 +19710,7 @@ img.imageNine{
 }
 
 b.successfullcampaignBottomline{
-	font-family: "Roboto Condensed";
+	font-family: "Assistant";
 	font-weight: normal;
 	font-size: 16px;
 	color: #7d7d7d;
@@ -19681,27 +19721,35 @@ b.successfullcampaignBottomline{
 }
 
 a.footersubTitle{
-	font-family: "Roboto Condensed";
-	font-weight: 200;
+	font-family: "Assistant";
+	font-weight: 500;
 	font-size: 14px;
 	color: #b6b6b6;
 	cursor: pointer;
 }
 
 a.footerTitle{
-	font-family: "Roboto Condensed";
-	font-weight: 500;
+	font-family: "Assistant";
+	font-weight: 800;
 	font-size: 16px;
 	color: #ffffff;
 	cursor: pointer;
 }
 
+a.footerTitle:hover{
+	color: #01bbd3;
+}
+
 b.footerleftsubTitle{
-	font-family: "Roboto Condensed";
-	font-weight: 200;
+	font-family: "Assistant";
+	font-weight: 500;
 	font-size: 14px;
 	color: #b6b6b6;
 	cursor: pointer;
+}
+
+a.footersubTitle:hover{
+	color: #01bbd3;
 }
 
 .newCustomButtonplan{
@@ -19726,9 +19774,10 @@ b.footerleftsubTitle{
 }
 
 a.newCustomButtonplan{
+	width: 414px;
 	color: white;
     font-weight: 600;
-    font-family: "roboto condensed";
+    font-family: "Assistant";
 }
 
 a.newCustomButtonplan:hover,
@@ -19737,20 +19786,25 @@ a.newCustomButtonplan:focus{
 }
 
 .planButton{
-	padding-left: 24%;
-    bottom: -10%;
+	padding-left: 9%;
+    bottom: -7%;
     position: absolute;
 }
 
 .zeroPercent{
 	position: relative;
-    bottom: -100px;
+    bottom: -78px;
 }
 
 .createnewButton{
-	padding-left: 33%;
-    bottom: -20%;
+	padding-left: 31%;
+    bottom: -29%;
     position: absolute;
+}
+
+.createnewButton a:hover{
+	text-decoration: none;
+	color: black;
 }
 
 .mycreateButton{
@@ -19774,10 +19828,19 @@ a.newCustomButtonplan:focus{
     user-select: none;
 }
 
+b.boldSpace{
+	padding-left: 4px; 
+	padding-right: 4px;
+}
+
 a.mycreateButton{
 	color: #005f84;
+	height: 52px;
+    padding-top: 6px;
+    width: 220px;
+    font-size: 18px;
     font-weight: 600;
-    font-family: "roboto condensed";
+    font-family: "Assistant";
 }
 
 a.mycreateButton:hover{
@@ -19812,7 +19875,7 @@ a.mycreateButton:hover{
 }
 
 .zeroPercent p{
-	font-family: "roboto condensed";
+	font-family: "Assistant";
 	font-size: 18px;
 	font-weight: normal;
 	color: #ffffff;
@@ -19820,18 +19883,24 @@ a.mycreateButton:hover{
 }
 
 .testimonialRow{
-    width: 1277px;
+	padding-left: 25px;
+    width: 98%;
     margin-left: 86px;
     margin-right: 30px;
 }
 
+img.ttimonialImgpaiing{
+	padding-left: 10px;
+}
+
 .testimonialRowone{
+	padding-left: 25px;
     width: 558px;
 }
 
 h1.testimonialRowonetext{
 	text-align: initial;
-    width: 427px;
+    width: 380px;
     padding-left: 8px;
     padding-right: 0px;
     margin-bottom: 0px;
@@ -19839,13 +19908,54 @@ h1.testimonialRowonetext{
 }
 
 h1.testimonialRowtwotext{
+	padding-left: 10px;
+    top: -10px;
+    width: 372px;
     text-align: initial;
-    width: 429px;
     height: 133px;
     margin-bottom: 0px;
     bottom: 37px;
-    padding-left: 30px;
     padding-right: 0px;
+}
+
+.testimonialRowtwo{
+	padding-left: 0px;
+}
+
+.nemarginCol{
+	top: -24px;
+}
+
+p.footersubTitlenew{
+	font-family: "Assistant";
+	font-weight: 200;
+	font-size: 17px;
+	color: #b6b6b6;
+	height: 0px;
+}
+
+a.newCustomButtonownplan{
+	width: 405px;
+}
+
+p.contactNewbold{
+	font-family: "Assistant";
+	font-weight: 800;
+	font-size: 22px;
+	color: #ffffff;
+}
+
+p.contactNewnormal{
+	font-family: "Assistant";
+	font-weight: 500;
+	font-size: 16px;
+	color: #ffffff;
+}
+
+.rightArrow img{
+	margin-left: -30px;
+    margin-right: 0;
+    padding-top: 19px;
 }
 
 .rightArrow{
@@ -19867,7 +19977,7 @@ h1.testimonialRowtwotext{
 }
 
 .orlyName p{
-	font-family: "Roboto Condensed";
+	font-family: "Assistant";
 	font-size: 16px;
 	color: #44505d;
 	font-style: italic;
@@ -19875,14 +19985,14 @@ h1.testimonialRowtwotext{
 }
 
 .orlyName b{
-	font-family: "Roboto Condensed";
+	font-family: "Assistant";
 	font-size: 16px;
 	color: #44505d;
 	float: left;
 }
 
 .gokulName p{
-	font-family: "Roboto Condensed";
+	font-family: "Assistant";
 	font-size: 16px;
 	color: #44505d;
 	font-style: italic;
@@ -19891,7 +20001,7 @@ h1.testimonialRowtwotext{
 
 
 .gokulName b{
-	font-family: "Roboto Condensed";
+	font-family: "Assistant";
 	font-size: 16px;
 	color: #44505d;
 	float: left;
@@ -19916,7 +20026,7 @@ h1.testimonialRowtwotext{
 
 a.morereasonsButton{
 	color: #44505d;
-    font-family: "roboto condensed";
+    font-family: "Assistant";
     font-weight: 300;
 }
 
@@ -19930,17 +20040,233 @@ a.morereasonsButton:focus{
 }
 
 .reasonButtonone{
-	margin-left: 18%;
-    padding-top: 91px;
+	margin-left: 24%;
+    padding-top: 30px;
 }
 
 .reasonButtontwo{
     margin-right: 23%;
-    padding-top: 90px;
+    padding-top: 30px;
+}
+
+.colmanyMargin{
+	margin-left: 0px; 
+	padding-left: 0px; 
+	right: 36px;
+	left: -20px;
+}
+
+.colmanyMarginone{
+    margin-left: 158px; 
+    padding-right: 0px; 
+    padding-left: 0px; 
+    width: 405px; 
+    left: 20px;
+}
+
+.paymentcardRow{
+    display: inline-block;
+    width: 394px;
+    margin-top: 90px;
+    padding-left: 0px;
+    position: relative;
+    margin-left: 145px;
+}
+
+.followRow{
+	text-align: center;
+}
+
+.followRow b{
+	font-family: "Assistant";
+	color: white;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.securityNewcard{
+	padding-left: 0px;
+    margin-left: 0px;
+    left: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    bottom: 25px;
+}
+
+.newSocialicon{
+    position: relative;
+    float: right;
+    margin: 0 auto;
+    left: 10px;
+    right: 0px;
+    padding-right: 344px;
+}
+
+.securityNewcard img{
+	height: 20px;
+}
+
+.termsCondition b{
+	font-family: "Assistant";
+	color: white;
+	font-size: 11px;
+	font-weight: 500;
+	text-align: center;
+}
+
+.termsCondition{
+    padding-top: 14px;
+	text-align: center;
 }
 
 .selectOption {
     width: 100%;
     height: 43px;
     border-color: #e3e3e3;
+}
+
+ul.newHeaderul{
+	margin-top: 0px;
+	height: 64px; 
+	margin-right: 0px;
+}
+
+span.newHeaderspan{
+	border-top-width: 0;
+    height: 22px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-top: 0;
+    padding-left: 27px;
+    padding-right: 8px;
+    padding-top: 16px;
+}
+
+.bordergauLeft{
+	height: 64px;
+    border-left-color: #999;
+    border-left-width: 1px;
+    border-left-style: solid;
+}
+
+ul.searchWidth{
+	width: 730px;
+}
+
+li.newLogin{
+    margin-top: 8px;
+}
+
+li.features{
+	padding-left: 15px;
+    padding-top: 3px;
+}
+
+li.pricing{
+	padding-top: 2px;
+	right: 15px;
+}
+
+.newHeadera{
+	height: 63px;
+    margin-left: 14px;
+    margin-top: 0;
+    padding-left: 8px;
+    padding-top: 0;
+}
+
+li.newHeaderli{
+	height: 44px;
+    left: 12px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+
+a.desktopCampaigntext:hover,
+a.desktopCampaigntext:focus{
+	text-decoration: none;
+}
+
+a.desktopCampaigntext{
+	text-decoration: none;
+	font-family: "Assistant";
+    font-weight: 500;
+    color: white;
+    height: 52px;
+    padding-top: 8px;
+    padding-right: 5px;
+    margin-right: 0px;
+    padding-left: 5px;
+}
+
+.desktopCampaigntext{
+    border: thick solid #f6bf0b;
+    border-radius: 0;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+     padding-top: 8px;
+    padding-right: 5px;
+    margin-right: 0px;
+    padding-left: 5px;
+}
+
+div.desktopcampaignDivbutton{
+	margin-left: 10%;
+    bottom: 160px;
+    width: 235px;
+    position: relative;
+    text-decoration: none;
+}
+
+div.securePayment{
+    width: 65px;
+    padding-top: 85px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+div.paymentCard{
+    padding-right: 0px;
+    width: 50px;
+    padding-left: 0px;
+}
+
+inout.newSignup{
+    padding-left: 29px;
+    margin-left: 58px;
+    width: 83px;
+}
+
+.footerNopadding{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+input.newInnermail{
+    padding-top: 7px;
+    margin-top: 1px;
+    width: 285px;
+    border-bottom-width: 0px;
+    height: 29px;
+}
+
+.paymentText b{
+	font-family: "Assistant";
+	font-size: 14px;
+	color: #b6b6b6;
+	font-weight: 600;
+}
+
+.paymentText{
+	width: 145px;
+	padding-right: 0px;
 }

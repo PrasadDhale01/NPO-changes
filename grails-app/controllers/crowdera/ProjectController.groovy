@@ -109,6 +109,7 @@ class ProjectController {
 
 	def search () {
 		def currentEnv = projectService.getCurrentEnvironment()
+		country_code =  projectService.getCountryCodeForCurrentEnv(request)
 		def query = params.q
 		def countryOptions = projectService.getCountry()
 		def discoverLeftCategoryOptions

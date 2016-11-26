@@ -29,20 +29,24 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
 <%--				  	<g:link mapping="listCampaigns" params="[country_code: country_code]" class="nav-text2 hm-back-width hed-font-sizes">--%>
 <%--					</g:link>	--%>
 <%--				</li>--%>
-                <ul class="nav navbar-nav nav-icon-bar newTextAllignHEader">
-                   <li class="discover"><a href="${resource(dir: '/campaigns')}" class="nav-text2 hm-back-width hed-font-sizes">FEATURES</a></li>
-                   <li class="learn"><a href="${resource(dir: '/howitworks')}" class="nav-text3 hm-back-width hed-font-sizes">PRICING</a></li>
-                <li class="searchengine hidden-xs">
-                    <form action="/campaign" name="SearchForm">
-                        <div class="inner-addon left-addon search-icon-header search-image-header">
-                           <img src="//s3.amazonaws.com/crowdera/project-images/898ae16c-fa20-4f4c-acdb-c87efdbe9553.png" alt="search" class="trigger" id="trigger" onclick="toggleSearch();">
-                           <input type="search" class="form-control form-control-no-border search-box" name="q" value="${params.q}" id="search-bar" placeholder="Search....."/>
-                        </div>
-                    </form>
-                </li>
-                
-                <li class="hidden-lg hidden-md hidden-sm search-mob">
-                    <form action="/campaign"  name="searchableForm">
+                <ul class="nav navbar-nav nav-icon-bar newTextAllignHEader" style="width: 770px;">
+                    <li class="features ">
+                   		 <g:link mapping="listCampaigns" params="[country_code: country_code]" class="nav-text2 hm-back-width hed-font-sizes">FEATURES</g:link>
+                  		
+                   	</li>
+                   <li class="pricing">
+                   		<a href="${resource(dir: '/howitworks')}" class="nav-text3 hm-back-width hed-font-sizes">PRICING</a>
+                   	</li>
+                   <li class="searchengine hidden-xs  pull-right">
+                     <form action="${country_code}/campaign" name="SearchForm">
+                     <div class="inner-addon left-addon search-icon-header search-image-header">
+                        <img src="//s3.amazonaws.com/crowdera/project-images/898ae16c-fa20-4f4c-acdb-c87efdbe9553.png" alt="search" class="trigger" id="trigger" onclick="toggleSearch();">
+                        <input type="search" class="form-control form-control-no-border search-box" name="q" value="${params.q}" id="search-bar" placeholder="Search....."/>
+                     </div>
+                     </form>
+                  </li>
+                  <li class="hidden-lg hidden-md hidden-sm search-mob">
+                     <form action="${country_code}/campaign" name="SearchForm">
                         <span class="form-group inner-addon left-addon">
                             <i class="glyphicon glyphicon-search search-glyph-icon"></i>
                             <input type="search" name="q" class="form-control form-control-no-border search-box-xs" value="${params.q}" placeholder="Search.....">
@@ -50,11 +54,11 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                     </form>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right nav-create-button">
-                <li class="hidden-xs noscrollHeaderHelpLink">
+            <ul class="nav navbar-nav navbar-right nav-create-button newHeaderul"  style="margin-top: 0px;">
+                <li class="hidden-xs noscrollHeaderHelpLink newHeaderli">
 <%--                    <g:link controller="project" action="create" class=" btn btn-info nav-text1 TW-header-helpLinkLogged">--%>
-                    <g:link mapping="createCampaign" params="[country_code: country_code]" class="btn btn-info nav-text1 TW-header-helpLinkLogged">
-                        <span class="TW-header-helpTxtLogged">Create</span>
+                    <g:link mapping="createCampaign" params="[country_code: country_code]" class="btn btn-info nav-text1 TW-header-helpLinkLogged newHeadera">
+                        <span class="TW-header-helpTxtLogged newHeaderspan">CREATE A CAMPAIGN</span>
                     </g:link>
                 </li> 
                 <li class="hidden-lg hidden-md hidden-sm hed-font-sizes">
@@ -64,8 +68,8 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
             
             <ul class="nav navbar-nav navbar-right leftheaderIcons  <g:if test="${user}">navbar-right-logged-in</g:if>">
                 <sec:ifNotLoggedIn>
-                   <li><g:link controller="login" action="auth" class="nav-item-2">LOG IN</g:link></li>
-                   <li><g:link controller="login" action="register" class="nav-item-3">SIGN UP</g:link></li>
+                  <li class="newLogin"><g:link controller="login" action="auth" params="[country_code: country_code]" class="nav-item-2">LOG IN</g:link></li>
+<%--                   <li><g:link controller="login" action="register" class="nav-item-3">SIGN UP</g:link></li>--%>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
                     <li class="dropdown dropdown-head hover-dropdown home-dropdown drop imgs-all user-img">

@@ -6,6 +6,9 @@
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
+
+<link href="https://fonts.googleapis.com/css?family=Assistant:200,800|Open+Sans:300,800|Roboto:100,300,900" rel="stylesheet">
+
 <meta name="layout" content="main" />
 <meta name="description" content="Crowdera is a FREE crowdfunding platform that helps individuals, non-profits & independent filmmakers to raise money online. Create your fundraiser." />
 <meta name="keywords" content="Crowdera, crowdfunding, contribute online, raise funds free, film crowdfunding, raise money online, fundraising site, fundraising website, fundraising project, online fundraising, raise money for a cause, global crowdfunding" />
@@ -86,7 +89,7 @@
     </div>
     <div class="hidden-xs">
         <div class="whycrowderacontainer" id="loadWhyCrowdera"></div>
-        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+        <g:if test="${country_code == 'in'}">
         <div class="success-stories-container">
             <g:render template="success-stories"></g:render>
         </div>

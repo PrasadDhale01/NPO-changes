@@ -101,18 +101,20 @@
 	<g:else>
 	<div class="usnewteStimonial">
 	<div class="leftarro pull-left">
-	   <img class="img-responsive" alt="leftArro" src="//s3.amazonaws.com/crowdera/project-images/e44b190a-6ea6-4788-afbb-a4d1a539ac65.png">
+	   <a href="#">
+	      <img class="img-responsive" alt="leftArro" src="//s3.amazonaws.com/crowdera/project-images/e44b190a-6ea6-4788-afbb-a4d1a539ac65.png">
+	   </a>
 	</div>
 	<div class="row testimonialRow">
 	   <div class="col-lg-5 testimonialRowone">
 	      <img class="img-responsive" style="float: left;" src="//s3.amazonaws.com/crowdera/project-images/be3a2f87-a24d-43b3-b401-4b37fc1bd4b1.png" title="Testimoniala-Image-Orly-Wahba.png">
-	      <img class="img-responsive" style="float: left;" src="//s3.amazonaws.com/crowdera/project-images/a7e0debc-8d94-49ad-b2ed-ccc7a008bd1e.png" alt="''">
+	      <img class="img-responsive ttimonialImgpaiing" style="float: left;" src="//s3.amazonaws.com/crowdera/project-images/a7e0debc-8d94-49ad-b2ed-ccc7a008bd1e.png" alt="''">
 	      <h1 class="bannerheadbtmMargin testimonialRowonetext col-lg-6"><b style="width: 512px;">I ran my campaign through Crowdera in its initial phases & I greatly appreciated the support I received from the Crowdera team ...</b></h1>
 	   </div>
 	   <div class="col-lg-5 testimonialRowtwo">
 	      <img class="img-responsive" style="float: left;" src="//s3.amazonaws.com/crowdera/project-images/d4fc2771-1d81-450e-a168-4b3a9eb018da.png" title="Testimoniala-Image-Gokul-R.png">
-	      <img class="img-responsive" style="float: left;" src="//s3.amazonaws.com/crowdera/project-images/a7e0debc-8d94-49ad-b2ed-ccc7a008bd1e.png" alt="''">
-	      <h1 class="bannerheadbtmMargin testimonialRowtwotext col-lg-6"><b>I'm impressed with crowdera's mission & how single-mindedly they are focused on solving a problem that is important & that really matters...</b></h1>
+	      <img class="img-responsive ttimonialImgpaiing" style="float: left;" src="//s3.amazonaws.com/crowdera/project-images/a7e0debc-8d94-49ad-b2ed-ccc7a008bd1e.png" alt="''">
+	      <h1 class="bannerheadbtmMargin testimonialRowtwotext col-lg-6"><b>I'm impressed with crowdera's mission & how   single-mindedly they are focused on solving a problem that is important & that really matters...</b></h1>
 	   </div>
 	</div>
 	<div class="row">
@@ -126,7 +128,9 @@
 	   </div>
 	</div>
 	<div class="rightarro pull-right rightArrow">
-	   <img class="img-responsive" alt="rightArro" src="//s3.amazonaws.com/crowdera/project-images/e1e5e2ca-3ffd-44c6-8954-f49ad33309f5.png"/>
+	   <a href="#">
+	      <img class="img-responsive" alt="rightArro" src="//s3.amazonaws.com/crowdera/project-images/e1e5e2ca-3ffd-44c6-8954-f49ad33309f5.png"/>
+	   </a>
 	</div>
 	</div>
 <%--	<div class="leftarro pull-left">--%>

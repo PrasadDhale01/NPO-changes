@@ -2,7 +2,7 @@
 <div id="footermarker"></div>
 <footer>
     <div class="footer_links">
-    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+    <g:if test="${country_code == 'in'}">
         <div class="container footer-container">
     <div class="visible-lg footer-lg">
     <div class="row footer-lg-first-section">
@@ -147,17 +147,19 @@
      <g:else>
         <div class="row newFooteroptions">
            <div class="col-md-2">
-              <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/8fbfaf2c-44e5-4a93-9a6c-df23bc199467.png" title="Footer-Crowdera---Logo.png">
+              <a href="/">
+                 <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/8fbfaf2c-44e5-4a93-9a6c-df23bc199467.png" title="Footer-Crowdera---Logo.png">
+              </a>
               <br>
               <br>
               <b class="footerleftsubTitle">Crowdera is <br>World's #1 Truly Free Online Fundraising <br>Platform For Nonprofits,NGOs<br> and Individuals</b>
               <br>
               <br>
-                 <p class="cdra-ft-cutomercnt">Customer support:</p>
-                 <p class="cdr-ft-contactnum">+1 (650) 690 2234</p>
-                 <p class="cdra-ft-contactmail">support@crowdera.co</p>
+                 <p class="cdra-ft-cutomercnt footersubTitlenew">Customer support:</p>
+                 <p class="cdr-ft-contactnum contactNewbold">+1 (650) 690 2234</p>
+                 <p class="cdra-ft-contactmail contactNewnormal">support@crowdera.co</p>
            </div>
-           <div class="col-md-2">
+           <div class="col-md-2 footerNopadding">
               <b><a class="footerTitle">Crowdera</a></b>
               <br>
               <ul style="list-style-type:none;display:initial">
@@ -196,7 +198,7 @@
               </li>
               </ul>
            </div>
-           <div class="col-md-2">
+           <div class="col-md-2 footerNopadding">
            <b><a class="footerTitle">Crowdfunding</a></b>
               <br>
               <ul style="list-style-type:none;display:initial">
@@ -226,7 +228,7 @@
               </li>
               </ul>
            </div>
-           <div class="col-md-2">
+           <div class="col-md-2 footerNopadding">
            <b><a class="footerTitle">Nonprofits</a></b>
               <br>
               <ul style="list-style-type:none;display:initial">
@@ -268,7 +270,7 @@
               </li>
               </ul>
            </div>
-           <div class="col-md-2">
+           <div class="col-md-2 footerNopadding">
            <b><a class="footerTitle">Products</a></b>
               <br>
               <ul style="list-style-type:none;display:initial">
@@ -295,7 +297,7 @@
               </li>
               </ul>
            </div>
-           <div class="col-md-2">
+           <div class="col-md-2 footerNopadding">
            <b><a class="footerTitle">Corporation</a></b>
               <br>
               <ul style="list-style-type:none;display:initial">
@@ -325,9 +327,9 @@
            <br><br>
              <div class="footer-newsletter">
              <form action="${mailChimpUrl}" method="post" id="mvc-embedded-subscribe-form-lg" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-                 <div class="newsletter-alignment newslettercenterAlligned col-md-8">
+                 <div class="newsletter-alignment newslettercenterAlligned col-md-8 newsletterPadding">
                  <div class="newsletter-input col-md-3">
-                     <input type="text" class="all-place form-control subscriberEmail" name="EMAIL" tabindex="-1" value="" placeholder="Your email">
+                     <input type="text" class="all-place form-control newInnermail subscriberEmail" name="EMAIL" tabindex="-1" value="" placeholder="Your email">
                  </div>
                  <div class="newsletter-button footer-signup-margin col-lg-2">
                      <input type="submit" value="" name="subscribe" class="button-signup signup-lg">
@@ -336,31 +338,56 @@
                  </div>
              </form>
              </div>
-             <div class="paymentMethods">
-                <div class="row paymentRow">
-                <b>Payment Methods:</b>
-                <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/e1a2d86d-8948-425a-9789-2895678f0407.png" title="Visa---Card.png">
-                <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/2f7a99cb-6c44-47b3-8624-e2913430fd46.png" title="American-Express---Crad.png">
-                <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/a3d99e58-0d10-40a6-afaf-1a46e5cda2d5.png" title="Paypal-Card.png">
-                <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/71e46519-73e2-49f3-8a69-84b1c0fb6e4f.png" title="Master-Card.png">
-                <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/350a25e2-d430-4ab9-b3dc-27d493195ecd.png" title="100%-Secure-Payment.png">
-                <br><br><br><br>
+             <div class="row paymentcardRow rowcardBottom">
+                <div class="col-lg-2 paymentTop paymentText" style="width: 160px;padding-right: 0px;">
+                   <b>Payment Methods:</b>
+                </div>
+                <div class="col-lg-1 paymentCard paymentTop">
+                   <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/e1a2d86d-8948-425a-9789-2895678f0407.png" title="Visa---Card.png">
+                </div>
+                <div class="col-lg-1 paymentCard paymentTop">
+                   <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/2f7a99cb-6c44-47b3-8624-e2913430fd46.png" title="American-Express---Crad.png">
+                </div>
+                <div class="col-lg-1 paymentCard paymentTop">
+                   <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/a3d99e58-0d10-40a6-afaf-1a46e5cda2d5.png" title="Paypal-Card.png">
+                </div>
+                <div class="col-lg-1 paymentCard paymentTop">
+                   <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/71e46519-73e2-49f3-8a69-84b1c0fb6e4f.png" title="Master-Card.png">
+                </div>
+                <div class="col-lg-1 paymentCard paymentTop pull-right securityNewcard">
+                   <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/350a25e2-d430-4ab9-b3dc-27d493195ecd.png" title="100%-Secure-Payment.png">
                 </div>
              </div>
-             <hr class="footer-hr">
-             <br><br><br><br>
-             <b class="pull-right">FOLLOW US</b>
+             <hr class="footer-hr rowMargin">
              <br><br><br>
-             <div class="socialicon pull-right">
-             <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/wordpress-gray.png" alt="blog"></a>
-             <a href="https://plus.google.com/102697810290030135564"  target="_blank"><img class="googleplussocial" src="//s3.amazonaws.com/crowdera/assets/googleplus-gray.png.png" alt="googlepluse"></a>
-             <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>   
-             <a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
-             <a href="https://www.linkedin.com/company/crowdera"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>
-             <a href="https://instagram.com/gocrowdera"  target="_blank"><img class="instagram-footer" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="instagram"></a>
-             
-             <br><br>
+             <div class="row followRow">
+                <b class="followUs">FOLLOW US</b>
              </div>
+             <br>
+             <div class="row socialicon newSocialicon">
+                <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/wordpress-gray.png" alt="blog"></a>
+                <a href="https://plus.google.com/102697810290030135564"  target="_blank"><img class="googleplussocial" src="//s3.amazonaws.com/crowdera/assets/googleplus-gray.png.png" alt="googlepluse"></a>
+                <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>   
+                <a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
+                <a href="https://www.linkedin.com/company/crowdera"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>
+                <a href="https://instagram.com/gocrowdera"  target="_blank"><img class="instagram-footer" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="instagram"></a>
+             </div>
+             <br><br>
+             <div class="row termsCondition">
+                <b>Terms of Use</b>
+                <b>Privacy Policy</b>
+                <b>Sitemap</b>
+                <b>@ 2016 Crowdera,Inc.</b>
+             </div>
+<%--             <div class="socialicon pull-right">--%>
+<%--             <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/wordpress-gray.png" alt="blog"></a>--%>
+<%--             <a href="https://plus.google.com/102697810290030135564"  target="_blank"><img class="googleplussocial" src="//s3.amazonaws.com/crowdera/assets/googleplus-gray.png.png" alt="googlepluse"></a>--%>
+<%--             <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>   --%>
+<%--             <a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>--%>
+<%--             <a href="https://www.linkedin.com/company/crowdera"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>--%>
+<%--             <a href="https://instagram.com/gocrowdera"  target="_blank"><img class="instagram-footer" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="instagram"></a>--%>
+<%--             <br><br>--%>
+<%--             </div>--%>
         </div>
      </g:else>
   </div>

@@ -55,7 +55,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
        <h3 class="bannerSmalltext">We are the only crowdfunding platform that does not charge any commission on your raise or take any tip from your donors.</h3>
        <br>
        <div class="homepagecarouselButton">
-       <g:link mapping="createCampaign" params="[country_code: country_code]" class="btn btn-default btn-block hm-start-campaign-btn">
+       <g:link mapping="createCampaign" params="[country_code: country_code]" class="btn necz btn-default btn-block hm-start-campaign-btn">
                   	CREATE A CAMPAIGN
        </g:link>
 <%--	        <a href="${resource(dir: '/campaign/create')}" class="btn btn-default btn-block hm-start-campaign-btn">CREATE A CAMPAIGN</a>--%>

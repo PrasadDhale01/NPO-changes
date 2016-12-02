@@ -103,7 +103,7 @@ class UrlMappings {
 		"/$country_code/campaign/edit/$projectTitle"(controller:'project', action:'edit')
 		
 		
-		"/campaigns/addFundRaiser/$id"(controller:'project', action:'addFundRaiser')
+		"/$country_code/campaigns/addFundRaiser/$id"(controller:'project', action:'addFundRaiser')
 		"/campaign/campaignupdate/$projectTitle"(controller:'project', action:'projectupdate')
 		"/campaign/updatesaverender"(controller:'project', action:'updatesaverender')
 		name listCampaigns :  "/$country_code/campaigns"{
@@ -127,7 +127,7 @@ class UrlMappings {
 		"/campaign/validateList"(controller:'project', action:'validateList')
 		"/campaign/validateshow/$projectTitle/$fr"(controller:'project', action:'validateshow')
 		"/campaign/sendemail"(controller:'project', action:'sendemail')
-		"/campaign/sortby/$query"(controller:'project', action:'sortCampaign')
+		"/$country_code/campaign/sortby/$query"(controller:'project', action:'sortCampaign')
 		"/campaign/$projectTitle/update/edit/$id"(controller:'project', action:'editUpdate')
 		"/campaign/supporter/$projectId/$fundRaiser"(controller:'project', action:'addcampaignsupporter')
 		"/campaign/$projectTitle/$fr/embed/tile"(controller:'project', action:'embedTile')

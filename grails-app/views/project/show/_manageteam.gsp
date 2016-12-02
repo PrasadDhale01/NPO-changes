@@ -13,7 +13,7 @@
    </div>
 </g:if>
 <div class="col-md-12 col-sm-12 col-xs-12"></div>
-<div class="pill-buttons show-teams-top">
+<div class="pill-buttons show-teams-top mob-team-tabz">
 <g:if test="${!totalteams.isEmpty()}">
     <div data-toggle="tab" class="active show-teamsnumber col-md-4 col-sm-4 col-xs-12 button-team-show show-teamsnumber show-team-top">
             <g:if test="${currentUser}">

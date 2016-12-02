@@ -117,7 +117,7 @@
                         <g:if test="${!project.validated}">
                             <div class="mange-campaigntitle-mobile">
                                 <h1 class="green-heading text-center campaignTitle">
-                         			<g:link mapping="managecampaign" params="[country_code: country_code,title:project.title,id: project.id]">
+                         			<g:link mapping="managecampaign" params="[country_code: country_code,title:project.title,id: project.id,category : project.fundsRecievedBy.toLowerCase()]">
                          				${projectTitle}
                          			</g:link>
                          		</h1>
@@ -129,7 +129,7 @@
                             <div class="mange-campaigntitle-mobile">
                                 <h1 class="green-heading text-center campaignTitle ">
 <%--                               	 <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}--%>
-                               	     <g:link mapping="showCampaign" params="[country_code: country_code,title:project.title,id: project.id,fr:username]">${project.title}
+                               	     <g:link mapping="showCampaign" params="[country_code: country_code,title:project.title,id: project.id,fr:username,category : project.fundsRecievedBy.toLowerCase()]">${project.title}
                                	 </g:link>
                                 </h1>
 <%--                                <a href="javascript:void(0)">${project.title}</a></h1>--%>

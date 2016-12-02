@@ -1,6 +1,7 @@
 /* Carousel
 ------------------------- */
 @import url(https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
+@import url('https://fonts.googleapis.com/css?family=Assistant:400,800');
 
 body {
     margin-top: 50px;
@@ -1373,7 +1374,7 @@ footer .footerbottomsection {
     box-shadow: none;
     margin-top: -14px;
     font-size: 24px;
-    font-weight: bold;
+    font-weight: inherit;
     font-family: Ubuntu Condensed;
 }
 .btn-show-fund:hover{
@@ -1698,10 +1699,10 @@ div.tile-min-height{
     margin-bottom: 0px;
     margin-top: 0px;
 /*     padding-left:6px; */
-    color: #363636;
+    color: rgba(0, 0, 0, 0.81);
     padding-bottom: 20px;
     padding-top: 18px;
-    font-family: open sans;
+    font-family: 'Assistant', sans-serif;
 }
 .leftcard-column{
 	width:70%; 
@@ -2025,7 +2026,7 @@ button.projectedit.close{
 }
 .imagestyle {
 	width: 100%;
-	height: 400px;
+	height: 430px;
 	border:none;
 }
 .pill-buttons .nav-pills > li.active > a, .nav-pills > li.active > a:focus  {
@@ -2434,7 +2435,7 @@ a.footerlink {
 }
 .manage-carousel-in{
 	overflow: hidden;
-    	height:400px;
+    	height:430px;
 }
 .team-comments-css{
 	margin-top: 30px;
@@ -4637,12 +4638,12 @@ ul.personalDetailClasses, menu, dir {
 	margin-bottom: 20px;
 }
 .campaignDescription {
-	color:#363636;
+	color: rgba(0, 0, 0, 0.81);
 	font-weight: bold;
 	font-size: 25px;
 	line-height:26px;
 	word-wrap: break-word;
-	font-family: open sans;
+	font-family: 'Assistant', sans-serif;
 }
 p {
     word-wrap: break-word;
@@ -5393,7 +5394,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .campaignTitle a {
     color: #005f84 !important;
     font-size: 30px;
-/*     font-family:  Verdana; */
+    font-family: 'Assistant', sans-serif;
     font-weight: 900;
     font-variant: normal;
     text-decoration: none !important;
@@ -5637,12 +5638,30 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.new-mob-height{
+	   height: 3690px;
+	}
+	div.mob-contributions-modal{
+	   width: 266px;
+	}
+	div.mob-team-tabz{
+	   width: 292px;
+	}
+	div.show-tops-corsal{
+	   margin-top: 6px;
+	   padding-left: 0px
+	}
 	strong.faq-subheading {
        font-size: 15px;
        margin-bottom: 20px;
        margin-top: 20px;
     }
 	
+	div.mob-x-corsal{
+	   margin-left: 0px; 
+	   padding-left: 0px; 
+	   width: 292px;
+	}
 	div.learnmorecontainer {
        background-color: white;
        height: 520px;
@@ -5678,6 +5697,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         border: 1px solid #e7e7e7;
     }
     div.show-more-tags {
+    	background-color: #ffffff;
         border: 1px solid #e7e7e7;
         margin-bottom: 30px;
         padding: 15px;
@@ -8549,6 +8569,58 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+		div.goal-icon-padding {
+        padding-left: 0;
+        padding-right: 5px;
+        width: 50px;
+    }
+    div.days-new-padding {
+        padding: 10px 8px;
+        width: 48px;
+    }
+    span.sho-fb-color {
+        background-color: #3b5998;
+        font-size: 14px;
+        font-weight: bold;
+        padding-top: 10px;
+    }
+    span.tab-fb-padding{
+        padding: 10px 5px;
+    }
+    i.sh-fb-icons {
+        margin-left: 0px;
+        font-size: 20px;
+        padding-right: 5px;
+        padding-top: 5px;
+    }
+    div.sho-fb-color {
+        background-color: #3b5998;
+        font-size: 13px;
+        font-weight: bold;
+        padding-top: 5px;
+    }
+    div.new-tab-orgTile{
+        width: 206px; 
+        padding-left: 5px; 
+        padding-right: 5px; 
+        padding-bottom: 10px; 
+        height: 202px;
+    }
+	div.new-tab-carousel{
+	    width: 495px;
+	}
+	div.new-nav-width{
+	    width: 480px;
+	}
+	div.new-tem-tab-width{
+	    width: 500px;
+	}
+	span.amount-left-padding{
+	    padding-left: 10px;
+	}
+	.show-tab-org{
+	    width: 220px;
+	}
 	div.learnmorecontainer {
         background-color: white;
         height: 520px;
@@ -8721,6 +8793,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 140px;
     }
     span.show-org-name {
+    	font-family: 'Assistant', sans-serif;
         font-size: 10px;
         left: -11px;
         width: 129px;
@@ -9421,6 +9494,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 22px;
         line-height: 28px;
         padding-top: 1px;
+        font-family: 'Assistant', sans-serif;
     }
     h2.sh-fundclosed-mobile{
         font-size: 20px !important;
@@ -9451,6 +9525,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     button.show-campaign-sucess-endedbtn {
         font-size: 19px;
         height: 58px;
+        font-family: 'Assistant', sans-serif;
     }
     button.show-fund-size {
         font-size: 29px;
@@ -11904,6 +11979,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    font-size: 21px;
 	    padding-left: 14px;
 	    height: 57px;
+	    font-family: 'Assistant', sans-serif;
 	}
 	button.show-campaign-sucessbtn{
         font-size: 17px;
@@ -15312,6 +15388,29 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+		div.new-mob-height{
+	   height: 3630px;
+	}
+	div.new-mob-perk{
+	   width: 300px;
+	}
+	div.mob-contributions-modal{
+	   width: 266px;
+	}
+	div.mob-team-tabz{
+	   width: 292px;
+	}
+	ul.sh-mobs-teams li {
+        padding-left: 6px;
+    }
+    div.mob-x-corsal{
+	   padding-left: 0px; 
+	   width: 292px;
+	}
+	div.show-tops-corsal{
+	   margin-top: 6px;
+	   padding-left: 0px
+	}
 	strong.faq-subheading {
        font-size: 15px;
        margin-bottom: 20px;
@@ -15408,6 +15507,7 @@ textarea.textarea-embed-video {
         border: 1px solid #e7e7e7;
     }
     div.show-more-tags {
+    	background-color: #ffffff;
         border: 1px solid #e7e7e7;
         margin-bottom: 30px;
         padding: 15px;
@@ -16383,8 +16483,8 @@ textarea.textarea-embed-video {
         font-size: 17px;
         padding-top: 9px;
     }
-    ul.sh-mobs-teams li {
-        padding-left: 2px;
+    sh-mobs-teams li {
+        padding-left: 6px;
     }
 	.mobileview-bottom-mange{
 	    display: none;
@@ -16471,7 +16571,7 @@ textarea.textarea-embed-video {
 /*         left: -14px; */
 /*         width: 105%; */
 /*     } */
-    div.show-tops-corsal {
+   	show-tops-corsal {
         margin-top: 6px;
     }
     div.sh-imgUpdt-mob img {
@@ -17753,7 +17853,7 @@ textarea.textarea-embed-video {
 .show-fund-size {
 	height: 60px;
     font-size: 30px;
-    font-family: open sans, sans-serif;
+    font-family: Assistant;
     padding-left: 25px;
     padding-top: 8px;
     margin-top: 0;
@@ -17792,8 +17892,9 @@ textarea.textarea-embed-video {
 }
 .show-tabs-text{
 	text-decoration:none !important;
-    font-family: Futura,Trebuchet MS,Arial,sans-serif;
-    font-family: Ubuntu Condensed;
+/*     font-family: Futura,Trebuchet MS,Arial,sans-serif; */
+/*     font-family: Ubuntu Condensed; */
+    font-family: 'Assistant', sans-serif !important;
     font-size: 16px;
     font-weight: 500;
     color: #000;
@@ -17831,7 +17932,7 @@ textarea.textarea-embed-video {
 /* 	 color: red; */
 /* } */
 .show-campaign-sucess-endedbtn {
-    font-family: Ubuntu Condensed;
+    font-family: 'Assistant', sans-serif;
     font-size: 24px;
     height: 60px;
     padding-top: 12px;
@@ -18687,8 +18788,9 @@ li.sh-button-fund-secandaryheader{
 .sh-fund-2header{
 /*     margin-top: 0px; */
     padding: 0;
-    width: 303px;
     height: 41px;
+    margin-left: 35px; 
+	width: 273px;
 }
 .sh-submitaproval-2header {
     height: 60px;
@@ -18738,7 +18840,6 @@ li.sh-button-fund-secandaryheader{
 .sh-iconsfb-header {
     font-size: 14px;
     padding-left: 12px;
-    padding-right: 25px;
 }
 .show-icons-secandheader img{
     padding-top: 3px;
@@ -19177,3 +19278,35 @@ a< #returnTotop:focus{
   outline: none;
 }
 
+.goal-icon-padding{
+	padding-left: 0px;
+    padding-right: 5px;
+    width: 65px;
+}
+
+.new-upper-fb{
+	margin-left: 35px; 
+	width: 273px;
+	height:34px;
+	padding-top: 3px;
+}
+
+.days-new-padding{
+	padding: 10px 8px;
+    width: 65px;
+}
+
+.btn-show-bannerslogantext {
+    color: #ffffff !important;
+    background-color:  #f6bf0c; !important;
+    outline: none !important;
+    border:none !important;
+    box-shadow: none;
+    margin-top: -14px;
+    font-size: 22px;
+    font-weight: inherit;
+    font-family: Assistant;
+}
+
+
+ 

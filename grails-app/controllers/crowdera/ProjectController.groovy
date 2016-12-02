@@ -1632,8 +1632,8 @@ class ProjectController {
 	def addTeam() {
 		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 		def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-
-		def reqUrl = base_url+"/project/addFundRaiser?id=${params.id}"
+		
+		def reqUrl = base_url+params.country_code+"/project/addFundRaiser?id=${params.id}"
 		Cookie cookie = new Cookie("requestUrl", reqUrl)
 		cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
 		cookie.maxAge= 3600  //Cookie expire time in seconds
@@ -1861,6 +1861,7 @@ class ProjectController {
 
 	def campaignsSorts(){
 		def sorts = params.sorts.replace(' ','-')
+		country_code =  projectService.getCountryCodeForCurrentEnv(request)
 
 		if(sorts.equalsIgnoreCase('Sort-by')){
 			redirect(action:'list', controller:'project')

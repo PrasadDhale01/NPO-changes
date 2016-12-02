@@ -74,7 +74,7 @@
     
     <div class="main-header-gsp" id="loadHeaderTempate"></div>
 
-    <div class="feduoutercontent mobile-header-onmain">
+    <div class="feduoutercontent mobile-header-onmain campaign-bg-color">
         <g:layoutBody />
     </div>
     <div id="loadFooter"></div>

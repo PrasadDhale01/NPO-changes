@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Assistant:400,800');
 .reasonsToFund {
 /*     border: 5px solid #f7f7f7; */
     margin-top: 4px;
@@ -114,8 +115,8 @@ a.show-web-address:hover {
     border-right: 2px solid #e7e7e7;
 }
 a.show-campaigndetails-font {
-    color: #787878;
-    font-family: open sans;
+    color: #333;
+    font-family: 'Assistant', sans-serif;
     font-size: 18px;
     font-weight: 500;
 }
@@ -124,8 +125,7 @@ a.show-campaigndetails-font {
     font-family: open sans;
     font-size: 30px;
     font-weight: 900;
-     margin-bottom: 10px;
-     padding: 15px;
+    margin-bottom: 10px;
 }
 .show-impact-assessment {
     color: #363636;
@@ -141,10 +141,10 @@ a.show-campaigndetails-font {
     padding: 15px;
 }
 .show-tri-reasons-to-fund {
-    font-family: open sans;
+    font-family: 'Assistant', sans-serif;
     font-size: 26px;
     font-weight: bold;
-    color: #363636;
+    color: rgba(0, 0, 0, 0.81);
     line-height:1;
 }
 .show-reasonsToFund {
@@ -168,8 +168,7 @@ a.show-campaigndetails-font {
 }
 .show-reasons-fund-bgpadding{
 	background-color: #fff;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 20px 15px;
 }
 .show-reasons {
     border-bottom: 2px solid #e7e7e7;
@@ -186,10 +185,11 @@ a.show-campaigndetails-font {
 .show-tile-raised {
     width: 100%;
     color: #363636;
-    font-family: open sans;
+    font-family: 'Assistant', sans-serif;
     font-size: 14px;
 }
 .show-raised-amt {
+	font-family: 'Assistant', sans-serif;
     font-size: 30px;
     font-weight: 900;
     line-height: 0.8;
@@ -241,11 +241,13 @@ a.show-campaigndetails-font {
     padding-top: 3px;
 }
 .show-profile {
+	font-family: 'Assistant', sans-serif;
     font-size: 12px;
     padding: 0;
 /*     width: 65px; */
 }
 .show-org-name {
+	font-family: 'Assistant', sans-serif;
     font-size: 12px;
     height: 34px;
     line-height: 14px;
@@ -276,13 +278,13 @@ a.show-campaigndetails-font {
     padding-top: 22px;
 }
 .show-spend-matrix-title {
-	color:#363636;
-    font-family: open sans;
+	color: rgba(0, 0, 0, 0.81);
+    font-family: 'Assistant', sans-serif;
     font-size: 25px;
 }
 .show-comments-title{
-	color:#363636;
-    font-family: open sans;
+	color: rgba(0, 0, 0, 0.81);
+    font-family: 'Assistant', sans-serif;
     font-size: 25px;
 }
 img.show-cmment-box-imgheight {
@@ -318,7 +320,7 @@ textarea.show-textareawidth {
 	background-color:#01bbd3 ;
     border: medium none;
     color: #fff;
-    font-family: open sans;
+    font-family: 'Assistant', sans-serif;
     font-size: 16px;
     font-weight: 900;
     outline: medium none;
@@ -345,6 +347,8 @@ textarea.show-textareawidth {
 }
 .show-sub-titleJointeam {
     color: #000;
+    font-size: 15px;
+    font-weight: lighter;
 }
 .show-contact-teamtile span {
     padding-top: 14px;
@@ -444,6 +448,9 @@ textarea.show-textareawidth {
     font-weight: 900;
 }
 .sh-attach-btn {
+	color: rgba(0, 0, 0, 0.81);
+	font-family: 'Assistant', sans-serif;
+	font-weight: 600;
     font-size: 12px;
     padding: 5px;
     width: 106px;
@@ -519,8 +526,15 @@ textarea.show-textareawidth {
     height: 52px;
     text-align: center;
     margin-top: 0;
-    padding-top: 3px;
+    padding-top: 10px;
     overflow:hidden;
+}
+span.show-fb-height{
+	padding: 10px;
+	height: 58px;
+}
+.sh-mission-script-height{
+	height: 55px;
 }
 .sh-mission-slogan {
     color: #fff;
@@ -554,7 +568,7 @@ textarea.show-textareawidth {
     margin-bottom: 10px;
     padding: 15px;
 }
-gau-new-color {
+.gau-new-color {
  	color: rgba(0, 0, 0, 0.81);
  }
  
@@ -564,10 +578,41 @@ gau-new-color {
  	padding-right: 0px;
  	margin-left: 15px;
  }
+  .new-show-height{
+    height: 200px;
+    padding-left: 0px;
+ }
+ 
+ .raised-goal-toppadding{
+    padding-top: 7px;
+ }
  
  .new-show-gau-width{
  	width: 282px;
+ 	height: 430px;
  	margin-left: 6px;
  	padding-left: 15px;
  	padding-right: 0px;
- 	}
+
+}
+
+.rightBorder-logo{
+	border-right: 1px solid #999;
+	bottom: 11px;
+    height: 51px;
+    position: relative;
+}
+
+.new-nav-width{
+	width: 682px;
+}
+
+.join-us{
+    background-color: #f6bf0c;
+    height: 52px;
+    text-align: center;
+    margin-top: 0;
+    padding-top: 0px;
+    padding-bottom:55px;
+    overflow:hidden;
+}

@@ -18,6 +18,7 @@
         fundRaiserName = (currentFundraiser?.firstName + " " + currentFundraiser?.lastName).toUpperCase()
     }
     def username = currentFundraiser?.username
+	def loggedInUser = userService.getCurrentUser() 
     
     def projectTitle = project.title
     if (projectTitle) {
@@ -138,7 +139,7 @@
 <body>
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 <a href="javascript:" id="returnTotop"> <i class="icon-chevron-up"></i></a>
-<div class="feducontent campaign-bg-color">
+<div class="feducontent new-mob-height campaign-bg-color">
     <g:if test="${isPreview}">
         <g:if test="${country_code == 'in'}">
             <div class="preview-banner-margin" id="preview-banner">
@@ -162,9 +163,10 @@
         <g:hiddenField id="payuStatus" name="payuStatus" value="${project.payuStatus}"/>
         
         <g:hiddenField name="projectTitle" value="${projectTitle}" id="projectTitle"/>
-        
         <g:if test="${project}">
             <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>
+            <g:hiddenField name="campaignOwner" value="${project.user}" id="campaignOwner"/>
+            <g:hiddenField name="loggedInUser" value="${loggedInUser}" id="loggedInUser"/>
             <div class="redirectUrl">
                 <g:link controller="project" action="show" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="redirectLinkShow"></g:link>
             </div>
@@ -350,6 +352,7 @@
                                 <img alt="Crowdera" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png" class="sh-safari2header-padding">
                             </a>
                         </div>
+<%--                        <div class="rightBorder-logo"></div>--%>
                     </div>
                     <div class="collapse navbar-collapse col-lg-8 col-sm-8 col-md-8 show-header-tabsmanage show-tabsDesktop-headers">
                         <ul class="nav nav-pills nav-justified nav-justi sh-tabs show-pages-width">
@@ -501,14 +504,14 @@
                             
                        <div class="col-lg-6 col-md-6 hidden-sm show-share-FB">
                            <g:if test="${isPreview}">
-                               <a class="btn btn-block btn-social btn-facebook sh-head-fb-over hidden-xs sho-fb-color show-2ndhead-btnFB ss3 show-pointer-not sh-social-fbEllipsis">
-                                   <i class="fa fa-facebook fa-facebook-styles sh-fb-icons sh-iconsfb-header"></i> I Support ${projectTitle}
+                               <a class="btn btn-block btn-social btn-facebook sh-head-fb-over hidden-xs sho-fb-color show-2ndhead-btnFB ss3 show-pointer-not sh-social-fbEllipsis new-upper-fb">
+                                   <i class="fa fa-facebook fa-facebook-styles sh-fb-icons sh-iconsfb-header"></i> I SUPPORT THIS CAMPAIGN
 <%--                                   Share (${facebookShare})--%>
                                </a>
                            </g:if>
                            <g:else>
-                                <a class="btn btn-block btn-social btn-facebook sh-head-fb-over hidden-xs sho-fb-color show-2ndhead-btnFB ss3 fbshare-header sh-social-fbEllipsis" href="#">
-                                   <i class="fa fa-facebook fa-facebook-styles sh-fb-icons sh-iconsfb-header"></i> I Support ${projectTitle}
+                                <a class="btn btn-block btn-social btn-facebook sh-head-fb-over hidden-xs sho-fb-color show-2ndhead-btnFB ss3 fbshare-header sh-social-fbEllipsis new-upper-fb" href="#">
+                                   <i class="fa fa-facebook fa-facebook-styles sh-fb-icons sh-iconsfb-header"></i> I SUPPORT THIS CAMPAIGN
 <%--                                   Share (${facebookShare})--%>
                                 </a>
                            </g:else>
@@ -631,7 +634,7 @@
                 </div> 
                
                
-                <div class="col-xs-12 col-md-8 col-sm-8 Top-tabs-mobile show-tops-corsal  new-gau-width-details">
+                <div class="col-xs-12 col-md-8 col-sm-8 Top-tabs-mobile show-tops-corsal mob-x-corsal new-gau-width-details new-tab-carousel">
                 
                     <%-- Tab panes --%>
                     <div class="tab-content">
@@ -641,10 +644,10 @@
                         <div class="tab-pane tab-pane-active hidden-xs" id="projectupdates">
                             <g:render template="show/projectupdates"/>
                         </div>
-                        <div class="tab-pane tab-pane-active show-teamspage" id="manageTeam">
+                        <div class="tab-pane tab-pane-active show-teamspage mob-team-tabz new-nav-width new-tem-tab-width" id="manageTeam">
                                 <g:render template="show/manageteam"/>
                         </div>
-                        <div class="tab-pane tab-pane-active" id="contributions">
+                        <div class="tab-pane tab-pane-active new-nav-width mob-contributions-modal" id="contributions">
                             <g:render template="show/contributions" model="['team':currentTeam]"/>
                         </div>
                     </div>
@@ -780,7 +783,7 @@
                       </g:else>
                   </div>
                
-                  <div class="col-xs-12 col-md-4 col-sm-4 show-desk-org-tile show-tops-corsal  new-show-gau-width">
+                  <div class="col-xs-12 col-md-4 col-sm-4 show-desk-org-tile show-tops-corsal  new-show-gau-width show-tab-org">
 <%--                      <div class="hidden-xs">--%>
 <%--                          <g:render template="/layouts/orgDetails"/>--%>
 <%--                      </div>--%>
@@ -907,21 +910,48 @@
                           <div class="hidden-xs">
                               <g:render template="/layouts/showTilesanstitleForOrg" model="['currentTeamAmount':currentTeamAmount]"/>
                           </div>
-                         <div class="sh-mission-script hidden-xs"> 
-                            <div class="sh-mission-slogan bannerSloganText" id="bannerSloganText"></div>
-                         </div>
+                          <g:if test="${isDeviceMobileOrTab==false}">
+                         <g:if test="${loggedInUser.equals("") || loggedInUser==null}">
+                         	  <div class="redirectCampaign">
+    							<g:link controller="login" action="auth">
+    								<button name="submit" class="btn btn-show-bannerslogantext btn-lg btn-block sh-mission-script sh-mission-script-height">JOIN US</button>
+    							</g:link>
+    						 </div>	
+                           </g:if>
+                            <g:elseif test="${loggedInUser.equals(project.user)|| isCampaignAdmin}">
+                            	<g:if test="${!ended}">
+	                            	  <div class="redirectCampaign">
+	                            		<a class="btn btn-show-bannerslogantext btn-lg btn-block sh-mission-script sh-mission-script-height" href="#" data-toggle="modal" onclick="javascript:window.open('/project/redirectToInviteMember?projectId=${project.id}&page=show','', 'menubar=no,toolbar=no,resizable=0,scrollbars=yes,height=500,width=786');return false;"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
+		    						</div>	
+	    						</g:if>
+                            </g:elseif>
+                            <g:elseif test="${!loggedInUser.equals(project.user) && !isTeamExist && project.validated}" >
+                            	  <div class="redirectCampaign">
+									<g:if test="${!ended}">
+										<g:form controller="project" action="addTeam" params="[id:project.id,country_code:country_code]">
+											<button type="submit" value="Join Our Team" class="btn btn-show-bannerslogantext btn-lg btn-block join-us sh-mission-script-height">Join Our Team <br> <span class="show-sub-titleJointeam">To Fundraise for us</span></button>
+										</g:form>
+									</g:if>
+									<g:else>
+										<g:link controller="login" action="auth">
+	    									<button name="submit" class="btn btn-show-bannerslogantext btn-lg btn-block sh-mission-script sh-mission-script-height">JOIN US</button>
+	    								</g:link>	
+	             					</g:else>
+             					</div>
+                            </g:elseif>
+                         </g:if>
                         <div class="clear"></div>
                           <g:if test="${isPreview}">
                               <div class="showfacebooksAA"></div>
-                              <span class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color sh-social-fbEllipsis">
-                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> I Support ${projectTitle}
+                              <span class="btn btn-block btn-social btn-facebook show-fb-height tab-fb-padding show-btn-sh-fb hidden-xs sho-fb-color sh-social-fbEllipsis">
+                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> I Support This Campaign
 <%--                                  Share (${facebookShare})--%>
                               </span>
                           </g:if>
                           <g:else>
                               <div class="showfacebooksAA"></div>
-                              <span class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color sh-social-fbEllipsis" id="fbshare">
-                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> I Support ${projectTitle}
+                              <span class="btn btn-block btn-social show-fb-height btn-facebook tab-fb-padding show-btn-sh-fb hidden-xs sho-fb-color sh-social-fbEllipsis" id="fbshare">
+                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> I Support This Campaign
 <%--                               Share   (${facebookShare})--%>
                               </span>
                           </g:else>
@@ -935,7 +965,7 @@
                       </g:if>
                       
                       <g:if test="${project.hashtags}">
-                          <div class="show-more-tags">
+                          <div class="show-more-tags new-mob-perk">
                               <h3 class="moretags-tabs visible-xs"><b>More tags</b></h3>
                               <g:if test="${project.validated}">
                                   <p class="moretags-tabs visible-xs">
@@ -951,7 +981,7 @@
                               </g:else>
                           </div>
                       </g:if>
-                      <div class="show-reasons">
+                      <div class="show-reasons new-mob-perk">
                       <g:if test="${reasons && (reasons.reason1 || reasons.reason2 || reasons.reason3)}">
 <%--                          <div class="tile-footer show-perks-style-reasons">--%>
 <%--                              --%>
@@ -1005,7 +1035,7 @@
                           <g:render template="show/projectupdates"/>
                       </div>
                       
-                      <div class="visible-xs sh-mobperks">
+                      <div class="visible-xs sh-mobperks new-mob-perk">
                           <g:if test="${isPreview && !project.validated}">
                               <g:if test="${project?.rewards?.size()>1}">
                                   <div class="sh-perks-preview">
@@ -1015,7 +1045,7 @@
                           </g:if>
                       </div>
                     
-                      <div class="sh-mobperks">    
+                      <div class="sh-mobperks new-mob-perk">    
                           <g:if test="${(project?.rewards?.size()>1 && !isPreview) || (project?.rewards?.size()>1 && project?.validated) }">
                               <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail || project.citrusEmail}">
                                   <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>

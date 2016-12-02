@@ -102,6 +102,7 @@
                         </div> 
                     </div>
 <g:render template="/layouts/showTilesanstitleForOrg" model="['currentFundraiser':currentUser,'username':username]"/>
-<div class="sh-mission-script hidden-xs"> 
-    <div class="sh-mission-slogan bannerSloganText" id="bannerSloganText"></div>
-</div>
+
+ <div class="redirectCampaign">
+	 <a class="btn btn-show-bannerslogantext btn-lg btn-block sh-mission-script sh-mission-script-height" href="#" data-toggle="modal" onclick="javascript:window.open('/project/redirectToInviteMember?projectId=${project.id}&page=show','', 'menubar=no,toolbar=no,resizable=0,scrollbars=yes,height=500,width=786');return false;"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
+</div>	

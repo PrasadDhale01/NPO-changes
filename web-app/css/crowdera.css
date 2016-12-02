@@ -15389,7 +15389,7 @@ textarea.textarea-embed-video {
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
 		div.new-mob-height{
-	   height: 3630px;
+	overflow: hidden;	
 	}
 	div.new-mob-perk{
 	   width: 300px;

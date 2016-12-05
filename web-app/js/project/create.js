@@ -3219,7 +3219,7 @@ $(function() {
         var usedFor = ($('#usedFor').val() === undefined) ? $('#usedForCreate').val() : $('#usedFor').val();
         var fundRaisedBy = $('.recipient').val();
         var city = $('.city').val();
-        var list;
+        var list = "";
         if (usedFor === 'SOCIAL_NEEDS') {
             list = '#Social-Innovation';
         } else if (usedFor === 'PERSONAL_NEEDS') {
@@ -3230,14 +3230,14 @@ $(function() {
             list = '#Passion';
         }
 
-        (fundRaisedBy && fundRaisedBy !== 'null') ? list = list + ', #'+getStringCaptalised(fundRaisedBy) : ' ' ;
-        (category && category !== 'null') ? list = list + ', #'+getStringCaptalised(category) : ' ' ;
+        (fundRaisedBy && fundRaisedBy !== 'null') ? list = ( list + ((list == "") ? "" : ",") + '#'+getStringCaptalised(fundRaisedBy)) : ' ' ;
+        (category && category !== 'null') ? list = ( list + ((list == "") ? "" : ",") + '#'+getStringCaptalised(category)) : ' ' ;
 
         if (!isIndianCampaign){
-            (country !== 'null' && country !== null && country !== '') ? list = list + ', #'+country : ' ' ;
+            (country !== 'null' && country !== null && country !== '') ? list = ( list + ((list == "") ? "" : ",") + '#'+country) : ' ';
         }
 
-        (city && city !== '') ? list = list + ', #'+city : ' ' ;
+        (city && city !== '') ? list = ( list + ((list == "") ? "" : ",") + '#'+city) : ' ' ;
 
         if ($('.hashtags').val()){
             var remainingList;

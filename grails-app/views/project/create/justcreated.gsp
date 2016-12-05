@@ -9,7 +9,7 @@
 	<g:if test="${project.id}">
 	    <div class="wrap">
 	        <h2>
-	        <g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">
+	        <g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}" params="['country_code': country_code]">
 		        ${project.title}
 		    </g:link>
 		</h2>

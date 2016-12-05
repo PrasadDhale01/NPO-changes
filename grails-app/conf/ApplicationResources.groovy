@@ -174,12 +174,16 @@ modules = {
     
     citrusfundjs {
         resource url: 'js/fund/citrusfund.js'
-        dependsOn 'underscorejs', 'crowderajs', 'easywizardjs'
+        dependsOn 'underscorejs', 'crowderajs', 'easywizardjs' , 'jqueryPaymentjs'
     }
     
     userlistjs {
         resource url: 'js/userlist.js'
         dependsOn 'crowderajs','datatablejs'
+    }
+    
+    jqueryPaymentjs {
+        resource url: 'js/jquery.payment.min.js'
     }
     
     /* CSS */

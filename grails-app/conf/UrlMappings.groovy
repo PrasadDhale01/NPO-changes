@@ -85,6 +85,8 @@ class UrlMappings {
 		"/$country_code/campaign/start/$title"(controller:'project', action:'redirectCreateNow')
 		"/$country_code/$category/campaign/success/$title"(controller:'project', action:'launch')
 
+        "/$country_code/project/campaignOnDraftAndLaunch"(controller:'project', action:'campaignOnDraftAndLaunch')
+        
 		"/campaign/save/$projectTitle"(controller:'project', action:'saveProject')
 		"/campaign/draft/$projectTitle"(controller:'project', action:'draftProject')
 		name managecampaign: "/$country_code/campaign/managecampaign" {

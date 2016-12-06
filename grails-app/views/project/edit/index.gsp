@@ -5,9 +5,13 @@
     def lastrewardCount = 1
     def rewardItrCount = projectRewards.size()
     def amount = (project.amount).round()
+    
+    def country_code = country_code
+    
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-	def country_code = country_code
-    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 + country_code: grailsApplication.config.crowdera.BASE_URL + country_code
+    String baseUrl = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+    def base_url = baseUrl.substring(0, (baseUrl.length() - 1))
+    
     def spendCount
     def spendLastMatrix
     def spendLastNumAvail

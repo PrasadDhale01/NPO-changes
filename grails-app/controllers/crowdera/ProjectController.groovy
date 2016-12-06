@@ -1047,11 +1047,11 @@ class ProjectController {
     			}
     		}
         
-            render (view: 'create/justcreated', model:[project:project, FORMCONSTANTS: FORMCONSTANTS])
+            render (view: 'create/justcreated', model:[project:project, FORMCONSTANTS: FORMCONSTANTS, country_code:params.country_code])
 	    } else {
            
             def previousPage = "create"
-            render (view: '/project/create/createerror', model:[project: project, currentEnv:currentEnv, previousPage:previousPage])
+            render (view: '/project/create/createerror', model:[project: project, currentEnv:currentEnv, previousPage:previousPage, country_code:params.country_code])
 	    }
 	}
 

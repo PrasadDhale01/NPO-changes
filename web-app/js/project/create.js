@@ -172,6 +172,9 @@ $(function() {
             country: {
                 required: true
             },
+            fundsRecievedBy: {
+            	required: true
+            },
             description : {
             	required: true,
                 minlength: 10,

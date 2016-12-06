@@ -286,17 +286,17 @@
                               <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail || project.citrusEmail}">
                                 <g:if test="${(project.payuStatus == false) && (country_code == 'in')}">
                                     <div class="redirectCampaign">
-                                        <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="fundSubmit"><button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri" id="btnFundDesktop">Fund Now!</button></g:link>
+                                        <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="fundSubmit"><button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri" id="btnFundDesktop">DONATE NOW!</button></g:link>
                                     </div>
                                 </g:if>
                                 <g:else>
                                     <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
-                                        <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri"  id="btnFundMobile">Fund Now!</button>
+                                        <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri"  id="btnFundMobile">DONATE NOW!</button>
                                     </g:form>
                                 </g:else>
                             </g:if>
                             <g:else>
-                                <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri">Fund Now!</button>
+                                <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri">DONATE NOW!</button>
                             </g:else>
                         </div>
                     </g:else>
@@ -356,45 +356,52 @@
                     </div>
                     <div class="collapse navbar-collapse col-lg-8 col-sm-8 col-md-8 show-header-tabsmanage show-tabsDesktop-headers">
                         <ul class="nav nav-pills nav-justified nav-justi sh-tabs show-pages-width">
-                        
-                            <li><span class="active show-tbs-right-borders  hidden-xs">
-                                    <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials showStoryTemplate show-all-icons-header-tabs show-story">
-                                        <span class="tab-text sh-tabs-font hidden-xs"> STORY</span>
-                                    </a>
-                                </span>
-                            </li>
-                            <g:if test="${!project?.projectUpdates.isEmpty() }">
-                                <li><span class="show-tbs-right-borders hidden-xs">
-                                        <a href="#projectupdates" data-toggle="tab"  class="show-tabs-text projectupdates showUpdateTemplate show-all-icons-header-tabs">
-                                            <span class="tab-text sh-tabs-font hidden-xs"> UPDATES</span> 
-                                        </a>
-                                        <span class="show-tabs-count hidden-xs">
-                                            <g:if test="${project?.projectUpdates?.size() > 0}">${project?.projectUpdates?.size()}</g:if>
-                                        </span>
-                                    </span>
-                                </li>
-                            </g:if>
+                                              
+                        <li><span class="active show-tbs-right-borders  hidden-xs">
+                                <a href="#essentials" data-toggle="tab" class="show-tabs-text show-js-fileA essentials showStoryTemplate show-campaigndetails-font">
+                                    <span class="tab-text hidden-xs"> Story</span>
+                                </a>
+                                <span class="show-ids-header"></span>
+                            </span>
+                        </li>
+                        <g:if test="${!project?.projectUpdates.isEmpty() }">
                             <li><span class="show-tbs-right-borders hidden-xs">
-                                    <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text manageTeam showTeamTemplate show-all-icons-header-tabs">
-                                        <span class="tab-text sh-tabs-font"> TEAMS</span>
-                                    </a>
-                                </span>
-                            </li>
-                            <li><span class="show-tbs-right-borders hidden-xs">
-                                    <a href="#contributions" data-toggle="tab"  class="show-tabs-text contributions showContributionTemplate show-all-icons-header-tabs">
-                                        <span class="tab-text sh-tabs-font"> CONTRIBUTIONS</span>
+                                    <a href="#projectupdates" data-toggle="tab" class="show-tabs-text projectupdates showUpdateTemplate show-campaigndetails-font">
+                                        <span class="tab-text hidden-xs"> Updates</span> 
                                     </a>
                                     <span class="show-tabs-count hidden-xs">
-                                        <g:if test="${totalContributions?.size() > 0}">${totalContributions?.size()}</g:if>
+                                        <g:if test="${project?.projectUpdates?.size() > 0}">${project?.projectUpdates?.size()}</g:if>
                                     </span>
+                                    <span class="show-ids-header"></span>
                                 </span>
                             </li>
-                            <li><span class="show-comit-lft hidden-xs">
-                                   <a href="#essentials" data-toggle="tab"  class="show-tabs-text comments showCommentTemplate navComment scrollToComment">
-                                       <span class="tab-text hidden-xs sh-tabs-font"> COMMENTS</span>
-                                   </a>
+                        </g:if>
+                        <li><span class="show-tbs-right-borders hidden-xs">
+                                <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text show-js-fileB manageTeam showTeamTemplate ss show-campaigndetails-font">
+                                    <span class="tab-text"> Teams</span>
+                                </a>
+                                <span class="show-tabs-count hidden-xs">
+                                    <g:if test="${project?.teams?.size() > 0}">${project?.teams?.size()}</g:if>
                                 </span>
-                            </li>
+                            </span>
+                        </li>
+                        <li><span class="show-tbs-right-borders hidden-xs">
+                                <a href="#contributions" data-toggle="tab"  class="show-tabs-text show-js-fileC contributions showContributionTemplate show-campaigndetails-font">
+                                    <span class="tab-text"> Contributions</span>
+                                </a>
+                                <span class="show-tabs-count hidden-xs">
+                                        <g:if test="${totalContributions?.size() > 0}">${totalContributions?.size()}</g:if>
+                                </span>
+                                <span class="show-ids-header"></span>
+                            </span>
+                        </li>
+                        <li><span class="show-comit-lft hidden-xs">
+                                <a href="#essentials" data-toggle="tab"  class="show-tabs-text comments scrollToComment showCommentTemplate show-campaigndetails-font">
+                                    <span class="tab-text hidden-xs"> Comments</span>
+                                </a>
+                                <span class="show-ids-header"></span>
+                            </span>
+                        </li>    
                         </ul>
                
                     </div>
@@ -433,17 +440,17 @@
                                      <g:if test="${project?.paypalEmail || project?.charitableId || project?.payuEmail || project?.citrusEmail}">
                                         <g:if test="${(project.payuStatus == false) && (country_code == 'in')}">
                                             <div class="redirectCampaign">
-                                                <g:link class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js sh-fund-donate-contri" controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="btnFundDesktop">FUND NOW</g:link>
+                                                <g:link class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js sh-fund-donate-contri" controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="btnFundDesktop">DONATE NOW</g:link>
                                             </div>
                                         </g:if>
                                         <g:else>
                                             <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
-                                                <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js sh-fund-donate-contri">FUND NOW</button>
+                                                <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js sh-fund-donate-contri">DONATE NOW</button>
                                             </g:form>
                                         </g:else>
                                     </g:if>
                                     <g:else>
-                                        <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block sh-fund-2header mob-show-fund show-btn-js sh-fund-donate-contri">FUND NOW</button>
+                                        <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block sh-fund-2header mob-show-fund show-btn-js sh-fund-donate-contri">DONATE NOW</button>
                                     </g:else>
                                 </li>
                             </ul>
@@ -596,6 +603,9 @@
                                 <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text show-js-fileB manageTeam showTeamTemplate ss show-campaigndetails-font">
                                     <span class="tab-text"> Teams</span>
                                 </a>
+                                 <span class="show-tabs-count hidden-xs">
+                                    <g:if test="${project?.teams?.size() > 0}">${project?.teams?.size()}</g:if>
+                                </span>
                                 <span class="show-ids-header"></span>
                             </span>
                         </li>
@@ -849,19 +859,19 @@
                               <g:if test="${(project.payuStatus == false) && (country_code == 'in')}">
                                   <div class="redirectCampaign">
                                       <div class="show-A-fund"> </div>
-                                      <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="btnShowLink"><div class="show-A-fund"> </div><button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri" id="btnFundDesktop">Fund Now!</button></g:link>
+                                      <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="btnShowLink"><div class="show-A-fund"> </div><button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri" id="btnFundDesktop">DONATE NOW!</button></g:link>
                                   </div>
                               </g:if>
                               <g:else>
                                   <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
                                       <div class="show-A-fund"> </div>
-                                      <button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri" id="btnFundDesktop">Fund Now!</button>
+                                      <button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri" id="btnFundDesktop">DONATE NOW!</button>
                                   </g:form>
                               </g:else>
                           </g:if>
                           <g:else>
                               <div class="show-A-fund"> </div>
-                              <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri">Fund Now!</button>
+                              <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri">DONATE NOW!</button>
                           </g:else>
                       </g:else>
                       
@@ -912,8 +922,8 @@
                           </div>
                           <g:if test="${isDeviceMobileOrTab==false}">
                          <g:if test="${loggedInUser.equals("") || loggedInUser==null}">
-                         	  <div class="redirectCampaign">
-    							<g:link controller="login" action="auth">
+                         	  <div class="joinusRedirect">
+    							<g:link controller="login" action="auth" params="[country_code: country_code]">
     								<button name="submit" class="btn btn-show-bannerslogantext btn-lg btn-block sh-mission-script sh-mission-script-height">JOIN US</button>
     							</g:link>
     						 </div>	
@@ -929,13 +939,15 @@
                             	  <div class="redirectCampaign">
 									<g:if test="${!ended}">
 										<g:form controller="project" action="addTeam" params="[id:project.id,country_code:country_code]">
-											<button type="submit" value="Join Our Team" class="btn btn-show-bannerslogantext btn-lg btn-block join-us sh-mission-script-height">Join Our Team <br> <span class="show-sub-titleJointeam">To Fundraise for us</span></button>
+											<button type="submit" value="Join Our Team" class="btn btn-show-bannerslogantext btn-lg btn-block join-us sh-mission-script-height">JOIN OUR TEAM <br> <span class="show-sub-titleJointeam">To Fundraise for us</span></button>
 										</g:form>
 									</g:if>
 									<g:else>
-										<g:link controller="login" action="auth">
+										 <div class="joinusRedirect">
+										<g:link controller="login" action="auth" params="[country_code: country_code]">
 	    									<button name="submit" class="btn btn-show-bannerslogantext btn-lg btn-block sh-mission-script sh-mission-script-height">JOIN US</button>
 	    								</g:link>	
+	    								</div>
 	             					</g:else>
              					</div>
                             </g:elseif>
@@ -987,7 +999,7 @@
 <%--                              --%>
 <%--                          </div>--%>
                           <div class="show-reasons-fund-bgpadding">
-                          <span class="show-tri-reasons-to-fund">3 Reasons to Fund Our Campaign</span>
+                          <span class="show-tri-reasons-to-fund">3 REASONS TO FUND THIS CAMPAIGN</span>
                           <g:if test="${reasons.reason1}">
                               <div class="show-reasonsToFund">
                                   <div class="reasonspadding">

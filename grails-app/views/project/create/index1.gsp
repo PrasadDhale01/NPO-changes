@@ -2,7 +2,8 @@
 <%
 	def country_code = projectService.getCountryCodeForCurrentEnv(request)
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL 
+    String baseUrl = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+    def base_url = baseUrl.substring(0, (baseUrl.length() - 1))
 	def fbShareUrl = base_url +country_code +"/campaign/create"
 	
     boolean isIndianCampaign = false
@@ -170,7 +171,7 @@
                                gocrowdera.com/campaigns/
                            </g:else>
                        </div>
-                       <input class="form-control form-control-no-border cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd cr1-vanitypadding-in-co cr1-paddings-lft" name="customVanityUrl" id="customVanityUrl" maxlength="55" placeholder="Your-Campaign-Web-Url">
+                       <input class="form-control form-control-no-border cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd cr1-vanitypadding-in-co cr1-paddings-lft" name="customVanityUrl" id="customVanityUrl" maxlength="60" placeholder="Your-Campaign-Web-Url">
                    </div>
                    <div class="clear" id="vanityUrlClear"></div>
                    <label class="pull-right" id="vanityUrlLength"></label>

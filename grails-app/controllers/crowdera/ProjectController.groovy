@@ -873,7 +873,6 @@ class ProjectController {
 				project.payuStatus = true
 			}
 			
-			println("from createNow : " + project.payuStatus)
 			if(project.save(failOnError: true)){
                 projectTitle = (project.customVanityUrl)? projectService.getCustomVanityUrl(project) : projectService.getProjectVanityTitle(project)
                 projectService.getFundRaisersForTeam(project, user)
@@ -1060,7 +1059,6 @@ class ProjectController {
 		def title = projectService.getVanityTitleFromId(params.id)
         
 		if(title){
-			println("from editCampaign == " + params.country_code )
 			redirect (action : 'edit', params:['projectTitle':title,country_code:params.country_code])
 		}else{
 			render(view: '/404error', model: [message: 'This campaign does not exist.'])
@@ -1371,18 +1369,21 @@ class ProjectController {
             def isAdmin = userService.isAdmin();
             
             boolean isTaxReceipt = campaignService.isTaxReceiptExist(project.id);
+			def currentFundraiser = userService.getCurrentFundRaiser(user, project)
+			def hasTags = projectService.getHashTagsForCampaign(project.hashtags)
+			def projectComments = projectService.getProjectComments(project)
+
 
 			if(project.user==user || isCampaignOwnerOrAdmin || isAdmin){
 				render (view: 'manageproject/index',
-				model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,totalContributions:totalContributions, totalteams: totalteams,
+				model: [project: project, currentFundraiser:currentFundraiser,isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,totalContributions:totalContributions, totalteams: totalteams,
 					discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset, day: day,
 					ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
 					unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, vanityUsername:vanityUsername, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo,
-					tile:params.tile, shortUrl:shortUrl, base_url:base_url, reasons: reasons, isAdmin: isAdmin,
-                    spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, isDeviceMobileOrTab: isDeviceMobileOrTab,
-                    hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
-                    hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, enableTeamNames: enableTeamNamesList, 
-                    teamNames:teamNameList, isTaxReceipt: isTaxReceipt,country_code:country_code])
+					tile:params.tile, shortUrl:shortUrl, base_url:base_url, reasons: reasons, isAdmin: isAdmin,projectComments:projectComments,
+					spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, isDeviceMobileOrTab: isDeviceMobileOrTab,
+					firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList, enableTeamNames: enableTeamNamesList,
+					teamNames:teamNameList, isTaxReceipt: isTaxReceipt,country_code:country_code])
 			} else {
 				flash.prj_mngprj_message = 'Campaign Not Found'
                 
@@ -2024,7 +2025,6 @@ class ProjectController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def autoSave() {
-		println("===========why isn't it coming here ========")
         def variable = request.getParameter("variable")
         def varValue = request.getParameter("varValue")
         def projectId = request.getParameter("projectId")

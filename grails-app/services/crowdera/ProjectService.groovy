@@ -1614,7 +1614,7 @@ class ProjectService {
 		List usEndedCampaign = []
 		List sortIndiaCampaign = []
 		List sortUsCampaign = []
-        if ('in'.equalsIgnoreCase(country_code)){
+      /*  if ('in'.equalsIgnoreCase(country_code)){
             finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
             finalList.each { project ->
                 boolean ended = isProjectDeadlineCrossed(project)
@@ -1639,7 +1639,22 @@ class ProjectService {
             }
             sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
             finalList =  sortedProjects.reverse() + endedProjects.reverse()
-        }
+        }*/
+		
+		finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
+		finalList.each { project ->
+			boolean ended = isProjectDeadlineCrossed(project)
+			if(ended) {
+				(project.payuStatus) ? indiaEndedCampaign.add(project) : usEndedCampaign.add(project)
+			} else {
+				(project.payuStatus) ? indiaOpenCampaign.add(project) : usOpenCampaign.add(project)
+			}
+		}
+		sortIndiaCampaign = indiaOpenCampaign.sort {contributionService.getPercentageContributionForProject(it)}
+		sortUsCampaign = usOpenCampaign.sort {contributionService.getPercentageContributionForProject(it)}
+		finalList = sortIndiaCampaign.reverse() + sortUsCampaign.reverse() + indiaEndedCampaign.reverse() + usEndedCampaign.reverse()
+		return finalList
+		
         return finalList
     }
     
@@ -1656,7 +1671,7 @@ class ProjectService {
         List sortIndiaCampaign = []
         List sortUsCampaign = []
         List sortedCampaignByPercentage = []
-        if ('in'.equalsIgnoreCase(country_code)){
+       /* if ('in'.equalsIgnoreCase(country_code)){
             finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
             finalList.each { project ->
                 boolean ended = isProjectDeadlineCrossed(project)
@@ -1684,7 +1699,21 @@ class ProjectService {
             endedProjects = endedProjects.sort {contributionService.getPercentageContributionForProject(it)}
             sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
             finalList =  sortedProjects.reverse() + endedProjects.reverse()
-        }
+        }*/
+		finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
+		finalList.each { project ->
+			boolean ended = isProjectDeadlineCrossed(project)
+			if(ended) {
+				(project.payuStatus) ? indiaEndedCampaign.add(project) : usEndedCampaign.add(project)
+			} else {
+				(project.payuStatus) ? indiaOpenCampaign.add(project) : usOpenCampaign.add(project)
+			}
+		}
+		indiaEndedCampaign = indiaEndedCampaign.sort {contributionService.getPercentageContributionForProject(it)}
+		usEndedCampaign = usEndedCampaign.sort {contributionService.getPercentageContributionForProject(it)}
+		sortIndiaCampaign = indiaOpenCampaign.sort {contributionService.getPercentageContributionForProject(it)}
+		sortUsCampaign = usOpenCampaign.sort {contributionService.getPercentageContributionForProject(it)}
+		finalList = sortIndiaCampaign.reverse() + sortUsCampaign.reverse() + indiaEndedCampaign.reverse() + usEndedCampaign.reverse()
         
         finalList.each{
             def percentage = contributionService.getPercentageContributionForProject(it)
@@ -6850,11 +6879,14 @@ class ProjectService {
 		def country_code = ""
 		/**Change the country to 'in' if you want to test the India flow on development ENV*/
 		def currentEnv = getCurrentEnvironment();
-		if( currentEnv == 'development'|| currentEnv == 'test' || currentEnv == 'staging'){
+		if( currentEnv == 'development'|| currentEnv == 'test'){
 			country_code  = "us"
 		}else if (currentEnv == 'testIndia' || currentEnv==''){
 			country_code = "in"
-		}else{
+		}else if(currentEnv == 'staging') {
+			country_code = request.getHeader("cf-ipcountry")
+		
+		} else{
 			country_code = request.getHeader("cf-ipcountry")
 		}
 		return country_code;

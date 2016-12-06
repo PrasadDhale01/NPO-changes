@@ -15,7 +15,7 @@ class LoginController {
     def googlePlusService
     def oauthService
     def projectService
-
+	def country_code
     public static final String SPRING_SECURITY_OAUTH_TOKEN = 'springSecurityOAuthToken'
 
     boolean invite_user = false
@@ -339,6 +339,8 @@ class LoginController {
     }
 
     def authenticateAndRedirect(def oAuthToken, def email) {
+		country_code =  projectService.getCountryCodeForCurrentEnv(request)
+		
         try {
             session.removeAttribute SPRING_SECURITY_OAUTH_TOKEN
             SecurityContextHolder.getContext().setAuthentication(oAuthToken);
@@ -355,10 +357,10 @@ class LoginController {
                 response.addCookie(cookie)
                 redirect (url: requestUrl)
             } else {
-                redirect (controller:'home', action:'index')
+                redirect (controller:'home', action:'index', params:[country_code:country_code])
             }
         } else {
-            redirect (controller:'home', action:'index', params:[isDuplicate: 'yes', email:email])
+            redirect (controller:'home', action:'index', params:[isDuplicate: 'yes', email:email,country_code:country_code])
         }
     }
 

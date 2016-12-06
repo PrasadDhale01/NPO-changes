@@ -10,7 +10,7 @@
         <ul class="thumbnails list-unstyled">
             <g:each in="${1..cols}">
                 <% if (index < count) { %>
-	                <li class="col-lg-3 col-md-4 col-sm-4 col-xs-12 perk-grid-paddings">
+	                <li class="col-md-4 col-sm-4 col-xs-12 perk-grid-paddings">
 	                    <g:render template="manageproject/rewardstile" model="['reward': rewards.get(index++)]"></g:render>
 	                </li>
                 <% } %>

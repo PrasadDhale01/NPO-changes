@@ -592,14 +592,15 @@
                    <div class="hidden-xs">
                        <g:render template="/layouts/showTilesanstitleForOrg" model="['currentTeamAmount':currentTeamAmount]"/>
                    </div>
-                   <div class="sh-mission-script hidden-xs"> 
-                       <div class="sh-mission-slogan bannerSloganText" id="bannerSloganText"></div>
-                   </div>     
+                   <div class="joinusRedirect">
+    						<button name="submit" class="btn btn-show-bannerslogantext btn-lg btn-block sh-mission-script sh-mission-script-height">JOIN US NOW</button>
+    				</div>	    
                    <g:if test="${isPreview}">
-                       <div class="clear" ></div>
-                       <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb sho-fb-color hidden-xs show-pointer-not">
-                           <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>Share on Facebook
-                       </a>
+                      <div class="showfacebooksAA"></div>
+                          <span class="btn btn-block btn-social btn-facebook show-fb-height tab-fb-padding show-btn-sh-fb hidden-xs sho-fb-color sh-social-fbEllipsis">
+                               <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> I Support This Campaign
+<%--                                  Share (${facebookShare})--%>
+                          </span>
                    </g:if>
                           
                     <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">

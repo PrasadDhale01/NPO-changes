@@ -937,10 +937,13 @@ img.hm-height-width {
 .manage-btn-width {
     width: 100%;
     border-color: #01bbd3;
+    height: 60px;
+    padding-top: 20px;
 }
 .manage-deletebtn-width{
     width: 100%;
     font-weight: 900;
+    height: 60px;
 }
 .manage-btn-padding {
     padding-left: 0;
@@ -1407,9 +1410,8 @@ img.how-it-success-img{
     padding-left: 87px;
 }
 .mange-btnsubmitapprov-size {
-    height: 45px;
+    height: 55px;
     padding: 0;
-    width: 303px;
     font-weight: 900;
 }
 .edit-space {

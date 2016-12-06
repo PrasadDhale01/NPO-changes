@@ -16,6 +16,7 @@ class UrlMappings {
 
 		"/"(controller: 'home', action: 'indexToRedirect')
 		"/$country_code"(controller: 'home', action: 'index')
+		"/$country_code/login/auth"(controller: 'login', action: 'auth')
 		"500"(controller: "error")
 		"404"(view: '/404error')
 		"401"(view:'/401error')

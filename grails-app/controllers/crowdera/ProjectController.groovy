@@ -88,8 +88,11 @@ class ProjectController {
 		}
 		def sortsOptions = projectService.getSorts()
         
-        def projects = projectService.getValidatedProjectsByPercentage(country_code)
-        
+        List projects = projectService.getValidatedProjectsByPercentage(country_code)
+		//teamsList.sort{a,b-> b.percentage<=>a.percentage}
+		projects.sort{contributionService.getPercentageContributionForProject(it)}
+		projects.reverse(true) 
+	
 		def selectedCategory = "All Categories"
 		//def multiplier = projectService.getCurrencyConverter();
 

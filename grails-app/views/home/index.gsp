@@ -59,6 +59,7 @@
 	<g:hiddenField id="googlPlusUser-login" name="googlPlusUser-login" value="${isDuplicate}"/>
 	<g:hiddenField id="userEmail" name='userEmail' value="${email}"/>
 	<g:hiddenField name='currentEnv' value='${currentEnv}' id='currentEnv'/>
+	<g:hiddenField id="country_code" name="country_code" value="${country_code}"/>
 	<%--<g:hiddenField name="contributorEmail" value="${contributorEmail}" id="contributorEmail"/>
     
      --%><div id="homepage-carousel"></div>

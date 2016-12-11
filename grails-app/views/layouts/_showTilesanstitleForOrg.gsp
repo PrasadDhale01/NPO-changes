@@ -42,21 +42,18 @@
                     </div>
                 </div>
             </div>
-            
             <div class="col-lg-8 col-sm-8 col-md-8 sh-width-control gau-new-color">
                 <span class="show-tile-raised amount-left-padding">Raised</span><br>
                 <span class="show-raised-amt amount-left-padding show-contribution-amt-tile">
-                    <g:if test="${country_code == 'in'}">
-                        <!--  <span class="fa fa-inr"></span>-->
-                        ${currencyValue}
-                        	<span class="lead show-contribution-amt-tile">
-                        		<g:if test="${payuStatus}">${contributedSoFar}</g:if>
-                        		<g:else>${contributedSoFar}</g:else>
-                        	</span>
-                    </g:if>
-                    <g:else>
-                        ${currencyValue}<span class="show-raised-amt show-contribution-amt-tile">${contributedSoFar}</span>
-                    </g:else>
+<%--                    <g:if test="${country_code == 'in'}">--%>
+<%--                        <!--  <span class="fa fa-inr"></span>-->--%>
+<%--                        ${currencyValue}--%>
+<%--                        	<span class="lead show-contribution-amt-tile">--%>
+<%--                        		<g:if test="${payuStatus}">${contributedSoFar}</g:if>--%>
+<%--                        		<g:else>${contributedSoFar}</g:else>--%>
+<%--                        	</span>--%>
+<%--                    </g:if>--%>
+                       <span class="show-raised-amt show-contribution-amt-tile"> ${currencyValue}${contributedSoFar}</span>
                 </span>
             </div>
         </div>
@@ -69,17 +66,15 @@
             <div class="col-lg-8 col-sm-8 col-md-8 sh-width-control gau-new-color">
                  <span class="show-tile-raised amount-left-padding">Goal</span><br>
                 <span class="show-raised-amt amount-left-padding">
-                    <g:if test="${country_code == 'in'}">
-                       <!--  <span class="fa fa-inr"></span>-->
-                       ${currencyValue}
-                        <span class="">
-	                        <g:if test="${payuStatus}">${amount}</g:if>
-	                        <g:else>${amount * conversionMultiplier}</g:else>
-                       </span>
-                    </g:if>
-                    <g:else>
-                        ${currencyValue}<span class="show-raised-amt">${amount}</span>
-                    </g:else>
+<%--                    <g:if test="${country_code == 'in'}">--%>
+<%--                       <!--  <span class="fa fa-inr"></span>-->--%>
+<%--                       ${currencyValue}--%>
+<%--                        <span class="">--%>
+<%--	                        <g:if test="${payuStatus}">${amount}</g:if>--%>
+<%--	                        <g:else>${amount * conversionMultiplier}</g:else>--%>
+<%--                       </span>--%>
+<%--                    </g:if>--%>
+                        <span class="show-raised-amt">${currencyValue}${amount}</span>
                 </span>
             </div>
         </div>

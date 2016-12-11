@@ -53,17 +53,16 @@
             <span class="text-center tile-goal show-contribution-amt-tile">
                 <g:if test="${country_code == 'in'}">
                     <!-- <span class="fa fa-inr"></span>-->
-                     ${currencyValue}
                     	<span class="lead show-contribution-amt-tile">
 	                    <g:if test="${project.payuStatus}">
-							${amount}
+							${currencyValue}${amount}
 						</g:if> <g:else>
-							${amount}
+							${currencyValue}${amount}
 						</g:else>
 					</span>
                 </g:if>
                 <g:else>
-                     ${currencyValue}<span class="lead show-contribution-amt-tile">${amount}</span>
+                    <span class="lead show-contribution-amt-tile"> ${currencyValue}${amount}</span>
                 </g:else>
             </span>
         </div>

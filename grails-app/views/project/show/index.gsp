@@ -440,17 +440,17 @@
                                      <g:if test="${project?.paypalEmail || project?.charitableId || project?.payuEmail || project?.citrusEmail}">
                                         <g:if test="${(project.payuStatus == false) && (country_code == 'in')}">
                                             <div class="redirectCampaign">
-                                                <g:link class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js sh-fund-donate-contri" controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="btnFundDesktop">DONATE NOW</g:link>
+                                                <g:link class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js sh-fund-donate-contri" controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="btnFundDesktop">DONATE NOW!</g:link>
                                             </div>
                                         </g:if>
                                         <g:else>
                                             <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
-                                                <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js sh-fund-donate-contri">DONATE NOW</button>
+                                                <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js sh-fund-donate-contri">DONATE NOW!</button>
                                             </g:form>
                                         </g:else>
                                     </g:if>
                                     <g:else>
-                                        <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block sh-fund-2header mob-show-fund show-btn-js sh-fund-donate-contri">DONATE NOW</button>
+                                        <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block sh-fund-2header mob-show-fund show-btn-js sh-fund-donate-contri">DONATE NOW!</button>
                                     </g:else>
                                 </li>
                             </ul>
@@ -511,14 +511,14 @@
                             
                        <div class="col-lg-6 col-md-6 hidden-sm show-share-FB">
                            <g:if test="${isPreview}">
-                               <a class="btn btn-block btn-social btn-facebook sh-head-fb-over hidden-xs sho-fb-color show-2ndhead-btnFB ss3 show-pointer-not sh-social-fbEllipsis new-upper-fb">
-                                   <i class="fa fa-facebook fa-facebook-styles sh-fb-icons sh-iconsfb-header"></i> I SUPPORT THIS CAMPAIGN
+                               <a class="btn btn-block btn-social btn-facebook show-fb-height sh-head-fb-over hidden-xs sho-fb-color ss3 show-pointer-not sh-social-fbEllipsis new-upper-fb" style="padding-left: 0px">
+                                   <i class="fa fa-facebook sh-iconsfb-header"></i> | I Support this Campaign
 <%--                                   Share (${facebookShare})--%>
                                </a>
                            </g:if>
                            <g:else>
-                                <a class="btn btn-block btn-social btn-facebook sh-head-fb-over hidden-xs sho-fb-color show-2ndhead-btnFB ss3 fbshare-header sh-social-fbEllipsis new-upper-fb" href="#">
-                                   <i class="fa fa-facebook fa-facebook-styles sh-fb-icons sh-iconsfb-header"></i> I SUPPORT THIS CAMPAIGN
+                                <a class="btn btn-block btn-social btn-facebook show-fb-height sh-head-fb-over hidden-xs sho-fb-color ss3 fbshare-header sh-social-fbEllipsis new-upper-fb" style="padding-left: 0px" href="#">
+                                   <i class="fa fa-facebook sh-iconsfb-header"></i> | I Support this Campaign
 <%--                                   Share (${facebookShare})--%>
                                 </a>
                            </g:else>
@@ -881,7 +881,7 @@
                            <g:if test="${user?.userImageUrl}">
                                 <div id="partnerImageEditDeleteIcon">
                                     <span  class="show-image-dp">
-                                        <img src="${user?.userImageUrl}" alt="avatar">
+                                        <img src="${user?.userImageUrl}" alt="avatar" class="img-responsive"/>
                                     </span>
                                 </div>
                             </g:if>
@@ -924,7 +924,7 @@
                          <g:if test="${loggedInUser.equals("") || loggedInUser==null}">
                          	  <div class="joinusRedirect">
     							<g:link controller="login" action="auth" params="[country_code: country_code]">
-    								<button name="submit" class="btn btn-show-bannerslogantext btn-lg btn-block sh-mission-script sh-mission-script-height">JOIN US</button>
+									<button type="submit" value="Join Our Team" class="btn btn-show-bannerslogantext btn-lg btn-block join-us sh-mission-script-height">JOIN OUR TEAM <br> <span class="show-sub-titleJointeam">To Fundraise for us</span></button>
     							</g:link>
     						 </div>	
                            </g:if>
@@ -945,7 +945,7 @@
 									<g:else>
 										 <div class="joinusRedirect">
 										<g:link controller="login" action="auth" params="[country_code: country_code]">
-	    									<button name="submit" class="btn btn-show-bannerslogantext btn-lg btn-block sh-mission-script sh-mission-script-height">JOIN US</button>
+											<button type="submit" value="Join Our Team" class="btn btn-show-bannerslogantext btn-lg btn-block join-us sh-mission-script-height">JOIN OUR TEAM <br> <span class="show-sub-titleJointeam">To Fundraise for us</span></button>
 	    								</g:link>	
 	    								</div>
 	             					</g:else>
@@ -954,18 +954,18 @@
                          </g:if>
                         <div class="clear"></div>
                           <g:if test="${isPreview}">
-                              <div class="showfacebooksAA"></div>
-                              <span class="btn btn-block btn-social btn-facebook show-fb-height tab-fb-padding show-btn-sh-fb hidden-xs sho-fb-color sh-social-fbEllipsis">
-                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> I Support This Campaign
-<%--                                  Share (${facebookShare})--%>
-                              </span>
+                              <div class="showfacebooksAA"></div>                              
+							  <button class="btn btn-block btn-social show-fb-height btn-facebook tab-fb-padding show-btn-sh-fb hidden-xs sho-fb-color sh-social-fbEllipsis" style="padding-left: 0px"id="fbshare">
+                              		<i class="fa fa-facebook" style="font-size: larger;"></i> 
+                             			 | I Support this Campaign
+                              </button>  
                           </g:if>
                           <g:else>
                               <div class="showfacebooksAA"></div>
-                              <span class="btn btn-block btn-social show-fb-height btn-facebook tab-fb-padding show-btn-sh-fb hidden-xs sho-fb-color sh-social-fbEllipsis" id="fbshare">
-                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> I Support This Campaign
-<%--                               Share   (${facebookShare})--%>
-                              </span>
+                             <button class="btn btn-block btn-social show-fb-height btn-facebook tab-fb-padding show-btn-sh-fb hidden-xs sho-fb-color sh-social-fbEllipsis" style="padding-left: 0px"id="fbshare">
+                              		<i class="fa fa-facebook" style="font-size: larger;"></i> 
+                             			 | I Support this Campaign
+                              </button>
                           </g:else>
                       </g:if>
                       

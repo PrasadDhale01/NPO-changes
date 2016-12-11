@@ -131,7 +131,7 @@
                         </g:else>
                     </g:if>
                     <g:else>
-                        ${currencyValue}<span class="lead">${contribution}</span>
+                       <span class="lead">${currencyValue}${contribution}</span>
                     </g:else>
                 </span>
             </div>

@@ -2,6 +2,7 @@
 ------------------------- */
 @import url(https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
 @import url('https://fonts.googleapis.com/css?family=Assistant:400,800');
+@import url('https://fonts.googleapis.com/css?family=Assistant:400,700|Open+Sans:700');
 
 body {
     margin-top: 50px;
@@ -5646,6 +5647,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.hm-how-it-work {
+		top:0px; 
+	}
 	div.new-mob-height{
 	   height: 3690px;
 	}
@@ -6659,7 +6663,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 100%;
     }
     i.sh-fb-icons{
-        padding-right: 26px;
+        padding-right: 0px;
     }
     a.sho-fb-color{
         background-color: #3b5998;
@@ -7599,8 +7603,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     	   font-weight: bold !important;
 	}
 	.lead{
-	   font-size: 17px !important;
-    	   font-weight: bold !important;
+		font-family: 'Open Sans', sans-serif; 
+	    font-size: 17px !important;
+    	font-weight: 700px;
 	}
 	.show-tile-text-size {
     	  font-size: 10px !important;
@@ -12248,11 +12253,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	padding-left: 10px !important;
 	padding-right: 0 !important;
     }
-    .TW-discover-leftpane-menu ul li a {
-	color: #424242;
-	font-size: 12px !important;
-	font-weight: 400;
-    }
+/*     .TW-discover-leftpane-menu ul li a { */
+/* 	color: #424242; */
+/* 	font-size: 12px !important; */
+/* 	font-weight: 400; */
+/*     } */
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1050px){
@@ -16677,11 +16682,11 @@ textarea.textarea-embed-video {
 		height: 45px;
 	}
 	.TW-discover-banner-decoration {
-		background-color: #01bbd2;
 		color: #fff;
 		display: none;
 		min-height: 87px;
 		text-align: center;
+		height: 225px;
 	}
 	.TW-discover-header-img > img {
 		height: 50px;
@@ -18009,7 +18014,7 @@ textarea.textarea-embed-video {
 	margin-top:20px;
 }
 .TW-discover-leftpane-menu ul{
-	margin-top: -9px;
+	margin-top: 3px;
 	padding-left: 10px;
 	padding-right: 0px;
 	text-decoration: none;
@@ -18018,15 +18023,15 @@ textarea.textarea-embed-video {
 	list-style-type:none;
 	line-height:2;
 }
-.TW-discover-leftpane-menu ul li a{
-	color: #424242;
-	font-weight: 400;
-}
-.TW-discover-leftpane-menu ul li a:hover {
-	color: #01bbd2;
-	font-weight: 400;
-	text-decoration:none;
-}
+/* .TW-discover-leftpane-menu ul li a{ */
+/* 	color: #424242; */
+/* 	font-weight: 400; */
+/* } */
+/* .TW-discover-leftpane-menu ul li a:hover { */
+/* 	color: #01bbd2; */
+/* 	font-weight: 400; */
+/* 	text-decoration:none; */
+/* } */
 .TW-discover-tab-decoration{
 	background-color: #f6f8f8 !important;
 	border: 2px solid #e3e3e3 !important;
@@ -18048,16 +18053,16 @@ textarea.textarea-embed-video {
 	width:13%;
 }
 .TW-discover-banner-decoration{
-	background-color: #01bbd2;
 	color: #fff;
 	min-height: 87px;
 	text-align: center;
+	height: 225px;
 }
 .TW-discover-header-testimonial{
 	display:inline-flex;
 	display:-webkit-inline-box;    /*** Safari***/
 	display:-webkit-inline-flex;   /*** chrome ***/
-	margin-top: 12px;
+	margin-top: 0px;
 }
 .left-select-margin{
 	margin-left:6px;
@@ -18330,8 +18335,9 @@ a#downloadEbook{
     background-color: #3b5998;
     font-size: 15px;
     padding-top: 5px;
-    font-weight: bold;
+    font-weight: lighter;
     font-family: monospace;
+    height: 59px;
 }
 .show-tabs-text:hover, .sh-selected{
     color:#01bbd3 !important; 
@@ -18384,10 +18390,9 @@ a#downloadEbook{
 }
 .TW-header-helpTxtLogged{
 	color: #fff !important;
-    font-size: 20px !important; 
-    font-weight: 600;
-    margin-bottom: 2px;
-    margin-top: 6px;
+    font-size: 16px !important; 
+    font-weight: 500;
+    font-family: "Assistant";
 }
 .scrollHeaderHelpLink > a:hover, .scrollHeaderHelpLink > a:focus {
     background-color: #01bbd2 !important;
@@ -18802,6 +18807,7 @@ li.sh-button-fund-secandaryheader{
     height: 41px;
     margin-left: 35px; 
 	width: 273px;
+	font-weight: bold;
 }
 .sh-submitaproval-2header {
     height: 60px;
@@ -19320,5 +19326,189 @@ a< #returnTotop:focus{
     font-weight: bolder;
 }
 
+.testimonialAlligned {
+	padding-top: 20px;
+	padding-bottom: 0px;
+}
 
+.testimonialRow{
+	width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    float: none;
+}
+
+.testimonialRowone {
+    width: 50%;
+    left: 30px;
+}
+
+img.ttimonialImgpaiing {
+    padding-left: 10px;
+}
+
+.testimonialRowonetext{
+	padding-bottom: 43px;
+}
+
+h1.testimonialRowonetext {
+	line-height: 30px;
+    bottom: 12px;
+    margin-bottom: 0;
+    padding-left: 8px;
+    padding-right: 0;
+    text-align: initial;
+    width: 372px;
+}
+
+.orlyName{
+	padding-top: 17px;
+}
+
+.orlyName b {
+    color: #fff;
+    float: left;
+    font-family: "Assistant",sans-serif;
+    font-size: 16px;
+}
+
+.orlyName p {
+    color: #fff;
+    float: left;
+    font-family: "Assistant",sans-serif;
+
+    font-size: 15px;
+    font-style: italic;
+}
+
+h1.testimonialRowtwotext {
+	line-height: 30px;
+    bottom: 37px;
+    height: 133px;
+    margin-bottom: 0;
+    padding-left: 10px;
+    padding-right: 0;
+    text-align: initial;
+    top: -10px;
+    width: 325px;
+}
+
+.bannerheadbtmMarginn b {
+    color: #fff;
+    font-family: "Noto Serif";
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 0;
+}
+
+.testimonialRowtwo{
+
+	padding-right: 0px;
+	width: 50%;
+	padding-left: 45px;
+	left: 30px;
+}
+
+.testimonial-name-margin{
+	margin-right: 20px;
+}
+
+
+.gokulName {
+	padding-left: 24px;
+    padding-top: 20px;
+    padding-right: 0px;
+	text-align: start;
+}
+.gokulName p {
+    font-family: Assistant, sans-serif;
+	font-size: 15px;
+    color: #fff;
+    font-style: italic;
+    float: left;
+}
+
+.gokulName b {
+    font-family: Assistant, sans-serif;
+    font-size: 16px;
+    color: #fff;
+    float: left;
+}
+.greenbgg {
+	max-height: 300px;
+    overflow: hidden;
+    height: auto;
+	background-color: #015f85;
+    color: #4c4c4c;
+    text-align: center;
+}
+
+.currency{
+	font: 'Open Sans', sans-serif; 
+	font-weight: 700px;
+}
+.left-inverted-comma img{
+		width:15px !important;
+}
+.right-inverted-comma{
+		margin-top:48px !important;
+}
+
+.discoverBannerText{
+	position: relative;
+	bottom: 205px;
+}
+
+b.bannerDiscovertextbold{
+	position: relative;
+	top: 20px;
+	font-family: "Assistant";
+	color: #ececec;
+	font-size: 20px;
+	font-weight: 500;
+	vertical-align: super;
+	font-style: italic;
+	padding-right: 40px;
+	
+}
+
+b.bannerDiscovertextbold1{
+	position: relative;
+	top: 20px;
+	font-family: "Assistant";
+	color: #ececec;
+	font-size: 20px;
+	font-weight: 500;
+	vertical-align: text-top;
+	padding-left: 40px;
+	font-style: italic;
+	top : 10px;
+
+}
+
+p.chetTag{
+	padding-top: 30px;
+	font-family: "Assistant";
+	color: #ececec;
+	font-size: 24px;
+	font-weight: 500;
+	margin-bottom: 0px;
+	font-style: italic;
+}
+
+img.hugomma{
+	padding-top: 0px; 
+	top: 12px; 
+	padding-right: 10px;
+	display: inline;
+}
+
+p.founderTag{
+    font-family: "Assistant";
+	color: #ececec;
+	font-size: 14px;
+	font-weight: 500;
+	font-style: italic;
+}
  

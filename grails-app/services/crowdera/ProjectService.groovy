@@ -1721,7 +1721,7 @@ class ProjectService {
                 sortedCampaignByPercentage.add(it)
             }
         }
-        return sortedCampaignByPercentage
+        return sortedCampaignByPercentage;
         
     }
 
@@ -6884,10 +6884,10 @@ class ProjectService {
 		}else if (currentEnv == 'testIndia' || currentEnv==''){
 			country_code = "in"
 		}else if(currentEnv == 'staging') {
-			country_code = request.getHeader("cf-ipcountry")
+			country_code = request.getHeader("cf-ipcountry").toLowerCase()
 		
 		} else{
-			country_code = request.getHeader("cf-ipcountry")
+			country_code = request.getHeader("cf-ipcountry").toLowerCase()
 		}
 		return country_code;
 		

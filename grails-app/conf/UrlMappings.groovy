@@ -106,7 +106,7 @@ class UrlMappings {
 		"/$country_code/campaign/edit/$projectTitle"(controller:'project', action:'edit')
 		
 		
-		"/$country_code/campaigns/addFundRaiser/$id"(controller:'project', action:'addFundRaiser')
+		"/campaigns/addFundRaiser/$id"(controller:'project', action:'addFundRaiser')
 		"/campaign/campaignupdate/$projectTitle"(controller:'project', action:'projectupdate')
 		"/campaign/updatesaverender"(controller:'project', action:'updatesaverender')
 		name listCampaigns :  "/$country_code/campaigns"{

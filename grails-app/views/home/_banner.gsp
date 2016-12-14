@@ -46,7 +46,7 @@
 	           <div class="col-lg-4 col-md-4 col-sm-4 testimonialRowone">
 	              <img class="img-responsive pull-left" src="//s3.amazonaws.com/crowdera/project-images/be3a2f87-a24d-43b3-b401-4b37fc1bd4b1.png" title="Testimoniala-Image-Orly-Wahba.png">
 	              <div class="visible-lg">
-	                 <img class="img-responsive pull-left ttimonialImgpaiing" src="https://s3.amazonaws.com/crowdera/project-images/2a87cd4b-d400-4892-bc50-e844e78d9203.png" alt="''">
+	                 <img class="img-responsive pull-left ttimonialImgpaiing" src="//s3.amazonaws.com/crowdera/project-images/3d96f81c-14df-4fc8-9b87-66b2f7940c7a.png" alt="''">
 	                    <div class="pull-left">
 	                       <h1 class="bannerheadbtmMarginn testimonialRowonetext"><b>I ran my campaign through Crowdera in its initial phases &amp; I greatly appreciated the support I received from the Crowdera team ...</b></h1>
 	                    </div>  
@@ -58,7 +58,7 @@
 	           </div>
 	           <div class="col-lg-4 col-md-4 col-sm-4 testimonialRowtwo">
 	              <img class="img-responsive pull-left" src="//s3.amazonaws.com/crowdera/project-images/d4fc2771-1d81-450e-a168-4b3a9eb018da.png" title="Testimoniala-Image-Gokul-R.png">
-	              <img class="img-responsive pull-left ttimonialImgpaiing" src="https://s3.amazonaws.com/crowdera/project-images/2a87cd4b-d400-4892-bc50-e844e78d9203.png" alt="''">
+	              <img class="img-responsive pull-left ttimonialImgpaiing" src="//s3.amazonaws.com/crowdera/project-images/3d96f81c-14df-4fc8-9b87-66b2f7940c7a.png" alt="''">
 	                 <div class="pull-left">
 	                    <h1 class="bannerheadbtmMarginn testimonialRowtwotext"><b>I'm impressed with crowdera's mission &amp; how single-mindedly they are focused on solving a problem that is important &amp; that really matters.</b></h1>
 	                 </div>   

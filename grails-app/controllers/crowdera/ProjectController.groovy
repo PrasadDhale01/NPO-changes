@@ -714,14 +714,11 @@ class ProjectController {
         CommonsMultipartFile projectcomment = params.attachedFileForProject
         def fileUrl = projectService.setAttachedFileForProject(projectcomment)
         
-        def reqUrl
-        if (!user) {
+        def reqUrl= base_url+"project/savecomment?comment=${params.comment}&id=${params.id}&fr=${params.fr}&fileComment=${fileUrl}"
             Cookie cookie = new Cookie("requestUrl", reqUrl)
             cookie.path = '/'
             cookie.maxAge= 600
             response.addCookie(cookie)
-        }
-        reqUrl = base_url+"/project/savecomment?comment=${params.comment}&id=${params.id}&fr=${params.fr}&fileComment=${fileUrl}"
         redirect (url: reqUrl)
     }
 
@@ -739,7 +736,7 @@ class ProjectController {
             cookie.maxAge= 600
             response.addCookie(cookie)
         }
-        reqUrl = base_url+"/project/saveteamcomment?comment=${params.comment}&id=${params.id}&fr=${params.fr}&teamfileComment=${teamfileUrl}"
+        reqUrl = base_url+"project/saveteamcomment?comment=${params.comment}&id=${params.id}&fr=${params.fr}&teamfileComment=${teamfileUrl}"
         redirect (url: reqUrl)
     }
 
@@ -1636,8 +1633,7 @@ class ProjectController {
 	def addTeam() {
 		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 		def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-		
-		def reqUrl = base_url+params.country_code+"/project/addFundRaiser?id=${params.id}"
+		def reqUrl = base_url+"project/addFundRaiser?id=${params.id}"
 		Cookie cookie = new Cookie("requestUrl", reqUrl)
 		cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
 		cookie.maxAge= 3600  //Cookie expire time in seconds
@@ -1887,7 +1883,9 @@ class ProjectController {
 		def sortsOptions = projectService.getSorts()
 		def sorts = params.query.replace(' ','-')
 
-		def campaignsorts = projectService.isCampaignsorts(sorts, country_code)
+		List campaignsorts = projectService.isCampaignsorts(sorts, country_code)
+		campaignsorts.sort{contributionService.getPercentageContributionForProject(it)}
+		campaignsorts.reverse(true)
 
 		if(!campaignsorts){
 			flash.catmessage="No campaign found."

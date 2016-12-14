@@ -923,9 +923,10 @@
                           <g:if test="${isDeviceMobileOrTab==false}">
                          <g:if test="${loggedInUser.equals("") || loggedInUser==null}">
                          	  <div class="joinusRedirect">
-    							<g:link controller="login" action="auth" params="[country_code: country_code]">
+								<g:form controller="project" action="addTeam" params="[id:project.id,country_code:country_code]">
+									
 									<button type="submit" value="Join Our Team" class="btn btn-show-bannerslogantext btn-lg btn-block join-us sh-mission-script-height">JOIN OUR TEAM <br> <span class="show-sub-titleJointeam">To Fundraise for us</span></button>
-    							</g:link>
+    							</g:form> 
     						 </div>	
                            </g:if>
                             <g:elseif test="${loggedInUser.equals(project.user)|| isCampaignAdmin}">

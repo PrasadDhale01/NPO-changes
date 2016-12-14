@@ -6868,7 +6868,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 	.TW-discover-header-img > img {
 		height: 50px;
-		width: 100%;
+		width:100%;
 	}
 	a.passionTab {
 		margin-left: -1px !important;
@@ -16735,7 +16735,6 @@ textarea.textarea-embed-video {
 	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
 		margin-left:auto;
 		margin-right:auto;
-		width:278px !important;
 	}
 	.TW-discover-select-width {
 		display: block;
@@ -17867,8 +17866,8 @@ textarea.textarea-embed-video {
 	height: 60px;
     font-size: 25px;
     font-family: Assistant;
-    padding-left: 25px;
-    padding-top: 8px;
+    padding-left: 32px;
+    padding-top: 14px;
     margin-top: 0;
     font-weight: bolder;
 }
@@ -18063,6 +18062,7 @@ textarea.textarea-embed-video {
 	display:-webkit-inline-box;    /*** Safari***/
 	display:-webkit-inline-flex;   /*** chrome ***/
 	margin-top: 0px;
+	width: 100%;
 }
 .left-select-margin{
 	margin-left:6px;
@@ -18333,7 +18333,7 @@ a#downloadEbook{
 }
 .sho-fb-color{
     background-color: #3b5998;
-    font-size: 15px;
+    font-size: 14px;
     padding-top: 5px;
     font-weight: lighter;
     font-family: monospace;
@@ -18388,11 +18388,20 @@ a#downloadEbook{
     margin-bottom: 3px;
     margin-top: 3px;
 }
+/* .TW-header-helpTxtLogged{ */
+/* 	color: #fff !important; */
+/*     font-size: 16px !important;  */
+/*     font-weight: 500; */
+/*     font-family: "Assistant"; */
+/* } */
+
 .TW-header-helpTxtLogged{
+
 	color: #fff !important;
-    font-size: 16px !important; 
-    font-weight: 500;
-    font-family: "Assistant";
+    font-size: 20px !important; 
+    font-weight: 600;
+    margin-bottom: 2px;
+    margin-top: 6px;
 }
 .scrollHeaderHelpLink > a:hover, .scrollHeaderHelpLink > a:focus {
     background-color: #01bbd2 !important;
@@ -19359,24 +19368,26 @@ h1.testimonialRowonetext {
     padding-right: 0;
     text-align: initial;
     width: 372px;
+    color:#005f84;
 }
 
 .orlyName{
 	padding-top: 17px;
+	bottom: 40px;
+	height: 50px;
 }
 
 .orlyName b {
-    color: #fff;
+    color:#5f676f;
     float: left;
     font-family: "Assistant",sans-serif;
     font-size: 16px;
 }
 
 .orlyName p {
-    color: #fff;
+    color:#5f676f;
     float: left;
     font-family: "Assistant",sans-serif;
-
     font-size: 15px;
     font-style: italic;
 }
@@ -19391,10 +19402,11 @@ h1.testimonialRowtwotext {
     text-align: initial;
     top: -10px;
     width: 325px;
+    color: #5f676f;
 }
 
 .bannerheadbtmMarginn b {
-    color: #fff;
+    color: #5f676f;
     font-family: "Noto Serif";
     font-size: 16px;
     font-style: italic;
@@ -19411,20 +19423,20 @@ h1.testimonialRowtwotext {
 }
 
 .testimonial-name-margin{
-	margin-right: 20px;
+	color: #5f676f;
 }
 
-
 .gokulName {
-	padding-left: 24px;
+/* 	padding-left: 40px; */
     padding-top: 20px;
-    padding-right: 0px;
 	text-align: start;
+	bottom: 40px;
+	height: 50px;
 }
 .gokulName p {
     font-family: Assistant, sans-serif;
 	font-size: 15px;
-    color: #fff;
+    color:#5f676f;
     font-style: italic;
     float: left;
 }
@@ -19432,16 +19444,17 @@ h1.testimonialRowtwotext {
 .gokulName b {
     font-family: Assistant, sans-serif;
     font-size: 16px;
-    color: #fff;
+    color:#5f676f;
     float: left;
 }
 .greenbgg {
 	max-height: 300px;
     overflow: hidden;
     height: auto;
-	background-color: #015f85;
+	background-color: #f1f1f2;
     color: #4c4c4c;
     text-align: center;
+    height: 190px;
 }
 
 .currency{
@@ -19467,7 +19480,7 @@ b.bannerDiscovertextbold{
 	color: #ececec;
 	font-size: 20px;
 	font-weight: 500;
-	vertical-align: super;
+	vertical-align: sub;
 	font-style: italic;
 	padding-right: 40px;
 	

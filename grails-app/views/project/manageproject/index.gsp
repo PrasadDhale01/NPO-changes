@@ -127,11 +127,11 @@
        });
     </g:javascript>
 <script>
-	function submitCampaignShowForm(key, projectId, fr) {
+	function submitCampaignShowForm(key, projectId, fr,country_code) {
 		$.ajax({
 			type : 'post',
-			url : $("#b_url").val() + '/project/urlBuilder',
-			data : "projectId=" + projectId + "&fr=" + fr + "&pkey=" + key,
+			url : $("#b_url").val() + 'project/urlBuilder',
+			data : "projectId=" + projectId + "&fr=" + fr + "&pkey=" + key + "&country_code=" + country_code,
 			success : function(response) {
 				$(location).attr('href', response);
 			}
@@ -481,7 +481,7 @@
 						    </div>
 						</g:if>
 						 <g:if test="${project.validated && percentage <= 999 && (loggedInUser.equals(project.user)||username.equals('campaignadmin@crowdera.co'))}">
-							         <a href="javascript:void(0)" onclick="submitCampaignShowForm('edit','${project.id}','${username}');" class="manage-edit-left">
+							         <a href="javascript:void(0)" onclick="submitCampaignShowForm('edit','${project.id}','${username}','${country_code}');" class="manage-edit-left">
 							                 <span class="btn btn-default manage-btn-width-aft-validated manage-btn-back-color"  aria-label="Edit project" ><i class="fa fa-pencil-square-o edit-space"></i>EDIT CAMPAIGN
 							                 </span>
 							         </a>

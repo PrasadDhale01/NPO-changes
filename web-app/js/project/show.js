@@ -384,7 +384,7 @@ $(function() {
         }
     });
 
-    $('.redirectCampaign a, .redirectCampaignOnPerk a').click(function(event) {
+    /*$('.redirectCampaign a, .redirectCampaignOnPerk a').click(function(event) {
         event.preventDefault();
         var url = $(this).attr('href');
         var redirectUrl;
@@ -404,7 +404,7 @@ $(function() {
                 window.location.href = redirectUrl;
             }
         }
-    });
+    });*/
 
     $('#loadTeamPage').click(function() {
         location.reload(true);

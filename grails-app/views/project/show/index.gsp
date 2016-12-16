@@ -283,17 +283,10 @@
                     </g:elseif>
                     <g:else>
                         <div class="show-mobile-button">
-                              <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail || project.citrusEmail}">
-                                <g:if test="${(project.payuStatus == false) && (country_code == 'in')}">
-                                    <div class="redirectCampaign">
-                                        <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="fundSubmit"><button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri" id="btnFundDesktop">DONATE NOW!</button></g:link>
-                                    </div>
-                                </g:if>
-                                <g:else>
-                                    <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
-                                        <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri"  id="btnFundMobile">DONATE NOW!</button>
-                                    </g:form>
-                                </g:else>
+                            <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail || project.citrusEmail}">
+                                <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
+                                    <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri"  id="btnFundMobile">DONATE NOW!</button>
+                                </g:form>
                             </g:if>
                             <g:else>
                                 <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri">DONATE NOW!</button>
@@ -856,18 +849,10 @@
                       </g:elseif>
                       <g:else>
                           <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail || project.citrusEmail}">
-                              <g:if test="${(project.payuStatus == false) && (country_code == 'in')}">
-                                  <div class="redirectCampaign">
-                                      <div class="show-A-fund"> </div>
-                                      <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="btnShowLink"><div class="show-A-fund"> </div><button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri" id="btnFundDesktop">DONATE NOW!</button></g:link>
-                                  </div>
-                              </g:if>
-                              <g:else>
-                                  <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
-                                      <div class="show-A-fund"> </div>
-                                      <button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri" id="btnFundDesktop">DONATE NOW!</button>
-                                  </g:form>
-                              </g:else>
+                              <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
+                                  <div class="show-A-fund"> </div>
+                                  <button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri" id="btnFundDesktop">DONATE NOW!</button>
+                              </g:form>
                           </g:if>
                           <g:else>
                               <div class="show-A-fund"> </div>
@@ -875,7 +860,7 @@
                           </g:else>
                       </g:else>
                       
-<%--               user profile code  --%>
+                      <%--  user profile code  --%>
                       <div class="col-lg-12 col-sm-12 col-md-12 show-profile-padding show-org-profiletile hidden-xs">
                        <div class="col-lg-4 col-sm-4 col-md-4 show-profile-imagewidth">
                            <g:if test="${user?.userImageUrl}">
@@ -1085,4 +1070,3 @@
 
 </body>
 </html>
-                         

@@ -8582,7 +8582,60 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-		div.goal-icon-padding {
+	
+	div < b.bannerDiscovertextbold {
+        position: relative;
+        top: 10px;
+        font-family: "Assistant",sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        vertical-align: sub;
+        font-style: italic;
+        padding-right: 40px;
+    }
+    div < b.bannerDiscovertextbold1 {
+        position: relative;
+        top: 10px;
+        font-family: "Assistant",sans-serif;
+        color: #ececec;
+        font-size: 16px;
+        font-weight: 500;
+        vertical-align: text-top;
+        padding-left: 40px;
+        font-style: italic;
+    }
+    div < p.chetTag {
+        padding-top: 22px;
+        font-family: "Assistant",sans-serif;
+        color: #ececec;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 0px;
+        font-style: italic;
+    }
+    div < p.founderTag {
+        font-family: "Assistant",sans-serif;
+        color: #ececec;
+        font-size: 14px;
+        font-weight: 600;
+        font-style: italic;
+    }
+    img.hugomma {
+        width: 4%;
+        padding-top: 0px;
+        top: 12px;
+        padding-right: 10px;
+        display: inline;
+    }
+	div.discoverBannerText {
+        position: relative;
+        bottom: 215px;
+    }
+	img.tabImage{
+	    min-height: 200px;
+	}	
+		
+	div.goal-icon-padding {
         padding-left: 0;
         padding-right: 5px;
         width: 50px;
@@ -18333,8 +18386,8 @@ a#downloadEbook{
 }
 .sho-fb-color{
     background-color: #3b5998;
-    font-size: 14px;
-    padding-top: 5px;
+    font-size: 16px;
+    padding-top: 10px;
     font-weight: lighter;
     font-family: monospace;
     height: 59px;
@@ -18815,7 +18868,7 @@ li.sh-button-fund-secandaryheader{
     padding: 0;
     height: 41px;
     margin-left: 35px; 
-	width: 273px;
+	width: 268px;
 	font-weight: bold;
 }
 .sh-submitaproval-2header {
@@ -19312,7 +19365,7 @@ a< #returnTotop:focus{
 
 .new-upper-fb{
 	margin-left: 35px; 
-	width: 273px;
+	width: 268px;
 	height:34px;
 	padding-top: 3px;
 	}
@@ -19329,10 +19382,11 @@ a< #returnTotop:focus{
     border:none !important;
     box-shadow: none;
     margin-top: -14px;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: inherit;
     font-family: Assistant;
     font-weight: bolder;
+    line-height: 20px;
 }
 
 .testimonialAlligned {
@@ -19388,7 +19442,7 @@ h1.testimonialRowonetext {
     color:#5f676f;
     float: left;
     font-family: "Assistant",sans-serif;
-    font-size: 15px;
+    font-size: 13px;
     font-style: italic;
 }
 
@@ -19427,7 +19481,7 @@ h1.testimonialRowtwotext {
 }
 
 .gokulName {
-/* 	padding-left: 40px; */
+ 	padding-left: 40px; 
     padding-top: 20px;
 	text-align: start;
 	bottom: 40px;
@@ -19435,7 +19489,7 @@ h1.testimonialRowtwotext {
 }
 .gokulName p {
     font-family: Assistant, sans-serif;
-	font-size: 15px;
+	font-size: 13px;
     color:#5f676f;
     font-style: italic;
     float: left;
@@ -19470,15 +19524,15 @@ h1.testimonialRowtwotext {
 
 .discoverBannerText{
 	position: relative;
-	bottom: 205px;
+	bottom: 230px;
 }
 
 b.bannerDiscovertextbold{
 	position: relative;
 	top: 20px;
-	font-family: "Assistant";
+	font-family: "Assistant",sans-serif;
 	color: #ececec;
-	font-size: 20px;
+	font-size: 24px;
 	font-weight: 500;
 	vertical-align: sub;
 	font-style: italic;
@@ -19489,9 +19543,9 @@ b.bannerDiscovertextbold{
 b.bannerDiscovertextbold1{
 	position: relative;
 	top: 20px;
-	font-family: "Assistant";
+	font-family: "Assistant",sans-serif;
 	color: #ececec;
-	font-size: 20px;
+	font-size: 24px;
 	font-weight: 500;
 	vertical-align: text-top;
 	padding-left: 40px;
@@ -19502,7 +19556,7 @@ b.bannerDiscovertextbold1{
 
 p.chetTag{
 	padding-top: 30px;
-	font-family: "Assistant";
+	font-family: "Assistant",sans-serif;
 	color: #ececec;
 	font-size: 24px;
 	font-weight: 500;
@@ -19524,4 +19578,7 @@ p.founderTag{
 	font-weight: 500;
 	font-style: italic;
 }
- 
+.TW-discover-header-img{
+	width: 100%;
+} 
+

@@ -44,7 +44,7 @@
 <%--            </div>--%>
 <%--        </g:form>--%>
 <%-- 		 <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">--%>
-           <g:link mapping="showCampaign" params="[country_code: country_code,projectTitle:title,fr: username,category:project.fundsRecievedBy.toLowerCase()]">
+           <g:link mapping="showCampaign" params="[country_code: country.countryCode.toLowerCase(),projectTitle:title,fr: username,category:project.fundsRecievedBy.toLowerCase()]">
             <div class="imageWithTag">
                 <div class="under">
                     <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>

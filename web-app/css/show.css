@@ -341,7 +341,7 @@ textarea.show-textareawidth {
 }
 .show-sub-titleJointeam {
     color: #000;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: lighter;
 }
 .show-contact-teamtile span {
@@ -604,8 +604,8 @@ span.show-fb-height{
     background-color: #f6bf0c;
     height: 52px;
     text-align: center;
-    margin-top: 0;
-    padding-top: 0px;
-    padding-bottom:55px;
+  	margin-top: 0px;
+    padding-top: 6px;
+    padding-bottom:46px;
     overflow:hidden;
 }

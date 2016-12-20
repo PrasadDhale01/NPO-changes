@@ -6853,17 +6853,18 @@ class ProjectService {
         ).save(failOnError: true)
     }
 	
-	def getCountryForProject(def project){
-		def country 
-		if(project)
-		 country = Project.findById(project.id)
-		 return country;
+	def getCountryForProject(Project project){
+		def countryId= project.countryId;
+		def country
+		if(countryId)
+		country = Country.findById(countryId)
+		return country
 	}
 	
 	def getCurrencyByCountryId(def country){
 		def currency 
 		if(country){
-			currency = Currency.findById(country.countryId)
+			currency = Currency.findById(country.id)
 		}
 		
 		return currency.currency_value;

@@ -9,9 +9,9 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
 <div class="hidden-xs navbar navbar-default navbar-fixed-top header-default-height show-header-heights header-section home-header-section noScrollHeader" role="navigation">
     <div class="header-container">
         <g:if test="${currentEnv == 'test' || currentEnv== 'staging' || currentEnv=='production' || currentEnv== 'development'}">
-            <div class="info-banner">Doing good from India? Visit <a href="http://crowdera.in" class="banner-link">www.crowdera.in</a><a href="#" class="banner-close" id="banner-close" onclick="bannerClose();">Close</a>
+            <%--<div class="info-banner">Doing good from India? Visit <a href="http://crowdera.in" class="banner-link">www.crowdera.in</a><a href="#" class="banner-close" id="banner-close" onclick="bannerClose();">Close</a>
             </div>
-        </g:if>
+        --%></g:if>
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#TW-navbar-collapse" id="hamburger-toggle">
                 <span class="sr-only">Toggle navigation</span>

@@ -540,7 +540,10 @@ class FundController {
     def payByPaypal(def params,Project project,Reward reward,User user,User fundraiser,def shippingInfo){
         String timestamp = UUID.randomUUID().toString()
         def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-        def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+        def baseUrl = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+        
+        String base_url = baseUrl.substring(0, baseUrl.length() - 1)
+        
         def successUrl = base_url + "/fund/paypalReturn/paypalcallback?projectTitle=${params.projectTitle}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}&shippingEmail=${shippingInfo.email}&twitterHandle=${shippingInfo.twitter}&shippingCustom=${shippingInfo.custom}&tempValue=${params.tempValue}&name=${params.receiptName}&email=${params.receiptEmail}&address=${shippingInfo.address}&anonymous=${params.anonymous}"
         def failureUrl = base_url + "/fund/paypalReturn/paypalcallback?projectTitle=${params.projectTitle}&rewardId=${reward.id}&amount=${params.amount}&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}"
 
@@ -767,8 +770,10 @@ class FundController {
 		def country_code = projectService.getCountryCodeForCurrentEnv(request)
         JSONObject json = new JSONObject();
         def request_url = request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-        def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-        json = projectService.getPayuInfo(params, base_url,country_code)
+        
+        String base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+        String baseUrl = base_url.substring(0, base_url.length() - 1)
+        json = projectService.getPayuInfo(params, baseUrl,country_code)
         render json
     }
 

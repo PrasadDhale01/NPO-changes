@@ -256,6 +256,20 @@ environments {
 		crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
 		crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
 		crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
+        
+        /*PayUMoney details*/
+        crowdera.PAYU.BASE_URL = 'http://test.gocrowdera.com'
+        crowdera.PAYU.TEST_URL='https://test.payu.in/_payment.php'
+        crowdera.PAYU.KEY='czBDue'
+        crowdera.PAYU.SALT='g57jz4Cw'
+        
+        
+        /*Citrus Credentials*/
+        crowdera.CITRUS.SPLITPAY_URL = "https://splitpaysbox.Citruspay.com"
+        crowdera.CITRUS.BASE_URL = "https://splitpay.citruspay.com"
+        crowdera.CITRUS.ACCESS_KEY = "VVXKH02XVEWHUGWJHAMI"
+        crowdera.CITRUS.SECRETE_KEY = "4c86cabfc7fb68d2261f35087a8edece44f856bd"
+        crowdera.CITRUS.VANITYURL = "8wqhvmq506"
 		
 		/* FreshDesk Details */
 		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
@@ -366,6 +380,20 @@ environments {
 		crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
 		crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
 		crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
+        
+        /*PayUMoney details*/
+        crowdera.PAYU.BASE_URL = 'http://staging.gocrowdera.com'
+        crowdera.PAYU.TEST_URL='https://secure.payu.in/_payment.php'
+        crowdera.PAYU.KEY='5geKCB'
+        crowdera.PAYU.SALT='Gtr6fF9A'
+        
+        
+        /*Citrus Credentials*/
+        crowdera.CITRUS.SPLITPAY_URL = "https://splitpaysbox.Citruspay.com"
+        crowdera.CITRUS.BASE_URL = "https://splitpay.citruspay.com"
+        crowdera.CITRUS.ACCESS_KEY = "VVXKH02XVEWHUGWJHAMI"
+        crowdera.CITRUS.SECRETE_KEY = "4c86cabfc7fb68d2261f35087a8edece44f856bd"
+        crowdera.CITRUS.VANITYURL = "8wqhvmq506"
 		
 		/* FreshDesk Details */
 		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
@@ -465,6 +493,20 @@ environments {
 		crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
 		crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
 		crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
+        
+        /*PayUMoney details*/
+        crowdera.PAYU.BASE_URL = 'http://gocrowdera.com'
+        crowdera.PAYU.TEST_URL='https://secure.payu.in/_payment.php'
+        crowdera.PAYU.KEY='5geKCB'
+        crowdera.PAYU.SALT='Gtr6fF9A'
+        
+        
+        /*Citrus Credentials*/
+        crowdera.CITRUS.SPLITPAY_URL = "https://splitpaysbox.Citruspay.com"
+        crowdera.CITRUS.BASE_URL = "https://splitpay.citruspay.com"
+        crowdera.CITRUS.ACCESS_KEY = "VVXKH02XVEWHUGWJHAMI"
+        crowdera.CITRUS.SECRETE_KEY = "4c86cabfc7fb68d2261f35087a8edece44f856bd"
+        crowdera.CITRUS.VANITYURL = "8wqhvmq506"
 		
 		/* FreshDesk Details */
 		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'

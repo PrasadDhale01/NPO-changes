@@ -65,6 +65,8 @@ grails.project.dependency.resolution = {
         compile ":rest:0.8"
         compile ":spring-security-core:2.0-RC2"
         compile "org.grails.plugins:spring-security-facebook:0.15.2-CORE2"
+		compile "org.grails.plugins:spring-security-oauth-facebook:0.2"
+		
         compile ":stripe:2.6"
         compile ':quartz:1.0.2'
         compile ":amazon-s3:0.8.2"

@@ -38,9 +38,9 @@
                     <div class="alert alert-danger">${flash.googleFailureMessage}</div>
                 </g:if>
                  <div class="facebookSignInBtn">
-                        <a class="btn btn-block btn-social btn-facebook" href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
-                            <i class="fa fa-facebook fa-facebook-styles"></i> Sign in with Facebook
-                        </a><br>
+                    <oauth:connect class="btn btn-block btn-social btn-facebook" provider="facebook" id="facebook-connect-link">
+                        <i class="fa fa-facebook fa-facebook-styles"></i> Sign in with Facebook
+                    </oauth:connect>  <hr/> 
                 </div>
                 <div class="googleSignInBtn">
                     <oauth:connect class="btn btn-block btn-social btn-google-plus" provider="google" id="google-connect-link">
@@ -49,9 +49,9 @@
                 </div>
             </div>
             <div class="col-sm-6 hidden-lg hidden-xs hidden-md">
-                <a class="btn btn-block btn-social btn-facebook" href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
-                    <i class="fa fa-facebook fa-facebook-styles"></i> Sign in with Facebook
-                </a>
+               <oauth:connect class="btn btn-block btn-social btn-facebook" provider="facebook" id="facebook-connect-link">
+                        <i class="fa fa-facebook fa-facebook-styles"></i> Sign in with Facebook
+               </oauth:connect>  <hr/> 
             </div>
             <div class="col-sm-6 hidden-lg hidden-xs hidden-md">
                 <oauth:connect class="btn btn-block btn-social btn-google-plus" provider="google" id="google-connect-link">

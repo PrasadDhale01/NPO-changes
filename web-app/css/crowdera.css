@@ -105,9 +105,6 @@ text-decoration:none;
     padding-top: 33px;
     min-height: 250px;
 }
-.banner-padding{
-	padding-top:32px;
-}
 
 .top-buffer {
     margin-top: 20px;
@@ -19581,4 +19578,13 @@ p.founderTag{
 .TW-discover-header-img{
 	width: 100%;
 } 
+img.mob-discoverBanner{
+	width: 100%;
+	max-height: 330px;
+	height: auto;
+}
+div.bottomPadding-discover{
+	padding-bottom: 6px;
+}
+
 

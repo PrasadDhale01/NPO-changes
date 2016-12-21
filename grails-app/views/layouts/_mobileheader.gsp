@@ -76,7 +76,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                             </a>
                         </li>
                     </g:if>
-                    <li class="scrollHeaderMenu"><g:link controller="login" action="auth" class="nav-item-2"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/login-reg-dropdowns.png" alt="login">&nbsp;&nbsp;&nbsp;&nbsp;Login</g:link></li>
+                    <li class="scrollHeaderMenu"><g:link controller="login" action="auth" params="[country_code: country_code]" class="nav-item-2"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/login-reg-dropdowns.png" alt="login">&nbsp;&nbsp;&nbsp;&nbsp;Login</g:link></li>
                     <li class="scrollHeaderMenu"><g:link controller="login" action="register" class="nav-item-3"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/sign-in-icon-register-dropsowns.png" alt="signup">&nbsp;&nbsp;&nbsp;&nbsp;Sign up</g:link></li>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
@@ -145,13 +145,17 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
         <div id="TW-navbar-collapsed" class="hidden-lg hidden-md hidden-sm collapse TW-scrollHeaderBackColor navbar-collapse">
             <div class="scrollHeaderMenu hidden-lg hidden-md hidden-sm">
             <ul>
-                <li><a href="/campaigns">Discover</a></li>
-                <li><g:link controller="project" action="create">Start a campaign</g:link></li>
+                 <li>
+				  	<g:link mapping="listCampaigns" params="[country_code: country_code]">
+				  		Discover
+					</g:link>	
+				</li>
+				  <li><g:link mapping="createCampaign" params="[country_code: country_code]">Start a campaign</g:link></li>
                 <li><a href="/howitworks">How it works</a></li>
                 <sec:ifNotLoggedIn>
-                    <li><g:link controller="login" action="auth">Login</g:link>&nbsp; or&nbsp; <g:link controller="login" action="register">Signup</g:link></li>
+                    <li><g:link controller="login" action="auth" params="[country_code: country_code]">Login</g:link>&nbsp; or&nbsp; <g:link controller="login" action="register">Signup</g:link></li>
                 </sec:ifNotLoggedIn>
-                <li><a href="/customer-service">Support</a></li>
+                	<li><a href="/customer-service">Support</a></li>
                 <sec:ifNotLoggedIn>
                     <g:if test="${currentEnv != 'prodIndia'}">
                         <li class="hidden-xs hidden-sm headerFbButton scrollHeaderMenu">

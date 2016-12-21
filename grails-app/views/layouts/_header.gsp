@@ -57,8 +57,10 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                     </g:link>
                 </li> 
                 <li class="hidden-lg hidden-md hidden-sm hed-font-sizes">
-                    <g:link controller="project" action="create" class="nav-item-1"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/create-icon-dropdown.png" alt="create">&nbsp;&nbsp;&nbsp;&nbsp;Create</g:link>
-                </li>
+					<g:link controller="createCampaign" params="[country_code: country_code]" class="nav-item-1">
+                    	<img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/create-icon-dropdown.png" alt="create">&nbsp;&nbsp;&nbsp;&nbsp;Create
+                    </g:link>       
+                 </li>
             </ul>
             
             <ul class="nav navbar-nav navbar-right <g:if test="${user}">navbar-right-logged-in</g:if>">

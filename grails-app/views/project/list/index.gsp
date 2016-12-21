@@ -12,17 +12,18 @@
 </head>
 <body>
     <div class="bg-color" id="TW-discover-banner-padding">
-        <div class="container discover-container hidden-xs">
+        <div class="container discover-container bottomPadding-discover">
         	<div class="row" >
         		<g:render template="list/discoverbanner"></g:render>
+        		 <div class="container visible-xs">
+                    <img class="img-responsive mob-discoverBanner" src="//s3.amazonaws.com/crowdera/project-images/178e8473-1d94-46e6-a321-dfab845039d6.jpg" title="Discover banner for Mobile.jpg">
+                 </div>
         	</div>
         </div>
         <div class="container discover-inner-container">
             <g:hiddenField name='currentEnv' value='${currentEnv}' id='currentEnv'/>
-            <div class="text-center TW-discover-title">
-            	<h1><span class="TW-discover-title"><img src="//s3.amazonaws.com/crowdera/assets/discover-arrow.png" alt="Discover title">&nbsp;&nbsp;Explore Campaigns Raising Money for</span></h1>
-            </div>
-            <div class="TW-discover-topTab">
+<%--            	<h1><span class="TW-discover-title"><img src="//s3.amazonaws.com/crowdera/assets/discover-arrow.png" alt="Discover title">&nbsp;&nbsp;Explore Campaigns Raising Money for</span></h1>--%>
+            <div class="TW-discover-topTab" style="margin-top: 40px;">
             	<div class="col-md-2 col-lg-2 col-sm-2 categoryList list-category TW-dis-tab-padding panel-body TW-discover-select-width left-select-margin TW-discover-drpdwn-right-border">
                     <g:form action="category" controller="project" name="categoryForm">
                         <g:select class="selectpicker" id="category" name="country" from="${countryOptions}" value="${selectedCategory}" optionKey="value" optionValue="value" noSelection="['Country':'Country']" onchange="selectedCategory()"/>

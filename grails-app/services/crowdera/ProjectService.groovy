@@ -6856,7 +6856,16 @@ class ProjectService {
 	def getCountryForProject(Project project){
 		 return project?.country;
 	}
-	
+    
+    
+    /*def getCountryForProject(Project project){
+        def countryId= project.countryId;
+        def country
+        if(countryId)
+        country = Country.findById(countryId)
+        return country
+    }*/
+    
 	def getCurrencyByCountryId(Country country){
 		return country?.currency?.currency_value;
 	}

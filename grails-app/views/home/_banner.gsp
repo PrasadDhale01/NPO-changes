@@ -57,14 +57,14 @@
 	              </div>      
 	           </div>
 	           <div class="col-lg-4 col-md-4 col-sm-4 testimonialRowtwo">
-	              <img class="img-responsive pull-left" src="//s3.amazonaws.com/crowdera/project-images/d4fc2771-1d81-450e-a168-4b3a9eb018da.png" title="Testimoniala-Image-Gokul-R.png">
+	              <img class="img-responsive pull-left" src="//s3.amazonaws.com/crowdera/project-images/b4c05822-957e-4131-8192-aefbb1c66657.png" title="Testimoniala-Image-Gokul-R.png">
 	              <img class="img-responsive pull-left ttimonialImgpaiing" src="//s3.amazonaws.com/crowdera/project-images/3d96f81c-14df-4fc8-9b87-66b2f7940c7a.png" alt="''">
 	                 <div class="pull-left">
 	                    <h1 class="bannerheadbtmMarginn testimonialRowtwotext"><b>I'm impressed with crowdera's mission &amp; how single-mindedly they are focused on solving a problem that is important &amp; that really matters.</b></h1>
 	                 </div>   
 	              <div class="gokulName col-md-7 col-sm-7 col-lg-7 pull-right testimonial-name-margin">
 	                 <b>-Gokul Rajaram</b>
-	                 <p>Serial Entrepreneur &amp; Square Leader</p>
+	                 <p>Product Engineering Lead @Square</p>
 	              </div>   
 	           </div>
 	        </div>

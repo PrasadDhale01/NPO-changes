@@ -217,7 +217,8 @@
     <h3 class="hidden-xs"><b>Comments</b></h3>
     <div class="alert alert-info sh-comnt-align hidden-xs">No Comments yet.</div>
 </g:else>
-     
+
+<g:if test="${listcomment!=null}">       
 <g:if test="${!listcomment.isEmpty()}">
     <div class="panel panel-default show-comments-details">
         <div class="panel-body commentsoncampaign">
@@ -327,4 +328,5 @@
             </div>
         </div>
     </div>
+</g:if>
 </g:if>

@@ -9,6 +9,8 @@
 	def country_code = projectService.getCountryCodeForCurrentEnv(request)
 	def beneficiary = project?.user
     def beneficiaryUserName = beneficiary?.username
+	def isTeamAdmin = projectService.isTeamAdmin(project)
+	
     def fundRaiserName
     if(currentFundraiser.email == project.beneficiary.email){
         if (project.beneficiary?.lastName)
@@ -38,15 +40,17 @@
     def vimeoInt
     def campaignVideoUrl
     
-    if (project.videoUrl){
-        if (project.videoUrl.contains('vimeo.com')) {
-            def video = project.videoUrl.split('/')
-            vimeoInt = video[video.length - 1]
-            campaignVideoUrl = 'https://player.vimeo.com/video/'+vimeoInt
-        } else {
-            campaignVideoUrl = project.videoUrl;
-        }
-    }
+	if(project!=null){
+	    if (project.videoUrl){
+	        if (project.videoUrl.contains('vimeo.com')) {
+	            def video = project.videoUrl.split('/')
+	            vimeoInt = video[video.length - 1]
+	            campaignVideoUrl = 'https://player.vimeo.com/video/'+vimeoInt
+	        } else {
+	            campaignVideoUrl = project.videoUrl;
+	        }
+	    }
+	}
     
     boolean videoFlag=false;
     if(isCampaignAdmin || (currentTeam?.user == project?.user)){
@@ -55,10 +59,12 @@
             videoFlag=true;
         }
     }else{
+	if(currentTeam!=null){
         if(currentTeam.videoUrl != null && !currentTeam.videoUrl.isEmpty()){
             videoFlag=true;
             campaignVideoUrl =currentTeam.videoUrl;
         }
+	}	
        
     }
     
@@ -149,7 +155,6 @@
 	<a href="javascript:" id="returnTotop"> <i class="icon-chevron-up"></i></a>
 	<div class="feducontent new-mob-height campaign-bg-color">
 		<div class="container show-cmpgn-container">
-			<g:hiddenField name="teamId" id="teamId" value="${currentTeam.id}" />
 			<g:hiddenField name="campaignId" id="campaignId"
 				value="${project.id }" />
 			<g:hiddenField name="fbShareUrl" id="fbShareUrl"
@@ -360,19 +365,19 @@
 										</a> <span class="show-ids-header"></span>
 									</span>
 							</li>
-							<g:if test="${!project?.projectUpdates.isEmpty() }">
+							<g:if test="${project.validated}">
 								<li><span class="show-tbs-right-borders hidden-xs">
-										<a href="#projectupdates" data-toggle="tab"
-										class="show-tabs-text projectupdates showUpdateTemplate show-campaigndetails-font">
-											<span class="tab-text hidden-xs"> Updates</span>
-									</a> 
-									<span class="show-tabs-count hidden-xs"></span>
-										 <g:if test="${project?.projectUpdates?.size() > 0}">
-													${project?.projectUpdates?.size()}
-										</g:if>
-										</span>
-											 <span class="show-ids-header">
-										</span>
+											<a href="#projectupdates" data-toggle="tab"
+											class="show-tabs-text projectupdates showUpdateTemplate show-campaigndetails-font">
+												<span class="tab-text hidden-xs"> Updates</span>
+										</a> 
+										<span class="show-tabs-count hidden-xs"></span>
+											 <g:if test="${project?.projectUpdates?.size() > 0}">
+														${project?.projectUpdates?.size()}
+											</g:if>
+											</span>
+												 <span class="show-ids-header">
+											</span>
 								</li>
 							</g:if>
 							<li>
@@ -480,7 +485,7 @@
 						         </g:else>
 						    </div>
 						</g:if>
-						 <g:if test="${project.validated && percentage <= 999 && (loggedInUser.equals(project.user)||username.equals('campaignadmin@crowdera.co'))}">
+						 <g:if test="${project.validated && percentage <= 999 && (loggedInUser.equals(project.user)|| username.equals('campaignadmin@crowdera.co'))|| isTeamAdmin}">
 							         <a href="javascript:void(0)" onclick="submitCampaignShowForm('edit','${project.id}','${username}','${country_code}');" class="manage-edit-left">
 							                 <span class="btn btn-default manage-btn-width-aft-validated manage-btn-back-color"  aria-label="Edit project" ><i class="fa fa-pencil-square-o edit-space"></i>EDIT CAMPAIGN
 							                 </span>
@@ -542,7 +547,7 @@
                           <g:elseif test="${loggedInUser.equals(project.user)|| isCampaignAdmin}">
                             	<g:if test="${!ended}">
 	                            	  <div class="redirectCampaign">
-	                            		<a class="btn btn-show-bannerslogantext btn-lg btn-block sh-mission-script sh-mission-script-height" href="#"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
+		    							<a class="btn btn-show-bannerslogantext btn-lg btn-block sh-mission-script sh-mission-script-height" href="#" data-toggle="modal" onclick="javascript:window.open('/project/redirectToInviteMember?projectId=${project.id}&page=show','', 'menubar=no,toolbar=no,resizable=0,scrollbars=yes,height=500,width=786');return false;"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
 		    						</div>	
 	    						</g:if>
                            </g:elseif>
@@ -550,7 +555,7 @@
                             	<div class="redirectCampaign">
 									<g:if test="${!ended}">
 										<g:form controller="project" action="addTeam" params="[id:project.id,country_code:country_code]">
-											<button type="submit" value="Join Our Team" class="btn btn-show-bannerslogantext btn-lg btn-block join-us sh-mission-script-height">Join Our Team <br> <span class="show-sub-titleJointeam">To Fundraise for us</span></button>
+											<button type="submit" value="Join Our Team" class="btn btn-show-bannerslogantext btn-lg btn-block join-us sh-mission-script-height">Join Our Team <br> <span class="show-sub-titleJointeam">fundraise for us</span></button>
 										</g:form>
 									</g:if>
 									<g:else>
@@ -673,7 +678,7 @@
                       </div>
                       <div class="visible-xs sh-comments-align">
                           <div id="comment-mobile">
-                              <g:render template="show/comments"/>
+                                <g:render template="/project/manageproject/comments" />
                           </div>
                       </div>
                    </div>

@@ -79,7 +79,7 @@ class FundController {
                     render view: 'fund/index', model: [team:team, project: project, state:state, country:country,
                         perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
                         vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, key:key, salt:salt,
-                        service_provider:service_provider, isTaxReceipt: isTaxReceipt]
+                        service_provider:service_provider, isTaxReceipt: isTaxReceipt,country_code:country_code]
                     
                 } else if (project.citrusEmail) {
 
@@ -97,10 +97,10 @@ class FundController {
                     render view: 'fund/citruscheckout', model: [team:team, project: project, state:indiaStates, country:country,
                         perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
                         vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, cardTypes: cardTypes, title: title,currentMonthByWeek:currentMonthByWeek,
-                        month: month, year: year, defaultCountry: defaultCountry, isTaxReceipt: isTaxReceipt, currentYearByWeek:currentYearByWeek]
+                        month: month, year: year, defaultCountry: defaultCountry, isTaxReceipt: isTaxReceipt, currentYearByWeek:currentYearByWeek,country_code:country_code]
                 }
             } else {
-                render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo]
+                render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo,country_code:country_code]
             }
         }
     }
@@ -120,6 +120,8 @@ class FundController {
         def defaultCountry = 'US'
         perk = rewardService.getRewardById(params.long('rewardId'))
         def user1 = userService.getUserByUsername(params.tempValue)
+		def country_code = projectService.getCountryCodeForCurrentEnv(request);
+		
 
         def currentEnv = Environment.current.getName()
 
@@ -172,7 +174,7 @@ class FundController {
                     def previousPage = 'fund'
                     render (view: '/project/manageproject/error', model: [project: project, currentEnv:currentEnv, previousPage:previousPage])
                 }else{
-                    render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry, month:month, year:year, fundraiser:fundraiser, user1:user1, anonymous:anonymous, projectTitle:params.projectTitle, username:params.fr]
+                    render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry, month:month, year:year, fundraiser:fundraiser, user1:user1, anonymous:anonymous, projectTitle:params.projectTitle, username:params.fr,country_code:country_code]
                 }
             } else {
                 render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']

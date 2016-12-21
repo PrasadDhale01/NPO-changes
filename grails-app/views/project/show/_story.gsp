@@ -22,7 +22,14 @@
     <g:hiddenField name="shareUrl" id="shareUrl" value="${shareUrl}"/>
     <g:hiddenField name="embedTileUrl" id="embedTileUrl" value="${embedTileUrl}"/>
 
-    <div class="col-sm-12 social sharing-icon-alignment <g:if test="${!firstFiveHashtag.isEmpty() || !firstThreeHashtag.isEmpty()}"></g:if><g:else>sharing-icons-padding-left</g:else> <g:if test="${isvalidateShow}">validate-share-border</g:if><g:else>show-share-border-line</g:else> hidden-xs">
+    <div class="col-sm-12 social sharing-icon-alignment 
+    <g:if test="${firstFiveHashtag!=null}">
+    	<g:if test="${!firstFiveHashtag.isEmpty() || !firstThreeHashtag.isEmpty()}"></g:if>
+    	<g:else>sharing-icons-padding-left</g:else>
+     </g:if>	 
+    	<g:if test="${isvalidateShow}">validate-share-border</g:if>
+    	<g:else>show-share-border-line</g:else> hidden-xs">
+   
         <a class="show-socials-iconsA"></a>
         <div>
             <g:if test="${isPreview || isvalidateShow}">
@@ -133,6 +140,7 @@
         </div>
         
         <div class="show-tags-topbottom">
+         <g:if test="${firstFiveHashtag!=null}">	
 	         <g:if test="${!remainingHashTags.isEmpty()}">
 	            <h4 class="moretags-desktop col-lg-3 col-sm-3 col-md-3 tags-managepagewidth"><b>More tags:</b></h4>
 	            <p class="moretags-desktop col-lg-9 col-sm-9 col-md-9">
@@ -141,6 +149,8 @@
 	                </g:each>
 	            </p>
 	        </g:if>
+	     </g:if>   
+	      <g:if test="${remainingHashTagsTab!=null}">  
 	        <g:if test="${!remainingHashTagsTab.isEmpty()}">
 	            <h4 class="moretags-tabs col-lg-3 col-sm-3 col-md-3 tags-managepagewidth"><b>More tags:</b></h4>
 	            <p class="moretags-tabs col-lg-9 col-sm-9 col-md-9">
@@ -149,6 +159,7 @@
 	                </g:each>
 	            </p>
 	        </g:if>
+	      </g:if>  
         </div>
         
         <div class="show-matrix-bg">

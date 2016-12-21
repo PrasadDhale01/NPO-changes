@@ -21,14 +21,14 @@
 
 <div class="TW-discover-banner-decoration TW-discover-testimonial-container" >
 	<div class="TW-discover-header-testimonial">
-		<div  class="TW-discover-header-img" style="width: 100%">
-			<img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/dad700dc-f63f-4d24-a340-0aef1e144ae2.png" title="Discover-Page-Banner-for-Testimonial(1).png">
+		<div  class="TW-discover-header-img">
+			<img class="img-responsive tabImage" src="//s3.amazonaws.com/crowdera/project-images/dad700dc-f63f-4d24-a340-0aef1e144ae2.png" title="Discover-Page-Banner-for-Testimonial(1).png">
 		</div>
 	</div>
-	<div class="discoverBannerText">
+	<div class="discoverBannerText container">
       <img class="img-responsive hugomma" src="//s3.amazonaws.com/crowdera/project-images/8c608e0a-28bf-4d94-8dbf-b38d18386955.png" title="Testimonial---Icon---Big.png">
-      <b class="bannerDiscovertextbold">Let's believe that we can create a giving economy where compassion & <br>  </b>
-      <b class="bannerDiscovertextbold1">empathy fuels the engine, where doing good is the purpose, where happiness is the byproduct and abundance is the result. <br>Truly Abundance Starts with Giving.</b>
+      <b class="bannerDiscovertextbold">Let's believe that we can create a giving economy where compassion & empathy fuels the engine,<br>  </b>
+      <b class="bannerDiscovertextbold1">where doing good is the purpose, where happiness is the byproduct and abundance is the result. <br>Truly Abundance Starts with Giving.</b>
       
       <p class="chetTag">-Chet Jain</p>
       <p class="founderTag">Founder of Crowdera</p>

@@ -6,10 +6,10 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
 <div role="navigation" class="navbar  navbar-fixed-top hidden-lg hidden-md header-section home-header-section scrollHeader header-scrolled hm-headeropicity">
     <div id="opacityremove" class="header-container TW-scrollHeaderBackColor navbar-default ">
   
-   <div class="info-banner">
-    Doing good from India? Visit <a class="banner-link" href="http://crowdera.in">www.crowdera.in</a>
-    <a class="banner-close" href="javascript:void(0);" onclick="bannerClose();">Close</a>
-   </div>
+<%--   <div class="info-banner">--%>
+<%--    Doing good from India? Visit <a class="banner-link" href="http://crowdera.in">www.crowdera.in</a>--%>
+<%--    <a class="banner-close" href="javascript:void(0);" onclick="bannerClose();">Close</a>--%>
+<%--   </div>--%>
   
         <div class="navbar-header">
             <button data-target="#TW-navbar-collapsed" data-toggle="collapse" class="navbar-toggle collapsed TW-scrollHeader-hamBurger burger" type="button">

@@ -104,6 +104,8 @@ grails.plugin.springsecurity.facebook.domain.classname = 'crowdera.FacebookUser'
 grails.plugin.springsecurity.facebook.domain.appUserConnectionPropertyName = 'user'
 grails.plugin.springsecurity.facebook.filter.redirect.failureHandler='facebookRedirectFailureHandler'
 grails.plugin.springsecurity.facebook.filter.redirect.successHandler='facebookRedirectSuccessHandler'
+grails.facebook.api.url = "https://graph.facebook.com/me"
+
 environments {
 	development {
 		crowdera.facebook.appId = '333909376820194'
@@ -206,6 +208,15 @@ environments {
 					 callback = "http://localhost:8080/oauth/google/callback"
 					 scope = 'profile https://www.google.com/m8/feeds https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
 				}
+				 facebook {
+					 api = org.scribe.builder.api.FacebookApi
+					 key = '1023231227691905'
+					 secret = '62799ed033c94866b84d718053ebaff2'
+					 successUri = '/login/facebookSuccess'
+					 failureUri = '/login/facebookFailure'
+					 callback = "http://localhost:8080/oauth/facebook/callback"
+					 scopes = "['public_profile','email','name','user']"
+				   }
 			}
 		}
 	}
@@ -432,6 +443,16 @@ environments {
 					callback = "http://staging.gocrowdera.com/oauth/google/callback"
 					scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
 				}
+				facebook {
+					api = org.scribe.builder.api.FacebookApi
+					key = '554475128028127'
+					secret = 'f1991f7bf85d445a346821967e2b1251'
+					successUri = '/login/facebookSuccess'
+					failureUri = '/login/facebookFailure'
+					callback = "http://staging.gocrowdera.com/oauth/facebook/callback"
+					scopes = "['public_profile','email','name','user']"
+				  }
+					
 			}
 		}
 		
@@ -541,6 +562,15 @@ environments {
 					callback = "https://gocrowdera.com/oauth/google/callback"
 					scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
 				}
+				facebook {
+					api = org.scribe.builder.api.FacebookApi
+					key = '354215177926850'
+					secret = '24ee39e963145cee9d49fe1707e0a214'
+					successUri = '/login/facebookSuccess'
+					failureUri = '/login/facebookFailure'
+					callback = "https://gocrowdera.com/oauth/facebook/callback"
+					scopes = "['public_profile','email','name','user']"
+				  }
 			}
 		}
 		

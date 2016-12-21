@@ -6853,20 +6853,12 @@ class ProjectService {
         ).save(failOnError: true)
     }
 	
-	def getCountryForProject(def project){
-		def country 
-		if(project)
-		 country = Project.findById(project.id)
-		 return country;
+	def getCountryForProject(Project project){
+		 return project?.country;
 	}
 	
-	def getCurrencyByCountryId(def country){
-		def currency 
-		if(country){
-			currency = Currency.findById(country.countryId)
-		}
-		
-		return currency.currency_value;
+	def getCurrencyByCountryId(Country country){
+		return country?.currency?.currency_value;
 	}
 	
 	def getCountryByCountryCode(def country_code){
@@ -6885,7 +6877,6 @@ class ProjectService {
 			country_code = "in"
 		}else if(currentEnv == 'staging') {
 			country_code = request.getHeader("cf-ipcountry").toLowerCase()
-		
 		} else{
 			country_code = request.getHeader("cf-ipcountry").toLowerCase()
 		}

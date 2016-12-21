@@ -529,39 +529,49 @@ $(function() {
               });
           });
 
-        $( '[name="answer"]' ).rules( "add", {
-            required: true
-        });
+          if($('[name="answer"]').length > 0){
+		       $( '[name="answer"]' ).rules( "add", {
+		            required: true
+		       });
+          }
 
-        $('[name="ans1"]').rules( "add", {
-            required: true
-        });
+          if($('[name="ans1"]').length > 0){
+		        $('[name="ans1"]').rules( "add", {
+		            required: true
+		        });
+          }
 
-        if($('[name="ansText1"]').length > 0){
-            $('[name="ansText1"]').rules( "add", {
-                required: true
-            });
-        }
+          if($('[name="ansText1"]').length > 0){
+               $('[name="ansText1"]').rules( "add", {
+                    required: true
+               });
+          }
 
-        $('[name="ansText2"]').rules( "add", {
-            required: true,
-            maxlength: 128
-        });
+          if($('[name="ansText2"]').length > 0){
+	           $('[name="ansText2"]').rules( "add", {
+	               required: true,
+	               maxlength: 128
+	           });
+          }
 
-        if($('[name="ansText2"]').length > 0){
-            $('[name="ansText3"]').rules( "add", {
-                required: true,
-                maxlength: 128
-            });
-        }
+          if($('[name="ansText3"]').length > 0) {
+               $('[name="ansText3"]').rules( "add", {
+                   required: true,
+                   maxlength: 128
+               });
+          }
 
-        $('[name="ans3"]').rules( "add", {
-            required: true
-        });
+          if($('[name="ans3"]').length > 0) {
+	          $('[name="ans3"]').rules( "add", {
+	               required: true
+	          });
+          }
 
-        $('[name="ans4"]').rules( "add", {
-            required: true
-        });
+          if($('[name="ans4"]').length > 0) {
+	          $('[name="ans4"]').rules( "add", {
+	               required: true
+	          });
+          }
 
         $('[name="reason1"]').rules( "add", {
             required: true,
@@ -804,7 +814,7 @@ $(function() {
             $('#storyRequired').show();
             storyEmpty = true;
         } else {
-        $('#storyRequired').hide();
+        	$('#storyRequired').hide();
             storyEmpty = false;
         }
 
@@ -897,23 +907,30 @@ $(function() {
             required: true
         });
 
-        $('[name="ans1"]').rules( "add", {
-            required: true
-        });
+        if ($('[name="ans1"]').length > 0) {
+	        $('[name="ans1"]').rules( "add", {
+	            required: true
+	        });
+        }
 
+        if ($('[name="ansText2"]').length > 0) {
+	        $('[name="ansText2"]').rules( "add", {
+	            required: true,
+	            maxlength: 128
+	        });
+        }
 
-        $('[name="ansText2"]').rules( "add", {
-            required: true,
-            maxlength: 128
-        });
+        if ($('[name="ans3"]').length > 0) {
+	        $('[name="ans3"]').rules( "add", {
+	            required: true
+	        });
+        }
 
-        $('[name="ans3"]').rules( "add", {
-            required: true
-        });
-
-        $('[name="ans4"]').rules( "add", {
-            required: true
-        });
+        if ($('[name="ans4"]').length > 0) {
+	        $('[name="ans4"]').rules( "add", {
+	            required: true
+	        });
+        }
 
         $('[name="reason1"]').rules( "add", {
             required: true,

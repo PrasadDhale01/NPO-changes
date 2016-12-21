@@ -82,7 +82,9 @@
            </div>
         </div>
         <div class="text-center explorebtn hidden-xs">
-            <a href="${resource(dir: '/campaigns')}" class="btn btn-default hm-explorecampaign">Explore Campaigns</a>
+<%--            <a href="${resource(dir: '/$test/campaigns')}" class="btn btn-default hm-explorecampaign">Explore Campaigns</a>--%>
+                  <a href="${country_code}/campaigns" class="btn btn-default btn-block hm-explorecampaign">Explore Campaigns</a>
+        
         </div>
     </div>
 </div>

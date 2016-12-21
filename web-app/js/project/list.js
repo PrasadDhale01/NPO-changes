@@ -49,14 +49,14 @@ $(document).ready(function(){
 					$('#TW-discover-banner-padding').addClass('banner-padding');
 			}else if(location.country.code == 'IN' && currentEnv == 'staging'){
 				$('.info-banner').css('display','block');
-				$('.banner-link').text('staging.crowdera.in');
-				$('.banner-link').attr('href','http://staging.crowdera.in');
+				$('.banner-link').text('staging.gocrowdera.com');
+				$('.banner-link').attr('href','http://staging.gocrowdera.com');
 				//$('.home-header-section').addClass('banner-nav');
 				$('#TW-discover-banner-padding').addClass('banner-padding');
 			}else if(location.country.code == 'IN' && currentEnv == 'production'){
 				$('.info-banner').css('display','block');
-				$('.banner-link').text('www.crowdera.in');
-				$('.banner-link').attr('href','http://crowdera.in');
+				$('.banner-link').text('www.gocrowdera.com');
+				$('.banner-link').attr('href','https://gocrowdera.com');
 				//$('.home-header-section').addClass('banner-nav');
 				$('#TW-discover-banner-padding').addClass('banner-padding');
 			} else if(location.country.code == 'IN' && currentEnv == 'development'){

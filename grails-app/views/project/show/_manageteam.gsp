@@ -13,19 +13,21 @@
    </div>
 </g:if>
 <div class="col-md-12 col-sm-12 col-xs-12"></div>
-<div class="pill-buttons show-teams-top">
+<div class="pill-buttons show-teams-top mob-team-tabz">
 <g:if test="${!totalteams.isEmpty()}">
+    <div data-toggle="tab" class="active show-teamsnumber col-md-4 col-sm-4 col-xs-12 button-team-show show-teamsnumber show-team-top">
+            <g:if test="${currentUser}">
+                <a href="#team" class="text-center">
+                    ${totalteams.size()}&nbsp;&nbsp;<g:if test="${totalteams.size() > 1}">Teams</g:if><g:else>Team</g:else>
+                </a>
+            </g:if>
+            <g:else>
+           
+                <div class="show-page-totalteams">${totalteams.size()}&nbsp;&nbsp;<g:if test="${totalteams.size() > 1}">Teams</g:if><g:else>Team</g:else></div>
+            </g:else>
+        </div>
 	<ul class="nav nav-pills">
-		<li data-toggle="tab" class="active show-team col-md-4 col-sm-4 col-xs-4 button-team-show">
-		    <g:if test="${currentUser}">
-		        <a href="#team" class="text-center teammembers">
-		            ${totalteams.size()}&nbsp;&nbsp;<g:if test="${totalteams.size() > 1}">Teams</g:if><g:else>Team</g:else>
-		        </a>
-		    </g:if>
-		    <g:else>
-		        <div class="col-md-12 col-sm-12 col-xs-12 teammembers noOfteamsLabel disableteambutton text-center">${totalteams.size()}&nbsp;&nbsp;<g:if test="${totalteams.size() > 1}">Teams</g:if><g:else>Team</g:else></div>
-		    </g:else>
-		</li>
+		
 		<g:if test="${!isTeamExist && project.validated}">
 		    <g:if test="${!ended}">
 			    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show hidden-xs">
@@ -66,10 +68,9 @@
             
 		</g:else>
 	</ul>
-	<div class="teamtileseperator"></div>
 
     <div class="tab-content">
-        <div class="tab-pane active sh-alignedteamtiles col-md-12 col-sm-12 col-xs-12" id="team">
+        <div class="tab-pane active sh-alignedteamtiles col-md-12 col-sm-12 col-xs-12 show-manageteam-detailspage" id="team">
             <div class="teamList" id="teamList">
                 <g:render template="show/teamgrid"/>
             </div>
@@ -121,10 +122,10 @@
                     <h3 class="modal-title text-center"><b>Edit Fundraiser Info</b></h3>
                 </div>
                 <div class="modal-body">
-                    <g:hiddenField name="project" value="${project.id}"/>
-                    <g:hiddenField name="projectAmount" value="${project.amount}"/>
+                    <input type="hidden" name="project" value="${project.id}"/>
+                    <input type="hidden" name="projectAmount" value="${project.amount}"/>
                     <input type="hidden" id="b_url" value="<%=base_url%>" />
-                    <g:hiddenField name="teamId" value="${currentTeam.id}"/>
+                    <input type="hidden" name="teamId" value="${currentTeam.id}"/>
 
                     <div class="form-group">
                         <label>Goal</label>

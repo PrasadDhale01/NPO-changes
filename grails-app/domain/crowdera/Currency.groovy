@@ -7,6 +7,17 @@ import groovy.transform.ToString
 
 class Currency {
 
-    double dollar
-    
+	static belongsTo = [country:Country]
+	
+	String currency_name
+	String currency_code
+	String currency_value
+   // double dollar
+		  
+	  static constraints = {
+		  currency_name (nullable: true)
+		  currency_code (nullable: true)
+		  currency_value (nullable: true)
+	}
+	
 }

@@ -1,4 +1,4 @@
-<div class="greenbg">
+<%--<div class="greenbg visible-md">
 	<div class="container testimonial-inner-container">
 		<div class="row testimonial-container">
 			<div class="header-testimonial">
@@ -34,4 +34,41 @@
 		    </span>
 		</div>
 	</div>
+</div> --%>
+
+									<!-- New gocrowdera testimonial Desktop -->
+
+<div class="greenbgg visible-lg">
+   <div class="testimonialAlligned">   
+      <div class="usnewteStimonial">
+         <div class="container testimonialRowfedf">
+	        <div class="row testimonialRow">
+	           <div class="col-lg-4 col-md-4 col-sm-4 testimonialRowone">
+	              <img class="img-responsive pull-left" src="//s3.amazonaws.com/crowdera/project-images/be3a2f87-a24d-43b3-b401-4b37fc1bd4b1.png" title="Testimoniala-Image-Orly-Wahba.png">
+	              <div class="visible-lg">
+	                 <img class="img-responsive pull-left ttimonialImgpaiing" src="//s3.amazonaws.com/crowdera/project-images/3d96f81c-14df-4fc8-9b87-66b2f7940c7a.png" alt="''">
+	                    <div class="pull-left">
+	                       <h1 class="bannerheadbtmMarginn testimonialRowonetext"><b>I ran my campaign through Crowdera in its initial phases &amp; I greatly appreciated the support I received from the Crowdera team ...</b></h1>
+	                    </div>  
+	              </div> 
+	              <div class="orlyName col-md-5 col-lg-5 col-sm-5 pull-right testimonial-name-margin">
+	                 <b>-Orly Wahba</b>
+	                 <p>Founder of Life Vest India</p>
+	              </div>      
+	           </div>
+	           <div class="col-lg-4 col-md-4 col-sm-4 testimonialRowtwo">
+	              <img class="img-responsive pull-left" src="//s3.amazonaws.com/crowdera/project-images/b4c05822-957e-4131-8192-aefbb1c66657.png" title="Testimoniala-Image-Gokul-R.png">
+	              <img class="img-responsive pull-left ttimonialImgpaiing" src="//s3.amazonaws.com/crowdera/project-images/3d96f81c-14df-4fc8-9b87-66b2f7940c7a.png" alt="''">
+	                 <div class="pull-left">
+	                    <h1 class="bannerheadbtmMarginn testimonialRowtwotext"><b>I'm impressed with crowdera's mission &amp; how single-mindedly they are focused on solving a problem that is important &amp; that really matters.</b></h1>
+	                 </div>   
+	              <div class="gokulName col-md-7 col-sm-7 col-lg-7 pull-right testimonial-name-margin">
+	                 <b>-Gokul Rajaram</b>
+	                 <p>Product Engineering Lead @Square</p>
+	              </div>   
+	           </div>
+	        </div>
+	     </div>
+      </div>
+   </div>
 </div>

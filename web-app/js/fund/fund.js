@@ -27,6 +27,21 @@ $(function() {
             }
         }
     });
+    
+    $("#isTaxreceipt").change(function() {
+    	if ($(this).is(':checked')) {
+    		$(".pannumberdiv").slideDown();
+    		
+    		$('[name="panNumber"]').rules( "add", {
+                required: true,
+                minlength: 10,
+                maxlength: 10
+            });
+    	} else {
+    		$(".pannumberdiv").slideUp();
+    		$('[name="panNumber"]').rules('remove');
+    	}
+    });
 
     $("form").on("change", ".states", function () {
     	var option = $(this).val();
@@ -147,38 +162,94 @@ $(function() {
          if(validator.form()) {
              needToConfirm = false;
              event.preventDefault();
-             var formData = {
-                 'anonymous'     : $('input[name= anonymous]').val(),
-                 'userId'        : $('input[name= userId]').val(),
-                 'rewardId'      : $('input[name= rewardId]').val(),
-                 'fr'            : $('input[name= fr]').val(),
-                 'projectAmount' : $('input[name= projectAmount]').val(),
-                 'projectTitle'  : $('input[name= projectTitle]').val(),
-                 'tempValue'     : $('input[name= tempValue]').val(),
-                 'billToTitle'   : $('input[name= billToTitle]').val(),
-                 'firstname'     : $('input[name= firstname]').val(),
-                 'lastname'      : $('input[name= lastname]').val(),
-                 'email'         : $('input[name= email]').val(),
-                 'phone'         : $('input[name= phone]').val(),
-                 'productinfo'   : $('input[name= productinfo]').val(),
-                 'amount'        : $('input[name= amount]').val(),
-                'campaignId'    : $('input[name= campaignId]').val(),
-                 'addressLine1'  : $('input[name= addressLine1]').val(),
-                 'addressLine2'  : $('input[name= addressLine2]').val(),
-                 'city'          : $('input[name= city]').val(),
-                 'zip'           : $('input[name= zip]').val(),
-                 'country'       : $('#payuCountry').val(),
-                 'state'         : $('#payuStates').val(),
-                 'otherstate'    : $('input[name= otherstate]').val(),
-                 'shippingEmail' : $('input[name= shippingEmail]').val(),
-                 'twitterHandle' : $('input[name= twitterHandle]').val(),
-                 'shippingCustom': $('input[name= shippingCustom]').val()
-             };
-
-              $.ajax({
+             
+             var formDataObj = new FormData();
+             formDataObj.append("anonymous", $('input[name= anonymous]').val());
+             
+             if ($('input[name= userId]').length > 0) {
+             	formDataObj.append("userId", $('input[name= userId]').val());
+             }
+             
+             if ($('input[name= rewardId]').length > 0) {
+            	 formDataObj.append("rewardId", $('input[name= rewardId]').val());
+             }
+             if ($('input[name= fr]').length > 0) {
+            	 formDataObj.append("fr", $('input[name= fr]').val());
+             }
+             if ($('input[name= projectAmount]').length > 0) {
+            	 formDataObj.append("projectAmount", $('input[name= projectAmount]').val());
+             }
+             if ($('input[name= projectTitle]').length > 0) {
+            	 formDataObj.append("projectTitle", $('input[name= projectTitle]').val());
+             }
+             if ($('input[name= tempValue]').length > 0) {
+            	 formDataObj.append("tempValue", $('input[name= tempValue]').val());
+             }
+             if ($('input[name= billToTitle]').length > 0) {
+            	 formDataObj.append("billToTitle", $('input[name= billToTitle]').val());
+             }
+             if ($('input[name= firstname]').length > 0) {
+            	 formDataObj.append("firstname", $('input[name= firstname]').val());
+             }
+             if ($('input[name= lastname]').length > 0) {
+            	 formDataObj.append("lastname", $('input[name= lastname]').val());
+             }
+             if ($('input[name= email]').length > 0) {
+            	 formDataObj.append("email", $('input[name= email]').val());
+             }
+             if ($('input[name= phone]').length > 0) {
+            	 formDataObj.append("phone", $('input[name= phone]').val());
+             }
+             if ($('input[name= productinfo]').length > 0) {
+            	 formDataObj.append("productinfo", $('input[name= productinfo]').val());
+             }
+             if ($('input[name= amount]').length > 0) {
+            	 formDataObj.append("amount", $('input[name= amount]').val());
+             }
+             if ($('input[name= campaignId]').length > 0) {
+            	 formDataObj.append("campaignId", $('input[name= campaignId]').val());
+             }
+             if ($('input[name= addressLine1]').length > 0) {
+            	 formDataObj.append("addressLine1", $('input[name= addressLine1]').val());
+             }
+             if ($('input[name= addressLine2]').length > 0) {
+            	 formDataObj.append("addressLine2", $('input[name= addressLine2]').val());
+             }
+             if ($('input[name= city]').length > 0) {
+            	 formDataObj.append("city", $('input[name= city]').val());
+             }
+             if ($('input[name= zip]').length > 0) {
+            	 formDataObj.append("zip", $('input[name= zip]').val());
+             }
+             if ($('#payuCountry').length > 0) {
+            	 formDataObj.append("country", $('#payuCountry').val());
+             }
+             if ($('#payuStates').length > 0) {
+            	 formDataObj.append("state", $('#payuStates').val());
+             }
+             if ($('input[name= otherstate]').length > 0) {
+            	 formDataObj.append("otherstate", $('input[name= otherstate]').val());
+             }
+             if ($('input[name= shippingEmail]').length > 0) {
+            	 formDataObj.append("shippingEmail", $('input[name= shippingEmail]').val());
+             }
+             if ($('input[name= twitterHandle]').length > 0) {
+            	 formDataObj.append("twitterHandle", $('input[name= twitterHandle]').val());
+             }
+             if ($('input[name= shippingCustom]').length > 0) {
+            	 formDataObj.append("shippingCustom", $('input[name= shippingCustom]').val());
+             }
+             
+             if ($('input[name= panNumber]').length > 0) {
+            	 formDataObj.append("panNumber", $('input[name= panNumber]').val());
+             }
+             
+             $.ajax({
                  type    :'post',
                  url     : $("#b_url").val()+'/fund/payupayment',
-                 data    : formData,
+                 data    : formDataObj,
+                 processData : false,
+                 contentType: false,
                  dataType: 'json',
                  success : function(response){
                  	$('input[name = txnid]').val(response.txnid);
@@ -223,6 +294,7 @@ $(function() {
         $('.list-group.twitterHandler').find('a.list-group-item').removeClass('active');
         $(this).addClass('active');
         var rewardId = $('a.list-group-item.active').attr('id');
+        $("#rewardId").val(rewardId);
         showShippingDetails(rewardId);
     });
     

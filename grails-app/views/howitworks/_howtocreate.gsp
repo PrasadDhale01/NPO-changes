@@ -23,6 +23,10 @@
 <%----%>
 <%--    </div>--%>
 <%--</div>--%>
+ <%
+ def country_code = request.getHeader("cf-ipcountry")
+ 
+  %>
 <div class="hm-how-it-work">
 	 <img class="img-responsive home-img-large-size hidden-xs  visible-lg" src="//s3.amazonaws.com/crowdera/assets/how-it-work-step-web-a-3.jpg" alt="How-it-work">
 	 
@@ -36,6 +40,6 @@
 	 <img class="img-responsive home-img-large-size hidden-xs hidden-lg visible-sm visible-md" src="//s3.amazonaws.com/crowdera/assets/howitwork-step-a-tab-2.jpg" alt="How-it-work">
 	 
 	 <div class="learn-how-it-work-img">
-	     <a href="${resource(dir: '/campaign/create')}" class="btn btn-default btn-block hm-start-campaign-btn learn-startcampaign-btn">Start Your Campaign</a>
+	     <a href="${resource(dir: '/'+"${country_code}"+'/campaign/create')}" class="btn btn-default btn-block hm-start-campaign-btn learn-startcampaign-btn">Start Your Campaign</a>
 	 </div>
 </div>

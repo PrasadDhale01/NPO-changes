@@ -2,10 +2,10 @@
     def projectId = project.id
     boolean isshow = true;
 %>
-<div class="row">
-    <ul class="thumbnails list-unstyled sh-mobs-teams">
+<div class="row show-widht-team mob-team-tabz">
+    <ul class="thumbnails list-unstyled sh-mobs-teams show-teams-width">
         <g:each in="${teams}" var="team">
-            <li class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            <li class="col-lg-4 col-md-6 col-sm-6 col-xs-12 tm-mob-padding">
                 <g:render template="/project/manageproject/teamtile" model="['team': team, isshow: isshow]"></g:render>
             </li>
         </g:each>

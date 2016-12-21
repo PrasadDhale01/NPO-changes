@@ -1,6 +1,7 @@
 <g:set var="projectService" bean="projectService"/>
 <%
 	def currentEnv = projectService.getCurrentEnvironment()
+	def country_code = projectService.getCountryCodeForCurrentEnv(request);
 %>
 <head>
 <meta name="layout" content="main" />
@@ -12,7 +13,7 @@
 </head>
 <body>
     <div class="feducontent">
-    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+    <g:if test="${country_code=='in'}">
         <div class="container contactUs" id="contactUs">
         <div class="hidden-md hidden-lg hidden-sm col-xs-12 contact-details contact-details-bottom">
             <div class="contact-details-heading"><b>Contact Details</b></div>

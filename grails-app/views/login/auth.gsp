@@ -2,6 +2,7 @@
 <g:set var="projectService" bean="projectService"/>
 <%
 	def currentEnv = projectService.getCurrentEnvironment()
+	def country_code = projectService.getCountryCodeForCurrentEnv(request)
     def loginSignUpCookie = g.cookie(name: 'loginSignUpCookie')
 	def fundingAmountCookieValue = g.cookie(name: 'fundingAmountCookie')
 	def campaignNameCookieValue = g.cookie(name: 'campaignNameCookie')
@@ -9,6 +10,7 @@
 %>
 <head>
     <title>Crowdera- Login</title>
+    <link rel="canonical" href="${grailsApplication.config.crowdera.BASE_URL}/login"/>
     <meta name='layout' content='main'/>
     <r:require modules="bootstrapsocialcss, loginjs, registrationjs"/>
 </head>
@@ -18,7 +20,7 @@
         <g:if test="${loginSignUpCookie}">
             <div class="campaignloginheading text-center">
                 <g:if test="${campaignNameCookieValue}">
-                    <h4><b><p>Welcome ${contributorNameCookieValue},</p><p>Thank you for your compassionate contribution of ${fundingAmountCookieValue}<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"> INR</g:if><g:else> USD</g:else> to ${campaignNameCookieValue}. Please Sign Up or Sign In to track the progress of the campaign, share on social media and receive your receipt.</p></b></h4>
+                    <h4><b><p>Welcome ${contributorNameCookieValue},</p><p>Thank you for your compassionate contribution of ${fundingAmountCookieValue}<g:if test="${country_code == 'in'}"> INR</g:if><g:else> USD</g:else> to ${campaignNameCookieValue}. Please Sign Up or Sign In to track the progress of the campaign, share on social media and receive your receipt.</p></b></h4>
                 </g:if>
                 <g:else>
                     <h4><b class="campaignloginboldheading">Great!</b> <b class="campaignloginlightheading">You are almost there please sign up or sign in to complete your campaign & raise money free.</b></h4>
@@ -35,13 +37,11 @@
                 <g:if test="${flash.googleFailureMessage}">
                     <div class="alert alert-danger">${flash.googleFailureMessage}</div>
                 </g:if>
-                <g:if test="${currentEnv != 'prodIndia'}">
-                    <div class="facebookSignInBtn">
-                        <a class="btn btn-block btn-social btn-facebook" href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
-                            <i class="fa fa-facebook fa-facebook-styles"></i> Sign in with Facebook
-                        </a><br>
-                    </div>
-                </g:if>
+                 <div class="facebookSignInBtn">
+                    <oauth:connect class="btn btn-block btn-social btn-facebook" provider="facebook" id="facebook-connect-link">
+                        <i class="fa fa-facebook fa-facebook-styles"></i> Sign in with Facebook
+                    </oauth:connect>  <hr/> 
+                </div>
                 <div class="googleSignInBtn">
                     <oauth:connect class="btn btn-block btn-social btn-google-plus" provider="google" id="google-connect-link">
                         <i class="fa fa-google-plus fa-facebook-styles"></i> Sign in with Google +
@@ -49,9 +49,9 @@
                 </div>
             </div>
             <div class="col-sm-6 hidden-lg hidden-xs hidden-md">
-                <a class="btn btn-block btn-social btn-facebook" href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
-                    <i class="fa fa-facebook fa-facebook-styles"></i> Sign in with Facebook
-                </a>
+               <oauth:connect class="btn btn-block btn-social btn-facebook" provider="facebook" id="facebook-connect-link">
+                        <i class="fa fa-facebook fa-facebook-styles"></i> Sign in with Facebook
+               </oauth:connect>  <hr/> 
             </div>
             <div class="col-sm-6 hidden-lg hidden-xs hidden-md">
                 <oauth:connect class="btn btn-block btn-social btn-google-plus" provider="google" id="google-connect-link">
@@ -114,12 +114,10 @@
             <div class="login-form">
                 <form class="form-signin" action="${postUrl}" method="POST" id="loginForm" name="loginForm">
                     <h2 class="form-signin-heading signin login-logo">Please login</h2>
-                    <g:if test="${currentEnv != 'prodIndia'}">
-                        <a class="btn btn-block btn-social btn-facebook" href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
-                            <i class="fa fa-facebook fa-facebook-styles"></i> Sign in with Facebook
-                        </a><br>
-                    </g:if>
-
+                    <oauth:connect class="btn btn-block btn-social btn-facebook" provider="facebook" id="facebook-connect-link">
+                        <i class="fa fa-facebook fa-facebook-styles"></i> Sign in with Facebook
+                    </oauth:connect>  <hr/> 
+                   
                     <oauth:connect class="btn btn-block btn-social btn-google-plus" provider="google" id="google-connect-link">
                         <i class="fa fa-google-plus fa-facebook-styles"></i> Sign in with Google +
                     </oauth:connect>

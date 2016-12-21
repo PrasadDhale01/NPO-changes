@@ -1,6 +1,8 @@
-<%
+<g:set var="projectService" bean="projectService"/>
+<%	
+	def country_code = projectService.getCountryCodeForCurrentEnv(request)
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 + country_code: grailsApplication.config.crowdera.BASE_URL + country_code
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
@@ -57,9 +59,10 @@
 	<g:hiddenField id="googlPlusUser-login" name="googlPlusUser-login" value="${isDuplicate}"/>
 	<g:hiddenField id="userEmail" name='userEmail' value="${email}"/>
 	<g:hiddenField name='currentEnv' value='${currentEnv}' id='currentEnv'/>
-	<g:hiddenField name="contributorEmail" value="${contributorEmail}" id="contributorEmail"/>
+	<g:hiddenField id="country_code" name="country_code" value="${country_code}"/>
+	<%--<g:hiddenField name="contributorEmail" value="${contributorEmail}" id="contributorEmail"/>
     
-     <div id="homepage-carousel"></div>
+     --%><div id="homepage-carousel"></div>
      <div class="hm-image-header"></div>  
     <div class="hidden-xs">
        <g:render template="banner"></g:render>
@@ -69,7 +72,7 @@
 <%--    <div class="hm-section-top"></div>--%>
     <div class="row text-center hm-fontfamily visible-xs">
         <p class="hm-slogn-mobile">Always Free! Instant Disbursal</p>
-        <a href="${resource(dir: '/campaign/create')}" class="btn btn-block hm-raisemony-btn">Raise Money Free</a>
+        <a href="${resource(dir: '/'+"${country_code}"+'/campaign/create')}" class="btn btn-block hm-raisemony-btn">Raise Money Free</a>
         <p class="hm-slogn-mobile">Flexible Goals Unlimited Teams</p>
     </div>
     
@@ -78,7 +81,8 @@
     </div>
     <div class="row visible-xs">
         <div class="text-center explorebtn">
-            <a href="${resource(dir: '/campaigns')}" class="btn btn-default btn-block hm-explorecampaign">Explore Campaigns</a>
+<%--            <a href="${resource(dir: '/${test}/campaigns')}" class="btn btn-default btn-block hm-explorecampaign">Explore Campaigns</a>--%>
+          <a href="${country_code}/campaigns" class="btn btn-default btn-block hm-explorecampaign">Explore Campaigns</a>
         </div>
     </div>
     <div class="hidden-xs">

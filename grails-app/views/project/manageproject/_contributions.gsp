@@ -12,7 +12,7 @@
     def projectId = project.id
 %>
 <g:if test="${project.validated}">
-<div class="col-md-12 col-md-12 col-sm-12 col-xs-12 cdra-mng-ftpadding">
+<div class="col-md-12 col-md-12 col-sm-12 col-xs-12 cdra-mng-ftpadding manage-contribution-bgcolor">
     <g:hiddenField name="isIndianCampaign" value="${project.payuStatus}" id="isIndianCampaign"/>
     <g:if test="${totalContributions.empty}">
         <div class="alert alert-info">No contributions yet.</div>
@@ -26,7 +26,7 @@
             Manage contribution
             <span class="caret"></span></button>
             
-            <ul class="dropdown-menu cdra-mng-dropwidth" aria-labelleby="dropdownMenu1">
+            <ul class="dropdown-menu cdra-mng-dropwidth" aria-labelledby="dropdownMenu1">
             <g:if test="${!ended}">
                <li> <a href="#" class="" data-toggle="modal" data-target="#offlineContributionModal">
                     Manage Offline Contribution
@@ -101,6 +101,27 @@
                             </div>
                             <div id="errormsg1"></div>
                         </div>
+                        <g:if test="${isTaxReceipt}">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+		                            <label class="text col-sm-12">
+		                                <input type="checkbox" name="isTaxreceipt" id="isTaxreceipt" > Do you want to provide tax receipt?
+		                            </label>
+		                        </div>
+		                    </div>
+		                    <div class="col-sm-12">
+                                <div class="form-group">
+                                <br/>
+		                            <label class="text col-sm-3 pannumberdiv">
+		                                PAN Number
+                                    </label>
+		                            <div class="col-sm-9 pannumberdiv">
+		                                <input class="form-control" id="panNumber" name="panNumber" type="text" placeholder="Enter PAN Number" maxlength="10"/>
+		                            </div>
+		                        </div>
+		                    </div>
+                        </g:if>
+                        
                         <div class="clear"></div>
                     </div>
                     <div class="clear"></div>
@@ -141,7 +162,7 @@
          <g:hiddenField name="projectId" value="${project.id}" id="projectId${project.id}"/>
          <div class="modal-body">
            <g:if test="${!totalContributions.empty}">
-                <dl class="dl">
+                <div class="dl">
                     <div class="table table-responsive">
                         <table class="table table-bordered">
                             <thead>
@@ -168,7 +189,7 @@
                                         <th class="col-sm-2 text-center">SHIPPING DETAILS</th>
                                     </g:if>
 
-                                    <th class="text-center">AMOUNT</th>
+                                    <th class="text-center">AMOUNT(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</th>
                                     <th class="text-center">MODE</th>                            
                                 </tr>
                             </thead>
@@ -227,7 +248,7 @@
                             </tbody>
                         </table>
                     </div>
-                </dl>
+                </div>
             </g:if>
             
         </div>

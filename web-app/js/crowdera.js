@@ -315,6 +315,16 @@ function loadHeaderCallback(){
    });
 }
 
+function toggleSearch(){
+    if($("#search-bar").width()===0){
+        desktopSearch();
+    }else if($("#search-barr1").width()===0){
+        mobileSearch();
+    }else{
+        onSearchLeave();
+    }
+}
+
 function desktopSearch(){
 	
 	var slider_width = $('#hiddensearch').width();
@@ -330,8 +340,8 @@ function desktopSearch(){
         $('.search-image-header').css('paddingRight', '40px');
     } else {
         $('.search-box').show();
-        $('.discover').hide();
-        $('.learn').hide();
+        $('.discover').show();
+        $('.learn').show();
         $(".search-box").animate({width: slider_width},function(){
             $(this).focus(); // For bonus, the input will now get autofocus
         });
@@ -365,3 +375,7 @@ function onSearchLeave(){
      }, delay);
 //         $('.search-image-header').css('paddingRight', '40px');
 }
+
+
+
+

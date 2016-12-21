@@ -35,7 +35,7 @@
                 <g:select class="selectpicker text-center" name="sortByOptions" id="sortByOptions" from="${sortByOptions}" optionKey="value" optionValue="value" value="Pending" onchange="campaignsort()"/>
             </div>
             <div class="pull-right dashboard-sortByOptions">
-                <g:if test="${environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'}">
+                <g:if test="${country_code == 'in'}">
                     <g:select class="selectpicker text-center" name="countryOpts" id="countryOpts" from="${countryOpts}" optionKey="value" optionValue="value" value="India" onchange="campaignsortByCountry()"/>
                 </g:if>
                 <g:else>
@@ -57,7 +57,8 @@
                 <div class="col-md-12">
                     <div id='adminCampaignGrid'></div>
                 </div>
-         </div>
+            </div>
+        </div>
     </div>
 </g:if>
 <g:else>
@@ -74,8 +75,8 @@
         </div>
         <div class="navbar navbar-default navbar-fixed-top visible-xs" id="partner-third-header">
             <div class="navbar-header">
-                <span class="span-space"><span class="header-text">Raised</span> <g:if test="${environment == 'prodIndia' || environment == 'stagingIndia' || environment == 'testIndia'}"><span class="fa fa-inr"></span>${fundRaised.round()}</g:if><g:else>$${fundRaised.round()}</g:else></span>
-                <span class="span-space"><span class="header-text">Contributed</span> <g:if test="${environment == 'prodIndia' || environment == 'stagingIndia' || environment == 'testIndia'}"><span class="fa fa-inr"></span>${contributedAmount.round() * multiplier}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
+                <span class="span-space"><span class="header-text">Raised</span> <g:if test="${country_code == 'in'}"><span class="fa fa-inr"></span>${fundRaised.round()}</g:if><g:else>$${fundRaised.round()}</g:else></span>
+                <span class="span-space"><span class="header-text">Contributed</span> <g:if test="${country_code == 'in'}"><span class="fa fa-inr"></span>${contributedAmount.round()}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
                 <span class="span-space"><span class="header-text">Campaigns</span> ${projects.size()}</span>
             </div>
         </div>
@@ -143,7 +144,7 @@
                 %>
                 <ul id="side-menu">
                     <li>
-                        <a href="${resource(dir: '/campaign/create')}" class="active">Create Campaign</a>
+                        <a href="${resource(dir: '/'+"${country_code}"+'/campaign/create')}" class="active">Create Campaign</a>
                     </li>
                     <g:if test="${partner && ispartnerdraft}">
                         <li>
@@ -166,17 +167,17 @@
                     </li>
                     <g:if test="${(isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
                         <li>
-                            <a href="#taxReceipt" data-toggle="tab">Tax Receipt</a>
+                            <a href="#taxReceipt" data-toggle="tab">Donation Receipts</a>
                         </li>
                     </g:if>
                     <g:elseif test="${isUserProjectHavingContribution && !userHasContributedToNonProfitOrNgo && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
                         <li>
-                            <a href="#sendtaxReceipt" data-toggle="tab">Send Tax Receipt</a>
+                            <a href="#sendtaxReceipt" data-toggle="tab">Donation Receipts</a>
                         </li>
                     </g:elseif>
                     <g:elseif test="${!isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
                         <li>
-                            <a href="#exporttaxReceipt" data-toggle="tab">Export Tax Receipt</a>
+                            <a href="#exporttaxReceipt" data-toggle="tab">Donation Receipts</a>
                         </li>
                     </g:elseif>
                     <li class="hidden">
@@ -197,7 +198,7 @@
                                     </div>
                                     <div class="col-xs-10 col-sm-12 col-md-10 text-right">
                                         <p class="announcement-heading">
-                                            <span class="amountSection-Font"><g:if test="${environment == 'prodIndia' || environment == 'stagingIndia' || environment == 'testIndia'}"><span class="fa fa-inr"></span>${fundRaised.round()}</g:if><g:else>$${fundRaised.round()}</g:else></span>
+                                            <span class="amountSection-Font"><g:if test="${country_code == 'in'}"><span class="fa fa-inr"></span>${fundRaised.round()}</g:if><g:else>$${fundRaised.round()}</g:else></span>
                                         </p>
                                     </div>
                                 </div>
@@ -216,7 +217,7 @@
                                     </div>
                                     <div class="col-xs-10 col-sm-12 col-md-10 text-right">
                                         <p class="announcement-heading">
-                                            <span class="amountSection-Font"><g:if test="${environment == 'prodIndia' || environment == 'stagingIndia' || environment == 'testIndia'}"><span class="fa fa-inr"></span>${contributedAmount.round() * multiplier}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
+                                            <span class="amountSection-Font"><g:if test="${country_code == 'in'}"><span class="fa fa-inr"></span>${contributedAmount.round()}</g:if><g:else>$${contributedAmount.round()}</g:else></span>
                                         </p>
                                     </div>
                                 </div>
@@ -315,8 +316,8 @@
          <img src="//s3.amazonaws.com/crowdera/assets/loading.gif" alt="'loadingImage'" id="loading-file-gif-img">
      </div>
 </g:else>
-     <div id="loading-gif" class="loadinggif text-center" style="display: none;">
-        <img id="loading-gif-img" alt="'loadingImage'" src="//s3.amazonaws.com/crowdera/documents/loading.gif">
-    </div>
+<div id="loading-gif" class="loadinggif text-center" style="display: none;">
+    <img id="loading-gif-img" alt="'loadingImage'" src="//s3.amazonaws.com/crowdera/documents/loading.gif">
+</div>
 </body>
 </html>

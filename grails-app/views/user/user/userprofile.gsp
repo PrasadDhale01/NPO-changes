@@ -52,7 +52,7 @@
                                             </div>
                                             <div class="col-xs-9 text-right">
                                                 <p class="usr-prfl-amt">
-                                                    <g:if test="${environment=='testIndia' || environment=='stagingIndia' || environment=='prodIndia'}">
+                                                    <g:if test="${country_code == 'in'}">
                                                         <span class="fa fa-inr"></span>
                                                      </g:if>
                                                      <g:else>$</g:else>
@@ -73,7 +73,7 @@
                                             </div>
                                             <div class="col-xs-9 text-right">
                                                 <p class="usr-prfl-amt">
-                                                    <g:if test="${environment=='testIndia' || environment=='stagingIndia' || environment=='prodIndia'}">
+                                                    <g:if test="${country_code == 'in'}">
                                                         <span class="fa fa-inr"></span>
                                                     </g:if>
                                                     <g:else>$</g:else>

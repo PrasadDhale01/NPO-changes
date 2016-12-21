@@ -9,13 +9,15 @@
 	if (imageUrl) {
 		imageUrl = project.imageUrl[0].getUrl()
 	}
+	def country_code = projectService.getCountryCodeForCurrentEnv(request);
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 + country_code : grailsApplication.config.crowdera.BASE_URL + country_code
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+fundraiser.username
 	def beneficiaryName = (project.beneficiary.lastName) ? project.beneficiary.firstName + ' ' + project.beneficiary.lastName : project.beneficiary.firstName;
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
+     <link rel="canonical" href="${base_url}/fund"/>
     <meta property="og:title" content="Crowdera : ${project.title}" />
     <meta property="og:url" content="${fbShareUrl}" />
     <g:if test="${project.organizationIconUrl}">
@@ -54,8 +56,14 @@
 <div class="feducontent">
     <div class="container ack-thousands-thankyoupage">
             <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                <h1><b>Thank you!</b></h1>
-                <p>You have funded this campaign. You will receive your chosen perk soon.</p>
+            <g:if test="${reward.id!=1 }">
+               <h1><b>Thank you!</b></h1>
+                <p>You have successfully funded this campaign. You will receive your chosen perk soon.</p>
+            </g:if>
+            <g:elseif test="${reward.id==1 }">
+               <h1><b>Thank you!</b></h1>
+                <p>You have successfully funded this campaign.</p>
+            </g:elseif>
             </div>
             
             <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12 thankyou-margin">

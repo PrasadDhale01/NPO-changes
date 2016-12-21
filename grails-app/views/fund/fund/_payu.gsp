@@ -24,7 +24,6 @@
 
      <g:hiddenField name="projectId" id="projectId" value="${project.id}" />
      <input type="hidden" name="fr" value="${vanityUsername}" />
-     <input type="hidden" name="rewardId" value="${reward.id}"/>
      <input type="hidden" name="anonymous" value="false" id="anonymous"/>
       
      <input class="form-control" type="hidden" value="Mr/Mrs/Ms" name="billToTitle" id="billToTitle" />
@@ -68,7 +67,14 @@
                  </div>
                  <span id="errormsg"></span>
              </div>
-
+             <g:if test="${isTaxReceipt}">
+	              <label class="checkbox control-label">
+	                  <input type="checkbox" name="isTaxreceipt" id="isTaxreceipt"/> Do you want donation receipt?
+	              </label>
+	              <div class="form-group fund-inr pannumberdiv">
+	                  <input class="form-control" id="panNumber" name="panNumber" type="text" maxlength="10" placeholder="Enter PAN Number"/>
+	              </div>
+             </g:if>
              <label class="checkbox control-label">
                  <input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
              </label>
@@ -138,7 +144,7 @@
                          <div class="col-md-12 col-sm-6 col-xs-12">
                              <div class="form-group">
                                  <div class="input-group col-md-12">
-                                     <input class="form-control" type="email" placeholder="Email" name="email" required>
+                                     <input class="form-control" type="email" placeholder="Email" name="email" value="${user?.email}" required>
                                  </div>
                              </div>
                          </div>
@@ -201,7 +207,7 @@
                         <div class="col-md-12 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <div class="input-group col-md-12">
-                                    <input class="form-control" type="text" placeholder="Email" name="email">
+                                    <input class="form-control" type="text" placeholder="Email" name="email" value="${user?.email}">
                                 </div>
                             </div>
                         </div>

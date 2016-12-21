@@ -1,11 +1,15 @@
 <g:set var="userService" bean="userService"/>
+<g:set var="projectService" bean="projectService"/>
+<%
+def country_code = projectService.getCountryCodeForCurrentEnv(request)
+%>
 <div role="navigation" class="navbar  navbar-fixed-top hidden-lg hidden-md header-section home-header-section scrollHeader header-scrolled hm-headeropicity">
     <div id="opacityremove" class="header-container TW-scrollHeaderBackColor navbar-default ">
   
-   <div class="info-banner">
-    Doing good from India? Visit <a class="banner-link" href="http://crowdera.in">www.crowdera.in</a>
-    <a class="banner-close" href="javascript:void(0);" onclick="bannerClose();">Close</a>
-   </div>
+<%--   <div class="info-banner">--%>
+<%--    Doing good from India? Visit <a class="banner-link" href="http://crowdera.in">www.crowdera.in</a>--%>
+<%--    <a class="banner-close" href="javascript:void(0);" onclick="bannerClose();">Close</a>--%>
+<%--   </div>--%>
   
         <div class="navbar-header">
             <button data-target="#TW-navbar-collapsed" data-toggle="collapse" class="navbar-toggle collapsed TW-scrollHeader-hamBurger burger" type="button">
@@ -23,7 +27,7 @@
             <div class="searchengine pull-right visible-xs">
                <form name="SearchForm" action="/campaign">
                    <div class="inner-addon left-addon search-icon-header search-image-header mobile-searchengin-header">
-                      <img id="scrolltrigger" class="trigger-mob scrolltrigger" alt="search" src="https://s3.amazonaws.com/crowdera/assets/search-icon.png" onmouseover="mobileSearch()" onmouseleave="onSearchLeave()">
+                      <img id="scrolltrigger" class="trigger-mob scrolltrigger" alt="search" src="https://s3.amazonaws.com/crowdera/assets/search-icon.png" onclick="toggleSearch();">
                       <input type="text" placeholder="Search....." id="search-barr1" value="" name="q" class="search-barr form-control form-control-no-border search-box">
                    </div>
                </form>
@@ -54,12 +58,12 @@
             </ul>
             <ul class="nav navbar-nav navbar-right nav-create-button">
                 <li class="hidden-xs">
-                    <a class=" btn btn-info nav-text1 TW-header-helpLink" href="/campaign/create">
+                    <a class=" btn btn-info nav-text1 TW-header-helpLink" href="${resource(dir: '/'+"${country_code}"+'/campaign/create')}">
                      <span class="TW-header-helpTxt">Create</span>
                     </a> 
                 </li>
                 <li class="hidden-lg hidden-md hidden-sm hed-font-sizes">
-                    <a class="nav-item-1" href="/campaign/create"><img alt="create" src="//s3.amazonaws.com/crowdera/assets/create-icon-dropdown.png" class="hidden-sm hidden-lg hidden-md">&nbsp;&nbsp;&nbsp;&nbsp;Create</a>
+                    <a class="nav-item-1" href="${resource(dir: '/'+"${country_code}"+'/campaign/create')}"><img alt="create" src="//s3.amazonaws.com/crowdera/assets/create-icon-dropdown.png" class="hidden-sm hidden-lg hidden-md">&nbsp;&nbsp;&nbsp;&nbsp;Create</a>
                 </li>
             </ul>
             
@@ -72,7 +76,7 @@
                             </a>
                         </li>
                     </g:if>
-                    <li class="scrollHeaderMenu"><g:link controller="login" action="auth" class="nav-item-2"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/login-reg-dropdowns.png" alt="login">&nbsp;&nbsp;&nbsp;&nbsp;Login</g:link></li>
+                    <li class="scrollHeaderMenu"><g:link controller="login" action="auth" params="[country_code: country_code]" class="nav-item-2"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/login-reg-dropdowns.png" alt="login">&nbsp;&nbsp;&nbsp;&nbsp;Login</g:link></li>
                     <li class="scrollHeaderMenu"><g:link controller="login" action="register" class="nav-item-3"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/sign-in-icon-register-dropsowns.png" alt="signup">&nbsp;&nbsp;&nbsp;&nbsp;Sign up</g:link></li>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
@@ -141,13 +145,17 @@
         <div id="TW-navbar-collapsed" class="hidden-lg hidden-md hidden-sm collapse TW-scrollHeaderBackColor navbar-collapse">
             <div class="scrollHeaderMenu hidden-lg hidden-md hidden-sm">
             <ul>
-                <li><a href="/campaigns">Discover</a></li>
-                <li><g:link controller="project" action="create">Start a campaign</g:link></li>
+                 <li>
+				  	<g:link mapping="listCampaigns" params="[country_code: country_code]">
+				  		Discover
+					</g:link>	
+				</li>
+				  <li><g:link mapping="createCampaign" params="[country_code: country_code]">Start a campaign</g:link></li>
                 <li><a href="/howitworks">How it works</a></li>
                 <sec:ifNotLoggedIn>
-                    <li><g:link controller="login" action="auth">Login</g:link>&nbsp; or&nbsp; <g:link controller="login" action="register">Signup</g:link></li>
+                    <li><g:link controller="login" action="auth" params="[country_code: country_code]">Login</g:link>&nbsp; or&nbsp; <g:link controller="login" action="register">Signup</g:link></li>
                 </sec:ifNotLoggedIn>
-                <li><a href="/customer-service">Support</a></li>
+                	<li><a href="/customer-service">Support</a></li>
                 <sec:ifNotLoggedIn>
                     <g:if test="${currentEnv != 'prodIndia'}">
                         <li class="hidden-xs hidden-sm headerFbButton scrollHeaderMenu">

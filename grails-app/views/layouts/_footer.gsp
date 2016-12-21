@@ -7,7 +7,7 @@
     <div class="row footer-lg-first-section">
         <div class="col-md-4 footer-logosize">
             <a href="${resource(dir: '/')}">
-                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development'}">
+				<g:if test="${country_code == 'in'}">
                     <img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera">
                 </g:if>
                 <g:else>
@@ -22,6 +22,7 @@
                 <li><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></li>
                 <li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
                 <li><a href="http://gocrowdera.com" target="_blank">Blog</a></li>
+                
             </ul>
             </div>
             <div class="col-md-6 footer-mid-section-menu">
@@ -33,14 +34,15 @@
                     <li><g:link controller="user" action="partners">Partner Pages</g:link></li>
                 </g:if>
                 <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
+<%--                <li><a href="${resource(dir: '/Learning-Center')}">Learn More</a></li>--%>
             </ul>
         
             </div>
         </div>
         
         <div class="col-md-4 cdra-ft-top">
-                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                    <p class="cdra-ft-cutomercnt">Customer support:</p>
+				<g:if test="${country_code == 'in'}">            
+				    <p class="cdra-ft-cutomercnt">Customer support:</p>
                     <p class="cdr-ft-contactnum">+91 721 970 2234</p>
                     <p class="cdra-ft-contactmail">support@crowdera.co</p>
                 </g:if>
@@ -80,7 +82,9 @@
             <div class="thomas-owens-testimonial-div">
                 <p class="thomas-owens-testimonial">"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. 
                     I'd recommend Crowdera to every serious fundraiser." <br><br>
-                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="thomas-margin-align">- Swaroop Ramchandra</span><br></g:if>
+                <g:if test="${country_code == 'in'}">
+                	<span class="thomas-margin-align">- Swaroop Ramchandra</span><br>
+                </g:if>
                 <span class="thomas-margin-align">Two Cents of Hope</span><br>
             </div>
         </div>
@@ -108,7 +112,7 @@
                 </div>
             </g:if>
         </div>
-        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+        <g:if test="${country_code == 'in'}">
             <div class="col-md-12 text-center footer-last-section-links">
                 <span class="text-primary ft-text-terms-privacy">
                     <a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms Of  Use</a>&nbsp;&nbsp;
@@ -127,7 +131,7 @@
             </div>
         </g:else>
         </div>
-        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+        <g:if test="${country_code == 'in'}">
             <div class="row">
                 <div class="col-lg-12 footer-disclaimer-lg">
                     <span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.

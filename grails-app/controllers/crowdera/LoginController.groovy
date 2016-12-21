@@ -1,9 +1,17 @@
 package crowdera
 
+import grails.plugin.springsecurity.SpringSecurityService;
 import grails.plugin.springsecurity.SpringSecurityUtils;
 import grails.plugin.springsecurity.annotation.Secured;
+import grails.plugin.springsecurity.oauth.OAuthToken
+
 import javax.servlet.http.Cookie
 import org.springframework.security.core.context.SecurityContextHolder;
+
+import groovy.json.JsonSlurper
+
+import org.scribe.model.Token
+
 
 class LoginController {
 
@@ -15,7 +23,8 @@ class LoginController {
     def googlePlusService
     def oauthService
     def projectService
-
+	def country_code
+	def springSecurityService
     public static final String SPRING_SECURITY_OAUTH_TOKEN = 'springSecurityOAuthToken'
 
     boolean invite_user = false
@@ -337,8 +346,42 @@ class LoginController {
             render (view:'/login/error')
         }
     }
-
+	
+	
+	def facebookSuccess (){
+		Token token = (Token) session[oauthService.findSessionKeyForAccessToken('facebook')]
+		def apiUrl = grailsApplication.config.grails.facebook.api.url
+		def result = oauthService.getFacebookResource(token, apiUrl)?.getBody()
+		def jsonSlurper = new JsonSlurper()
+		def facebookResponse = jsonSlurper.parseText(result)
+		String email = facebookResponse['email']
+		User user = User.findByEmail(email)
+		String userName = facebookResponse['username']
+		if(userName==null){
+			userName = user.username;
+		}
+		if (user) {
+			springSecurityService.reauthenticate(userName)
+			boolean ifFbUserAlreadyExist = facebookService.getFacebookUserDetails(user);
+			if (ifFbUserAlreadyExist) {
+				facebookService.mergeFacebookUser()
+				redirect (controller:'home', action:'index', params:[fb: 'yes'])
+			} else {
+				String requestUrl = g.cookie(name: 'requestUrl')
+				if (requestUrl) {
+					def cookie = projectService.setCookie(requestUrl)
+					response.addCookie(cookie)
+					redirect (url: requestUrl)
+				} else {
+					redirect (controller:'home', action:'index')
+				}
+			}
+		}
+	}
+	
     def authenticateAndRedirect(def oAuthToken, def email) {
+		country_code =  projectService.getCountryCodeForCurrentEnv(request)
+		
         try {
             session.removeAttribute SPRING_SECURITY_OAUTH_TOKEN
             SecurityContextHolder.getContext().setAuthentication(oAuthToken);
@@ -355,12 +398,18 @@ class LoginController {
                 response.addCookie(cookie)
                 redirect (url: requestUrl)
             } else {
-                redirect (controller:'home', action:'index')
+                redirect (controller:'home', action:'index', params:[country_code:country_code])
             }
         } else {
-            redirect (controller:'home', action:'index', params:[isDuplicate: 'yes', email:email])
+            redirect (controller:'home', action:'index', params:[isDuplicate: 'yes', email:email,country_code:country_code])
         }
     }
+	
+	
+	def facebookFailure = {
+		flash.facebookFailureMessage = "Facebook authentication failed.Please try again"
+		redirect action:'auth'
+	}
 
     def googleFailure = {
         flash.googleFailureMessage = "Google authentication failed.Please try again"

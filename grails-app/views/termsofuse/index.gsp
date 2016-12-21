@@ -1,6 +1,7 @@
 <g:set var="projectService" bean="projectService"/>
 <%
 	def currentEnv = projectService.getCurrentEnvironment()
+	def country_code = projectService.getCountryCodeForCurrentEnv(request)
 %>
 <html>
 <head>
@@ -10,7 +11,7 @@
 
 <body>
 <div class="container term-use-container">
-<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+<g:if test="${country_code == 'in'}">
 		<div class="static-content">
 			<br><br>
 			<h1 class="text-center">TERMS AND CONDITIONS</h1>
@@ -171,7 +172,7 @@
 					<li> Crowdera will not be liable to You in any way or in relation to the Contents of, or use of, or otherwise in connection with, the Website. Nothing on the Website constitutes, or is meant to constitute, advice of any kind.</li>
 					<li> You will be required to enter a valid e-mail address while making a donation / contribution on the Website. By providing your e-mail address with us, You consent to be contacted by us and/or the Project Creators, in case of any reward or delivery related updates. We will not use your personal information to initiate any promotional email unless the same is consented to by you.</li>
 					<li>Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation. Crowdera does not guarantee that beneficiary projects will be fully or partially funded. Crowdera is an internet platform to connect individuals, non-profits and contributors to collaborate published purposes. Crowdera does not take any responsibility for any promises made by campaign creators on our platform. Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform.</li>
-				    <li>Global campaigns launched on www.crowdera.co, that is a US based platform for crowd funding and accepts all contributions/donations as per Terms and Conditions on the said website. Crowdera Ventures India Pvt. Ltd. Is not responsible for any donations/contributions/transactions/acts performed by you after redirecting of the website. We caution you to specifically go through Terms of Service and Privacy Policies of the redirected websites.</li>
+				    <li>Global campaigns launched on www.gocrowdera.com, that is a US based platform for crowd funding and accepts all contributions/donations as per Terms and Conditions on the said website. Crowdera Ventures India Pvt. Ltd. Is not responsible for any donations/contributions/transactions/acts performed by you after redirecting of the website. We caution you to specifically go through Terms of Service and Privacy Policies of the redirected websites.</li>
 				</ol> 
 			<h2><li> Financial Transaction Facility - Donors / Contributors</li></h2> 
 				<ol class="IN-TW-terms-use-ol-roman">
@@ -251,7 +252,7 @@
     <br><br>
     <h1 >TERMS AND CONDITIONS</h1>
 
-    <p class="static-content-paragraph">Crowdera Inc.("Crowdera", "we", "us", or "our") welcomes you. We invite you to access and use our online services (the "Services"), which are made available to you through a variety of platforms, including http://www.crowdera.co (the "Website") and through our mobile app, which is accessible through tablets, cell phones, personal digital assistants, connected televisions, and other devices (the "App"). The Website and the App are collectively referred to as the "Platform".</p>
+    <p class="static-content-paragraph">Crowdera Inc.("Crowdera", "we", "us", or "our") welcomes you. We invite you to access and use our online services (the "Services"), which are made available to you through a variety of platforms, including http://www.gocrowdera.com (the "Website") and through our mobile app, which is accessible through tablets, cell phones, personal digital assistants, connected televisions, and other devices (the "App"). The Website and the App are collectively referred to as the "Platform".</p>
     <p class="static-content-paragraph">We provide our Services to Visitors, Campaign Administrators, and Supporters (as defined below) subject to the following Terms of Use, which may be updated by us from time to time without notice to you. By browsing the public areas or by accessing and using the Services, you acknowledge that you have read, understood, and agree to be legally bound by these Terms of Use and our Privacy Policy, which is hereby incorporated by reference (collectively, this "Agreement"). If you do not agree to any of these terms, then please do not use the Services.</p>
     <p class="static-content-paragraph">Capitalized terms not defined in these Terms of Use shall have the meaning set forth in our Privacy Policy.</p>
     <h2>1. DESCRIPTION AND USE OF SERVICES</h2>

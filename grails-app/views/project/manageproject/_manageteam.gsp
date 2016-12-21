@@ -5,12 +5,12 @@
     def userName = user.firstName +" "+ user.lastName
     def teams = project.teams
 %>
-<div class="col-md-12 col-sm-12 col-xs-12"></div>
+<div class="col-md-12 col-sm-12 col-xs-12 "></div>
 <div class="pill-buttons">
 <g:if test="${project.validated}">
     <g:if test="${!teams.isEmpty()}">
         <g:if test="${isCampaignOwnerOrAdmin || isAdmin}">
-		    <ul class="nav nav-pills nav-pills-manageteam  mange-active-teams-mobile">
+		    <ul class="nav nav-pills nav-pills-manageteam  mange-active-teams-mobile manage-color-back">
                 <li data-toggle="tab" class="active team-footer col-md-3 col-sm-4 col-xs-12 manage-team-btn-tabsmargin">
                     <a href="#manageTeams" class="text-center teammembers" id="loadTeamPage">
                         ${totalteams.size()}&nbsp;&nbsp;Teams <g:if test="${discardedTeam.size() > 0}">&nbsp;&nbsp;(${discardedTeam.size()}&nbsp;&nbsp;Disabled)</g:if>
@@ -35,18 +35,18 @@
                 </li>
 		    </ul>
 		</g:if>
-		<div class="teamtileseperator"></div>
+		
 
-        <div class="tab-content">
-            <div class="tab-pane active col-md-12 col-sm-12 col-xs-12 col-xs-p-0" id="manageTeam">
+        <div class="tab-content team_grid_background">
+            <div class="tab-pane active col-md-12 col-sm-12 col-xs-12 col-xs-p-0 manage-back-color" id="manageTeam">
                 <div class="teamList" id="teamList">
                     <g:render template="manageproject/teamgrid"/>
                 </div>
             </div>
-            <div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamValidation">
+            <div class="tab-pane col-md-12 col-sm-12 col-xs-12 team_grid_background" id="teamValidation">
                 <g:render template="manageproject/teamvalidationIndex"/>
             </div>
-            <div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="campaignStatistics">
+            <div class="tab-pane col-md-12 col-sm-12 col-xs-12 team_grid_background" id="campaignStatistics">
                 <g:render template="manageproject/campaignStatisticsIndex" model="[teams:totalteams]"/>
             </div>
         </div>

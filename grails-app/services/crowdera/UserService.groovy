@@ -26,7 +26,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile
 import java.text.DecimalFormat;
 
 import org.codehaus.groovy.grails.plugins.jasper.JasperExportFormat
-
+/*Merging Master branch changes*/
 class UserService {
 
     def imageFile
@@ -94,7 +94,6 @@ class UserService {
             def s3Service = new RestS3Service(awsCredentials);
             def s3Bucket = new S3Bucket(bucketName)
             
-            
             int index = imageFile.getOriginalFilename().lastIndexOf(".")
             String extName = imageFile.getOriginalFilename().substring(index);
 
@@ -111,7 +110,7 @@ class UserService {
             s3Service.putObject(s3Bucket, object)
             file.delete()
             def imageUrl = "//s3.amazonaws.com/crowdera/${key}"
-
+            
             return imageUrl
         }
     }
@@ -1478,52 +1477,69 @@ class UserService {
         return isDeleted
     }
 
-    def isUserProjectHavingContribution(User user, def environment){
+    def isUserProjectHavingContribution(User user, def country_code){
         Boolean doProjectHaveAnyContribution = false
-        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
+        
+        List<Contribution> contributions = []
+        
+        if ('in'.equalsIgnoreCase(country_code)) {
             List projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:true, offeringTaxReciept:true)
-            projects.each{
-                if (it.contributions){
-                    doProjectHaveAnyContribution = true
+            projects.each { project ->
+                project.contributions?.each { contribution ->
+                    if (contribution.panNumber != null) {
+                        doProjectHaveAnyContribution = true
+                    }
                 }
             }
+            
         } else {
             List projects = Project.findAllWhere(user:user, validated:true, rejected:false, inactive:false, payuStatus:false, offeringTaxReciept:true)
-            projects.each{
-                if (it.contributions){
+            projects.each { project ->
+                if (project.contributions) {
                     doProjectHaveAnyContribution = true
                 }
             }
         }
-        return doProjectHaveAnyContribution
+        return doProjectHaveAnyContribution;
     }
 
-    def userHasContributedToNonProfitOrNgo(User user){
-        Boolean result = false
-        def contributions = Contribution.findAllWhere(user:user)
-        if (contributions){
-            contributions.each{
-                if (it.receiptSent){
-                    result = true;
+    def userHasContributedToNonProfitOrNgo(User user) {
+        List<Contribution> contributions = [];
+        boolean result = false;
+        String environment = projectService.getCurrentEnvironment();
+        
+        contributions = Contribution.findAllWhere(user:user, receiptSent: true);
+        if (contributions) {
+            if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+                contributions.each {
+                    if (it.panNumber != null) {
+                        result = true;
+                    }
                 }
+            } else {
+                result = true;
             }
-        }
-        return result
+        } 
+        return result;
     }
 
     def getContributionsForWhichTaxReceiptreceived(User user, def params){
-        def contributions = Contribution.findAllWhere(user:user)
+        def contributions = Contribution.findAllWhere(user:user, receiptSent: true)
         List contributionList = []
         def contributionsOffset
-        if (contributions){
-            contributions.each{
-                if (it.receiptSent){
+        
+        String environment = projectService.getCurrentEnvironment()         
+        contributions?.each {
+            if (it.project?.payuStatus) {
+                if (it.panNumber != null) {
                     contributionList.add(it);
                 }
+            } else {
+                contributionList.add(it);
             }
         }
         
-        if (contributionList && !contributionList.empty){
+        if (contributionList && !contributionList.empty) {
             def offset = params.offset ? params.int('offset') : 0
             def max = 10
             def count = contributionList.size()
@@ -1544,52 +1560,100 @@ class UserService {
     def getSortedContributorsForProject(def params, Project project){
         List contributions = []
         def contributionsOffset
-        switch (params.sort){
+        
+        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        
+        switch (params.sort) {
+            case '1':
+                def criteria = Contribution.createCriteria();
+                Calendar now = Calendar.getInstance();
+                now.set(Calendar.HOUR, 0);
+                now.set(Calendar.MINUTE, 0);
+                now.set(Calendar.SECOND, 0);
+                now.set(Calendar.HOUR_OF_DAY, 0);
+                contributions = criteria.list {
+                    createAlias('project', 'project')
+                    eq("project.id", project.id)
+                    between("date", now.getTime() , (now.getTime() + 1))
+                }
+                
+                break;
+                
+            case '2':
+                def criteria = Contribution.createCriteria();
+                Calendar now = Calendar.getInstance();
+                now.set(Calendar.HOUR, 0);
+                now.set(Calendar.MINUTE, 0);
+                now.set(Calendar.SECOND, 0);
+                now.set(Calendar.HOUR_OF_DAY, 0);
+                contributions = criteria.list {
+                    createAlias('project', 'project')
+                    eq("project.id", project.id)
+                    between("date", (now.getTime() - 7) , (now.getTime() + 1))
+                }
+                break;
+                
+            case '3' :
+                break;
+                
             case 'Anonymous':
-            contributions = Contribution.findAllWhere(project:project, isAnonymous:true)
-            break;
+                contributions = Contribution.findAllWhere(project:project, isAnonymous:true)
+                break;
 
             case 'Non-Anonymous':
-            contributions = Contribution.findAllWhere(project:project, isAnonymous:false)
-            break;
+                contributions = Contribution.findAllWhere(project:project, isAnonymous:false)
+                break;
 
-            case 'Receipt Sent':
-            contributions = Contribution.findAllWhere(project:project, receiptSent:true)
-            break;
+            case ('Receipt Sent' || '4'):
+                contributions = Contribution.findAllWhere(project:project, receiptSent:true)
+                break;
 
-            case 'Receipt Not Sent':
-            contributions = Contribution.findAllWhere(project:project, receiptSent:false)
-            break;
+            case ('Receipt Not Sent' || '5' ):
+                contributions = Contribution.findAllWhere(project:project, receiptSent:false)
+                break;
 
             case 'Perk Selected':
-            def contributionList = Contribution.findAllWhere(project:project)
-            contributionList.each{
-                if (it.reward.id != 1){
-                    contributions.add(it)
+                def contributionList = Contribution.findAllWhere(project:project)
+                contributionList.each{
+                    if (it.reward.id != 1){
+                        contributions.add(it)
+                    }
                 }
-            }
-            break;
+                break;
 
             case 'No Perk Selected':
-            def contributionList = Contribution.findAllWhere(project:project)
-            contributionList.each{
-                if (it.reward.id == 1){
-                    contributions.add(it)
+                def contributionList = Contribution.findAllWhere(project:project)
+                contributionList.each{
+                    if (it.reward.id == 1){
+                        contributions.add(it)
+                    }
                 }
-            }
-            break;
+                break;
 
             case 'Online':
-            contributions = Contribution.findAllWhere(project:project, isContributionOffline:false)
-            break;
+                contributions = Contribution.findAllWhere(project:project, isContributionOffline:false)
+                break;
 
             case 'Offline':
-            contributions = Contribution.findAllWhere(project:project, isContributionOffline:true)
-            break;
+                contributions = Contribution.findAllWhere(project:project, isContributionOffline:true)
+                break;
 
             default:
-            contributions = Contribution.findAllWhere(project:project)
+                contributions = Contribution.findAllWhere(project:project)
         }
+        
+        List<Contribution> contributionList = new ArrayList<>();
+        String environment = projectService.getCurrentEnvironment();
+        
+        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+            contributions.each {
+                if (it.panNumber != null) {
+                    contributionList.add(it);
+                }
+            }
+            contributions = contributionList;
+        }
+        
         if (contributions && !contributions.empty){
             def offset = params.offset ? params.int('offset') : 0
             def max = 10
@@ -1867,7 +1931,9 @@ class UserService {
                 user = getUserById(userId)
             }
         } else {
-            user = getUserById(userId)
+            if (userId != null) {
+                user = getUserById(userId)
+            }
         }
         return user
     }
@@ -1905,20 +1971,34 @@ class UserService {
         reportParams.put("authorizedPerson", taxReciept.name);
         
         reportParams.put("regDate", dateFormat.format(taxReciept.regDate).toString());
-        reportParams.put("exemptionPer", taxReciept.deductibleStatus ? taxReciept.deductibleStatus : " ");
         
         def reportDef
         
         if (contribution.project.payuStatus) {
+            reportParams.put("amountInWord", "INR "+convert((long)contribution.amount));
             reportParams.put("amountInNo", "INR "+contribution.amount.round().toString());
-            reportParams.put("orgStatus", "INR "+taxReciept.taxRecieptHolderState);
+            
             reportParams.put("panNumber", taxReciept.panCardNumber);
-            reportParams.put("panOfContributor", "");
+            reportParams.put("panOfContributor", contribution?.panNumber);
             reportParams.put("receiptNo", transaction.transactionId);
+            
+            if (taxReciept?.exemptionPercentage % 1 == 0) {
+                reportParams.put("exemptionPer", taxReciept.exemptionPercentage?.round().toString());
+            } else {
+                reportParams.put("exemptionPer", taxReciept.exemptionPercentage?.toString());
+            }
+            
+            
+            if(taxReciept.deductibleStatus == null || 'null'.equalsIgnoreCase(taxReciept?.deductibleStatus)){
+                reportParams.put("orgStatus", "N/A");
+            } else {
+                reportParams.put("orgStatus", taxReciept?.deductibleStatus);
+            }
             
             reportDef = new JasperReportDef(name:'taxreceiptIndia.jasper',fileFormat:JasperExportFormat.PDF_FORMAT,
                 parameters: reportParams)
         } else {
+            reportParams.put("webUrl", contribution.project.webAddress);
             reportParams.put("amountInNo", "USD "+ contribution.amount.round().toString());
             reportParams.put("amountInWord", "USD "+convert((long)contribution.amount));
             reportParams.put("contributorName", contribution.contributorName)
@@ -1926,6 +2006,13 @@ class UserService {
             reportParams.put("email", contribution.contributorEmail)
             reportParams.put("federalId", taxReciept.ein)
             reportParams.put("phone", taxReciept.phone)
+            
+            if(taxReciept.deductibleStatus == null || 'null'.equalsIgnoreCase(taxReciept?.deductibleStatus)){
+                reportParams.put("exemptionPer", "N/A");
+            } else {
+                reportParams.put("exemptionPer", taxReciept?.deductibleStatus);
+            }
+            
             reportDef = new JasperReportDef(name:'taxreceiptUSA.jasper',fileFormat:JasperExportFormat.PDF_FORMAT,
                 parameters: reportParams)
         }

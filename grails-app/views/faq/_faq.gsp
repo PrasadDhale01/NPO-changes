@@ -2,10 +2,11 @@
 <%
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
     def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-	def currentEnv = projectService.getCurrentEnvironment()
+    def currentEnv = projectService.getCurrentEnvironment()
+	def country_code = projectService.getCountryCodeForCurrentEnv(request)
 %>
 <div class="container footer-container">
-<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+<g:if test="${country_code == 'in'}">
     <div class="row footer-panel-group">
         <div class="col-lg-12">
             <h1 class="page-header">FAQs
@@ -27,13 +28,13 @@
                     <div id="collapseOne" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">
-			                    Crowdera is a crowdfunding platform that supports individuals and non profit organizations in their efforts to create a social impact. 
-			                    Organizations start their fundraising campaigns on Crowdera and supporters rally to fund those campaigns. </p>
-		                    <p class="text-justify">Crowdera intents to complement organization’s
-		                        existing fundraising and volunteering activities by offering a user-friendly 
-		                        platform to create visually compelling and viral fundraising campaigns that raise awareness 
-		                        and funding for an individual or organization’s goals and missions.
-		                    </p>
+                                Crowdera is a crowdfunding platform that supports individuals and non profit organizations in their efforts to create a social impact. 
+                                Organizations start their fundraising campaigns on Crowdera and supporters rally to fund those campaigns. </p>
+                            <p class="text-justify">Crowdera intents to complement organization’s
+                                existing fundraising and volunteering activities by offering a user-friendly 
+                                platform to create visually compelling and viral fundraising campaigns that raise awareness 
+                                and funding for an individual or organization’s goals and missions.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -47,10 +48,10 @@
                     <div id="collapseTwo" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">
-			                   Crowdfunding is a popular way to fund projects from a large group of people, mainly via the Internet and social media. It helps individuals and organizations reach their financial goals by receiving and leveraging small contributions from many people.</p>
-		                    <p class="text-justify">
-			                    All you need is a mission to do something good, a funding goal and timeframe, some cool perks to promise to your supporters and show gratitude, and a crowd of family, friends, and fans / followers / customers to promote your campaign to.
-		                    </p>
+                               Crowdfunding is a popular way to fund projects from a large group of people, mainly via the Internet and social media. It helps individuals and organizations reach their financial goals by receiving and leveraging small contributions from many people.</p>
+                            <p class="text-justify">
+                                All you need is a mission to do something good, a funding goal and timeframe, some cool perks to promise to your supporters and show gratitude, and a crowd of family, friends, and fans / followers / customers to promote your campaign to.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -103,16 +104,16 @@
                     <div id="collapseSix" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <ul>
-			                    <li>Crowdera lets you build your fundraising campaign on its platform. 
-			                        You can set a fundraising goal, write your story and add compelling photos and video.</li>
-			                    <li>Once your campaign is validated, you can email the link of your campaign to friends, 
+                                <li>Crowdera lets you build your fundraising campaign on its platform. 
+                                    You can set a fundraising goal, write your story and add compelling photos and video.</li>
+                                <li>Once your campaign is validated, you can email the link of your campaign to friends, 
                                     family, colleagues as well as post the link on your social media outlets. 
                                     The more people who know about your campaign, the more opportunities to help you reach your goal!
                                 </li>
-			                    <li>You can share milestones, photos and updates easily through
-				                    email and social media right from your campaign page.</li>
-			                    <li>Your campaign ends once it reaches the campaign end date. Do more good and make your campaign a success with the funds you just raised!</li>
-		                    </ul>
+                                <li>You can share milestones, photos and updates easily through
+                                    email and social media right from your campaign page.</li>
+                                <li>Your campaign ends once it reaches the campaign end date. Do more good and make your campaign a success with the funds you just raised!</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -492,7 +493,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <h3 class="faq-subheading">Image</h3>
                 
                  <div class="panel panel-default">
@@ -1801,42 +1802,13 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTen">How do I create my Crowdera profile?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTen">Who can create a Campaign on Crowdera?</a>
                         </h4>
                     </div>
                     <div id="collapseProTen" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                                <ul>
-                                    <li>Go to the <a href="${resource(dir: '/')}">Crowdera homepage</a></li>
-                                    <li>Click on Sign up on the Upper right hand corner</li>
-                                    <br>
-                                        <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/7e8166e4-2dd8-4012-9652-4e2f49748382.png" alt="product-faq-header">
-                                    <br>
-                                    <li>You can also connect using Facebook or Google+. Just click the relevant button, 
-                                        enter your email and password and sign into your Facebook or Google + account. 
-                                        You will automatically be signed in to Crowdera. 
-                                    </li>
-                                    <br>
-                                        <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/d04b83d3-ea2b-479d-9edd-3a708b605b44.png" alt="product-faq-signup">
-                                    <br>
-                                    <li>If you don’t want to use social media to sign in, simply use your email, 
-                                        desired password and provide us with your First and Last Name. 
-                                    </li>
-                                    <br>
-                                        <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/492b7891-d4ff-4918-a6d5-c4dab91ec440.png" alt="product-faq-signup-b">
-                                    <br>
-                                    <p>To edit or add more information to your profile sign into your Crowdera account</p>
-                                    <li>Click on your name to view the dropdown</li>
-                                    <br>
-                                        <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/888d58fb-dd76-45d0-8955-2c83bef6eafe.png" alt="product-faq-logindropdown-b">
-                                    <br>
-                                    <li>Click on dashboard</li>
-                                    <li>You can edit your user information and also update your profile picture</li>
-                                    <br>
-                                        <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/3a052923-5778-4d4e-9451-7c43ff18f04e.png" alt="product-faq-profile">
-                                    <br>
-                                </ul>
-                               
+                                 <p>Individuals and/or Nonprofit Organizations that want to raise funds for Passion, Innovation, 
+                                 Impact or Need can create a campaign on Crowdera.</p>
                         </div>
                     </div>
                 </div>
@@ -1844,36 +1816,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenThree">How do I add and edit the campaign title?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenThree">How do I create my campaign?</a>
                         </h4>
                     </div>
                     <div id="collapseProTenThree" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                                 <p>To add a title to your campaign </p>
-                                 <ul>
-	                                <li>Login into your account</li>
-	                                <li>Click on Create on the upper right hand corner</li>
-	                                <li>Add your title to the “My plan is..” section</li>
-	                                <br>
-	                                   <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/f6fec1a7-8738-44d7-b699-aff07be07103.png" alt="product-faq-planis">
-	                                <br>
-	                                <li>Complete the remaining information for your campaign</li>
-                                    <li>Your draft will be autosaved and can be access via your Dashboard.</li>
-                                 </ul>
-                                 <p>If you want to edit the title of an existing campaign follow these steps</p>
-                                 <ul>
-                                    <li>Login to your Crowdera account</li>
-                                    <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                    <li>Select Dashboard</li> 
-                                    <li>Select Manage Campaign</li>
-                                    <li>Click on the edit icon</li>
-                                    <br>
-                                       <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/f8abf039-02e2-463c-ae9e-7b18a8f04f5d.png" alt="product-faq-planis">
-                                    <br>
-                                    <li>Edit your campaign title under the “My plan is..” section</li>
-                                    <li>Scroll down and save your edits</li>
-                                 </ul>
-                                 
+                                 <p>You can start creating your campaign <g:link controller="project" action="create">here</g:link>. Please refer to our Ebook for more crowdfunding guidelines. </p>
                         </div>
                     </div>
                 </div>
@@ -1881,36 +1829,18 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">How do I add and edit the campaign description?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">What do I need to create a campaign?</a>
                         </h4>
                     </div>
                     <div id="collapseSeven" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                            <p>To add a campaign description </p>
                             <ul>
-                                <li>Login into your account</li>
-                                <li>Click on Create on the upper right hand corner</li>
-                                <li>Add the description in the box that says campaign description </li>
-                                <br>
-                                    <img src= "//s3.amazonaws.com/crowdera/assets/ca898caa-d0de-4c2f-aa65-b986265635d7.png"> 
-                                <br>
-                                <li>Complete the remaining information for your campaign</li>
-                                <li>Your draft will be autosaved and can be access via your Dashboard</li> 
+                                <li>A story describing your mission.</li>
+                                <li>Fundraising Goal.</li>
+                                <li>Campaign timeline, including an end date.</li>
+                                <li>Video (preferably with a pitch and ask).</li>
+                                <li>High Resolution photos/videos.</li>
                             </ul>
-                            <p>If you want to edit the description of an existing campaign follow these steps</p>
-                            
-                            <ul>
-                                <li>Login to your Crowdera account</li>
-                                <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                <li>Select Dashboard </li>
-                                <li>Select Manage Campaign</li>
-                                <li>Click on the edit icon</li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/f8abf039-02e2-463c-ae9e-7b18a8f04f5d.png" alt="product-faq-planis">
-                                <br>
-                                <li>Edit your campaign description</li>
-                                <li>Scroll down and save your edits</li>
-                             </ul>                            
                         </div>
                     </div>
                 </div>
@@ -1918,36 +1848,21 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEight">How do I add and edit my fundraising goal?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEight">Will Crowdera assist in creating the campaign?</a>
                         </h4>
                     </div>
                     <div id="collapseEight" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                             <p class="text-justify">To add your fundraising goal</p>
+                             <p class="text-justify">Yes we do!</p>
                              <ul>
-                                 <li>Login into your account</li>
-                                 <li>Click on Create on the upper right hand corner</li>
-                                 <li>Add the goal in the box that says “I need..”</li>
-                                 <br>
-                                     <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/0f7111eb-6c30-48dd-af82-6fdbdccaf040.png" alt="fundrasing">
-                                 <br>
-                                 <li>Complete the remaining information for your campaign</li>
-                                 <li>Your draft will be autosaved and can be access via your Dashboard</li> 
+                                 <li>We guide and provide feedback on the story, photos and video
+                                     to make sure you create an appealing campaign.</li>
+                                 <li>Crowdera also provides tips on crowdfunding and you can read
+                                     more on our <a href="http://crowdera.tumblr.com">blog</a>.</li>
+                                 <li>Provide recent information on what constitutes a successful
+                                     crowdfunding campaign.</li>
+                                 <li>If you need more assistance contact the Crowdera Crew.</li>
                              </ul>
-                             <p>If you want to edit the description of an existing campaign follow these steps</p>
-                            
-                            <ul>
-                                <li>Login to your Crowdera account</li>
-                                <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                <li>Select Dashboard </li>
-                                <li>Select Manage Campaign</li>
-                                <li>Click on the edit icon</li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/f8abf039-02e2-463c-ae9e-7b18a8f04f5d.png" alt="product-faq-planis">
-                                <br>
-                                <li>Edit your fundraising goal</li>
-                                <li>Scroll down and save your edits</li>
-                             </ul>        
                         </div>
                     </div>
                 </div>
@@ -1955,49 +1870,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenFour">What is display name? How do I add and edit my display name for a campaign?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenFour">Do I have to create a campaign in one go?</a>
                         </h4>
                     </div>
                     <div id="collapseProTenFour" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                            <p>Display name is can be your personal name or an organization’s name. It represents the people running the campaign. It is visible on the campaign page and can be viewed by your contributors.</p>
-                            <br>
-                                <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/5cf086cb-ec8a-4947-8c3b-9aa44ae6f36e.png" alt="orgnizations-name">
-                            <br>
-                            <p>To add the display name when creating a new campaign </p>
-                            <ul>
-                               <li>Login into your account</li>
-                               <li>Click on Create on the upper right hand corner</li>
-                               <li>Add the display name under the “My name is ..” section</li> 
-                            </ul>
-                            <br>
-                                <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/33863d20-1eab-478f-b93e-15056e4dc27d.png" alt="orgnizations-name-create">
-                            <br>
-                            <ul>
-                                <li>Complete the remaining information for your campaign</li>
-                                <li>Your draft will be autosaved and can be access via your Dashboard</li> 
-                            </ul>
-                            
-                            <p>If you want to edit the display name of an existing campaign follow these steps</p>
-                            <ul>
-                                <li>Login to your Crowdera account</li>
-                                <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                <li>Select Dashboard </li>
-                                <li>Select Manage Campaign</li>
-                                <li>Click on the edit icon</li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/f8abf039-02e2-463c-ae9e-7b18a8f04f5d.png" alt="product-faq-planis">
-                                <br>
-                                <li>Edit the “My name is..” section</li>
-                                <p>OR</p>
-                                <li>Scroll down to the Admin section</li>
-                                <li>Select “Update Display Information”</li>
-                                <li>Edit the Display Name</li> 
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/130c9ce5-6227-4690-ade0-8cc147cd89b6.png" alt="create-admin">
-                                <br>
-                                <li>Scroll down and save your edits</li> 
-                             </ul>        
+                                 <p>No, You can save the information as draft and complete it whenever you wish.</p>
                         </div>
                     </div>
                 </div>
@@ -2005,36 +1883,15 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseNine">How do I add the deadline to my campaign?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseNine">How much does Crowdera charge?</a>
                         </h4>
                     </div>
                     <div id="collapseNine" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                            <p class="text-justify">To add a deadline to your campaign</p>
-                            <ul>
-                                <li>Login into your account</li>
-                                <li>Click on Create on the upper right hand corner</li>
-                                <li>Complete the first step and click on Create Now</li>
-                                <li>Click on the dropdown calendar </li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/17415419-29ec-4ea9-8bba-74bb25d540b8.png" alt="calender-deadline">
-                                <br>
-                                <li> Complete the remaining information for your campaign</li>
-                                <li>Your draft will be autosaved and can be access via your Dashboard</li> 
-                            </ul>
-                            <p>If you want to edit or extend the deadline of an existing campaign follow these steps</p>
-                             <ul>
-                                <li>Login to your Crowdera account</li>
-                                <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                <li>Select Dashboard </li>
-                                <li>Select Manage Campaign</li>
-                                <li>Click on the edit icon</li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/f8abf039-02e2-463c-ae9e-7b18a8f04f5d.png" alt="product-faq-planis">
-                                <br>
-                                <li>Select a new deadline</li>
-                                <li>Scroll down and save your edits</li>
-                             </ul>      
+                            <p class="text-justify">We are a free platform to help you do more
+                                good. We do not charge a startup fee, no fee charged on funds raised
+                                and no hidden fees. However, please note that the payment gateway
+                                (FirstGiving or PayPal) will charge a transaction fee.</p>
                         </div>
                     </div>
                 </div>
@@ -2042,36 +1899,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFortyOne">How do I select my prefered payment gateway?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFortyOne">What is the minimum amount that I can raise through Crowdera?</a>
                         </h4>
                     </div>
                     <div id="collapseFortyOne" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                            <ul>
-                                <li>Login into your account</li>
-                                <li>Click on Create on the upper right hand corner</li>
-                                <li>Complete the first step of campaign creation</li> 
-                                <li>On the second stage you will find a dropdown named “Payment”</li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/8ba9f60d-feea-45f6-a89e-c9e5d1c5bad0.png" alt="payment-dropdown">
-                                <br>
-                                <li>Select the Payment Gateway you want to use</li>
-                                <li>Complete the remaining information for your campaign</li>
-                                <li>At the end of the campaign creation you will be asked to fill in the details for your payment gateway</li>
-                                <li>If you select PayPal, you need to provide your email address</li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/f837314e-79dd-44bb-b69b-dd6e55783f76.png" alt="payment-paypal">
-                                <br>
-                                <li>If you select First Giving, you can search your organization by clicking on “Find your organization”</li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/6593b02b-02f4-4dd3-b108-c3b4c1abdf6a.png" alt="payment-charitableId">
-                                <br>
-                                <li>Type the name of your organization in the pop up that appears</li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/30cf56c2-3d4e-4bcf-934b-9ee221c4cafc.png" alt="payment-charitableId-organization">
-                                <br>
-                            </ul>
-                            <p>Note: Payment gateway cannot be changed once the campaign is live. Contact us if you want to change your payment gateway.</p>
+                            <p class="text-justify">There is no minimum funding goal to be on the platform.</p>
                         </div>
                     </div>
                 </div>
@@ -2079,37 +1912,18 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwentyOne">How do I add a video to my campaign? Can I add more than one video? (Explain format as well as the option of adding in the story)</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwentyOne">What is the maximum amount that I can raise through Crowdera?</a>
                         </h4>
                     </div>
                     <div id="collapseTwentyOne" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">
-                               You can add only one video at the beginning of your campaign. However you can add multiple videos in the story section of the campaign.
+                                The maximum funding goal is $200,000. If you would like to raise
+                                more, you may have to go through rigorous approval process so we
+                                understand your need better and help you to be successful. In such
+                                case, please reach out to one of our crowdfunding experts from the
+                                team <a href="mailto:partnerships@crowdera.co">here</a> to evaluate your situation.
                             </p>
-                            <p>To add a video to the beginning of your campaign</p>
-                            <ul>
-                                <li>Login into your account</li>
-                                <li>Click on Create on the upper right hand corner</li>
-                                <li>Complete the first step and click on Create Now</li>
-                                <li>You add the Video Url and click Add</li>
-                                <br>
-                                   <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/0ea7ac96-478d-4de7-89c5-e6622fc6534f.png" alt="video-Url">
-                                <br>
-                                <li>Please note, we only accept Youtube and Vimeo Urls only</li>
-                            </ul>
-                            <p>To add a video to the story section of your campaign</p>
-                            <ul>
-                                <li>Scroll down to the story section </li>
-                                <li>Click on the icon that looks like “Play”</li>
-                                <br>
-                                   <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/83de158b-e4f2-4cb4-9e42-1f17f6f17574.png" alt="story-video-url">
-                                <br>
-                                <li>A pop up will appear. You can add an embed code or a Youtube/Vimeo link</li> 
-                                <br>
-                                   <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/d92b5242-78c2-4bfc-b285-8571b4d5b191.png" alt="story-video-url">
-                                <br>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -2117,36 +1931,13 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenOne">How can I add images to the campaign? (mention format, size, ratio)</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenOne">What are the details I need to provide to receive contributions?</a>
                         </h4>
                     </div>
                     <div id="collapseProTenOne" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                            <p>You can add multiple images at the beginning of the campaign as well as in the story. We would recommend adding 3 to 4 images at the beginning and some within the relevant sections of the story.</p>
-                            <p>To add an image to the beginning of your campaign</p>
-                            <ul>
-                                <li>Login into your account</li>
-                                <li>Click on Create on the upper right hand corner</li>
-                                <li>Complete the first step and click on Create Now</li>
-                                <li>You add images by clicking on Add Image</li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/b5068b12-16fb-418a-bda3-79309f96f67f.png" alt="add-image">
-                                <br>
-                                <li>To delete an image click on the red cross on the top of the image</li>
-                            </ul>
-                            <p>Please note the image size should be less than 3MB and should have an aspect ratio of 3 (width) : 2 (height). Formats accepted are .jpg and .png.</p>
-                            <p>To add an image to the story section of your campaign</p>
-                            <ul>
-                                <li>Scroll down to the story section </li>
-                                <li>Click on the icon that looks like an “Image”</li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/83de158b-e4f2-4cb4-9e42-1f17f6f17574.png" alt="story-video">
-                                <br>
-                                <li>A pop up will appear where you can choose the images from your computer</li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/4d8ae34c-ea2c-40b1-8962-b19340c5d7f8.png" alt="Insert image">
-                                <br>
-                            </ul>
+                            <p>To accept contributions, you will need an active and verified <b>PayPal</b>. For country specific PayPal restrictions refer to the following link: <a href="https://www.paypal.com/webapps/mpp/country-worldwide" data-target="_blank">https://www.paypal.com/webapps/mpp/country-worldwide</a></p>
+                            <p>Nonprofit Organizations in the <b>USA</b> can also select <b>First Giving</b> as their choice of Payment Gateway.</p>
                         </div>
                     </div>
                 </div>
@@ -2154,23 +1945,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseForteen">How do I add the story to my campaign?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseForteen">Can I edit my campaign after I submit it?</a>
                         </h4>
                     </div>
                     <div id="collapseForteen" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                            <p class="text-justify">To add the story to your campaign</p>
-                            <ul>
-                               <li>Login into your account</li>
-                               <li>Click on Create on the upper right hand corner</li>
-                               <li>Complete the first step and click on Create Now</li>
-                               <li>Once you complete all the information at the beginning of the form, you can scroll down to the Story section</li>
-                               <br>
-                                   <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/a2d7c2db-16cf-48c4-a766-ddc0c3ee3218.png" alt="Story">
-                               <br> 
-                               <li>Select the placeholder text in the story box and hit delete</li>
-                               <li>You can type or copy paste the content in the section</li>
-                            </ul>
+                            <p class="text-justify">Yes, you can edit certain sections of the campaign.</p>
                         </div>
                     </div>
                 </div>
@@ -2178,36 +1958,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseForteens">How do I add other administrators to my campaign?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseForteens">Does Crowdera accept international payments?</a>
                         </h4>
                     </div>
                     <div id="collapseForteens" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                            <p class="text-justify">To add administrators while creating a campaign</p>
-                            <ul>
-	                            <li>Login into your account</li>
-	                            <li>Click on Create on the upper right hand corner</li>
-	                            <li>Complete the first step and click on Create Now</li>
-	                            <li>Once you complete all the information at the beginning of the form, you can scroll down to the Admin section</li>
-	                            <br>
-	                                <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/50b28c32-b015-4344-a733-fc675daaca30.png" alt="admin">
-	                            <br> 
-	                            <li>You can add upto three administrators to your campaign</li>
-                            </ul>
-                            <p>To add administrators to an existing campaign</p>
-                             <ul>
-                                <li>Login to your Crowdera account</li>
-                                <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                <li>Select Dashboard </li>
-                                <li>Select Manage Campaign</li>
-                                <li>Click on the edit icon</li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/f8abf039-02e2-463c-ae9e-7b18a8f04f5d.png" alt="product-faq-planis">
-                                <br>
-                                <li>Scroll down to the Admin section and add administrators to your campaign</li>
-                                <li>Once done scroll down and save your edits</li>
-                             </ul>      
-                             
+                            <p class="text-justify">Yes, anyone can fund on Crowdera.</p>
                         </div>
                     </div>
                 </div>
@@ -2215,91 +1971,15 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFifteen">Where can I update the display information?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFifteen">How will the funds be transferred?</a>
                         </h4>
                     </div>
                     <div id="collapseFifteen" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                            <p class="text-justify">If you want to edit the display name of an existing campaign follow these steps</p>
-                             <ul>
-                                <li>Login to your Crowdera account</li>
-                                <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                <li>Select Dashboard </li>
-                                <li>Select Manage Campaign</li>
-                                <li>Click on the edit icon</li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/f8abf039-02e2-463c-ae9e-7b18a8f04f5d.png" alt="product-faq-planis">
-                                <br>
-                                <li>Edit the “My name is..” section </li>
-                                <p>OR</p>
-                                <li>Scroll down to the Admin section</li>
-                                <li>Select “Update Display Information”</li>
-                                <li>Edit the Display Name</li> 
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/130c9ce5-6227-4690-ade0-8cc147cd89b6.png" alt="product-faq-planis">
-                                <br>
-                                <li>Scroll down and save your edits</li>
-                             </ul>      
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsesixteen">Where will the display information be visible?</a>
-                        </h4>
-                    </div>
-                    <div id="collapsesixteen" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                            <p class="text-justify">Display information is visible on the campaign page and can be viewed by your contributors.</p>
-                            <p>To access it</p> 
-                             <ul>
-                                <li>Go to the Crowdera homepage</li>
-                                <li>Select Discover</li>
-                                <li>Select your campaign</li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/5cf086cb-ec8a-4947-8c3b-9aa44ae6f36e.png" alt="product-faq-planis">
-                                <br>
-                             </ul>      
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseseventeen">How can I customize my campaign url?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseseventeen" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                            <p class="text-justify">To add a custom url while creating a campaign</p>
-                             <ul>
-                               <li>Login into your account</li>
-                               <li>Click on Create on the upper right hand corner</li>
-                               <li>Complete the first step and click on Create Now</li>
-                               <li>Once you complete all the information at the beginning of the form, you can scroll down to the Admin section</li>
-                               <li>Select Update Personal Information</li> 
-                               <li>Add the url you want under “Custom Vanity Url”</li>
-
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/30b43f85-985b-48a8-b30e-b2da5a6af961.png" alt="custom-vanity-url">
-                                <br>
-                             </ul> 
-                             <p>To add a custom url to an existing campaign</p>
-                                <ul>
-                                    <li>Login to your Crowdera account</li>
-                                    <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                    <li>Select Dashboard </li>
-                                    <li>Select Manage Campaign</li>
-                                    <li>Click on the edit icon</li>
-                                    <br>
-                                       <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/f8abf039-02e2-463c-ae9e-7b18a8f04f5d.png" alt="product-faq-planis">
-                                    <br>
-                                    <li>Scroll down to the Admin section and add the url to your campaign</li>
-                                    <li>Once done scroll down and save your edits</li>
-                                </ul>      
+                            <p class="text-justify">Crowdera ensures complete transparency.
+                                Therefore the funds will be transferred directly into your account
+                                associated with the payment gateway you choose while creating a
+                                campaign. We will never hold funds.</p>
                         </div>
                     </div>
                 </div>
@@ -2501,33 +2181,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#perkcollapsequestion1">How do I create a perk?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#perkcollapsequestion1">Can I offer rewards/perks?</a>
                         </h4>
                     </div>
                     <div id="perkcollapsequestion1" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                            <p class="text-justify">To create a perk</p>
-                            <ul>
-                                <li>Login into your account</li>
-                                <li>Click on Create on the upper right hand corner</li>
-                                <li>Complete the first step and click on Create Now</li>
-                                <li>Once you complete all the information at the beginning of the form, you can scroll down to the Perk Section</li> 
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/f5d5b68f-6794-4ff7-a92f-af6a71520850.png" alt="Perks">
-                                <br>
-                                <li>To add a mode of delivery just click on each mode of delivery that you want to choose.</li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/6dfa560d-8d7b-4fe3-992b-400986ff3f82.png" alt="Mode of Delivery">
-                                <br>
-                                <li>To add any custom details such as size of t-shirt etc. use the custom field.</li>
-                                <br>
-                                    <img class="img-responsive" src="http://s3.amazonaws.com/crowdera/assets/47f3acae-2c00-4f1e-abf9-0c2b696503f9.png" alt="Custom-field">
-                                <br>
-                                <li>Use the following icons to Save, Add another perk or Delete the perk</li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/ef8f6b9f-2265-4dfd-bf89-ebcb03fcd100.png" alt="save-delete">
-                                <br>
-                            </ul>
+                            <p class="text-justify">Yes, you can! You can create your own perks as well.</p>
                         </div>
                     </div>
                 </div>
@@ -2535,28 +2194,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve">How do I edit a perk?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve">Are perks mandatory?</a>
                         </h4>
                     </div>
                     <div id="collapseTwelve" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                            <ul>
-                                <li>Login to your Crowdera account</li>
-                                <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                <li>Select Dashboard</li> 
-                                <li>Select Manage Campaign</li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/3e5dde0f-bbc2-47b7-9397-bc52cd6a4a55.png" alt="manage-perks-tabs-tile">
-                                <br>
-                                <li>Move the cursor to the perk you want to edit and click on the edit icon</li>
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/4cf6dc76-1b19-4e15-a28c-034fa67bd41d.png" alt="manage-edit-perktile">
-                                <br>
-                                <li>Update the details of the perk</li> 
-                                <br>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/f77676ec-3b42-4611-99f3-ce81bf171832.png" alt="manage-edit-perk-modal">
-                                <br>
-                            </ul>
+                            <p class="text-justify">No, perks are not mandatory.</p>
                         </div>
                     </div>
                 </div>
@@ -2564,27 +2207,12 @@
                  <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTenOne">How do I add a new perk after my campaign is complete?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTenOne">Can I create a perk after my campaign is live?</a>
                         </h4>
                     </div>
                     <div id="collapseProTenTenOne" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                                 <p>To add a new perk once your campaign is complete or live</p>
-                                 <ul>
-                                     <li>Login to your Crowdera account</li>
-                                     <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                     <li>Select Dashboard </li>
-                                     <li>Select Manage Campaign</li>
-                                     <li>Select Perks</li>
-                                     <li>Click on Create Perk</li>
-                                     <br>
-                                        <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/8b13ae76-f359-45bf-a95a-943491d80a61.png" alt="manage-create-perks">
-                                     <br>
-                                     <li>On the pop up that appears fill in the details of the perk</li>
-                                     <br>
-                                        <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/d6a5a55c-bf4a-4edd-b20c-e20f965e12df.png" alt="manage-create-perks-modal">
-                                     <br>
-                                 </ul>
+                                 <p>Yes, you can create a perk even after a campaign is live by going to  “Perks” under “My Campaigns”.</p>
                         </div>
                     </div>
                 </div>
@@ -2592,44 +2220,13 @@
                  <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTentwo">How do I add the shipping information needed for delivering the perks?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTentwo">Can I edit or delete a perk after my campaign is live?</a>
                         </h4>
                     </div>
                     <div id="collapseProTenTentwo" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                                 <p>While creating a perk,</p>
-                                 <br>
-                                     <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/6dfa560d-8d7b-4fe3-992b-400986ff3f82.png" alt="manage-create-mode-of-delivery">
-                                 <br>
-                        </div>
-                    </div>
-                </div>
-                
-                <h3 class="faq-subheading">Managing a campaign</h3>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsemnageOne">How do I access my campaign dashboard now that it is live?</a>
-                        </h4>
-                    </div>
-                    <div id="collapsemnageOne" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                            
-                            <p>Follow these steps to access your campaign dashboard</p>
-                            <ul>
-                                 <li>Login to your Crowdera account</li>
-                                 <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                 <li>Select Dashboard</li> 
-                                 <li>Select Manage Campaign</li>
-                                 <br>
-                                     <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/c7b3d835-7934-4c5d-bf80-1280ee7cb26c.png" alt="manage-campaign-dashboard">
-                                 <br>
-                                 <li>Your campaign dashboard will look like the following picture. All options to run your campaign are available on that page</li>
-                                 <br>
-                                     <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/2d819502-d322-4e18-9a38-ec773079f5bc.png" alt="manage-campaign-tabs">
-                                 <br>
-                            </ul>
+                                 <p>You can edit or delete a perk only if has not been selected by a contributor.
+                                 Once a perk has been selected, it cannot be edited or deleted.</p>
                         </div>
                     </div>
                 </div>
@@ -2637,313 +2234,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsemnageTwo">How can I extend the deadline of my campaign?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwenty">Who is responsible for delivering the perks?</a>
                         </h4>
                     </div>
-                    <div id="collapsemnageTwo" class="panel-collapse collapse faq-panel-height">
+                    <div id="collapseTwenty" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                            <p>Follow these steps to extend the deadline of your campaign</p> 
-                            <ul>
-                                <li>Login to your Crowdera account.</li>
-                                <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                <li>Select Dashboard </li>
-                                <li>Select Manage Campaign for the campaign you want to extend the deadline for </li>
-                                <li>Click on the edit button on the right hand side of the page</li>
-                                 <br>
-                                     <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/e4ba0ca0-f33f-4e72-bf03-6fa7c50e5c4c.png" alt="org-tile-edit">
-                                 <br>
-                                 <li>Extend the deadline using the drop down calendar</li>
-                                 <br>
-                                     <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/dba8ac6c-3ab6-4266-baee-3f259fa06d46.png" alt="deadline dropdown">
-                                 <br>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsemnageThree">How do I add updates to my campaign?</a>
-                        </h4>
-                    </div>
-                    <div id="collapsemnageThree" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                            <p>Follow these steps to add updated to your campaign</p> 
-                            <ul>
-                                <li>Login to your Crowdera account</li>
-                                <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                <li>Select Dashboard </li>
-                                <li>Select Manage Campaign</li>
-                                <li>Click on the Updates tab</li>
-
-                                 <br>
-                                     <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/578b13f6-f685-4abd-81c2-34c207ddd6b8.png" alt="update-tabs">
-                                 <br>
-                                 <li>Click on the Create Update button on the right hand side of the page </li>
-                                 <br>
-                                     <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/775fd520-8c1f-4a99-aff2-df077212e781.png" alt="create-update">
-                                 <br>
-                                 <li>Fill in the details and submit your update</li>
-                                 <br>
-                                     <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/8dad43fb-21fe-4ad9-b847-90c637db9c1b.png" alt="create-updatepage">
-                                 <br>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsemnageFour">How can I add team members to my campaign?</a>
-                        </h4>
-                    </div>
-                    <div id="collapsemnageFour" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                            <p>Teams can only be added once your campaign is live. Follow these steps to invite team members to join your campaign </p> 
-                            <ul>
-                                <li>Login to your Crowdera account</li>
-                                <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                <li>Select Dashboard </li>
-                                <li>Select Manage Campaign</li>
-                                <li>Click on the Teams tab</li>
-
-                                 <br>
-                                     <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/846a37a4-00c0-4c16-9bdd-3e4375e9db8d.png" alt="Teams-tabs">
-                                 <br>
-                                 <li>Click on the Activity dropdown</li>
-                                 <li>Click on Invite Members </li>
-                                 <br>
-                                     <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/01f30013-0957-485b-a981-45b046fd0f4a.png" alt="Activitydropdown">
-                                 <br>
-                                 <li>Fill in the email address of those you want to invite and add a personalized message if you want</li>
-                                 <br>
-                                     <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/9e2b4819-c44e-47cc-bfe7-90756d3c21b7.png" alt="InviteTeams">
-                                 <br>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsefive">How do I validate the team request?</a>
-                        </h4>
-                    </div>
-                    <div id="collapsefive" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                                 <p>Follow these steps to valid the team request</p>
-                                 <ul>
-                                     <li>Login to your Crowdera account</li>
-                                     <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                     <li>Select Dashboard </li>
-                                     <li>Select Manage Campaign</li>
-                                     <li>Click on the Teams tab</li>
-                                     <br>
-                                         <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/846a37a4-00c0-4c16-9bdd-3e4375e9db8d.png" alt="Teams-tabs">
-                                     <br>
-                                     <li>Click on the Activity dropdown</li>
-                                     <li>Click on Validate Team</li>
-                                     <br>
-                                         <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/9432705d-1110-4045-954a-18dffbfe54a5.png" alt="Teams-Activity">
-                                     <br>
-                                     <li>Click on Validate </li>
-                                     <br>
-                                         <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/c430aba7-b799-4ba4-a2f1-1e2a8e782348.png" alt="Teams-Validation">
-                                     <br>
-                                 </ul>
-                        </div>
-                    </div>
-                </div>
-                
-              <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsemanageSix">How can I enable or disable a team?</a>
-                        </h4>
-                    </div>
-                    <div id="collapsemanageSix" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                                 <p>Follow these steps to enable or disable a team</p>
-                                 <ul>
-                                     <li>Login to your Crowdera account</li>
-                                     <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                     <li>Select Dashboard </li>
-                                     <li>Select Manage Campaign</li>
-                                     <li>Click on the Teams tab</li>
-                                     <br>
-                                         <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/846a37a4-00c0-4c16-9bdd-3e4375e9db8d.png" alt="Teams-tabs">
-                                     <br>
-                                     <li>Click on the Activity dropdown</li>
-                                     <li>Click on Campaign Statistics</li>
-                                     <br>
-                                         <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/9854761f-4a38-4ddf-ab9c-33d6c8405057.png" alt="Teams-Activity">
-                                     <br>
-                                     <li>Disable or enable under the Team Status</li>
-                                     <br>
-                                         <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/026c1c5a-ef51-4157-830e-9706c500df9c.png" alt=" Campaign Statistics">
-                                     <br>
-                                 </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsemanageSeven">Where do I access the contribution report? Where do I find my contributors details?</a>
-                        </h4>
-                    </div>
-                    <div id="collapsemanageSeven" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                                 <p>Follow these steps to enable or disable a team</p>
-                                 <ul>
-                                     <li>Login to your Crowdera account</li>
-                                     <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                     <li>Select Dashboard </li>
-                                     <li>Select Manage Campaign</li>
-                                     <li>Click on the Contributions tab</li>
-                                     <br>
-                                         <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/0ca47412-84ce-4621-bcda-d1ded1894efd.png" alt="Contribution-tabs">
-                                     <br>
-                                     <li>Click on Report</li>
-                                     <br>
-                                         <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/b01249b9-a500-44fd-a8b1-2662770411eb.png" alt="Click Report">
-                                     <br>
-                                     <li>You will be able to see the details of your contributors, as well as generate a CSV file</li>
-                                     <br>
-                                         <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/37d8852c-ddf0-411b-8109-aac9e9a32f3c.png" alt="Contribution Report">
-                                     <br>
-                                 </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsemanageeight">How do I add offline contributions?</a>
-                        </h4>
-                    </div>
-                    <div id="collapsemanageeight" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                                 <p>Follow these steps for offline contributions</p>
-                                 <ul>
-                                     <li>Login to your Crowdera account</li>
-                                     <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                     <li>Select Dashboard </li>
-                                     <li>Select Manage Campaign</li>
-                                     <li>Click on the Contributions tab</li>
-                                     <br>
-                                         <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/0ca47412-84ce-4621-bcda-d1ded1894efd.png" alt="Contribution-tabs">
-                                     <br>
-                                     <li>Click on Manage Offline Contribution</li>
-                                     <br>
-                                         <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/4d26975d-f1e5-40d8-813b-3caccf97d5e4.png" alt="Manage offline">
-                                     <br>
-                                     <li>Fill in the details of the offline contribution. You will have to entry each contribution individually</li>
-                                     <br>
-                                         <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/98c26b59-cdcb-4d22-a49f-f461c5138674.png" alt="contributionoffline">
-                                     <br>
-                                 </ul>
-                        </div>
-                    </div>
-                </div>
-                
-               <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsemanageNine">How do I share my campaign on social media?</a>
-                        </h4>
-                    </div>
-                    <div id="collapsemanageNine" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                                 <p>Follow these steps to share your campaign on social media</p>
-                                 <ul>
-                                     <li>Login to your Crowdera account</li>
-                                     <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                     <li>Select Dashboard </li>
-                                     <li>Select Manage Campaign</li>
-                                     <li>Use the social icons marked to share your campaign on social media and other channels</li>
-                                     <br>
-                                         <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/3c267ea5-2499-4aea-bf4c-a2759afdf9f2.png" alt="managepage-socialshare">
-                                     <br>
-                                 </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsemanageTen">How do I embed my campaign?</a>
-                        </h4>
-                    </div>
-                    <div id="collapsemanageTen" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                                 <p>Follow these steps to embed your campaign</p>
-                                 <ul>
-                                     <li>Login to your Crowdera account</li>
-                                     <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                     <li>Select Dashboard </li>
-                                     <li>Select Manage Campaign</li>
-                                     <li>Use the embed icon marked in the picture below</li>
-                                     <br>
-                                         <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/258fc236-93eb-4d3d-b927-5d87010acab1.png" alt="embedmanage-video">
-                                     <br>
-                                     <li>Copy the code and paste it</li>
-                                     <br>
-                                         <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/6e182900-9df6-49cf-a7a5-0faaab445abf.png" alt="Embed modal">
-                                     <br>
-                                 </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsemanageEleven">Where can I access the short link to the campaign</a>
-                        </h4>
-                    </div>
-                    <div id="collapsemanageEleven" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                                 <p>Follow these steps to get the short link to your campaign</p>
-                                 <ul>
-                                     <li>Login to your Crowdera account</li>
-                                     <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                     <li>Select Dashboard </li>
-                                     <li>Select Manage Campaign</li>
-                                     <li>Click on the link icon marked below and copy the link displayed to share</li>
-                                     <br>
-                                         <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/e6bad6db-c712-45d7-b699-be65e0cdca3c.png" alt="Short Link">
-                                     <br>
-                                 </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapsemanageTwelve">How do I share the campaign via email directly from Crowdera?</a>
-                        </h4>
-                    </div>
-                    <div id="collapsemanageTwelve" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                                 <p>Follow these steps to share the campaign via email directly from Crowdera</p>
-                                 <ul>
-                                     <li>Login to your Crowdera account</li>
-                                     <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                                     <li>Select Dashboard </li>
-                                     <li>Select Manage Campaign</li>
-                                     <li>Click on the mail icon marked below</li>
-                                     <br>
-                                         <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/94d9c5a3-fb42-4d33-9238-d27cd0c17645.png" alt="Email-Link">
-                                     <br>
-                                 </ul>
+                            <p class="text-justify">The beneficiary / campaign creator is responsible for shipping the perks.</p>
                         </div>
                     </div>
                 </div>
@@ -3024,242 +2320,6 @@
                         <div class="panel-body">
                             <p class="text-justify">Please read the FAQ section and our crowdfunding guidelines sections thoroughly to understand the criterion of selection. If you feel you need more information, you can reach out to the Crowdera Crew to find out why your campaign was rejected.</p>
                         </div>
-                    </div>
-                </div>
-                
-                <h3 class="faq-subheading">Contributor</h3>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseContributorOne">How do I follow a campaign?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseContributorOne" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                            <p class="text-justify">To follow a campaign</p>
-                        </div>
-                        <ul>
-                             <li>Log into your Crowdera account </li>
-                             <li>Go to the campaign you want to follow </li>
-                             <li>Click on the Follow icon marked in the picture below</li> 
-                             <br>
-                                 <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/2820827a-e295-4ab3-98c6-82469a54f3a6.png" alt="Follow-campaign">
-                             <br>
-                             <li>Once followed, you will be able to receive updates for the campaign via email</li> 
-                        </ul>
-                    </div>
-                </div>
-                
-                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseContributorTwo">How can I access my contribution dashboard?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseContributorTwo" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                            <p class="text-justify">To access your contributions</p>
-                        </div>
-                        <ul>
-                             <li>Log into your Crowdera account </li>
-                             <li>Click on “Your Name” that appears on the upper right corner of the page</li>
-                             <li>Select Dashboard</li> 
-                             <li>You can see the campaigns you have contributed to under the Campaigns Supported section</li>
-
-                             <br>
-                                 <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/8196b57e-bb8e-4933-bb48-23181683b732.png" alt="Campagin Support">
-                             <br>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseContributorThree">How can I invite my friends to view the campaign via email?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseContributorThree" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                            <p class="text-justify">To invite your friends to view a campaign you are supporting</p>
-                        </div>
-                        <ul>
-                             <li>Click on the email icon on the campaign detail page</li>
-                             <br>
-                                 <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/ce1ed42d-bec3-4b17-ab04-6317666c737a.png" alt="social-email">
-                             <br>
-                             <li>Fill out the details on the pop up that appears</li>
-                             <br>
-                                 <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/7b67aea3-0252-404b-a633-627db651d446.png" alt="Recipient Email">
-                             <br>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseContributorFour">How do I make a contribution?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseContributorFour" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                            <p class="text-justify">To make a contribution go the campaign you would like to support</p>
-                        </div>
-                        <ul>
-                             <li>Click on the Fund Now button</li>
-                             <br>
-                                 <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/d8694e73-d259-4895-bfdd-eb519d86d4ab.png" alt="Fund now">
-                             <br>
-                             <li>Fill in the details and click on Fund This Campaign</li>
-                             <br>
-                                 <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/ed446534-cc0c-49c1-9042-4c2f097b9118.png" alt="Amount for fund">
-                             <br>
-                             <li>You will be redirected to a PayPal Checkout page</li>
-                             <li>Fill in the details and click pay</li>
-                             <br>
-                                 <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/f2489a56-95a5-4212-84f5-751d47f70b5d.png" alt="Pypal transactions page">
-                             <br>
-                             <li>Once done you will automatically redirected to Crowdera</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseContributorFive">How can I view the website of the campaigner?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseContributorFive" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                            <p class="text-justify">To view the website of the campaigner</p>
-                        </div>
-                        <ul>
-                             <li>Go to the campaign detail page </li>
-                             <li>Click on the globe icon on the right side of the page </li>
-
-                             <br>
-                                 <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/03f4d3ee-9d2f-43ab-92ae-ace5a1e07747.png" alt="org-Globe">
-                             <br>
-                        </ul>
-                    </div>
-                </div>
-                
-                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseContributorSix">How do I leave comments for the campaign?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseContributorSix" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                            <p class="text-justify">To leave a comment and encourage the fundraisers</p>
-                        </div>
-                        <ul>
-                             <li>Log into your Crowdera Account</li>
-                             <li>Go to the campaign you want to leave a comment for </li>
-                             <li>Click on comments on the campaign page </li>
-
-                             <br>
-                                 <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/4204c234-89d1-429c-8b55-c320b190b445.png" alt="comments-tab">
-                             <br>
-                             <li>Type your comment in the box and click on Post Comment</li>
-                             <br>
-                                 <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/7d432e04-c31d-41c8-91b8-0b44117e6509.png" alt="Post comment">
-                             <br>
-                        </ul>
-                    </div>
-                </div>
-                
-               <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseContributorSeven">How do I edit or delete my comment?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseContributorSeven" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                            <p class="text-justify">To edit or delete a comment from a campaign</p>
-                        </div>
-                        <ul>
-                             <li>Log into your Crowdera Account</li>
-                             <li>Go to the campaign that you commented on</li>
-                             <li>Click on comments</li>
-                             <li>You will see your comment. Click on the icons to either edit or delete your comment</li>
-                             <br>
-                                 <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/71872495-12f8-44f3-87c9-5d624f12302c.png" alt="comments-edit-delete">
-                             <br>
-                             
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseContributorEight">How do I contribute anonymously?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseContributorEight" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                            <p class="text-justify">To make an anonymous contribution,</p>
-                        </div>
-                        <ul>
-                             <li>Go the campaign you would like to support</li>
-                             <li>Click on the Fund Now button</li>
-
-                             <br>
-                                 <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/d8694e73-d259-4895-bfdd-eb519d86d4ab.png" alt="Fund now">
-                             <br>
-                             <li>Make sure to select “Please keep my contribution anonymous”</li>
-                             <br>
-                                 <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/a5558316-d8fa-4c19-8cff-71cb25acc40e.png" alt="Fund-amount-anonymous">
-                             <br>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseContributorNine">How do I select perks?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseContributorNine" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                            <p class="text-justify">To select a perk</p>
-                        </div>
-                        <ul>
-                             <li>Go to the campaign you want to support</li>
-                             <li>Click on the Fund Now button</li>
-
-                             <br>
-                                 <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/d8694e73-d259-4895-bfdd-eb519d86d4ab.png" alt="Fund now">
-                             <br>
-                             <li>Select the perk you want on the following page</li>
-                             <br>
-                                 <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/17d40955-194a-4466-b6dc-5d71f30f20bc.png" alt="Fund-perks-selections">
-                             <br>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseContributorTen">How do I enter my shipping details?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseContributorTen" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-                            <p class="text-justify">Once you have selected the perk you want, you will see the shipping information section on the screen.</p>
-                            <p>Fill in the details to get your perk.</p> 
-                        </div>
-                             <br>
-                                 <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/eea69923-9923-4cc7-a577-41dec8b55e78.png" alt="fund-shipping-info">
-                             <br>
                     </div>
                 </div>
 

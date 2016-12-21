@@ -12,6 +12,7 @@ class ProjectComment {
 
     String comment
     String userName
+    String attachFile
     Date date
     boolean status=false
 
@@ -21,5 +22,6 @@ class ProjectComment {
 
     static constraints = {
         userName nullable:true
+        attachFile nullable:true
     }
 }

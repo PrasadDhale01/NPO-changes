@@ -8,17 +8,17 @@ import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.util.EntityUtils
-
+/*Merging Master branch changes*/
 class ContributionService {
     
     private UserService userService;
+    
+    def grailsApplication
     
     Transaction getTransactionByTransactionId(String transactionId) {
         return Transaction.findByTransactionId(transactionId)
     }
 
-    def grailsApplication
-    
     def getBankInfoByProject(Project project) {
         return BankInfo.findByProject(project)
     }
@@ -219,6 +219,14 @@ class ContributionService {
  	            percentage = percentage.intValue()
             }
         }
+        return percentage
+    }
+    
+    def getPercentage(def contPrice, def totalContribution, def project){
+        def amt = project.amount
+        def reqAmt = (999/100) * amt
+        def remainAmt = reqAmt- totalContribution
+        def percentage = ((totalContribution + contPrice)/ amt) * 100
         return percentage
     }
     
@@ -599,9 +607,21 @@ class ContributionService {
         return ['highestContributionDay':highestContributionDay , 'highestContributionHour': highestContributionHour]
     }
     
-    def getContributorsForProject(def id, def params){
+    def getContributorsForProject(def id, def params, String country_code){
         Project project = Project.get(id)
-        def totalContributions =  Contribution.findAllWhere(project:project)
+        
+        List<Contribution> totalContributions =  Contribution.findAllWhere(project:project)
+        List<Contribution> contributionList = new ArrayList<>();
+        
+        if ('in'.equalsIgnoreCase(country_code)) {
+            totalContributions.each {
+                if (it.panNumber != null) {
+                    contributionList.add(it);
+                }
+            }
+            totalContributions = contributionList;
+        } 
+        
         List contributions
         if (!totalContributions.empty){
             def offset = params.offset ? params.int('offset') : 0
@@ -616,7 +636,7 @@ class ContributionService {
             }
             contributions = totalContributions.reverse().subList(offset, maxrange)
         }
-
+        
         return [totalContributions:totalContributions, contributions:contributions]
     }
     
@@ -639,10 +659,24 @@ class ContributionService {
             'All':'All',
             'Anonymous':'Anonymous',
             'Non-Anonymous':'Non-Anonymous',
+            'Online':'Online',
+            'Offline':'Offline',
             'Receipt Sent':'Receipt Sent',
             'Receipt Not Sent':'Receipt Not Sent',
             'Perk Selected':'Perk Selected',
             'No Perk Selected':'No Perk Selected',
+        ]
+    }
+    
+    
+    def donationReceiptSortOption(){
+        def sort = [
+            0 :'All',
+            1 :'Todays contribution',
+            2 :'Last 7 days',
+            3 :'Select Custom Date',
+            4 :'Receipt Sent',
+            5 :'Receipt Not Sent',
         ]
     }
     
@@ -700,7 +734,7 @@ class ContributionService {
                 StringEntity input = new StringEntity("{\"seller_name\":\"${sellername}\",\"seller_add1\":\"${address1}\",\"seller_add2\":\"${address2}\",\"seller_city\":\"${city}\",\"seller_state\":\"${state}\",\"seller_country\":\"${country}\",\"zip\":\"${zip}\",\"businessurl\":\"${businessurl}\",\"seller_mobile\":\"${sellermobile}\",\"seller_ifsc_code\":\"${ifsccode}\",\"selleremail\":\"${selleremail}\",\"payoutmode\":\"${payoutmode}\",\"seller_acc_num\":\"${accountnumber}\",\"active\":1}")
                 input.setContentType("application/json")
                 httppost.setEntity(input)
-        
+                
                 HttpResponse httpres = httpclient.execute(httppost)
                 
                 int status = httpres.getStatusLine().getStatusCode()
@@ -711,7 +745,6 @@ class ContributionService {
                         def slurper = new JsonSlurper()
                         def json = slurper.parseText(jsonString)
                         sellerId = json.sellerid
-                        
                         if (sellerId != null) {
                             new Seller(email: selleremail, sellerId: sellerId).save();
                         }
@@ -761,4 +794,18 @@ class ContributionService {
         return Seller.findByEmail(email)
     }
     
+
+    def setPaypalIPNData(def params){
+        PaypalIPNData ipnData = new PaypalIPNData( itemNumber: params.item_number, residenceCountry: params.residence_country,
+                                           invoice: params.invoice, addressCountry: params.address_country, addressCity: params.address_city,
+                                           paymentStatus: params.payment_status, payerId: params.payer_id, firstName : params.first_name,
+                                           shipping: params.shipping, payerEmail: params.payer_email, txnId: params.txn_id, receiverEmail: params.receiver_email,
+                                           txnType: params.txn_type, mcGross: params.mc_gross, mcCurrency: params.mc_currency, payerStatus: params.payer_status,
+                                           paymentDate: params.payment_date, addressZip: params.address_zip, addressState: params.address_state, itemName: params.item_name,
+                                           addressName: params.address_name, lastName: params.last_name, paymentType: params.payment_type,
+                                           addressStreet: params.address_street, receiverId: params.receiver_id
+                                         )
+        ipnData.save()
+    }
+
 }

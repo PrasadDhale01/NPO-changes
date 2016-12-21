@@ -13,7 +13,7 @@
     def username = user?.username
     def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
 	def isTeamAdmin = projectService.isTeamAdmin(project)
-    
+    def country_code = projectService.getCountryCodeForCurrentEnv(request)
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
     def cents
     if(percentage >= 100) {
@@ -124,7 +124,8 @@
     </g:else>
     <div class="blacknwhite tile">
         <g:if test="${iscampaignAdmin || isAdmin}">
-            <g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">
+<%--            <g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">--%>
+            <g:link mapping="managecampaign" params="[country_code: country_code,category : project.fundsRecievedBy, id: project.id, title:project.title]">
                 <div class="imageWithTag">
                     <div class="under">
                         <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
@@ -228,8 +229,15 @@
                 </g:form>
             </g:if>
             <g:else>
-                <button class="projectedit close pull-right" id="editproject" name="editproject" data-toggle="popover"><i class="glyphicon glyphicon-edit"></i></button>
-                <button class="projectedit close pull-right" id="projectpreview" name="projectpreview" data-toggle="popover"><i class="glyphicon glyphicon-picture"></i></button>
+<%--                <button class="projectedit close pull-right" id="editproject" name="editproject" data-toggle="popover"><i class="glyphicon glyphicon-edit"></i></button>--%>
+<%--                <button class="projectedit close pull-right" id="projectpreview" name="projectpreview" data-toggle="popover"><i class="glyphicon glyphicon-picture"></i></button>--%>
+
+                <g:link controller="project" action="editCampaign" method="post" id="${project.id}">
+                    <button class="projectedit close pull-right" id="editproject"><i class="glyphicon glyphicon-edit"></i></button>
+                </g:link>
+                <g:form controller="project" action="showCampaign" method="post" id="${project.id}" params='[isPreview:true, tile:true, fr:username]'>
+                    <button class="projectedit close pull-right" id="projectpreview"><i class="glyphicon glyphicon-picture"></i></button>
+                </g:form>
             </g:else>
         </div>
     </div>

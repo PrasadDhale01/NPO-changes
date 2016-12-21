@@ -5,9 +5,11 @@
     def shippingInfo = rewardservice.getShippingInfo(reward)
     def currentUser = userService.getCurrentUser()
     def isAnonymous = userService.isAnonymous(user)
+	def country_code = projectService.getCountryCodeForCurrentEnv(request);
 %>
 <html>
 <head>
+    <link rel="canonical" href="${grailsApplication.config.crowdera.BASE_URL}/fund"/>
     <meta name="layout" content="main" />
     <r:require modules="checkoutjs"/>
 

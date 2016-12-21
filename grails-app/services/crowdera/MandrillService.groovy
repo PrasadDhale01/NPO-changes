@@ -16,9 +16,9 @@ class MandrillService {
         def currentEnv
         
         if(crowderaDomain == 'testIndia' || crowderaDomain == 'stagingIndia' || crowderaDomain == 'prodIndia'){
-            currentEnv = 'http://www.crowdera.in'
+            currentEnv = 'https://gocrowdera.com'
         } else {
-            currentEnv = 'https://crowdera.co'
+            currentEnv = 'https://gocrowdera.com'
         }
         
         return currentEnv
@@ -1053,7 +1053,7 @@ class MandrillService {
     public def sendEmailToDevGroup(def exception, def currentEnv) {
         
         def exceptionString = " "+ exception
-        def devList = ['krishna.sahu@crowdera.co','tushar@crowdera.co','minal.ganatra@crowdera.co']
+        def devList = ['krishna.sahu@crowdera.co','priya@crowdera.co','minal.ganatra@crowdera.co']
         def date = new Date()
         def site 
         if (currentEnv == 'prodIndia'){

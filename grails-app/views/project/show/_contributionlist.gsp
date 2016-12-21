@@ -13,14 +13,14 @@
         fundRaiser = user.username
     }
     def projectId = project.id
-    def conversionMultiplier = multiplier
-    if (!conversionMultiplier) {
-        conversionMultiplier = projectService.getCurrencyConverter();
-    }
+   	def country = projectService.getCountryForProject(project)
+	def currencyValue = projectService.getCurrencyByCountryId(country)
+	def country_code = projectService.getCountryCodeForCurrentEnv(request)
+	
 %>
 <g:if test="${!contributions.empty}">
-    <div class="row contributions-panel contribution-center-alignment sh-contrialignment">
-        <div class="col-sm-12 contribution-inner-tile">
+    <div class="row contributions-panel contribution-center-alignment">
+        <div class="col-sm-12 contribution-inner-tile show-contributions-top">
             <g:each in="${contributions}" var="contribution">
             <%
                 def date = dateFormat.format(contribution.date)
@@ -41,7 +41,7 @@
                 }
             %>
             <g:if test="${!contribution.isContributionOffline}">
-                <div class="col-sm-6 col-lg-6 col-md-6 top-pan">
+                <div class="col-sm-6 col-lg-6 col-md-6 show-contributionpadding">
                     <g:if test="${!contribution.isAnonymous}">
                  	    <%
                             def contributorEmail = contribution.contributorEmail
@@ -62,11 +62,12 @@
                                         <g:if test="${isCrUserCampBenOrAdmin && CurrentUserTeam && currentFundraiser == team}">
                                             <h4>${contribution.contributorName}</h4> 
                                             <span class="sso">
-                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                                <g:if test="${country_code == 'in'}">
+                                                    <!--  <span class="fa fa-inr"></span>-->
+                      								 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                                 </g:if>
                                                 <g:else>
-                                                    $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -74,11 +75,12 @@
                                         <g:else>
                                             <h4 class="anonymous-top">Anonymous Good Soul</h4>
                                             <span class="sso">
-                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                                <g:if test="${country_code == 'in'}">
+                                                    <!-- <span class="fa fa-inr"></span>-->
+                       									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                                 </g:if>
                                                 <g:else>
-                                                    $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -88,11 +90,12 @@
                                         <g:if test="${contribution.contributorName}">
                                             <h4>${contribution.contributorName}</h4>
                                             <span class="sso">
-                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                                <g:if test="${country_code == 'in'}">
+                                                    <!-- <span class="fa fa-inr"></span>-->
+                        								${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                                 </g:if>
                                                 <g:else>
-                                                    $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -100,11 +103,12 @@
                                         <g:else>
                                             <h4>${friendlyName}</h4>
                                             <span class="sso">
-                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                                <g:if test="${country_code == 'in'}">
+                                                    <!-- <span class="fa fa-inr"></span>-->
+                       									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                                 </g:if>
                                                 <g:else>
-                                                    $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -130,11 +134,12 @@
                                         <g:if test="${isCrUserCampBenOrAdmin && CurrentUserTeam && currentFundraiser == team}">
                                             <h4>${contribution.contributorName}</h4> 
                                             <span class="sso">
-                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                                <g:if test="${country_code == 'in'}">
+                                                    <!-- <span class="fa fa-inr"></span>-->
+                        ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                                 </g:if>
                                                 <g:else>
-                                                    $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -142,11 +147,12 @@
                                         <g:else>
                                             <h4 class="anonymous-top">Anonymous Good Soul</h4>
                                             <span class="sso">
-                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                               <g:if test="${country_code == 'in'}">
+                                                    <!-- <span class="fa fa-inr"></span>-->
+                       									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                                 </g:if>
                                                 <g:else>
-                                                    $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -156,11 +162,12 @@
                                         <g:if test="${contribution.contributorName}">
                                             <h4>${contribution.contributorName}</h4>
                                             <span class="sso">
-                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                                <g:if test="${country_code == 'in'}">
+                                                    <!--  <span class="fa fa-inr"></span>-->
+                      									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                                 </g:if>
                                                 <g:else>
-                                                    $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -168,11 +175,12 @@
                                         <g:else>
                                             <h4>${friendlyName}</h4>
                                             <span class="sso">
-                                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                               <g:if test="${country_code == 'in'}">
+                                                    <!-- <span class="fa fa-inr"></span>-->
+                       										 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                                 </g:if>
                                                 <g:else>
-                                                    $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                   ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -198,11 +206,12 @@
                                 <g:if test="${isCrUserCampBenOrAdmin && CurrentUserTeam && currentFundraiser == team}">
                                     <h4>${contribution.contributorName}</h4> 
                                     <span class="sso">
-                                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                            <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                        <g:if test="${country_code == 'in'}">
+                                            <!-- <span class="fa fa-inr"></span>-->
+                        						${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                         </g:if>
                                         <g:else>
-                                            $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                         </g:else>
                                     </span>
                                     <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -210,11 +219,12 @@
                                 <g:else>
                                     <h4 class="anonymous-top">Anonymous Good Soul</h4>
                                     <span class="sso">
-                                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                            <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                        <g:if test="${country_code == 'in'}">
+                                            <!-- <span class="fa fa-inr"></span>-->
+                       							 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                         </g:if>
                                         <g:else>
-                                            $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                         </g:else>
                                     </span>
                                     <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -224,11 +234,12 @@
                                 <g:if test="${contribution.contributorName}">
                                     <h4>${contribution.contributorName}</h4>
                                     <span class="sso">
-                                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                            <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                        <g:if test="${country_code == 'in'}">
+                                            <!--  <span class="fa fa-inr"></span>-->
+                       							${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                         </g:if>
                                         <g:else>
-                                            $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                         </g:else>
                                     </span>
                                     <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -236,11 +247,12 @@
                                 <g:else>
                                     <h4>${friendlyName}</h4>
                                     <span class="sso">
-                                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                            <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                        <g:if test="${country_code == 'in'}">
+                                            <!--  <span class="fa fa-inr"></span>-->
+                      								 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                         </g:if>
                                         <g:else>
-                                            $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                         </g:else>
                                     </span>
                                     <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -255,7 +267,7 @@
                 <%
                     def contributorEmail = contribution.contributorEmail
                 %>
-                    <div class="col-sm-6 col-lg-6 col-md-6 top-pan">
+                    <div class="col-sm-6 col-lg-6 col-md-6 show-contributionpadding">
                         <div class ="pan ${alphabet}">
                             <div class ="col-sm-4 col-xs-4 img-panel">
                                 <img class="user-img-header" src="${imageUrl}" alt="alphabet">
@@ -263,11 +275,12 @@
                             <div class="col-sm-8 col-xs-8 pn-word contribution-inr">
                                 <h4>${contribution.contributorName}</h4> 
                                 <span class="sso">
-                                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                        <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else>${amount * conversionMultiplier}</g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                    <g:if test="${country_code == 'in'}">
+                                        <!--  <span class="fa fa-inr"></span>-->
+                      						 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else>${amount}</g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
                                     </g:if>
                                     <g:else>
-                                        $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                        ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
                                     </g:else>
                                 </span>
                                 <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -284,7 +297,7 @@
                                     <div class="col-sm-6 cols">
                                         <g:if test="${contribution.fundRaiser.equals(fundRaiser) && team.user == user && !isCrUserCampBenOrAdmin}">
                                             <div class="edits">
-                                                <button class="projectedit close" id="editproject"  data-toggle="modal" data-target="#contributionedit${contribution.id}">
+                                                <button class="projectedit close editofflinecontribution" id="editproject"  data-toggle="modal" data-target="#contributionedit" data-id="${contribution.id}">
                                                     <i class="glyphicon glyphicon-edit" ></i>
                                                 </button>
                                                 <g:form controller="project" action="contributiondelete" method="post" id="${contribution.id}" params="['projectId':projectId, 'fr': fundRaiser, 'offset': offset]">
@@ -300,63 +313,86 @@
                         </div>
                         <div class="clear"></div>
 
-                        <div class="modal fade offlineContributionModal contributionedit" id="contributionedit${contribution.id}" tabindex="-1" role="dialog" aria-labelledby="contributionedit${contribution.id}" aria-hidden="true">
-                            <g:form action="contributionedit" controller="project" id="${contribution.id}"  params="['projectId':projectId, 'fr': fundRaiser, 'offset':offset]">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <div class="col-sm-12 margin">
-                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                                <h4 class="heading crowderasupport"><img src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="Edit offline contribution"/>&nbsp;&nbsp;EDIT OFFLINE CONTRIBUTION</h4>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <div class="form-group">
-                                                    <label class="text col-sm-3">First Name</label>
-                                                    <div class="col-sm-9"> 
-                                                        <input type="text" class="form-control contributioninput" name="contributorName" value="${contribution.contributorFirstName}"><br>
-                                                    </div>
-                                               </div>
-                                               <div class="form-group">
-                                                    <label class="text col-sm-3">Last Name</label>
-                                                    <div class="col-sm-9"> 
-                                                        <input type="text" class="form-control contributioninput" name="contributorLastName" value="${contribution.contributorLastName}"><br>
-                                                    </div>
-                                               </div>
-                                            </div>
-                                            <div class="col-sm-12">
-	                                           <div class="form-group">
-	                                               <label class="text col-sm-3">Email</label>
-	                                               <div class="col-sm-9"> 
-	                                                   <input type="email" class="form-control contributioninput" name="contributorEmail" value="${contribution.contributorEmail}" required><br>
-	                                               </div>
-	                                           </div>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <div class="form-group">
-                                                    <label class="text col-sm-3">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control contributioninput offlineAmount" name="amount" value="${contribution.amount.round()}" id="offlineAmount">
-                                                    </div>
-                                                </div>
-                                                <div class="contributionerrormsg"></div>
-                                            </div>
-                                        </div>
-                                        <div class="clear"></div>
-                                        
-                                        <div class="modal-footer">
-                                            <button data-dismiss="modal" class="btn btn-primary">Close</button>
-                                            <button class="btn btn-primary" type="submit" id="saveButton">Save</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </g:form>
-                        </div>
-                    
                     </div>
                 
             </g:else>
             
         </g:each>
+        
+        <div class="modal fade offlineContributionModal contributionedit" id="contributionedit" tabindex="-1" role="dialog" aria-labelledby="contributionedit" aria-hidden="true">
+             <g:form action="contributionedit" controller="project"  params="['projectId':projectId, 'fr': fundRaiser, 'offset':offset]">
+                 <div class="modal-dialog">
+                     <div class="modal-content">
+                         <div class="modal-body">
+                             <div class="col-sm-12 margin">
+                                 <input type="hidden" name="contributionId" id="contributionId-edit">
+                                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                 <h4 class="heading crowderasupport"><img src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="Edit offline contribution"/>&nbsp;&nbsp;EDIT OFFLINE CONTRIBUTION</h4>
+                             </div>
+                             <div class="col-sm-12">
+                                 <div class="form-group">
+                                     <label class="text col-sm-3">First Name</label>
+                                     <div class="col-sm-9"> 
+                                         <input type="text" class="form-control contributioninput" name="contributorName" id="contributorName-edit"><br>
+                                     </div>
+                                </div>
+                                <div class="form-group">
+                                     <label class="text col-sm-3">Last Name</label>
+                                     <div class="col-sm-9"> 
+                                         <input type="text" class="form-control contributioninput" name="contributorLastName" id="contributorLastName-edit"><br>
+                                     </div>
+                                </div>
+                             </div>
+                             <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="text col-sm-3">Email</label>
+                                    <div class="col-sm-9"> 
+                                        <input type="email" class="form-control contributioninput" name="contributorEmail" id="contributorEmail-edit" required><br>
+                                    </div>
+                                </div>
+                             </div>
+                             <div class="col-sm-12 margin-btm-10">
+                                 <div class="form-group">
+                                     <label class="text col-sm-3">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+                                     <div class="col-sm-9">
+                                         <input type="text" class="form-control contributioninput offlineAmount" name="amount" id="contributorAmount-edit">
+                                     </div>
+                                 </div>
+                                 <div class="contributionerrormsg"></div>
+                             </div>
+                             
+                             <g:if test="${isTaxReceipt}">
+                                 <div class="col-sm-12 margin-btm-10">
+                                     <div class="form-group">
+                                         <label class="text col-sm-12">
+                                             <input type="checkbox" name="isTaxreceipt" id="isTaxreceiptEdit" > Do you want to provide donation receipt?
+                                         </label>
+                                     </div>
+                                 </div>
+                                 <div class="col-sm-12">
+                                     <div class="form-group">
+                                         <label class="text col-sm-3 pannumberEditDiv">
+                                             PAN Number
+                                         </label>
+                                         <div class="col-sm-9 pannumberEditDiv">
+                                             <input class="form-control" id="editPanNumber" name="panNumber1" type="text" placeholder="Enter PAN Number" maxlength="10"/>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </g:if>
+                             
+                         </div>
+                         <div class="clear"></div>
+                         
+                         <div class="modal-footer">
+                             <button data-dismiss="modal" class="btn btn-primary">Close</button>
+                             <button class="btn btn-primary" type="submit">Save</button>
+                         </div>
+                     </div>
+                 </div>
+             </g:form>
+         </div>
+         
        </div>
     </div>
 </g:if>
@@ -376,6 +412,41 @@
             url: url,
             success: function(data) {
                 $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+            }
+        });
+    });
+
+    $(".editofflinecontribution").click(function(event) {
+
+        $("#contributorName-edit").val("");
+        $("#contributorLastName-edit").val("");
+        $("#contributorEmail-edit").val("");
+        $("#contributorAmount-edit").val("");
+        $("#editPanNumber").val("");
+        $("#contributionId-edit").val("");
+        $("#isTaxreceiptEdit").prop("checked", false).change();
+        
+        var url = "/fund/getOfflineContribution";
+        var grid = $(this).parents('#contributionList');
+        var id = $(this).data("id");
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            data: {
+                id : id
+            },
+            success: function(data) {
+                data = JSON.parse(data)
+                $("#contributionId-edit").val(id);
+                $("#contributorName-edit").val(data.firstName);
+                $("#contributorLastName-edit").val(data.lastName);
+                $("#contributorEmail-edit").val(data.email);
+                $("#contributorAmount-edit").val(data.amount);
+                if (data.panNumber != undefined && data.panNumber != "") {
+                    $("#editPanNumber").val(data.panNumber);
+                    $("#isTaxreceiptEdit").prop("checked", true).change();
+                }
             }
         });
     });

@@ -153,9 +153,9 @@ div#checkoutgsp button.btn-default:focus{
     padding: 15px 15px;
 }
 
-.panel-primary.billing-panel {
-	margin-bottom: 0px;
-}
+/* .panel-primary.billing-panel { */
+/* 	margin-bottom: 0px; */
+/* } */
 
 .citrusfundbody {
     box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px 0px;
@@ -163,7 +163,7 @@ div#checkoutgsp button.btn-default:focus{
     margin-bottom: 30px;
 }
 .eazywizard-bottom-margin {
-	margin-bottom: 50px;
+	margin-bottom: 18px;
 }
 
 div.citrusfundbody .bootstrap-select > button,
@@ -178,6 +178,13 @@ div.citrusfundbody .open > .dropdown-toggle.btn-default {
 
 div.citrusfundbody .dropdown-menu.open {
     margin-left: -0.8%;
+}
+div.citrusStateDiv .dropdown-menu.open {
+    margin-left: 0px !important;
+}
+div.citrusfundbody .dropdown-menu{
+    overflow-x: hidden !important;
+/*     overflow-y: auto !important; */
 }
 
 div.citrusfundbody .bootstrap-select.btn-group .dropdown-menu {
@@ -213,3 +220,9 @@ div.citrusfundbody .btn.btn-info {
 	font-weight: 600;
 	font-size: 13px;
 }
+.pannumberdiv {
+	display: none;
+}
+#billingInformation{display:none;}
+#citrusCardDetails{display:none;}
+.citrusStateDiv .btn:first-child{margin-left:0px !important;}

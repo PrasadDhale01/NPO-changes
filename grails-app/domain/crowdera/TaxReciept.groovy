@@ -22,6 +22,8 @@ class TaxReciept {
     String addressLine2
     String fcraRegNum
     String signatureUrl
+    
+    double exemptionPercentage
 
     Date regDate = new Date()
     Date expiryDate = new Date()

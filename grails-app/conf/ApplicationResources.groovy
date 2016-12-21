@@ -62,6 +62,10 @@ modules = {
         dependsOn 'crowderajs', 'blacknwhitejs'
         resource url: 'js/home/home.js'
     }
+    citruscheckoutjs {
+        dependsOn 'crowderajs'
+        resource url: 'js/citruscheckout.js'
+    }
     /* Login */
     loginjs {
         dependsOn 'crowderajs'
@@ -133,17 +137,17 @@ modules = {
         resource url: 'js/user.js'
     }
     
-	/* Survey/Feedback*/
-	feedbackjs{
-		dependsOn 'crowderajs'
-		resource url: 'js/survey/feedback.js'
-	}
-	
-	/*Ebook*/
-	ebookjs{
-		dependsOn 'crowderajs'
-		resource url: 'js/ebook/ebook.js'
-	}
+    /* Survey/Feedback*/
+    feedbackjs{
+        dependsOn 'crowderajs'
+        resource url: 'js/survey/feedback.js'
+    }
+    
+    /*Ebook*/
+    ebookjs{
+        dependsOn 'crowderajs'
+        resource url: 'js/ebook/ebook.js'
+    }
     
     showpartnerjs {
         dependsOn 'crowderajs'
@@ -170,12 +174,16 @@ modules = {
     
     citrusfundjs {
         resource url: 'js/fund/citrusfund.js'
-        dependsOn 'underscorejs', 'crowderajs', 'easywizardjs'
+        dependsOn 'underscorejs', 'crowderajs', 'easywizardjs' , 'jqueryPaymentjs'
     }
     
     userlistjs {
         resource url: 'js/userlist.js'
         dependsOn 'crowderajs','datatablejs'
+    }
+    
+    jqueryPaymentjs {
+        resource url: 'js/jquery.payment.min.js'
     }
     
     /* CSS */

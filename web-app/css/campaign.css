@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Assistant:400,700|Open+Sans:700');
 .TW-update-redactor .redactor-box .redactor-editor,
 .TW-editUpdate-redactor .redactor-box .redactor-editor,
 .TW-redactor .redactor-box .redactor-editor {
@@ -123,7 +124,7 @@ input.shortUrlText {
 }
 
 .glyphicon-show-link-color{
-    background-color:#a8a8a8;
+    background-color:#cdcdcd;
 }
 
 .glyphicon-support-color{
@@ -139,7 +140,6 @@ input.shortUrlText {
 .glyphicon-design, .glyphicon-design:hover, .glyphicon-design:active, .glyphicon-design:visited, .glyphicon-design:after, .glyphicon-design:focus{
     color: white;
     padding: 7px;
-    border-radius: 50%;
     font-size: 19px;
     left: 3px;
     top: 2px;
@@ -303,7 +303,14 @@ textarea.textarea-embed-tile{
 }
 
 .glyphicon-show-design {
-    border-radius: 50%;
+    color: white;
+    font-size: 16px;
+    padding: 7px;
+    text-decoration: none;
+    top: 12px;
+    left: 2px;
+}
+.glyphicon-show-design-ract{
     color: white;
     font-size: 16px;
     padding: 7px;
@@ -537,13 +544,13 @@ span.cr-label-spend-matrix {
     background-color: #F3F3F3;
 }
 .validate-show-div .organization-panel.org-panel-1.panel {
-	   height: 380px;
+	   height: 400px;
 }
 .validate-show-div .organization-panel.org-panel-2.panel {
-    height: 380px;
+    height: 400px;
 }
 .validate-show-div .organization-panel.org-panel-3.panel {
-    height: 380px;
+    height: 400px;
 }
 .organization-panel h5 {
     margin-top: 20px;
@@ -870,7 +877,7 @@ div.col-sm-pie-left-pdding{
     bottom: 12px;
     padding: 7px;
     position: absolute;
-    top: 7px;
+    top: 77px;
 }
 
 .cr1-myplane-padding {
@@ -909,8 +916,11 @@ img.hm-height-width {
 	width: 1000px;
 }
 .mange-borders{
+    background-color: #fff;
     border-bottom: 2px solid #e3e3e3;
-    border-top: 2px solid #e3e3e3;
+    border-right: 2px solid #e3e3e3;
+    padding-left: 15px;
+    width: 100%;
 }
 .manage-bottom-top{
     border-right-width: 0;
@@ -928,10 +938,13 @@ img.hm-height-width {
 .manage-btn-width {
     width: 100%;
     border-color: #01bbd3;
+    height: 60px;
+    padding-top: 20px;
 }
 .manage-deletebtn-width{
     width: 100%;
     font-weight: 900;
+    height: 60px;
 }
 .manage-btn-padding {
     padding-left: 0;
@@ -952,8 +965,8 @@ img.hm-height-width {
 .manage-btn-width-aft-validated{
 	font-size: 18px;
     height: 100%;
-    padding-bottom: 13px;
-    padding-top: 13px;
+    padding-bottom: 15px;
+    padding-top: 15px;
     width: 91.2%;
 }
 .manage-edit-left{
@@ -972,7 +985,8 @@ img.hm-height-width {
     font-size: 17px;
     font-weight: 900;
     height: 100%;
-    padding: 14px;
+    padding-left: 13px;
+    padding-right: 13px;
     width: 100%;
 }
 @-moz-document url-prefix() { 
@@ -985,13 +999,12 @@ img.hm-height-width {
     }
 }
 .manage-social{
-    border-bottom: 2px solid #e3e3e3;
-    border-top: 2px solid #e3e3e3;
-    margin-top: 10px;
-    padding-bottom: 6px;
-    padding-left: 238px;
-    padding-top: 6px;
-    margin-bottom: 20px;
+    background-color: #fff;
+    border-bottom: 2px solid #e7e7e7;
+    border-right: 2px solid #e7e7e7;
+    height: 150px;
+    margin-top: 20px;
+    padding: 15px;
 }
 .manage-btn-back-color,
 .manage-btn-back-color:hover,
@@ -1010,17 +1023,16 @@ img.hm-height-width {
     padding-left: 7px;
 }
 .show-submitapproval-in-check-box{
-    height: 52px !important;
+    height: 36px !important;
     margin-bottom: 0 !important;
-    padding-top: 11px;
+    padding-top: 3px;
 }
 .show-submit-margin {
-    margin-bottom: 8px;
-    margin-top: 7px;
+    margin-bottom: 0;
 }
 .manage-check-box-ondraft{
-    margin-bottom: 8px;
-    margin-top: 7px;	
+    margin-bottom: 0;
+/*     margin-top: 7px;	 */
 }
 .manage-table-bottom {
     margin-bottom: 25px !important;
@@ -1042,9 +1054,9 @@ img.hm-height-width {
     font-size: 19px;
     padding-right: 30px;
 }
-.mange-story-imgs img{
-    width: 100%;	
-}
+/* .mange-story-imgs img{ */
+/*     width: 100%;	 */
+/* } */
 .mange-story-imgs iframe{
     width: 100% !important;
 }
@@ -1399,9 +1411,8 @@ img.how-it-success-img{
     padding-left: 87px;
 }
 .mange-btnsubmitapprov-size {
-    height: 45px;
+    height: 55px;
     padding: 0;
-    width: 303px;
     font-weight: 900;
 }
 .edit-space {
@@ -1429,17 +1440,15 @@ img.how-it-success-img{
     margin-top: 20px;
     margin-bottom: 20px;
 }
+.tax-receipt-logo {
+	margin-bottom: 10px;
+}
 .modal-body .taxreceiptcontainer {
     width: 800px;
 }
-.taxreceiptbgcolor {
-    background-color: #F4F4F4;
-    padding-top: 35px;
-    padding-bottom: 35px;
-}
 .taxreceiptbgcolor img {
-    width: 175px;
-    height: 175px;
+    width: 120px;
+    height: 100px;
 }
 .taxreceiptcontributorlabel label {
     background-color: #889299;
@@ -1457,21 +1466,32 @@ img.how-it-success-img{
     text-decoration: none;
 }
 .taxdetailslabel {
-    margin-top: 10px;
-    font-size: 14px;
+/*     margin-top: 10px; */
+    font-size: 13px;
 }
 .taxreceiptcontainer .taxorgaddress.form-control {
     min-height: 170px
 }
 .taxreceiptcontributiondetail .taxreceipttop {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.organizationdetails .taxreceipttop {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.organizationdetails .taxreceiptdetailsfont {
+    margin-top: 2px;
 }
 .taxreceiptdetailsfont {
-    margin-top: 8px;
+    margin-top: 5px;
     margin-bottom: 0px;
     font-size: 16px;
     font-weight: 500;
+    text-align:right;
+}
+.panel.taxreceiptcontributiondetail {
+	margin-bottom: 0px;
 }
 .taxreceiptdetailsfont.zerotopmargin {
     margin-top: 0px;
@@ -1694,7 +1714,7 @@ a.thankyou-textdeco {
     padding-top: 10px;
 }
 .show-tags-topbottom{
-    padding-bottom: 65px;
+    padding-bottom: 22px;
     padding-top: 10px;
 }
 .contact-details {
@@ -1761,7 +1781,8 @@ a.thankyou-textdeco {
     width: 100%;
 }
 .cdra-mng-ftpadding{
-    padding-bottom: 60px;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
 }
 .mange-story-imgs {
     font-size: 16px;
@@ -1771,9 +1792,7 @@ a.thankyou-textdeco {
     word-wrap: break-word;
 }
 .show-textstorylinespec{
-    font-size: 16px;
     font-weight: normal;
-    line-height: 26px;
     letter-spacing: 0;
     word-wrap: break-word;
 }
@@ -1796,4 +1815,79 @@ a.thankyou-textdeco {
 }
 .digitalsignature.taxreceipttop img{
 	height: 100%;
+}
+.signature_img_seperator {
+    display: none;
+}
+
+.pannumberEditDiv {
+	display: none;
+}
+.margin-btm-10 {
+	margin-bottom: 10px;
+}
+.manage-Descriptions{
+    background-color: #fff;
+    border-bottom: 2px solid #e7e7e7;
+    border-right: 2px solid #e7e7e7;
+    color: #5a6771;
+    margin-top: 22px;
+    overflow: hidden;
+    padding: 15px;
+}
+.manage-reasons-des{
+    color: #727272;
+    font-family: open sans;
+    font-size: 14px;
+    padding-top: 15px;
+    text-align: justify;
+}
+.manage-extra-moretags {
+    background-color: #fff;
+    border-bottom: 2px solid #e7e7e7;
+    border-right: 2px solid #e7e7e7;
+    height: 68px;
+    margin-top: 22px;
+    padding: 15px;
+}
+a.manage-campaigndetails-font{
+	color: #787878;
+    font-family: open sans;
+    font-size: 17px;
+}
+.manage-back-color {
+    background-color: #fff;
+    margin-bottom: 22px;
+}
+.manage-color-back {
+    background-color: #fff;
+}
+.manage-bg-color {
+    background-color: #fff;
+    left: 16px;
+    padding: 0;
+    width: 97%;
+}
+.manage-create-perkpadding {
+    margin-right: 15px;
+    margin-top: 15px;
+}
+.manage-mobile-margine {
+    margin-bottom: 22px;
+}
+.manage-contribution-bgcolor {
+    background-color: #fff;
+    padding-top: 15px;
+}
+.manage-submintappro-checkbox {
+    padding: 8px;
+}
+.manage-submit {
+    padding: 19px;
+}
+.receipt-btn-seperator {
+    display : none;
+}
+.team_grid_background {
+    background-color: #ffffff;
 }

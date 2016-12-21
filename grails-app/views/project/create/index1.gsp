@@ -1,17 +1,22 @@
 <g:set var="projectService" bean="projectService"/>
 <%
+	def country_code = projectService.getCountryCodeForCurrentEnv(request)
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-    def fbShareUrl = base_url+"/campaign/create"
-    
+    String baseUrl = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+    def base_url = baseUrl.substring(0, (baseUrl.length() - 1))
+	def fbShareUrl = base_url +country_code +"/campaign/create"
+	
     boolean isIndianCampaign = false
-    if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
-        isIndianCampaign = true
+    if (currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'development' || currentEnv == 'production') {
+		if(country_code == 'in'){
+			isIndianCampaign = true
+		}
     }
 %>
 <html>
 <head>
     <title>Crowdera- Create campaign</title>
+    <link rel="canonical" href="${base_url}/campaign/create"/>
     <meta name="layout" content="main"/>
     <meta property="og:site_name" content="Crowdera"/>
     <meta property="og:type" content="Crowdera:Campaign"/>
@@ -29,6 +34,7 @@
     <g:hiddenField name="baseUrl" value="${base_url}" id="b_url"/>
     <g:hiddenField name="isIndianCampaign" value="${isIndianCampaign}" id="isIndianCampaign"/>
     <g:hiddenField name="titleUniqueStatus" value="true" id="titleUniqueStatus"/>
+    <g:hiddenField name="country_code" value="${country_code}"/>
     
     
     <div class="cr1-header-indx1">
@@ -41,13 +47,13 @@
             <g:uploadForm class="form-horizontal cr-top-spaces" controller="project" action="saveCampaign">
             
                 <g:hiddenField name="partnerInviteCode" value="${partnerInviteCode}"/>
-                
+                <g:hiddenField name="country_code" value="${country_code}"/>
                 <%--Desktop code --%>
                 <div class="form-group">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                        <label class="col-sm-12 text-color cr-padding-index1">My Name is...</label>
                        <div class="col-sm-12 cr-padding-index1">
-                           <input type="text" class="form-control form-control-no-border text-color cr1-box-size" id="name" name="${FORMCONSTANTS.FIRSTNAME}" placeholder="Display Name">
+                           <input type="text" maxlength= "32" class="form-control form-control-no-border text-color cr1-box-size" id="name" name="${FORMCONSTANTS.FIRSTNAME}" placeholder="Display Name">
                        </div>
                     </div>
                     
@@ -56,12 +62,15 @@
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-7">
                             <span class="col-lg-6 col-sm-6 col-md-6 cr-padding-index1">I need</span>
                             <div class="cr-tops">
-	                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-	                                <span class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
+	                            <g:if test="${currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv == 'development'}">
+	                            	<g:if test="${country_code == 'in'}">
+	                            		<span class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
+	                            	</g:if>
+	                            	<g:else>
+	                               		 <span class="i-currency-label-indx1">$</span>
+	                            	</g:else>
 	                            </g:if>
-	                            <g:else>
-	                                <span class="i-currency-label-indx1">$</span>
-	                            </g:else>
+	                            
                                 <input class="form-control form-control-no-border-amt cr-amt-indx1" name="amount1" id="amount2"> 
                                 <span id="errormsg1"></span>
                             </div>
@@ -101,12 +110,14 @@
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-7">
                         <span class="col-lg-6 col-sm-6 col-md-6 cr-padding-index1">I need</span>
                         <div class="cr-tops">
-                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                <span class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
-                            </g:if>
-                            <g:else>
-                                <span class="i-currency-label-indx1">$</span>
-                            </g:else>   
+                        <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'}">
+                           		<g:if test="${country_code == 'in'}">
+                                	<span class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
+                                </g:if>
+                                 <g:else>
+                                	<span class="i-currency-label-indx1">$</span>
+                            	</g:else>  
+                         </g:if>
                             <input class="form-control form-control-no-border-amt cr-amt-indx1" name="amount" id="amount3"> 
                             <span id="errormsg2"></span>
                         </div>
@@ -118,7 +129,7 @@
                     </g:if>
                     <g:else>
                         <div class="col-lg-1 col-md-1 col-sm-1 amount-popover cr1-mobile-padding-amt col-xs-1">
-                            <img class="cr1-amountInfo-img amountInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
+                            <img class="cr1-amountInfo-img amountInfoInd-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                         </div>
                     </g:else>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 cr1-in-days">
@@ -141,8 +152,11 @@
                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                             crowdera.in/campaigns/
                        </g:if>
+                       <g:elseif test="${currentEnv == 'staging'}">
+                       		staging.gocrowdera.com/campaigns/
+                       </g:elseif>
                        <g:else>
-                            crowdera.co/campaigns/
+                            gocrowdera.com/campaigns/
                        </g:else>
                    </label>
                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 cr1-mobile-indx1 form-group">
@@ -150,11 +164,14 @@
                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                                crowdera.in/campaigns/
                            </g:if>
+                           <g:elseif test="${currentEnv == 'staging'}">
+                       				staging.gocrowdera.com/campaigns/
+                      		 </g:elseif>
                            <g:else>
-                               crowdera.co/campaigns/
+                               gocrowdera.com/campaigns/
                            </g:else>
                        </div>
-                       <input class="form-control form-control-no-border cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd cr1-vanitypadding-in-co cr1-paddings-lft" name="customVanityUrl" id="customVanityUrl" maxlength="55" placeholder="Your-Campaign-Web-Url">
+                       <input class="form-control form-control-no-border cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd cr1-vanitypadding-in-co cr1-paddings-lft" name="customVanityUrl" id="customVanityUrl" maxlength="60" placeholder="Your-Campaign-Web-Url">
                    </div>
                    <div class="clear" id="vanityUrlClear"></div>
                    <label class="pull-right" id="vanityUrlLength"></label>

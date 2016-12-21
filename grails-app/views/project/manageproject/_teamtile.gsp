@@ -36,10 +36,9 @@
         imageUrl = obj.userImage
     }
     def currentEnv = projectService.getCurrentEnvironment()
-    def conversionMultiplier = multiplier
-    if (!conversionMultiplier) {
-        conversionMultiplier = projectService.getCurrencyConverter();
-    }
+	def country = projectService.getCountryForProject(project)
+	def currencyValue = projectService.getCurrencyByCountryId(country)
+	def country_code = projectService.getCountryCodeForCurrentEnv(request)
 %>
 
 <div class="fedu thumbnail grow teamtile teamtile-padding hidden-xs">
@@ -106,7 +105,7 @@
             </g:else>
         </g:if>
         <g:elseif test="${!ismanagepage || !isAdminOrBeneficiary}">
-            <a href="javascript:void(0)"  id="${project.id}" onclick="submitCampaignShowForm('show','${project.id}','${username}');">
+            <a href="javascript:void(0)"   onclick="submitCampaignShowForm('show','${project.id}','${username}');">
                 <g:if test="${userImageUrl != null}">
                     <img alt="${userName}" class="project-img" src="${userImageUrl}">
                 </g:if>
@@ -118,7 +117,7 @@
             </a>
         </g:elseif>
         <g:else>
-            <a href="javascript:void(0)" onclick="submitCampaignShowForm('manage','${project.id}','${username}');"id="${project.id}">
+            <a href="javascript:void(0)" onclick="submitCampaignShowForm('manage','${project.id}','${username}');">
                 <g:if test="${userImageUrl != null}">
                     <img alt="${userName}" class="project-img" src="${userImageUrl}">
                 </g:if>
@@ -158,21 +157,23 @@
 	        <div class="row tilepadding">
 	            <div class="col-md-6 col-xs-6 text-center">
 	                <span class="text-center tile-goal teamtile">
-	                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-	                        <span class="fa fa-inr"></span><span class="lead goal-size teamtile"><g:if test="${project.payuStatus}">${goal}</g:if><g:else>${goal * conversionMultiplier}</g:else></span>
+	                    <g:if test="${country_code == 'in'}">
+	                        <!--  <span class="fa fa-inr"></span>-->
+                       ${currencyValue}<span class="lead goal-size teamtile"><g:if test="${project.payuStatus}">${goal}</g:if><g:else>${goal}</g:else></span>
 	                    </g:if>
 	                    <g:else>
-	                        $<span class="lead goal-size teamtile">${goal}</span>
+	                       ${currencyValue}<span class="lead goal-size teamtile">${goal}</span>
 	                    </g:else>
 	                </span>
 	            </div>
 	            <div class="col-md-6 col-xs-6 text-center team-achieve-amt-border">
 	                <span class="text-center tile-goal teamtile">
-	                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-	                        <span class="fa fa-inr"></span><span class="lead achived-size teamtile"><g:if test="${project.payuStatus}">${amount}</g:if><g:else>${amount * conversionMultiplier}</g:else></span>
+	                    <g:if test="${country_code == 'in'}">
+	                        <!--  <span class="fa fa-inr"></span>-->
+                       ${currencyValue}<span class="lead achived-size teamtile"><g:if test="${project.payuStatus}">${amount}</g:if><g:else>${amount}</g:else></span>
 	                    </g:if>
 	                    <g:else>
-	                        $<span class="lead achived-size teamtile">${amount}</span>
+	                        ${currencyValue}<span class="lead achived-size teamtile">${amount}</span>
 	                    </g:else>
 	                </span>
 	            </div>
@@ -229,19 +230,21 @@
      
         <g:if test="${isshow}">
 	        <div class="mobile-show-team">
-	            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-	                <span class="fa fa-inr"></span><span class="show-mob-goal-amt"><b><g:if test="${project.payuStatus}">${goal}</g:if><g:else>${goal * conversionMultiplier}</g:else></b><span class="show-mobfont-goal">&nbsp;&nbsp;Goal</span></span>
+	            <g:if test="${country_code == 'in'}">
+	                <!--  <span class="fa fa-inr"></span>-->
+                       ${currencyValue}<span class="show-mob-goal-amt"><b><g:if test="${project.payuStatus}">${goal}</g:if><g:else>${goal}</g:else></b><span class="show-mobfont-goal">&nbsp;&nbsp;Goal</span></span>
 	            </g:if>
 	            <g:else>
-	                 <span class="show-mob-goal-amt">$<b>${goal}</b><span class="show-mobfont-goal">&nbsp;&nbsp;Goal</span></span>
+	                 <span class="show-mob-goal-amt">${currencyValue}<b>${goal}</b><span class="show-mobfont-goal">&nbsp;&nbsp;Goal</span></span>
 	            </g:else>
 	        </div>
 	        <div class="mobile-show-team">
-	            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-	                <span class="fa fa-inr"></span><span class="show-mob-goal-amt"><b><g:if test="${project.payuStatus}">${amount}</g:if><g:else>${amount * conversionMultiplier}</g:else></b><span class="show-mobfont-goal">&nbsp;&nbsp;Raised</span></span>
+	           <g:if test="${country_code == 'in'}">
+	                <!--  <span class="fa fa-inr"></span>-->
+                       ${currencyValue}<span class="show-mob-goal-amt"><b><g:if test="${project.payuStatus}">${amount}</g:if><g:else>${amount}</g:else></b><span class="show-mobfont-goal">&nbsp;&nbsp;Raised</span></span>
 	            </g:if>
 	            <g:else>
-	                <span class="show-mob-goal-amt">$<b>${amount}</b><span class="show-mobfont-goal">&nbsp;&nbsp;Raised</span></span>
+	                <span class="show-mob-goal-amt">${currencyValue}<b>${amount}</b><span class="show-mobfont-goal">&nbsp;&nbsp;Raised</span></span>
 	            </g:else>
 	        </div>
         </g:if>

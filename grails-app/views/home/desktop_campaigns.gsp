@@ -19,16 +19,14 @@
                      %>
                     <g:each in='${projects}' var='project'>
                         <li class='<g:if test='${index1++ > 2}'>hidden-md col-lg-4 hidden-sm col-sm-6 col-xs-12</g:if><g:else>col-md-6 col-sm-6 col-lg-4 col-xs-12</g:else>'>
-                            <g:render template='/layouts/tile' model='['project': project]'></g:render>
+                            <g:render template='/layouts/tile' model='['project': project, 'country_code' : country_code]'></g:render>
                         </li>
                     </g:each>
                 </ul>
             </div>
         </div>
         <div class='text-center explorebtn hidden-xs'>
-<%--            <a href='${resource(dir: '/campaigns')}' class='btn btn-default hm-explorecampaign'>Explore Campaigns</a>--%>
-                 <a href="${country_code}/campaigns" class="btn btn-default hm-explorecampaign">Explore Campaigns</a>
-        
+            <a href='${resource(dir: '/'+"${country_code}"+'/campaigns')}' class='btn btn-default hm-explorecampaign'>Explore Campaigns</a>
         </div>
     </div>
 </div>

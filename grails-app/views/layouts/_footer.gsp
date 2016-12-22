@@ -21,7 +21,7 @@
                 <li><a href="${resource(dir: '/careers')}" >Careers</a></li>
                 <li><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></li>
                 <li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
-                <li><a href="http://gocrowdera.com" target="_blank">Blog</a></li>
+                <li><a href="https://blog.gocrowdera.com" target="_blank">Blog</a></li>
                 
             </ul>
             </div>
@@ -56,7 +56,7 @@
             <div class="col-md-4 socialiconlinks footer-mid-section">
             <br>
             <div class="socialicon pull-right">
-            <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/wordpress-gray.png" alt="blog"></a>
+            <a href="https://blog.gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/wordpress-gray.png" alt="blog"></a>
             <a href="https://plus.google.com/102697810290030135564"  target="_blank"><img class="googleplussocial" src="//s3.amazonaws.com/crowdera/assets/googleplus-gray.png.png" alt="googlepluse"></a>
             <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>   
             <a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>

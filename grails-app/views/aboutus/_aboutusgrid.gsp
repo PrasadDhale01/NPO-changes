@@ -475,7 +475,7 @@
 	        <hr>
 	    </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
-	        <a href="http://gocrowdera.com" target="_blank" class="abt-text-deco">Blog&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></a>
+	        <a href="https://gocrowdera.com" target="_blank" class="abt-text-deco">Blog&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></a>
 	        <hr>
 	    </div>
         <div class="col-lg-4 col-md-4 col-sm-4">

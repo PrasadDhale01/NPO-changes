@@ -2841,7 +2841,8 @@ $(function() {
    });
 
     $('#category').change(function(){
-    	autoSave('category', $(this).val());
+
+	autoSave('category', $(this).val());
         changeHashTags();
     });
 

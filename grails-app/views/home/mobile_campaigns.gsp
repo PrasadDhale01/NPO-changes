@@ -14,7 +14,7 @@
                 
                 def currentEnv = projectService.getCurrentEnvironment()
                 def projects = projectService.getHomePageCampaignListByEnv(currentEnv)
-           
+           		def country_code = projectService.getCountryCodeForCurrentEnv(request)
                 def count = projects.size()
                 def cols = 1
                 def pages = (count / cols) + (count % cols > 0 ? 1 : 0)
@@ -32,7 +32,7 @@
                                        <g:each in="${1..cols}">
                                            <% if (index < count) { %>
                                                <li class="col-xs-12">
-                                                   <g:render template="/layouts/tile" model="['project': projects.get(index++)]"></g:render>
+                                                   <g:render template="/layouts/tile" model="['project': projects.get(index++), 'country_code' : country_code]"></g:render>
                                                </li>
                                             <% } %>
                                        </g:each>
@@ -46,7 +46,7 @@
                                        <g:each in="${1..cols}">
                                            <% if (index < count) { %>
                                                <li class="col-xs-12">
-                                                   <g:render template="/layouts/tile" model="['project': projects.get(index++)]"></g:render>
+                                                   <g:render template="/layouts/tile" model="['project': projects.get(index++), 'country_code' : country_code]"></g:render>
                                                </li>
                                            <% } %>
                                        </g:each>
@@ -68,7 +68,7 @@
            </div>
         </div>
         <div class="text-center explorebtn hidden-xs">
-            <a href="${resource(dir: '/campaigns')}" class="btn btn-default hm-explorecampaign">Explore Campaigns</a>
+            <a href='${resource(dir: '/'+"${country_code}"+'/campaigns')}' class="btn btn-default hm-explorecampaign">Explore Campaigns</a>
         </div>
     </div>
 </div>

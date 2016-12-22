@@ -3034,7 +3034,7 @@ $(function() {
 
     $('#webAddress').blur(function (){
     	var webAddress = $(this).val();
-    	if (validator.element( "#webAddress")) {
+    	if (validator.element( "#webAddress") && webAddress != undefined && webAddress != "") {
             autoSave('webAddress', webAddress);
     	}
     });

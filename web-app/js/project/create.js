@@ -676,7 +676,7 @@ $(function() {
 
         	$( '[name="paypalEmail"]' ).rules( "add", {
                 required: true,
-                isPaypalEmailVerified : true,
+                /*isPaypalEmailVerified : true,*/
                 email:true
             });
 
@@ -1012,7 +1012,7 @@ $(function() {
 
         	$( '[name="paypalEmail"]' ).rules( "add", {
                 required: true,
-                isPaypalEmailVerified : true,
+                /*isPaypalEmailVerified : true,*/
                 email:true
             });
 
@@ -2813,7 +2813,7 @@ $(function() {
 
    });
 
-   $('#paypalEmailId').change(function(){
+   /*$('#paypalEmailId').change(function(){
        var base_url = $("#b_url").val();
        if (base_url !== 'https://gocrowdera.com'){
            var email =  $('#paypalEmailId').val();
@@ -2831,7 +2831,7 @@ $(function() {
            }).error(function(){
            });
         }
-    });
+    });*/
 
    $('.form-control-impact-num').blur(function (){
 	   var impactNumber = $(this).val();
@@ -3035,7 +3035,7 @@ $(function() {
 
     $('#webAddress').blur(function (){
     	var webAddress = $(this).val();
-    	if (validator.element( "#webAddress")) {
+    	if (validator.element( "#webAddress") && webAddress != undefined && webAddress != "") {
             autoSave('webAddress', webAddress);
     	}
     });

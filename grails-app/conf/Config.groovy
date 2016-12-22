@@ -495,7 +495,7 @@ environments {
 		crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
         
         /*PayUMoney details*/
-        crowdera.PAYU.BASE_URL = 'http://gocrowdera.com'
+        crowdera.PAYU.BASE_URL = 'https://gocrowdera.com'
         crowdera.PAYU.TEST_URL='https://secure.payu.in/_payment.php'
         crowdera.PAYU.KEY='5geKCB'
         crowdera.PAYU.SALT='Gtr6fF9A'

@@ -1,3 +1,6 @@
+<%
+	String userAgent = request.getHeader("User-Agent");
+ %>
 <g:if test="${imageUrl.size() == 1 }">
     <div id="singleSlide">
         <img src="${imageUrl.get(0)}" id="us-slide" class="img-responsive home-img-large-size" alt="slide">
@@ -36,9 +39,14 @@
         </div>
     </div>
     </g:elseif>
-    <g:elseif test="${currentEnv=='prodIndia' || currentEnv=='stagingIndia' || currentEnv=='testIndia' }">
-       <img class="img-responsive home-img-large-size" src="//s3.amazonaws.com/crowdera/assets/slider-home-page-india-slider.jpg" alt="India-slide">
-    </g:elseif>
     <g:else>
-       <img class="img-responsive home-img-large-size" src="//s3.amazonaws.com/crowdera/assets/slider-home-page-united-state-slider.jpg" alt="US-slide">
+    	<g:if test="${userAgent?.contains('iPad')}">
+    		     <img class="img-responsive home-img-large-size" src="//s3.amazonaws.com/crowdera/project-images/e505a7d9-686d-44e2-b503-4cfcbee2f967.jpg" title="homepage banner for Tablet">
+    	</g:if>
+    	<g:elseif test="${userAgent?.contains('Mobile')|| userAgent?.contains('Android')}">
+                  <img class="img-responsive home-img-large-size" src="//s3.amazonaws.com/crowdera/project-images/85068622-3e90-4e44-9ad9-60fe73147a3a.jpg" title="homepage banner for Mobile.jpg">
+      	</g:elseif>
+      	<g:else>
+    		     <img class="img-responsive home-img-large-size" src="//s3.amazonaws.com/crowdera/project-images/27a95f1e-d5de-423a-b60a-1ecddbe14ce2.jpg" alt="US-slide">
+    	</g:else>
     </g:else>

@@ -53,7 +53,7 @@
 	              </div> 
 	              <div class="orlyName col-md-5 col-lg-5 col-sm-5 pull-right testimonial-name-margin">
 	                 <b>-Orly Wahba</b>
-	                 <p>Founder of Life Vest India</p>
+	                 <p>Founder of Life Vest Inside</p>
 	              </div>      
 	           </div>
 	           <div class="col-lg-4 col-md-4 col-sm-4 testimonialRowtwo">

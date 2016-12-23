@@ -60,7 +60,7 @@ class FundController {
             def previousPage = 'campaign details'
             render (view: '/project/manageproject/error', model: [project: project, currentEnv:currentEnv, previousPage:previousPage])
         } else if (fundingAchieved || ended) {
-            redirect(controller: 'project', action: 'showCampaign', id: project.id)
+            redirect(controller: 'project', action: 'showCampaign', id: project.id,params:['country_code':country_code])
         } else {
 
             def request_url = request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
@@ -253,7 +253,7 @@ class FundController {
         String request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         String base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
 
-        mandrillService.sendThankYouMailToContributors(contribution, project, contribution.amount, fundraiser)
+        mandrillService.sendThankYouMailToContributors(contribution, project, contribution.amount, fundraiser,country_code)
         
         if (userService.getCurrentUser()) {
             

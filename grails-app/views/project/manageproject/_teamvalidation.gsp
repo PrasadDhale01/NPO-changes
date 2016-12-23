@@ -10,7 +10,7 @@
     <td class="text-center">${team.user.email}</td>
     <td class="text-center">${dateFormat.format(joiningDate.getTime())}</td>
     <td class="text-center">
-        <g:form action="validateteam" controller="project" id="${project.id}" method="post">
+        <g:form action="validateteam" controller="project" id="${project.id}" params="[country_code: project.country.countryCode,fr:username,id: project.id]" method="post">
             <g:hiddenField name="teamId" value="${team.id}"/>
             <button type="submit" class="btn btn-sm btn-primary">Validate</button>
         </g:form>

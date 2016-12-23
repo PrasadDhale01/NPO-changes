@@ -127,8 +127,8 @@ class MandrillService {
         sendTemplate(user, 'admin_invitation', globalMergeVars, tags)
     }
 
-    def sendBeneficiaryEmail(User user) {
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'create', absolute: true)
+    def sendBeneficiaryEmail(User user,def country_code) {
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'create', params:[country_code:country_code],absolute: true)
         def currentEnv = Environment.current.getName()
         def cdraDomain = getCdraDomain(currentEnv)
         
@@ -191,10 +191,10 @@ class MandrillService {
         sendTemplate(user, 'thanks_to_contributors', globalMergeVars, tags)
     }
 
-   def sendResetPassword(User user) {
+   def sendResetPassword(User user,def country_code) {
         def link = grailsLinkGenerator.link(controller: 'login', action: 'confirm_reset', id: user.resetCode, absolute: true)
-        def createButton = grailsLinkGenerator.link(controller: 'project', action: 'create',absolute: true)
-        def home = grailsLinkGenerator.link(controller: 'home', action: 'index', absolute: true)
+        def createButton = grailsLinkGenerator.link(controller: 'project', action: 'create',params:[country_code:country_code],absolute: true)
+        def home = grailsLinkGenerator.link(controller: 'home', action: 'index', params:[country_code:country_code],absolute: true)
         def currentEnv = Environment.current.getName()
         def cdraDomain = getCdraDomain(currentEnv)
         
@@ -265,7 +265,7 @@ class MandrillService {
         return ret
     }
 
-    def shareProject(def emailList, String name, String message, Project project, def fundRaiser) {
+    def shareProject(def emailList, String name, String message, Project project, def fundRaiser,def country_code) {
         def imageUrl = project.imageUrl
 		def projectImageUrl
         if (imageUrl) {
@@ -279,7 +279,7 @@ class MandrillService {
         def currentEnv = Environment.current.getName()
         def cdraDomain = getCdraDomain(currentEnv)
         emailList.each { email ->
-            def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id,params:[fr:fundRaiser], absolute: true)
+            def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id,params:[fr:fundRaiser,country_code:country_code], absolute: true)
             def globalMergeVars = [
                 [
                     'name': 'LINK',
@@ -317,7 +317,7 @@ class MandrillService {
         }
     }
     
-    def shareProjectupdate(def emaillist, String name, String message, Project project, def fundraiser, def projectUpdate){
+    def shareProjectupdate(def emaillist, String name, String message, Project project, def fundraiser, def projectUpdate,def country_code){
         def imageUrl
         def imageurls = projectUpdate.imageUrls
         def projectImageUrl
@@ -331,7 +331,7 @@ class MandrillService {
         }
        
         emaillist.each { email ->
-            def link = grailsLinkGenerator.link(controller: 'project', action: 'updateShare', id: project.id,params:[fr:fundraiser], absolute: true)
+            def link = grailsLinkGenerator.link(controller: 'project', action: 'updateShare', id: project.id,params:[fr:fundraiser,country_code:country_code], absolute: true)
             def globalMergeVars = [
                 [
                     'name': 'LINK',
@@ -369,7 +369,7 @@ class MandrillService {
         }
     }
 
-    def shareContribution(def emailList, String name, String message, Project project, User fundraiser) {
+    def shareContribution(def emailList, String name, String message, Project project, User fundraiser,def country_code) {
         def imageUrl = project.imageUrl
         def currentEnv = Environment.current.getName()
         def cdraDomain = getCdraDomain(currentEnv)
@@ -383,7 +383,7 @@ class MandrillService {
 			}
         }
         emailList.each { email ->
-            def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:fundraiser.username], absolute: true)
+            def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:fundraiser.username,country_code:country_code], absolute: true)
             def globalMergeVars = [
                 [
                     'name': 'LINK',
@@ -460,8 +460,8 @@ class MandrillService {
         return ret
     }
 
-    def inviteAdmin(def email, String name, Project project) {
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', id: project.id, absolute: true)
+    def inviteAdmin(def email, String name, Project project,def country_code) {
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', id: project.id, params:[country_code:country_code],absolute: true)
         def registerLink = grailsLinkGenerator.link(controller: 'login', action: 'register', id: project.id, absolute: true)
         def imageUrl = project.imageUrl
 		def blogUrl = "http://crowdera.tumblr.com"
@@ -520,8 +520,8 @@ class MandrillService {
         inviteToAdmin(email, 'invite-admin-for-project', globalMergeVars, tags)
     }
 
-    def sendUpdateEmailToAdmin(def email, String name, Project project) {
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', id: project.id, absolute: true)
+    def sendUpdateEmailToAdmin(def email, String name, Project project,def country_code) {
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', id: project.id, params:[country_code:country_code],absolute: true)
         def registerLink = grailsLinkGenerator.link(controller: 'login', action: 'register', absolute: true)
         def imageUrl = project.imageUrl
         def projectImageUrl
@@ -569,12 +569,12 @@ class MandrillService {
     
     def sendUpdateEmailsToContributors(Project project,ProjectUpdate projectUpdate, User currentUser, def title){
         def contributors=project.contributions
-        
+		def country_code = project.country.countryCode
         contributors.each { contributor ->
             if(contributor.contributorEmail != "anonymous@example.com" && contributor.contributorEmail !=null){
                 def contributorName = contributor.contributorName
                 def contributorEmail = contributor.contributorEmail
-                sendUpdateEmails(contributorName, contributorEmail, project, projectUpdate, currentUser, title)
+                sendUpdateEmails(contributorName, contributorEmail, project, projectUpdate, currentUser, title,country_code)
             }
         }
         
@@ -584,7 +584,7 @@ class MandrillService {
             if (!contributor) {
                 def name = supporter.user.firstName
                 def email = supporter.user.email
-                sendUpdateEmails( name, email, project, projectUpdate, currentUser, title)
+                sendUpdateEmails( name, email, project, projectUpdate, currentUser, title,country_code)
             }
         }
         List teams = Team.findAllWhere(project : project,enable:true, validated: true);
@@ -595,13 +595,13 @@ class MandrillService {
             if (!contributor && (team.user != currentUser) && !supporter) {
                 def name = team.user.firstName
                 def email = team.user.email
-                sendUpdateEmails( name, email, project, projectUpdate, currentUser, title)
+                sendUpdateEmails( name, email, project, projectUpdate, currentUser, title,country_code)
             }
         }
     }
     
-    def sendUpdateEmails(def name, def email, Project project, ProjectUpdate projectUpdate,User currentUser, def title) {
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, absolute: true)
+    def sendUpdateEmails(def name, def email, Project project, ProjectUpdate projectUpdate,User currentUser, def title,def country_code) {
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[country_code:country_code],absolute: true)
         List imageUrls = projectUpdate.imageUrls
         def currentEnv = Environment.current.getName()
         def cdraDomain = getCdraDomain(currentEnv)
@@ -649,12 +649,12 @@ class MandrillService {
          inviteToAdmin(email, 'campaign-update', globalMergeVars, tags)
     }
 	
-	def sendCampaignDeleteEmailsToOwner(List emailList, Project project,User currentUser) {
+	def sendCampaignDeleteEmailsToOwner(List emailList, Project project,User currentUser,def country_code) {
         def currentEnv = Environment.current.getName()
         def cdraDomain = getCdraDomain(currentEnv)
 		emailList.each{email ->
 			if(email!=null){
-				def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, absolute: true)
+				def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[country_code:country_code],absolute: true)
 				def globalMergeVars = [[
 					'name': 'LINK',
 					'content': link
@@ -679,9 +679,9 @@ class MandrillService {
 		}
 	}
     
-    def sendInvitationForTeam(def emailList, String name, String message, Project project) {
+    def sendInvitationForTeam(def emailList, String name, String message, Project project,def country_code) {
         emailList.each { email ->
-            def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, absolute: true)
+            def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[country_code:country_code],absolute: true)
             def imageUrl = project.imageUrl
 			def projectImageUrl
             if (imageUrl) {
@@ -784,13 +784,13 @@ class MandrillService {
 		inviteToAdmin(email, 'send-email-to-crew', globalMergeVars, tags)
 	}
     
-    def sendResponseToCustomer(def adminResponse, def service, def attachmentUrl) {
+    def sendResponseToCustomer(def adminResponse, def service, def attachmentUrl,def country_code) {
         def email = service.email
         def date = new Date()
         def base_url = grailsApplication.config.crowdera.BASE_URL
         def url = base_url+"/howitworks"
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'list', absolute: true)
-        def create_url = grailsLinkGenerator.link(controller: 'project', action: 'create', absolute: true)
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'list', params:[country_code:country_code],absolute: true)
+        def create_url = grailsLinkGenerator.link(controller: 'project', action: 'create', params:[country_code:country_code],absolute: true)
         def currentEnv = Environment.current.getName()
         def cdraDomain = getCdraDomain(currentEnv)
         def globalMergeVars = [
@@ -832,12 +832,12 @@ class MandrillService {
         inviteToAdmin(email, 'send-response-to-customer', globalMergeVars, tags)
     }
 
-    def sendResponseToCrews(def adminResponse, def crews, def attachmentUrl, def base_url) {
+    def sendResponseToCrews(def adminResponse, def crews, def attachmentUrl, def base_url,def country_code) {
 	def email = crews.email
 	def date = new Date()
 	def url = base_url+"/howitworks"
-	def link = grailsLinkGenerator.link(controller: 'project', action: 'list', absolute: true)
-	def create_url = grailsLinkGenerator.link(controller: 'project', action: 'create', absolute: true)
+	def link = grailsLinkGenerator.link(controller: 'project', action: 'list', params:[country_code:country_code],absolute: true)
+	def create_url = grailsLinkGenerator.link(controller: 'project', action: 'create', params:[country_code:country_code],absolute: true)
 	def globalMergeVars = [
 		[
 			'name': 'LINK',
@@ -971,10 +971,10 @@ class MandrillService {
         sendTemplate(user, 'userRequestToRegister', globalMergeVars, tags)
     }
     
-    public def sendThankYouMailToContributors(Contribution contribution, Project project, def amount, User fundraiser) {
+    public def sendThankYouMailToContributors(Contribution contribution, Project project, def amount, User fundraiser,def country_code) {
         def fundRaiserUserName = fundraiser.username
         def beneficiary = project.user
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:fundRaiserUserName], absolute: true)
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:fundRaiserUserName,country_code:country_code], absolute: true)
         def currentEnv = Environment.current.getName()
         def cdraDomain = getCdraDomain(currentEnv)
         def fblink = "https://www.facebook.com"
@@ -1086,13 +1086,13 @@ class MandrillService {
         }
     }
 
-    public def contributionEmailToCampaignOwnerOrTeam(def fundRaiser, def project, def contribution) {
+    public def contributionEmailToCampaignOwnerOrTeam(def fundRaiser, def project, def contribution,def country_code) {
         def username = fundRaiser?.username
         def link
         if (project.user == fundRaiser) {
-            link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', id: project.id, params:[fr:username], absolute: true, fragment: 'contributions')
+            link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', id: project.id, params:[fr:username,country_code:country_code], absolute: true, fragment: 'contributions')
         } else {
-            link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:username], absolute: true, fragment: 'contributions')
+            link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:username,country_code:country_code], absolute: true, fragment: 'contributions')
         }
         def currentEnv = Environment.current.getName()
         def cdraDomain = getCdraDomain(currentEnv)
@@ -1132,10 +1132,10 @@ class MandrillService {
         sendTemplate(fundRaiser,'contributionEmailToCampaignOwnerOrTeam', globalMergeVars, tags)
     }
     
-    public def sendTeamInvitation(Project project, User fundRaiser) {
+    public def sendTeamInvitation(Project project, User fundRaiser,def country_code) {
         def user = project.user
         def username = user.username
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', id: project.id, params:[fr:username], absolute: true, fragment: 'manageTeam')
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', id: project.id, params:[fr:username,country_code:country_code], absolute: true, fragment: 'manageTeam')
         def currentEnv = Environment.current.getName()
         def cdraDomain = getCdraDomain(currentEnv)
         
@@ -1163,9 +1163,9 @@ class MandrillService {
         sendTemplate(user,'team-validation-request', globalMergeVars, tags)
     }
     
-    public def sendTeamValidatedConfirmation(Project project, User fundRaiser) {
+    public def sendTeamValidatedConfirmation(Project project, User fundRaiser,def country_code) {
         def username = fundRaiser.username
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:username], absolute: true)
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:username,country_code:country_code], absolute: true)
 		def imageUrl = project.organizationIconUrl
 		def projectImageUrl
 		if (imageUrl) {
@@ -1202,10 +1202,10 @@ class MandrillService {
         sendTemplate(fundRaiser,'team-validated-confirmation', globalMergeVars, tags)
     }
     
-    public def sendTeamUpdationEmail(Project project,Team team) {
+    public def sendTeamUpdationEmail(Project project,Team team,def country_code) {
         def teamUser = team.user
         def username = teamUser.username
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:username], absolute: true)
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:username,country_code:country_code], absolute: true)
 		def imageUrl = project.organizationIconUrl
 		def projectImageUrl
 		if (imageUrl) {
@@ -1245,14 +1245,14 @@ class MandrillService {
         sendTemplate(teamUser,'team-updation-email', globalMergeVars, tags)
     }
     
-    public def sendEmailToCampaignOwner(Project project, Contribution contribution) {
+    public def sendEmailToCampaignOwner(Project project, Contribution contribution,def country_code) {
         def beneficiary = project.beneficiary
         def user = project.user
         def name = beneficiary.firstName
         if (!name) {
             name = user.firstName + ' ' + user.lastName
         }
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', fragment:'payments', id: project.id, absolute: true)
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', fragment:'payments', id: project.id,params:[country_code:country_code], absolute: true)
         def currentEnv = Environment.current.getName()
         def cdraDomain = getCdraDomain(currentEnv)
         def currency
@@ -1380,8 +1380,8 @@ class MandrillService {
         }
     }
 	
-    def sendValidationEmailToOWnerAndAdmins(Project project){
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, absolute: true)
+    def sendValidationEmailToOWnerAndAdmins(Project project,def country_code){
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[country_code:country_code],absolute: true)
         def registerLink = grailsLinkGenerator.link(controller: 'login', action: 'register', id: project.id, absolute: true)
         List emailMemberList = []
         emailMemberList.add(project.user)
@@ -1485,8 +1485,8 @@ class MandrillService {
         sendTemplate(user, 'partner-re-invitation', globalMergeVars, tags)
     }
     
-    public def sendInvitationToCampaignOwner(def email, User user, def confirmCode, def message) {
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'createCampaign', id: confirmCode, absolute: true)
+    public def sendInvitationToCampaignOwner(def email, User user, def confirmCode, def message,def country_code) {
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'createCampaign', id: confirmCode, params:[country_code:country_code],absolute: true)
         def globalMergeVars = [[
             'name': 'LINK',
             'content': link
@@ -1625,8 +1625,8 @@ class MandrillService {
         inviteToShare(contribution.contributorEmail, 'sendContributorUsernameAndPassword', globalMergeVars, tags)
     }
     
-    def sendEmailOnValidation(def environment, def emails, Project project) {
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:project.user.username], absolute: true)
+    def sendEmailOnValidation(def environment, def emails, Project project,def country_code) {
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:project.user.username,country_code:country_code], absolute: true)
         def currentEnv = Environment.current.getName()
         def cdraDomain = getCdraDomain(currentEnv)
         
@@ -1659,11 +1659,11 @@ class MandrillService {
         }
     }
     
-    def sendIntimationEmailToCampaignOwner(Project project, ProjectUpdate projectUpdate, User campaignOwner) {
+    def sendIntimationEmailToCampaignOwner(Project project, ProjectUpdate projectUpdate, User campaignOwner,def country_code) {
         def title = projectUpdate.title
         Date scheduledDate = projectUpdate.scheduledDate
 
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, absolute: true)
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[country_code:country_code],absolute: true)
         
         def globalMergeVars = [[
             'name': 'LINK',

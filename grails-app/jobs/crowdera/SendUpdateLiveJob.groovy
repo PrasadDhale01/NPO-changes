@@ -17,9 +17,10 @@ class SendUpdateLiveJob {
         if (projectUpdate) {
             Project project = projectUpdate.project
             User user = project.user
-            
+			def country_code = project.country.countryCode
+			
             if (isIntimationRequired == true || isIntimationRequired == 'true') {
-                mandrillService.sendIntimationEmailToCampaignOwner(project, projectUpdate, user)
+                mandrillService.sendIntimationEmailToCampaignOwner(project, projectUpdate, user,country_code)
             } else {
                 projectUpdate.islive = true
                 projectUpdate.save()

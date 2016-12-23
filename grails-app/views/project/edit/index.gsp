@@ -6,7 +6,7 @@
     def rewardItrCount = projectRewards.size()
     def amount = (project.amount).round()
     
-    def country_code = country_code
+    def country_code = project.country.countryCode
     
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
     String baseUrl = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL

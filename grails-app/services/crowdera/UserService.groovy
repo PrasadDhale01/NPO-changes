@@ -335,7 +335,7 @@ class UserService {
         return service.reverse()
     }
     
-    def sendResponseToCustomer(def params, CommonsMultipartFile attachedFile) {
+    def sendResponseToCustomer(def params, CommonsMultipartFile attachedFile,def country_code) {
         def service = CustomerService.get(params.long('id'));
         def adminResponse = params.answer
         def attachmentUrl
@@ -367,7 +367,7 @@ class UserService {
         }
         
         service.status = true
-        mandrillService.sendResponseToCustomer(adminResponse,service,attachmentUrl)
+        mandrillService.sendResponseToCustomer(adminResponse,service,attachmentUrl,country_code)
     }
 		
     def getNonRespondList() {
@@ -378,7 +378,7 @@ class UserService {
 	return CrewReg.findAllWhere(status: true)
     }
 		
-    def sendResponseToCrews(def params, CommonsMultipartFile attachedFile, def base_url) {
+    def sendResponseToCrews(def params, CommonsMultipartFile attachedFile, def base_url,def country_code) {
         def crewsResponse = CrewReg.get(params.long('id'));
         def adminResponse = params.adminReply
         def attachmentUrl 
@@ -410,7 +410,7 @@ class UserService {
             crewsResponse.docByAdmin = attachmentUrl
        }
        crewsResponse.status = true
-       mandrillService.sendResponseToCrews(adminResponse,crewsResponse,attachmentUrl, base_url)
+       mandrillService.sendResponseToCrews(adminResponse,crewsResponse,attachmentUrl, base_url,country_code)
     }
 	
     def discardMessage(def params) {
@@ -427,12 +427,12 @@ class UserService {
     
     def contributionEmailToOwnerOrTeam(def fundRaiser, def project, def contribution) {
         def user = project.user
-        
+		def country_code = project.country.countryCode
         if(user != fundRaiser) {
-            mandrillService.contributionEmailToCampaignOwnerOrTeam(fundRaiser, project, contribution)
-            mandrillService.contributionEmailToCampaignOwnerOrTeam(user, project, contribution)
+            mandrillService.contributionEmailToCampaignOwnerOrTeam(fundRaiser, project, contribution,country_code)
+            mandrillService.contributionEmailToCampaignOwnerOrTeam(user, project, contribution,country_code)
         } else {
-            mandrillService.contributionEmailToCampaignOwnerOrTeam(user, project, contribution)
+            mandrillService.contributionEmailToCampaignOwnerOrTeam(user, project, contribution,country_code)
         }
     }
 

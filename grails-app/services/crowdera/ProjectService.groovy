@@ -266,14 +266,14 @@ class ProjectService {
         projectAdmins.each { projectAdmin ->
             def email = projectAdmin?.email
             if (currentUser?.email != email) {
-                mandrillService.sendUpdateEmailToAdmin(email, fullName, project)
+                mandrillService.sendUpdateEmailToAdmin(email, fullName, project,country_code)
             }
         }
 
         def projectOwner = project.user
         ///if (projectOwner != currentUser) {
             def projectOwnerEmail = projectOwner.getEmail()
-            mandrillService.sendUpdateEmailToAdmin(projectOwnerEmail, fullName, project)
+            mandrillService.sendUpdateEmailToAdmin(projectOwnerEmail, fullName, project,country_code)
         //}
 
         if (project.customVanityUrl && project.customVanityUrl != ''){
@@ -373,7 +373,8 @@ class ProjectService {
 
     def getUpdateValidationDetails(def params){
         def project = Project.get(params.id)
-        
+		def country_code = project.country.countryCode
+		
         if (project) {
             project.created = new Date()
             if(!project.validated) {
@@ -385,7 +386,7 @@ class ProjectService {
                 project.validated = true
                 project.onHold = false
                 project.save()
-                mandrillService.sendValidationEmailToOWnerAndAdmins(project)
+                mandrillService.sendValidationEmailToOWnerAndAdmins(project,country_code)
                 //sendEmailOnValidation(project)
             }
         }
@@ -442,9 +443,9 @@ class ProjectService {
          team.story = params.story
          team.description = params.description
          def message = "Team Updated Successfully"
-	
+		 def country_code = project.country.countryCode
          if (user == project.user) {
-             mandrillService.sendTeamUpdationEmail(project, team)
+             mandrillService.sendTeamUpdationEmail(project, team,country_code)
          }
 
          return message
@@ -494,11 +495,12 @@ class ProjectService {
 		 String emails = params.emails
 		 String name = params.name
 		 String message = params.message
+		 String country_code = project.country.countryCode;
 
 		 def emailList = emails.split(',')
 		 emailList = emailList.collect { it.trim() }
 
-		 mandrillService.shareContribution(emailList, name, message,project,fundraiser)
+		 mandrillService.shareContribution(emailList, name, message,project,fundraiser,country_code)
 	 }
 
 	def getTwitterShareUrlForCampaign(Project project, def fundraiser, def base_url){
@@ -594,11 +596,11 @@ class ProjectService {
             contribution.fundRaiser = fundraiser.username
             team.addToContributions(contribution).save(failOnError: true)
         }
-		 
+		def country_code = project.country.countryCode
         contribution.isAnonymous = anonymous.toBoolean()
         
         if (project.payuStatus && project.contributions.size() == 1) {
-            mandrillService.sendEmailToCampaignOwner(project, contribution) //Send Email to Campaign Owner when first contribution is done for INR
+            mandrillService.sendEmailToCampaignOwner(project, contribution,country_code) //Send Email to Campaign Owner when first contribution is done for INR
         }
 		 
         userService.contributionEmailToOwnerOrTeam(fundraiser, project, contribution)
@@ -618,7 +620,7 @@ class ProjectService {
                 def user = User.list()
                 user.each{
                    if(it.email == beneficiary.email){
-                       mandrillService.sendBeneficiaryEmail(it)
+                       mandrillService.sendBeneficiaryEmail(it,getCountryCodeForCurrentEnv(request))
                    }
                 }
                 project.send_mail = true
@@ -1386,8 +1388,9 @@ class ProjectService {
     def getAdminForProjects(String adminEmail, Project project, User user) {
                 
         def fullName = user.firstName + ' ' + user.lastName
+		def country_code = project.country.countryCode
         if (adminEmail) {
-            mandrillService.inviteAdmin(adminEmail, fullName, project)
+            mandrillService.inviteAdmin(adminEmail, fullName, project,country_code)
             ProjectAdmin projectAdmin = new ProjectAdmin()
             projectAdmin.email = adminEmail
             project.addToProjectAdmins(projectAdmin)
@@ -1407,19 +1410,22 @@ class ProjectService {
         isAdminCreated (email1, project, firstAdmin, user)
         isAdminCreated (email2, project, secondAdmin, user)
         isAdminCreated (email3, project, thirdAdmin, user)
+		
+		def country_code = project.country.countryCode
         
         def campaignCoCreatorEmail = campaignCoCreator.getEmail()
-        mandrillService.sendUpdateEmailToAdmin(campaignCoCreatorEmail, fullName, project)
+        mandrillService.sendUpdateEmailToAdmin(campaignCoCreatorEmail, fullName, project,country_code)
         
         def projectOwner = project.user
         def projectOwnerEmail = projectOwner.getEmail()
-        mandrillService.sendUpdateEmailToAdmin(projectOwnerEmail, fullName, project)
+        mandrillService.sendUpdateEmailToAdmin(projectOwnerEmail, fullName, project,country_code)
     }
     
     private def isAdminCreated(def email, def project, def projectAdmin, User user ) {
         
         def fullName = user.firstName + ' ' + user.lastName
         def projectadmins = project.projectAdmins
+		def country_code = project.country.countryCode
         
         def adminAlreadyCreated = false
         projectadmins.each{
@@ -1430,14 +1436,14 @@ class ProjectService {
         if (!adminAlreadyCreated && email) {
             if (projectAdmin != null) {
                 projectAdmin.email = email
-                mandrillService.inviteAdmin(email, fullName, project)
+                mandrillService.inviteAdmin(email, fullName, project,country_code)
             } else {
                 getAdminForProjects(email, project, user)
             }
         } else {
             if(projectAdmin != null) {
                 def adminEmail= projectAdmin.getEmail()
-                mandrillService.sendUpdateEmailToAdmin(adminEmail, fullName, project)
+                mandrillService.sendUpdateEmailToAdmin(adminEmail, fullName, project,country_code)
             }
         }
     }
@@ -2725,6 +2731,7 @@ class ProjectService {
 	    def imageUrls = project.imageUrl
         def isTeamExist = false
         def isCampaignBeneficiaryOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
+		def country_code = project.country.countryCode
         String message
         teams.each {
             if(user.id == it.user.id) {
@@ -2753,7 +2760,7 @@ class ProjectService {
             if (isCampaignBeneficiaryOrAdmin) {
                 message= "You have successfully joined the team."
             } else {
-                mandrillService.sendTeamInvitation(project, user)
+                mandrillService.sendTeamInvitation(project, user,country_code)
                 message= "You're simply awesome! Now lets wait for the Campaign Owner to validate your Team Request."
             }
         } else {
@@ -3176,10 +3183,11 @@ class ProjectService {
         String emails = params.emails
         String name = params.name
         String message = params.message
+		String country_code = project.country.countryCode;
         if(emails) {
             def emailList = emails.split(',')
             emailList = emailList.collect { it.trim() }
-            mandrillService.shareProject(emailList, name, message, project, fundRaiser)
+            mandrillService.shareProject(emailList, name, message, project, fundRaiser,country_code)
         }
         project.gmailShareCount = project.gmailShareCount + 1
     }
@@ -3189,10 +3197,11 @@ class ProjectService {
         String emails = params.emails
         String name = params.name
         String message = params.message
+		String country_code = project.country.countryCode;
         if(emails) {
             def emaillist = emails.split(',')
             emaillist = emaillist.collect {it.trim()}
-            mandrillService.shareProjectupdate(emaillist, name, message, project, fundRaiser, projectUpdate)
+            mandrillService.shareProjectupdate(emaillist, name, message, project, fundRaiser, projectUpdate,country_code)
         }
         project.gmailShareCount = project.gmailShareCount + 1
     }
@@ -4422,9 +4431,10 @@ class ProjectService {
     def getFirstAdminForProjects(String adminEmail, Project project, User user) {
         def fullName = user.firstName + ' ' + user.lastName
         List projectAdmins = project.projectAdmins
+		def country_code = project.country.countryCode
         ProjectAdmin projectAdmin = ProjectAdmin.findByProjectAndAdminCount(project, 1)
         if (adminEmail) {
-            mandrillService.inviteAdmin(adminEmail, fullName, project)
+            mandrillService.inviteAdmin(adminEmail, fullName, project,country_code)
             if (projectAdmin){
                 projectAdmin.email = adminEmail
                 projectAdmin.save()
@@ -4442,10 +4452,11 @@ class ProjectService {
 
     def getSecondAdminForProjects(String adminEmail, Project project, User user) {
         def fullName = user.firstName + ' ' + user.lastName
+		def country_code = project.country.countryCode
         List projectAdmins = project.projectAdmins
 		ProjectAdmin projectAdmin = ProjectAdmin.findByProjectAndAdminCount(project, 2)
         if (adminEmail) {
-            mandrillService.inviteAdmin(adminEmail, fullName, project)
+            mandrillService.inviteAdmin(adminEmail, fullName, project,country_code)
             if (projectAdmin){
                 projectAdmin.email = adminEmail
                 projectAdmin.save()
@@ -4463,10 +4474,11 @@ class ProjectService {
 
     def getThirdAdminForProjects(String adminEmail, Project project, User user) {
         def fullName = user.firstName + ' ' + user.lastName
+		def country_code = project.country.countryCode
         List projectAdmins = project.projectAdmins
 		ProjectAdmin projectAdmin = ProjectAdmin.findByProjectAndAdminCount(project, 3)
         if (adminEmail) {
-            mandrillService.inviteAdmin(adminEmail, fullName, project)
+            mandrillService.inviteAdmin(adminEmail, fullName, project,country_code)
             if (projectAdmin){
                 projectAdmin.email = adminEmail
                 projectAdmin.save()
@@ -5707,10 +5719,11 @@ class ProjectService {
     
     def sendEmailOnValidation(Project project) {
         def currentEnv = getCurrentEnvironment()
-        
+		def country_code = project.country.countryCode
+		
         def campaigns = getCampaignsByCategory(project.category)
         List emails = getBulkEmailsforCampaigns(campaigns)
-        mandrillService.sendEmailOnValidation(currentEnv, emails, project)
+        mandrillService.sendEmailOnValidation(currentEnv, emails, project,country_code)
     }
     
     def getCampaignsByCategory(def category) {
@@ -5999,11 +6012,11 @@ class ProjectService {
             contribution.fundRaiser = fundraiser.username
             team.addToContributions(contribution).save(failOnError: true)
         }
-        
+		def country_code = project.country.countryCode
         contribution.isAnonymous = anonymous.toBoolean()
         
         if (project.payuStatus && project.contributions.size() == 1) {
-            mandrillService.sendEmailToCampaignOwner(project, contribution) //Send Email to Campaign Owner when first contribution is done for INR
+            mandrillService.sendEmailToCampaignOwner(project, contribution,country_code) //Send Email to Campaign Owner when first contribution is done for INR
         }
          
         userService.contributionEmailToOwnerOrTeam(fundraiser, project, contribution)
@@ -6028,7 +6041,7 @@ class ProjectService {
                 def user = User.findByEmail(beneficiary.email)
                 
                 if (user) {
-                    mandrillService.sendBeneficiaryEmail(user)
+                    mandrillService.sendBeneficiaryEmail(user,getCountryCodeForCurrentEnv(request))
                 }
                 
                 project.send_mail = true

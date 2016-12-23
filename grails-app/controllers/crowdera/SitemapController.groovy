@@ -293,7 +293,7 @@ class SitemapController {
 						def vanityTitle = projectService.getVanityTitleFromId(project.id)
 
 						url {
-							loc(g.createLink(absolute: true, controller: 'project', action: 'manageproject', params:[projectTitle:vanityTitle]))
+							loc(g.createLink(absolute: true, controller: 'project', action: 'manageproject', params:[projectTitle:vanityTitle,country_code:project.country.countryCode]))
 							changefreq('always')
 							priority(0.8)
 						}
@@ -311,7 +311,7 @@ class SitemapController {
 						}
 						
 						url {
-							loc(g.createLink(absolute: true, controller:'project', action:'edit', params:[projectTitle:vanityTitle]))
+							loc(g.createLink(absolute: true, controller:'project', action:'edit', params:[projectTitle:vanityTitle,country_code:project.country.countryCode]))
 							changefreq('always')
 							priority(0.8)
 						}
@@ -335,13 +335,13 @@ class SitemapController {
 						}
 						
 						url {
-							loc(g.createLink(absolute: true, controller:'project', action:'showCampaign', params:[projectTitle:vanityTitle]))
+							loc(g.createLink(absolute: true, controller:'project', action:'showCampaign', params:[projectTitle:vanityTitle,country_code:project.country.countryCode]))
 							changefreq('always')
 							priority(0.8)
 						}
 						
 						url {
-							loc(g.createLink(absolute: true, controller:'project', action:'show', params:[projectTitle:vanityTitle]))
+							loc(g.createLink(absolute: true, controller:'project', action:'show', params:[projectTitle:vanityTitle,country_code:project.country.countryCode]))
 							changefreq('always')
 							priority(0.8)
 						}

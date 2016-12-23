@@ -1,8 +1,9 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
+	String baseUrl = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+	def base_url = baseUrl.substring(0, (baseUrl.length() - 1))
+	SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
     def currentDate = dateFormat.format(new Date());
 %>
 <html>

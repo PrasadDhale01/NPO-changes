@@ -460,24 +460,24 @@
 							<g:if test="${project.draft || !project.validated}">
 						      <div class="fullwidth pull-right manage-edit-mobilebtns">
 						         <g:if test="${username.equals('campaignadmin@crowdera.co')}">
-						               <g:link mapping="editCampaign" params="[country_code: country_code,fr:username,id: project.id]" class="manage-edit-draft-left col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						               <g:link mapping="editCampaign" params="[country_code: project.country.countryCode,fr:username,id: project.id]" class="manage-edit-draft-left col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						                 <span class="btn btn-default manage-btn-width manage-btn-back-color" aria-label="Edit project"><i class="fa fa-pencil-square-o edit-space"></i>EDIT
 						                 </span>
 						          		</g:link>   
-						             <g:form controller="project" action="projectdelete" method="post" id="${project.id}" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 manage-btn-padding">
+						             <g:form controller="project" action="projectdelete" method="post" id="${project.id}" params="[country_code: project.country.countryCode,id: project.id]" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 manage-btn-padding">
 						                 <button class="btn btn-danger manage-deletebtn-width" aria-label="Edit project" id="projectdelete" onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);">
 						                 <i class="fa fa-trash edit-space"></i>DELETE</button>
 						             </g:form>
 						         </g:if>
 						         <g:else>
 						             <g:if test="${!project.validated && percentage <= 999}">
-						                   <g:link mapping="editCampaign" params="[country_code: country_code,fr:username,id: project.id]" class="manage-edit-draft-left col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						                   <g:link mapping="editCampaign" params="[country_code: project.country.countryCode,fr:username,id: project.id]" class="manage-edit-draft-left col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						                     <span class="btn btn-default manage-btn-width manage-btn-back-color"  aria-label="Edit project"><i class="fa fa-pencil-square-o edit-space"></i>EDIT
 						                     </span>
 						                	</g:link>
 						             </g:if>
 						             <g:if test="${!project.validated}">
-						                 <g:form controller="project" action="projectdelete" method="post" id="${project.id}" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 manage-btn-padding">
+						                 <g:form controller="project" action="projectdelete" method="post" id="${project.id}" params="[country_code: project.country.countryCode,id: project.id]" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 manage-btn-padding">
 						                     <button class="btn btn-danger manage-deletebtn-width" aria-label="Edit project" id="projectdelete" onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);">
 						                     <i class="fa fa-trash edit-space"></i>DELETE</button>
 						                 </g:form>
@@ -486,10 +486,10 @@
 						    </div>
 						</g:if>
 						 <g:if test="${project.validated && percentage <= 999 && (loggedInUser.equals(project.user)|| username.equals('campaignadmin@crowdera.co'))|| isTeamAdmin}">
-							         <a href="javascript:void(0)" onclick="submitCampaignShowForm('edit','${project.id}','${username}','${country_code}');" class="manage-edit-left">
+							         <g:link mapping="editCampaign" params="[country_code: project.country.countryCode,fr:username,id: project.id]" class="manage-edit-left">
 							                 <span class="btn btn-default manage-btn-width-aft-validated manage-btn-back-color"  aria-label="Edit project" ><i class="fa fa-pencil-square-o edit-space"></i>EDIT CAMPAIGN
 							                 </span>
-							         </a>
+						              </g:link>
 						</g:if>
 						</div>
 						<%--               user profile code  --%>
@@ -554,7 +554,7 @@
                            <g:elseif test="${!loggedInUser.equals(project.user) && !isTeamExist && project.validated}" >
                             	<div class="redirectCampaign">
 									<g:if test="${!ended}">
-										<g:form controller="project" action="addTeam" params="[id:project.id,country_code:country_code]">
+										<g:form controller="project" action="addTeam" params="[id:project.id,country_code:project.country.countryCode]">
 											<button type="submit" value="Join Our Team" class="btn btn-show-bannerslogantext btn-lg btn-block join-us sh-mission-script-height">Join Our Team <br> <span class="show-sub-titleJointeam">fundraise for us</span></button>
 										</g:form>
 									</g:if>

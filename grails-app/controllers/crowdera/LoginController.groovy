@@ -281,7 +281,8 @@ class LoginController {
 
     def send_reset_email() {
         User user = userService.getUserByName(params.username)
-
+		country_code =  projectService.getCountryCodeForCurrentEnv(request)
+		
         if (!user) {
             // TBD: We might not want to give any hint on existing users
             render(view: 'error', model: [message: 'A user with that email does not exist. Please use a registered email.'])
@@ -291,7 +292,7 @@ class LoginController {
             user.resetCode = UUID.randomUUID().toString()
             user.save()
            
-            mandrillService.sendResetPassword(user)
+            mandrillService.sendResetPassword(user,country_code)
 
             render(view: 'success',
                     model: [message: 'An email was sent to '+ params.username +' describing how to reset your password.']);

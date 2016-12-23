@@ -5597,7 +5597,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
     input.editsweb-margin-mobile {
         height: 45px;
-        padding-left: 182px;
+        padding-left: 215px;
         width: 100% !important;
     }
 
@@ -10497,6 +10497,17 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .youtubeVideoIframe {
         width: 255%;
     }
+    
+    ul.thumbnails li {
+        margin-right: 75px;
+    }
+    div.manage-contributiontile{
+        margin-right: 0px;
+    }
+    div.manage-contribution-bgcolor{
+        width: 505px;
+    }
+    
 }
 
 @media only screen and (max-width: 1024px) {
@@ -19586,5 +19597,11 @@ img.mob-discoverBanner{
 div.bottomPadding-discover{
 	padding-bottom: 6px;
 }
+.thumbnails li {
+    margin-right: 50px;
+}
 
+ .manage-contributiontile {
+    margin-right: 50px;
+ }
 

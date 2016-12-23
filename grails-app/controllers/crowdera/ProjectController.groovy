@@ -1628,8 +1628,9 @@ class ProjectController {
 		} else {
 			project = projectService.filterByCategory(category, currentEnv)
 		}
+		def country_code = project.country.countryCode
 		flash.catmessage = (project) ? "" : "No campaign found."
-		render (view: 'list/index', model: [projects: project, selectedCategory:category.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
+		render (view: 'list/index', model: [projects: project, selectedCategory:category.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions,country_code:country_code])
 	}
 
 	def addTeam() {

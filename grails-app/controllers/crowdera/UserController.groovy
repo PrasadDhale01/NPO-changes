@@ -250,7 +250,8 @@ class UserController {
     @Secured(['ROLE_ADMIN'])
     def response() {
         def imageFile = request.getFile('file')
-        userService.sendResponseToCustomer(params, imageFile)
+		country_code = projectService.getCountryCodeForCurrentEnv(request)
+        userService.sendResponseToCustomer(params, imageFile,country_code)
         flash.servicemessage = "Successfully Responded"
         redirect action:'userquestionsList'
     }
@@ -274,7 +275,8 @@ class UserController {
         def docfile = request.getFile('resume')
         def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-        userService.sendResponseToCrews(params,docfile, base_url)
+		country_code = projectService.getCountryCodeForCurrentEnv(request)
+		userService.sendResponseToCrews(params,docfile, base_url,country_code)
         def crew = userService.getCrewRegById(params.long('id'))
         crew.adminReply = params.adminReply
         crew.adminDate = new Date()

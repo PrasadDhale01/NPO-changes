@@ -128,12 +128,12 @@
                     </g:else>
                 </div>
                 <g:if test="${iscampaignAdmin}">
-                    <g:link mapping="managecampaign" params="[country_code: country_code,title:campaign.title,id: campaign.id]">
+                    <g:link mapping="managecampaign" params="[country_code: campaign.country.countryCode,title:campaign.title,id: campaign.id]">
                         <img alt="${campaign.title}" class="campaign-img" src="${projectService.getProjectImageLink(campaign)}">
                     </g:link>
                 </g:if>
                 <g:else>
-                	 <g:link mapping="showCampaign" params="[country_code: country_code,title:campaign.title,id: campaign.id,fr:username]">
+                	 <g:link mapping="showCampaign" params="[country_code: campaign.country.countryCode,title:campaign.title,id: campaign.id,fr:username,category:campaign.fundsRecievedBy.toLowerCase()]">
                         <img alt="${campaign.title}" class="campaign-img" src="${projectService.getProjectImageLink(campaign)}">
                     </g:link>
                 </g:else>
@@ -141,14 +141,12 @@
             <div class="campaign-tile-content">
                 <div class="campaign-title-padding">
                     <g:if test="${iscampaignAdmin}">
-                         <g:link mapping="managecampaign" params="[country_code: country_code,title:campaign.title,id: campaign.id]">
-<%--                        <g:link controller="project" action="manageCampaign" id="${campaign.id}" title="${campaign.title}" country_code="${country_code}">--%>
+                         <g:link mapping="managecampaign" params="[country_code: campaign.country.countryCode,title:campaign.title,id: campaign.id]">
                             ${campaign.title.toUpperCase()}
                         </g:link>
                     </g:if>
                     <g:else>
-                        <g:link mapping="showCampaign" params="[country_code: country_code,title:campaign.title,id: campaign.id,fr:username]">
-<%--                        <g:link controller="project" action="showCampaign" id="${campaign.id}" params="['fr': username]" title="${campaign.title}" country_code="${country_code}">--%>
+                        <g:link mapping="showCampaign" params="[country_code: campaign.country.countryCode,title:campaign.title,id: campaign.id,fr:username,category:campaign.fundsRecievedBy.toLowerCase()]">
                             ${campaign.title.toUpperCase()}
                         </g:link>
                     </g:else>

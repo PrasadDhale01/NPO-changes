@@ -90,13 +90,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                     </g:if>
                     <g:else>
                         <div class="tile-goal-show">
-                            <g:if test="${country_code == 'in'}">
-                                 <!-- <span class="fa fa-inr"></span>-->
-                       					 ${currencyValue}<span class="rewardpricespan"><g:if test="${project.payuStatus}">${price}</g:if><g:else>${price * conversionMultiplier}</g:else></span>
-                            </g:if>
-                            <g:else>
                                 ${currencyValue}<span class="rewardpricespan">${price}</span>
-                            </g:else>
                         </div>
                         <div class="rewardtitlespan">${reward.title}</div>
                     </g:else>

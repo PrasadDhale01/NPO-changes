@@ -140,7 +140,7 @@ class ProjectController {
 		def name = userService.getVanityNameFromUsername(params.fr, params.id)
 		def projectId = params?.id
 		Project project = projectService.getProjectById(projectId)
-		
+		def country_code = project.country.countryCode
 		if(title && name){
 			if(params.isPreview){
 				if(params.tile){
@@ -529,9 +529,10 @@ class ProjectController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def validate() {
 		Project project = projectService.getProjectById(params.id)
+		def country_code = project.country.countryCode
 		if (project) {
 			if(project.validated == true){
-				redirect (action:'showCampaign', id:project.id)
+				redirect (action:'showCampaign', id:project.id,params:['country_code':country_code])
 			} else {
 				render (view: 'validate/validateerror', model: [projects: project])
 			}
@@ -1406,15 +1407,15 @@ class ProjectController {
 		Project project = projectService.getProjectById(params.id)
 		def currentUser= userService.getCurrentUser()
         def currentEnv = projectService.getCurrentEnvironment()
+		country_code = project.country.countryCode
         def vanityTitle = projectService.getProjectUpdateDetails(params, project,country_code)
-        
 		if (project) {
             def isAdminOrBeneficiary = userService.isCampaignBeneficiaryOrAdmin(project, currentUser)
             if (isAdminOrBeneficiary) {
                 
                 project.inactive = true
                 List emailList= projectService.getProjectAdminEmailList(project)
-                mandrillService.sendCampaignDeleteEmailsToOwner(emailList, project, currentUser)
+                mandrillService.sendCampaignDeleteEmailsToOwner(emailList, project, currentUser,country_code)
                 flash.prj_validate_message= "Campaign Discarded Successfully!"
                 
                 if (userService.isPartner()) {
@@ -1627,8 +1628,9 @@ class ProjectController {
 		} else {
 			project = projectService.filterByCategory(category, currentEnv)
 		}
+		def country_code = project.country.countryCode
 		flash.catmessage = (project) ? "" : "No campaign found."
-		render (view: 'list/index', model: [projects: project, selectedCategory:category.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
+		render (view: 'list/index', model: [projects: project, selectedCategory:category.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions,country_code:country_code])
 	}
 
 	def addTeam() {
@@ -1732,9 +1734,10 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def sendEmailToTeam(def emails, def name, def message, Project project){
+		def country_code = project.country.countryCode
 		def emailList = emails.split(',')
 		emailList = emailList.collect { it.trim() }
-		mandrillService.sendInvitationForTeam(emailList, name, message, project)
+		mandrillService.sendInvitationForTeam(emailList, name, message, project,country_code)
 		flash.prj_mngprj_message= "Email sent successfully."
 	}
 
@@ -1813,9 +1816,9 @@ class ProjectController {
 	def commentdelete() {
 		projectService.getCommentDeletedDetails(params)
 		if (params.manageCampaign) {
-			redirect(controller: 'project', action: 'manageCampaign',fragment: 'comments', id: params.projectId)
+			redirect(controller: 'project', action: 'manageCampaign',fragment: 'comments', id: params.projectId,params:[country_code:params.country_code])
 		} else {
-			redirect (controller: 'project', action: 'showCampaign',fragment: 'comments', id: params.projectId, params:[fr: params.fr])
+			redirect (controller: 'project', action: 'showCampaign',fragment: 'comments', id: params.projectId, params:[fr: params.fr,country_code:params.country_code])
 		}
 	}
 
@@ -1842,10 +1845,11 @@ class ProjectController {
 		def project = projectService.getProjectById(params.id);
 		def team = projectService.getTeamById(params.long('teamId'))
 		def title = projectService.getVanityTitleFromId(params.id)
+		country_code = project.country.countryCode
 		team.validated = true
-		mandrillService.sendTeamValidatedConfirmation(project,team.user)
+		mandrillService.sendTeamValidatedConfirmation(project,team.user,country_code)
 		flash.teamvalidationmessage = "Team validated Successfully."
-		redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', params:['projectTitle':title])
+		redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', params:['projectTitle':title,'country_code':country_code])
 	}
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])

@@ -168,7 +168,7 @@
             <g:hiddenField name="campaignOwner" value="${project.user}" id="campaignOwner"/>
             <g:hiddenField name="loggedInUser" value="${loggedInUser}" id="loggedInUser"/>
             <div class="redirectUrl">
-                <g:link controller="project" action="show" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="redirectLinkShow"></g:link>
+                <g:link controller="project" action="show" params="['fr': vanityUsername, 'projectTitle':vanityTitle,'country_code':project.country.countryCode,category:project.fundsRecievedBy.toLowerCase()]" id="redirectLinkShow"></g:link>
             </div>
             <div class="row">
                 <g:if test="${flash.prj_mngprj_message}">
@@ -711,7 +711,7 @@
                                         <div class="col-sm-7">
                                             <p>Video preview</p>
                                                 <textarea class="textarea-embed-video form-control" onclick="this.select()">${embedVideoCode}</textarea><br><br>
-                                                  <g:link target="_blank" controller="project" action="show" params="['fr': vanityUsername, 'projectTitle':vanityTitle]">
+                                                  <g:link target="_blank" controller="project" action="show" params="['fr': vanityUsername, 'projectTitle':vanityTitle,'country_code':project.country.countryCode,category:project.fundsRecievedBy.toLowerCase()]">
                                                     <img class="embed-logo" id="embedHover"  alt="Crowdera" src="https://s3.amazonaws.com/crowdera/project-images/7054ed14-deb4-4be9-a273-43b49c9a3d18.png"/>
                                                   </g:link>
                                                 <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>
@@ -910,7 +910,7 @@
                           <g:if test="${isDeviceMobileOrTab==false}">
                          <g:if test="${loggedInUser.equals("") || loggedInUser==null}">
                          	  <div class="joinusRedirect">
-								<g:form controller="project" action="addTeam" params="[id:project.id,country_code:country_code]">
+								<g:form controller="project" action="addTeam" params="[id:project.id,country_code:project.country.countryCode]">
 									
 									<button type="submit" value="Join Our Team" class="btn btn-show-bannerslogantext btn-lg btn-block join-us sh-mission-script-height">JOIN OUR TEAM <br> <span class="show-sub-titleJointeam">fundraise for us</span></button>
     							</g:form> 
@@ -926,7 +926,7 @@
                             <g:elseif test="${!loggedInUser.equals(project.user) && !isTeamExist && project.validated}" >
                             	  <div class="redirectCampaign">
 									<g:if test="${!ended}">
-										<g:form controller="project" action="addTeam" params="[id:project.id,country_code:country_code]">
+										<g:form controller="project" action="addTeam" params="[id:project.id,country_code:project.country.countryCode]">	
 											<button type="submit" value="Join Our Team" class="btn btn-show-bannerslogantext btn-lg btn-block join-us sh-mission-script-height">JOIN OUR TEAM <br> <span class="show-sub-titleJointeam">fundraise for us</span></button>
 										</g:form>
 									</g:if>

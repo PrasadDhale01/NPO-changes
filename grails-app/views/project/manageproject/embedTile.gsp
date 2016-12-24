@@ -35,7 +35,7 @@
 <div class="fedu thumbnail c-thumbnail">
  <g:hiddenField name="projectId" class="projectId" id="projectId" value="${project.id}" />
  <div class="blacknwhite tile">
-  <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]" target="tab">
+  <g:link controller="project" action="showCampaign" params="[country_code: project.country.countryCode,title:project.title,id: project.id,fr:username,category:project.fundsRecievedBy.toLowerCase()]" target="tab">
    <div class="imageWithTag">
     <div class="under">
      <div class="days-left-caption">
@@ -76,7 +76,7 @@
   </div>
  </div>
  <div class="caption tile-title-descrp project-title project-story-span tile-min-height">
-  <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" target="tab">
+  <g:link controller="project" action="showCampaign" params="[country_code: project.country.countryCode,title:project.title,id: project.id,fr:username,category:project.fundsRecievedBy.toLowerCase()]" target="tab">
       ${project.title.toUpperCase()}
   </g:link>
   <div class="campaign-title-margin-bottom"></div>

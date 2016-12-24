@@ -5597,7 +5597,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
     input.editsweb-margin-mobile {
         height: 45px;
-        padding-left: 182px;
+        padding-left: 215px;
         width: 100% !important;
     }
 
@@ -10497,6 +10497,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .youtubeVideoIframe {
         width: 255%;
     }
+    
+    div.manage-contributiontile{
+        margin-right: 0px;
+    }
+    div.manage-contribution-bgcolor{
+        width: 505px;
+    }
+    
 }
 
 @media only screen and (max-width: 1024px) {
@@ -11069,6 +11077,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 0px;
         padding-right: 0px;
     }
+    
     .reasonsToFund .badge1 {
         font-size: 32px;
     }
@@ -19587,4 +19596,7 @@ div.bottomPadding-discover{
 	padding-bottom: 6px;
 }
 
+ .manage-contributiontile {
+    margin-right: 50px;
+ }
 

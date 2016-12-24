@@ -134,7 +134,7 @@
             </g:link>
         </g:if>
         <g:else>
-            <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]" title="${project.title}">
+             <g:link controller="project" action="showCampaign" params="[country_code: project.country.countryCode,title:project.title,id: project.id,fr:username,category:project.fundsRecievedBy.toLowerCase()]">
                 <div class="imageWithTag">
                     <div class="under">
                         <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
@@ -146,12 +146,12 @@
 
     <div class="caption project-title project-story-span tile-min-height">
         <g:if test="${iscampaignAdmin || isAdmin}">
-            <g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">
+            <g:link controller="project" action="manageCampaign" id="${project.id}" country_code="${project.country.countryCode}" title="${project.title}">
                 ${project.title.toUpperCase()}
             </g:link>
         </g:if>
         <g:else>
-            <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]" title="${project.title}">
+            <g:link controller="project" action="showCampaign" params="[country_code: project.country.countryCode,title:project.title,id: project.id,fr:username,category:project.fundsRecievedBy.toLowerCase()]">
                 ${project.title.toUpperCase()}
             </g:link>
         </g:else>
@@ -213,7 +213,7 @@
     <div class="modal-footer tile-footer user-goal user-footer-icon">
         <div class="row">
             <g:if test="${!project.validated || username.equals('campaignadmin@crowdera.co') || isAdmin}">
-                <g:form controller="project" action="projectdelete" method="post" id="${project.id}">
+                <g:form controller="project" action="projectdelete" method="post" params="[country_code: project.country.countryCode,id: project.id]" id="${project.id}">
                     <button class="projectedit close pull-right" id="projectdelete"
                      onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);">
                         <i class="glyphicon glyphicon-trash"></i>
@@ -221,10 +221,10 @@
                 </g:form>
             </g:if>
             <g:if test="${isTeamAdmin || (user==project?.user)}">
-                <g:link controller="project" action="editCampaign" method="post" id="${project.id}">
+                <g:link controller="project" action="editCampaign" method="post" params="[country_code: project.country.countryCode,id: project.id]" id="${project.id}">
                     <button class="projectedit close pull-right" id="editproject"><i class="glyphicon glyphicon-edit"></i></button>
                 </g:link>
-                <g:form controller="project" action="showCampaign" method="post" id="${project.id}" params='[isPreview:true, tile:true, fr:username]'>
+                <g:form controller="project" action="showCampaign" method="post" id="${project.id}" params='[isPreview:true, tile:true, fr:username,country_code: project.country.countryCode,category:project.fundsRecievedBy.toLowerCase()]'>
                     <button class="projectedit close pull-right" id="projectpreview"><i class="glyphicon glyphicon-picture"></i></button>
                 </g:form>
             </g:if>
@@ -232,10 +232,10 @@
 <%--                <button class="projectedit close pull-right" id="editproject" name="editproject" data-toggle="popover"><i class="glyphicon glyphicon-edit"></i></button>--%>
 <%--                <button class="projectedit close pull-right" id="projectpreview" name="projectpreview" data-toggle="popover"><i class="glyphicon glyphicon-picture"></i></button>--%>
 
-                <g:link controller="project" action="editCampaign" method="post" id="${project.id}">
+                <g:link controller="project" action="editCampaign" method="post" params="[country_code: project.country.countryCode,id: project.id]" id="${project.id}">
                     <button class="projectedit close pull-right" id="editproject"><i class="glyphicon glyphicon-edit"></i></button>
                 </g:link>
-                <g:form controller="project" action="showCampaign" method="post" id="${project.id}" params='[isPreview:true, tile:true, fr:username]'>
+                <g:form controller="project" action="showCampaign" method="post" id="${project.id}" params='[isPreview:true, tile:true, fr:username,country_code: project.country.countryCode,category:project.fundsRecievedBy.toLowerCase()]'>
                     <button class="projectedit close pull-right" id="projectpreview"><i class="glyphicon glyphicon-picture"></i></button>
                 </g:form>
             </g:else>

@@ -180,7 +180,7 @@
 				value="${false}" />	
 				<div class="redirectUrl">
 					<g:link controller="project" action="show"
-						params="['fr': vanityUsername, 'projectTitle':vanityTitle]"
+						params="['fr': vanityUsername, 'projectTitle':vanityTitle,'country_code':project.country.countryCode]"
 						id="redirectLinkShow"></g:link>
 				</div>
 				<div class="row">

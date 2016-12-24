@@ -123,7 +123,7 @@
     </g:else>
     <div class="blacknwhite tile">
         <g:if test="${iscampaignAdmin}">
-            <g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">
+            <g:link controller="project" action="manageCampaign" id="${project.id}" country_code="${project.country.countryCode}" title="${project.title}">
                 <div class="imageWithTag">
                     <div class="under">
                         <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}">
@@ -132,7 +132,7 @@
             </g:link>
         </g:if>
         <g:else>
-            <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]" title="${project.title}">
+            <g:link controller="project" action="showCampaign" params="[country_code: project.country.countryCode,title:project.title,id: project.id,fr:username,category:project.fundsRecievedBy.toLowerCase()]">
                 <div class="imageWithTag">
                     <div class="under">
                         <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}">
@@ -144,12 +144,12 @@
 
     <div class="caption project-title project-story-span tile-min-height">
         <g:if test="${iscampaignAdmin}">
-            <g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">
+            <g:link controller="project" action="manageCampaign" id="${project.id}" country_code="${project.country.countryCode}" title="${project.title}">
                 ${project.title.toUpperCase()}
             </g:link>
         </g:if>
         <g:else>
-            <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]" title="${project.title}">
+            <g:link controller="project" action="showCampaign" params="[country_code: project.country.countryCode,title:project.title,id: project.id,fr:username,category:project.fundsRecievedBy.toLowerCase()]">
                 ${project.title.toUpperCase()}
             </g:link>
         </g:else>

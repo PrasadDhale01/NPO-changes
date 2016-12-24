@@ -48,27 +48,29 @@
 						</g:else>
 					</div>
 					<img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}" />
-					<div class="amount-caption">
-						<span class="pull-left">
-						    Raised 
-						    <g:if test="${project.payuStatus}">
-						        <span class="fa fa-inr"></span>
-						    </g:if>
-						    <g:else>$</g:else>
-					        ${contribution}
-						</span>
-						<span class="pull-right">
-						    Goal
-						    <g:if test="${project.payuStatus}">
-						        <span class="fa fa-inr"></span>
-						    </g:if>
-						    <g:else>$</g:else>
-						    ${amount}
-						</span>
-					</div>
+					
 				</div>
 			</div>
 		</a>
+		
+		<div class="amount-caption">
+            <span class="pull-left">
+                Raised 
+                <g:if test="${project.payuStatus}">
+                    <span class="fa fa-inr"></span>
+                </g:if>
+                <g:else>$</g:else>
+                ${contribution}
+            </span>
+            <span class="pull-right">
+                Goal
+                <g:if test="${project.payuStatus}">
+                    <span class="fa fa-inr"></span>
+                </g:if>
+                <g:else>$</g:else>
+                ${amount}
+            </span>
+        </div>
 	</div>
 	<div class="progress progress-striped active">
 		<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage}%;">

@@ -48,7 +48,10 @@
 						</g:else>
 					</div>
 					<img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}" />
-					<div class="amount-caption">
+				</div>
+			</div>
+		</a>
+		<div class="amount-caption">
 						<span class="pull-left">
 						    Raised 
 						    <g:if test="${project.payuStatus}">
@@ -65,10 +68,7 @@
 						    <g:else>$</g:else>
 						    ${amount}
 						</span>
-					</div>
-				</div>
-			</div>
-		</a>
+		</div>
 	</div>
 	<div class="progress progress-striped active">
 		<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage}%;">

@@ -291,7 +291,7 @@
                         <div class="col-sm-7">
                             <p>Video preview</p>
                             <textarea class="textarea-embed-video form-control" onclick="this.select()">${embedVideoCode}</textarea><br><br>
-                                <g:link  target="_blank" controller="project" action="show" params="['fr': vanityUsername, 'projectTitle':vanityTitle]">
+                                <g:link  target="_blank" controller="project" action="show" params="['fr': vanityUsername, 'projectTitle':vanityTitle,'country_code':project.country.countryCode,category:project.fundsRecievedBy.toLowerCase()]">
                                       <img class="embed-logo" id="embedHover"  alt="Crowdera" src="https://s3.amazonaws.com/crowdera/project-images/7054ed14-deb4-4be9-a273-43b49c9a3d18.png"/>
                                  </g:link>
                                  <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>

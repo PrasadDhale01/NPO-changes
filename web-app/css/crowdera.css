@@ -10498,9 +10498,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 255%;
     }
     
-    ul.thumbnails li {
-        margin-right: 75px;
-    }
     div.manage-contributiontile{
         margin-right: 0px;
     }
@@ -11080,6 +11077,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 0px;
         padding-right: 0px;
     }
+    
     .reasonsToFund .badge1 {
         font-size: 32px;
     }
@@ -19596,9 +19594,6 @@ img.mob-discoverBanner{
 }
 div.bottomPadding-discover{
 	padding-bottom: 6px;
-}
-.thumbnails li {
-    margin-right: 50px;
 }
 
  .manage-contributiontile {

@@ -162,7 +162,7 @@
         <g:if test="${project}">
         	<g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>
             <div class="redirectUrl">
-                <g:link controller="project" action="show" params="['fr': vanityUsername, 'projectTitle':vanityTitle,'country_code':project.country.countryCode,category:project.fundsRecievedBy.toLowerCase()]"></g:link>
+                <g:link controller="project" action="show" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"></g:link>
             </div>
             
             <div class="row">

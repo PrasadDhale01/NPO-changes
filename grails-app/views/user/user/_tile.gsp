@@ -134,7 +134,7 @@
             </g:link>
         </g:if>
         <g:else>
-            <g:link controller="project" action="showCampaign" params="[country_code: project.country.countryCode,title:project.title,id: project.id,fr:username,category:project.fundsRecievedBy.toLowerCase()]">
+            <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]" title="${project.title}">
                 <div class="imageWithTag">
                     <div class="under">
                         <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
@@ -146,12 +146,12 @@
 
     <div class="caption project-title project-story-span tile-min-height">
         <g:if test="${iscampaignAdmin || isAdmin}">
-            <g:link controller="project" action="manageCampaign" id="${project.id}" country_code="${project.country.countryCode}" title="${project.title}">
+            <g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">
                 ${project.title.toUpperCase()}
             </g:link>
         </g:if>
         <g:else>
-            <g:link controller="project" action="showCampaign" params="[country_code: project.country.countryCode,title:project.title,id: project.id,fr:username,category:project.fundsRecievedBy.toLowerCase()]">
+            <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]" title="${project.title}">
                 ${project.title.toUpperCase()}
             </g:link>
         </g:else>
@@ -224,8 +224,7 @@
                 <g:link controller="project" action="editCampaign" method="post" params="[country_code: project.country.countryCode,id: project.id]" id="${project.id}">
                     <button class="projectedit close pull-right" id="editproject"><i class="glyphicon glyphicon-edit"></i></button>
                 </g:link>
-                alert(${project.fundsRecievedBy})
-                <g:form controller="project" action="showCampaign" method="post" id="${project.id}" params='[isPreview:true, tile:true, fr:username,country_code: project.country.countryCode,category:project.fundsRecievedBy.toLowerCase()]'>
+                <g:form controller="project" action="showCampaign" method="post" id="${project.id}" params='[isPreview:true, tile:true, fr:username,country_code: project.country.countryCode]'>
                     <button class="projectedit close pull-right" id="projectpreview"><i class="glyphicon glyphicon-picture"></i></button>
                 </g:form>
             </g:if>
@@ -236,7 +235,7 @@
                 <g:link controller="project" action="editCampaign" method="post" params="[country_code: project.country.countryCode,id: project.id]" id="${project.id}">
                     <button class="projectedit close pull-right" id="editproject"><i class="glyphicon glyphicon-edit"></i></button>
                 </g:link>
-                <g:form controller="project" action="showCampaign" method="post" id="${project.id}" params='[isPreview:true, tile:true, fr:username,country_code: project.country.countryCode,category:project.fundsRecievedBy.toLowerCase()]'>
+                <g:form controller="project" action="showCampaign" method="post" id="${project.id}" params='[isPreview:true, tile:true, fr:username,country_code: project.country.countryCode]'>
                     <button class="projectedit close pull-right" id="projectpreview"><i class="glyphicon glyphicon-picture"></i></button>
                 </g:form>
             </g:else>

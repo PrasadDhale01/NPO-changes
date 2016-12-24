@@ -10498,9 +10498,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 255%;
     }
     
-   /*  ul.thumbnails li {
+    ul.thumbnails li {
         margin-right: 75px;
-    } */
+    }
     div.manage-contributiontile{
         margin-right: 0px;
     }
@@ -19597,11 +19597,11 @@ img.mob-discoverBanner{
 div.bottomPadding-discover{
 	padding-bottom: 6px;
 }
-/* .thumbnails li { */
-/*     margin-right: 50px; */
-/* } */
+.thumbnails li {
+    margin-right: 50px;
+}
 
-/*  .manage-contributiontile { */
-/*     margin-right: 50px; */
-/*  } */
+ .manage-contributiontile {
+    margin-right: 50px;
+ }
 

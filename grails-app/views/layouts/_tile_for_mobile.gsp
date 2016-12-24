@@ -54,7 +54,7 @@
     <br>
 
     <div class="caption tile-title-descrp project-title project-story-span tile-min-height">
-        <g:link controller="project" action="showCampaign" params="[country_code: project.country.countryCode,title:project.title,id: project.id,fr:username,category:project.fundsRecievedBy.toLowerCase()]">
+        <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}">
             ${project.title.toUpperCase()}
         </g:link>
         <div class="campaign-title-margin-bottom"></div>

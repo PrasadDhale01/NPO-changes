@@ -210,7 +210,7 @@
             </g:else>
         </g:if>
         <g:elseif test="${!ismanagepage || !isAdminOrBeneficiary}">
-            <g:link controller="project" action="showCampaign" params="[country_code: project.country.countryCode,title:project.title,id: project.id,fr:username,category:project.fundsRecievedBy.toLowerCase()]">
+            <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]">
                 <g:if test="${userImageUrl}">
                     <img alt="${userName}" class=" user-img-header" src="${userImageUrl}">
                 </g:if>

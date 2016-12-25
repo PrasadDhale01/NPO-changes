@@ -564,8 +564,8 @@ environments {
 				}
 				facebook {
 					api = org.scribe.builder.api.FacebookApi
-					key = '108155536351948'
-					secret = 'a6d72ad53faf7bf1abed140b61e53ed1'
+					key = '354215177926850'
+					secret = '24ee39e963145cee9d49fe1707e0a214'
 					successUri = '/login/facebookSuccess'
 					failureUri = '/login/facebookFailure'
 					callback = "https://gocrowdera.com/oauth/facebook/callback"

@@ -14,18 +14,18 @@
     def fundRaiserName
     if(currentFundraiser.email == project.beneficiary.email){
         if (project.beneficiary?.lastName)
-            fundRaiserName = (project.beneficiary?.firstName + " " + project.beneficiary?.lastName).toUpperCase()
+            fundRaiserName = (project.beneficiary?.firstName + " " + project.beneficiary?.lastName)?.toUpperCase()
         else 
-            fundRaiserName = (project.beneficiary?.firstName).toUpperCase()
+            fundRaiserName = (project.beneficiary?.firstName)?.toUpperCase()
     } else {
-        fundRaiserName = (currentFundraiser?.firstName + " " + currentFundraiser?.lastName).toUpperCase()
+        fundRaiserName = (currentFundraiser?.firstName + " " + currentFundraiser?.lastName)?.toUpperCase()
     }
     def username = currentFundraiser?.username
 	def loggedInUser = userService.getCurrentUser() 
     
     def projectTitle = project.title
     if (projectTitle) {
-        projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
+        projectTitle = projectTitle?.toUpperCase(Locale.ENGLISH)
     }
     def imageUrl = project.imageUrl
     if (imageUrl) {
@@ -149,9 +149,8 @@
 
 </head>
 <body>
-	<link
-		href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
-		rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+	
 	<a href="javascript:" id="returnTotop"> <i class="icon-chevron-up"></i></a>
 	<div class="feducontent new-mob-height campaign-bg-color">
 		<div class="container show-cmpgn-container">
@@ -178,11 +177,23 @@
 					id="loggedInUser" />
 				<g:hiddenField id="isStoryTabActive" name="isStoryTabActive"
 				value="${false}" />	
-				<div class="redirectUrl">
-					<g:link controller="project" action="show"
-						params="['fr': vanityUsername, 'projectTitle':vanityTitle,'country_code':project.country.countryCode]"
-						id="redirectLinkShow"></g:link>
-				</div>
+				
+				
+				<g:if test="${project.validated}">
+					<div class="col-md-12 green-heading campaignTitle text-center hidden-xs managepage-campaign-title">
+                        <g:link mapping="showCampaign" params="['country_code': project.country.countryCode?.toLowerCase(),'projectTitle':vanityTitle,'fr': vanityUsername,'category':project.fundsRecievedBy.toLowerCase()]">
+                            ${projectTitle}
+                        </g:link>
+                    </div>
+				</g:if>
+				<g:else>
+				    <div class="col-md-12 green-heading campaignTitle text-center hidden-xs managepage-campaign-title">
+                        <g:link mapping="managecampaign" params="[country_code: project.country.countryCode, title:project.title,id: project.id]">
+                            ${projectTitle}
+                        </g:link>
+                    </div>
+				</g:else>
+				
 				<div class="row">
 					<g:if test="${flash.prj_mngprj_message}">
 						<div class="alert alert-success show-msz" align="center">
@@ -456,10 +467,10 @@
 					</div>
 				<div class="col-xs-12 col-md-4 col-sm-4 show-desk-org-tile show-tops-corsal  new-show-gau-width show-tab-org">
 					<div class="show-A-fund"></div>
-						<div class="row">
-							<g:if test="${project.draft || !project.validated}">
+						<div class="row manage-edit-delete-btn">
+							<g:if test="${!project.draft || project.validated}">
 						      <div class="fullwidth pull-right manage-edit-mobilebtns">
-						         <g:if test="${username.equals('campaignadmin@crowdera.co')}">
+						         <g:if test="${username.equals('campaignadmin@crowdera.co') || isAdmin}">
 						               <g:link mapping="editCampaign" params="[country_code: project.country.countryCode,fr:username,id: project.id]" class="manage-edit-draft-left col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						                 <span class="btn btn-default manage-btn-width manage-btn-back-color" aria-label="Edit project"><i class="fa fa-pencil-square-o edit-space"></i>EDIT
 						                 </span>
@@ -485,12 +496,14 @@
 						         </g:else>
 						    </div>
 						</g:if>
-						 <g:if test="${project.validated && percentage <= 999 && (loggedInUser.equals(project.user)|| username.equals('campaignadmin@crowdera.co'))|| isTeamAdmin}">
-							         <g:link mapping="editCampaign" params="[country_code: project.country.countryCode,fr:username,id: project.id]" class="manage-edit-left">
-							                 <span class="btn btn-default manage-btn-width-aft-validated manage-btn-back-color"  aria-label="Edit project" ><i class="fa fa-pencil-square-o edit-space"></i>EDIT CAMPAIGN
-							                 </span>
-						              </g:link>
+						
+						<g:if test="${!project.validated && percentage <= 999 && (loggedInUser.equals(project.user)|| username.equals('campaignadmin@crowdera.co') || isAdmin || isTeamAdmin)}">
+					         <g:link mapping="editCampaign" params="[country_code: project.country.countryCode,fr:username,id: project.id]" class="manage-edit-left">
+					                 <span class="btn btn-default manage-btn-width-aft-validated manage-btn-back-color"  aria-label="Edit project" ><i class="fa fa-pencil-square-o edit-space"></i>EDIT CAMPAIGN
+					                 </span>
+				              </g:link>
 						</g:if>
+						
 						</div>
 						<%--               user profile code  --%>
 						<div class="col-lg-12 col-sm-12 col-md-12 show-profile-padding show-org-profiletile hidden-xs">

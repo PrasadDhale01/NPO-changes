@@ -11,17 +11,17 @@
     def fundRaiserName
     if(currentFundraiser.email == project.beneficiary.email){
         if (project.beneficiary?.lastName)
-            fundRaiserName = (project.beneficiary?.firstName + " " + project.beneficiary?.lastName).toUpperCase()
+            fundRaiserName = (project.beneficiary?.firstName + " " + project.beneficiary?.lastName)?.toUpperCase()
         else 
-            fundRaiserName = (project.beneficiary?.firstName).toUpperCase()
+            fundRaiserName = (project.beneficiary?.firstName)?.toUpperCase()
     } else {
-        fundRaiserName = (currentFundraiser?.firstName + " " + currentFundraiser?.lastName).toUpperCase()
+        fundRaiserName = (currentFundraiser?.firstName + " " + currentFundraiser?.lastName)?.toUpperCase()
     }
     def username = currentFundraiser?.username
     
     def projectTitle = project.title
     if (projectTitle) {
-        projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
+        projectTitle = projectTitle?.toUpperCase(Locale.ENGLISH)
     }
     def imageUrl = project.imageUrl
     if (imageUrl) {

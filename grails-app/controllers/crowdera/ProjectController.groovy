@@ -165,6 +165,20 @@ class ProjectController {
 	def preview(){
 		forward(action:'show', params:['projectTitle':params.projectTitle,'fr':params.name, 'isPreview':true, 'tile':false])
 	}
+	
+	
+	def displayProjectFromCustomUrl(){
+		def projectId
+		
+		if (params?.projectTitle){
+			projectId = projectService.getProjectIdFromVanityTitle(params?.projectTitle)
+		}
+		Project project = projectService.getProjectById(projectId)
+		
+		def country_code = project.country.countryCode
+		
+		redirect (action:'show', params:['projectTitle':params.projectTitle,'country_code':country_code.toLowerCase()]);
+	}
 
 	def show() {
 		

@@ -16,6 +16,7 @@ class UrlMappings {
 
 		"/"(controller: 'home', action: 'indexToRedirect')
 		"/$country_code"(controller: 'home', action: 'index')
+		"/campaigns/$projectTitle/$teamtitle?"(controller : 'project',action :'displayProjectFromCustomUrl')
 		"/$country_code/login/auth"(controller: 'login', action: 'auth')
 		"500"(controller: "error")
 		"404"(view: '/404error')
@@ -119,6 +120,7 @@ class UrlMappings {
 		 "/$country_code/$category/$projectTitle?/$fr?"(controller:'project', action:'show')
 		"/$country_code/campaigns/$projectTitle/$fr/$teamCommentId"(controller:'project', action:'show')
 		"/$country_code/campaigns/$projectTitle/$fr/$commentId"(controller:'project', action:'show')
+		"/$country_code/campaigns/$projectTitle"(controller:'project', action:'show')
 		
 			   
 		"/campaigns/$id/thumbnail"(controller:'project', action:'thumbnail')

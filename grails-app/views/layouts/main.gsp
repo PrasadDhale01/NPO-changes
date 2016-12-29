@@ -71,7 +71,7 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
     </script>
-    <script src="${base_url}/js/main.js" type="application/x-javascript"></script>
+    <script src="../../../js/main.js" type="application/x-javascript"></script>
     
     <div class="main-header-gsp" id="loadHeaderTempate"></div>
 

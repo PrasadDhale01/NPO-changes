@@ -1470,8 +1470,8 @@
              </div>
          </div>
     
-    <script src="${base_url}js/main.js"></script>
-    <script src="${base_url}js/bootstrap-datepicker.js"></script>
+    <script src="../../../js/main.js"></script>
+    <script src="../../../js/bootstrap-datepicker.js"></script>
     <script>
     var needToConfirm = true;
     window.onbeforeunload = confirmExit;

@@ -170,9 +170,9 @@
                     <g:hiddenField name="spendAmountPerList" value="${spendAmountPerList}" id="spendAmountPerList"/>
                     <div id="graph"></div>
                 </div>
-                <script src="${base_url}js/raphel-pie/raphael-min.js"></script>
-                <script src="${base_url}js/raphel-pie/g.raphael.js"></script>
-                <script src="${base_url}js/raphel-pie/g.pie.js"></script>
+                <script src="../../../js/raphel-pie/raphael-min.js"></script>
+                <script src="../../../js/raphel-pie/g.raphael.js"></script>
+                <script src="../../../js/raphel-pie/g.pie.js"></script>
             </g:if>
             <g:else>
             

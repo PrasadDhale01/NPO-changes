@@ -1584,8 +1584,8 @@
             <img src="//s3.amazonaws.com/crowdera/documents/loading.gif" alt="'loadingImage'" id="loading-gif-img">
         </div>
  </div>
- <script src="${base_url}js/main.js"></script>
- <script src="${base_url}js/bootstrap-datepicker.js"></script>
+ <script src="../../../js/main.js"></script>
+ <script src="../../../js/bootstrap-datepicker.js"></script>
  <script type="text/javascript">
      var needToConfirm = true;
      window.onbeforeunload = confirmExit;

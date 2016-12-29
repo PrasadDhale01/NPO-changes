@@ -12,8 +12,8 @@ def request_url=request.getRequestURL().substring(0,request.getRequestURL().inde
 <r:require modules="projectcreatejs" />
 <link rel="stylesheet" href="/bootswatch-yeti/bootstrap.css">
 <link rel="stylesheet" href="/css/datepicker.css">
-<script src="${base_url}js/main.js"></script>
-<script src="${base_url}js/bootstrap-datepicker.js"></script>
+<script src="../../../js/main.js"></script>
+<script src="../../../js/bootstrap-datepicker.js"></script>
 <script>
     var nowTemp = new Date();
 	var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);

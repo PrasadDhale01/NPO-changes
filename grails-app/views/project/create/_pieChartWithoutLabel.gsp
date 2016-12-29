@@ -13,7 +13,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
     <div id="graphWithoutLabel"></div>
 </div>
 
-<script src="${base_url}js/raphel-pie/raphael-min.js"></script>
-<script src="${base_url}js/raphel-pie/g.raphael.js"></script>
-<script src="${base_url}js/raphel-pie/g.pie.js"></script>
-<script src="${base_url}js/project/pieChart.js"></script>
+<script src="../../../js/raphel-pie/raphael-min.js"></script>
+<script src="../../../js/raphel-pie/g.raphael.js"></script>
+<script src="../../../js/raphel-pie/g.pie.js"></script>
+<script src="../../../js/project/pieChart.js"></script>

@@ -214,9 +214,9 @@
     <%--            <g:hiddenField name="payuStatus" id="payuStatus" value="${project.payuStatus}"/>--%>
                 <div id="graph"></div>
             </div>
-            <script src="${base_url}js/raphel-pie/raphael-min.js"></script>
-            <script src="${base_url}js/raphel-pie/g.raphael.js"></script>
-            <script src="${base_url}js/raphel-pie/g.pie.js"></script>
+            <script src="../../../js/raphel-pie/raphael-min.js"></script>
+            <script src="../../../js/raphel-pie/g.raphael.js"></script>
+            <script src="../../../js/raphel-pie/g.pie.js"></script>
         </g:if>
     </div>
     <br>

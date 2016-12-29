@@ -394,7 +394,7 @@ $(function() {
                 window.location.href = redirectUrl;
             }
         } else if(currentEnv === 'stagingIndia') {
-            redirectUrl = 'http://staging.gocrowdera.com'+url;
+            redirectUrl = 'https://staging.gocrowdera.com'+url;
             if (confirm('You are being redirected to our global site www.staging.gocrowdera.com')) {
                 window.location.href = redirectUrl;
             }
@@ -1613,7 +1613,7 @@ $(function() {
    			} else if(location.country.code == 'IN' && currentEnv == 'staging'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('staging.gocrowdera.com');
-   				$('.banner-link').attr('href','http://staging.gocrowdera.com');
+   				$('.banner-link').attr('href','https://staging.gocrowdera.com');
    			} else if(location.country.code == 'IN' && currentEnv == 'production'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('www.gocrowdera.com');

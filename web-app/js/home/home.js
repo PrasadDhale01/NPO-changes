@@ -371,7 +371,7 @@ $( document ).ready(function() {
 			}else if(location.country.code == 'IN' && currentEnv == 'staging'){
 				$('.info-banner').css('display','block');
 				$('.banner-link').text('staging.gocrowdera.com');
-				$('.banner-link').attr('href','http://staging.gocrowdera.com');
+				$('.banner-link').attr('href','https://staging.gocrowdera.com');
 				$('.home-header-section').addClass('banner-nav');
 			}else if(location.country.code== 'IN' && currentEnv == 'production'){
 				$('.info-banner').css('display','block');

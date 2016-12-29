@@ -3,7 +3,7 @@ https://gocrowdera.com/
 $ ssh -i ~/path/to/Crowdera.pem ubuntu@ec2-54-201-115-207.us-west-2.compute.amazonaws.com
 
 Staging server:
-http://staging.gocrowdera.com/
+https://staging.gocrowdera.com/
 $ ssh -i ~/path/to/Crowdera.pem ubuntu@ec2-52-24-109-75.us-west-2.compute.amazonaws.com
 NOTE: Points to production database; so be careful.
 

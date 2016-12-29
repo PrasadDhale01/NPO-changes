@@ -2,6 +2,7 @@
 	response.addHeader("X-Frame-Options","SAMEORIGIN")
 	response.addHeader("X-Content-Type-Options","nosniff")
 	response.addHeader("X-Xss-Protection","1; mode=block")
+	def base_url = grailsApplication.config.crowdera.BASE_URL
  %>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +71,7 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
     </script>
-    <script src="/js/main.js" type="application/x-javascript"></script>
+    <script src="${base_url}/js/main.js" type="application/x-javascript"></script>
     
     <div class="main-header-gsp" id="loadHeaderTempate"></div>
 

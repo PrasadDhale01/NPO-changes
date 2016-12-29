@@ -4459,7 +4459,7 @@ span#sold-out-text{
 
 .crowdera-perk{
     position: relative;
-    width: 200px;
+    width: 100%;
 }
 .show-cmpgn-container{
 	width:1000px;
@@ -19596,7 +19596,7 @@ div.bottomPadding-discover{
 	padding-bottom: 6px;
 }
 
- .manage-contributiontile {
+/*  .manage-contributiontile {
     margin-right: 50px;
- }
+ } */
 

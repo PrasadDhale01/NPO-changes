@@ -15,6 +15,9 @@
         def username = campaign.user.username
         boolean ended = projectService.isProjectDeadlineCrossed(campaign)
 		def country_code = projectService.getCountryCodeForCurrentEnv(request)
+        
+        def campaignTitle = projectService.getVanityTitleFromId(campaign?.id)
+        def ownerUserName = userService.getVanityNameFromUsername(userService.getCurrentUser()?.username, campaign?.id)
     %>
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 campaign-tile-seperator">
         <div class="thumbnail campaign-tile-width">
@@ -133,7 +136,7 @@
                     </g:link>
                 </g:if>
                 <g:else>
-                	 <g:link mapping="showCampaign" params="[country_code: campaign.country.countryCode,title:campaign.title,id: campaign.id,fr:username,category:campaign.fundsRecievedBy.toLowerCase()]">
+                	 <g:link mapping="showCampaign" params="[country_code: campaign?.country?.countryCode?.toLowerCase(), projectTitle:campaignTitle, fr:ownerUserName, category:campaign.fundsRecievedBy.toLowerCase()]">
                         <img alt="${campaign.title}" class="campaign-img" src="${projectService.getProjectImageLink(campaign)}">
                     </g:link>
                 </g:else>
@@ -146,7 +149,7 @@
                         </g:link>
                     </g:if>
                     <g:else>
-                        <g:link mapping="showCampaign" params="[country_code: campaign.country.countryCode,title:campaign.title,id: campaign.id,fr:username,category:campaign.fundsRecievedBy.toLowerCase()]">
+                        <g:link mapping="showCampaign" params="[country_code: campaign?.country?.countryCode?.toLowerCase(), projectTitle:campaignTitle, fr:ownerUserName, category:campaign.fundsRecievedBy.toLowerCase()]">
                             ${campaign.title.toUpperCase()}
                         </g:link>
                     </g:else>

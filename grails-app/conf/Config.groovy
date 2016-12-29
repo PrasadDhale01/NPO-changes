@@ -351,7 +351,7 @@ environments {
 		grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
 		grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
-		crowdera.BASE_URL = 'http://staging.gocrowdera.com/'
+		crowdera.BASE_URL = 'https://staging.gocrowdera.com/'
 		crowdera.COUNTRY_CODE = 'US'
 
 		grails.logging.jul.usebridge = false
@@ -382,7 +382,7 @@ environments {
 		crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
         
         /*PayUMoney details*/
-        crowdera.PAYU.BASE_URL = 'http://staging.gocrowdera.com'
+        crowdera.PAYU.BASE_URL = 'https://staging.gocrowdera.com'
         crowdera.PAYU.TEST_URL='https://secure.payu.in/_payment.php'
         crowdera.PAYU.KEY='5geKCB'
         crowdera.PAYU.SALT='Gtr6fF9A'
@@ -440,7 +440,7 @@ environments {
 					secret = 'zbanKIejo4qofwXdtyaOnaq-'
 					successUri = '/login/googleSuccess'
 					failureUri = '/login/googleFailure'
-					callback = "http://staging.gocrowdera.com/oauth/google/callback"
+					callback = "https://staging.gocrowdera.com/oauth/google/callback"
 					scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
 				}
 				facebook {
@@ -449,7 +449,7 @@ environments {
 					secret = 'f1991f7bf85d445a346821967e2b1251'
 					successUri = '/login/facebookSuccess'
 					failureUri = '/login/facebookFailure'
-					callback = "http://staging.gocrowdera.com/oauth/facebook/callback"
+					callback = "https://staging.gocrowdera.com/oauth/facebook/callback"
 					scopes = "['public_profile','email','name','user']"
 				  }
 					

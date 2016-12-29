@@ -5023,6 +5023,7 @@ class ProjectService {
         def vanityTitle
         def username
         def vanityName
+		def country_code
         def details
         def urlShortener = UrlShortener.findByShortenUrl(url)
         if (urlShortener){
@@ -5035,8 +5036,8 @@ class ProjectService {
                 vanityName = userService.getVanityNameFromUsername(username, projectId)
             }
         }
-
-        details = [projectTitle:vanityTitle, fr:vanityName]
+		def project = getProjectById(projectId);
+        details = [projectTitle:vanityTitle, fr:vanityName,country_code:project.country.countryCode,category:project.fundsRecievedBy.toLowerCase()]
         return details
     }
     

@@ -2430,7 +2430,7 @@ class ProjectController {
 	def getCampaignFromShortUrl(){
 		def url = params?.url
 		def projectDetails = projectService.getCampaignFromUrl(url)
-		redirect (action:'show', params:[projectTitle:projectDetails?.projectTitle, fr: projectDetails?.fr])
+		redirect (action:'show', params:['projectTitle':projectDetails?.projectTitle,'fr':projectDetails?.fr,'country_code':projectDetails.country_code,'category':projectDetails.category])
 	}
 
 	def embedTile(){

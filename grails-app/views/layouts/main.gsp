@@ -2,6 +2,7 @@
 	response.addHeader("X-Frame-Options","SAMEORIGIN")
 	response.addHeader("X-Content-Type-Options","nosniff")
 	response.addHeader("X-Xss-Protection","1; mode=block")
+	def base_url = grailsApplication.config.crowdera.BASE_URL
  %>
 <!DOCTYPE html>
 <html lang="en">

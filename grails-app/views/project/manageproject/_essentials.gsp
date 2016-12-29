@@ -3,7 +3,7 @@
     def base_url = grailsApplication.config.crowdera.BASE_URL
     def fbShareUrl = base_url+"/campaigns/campaignShare"+project.id+"?fr="+project.user.username
     def fundRaiser = user.username
-    def shareUrl = base_url+'/c/'+shortUrl;
+    def shareUrl = base_url+'c/'+shortUrl;
     def vimeoInt
     def campaignVideoUrl
     def projectTitle = project.title

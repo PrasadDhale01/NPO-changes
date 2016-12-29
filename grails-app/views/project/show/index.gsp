@@ -32,7 +32,7 @@
     def fbShareUrlupdatePage = base_url+"/project/updateShare?id="+project.id+"&fr="+username
     
     def currentTeamAmount = currentTeam?.amount
-    def shareUrl = base_url+'/c/'+shortUrl
+    def shareUrl = base_url+'c/'+shortUrl
     
     def vimeoInt
     def campaignVideoUrl

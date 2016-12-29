@@ -168,7 +168,7 @@ $(function() {
         	url = 'http://www.facebook.com/sharer.php?p[url]=http://test.gocrowdera.com/campaign/create';
         }
         else if (currentEnvironment === 'staging') {
-        	url = 'http://www.facebook.com/sharer.php?p[url]=http://staging.gocrowdera.com/campaign/create';
+        	url = 'http://www.facebook.com/sharer.php?p[url]=https://staging.gocrowdera.com/campaign/create';
         }
         else if (currentEnvironment === 'production') {
         	url = 'http://www.facebook.com/sharer.php?p[url]=https://gocrowdera.com/campaign/create';

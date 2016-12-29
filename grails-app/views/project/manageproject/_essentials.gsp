@@ -3,7 +3,7 @@
     def base_url = grailsApplication.config.crowdera.BASE_URL
     def fbShareUrl = base_url+"/campaigns/campaignShare"+project.id+"?fr="+project.user.username
     def fundRaiser = user.username
-    def shareUrl = base_url+'/c/'+shortUrl;
+    def shareUrl = base_url+'c/'+shortUrl;
     def vimeoInt
     def campaignVideoUrl
     def projectTitle = project.title
@@ -214,9 +214,9 @@
     <%--            <g:hiddenField name="payuStatus" id="payuStatus" value="${project.payuStatus}"/>--%>
                 <div id="graph"></div>
             </div>
-            <script src="/js/raphel-pie/raphael-min.js"></script>
-            <script src="/js/raphel-pie/g.raphael.js"></script>
-            <script src="/js/raphel-pie/g.pie.js"></script>
+            <script src="${base_url}js/raphel-pie/raphael-min.js"></script>
+            <script src="${base_url}js/raphel-pie/g.raphael.js"></script>
+            <script src="${base_url}js/raphel-pie/g.pie.js"></script>
         </g:if>
     </div>
     <br>

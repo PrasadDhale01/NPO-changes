@@ -3,7 +3,7 @@
     def base_url = grailsApplication.config.crowdera.BASE_URL
     def projectimages = projectService.getProjectImageLinks(project)
     def teamimages = projectService.getTeamImageLinks(currentTeam,project)
-    def shareUrl = base_url+'/c/'+shortUrl
+    def shareUrl = base_url+'c/'+shortUrl
 %>
 <div class="col-md-12">
     <div class="row">
@@ -170,9 +170,9 @@
                     <g:hiddenField name="spendAmountPerList" value="${spendAmountPerList}" id="spendAmountPerList"/>
                     <div id="graph"></div>
                 </div>
-                <script src="/js/raphel-pie/raphael-min.js"></script>
-                <script src="/js/raphel-pie/g.raphael.js"></script>
-                <script src="/js/raphel-pie/g.pie.js"></script>
+                <script src="${base_url}js/raphel-pie/raphael-min.js"></script>
+                <script src="${base_url}js/raphel-pie/g.raphael.js"></script>
+                <script src="${base_url}js/raphel-pie/g.pie.js"></script>
             </g:if>
             <g:else>
             
@@ -182,9 +182,9 @@
                     <g:hiddenField name="spendAmountPerList" value="0" id="spendAmountPerList"/>
                     <div id="graph"></div>
                 </div>
-                <script src="/js/raphel-pie/raphael-min.js"></script>
-                <script src="/js/raphel-pie/g.raphael.js"></script>
-                <script src="/js/raphel-pie/g.pie.js"></script>
+                <script src="${base_url}js/raphel-pie/raphael-min.js"></script>
+                <script src="${base_url}js/raphel-pie/g.raphael.js"></script>
+                <script src="${base_url}js/raphel-pie/g.pie.js"></script>
             	
             </g:else>
         </div>

@@ -95,8 +95,9 @@
 <%--        </div>--%>
     </div>
     <div class="media-stript-container" id="loadMediaStrip"></div>
+<%--Removing Freshdesk code--%>
         
-    <div class="customer-support hidden-xs">
+    <%--<div class="customer-support hidden-xs">
         <div class="willSlide customer-support-btn" id="customer-support-btn">
             <a class='customer-support-a btn btn-primary'>Support</a>
         </div>
@@ -106,5 +107,9 @@
         </div>
     </div>
     <script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
+--%>
+<%--Adding interakt code--%>
+    <g:render template="/layouts/interakt"/>
+
 </body>
 </html>

@@ -4,7 +4,7 @@
 
 <ul class="thumbnails list-unstyled">
     <g:each in="${validatedTeam}" var="team">
-        <li class="col-lg-3 col-md-4 col-sm-4 col-xs-12 col-xs-p-0" style="margin-left: 50px;">
+        <li class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-xs-p-0">
             <g:render template="/project/manageproject/teamtile" model="['team': team]"></g:render>
         </li>
     </g:each>

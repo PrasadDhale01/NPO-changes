@@ -23,6 +23,9 @@
     def isCampaignAdmin = userService.isCampaignAdmin(project, username)
     def isCampaignAdminByUser=userService.isCampaignAdminByUserID(project, user)
     def percentage = contributionService.getPercentageContributionForTeam(team)
+    
+    def title = projectService.getVanityTitleFromId(project?.id)
+    def teamUserName = userService.getVanityNameFromUsername(username, project?.id)
 	
     if(percentage >= 100) {
         cents = 100
@@ -105,7 +108,7 @@
             </g:else>
         </g:if>
         <g:elseif test="${!ismanagepage || !isAdminOrBeneficiary}">
-            <a href="javascript:void(0)"   onclick="submitCampaignShowForm('show','${project.id}','${username}');">
+            <g:link mapping="showCampaign" params="[country_code: project?.country?.countryCode?.toLowerCase(), projectTitle:title, fr: teamUserName, category:project.fundsRecievedBy.toLowerCase()]">
                 <g:if test="${userImageUrl != null}">
                     <img alt="${userName}" class="project-img" src="${userImageUrl}">
                 </g:if>
@@ -114,10 +117,10 @@
                         <img src="//s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="project-img" alt="Upload Photo">
                     </div>
                 </g:else>
-            </a>
+            </g:link>
         </g:elseif>
         <g:else>
-            <a href="javascript:void(0)" onclick="submitCampaignShowForm('manage','${project.id}','${username}');">
+            <g:link mapping="managecampaign" params="[country_code: project?.country?.countryCode?.toLowerCase(), title:project.title, id: project.id]">
                 <g:if test="${userImageUrl != null}">
                     <img alt="${userName}" class="project-img" src="${userImageUrl}">
                 </g:if>
@@ -131,7 +134,7 @@
                         </div>
                     </div>
                 </g:else>
-            </a>
+            </g:link>
         </g:else>
         <div class="team-caption">
             <p>${userName.toUpperCase()}<br>${userLastName.toUpperCase()}</p>

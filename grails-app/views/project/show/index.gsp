@@ -4,7 +4,9 @@
 <g:set var="userService" bean="userService"/>
 <%
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+    def baseUrl = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+    def base_url = baseUrl.substring(0, (baseUrl.length() - 1))
+    
 	def country_code = projectService.getCountryCodeForCurrentEnv(request)
 	def beneficiary = project?.user
     def beneficiaryUserName = beneficiary?.username

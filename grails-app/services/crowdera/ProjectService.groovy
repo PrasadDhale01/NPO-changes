@@ -3688,8 +3688,9 @@ class ProjectService {
 		    }
 		
 	     	contributions = totalContributions.subList(offset, maxrange)
-		    return [totalContributions: totalContributions,contributions: contributions]
 		}
+        
+        return [totalContributions: totalContributions,contributions: contributions]
 	}
 	
     def autoSaveProjectDetails(def variable, def varValue, def projectId){

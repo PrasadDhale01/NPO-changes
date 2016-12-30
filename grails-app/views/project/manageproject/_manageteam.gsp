@@ -13,7 +13,7 @@
 		    <ul class="nav nav-pills nav-pills-manageteam  mange-active-teams-mobile manage-color-back">
                 <li data-toggle="tab" class="active team-footer col-md-3 col-sm-4 col-xs-12 manage-team-btn-tabsmargin">
                     <a href="#manageTeams" class="text-center teammembers" id="loadTeamPage">
-                        ${totalteams.size()}&nbsp;&nbsp;Teams <g:if test="${discardedTeam.size() > 0}">&nbsp;&nbsp;(${discardedTeam.size()}&nbsp;&nbsp;Disabled)</g:if>
+                        ${totalteams.size()}&nbsp;&nbsp;Teams 
                     </a>
                 </li>
                 <li data-toggle="tab" class="col-md-3 col-sm-4 col-xs-12 button-team-footer manage-mobile-btn">

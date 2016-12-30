@@ -1042,6 +1042,7 @@ img.hm-height-width {
 }
 .mange-team-bottem{
     margin-bottom: 25px;
+    overflow: auto;
 }
 .mange-rewards-title {
     overflow: hidden;

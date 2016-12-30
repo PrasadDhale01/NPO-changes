@@ -34,7 +34,7 @@
                 }
             %>
             <g:if test="${!contribution.isContributionOffline}">
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 top-pan manage-contribution-md-tabs contribution-inr  manage-contributiontile">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 top-pan manage-contribution-md-tabs contribution-inr  manage-contributiontile">
                     <div <g:if test='${contribution.isAnonymous}'>class ="pans alphabet-A"</g:if><g:else>class ="pans ${alphabet}"</g:else>>
                         <div class ="col-sm-3 col-xs-3 img-contribution">
                             <img class="user-img-header" src="${imageUrl}" alt="alphabet">
@@ -75,7 +75,7 @@
                 </div>
             </g:if>
             <g:else>
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 top-pan manage-contribution-md-tabs offline-contribution-pans manage-contributiontile">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 top-pan manage-contribution-md-tabs offline-contribution-pans manage-contributiontile">
                     <div class ="pans ${alphabet} contribution-inr">
                         <div class ="col-sm-3 col-xs-3 img-contribution">
                             <img class="user-img-header" src="${imageUrl}" alt="alphabet">
@@ -120,65 +120,6 @@
                 </div>
             </g:else>
                 
-            <%--  Modal --%>
-            <%--
-            <div class="modal fade" id="rewarddetails${contribution.id}" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title text-center"><b>Shipping Details</b></h4>
-                        </div>
-                        <div class="modal-body">
-                            <g:if test="${contribution.contributorEmail == 'anonymous@example.com'}">
-                                <div class="form-group">
-                                    <label>By Anonymous Good Soul </label>
-                                </div>
-                            </g:if>
-                            <g:else>
-                                <div class="form-group">
-                                    <label><b>Name: &nbsp;</b> ${contribution.contributorName}</label>
-                                </div>
-                                <div class="form-group">
-                                    <label><b>Email: &nbsp;</b> ${contribution.contributorEmail}</label>
-                                </div>
-                            </g:else>
-                            <g:if test="${contribution.email  != null}">
-                                <g:if test="${!contribution.email.equalsIgnoreCase('null')}">
-                                    <div class="form-group">
-                                         <label><b>Shipping Email: &nbsp;</b> ${contribution.email}</label>
-                                    </div>
-                                </g:if>
-                            </g:if>
-                            <g:if test="${contribution.physicalAddress != null}">
-                                <g:if test="${!contribution.physicalAddress.equalsIgnoreCase('null')}">
-                                     <div class="form-group">
-                                         <label><b>Physical Address: &nbsp;</b> ${contribution.physicalAddress}</label>
-                                     </div>
-                                 </g:if>
-                            </g:if>
-                            <g:if test="${contribution.twitterHandle  != null}">
-                                <g:if test="${!contribution.twitterHandle.equalsIgnoreCase('null')}">
-                                    <div class="form-group">
-                                        <label><b>Twitter Handle: &nbsp;</b> ${contribution.twitterHandle}</label>
-                                    </div>
-                                </g:if>
-                            </g:if>
-                            <g:if test="${contribution.custom  != null}">
-                                <g:if test="${!contribution.custom.equalsIgnoreCase('null')}">
-                                    <div class="form-group">
-                                        <label><b>Custom Details: &nbsp;</b> ${contribution.custom}</label>
-                                    </div>
-                                </g:if>
-                            </g:if>
-                        </div>
-                        <div class="modal-footer">
-                            <button data-dismiss="modal" class="btn btn-sm btn-primary">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            --%>
         </g:each>
         
         <%-- EditContributionModal --%>

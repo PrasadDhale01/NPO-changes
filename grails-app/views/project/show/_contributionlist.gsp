@@ -64,10 +64,10 @@
                                             <span class="sso">
                                                 <g:if test="${country_code == 'in'}">
                                                     <!--  <span class="fa fa-inr"></span>-->
-                      								 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                      								 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                                 </g:if>
                                                 <g:else>
-                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -77,10 +77,10 @@
                                             <span class="sso">
                                                 <g:if test="${country_code == 'in'}">
                                                     <!-- <span class="fa fa-inr"></span>-->
-                       									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                       									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                                 </g:if>
                                                 <g:else>
-                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -92,10 +92,10 @@
                                             <span class="sso">
                                                 <g:if test="${country_code == 'in'}">
                                                     <!-- <span class="fa fa-inr"></span>-->
-                        								${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                        								${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                                 </g:if>
                                                 <g:else>
-                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -105,10 +105,10 @@
                                             <span class="sso">
                                                 <g:if test="${country_code == 'in'}">
                                                     <!-- <span class="fa fa-inr"></span>-->
-                       									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                       									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                                 </g:if>
                                                 <g:else>
-                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -136,10 +136,10 @@
                                             <span class="sso">
                                                 <g:if test="${country_code == 'in'}">
                                                     <!-- <span class="fa fa-inr"></span>-->
-                        ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                        ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                                 </g:if>
                                                 <g:else>
-                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -149,10 +149,10 @@
                                             <span class="sso">
                                                <g:if test="${country_code == 'in'}">
                                                     <!-- <span class="fa fa-inr"></span>-->
-                       									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                       									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                                 </g:if>
                                                 <g:else>
-                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -164,10 +164,10 @@
                                             <span class="sso">
                                                 <g:if test="${country_code == 'in'}">
                                                     <!--  <span class="fa fa-inr"></span>-->
-                      									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                      									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                                 </g:if>
                                                 <g:else>
-                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -177,10 +177,10 @@
                                             <span class="sso">
                                                <g:if test="${country_code == 'in'}">
                                                     <!-- <span class="fa fa-inr"></span>-->
-                       										 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                       										 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                                 </g:if>
                                                 <g:else>
-                                                   ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                                   ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                                 </g:else>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -208,10 +208,10 @@
                                     <span class="sso">
                                         <g:if test="${country_code == 'in'}">
                                             <!-- <span class="fa fa-inr"></span>-->
-                        						${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                        						${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                         </g:if>
                                         <g:else>
-                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                         </g:else>
                                     </span>
                                     <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -221,10 +221,10 @@
                                     <span class="sso">
                                         <g:if test="${country_code == 'in'}">
                                             <!-- <span class="fa fa-inr"></span>-->
-                       							 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                       							 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                         </g:if>
                                         <g:else>
-                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                         </g:else>
                                     </span>
                                     <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -236,10 +236,10 @@
                                     <span class="sso">
                                         <g:if test="${country_code == 'in'}">
                                             <!--  <span class="fa fa-inr"></span>-->
-                       							${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                       							${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                         </g:if>
                                         <g:else>
-                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                         </g:else>
                                     </span>
                                     <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -249,10 +249,10 @@
                                     <span class="sso">
                                         <g:if test="${country_code == 'in'}">
                                             <!--  <span class="fa fa-inr"></span>-->
-                      								 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                      								 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                         </g:if>
                                         <g:else>
-                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                         </g:else>
                                     </span>
                                     <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -277,10 +277,10 @@
                                 <span class="sso">
                                     <g:if test="${country_code == 'in'}">
                                         <!--  <span class="fa fa-inr"></span>-->
-                      						 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else>${amount}</g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                      						 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else>${amount}</g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                     </g:if>
                                     <g:else>
-                                        ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                        ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                     </g:else>
                                 </span>
                                 <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>

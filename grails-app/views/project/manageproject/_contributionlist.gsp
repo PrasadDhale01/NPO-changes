@@ -44,10 +44,10 @@
                                 <h4><a href="${userFacebookUrl}">${friendlyName}</a></h4>
                                 <span class="sso">
                                     <g:if test="${project.payuStatus}">
-                                        <span class="fa fa-inr"><b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                        <span class="fa fa-inr"><b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                     </g:if>
                                     <g:else>
-                                        $<b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                        $<b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                     </g:else>
                                 </span>
                                 <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -57,10 +57,10 @@
                                     <h4>${contribution.contributorName}</h4>
                                     <span class="sso">
                                         <g:if test="${project.payuStatus}">
-                                            <span class="fa fa-inr"><b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                            <span class="fa fa-inr"><b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                         </g:if>
                                         <g:else>
-                                            $<b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                            $<b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                         </g:else>
                                     </span>
                                     <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
@@ -84,10 +84,10 @@
                             <h4>${contribution.contributorName}</h4> 
                             <span class="sso">
                                 <g:if test="${project.payuStatus}">
-                                    <span class="fa fa-inr"><b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                    <span class="fa fa-inr"><b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                 </g:if>
                                 <g:else>
-                                    $<b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                    $<b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                 </g:else>
                             </span>
                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>

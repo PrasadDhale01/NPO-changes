@@ -980,9 +980,11 @@ class MandrillService {
         def fblink = "https://www.facebook.com"
         def currency
         def naamFoundationCampaign
-        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+        
+        def countryCode = project?.country?.countryCode?.toLowerCase();
+        if("in".equalsIgnoreCase(countryCode)){
             currency = 'INR'
-        } else {
+        } else if ("us".equalsIgnoreCase(countryCode)) {
             currency = 'USD'
         }
 
@@ -1086,7 +1088,7 @@ class MandrillService {
         }
     }
 
-    public def contributionEmailToCampaignOwnerOrTeam(def fundRaiser, def project, def contribution,def country_code) {
+    public def contributionEmailToCampaignOwnerOrTeam(def fundRaiser, Project project, def contribution,def country_code) {
         def username = fundRaiser?.username
         def link
         if (project.user == fundRaiser) {
@@ -1097,11 +1099,14 @@ class MandrillService {
         def currentEnv = Environment.current.getName()
         def cdraDomain = getCdraDomain(currentEnv)
         def currency
-        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+        
+        def countryCode = project?.country?.countryCode?.toLowerCase();
+        if("in".equalsIgnoreCase(countryCode)){
             currency = 'INR'
-        } else {
+        } else if ("us".equalsIgnoreCase(countryCode)) {
             currency = 'USD'
         }
+        
         def globalMergeVars = [
             [
                 'name': 'LINK',
@@ -1255,12 +1260,16 @@ class MandrillService {
         def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', fragment:'payments', id: project.id,params:[country_code:country_code], absolute: true)
         def currentEnv = Environment.current.getName()
         def cdraDomain = getCdraDomain(currentEnv)
+        
         def currency
-        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+        
+        def countryCode = project?.country?.countryCode?.toLowerCase();
+        if("in".equalsIgnoreCase(countryCode)){
             currency = 'INR'
-        } else {
+        } else if ("us".equalsIgnoreCase(countryCode)) {
             currency = 'USD'
         }
+        
         def globalMergeVars = [
             [
                 'name': 'LINK',

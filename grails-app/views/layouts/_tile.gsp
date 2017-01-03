@@ -32,19 +32,7 @@
         </div>
     </g:if>
     <div class="blacknwhite tile">
-<%--        <g:form controller="project" action="showCampaign" title="${project.title}" name="${project.title}" novalidate="novalidate" id="${project.id}">--%>
-<%--            <g:hiddenField name="fr" value="${username }" id="fr:${project.id}"/>--%>
-<%--            <g:hiddenField name="id" value="${project.id}" id="id:${project.id}"/>--%>
-<%--            <div class="imageWithTag">--%>
-<%--                <div class="under">--%>
-<%--                    <a href="javascript:void(0);" onclick="submitCampaignShowForm('show', '${project.id}','${username }');" id="show:${project.id}">--%>
-<%--                      <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>--%>
-<%--                    </a>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </g:form>--%>
-<%-- 		 <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">--%>
-           <g:link mapping="showCampaign" params="[country_code: country.countryCode.toLowerCase(),projectTitle:title,fr: username,category:project.fundsRecievedBy.toLowerCase()]">
+        <g:link mapping="showCampaign" params="[country_code: country.countryCode.toLowerCase(),projectTitle:title,fr: username,category:project.fundsRecievedBy.toLowerCase()]">
             <div class="imageWithTag">
                 <div class="under">
                     <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
@@ -53,11 +41,7 @@
         </g:link>
     </div>
     <div class="caption tile-title-descrp project-title project-story-span tile-min-height">
-<%--        <a href="javascript:void(0);" onclick="submitCampaignShowForm('show','${project.id}','${username }');" id="title:${project.id}">--%>
-<%--            ${project.title.toUpperCase()}--%>
-<%--        </a>--%>
-<%--   		<g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}">--%>
-           <g:link mapping="showCampaign" params="['id': project.id,'country_code': country_code,'projectTitle':project.title,'fr': username,'category':project.fundsRecievedBy.toLowerCase()]">
+        <g:link mapping="showCampaign" params="[country_code: country.countryCode.toLowerCase(),projectTitle:title,fr: username,category:project.fundsRecievedBy.toLowerCase()]">
             ${project.title.toUpperCase()}
         </g:link>
         <div class="campaign-title-margin-bottom"></div>

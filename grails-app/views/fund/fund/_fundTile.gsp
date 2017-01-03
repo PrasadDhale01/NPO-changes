@@ -1,6 +1,7 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
+<g:set var="userService" bean="userService"/>
 <%
     def isFundingAchieved = contributionService.isFundingAchievedForProject(project)
     def percentage = contributionService.getPercentageContributionForProject(project)
@@ -15,6 +16,10 @@
     def amount = projectService.getDataType(project.amount)
     def username = project.user.username
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
+    
+    def ownerUserName = userService.getVanityNameFromUsername(project?.user?.username, project?.id)
+    def campaignTitle = projectService.getVanityTitleFromId(project?.id)
+    
     def cents
     if(percentage >= 100) {
         cents = 100
@@ -35,7 +40,7 @@
 	   </div>
 	</g:elseif>
 	<div class="blacknwhite tile">
-		<a href="javascript:void(0)" onclick="submitCampaignShowForm('show','${project.id}','${username}');" >
+		<g:link mapping="showCampaign" params="[country_code: project?.country?.countryCode?.toLowerCase(), projectTitle:campaignTitle, fr:ownerUserName, category:project.fundsRecievedBy.toLowerCase()]">
 			<div class="imageWithTag">
 				<div class="under">
 					<div class="days-left-caption">
@@ -50,24 +55,24 @@
 					<img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}" />
 				</div>
 			</div>
-		</a>
+		</g:link>
 		<div class="amount-caption">
-						<span class="pull-left">
-						    Raised 
-						    <g:if test="${project.payuStatus}">
-						        <span class="fa fa-inr"></span>
-						    </g:if>
-						    <g:else>$</g:else>
-					        ${contribution}
-						</span>
-						<span class="pull-right">
-						    Goal
-						    <g:if test="${project.payuStatus}">
-						        <span class="fa fa-inr"></span>
-						    </g:if>
-						    <g:else>$</g:else>
-						    ${amount}
-						</span>
+			<span class="pull-left">
+			    Raised 
+			    <g:if test="${project.payuStatus}">
+			        <span class="fa fa-inr"></span>
+			    </g:if>
+			    <g:else>$</g:else>
+		        ${contribution}
+			</span>
+			<span class="pull-right">
+			    Goal
+			    <g:if test="${project.payuStatus}">
+			        <span class="fa fa-inr"></span>
+			    </g:if>
+			    <g:else>$</g:else>
+			    ${amount}
+			</span>
 		</div>
 	</div>
 	<div class="progress progress-striped active">
@@ -76,9 +81,9 @@
 		</div>
 	</div>
 	<div class="caption tile-title-descrp project-title project-story-span tile-min-height">
-		<a  href="javascript:void(0)" onclick="submitCampaignShowForm('show','${project.id}','${username}');" >
+		<g:link mapping="showCampaign" params="[country_code: project?.country?.countryCode?.toLowerCase(), projectTitle:campaignTitle, fr:ownerUserName, category:project.fundsRecievedBy.toLowerCase()]">
 		    ${project.title.toUpperCase()}
-		</a>
+		</g:link>
 		<div class="campaign-title-margin-bottom"></div>
 	    <span>${project.description}</span>
     </div>

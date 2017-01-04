@@ -2,7 +2,7 @@
     projectId = project.id
 %>
 
-<ul class="thumbnails list-unstyled">
+<ul class="thumbnails list-unstyled tab-team-mng">
     <g:each in="${validatedTeam}" var="team">
         <li class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-xs-p-0">
             <g:render template="/project/manageproject/teamtile" model="['team': team]"></g:render>

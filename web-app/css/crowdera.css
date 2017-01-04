@@ -5644,11 +5644,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	form.updateCampaign {
+        margin-left: 0px;
+        width: 95.2%;
+    }
 	.hm-how-it-work {
 		top:0px; 
 	}
 	div.new-mob-height{
-	   height: 3690px;
+	   height: auto;
+	   overflow: hidden;
 	}
 	div.mob-contributions-modal{
 	   width: 266px;
@@ -5665,7 +5670,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
        margin-bottom: 20px;
        margin-top: 20px;
     }
-	
 	div.mob-x-corsal{
 	   margin-left: 0px; 
 	   padding-left: 0px; 
@@ -8101,6 +8105,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+	div.show-alertMsz {
+        margin-left: 2%;
+        width: 96%;
+    }
+	form.delete-campaign-draft{
+	    width: 95%;
+	}
     button.prive-submitapproval-btn {
         margin-left: -26px;
         width: 183px;
@@ -8546,6 +8557,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 }
 @media only screen and (min-width:768px) and (max-width: 830px) {
+	div.discoverBannerText {
+        position: relative;
+        bottom: 150px;
+        width: 90%;
+    }
+	img.tabImage {
+        height: 170%;
+    }
     li.sh-button-fund-secandaryheader {
         left: 21.2% !important;
         position: absolute;
@@ -8558,6 +8577,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 }
 @media only screen and (min-width:831px) and (max-width: 900px){
+	img.tabImage {
+        height: 165%;
+    }
+    div.discoverBannerText {
+        position: relative;
+        bottom: 150px;
+        width: 85%;
+    }
     li.sh-button-fund-secandaryheader {
         left: 20.5% !important;
         position: absolute;
@@ -8571,6 +8598,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:901px) and (max-width: 1024px){
+	img.tabImage {
+        height: 150%;
+    }
+    div.discoverBannerText {
+        position: relative;
+        bottom: 175px;
+        width: 80%;
+    }
 	header.cr-tabs-link {
         font-size: 17px !important;
         padding-left: 117px !important;
@@ -8579,27 +8614,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-	
-	div < b.bannerDiscovertextbold {
-        position: relative;
-        top: 10px;
-        font-family: "Assistant",sans-serif;
-        font-size: 16px;
-        font-weight: 500;
-        vertical-align: sub;
-        font-style: italic;
-        padding-right: 40px;
+	ul.tab-team-mng li {
+        margin-right: 70px;
+	}
+	li.searchengine {
+        margin-top: 5px;
+        padding-left: 65px;
     }
-    div < b.bannerDiscovertextbold1 {
-        position: relative;
-        top: 10px;
-        font-family: "Assistant",sans-serif;
-        color: #ececec;
-        font-size: 16px;
-        font-weight: 500;
-        vertical-align: text-top;
-        padding-left: 40px;
-        font-style: italic;
+	div.discoverBannerText b {
+        font-size: 22px;
     }
     div < p.chetTag {
         padding-top: 22px;
@@ -8624,14 +8647,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-right: 10px;
         display: inline;
     }
-	div.discoverBannerText {
-        position: relative;
-        bottom: 215px;
+    b.bannerDiscovertextbold1{
+        top: 0px !important;
     }
-	img.tabImage{
-	    min-height: 200px;
-	}	
-		
+    b.bannerDiscovertextbold{
+        top: 10px !important;
+    }
 	div.goal-icon-padding {
         padding-left: 0;
         padding-right: 5px;
@@ -11816,6 +11837,19 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	img.tabImage {
+        height: 145%;
+    }
+    p.chetTag{
+        padding-top: 15px !important;
+    }
+	div.show-alertMsz {
+        margin-left: 2%;
+        width: 96%;
+    }
+	form.delete-campaign-draft{
+	    width: 95.3%;
+	}
 	button.prive-submitapproval-btn {
         width: 220px;
         font-size: 14px;
@@ -12344,6 +12378,17 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	img.tabImage {
+        height: 110 !important;
+    }
+    div.discoverBannerText {
+        position: relative;
+        bottom: 195px;
+        width: 100%;
+    }
+    div.discoverBannerText b {
+        font-size: 22px;
+    }
     span.ft-contact-indiafont {
         padding-bottom: 15px;
     }
@@ -13879,6 +13924,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /*Screen resolution 644 x 767 */
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.show-alertMsz {
+       margin-left: 0.5%;
+       width: 94%;
+    }
     a.viewTopics {
 	   background-color: #e7e7e7;
        border-radius: 10px 10px 10px 10px;
@@ -15460,17 +15509,25 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-		div.new-mob-height{
-	overflow: hidden;	
+    div.show-alertMsz {
+        margin-left: 3.5%;
+        width: 94%;
+    }
+	form.updateCampaign {
+        margin-left: 0px;
+        width: 95.2%;
+    }
+    div.new-mob-height{
+	    overflow: hidden;	
 	}
 	div.new-mob-perk{
-	   width: 300px;
+	    width: 300px;
 	}
 	div.mob-contributions-modal{
-	   width: 266px;
+	    width: 266px;
 	}
 	div.mob-team-tabz{
-	   width: 292px;
+	    width: 292px;
 	}
 	ul.sh-mobs-teams li {
         padding-left: 6px;
@@ -19596,7 +19653,32 @@ div.bottomPadding-discover{
 	padding-bottom: 6px;
 }
 
+.delete-campaign-draft{
+	margin-left: 14px;
+	width: 96.6%;
+}
+
+
+.update-campaign-btn{
+	width: 96.2% !important;
+}
 /*  .manage-contributiontile {
     margin-right: 50px;
  } */
 
+div.pendingCampaign-btn{
+	background-color: black;
+}
+
+button.btn-pendingCampaign{
+	color: white;
+}
+
+.show-alertMsz{
+	margin-left: 1.5%;
+    width: 97%;
+}
+
+div.TW-discover-leftpane-menu ul li a{
+	text-decoration: none;
+}

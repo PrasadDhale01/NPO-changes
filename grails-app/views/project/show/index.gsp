@@ -1071,6 +1071,19 @@
         </g:else>
     </div>
 </div>
-
+<script type="text/javascript">
+	$(window).scroll(function() {
+	    if ($(this).scrollTop() >= 50) {        
+	        $('#returnTotop').fadeIn(200);   
+	    } else {
+	        $('#returnTotop').fadeOut(200);   
+	    }
+	});
+	$('#returnTotop').click(function() {      
+	    $('body,html').animate({
+	        scrollTop : 0                       
+	    }, 500);
+	});
+</script>
 </body>
 </html>

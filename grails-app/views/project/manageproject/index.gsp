@@ -198,17 +198,17 @@
 				
 				<div class="row">
 					<g:if test="${flash.prj_mngprj_message}">
-						<div class="alert alert-success show-msz" align="center">
+						<div class="alert alert-success show-msz show-alertMsz" align="center">
 							${flash.prj_mngprj_message}
 						</div>
 					</g:if>
 					<g:if test="${flash.teamUpdatemessage}">
-						<div class="alert alert-success show-msz" align="center">
+						<div class="alert alert-success show-msz show-alertMsz" align="center">
 							${flash.teamUpdatemessage}
 						</div>
 					</g:if>
 					<g:if test="${flash.add_campaign_supporter}">
-						<div class="alert alert-success show-msz" align="center">
+						<div class="alert alert-success show-msz show-alertMsz" align="center">
 							${flash.add_campaign_supporter}
 						</div>
 					</g:if>
@@ -484,10 +484,10 @@
 						         </g:if>
 						         <g:else>
 						             <g:if test="${!project.validated && percentage <= 999}">
-						                   <g:link mapping="editCampaign" params="[country_code: project.country.countryCode,fr:username,id: project.id]" class="manage-edit-draft-left col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						                <g:link mapping="editCampaign" params="[country_code: project.country.countryCode,fr:username,id: project.id]" class="manage-edit-draft-left col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						                     <span class="btn btn-default manage-btn-width manage-btn-back-color"  aria-label="Edit project"><i class="fa fa-pencil-square-o edit-space"></i>EDIT
 						                     </span>
-						                	</g:link>
+						                </g:link>
 						             </g:if>
 						             <g:if test="${!project.validated}">
 						                 <g:form controller="project" action="projectdelete" method="post" id="${project.id}" params="[country_code: project.country.countryCode,id: project.id]" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 manage-btn-padding">
@@ -498,14 +498,17 @@
 						         </g:else>
 						    </div>
 						</g:if>
-						
-						<g:if test="${!project.validated && percentage <= 999 && (loggedInUser.equals(project.user)|| username.equals('campaignadmin@crowdera.co') || isAdmin || isTeamAdmin)}">
+						<g:if test="${project.draft && percentage <= 999 && (loggedInUser.equals(project.user)|| username.equals('campaignadmin@crowdera.co') || isAdmin || isTeamAdmin)}">
 					         <g:link mapping="editCampaign" params="[country_code: project.country.countryCode,fr:username,id: project.id]" class="manage-edit-left">
 					                 <span class="btn btn-default manage-btn-width-aft-validated manage-btn-back-color"  aria-label="Edit project" ><i class="fa fa-pencil-square-o edit-space"></i>EDIT CAMPAIGN
 					                 </span>
 				              </g:link>
 						</g:if>
-						
+						<g:if test="${project.validated && percentage <= 999 && (loggedInUser.equals(project.user)|| username.equals('campaignadmin@crowdera.co') || isAdmin || isTeamAdmin)}">
+					         <g:uploadForm class="manage-edit-left updateCampaign" controller="project" action="projectupdate" params="['projectTitle':vanityTitle]">
+            <button type="submit" class="btn btn-default update-campaign-btn manage-btn-width-aft-validated manage-btn-back-color" name="button" value="draft">Update Campaign</button>
+        </g:uploadForm>
+						</g:if>
 						</div>
 						<%--               user profile code  --%>
 						<div class="col-lg-12 col-sm-12 col-md-12 show-profile-padding show-org-profiletile hidden-xs">
@@ -531,17 +534,16 @@
 								<div class="show-lbl-orgname">
 									<label class="col-lg-8 col-sm-8 col-md-8 show-profile">Campaign
 										by:</label>
-									<g:if
-										test="${project.organizationName && currentFundraiser == beneficiary}">
+									<g:if test="${project.organizationName && currentFundraiser == beneficiary}">
 										<span class="col-lg-12 col-sm-12 col-md-12 show-org-name">
 											${project?.organizationName}
 										</span>
 									</g:if>
-									<g:if test="${currentFundraiser != beneficiary}">
+									<g:elseif test="${currentFundraiser != beneficiary}">
 										<span class="col-lg-12 col-sm-12 col-md-12 show-org-name">
 											${currentFundraiser?.firstName} ${currentFundraiser?.lastName}
 										</span>
-									</g:if>
+									</g:elseif>
 								</div>
 	                        </div> 
                     </div>
@@ -561,9 +563,16 @@
                           </g:if>
                           <g:elseif test="${loggedInUser.equals(project.user)|| isCampaignAdmin}">
                             	<g:if test="${!ended}">
-	                            	  <div class="redirectCampaign">
-		    							<a class="btn btn-show-bannerslogantext btn-lg btn-block sh-mission-script sh-mission-script-height" href="#" data-toggle="modal" onclick="javascript:window.open('/project/redirectToInviteMember?projectId=${project.id}&page=show','', 'menubar=no,toolbar=no,resizable=0,scrollbars=yes,height=500,width=786');return false;"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
+	                            	<div class="redirectCampaign">
+		    						   <a class="btn btn-show-bannerslogantext btn-lg btn-block sh-mission-script sh-mission-script-height" href="#" data-toggle="modal" onclick="javascript:window.open('/project/redirectToInviteMember?projectId=${project.id}&page=show','', 'menubar=no,toolbar=no,resizable=0,scrollbars=yes,height=500,width=786');return false;"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
 		    						</div>	
+	    						</g:if>
+	    						<g:if test="${!ended && project.validated}">
+	    						    <div class="showfacebooksAA"></div>                              
+							        <button class="btn btn-block btn-social show-fb-height btn-facebook tab-fb-padding show-btn-sh-fb hidden-xs sho-fb-color sh-social-fbEllipsis" style="padding: 0px"id="fbshare">
+<%--                                   <i class="fa fa-facebook sh-iconsfb-header"></i>--%>
+                             			 I Support this Campaign
+                                    </button>
 	    						</g:if>
                            </g:elseif>
                            <g:elseif test="${!loggedInUser.equals(project.user) && !isTeamExist && project.validated}" >
@@ -592,6 +601,18 @@
                                         </g:if>
                                         <g:else>
                                             <button class="btn btn-block btn-primary manage-submitaprroval mange-btnsubmitapprov-size" id="submitForApprovalBtnright"><i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL</button>
+                                        </g:else>
+                              </div>
+                          </g:if>
+                           <g:if test="${!project.draft && !project.validated}">
+                           <div class="pendingCampaign-btn">
+                                        <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail || project.citrusEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                                            <g:form controller="project" action="saveasdraft" id="${project.id}">
+                                                <button class="btn btn-pendingCampaign btn-block btn-primary manage-submitaprroval mange-btnsubmitapprov-size" disabled>PENDING FOR APPROVAL</button>
+                                            </g:form>
+                                        </g:if>
+                                        <g:else>
+                                            <button class="btn btn-block btn-primary manage-submitaprroval mange-btnsubmitapprov-size" id="submitForApprovalBtnright">PENDING FOR APPROVAL</button>
                                         </g:else>
                               </div>
                           </g:if>
@@ -705,7 +726,20 @@
         </g:else>
     </div>
 </div>
-
+<script type="text/javascript">
+	$(window).scroll(function() {
+	    if ($(this).scrollTop() >= 50) {        
+	        $('#returnTotop').fadeIn(200);   
+	    } else {
+	        $('#returnTotop').fadeOut(200);   
+	    }
+	});
+	$('#returnTotop').click(function() {      
+	    $('body,html').animate({
+	        scrollTop : 0                       
+	    }, 500);
+	});
+</script>
 </body>
 </html>
                          

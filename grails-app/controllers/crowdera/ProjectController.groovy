@@ -992,7 +992,10 @@ class ProjectController {
                     if(params.payuEmail){
                         project.payuEmail = params.payuEmail
                     }
-                }
+					if(params.paypalEmail){
+						project.paypalEmail = params.paypalEmail
+					   }
+			   }
 				
 				projectService.saveLastSpendField(params);
                 rewardService.saveRewardDetails(params);

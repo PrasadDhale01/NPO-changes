@@ -22,9 +22,9 @@
             </div>
         </g:if>
         <div class="row">
-            <div class="col-md-12 col-sm-6 col-xs-12">
+        <%--     <div class="col-md-12 col-sm-6 col-xs-12">
                 <h1>Amount</h1>
-            </div>
+            </div>--%>
         </div>
     
         <g:hiddenField name="campaignId" id="projectId" value="${project.id}" />
@@ -40,7 +40,7 @@
                 <div class="form-group">
                    <div class="input-group">
                        <span class="amount input-group-addon"><span class="glyphicon glyphicon-usd"></span></span>
-                       <input class="amount form-control" <g:if test="${perk}">value="${reward.price.round()}"</g:if><g:else>value=""</g:else> id="amount" name="amount" type="text">
+                       <input class="amount form-control" Placeholder="Enter Donation Amount" <g:if test="${perk}">value="${reward.price.round()}"</g:if><g:else>value=""</g:else> id="amount" name="amount" type="text">
                    </div>
                    <span id="errormsg"></span>
                 </div>
@@ -72,9 +72,9 @@
                         <label class="checkbox control-label">
                         <input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse"> By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
                         </label>
-                        <div class="amount-button"><button type="submit" class="btn btn-primary btnChargeContinue visible-lg visible-md">Fund This Campaign</button></div>
-                        <div class="amount-button"><button type="submit" class="btn btn-primary visible-sm btnChargeContinue-md">Fund this Campaign</button></div>
-                        <div><button type="submit" class="btn btn-primary btn-block visible-xs">Fund this Campaign</button></div>
+                        <div class="amount-button"><button type="submit" class="btn donateNow btnChargeContinue visible-lg visible-md">DONATE NOW</button></div>
+                        <div class="amount-button"><button type="submit" class="btn donateNow visible-sm btnChargeContinue-md">DONATE NOW</button></div>
+                        <div><button type="submit" class="btn donateNow btn-block visible-xs">DONATE NOW</button></div>
                         <p>Powered By Paypal</p>
                         <div class="powerdbyPaypal">
                             <p><img src="//s3.amazonaws.com/crowdera/assets/poweredByFirstgiving.jpg" alt="Powered By paypal"/></p>

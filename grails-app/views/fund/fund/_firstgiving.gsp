@@ -5,9 +5,9 @@
         </div>
     </g:if>
     <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
+    <%--     <div class="col-md-12 col-sm-12 col-xs-12">
             <h1>Amount</h1>
-        </div>
+        </div>--%>
     </div>
     <g:form action="checkout" method="POST" class="checkoutForm">
     
@@ -24,7 +24,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="amount input-group-addon"><span class="glyphicon glyphicon-usd"></span></span>
-                    <input class="amount form-control" <g:if test="${perk}">value="${reward.price.round()}"</g:if><g:else>value=""</g:else> id="amount" name="amount" type="text">
+                    <input class="amount form-control" placeholder="Enter Donation Amount" <g:if test="${perk}">value="${reward.price.round()}"</g:if><g:else>value=""</g:else> id="amount" name="amount" type="text">
                 </div>
                 <span id="errormsg"></span>
             </div>
@@ -43,7 +43,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div  class="amount-button"><button type="submit" class="btn btn-primary btn-lg" id="btnCheckoutContinue">Continue</button></div>
+                <div  class="amount-button"><button type="submit" class="btn donateNow btn-lg" id="btnCheckoutContinue">CONTINUE</button></div>
             </div>
         </div>
     </g:form>

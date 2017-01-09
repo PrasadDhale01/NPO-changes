@@ -334,7 +334,7 @@
                     </label>
                 </div>
                 <div class="center-fund">
-                	<button type="submit" class="btn btn-primary btn-block btn-lg checkoutsubmitbutton" name="fund-button" id="btnPaypal">Fund this Campaign</button>
+                	<button type="submit" class="btn donateNow btn-block btn-lg checkoutsubmitbutton" name="fund-button" id="btnPaypal">DONATE NOW</button>
                 </div>
                 <div class="powerdby">
                     <p class="powerd-by-text">Powered By Firstgiving</p>

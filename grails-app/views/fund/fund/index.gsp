@@ -31,7 +31,7 @@
                     <b>Sorry ! You cannot select twitter perk as you are contributing anonymously.</b>
                 </div>
                 
-                <g:if test="${project.payuEmail}">
+            <%--   <g:if test="${project.payuEmail}">
                     <g:render template="fund/payu"/>
 				</g:if>
                 <g:elseif test="${project.paypalEmail}">
@@ -40,9 +40,33 @@
 				<g:elseif test="${project.citrusEmail}">
 					<g:render template="fund/citrus"/>
 				</g:elseif>
+				<g:elseif test="${project.paypalEmail && project.payuEmail && (country_code == 'us')}">
+                    <g:render template="fund/paypal"/>
+    			</g:elseif>
+    			<g:elseif test="${project.paypalEmail && project.payuEmail && (country_code == 'in')}">
+                    <g:render template="fund/payu"/>
+    			</g:elseif>
 				<g:else>
 				    <g:render template="fund/firstgiving"/>
-				</g:else>
+				</g:else> --%>
+				<g:if test="${project.payuEmail && (project.paypalEmail == null ) }">
+                    <g:render template="fund/payu"/>
+    			</g:if>
+                <g:elseif test="${project.paypalEmail && (project.payuEmail == null)}">
+                    <g:render template="fund/paypal"/>
+    			</g:elseif>
+    			<g:elseif test="${project.citrusEmail && (project.paypalEmail == null )}">
+     				<g:render template="fund/citrus"/>
+    			</g:elseif>
+    			<g:elseif test="${project.paypalEmail && project.payuEmail && (country_code == 'us')}">
+                    <g:render template="fund/paypal"/>
+                </g:elseif>
+                <g:elseif test="${project.paypalEmail && project.payuEmail && (country_code == 'in')}">
+                    <g:render template="fund/payu"/>
+                </g:elseif>
+    			<g:elseif test="${project.charitableId}" >
+        			<g:render template="fund/firstgiving"/>
+    			</g:elseif>
 				
 
                 <g:if test="${project.paypalEmail || project.payuStatus}">

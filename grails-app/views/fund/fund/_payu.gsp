@@ -16,11 +16,11 @@
              ${paypalFailureMessage}
          </div>
      </g:if>
-     <div class="row">
+ <%--     <div class="row">
          <div class="col-md-12 col-sm-12 col-xs-12">
              <h1>Amount</h1>
          </div>
-     </div>
+     </div>--%>
 
      <g:hiddenField name="projectId" id="projectId" value="${project.id}" />
      <input type="hidden" name="fr" value="${vanityUsername}" />
@@ -63,7 +63,7 @@
              <div class="form-group fund-inr">
                  <div class="input-group">
                      <span class="amount input-group-addon"><g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else><span class="glyphicon glyphicon-usd"></span></g:else></span>
-                     <input class="amount form-control" id="amount" name="amount" type="text" <g:if test="${perk}">value="${perk.price.round()}"</g:if><g:else>value=""</g:else> >
+                     <input class="amount form-control" id="amount" placeholder="Enter Donation Amount" name="amount" type="text" <g:if test="${perk}">value="${perk.price.round()}"</g:if><g:else>value=""</g:else> >
                  </div>
                  <span id="errormsg"></span>
              </div>
@@ -78,30 +78,6 @@
              <label class="checkbox control-label">
                  <input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
              </label>
-
-             <div class="panel panel-default">
-                 <div class="panel-body">
-                     <g:if test="${fundraiser != null}">
-                         <div class="form-group">
-                             <div class="col-sm-12"><b>Fundraiser:</b></div>
-                             <div class="col-sm-12">
-                                 <span>${fundraiser.firstName} ${fundraiser.lastName}</span>
-                             </div>
-                         </div>
-                     </g:if>
-                 </div>
-             </div>
-
-             <div class="row">
-                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                     <label class="checkbox control-label">
-                         <input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse"> By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
-                     </label>
-                     <div class="amount-button"><button type="submit" class="btn btn-primary btnChargeContinue visible-lg visible-md payucheckoutsubmitbutton">Fund This Campaign</button></div>
-                     <div class="amount-button"><button type="submit" class="btn btn-primary visible-sm btnChargeContinue-md payucheckoutsubmitbutton">Fund this Campaign</button></div>
-                     <div><button type="submit" class="btn btn-primary btn-block visible-xs payucheckoutsubmitbutton">Fund this Campaign</button></div>
-                 </div>
-             </div>
 
          </div>
          
@@ -157,7 +133,16 @@
                          </div>
                      </div>
                  </div>
-                    
+	             <div class="row">
+	                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+	                     <label class="checkbox control-label">
+	                         <input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse"> By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
+	                     </label>
+	                     <div class="amount-button"><button type="submit" class="btn donateNow btnChargeContinue visible-lg visible-md payucheckoutsubmitbutton">DONATE NOW</button></div>
+	                     <div class="amount-button"><button type="submit" class="btn donateNow visible-sm btnChargeContinue-md payucheckoutsubmitbutton">DONATE NOW</button></div>
+	                     <div><button type="submit" class="btn donateNow btn-block visible-xs payucheckoutsubmitbutton">DONATE NOW</button></div>
+	                 </div>
+	             </div>
                  <div class="hidden-sm hidden-xs" id="perkShippingInfo">
                      <g:render template="fund/perkShippingDetails" model="[anonymous:'false']"></g:render>
                  </div>
@@ -220,12 +205,21 @@
                         </div>
                     </div>
                 </div>
+	             <div class="row">
+	                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+	                     <label class="checkbox control-label">
+	                         <input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse"> By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
+	                     </label>
+	                     <div class="amount-button"><button type="submit" class="btn donateNow btnChargeContinue visible-lg visible-md payucheckoutsubmitbutton">DONATE NOW</button></div>
+	                     <div class="amount-button"><button type="submit" class="btn donateNow visible-sm btnChargeContinue-md payucheckoutsubmitbutton">DONATE NOW</button></div>
+	                     <div><button type="submit" class="btn donateNow btn-block visible-xs payucheckoutsubmitbutton">DONATE NOW</button></div>
+	                 </div>
+	             </div>
                 <div class="hidden-sm hidden-xs" id="perkShippingInfo">
                     <g:render template="fund/perkShippingDetails" model="[anonymous:'false']"></g:render>
                 </div>
 
              </div>
-             
          </g:else>
     </div>
     <div class="col-md-4 visible-sm visible-xs" id="perkShippingInfo-sm">

@@ -942,9 +942,29 @@
                             <input type="checkbox" name="tax-reciept-checkbox" class="tax-reciept-checkbox" id="tax-reciept-checkbox" <g:if test="${project.offeringTaxReciept}">checked="checked"</g:if>>
                             Do you want to offer donation receipt to your contributors?
                         </div>
+                        <g:if test="${country_code == 'in'}">
+                        	Do you want to receive funds from other countries?
+                        	<div class="question-ans question-ans-1 form-group answerNine">
+                            	<p><input type="radio" id="crowdera-email" name="ans9" class="ans9 yes" value="yes" <g:if test="${qA && qA.ans4 && qA.ans9 == 'yes'}">checked="checked"</g:if>>&nbsp;YES
+                            	<input type="radio" name="ans9" class="ans9 no ansNine" value="no" <g:if test="${qA && qA.ans4 && qA.ans9 == 'no'}">checked="checked"</g:if>>&nbsp;NO</p>
+                        	</div><br>
+                        </g:if>
                     </div>
                 </div>
-                
+                <div class="col-sm-12" id="paypalemail-cr" style='display:none'>
+                        <div class="form-group">
+                            <img class="col-sm-4 cr-paypal-image" src="//s3.amazonaws.com/crowdera/assets/paypal-Image.png" alt="paypal">
+                            <div class="col-sm-6 paypalVerification">
+                                <g:if test="${project.paypalEmail}">
+                                    <input id="paypalEmailId" type="email" maxlength="64" class="form-control paypal-create form-control-no-border cr-placeholder cr-chrome-place" value="${project.paypalEmail}" name="${FORMCONSTANTS.PAYPALEMAIL}">
+                                </g:if>
+                                <g:else>
+                                    <input id="paypalEmailId" type="text" maxlength="64" class="form-control crowderaPaypalId paypal-create form-control-no-border cr-placeholder cr-chrome-place" name="${FORMCONSTANTS.PAYPALEMAIL}" value="crowderainternational@paypal.com" readonly>
+                                </g:else>
+                                <g:hiddenField name="paypalEmailAck" value="${project.paypalEmail}" id="paypalEmailAck"/>
+                            </div>
+                        </div>
+                    </div>
                 <div class="col-sm-12 padding-tax-reciept-xs col-tax-reciept-panel <g:if test="${!project.offeringTaxReciept}">col-reciept-display-none</g:if>">
                     <div class="cr-spend-matrix">
                          <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Donation receipts</span></label>
@@ -1608,6 +1628,20 @@
         });
     }
     
+    $(document).ready(function() {
+    	   $('input[type="radio"]').click(function() {
+    	       if($(this).attr('id') == 'crowdera-email') {
+    	            $('#paypalemail-cr').show();    
+    	       }
+    	       
+    	       else {
+    	            $('#paypalemail-cr').hide();   
+    	       }
+    	   });
+    	});
+
+    $('.crowderaPaypalId').val("crowderainternational@paypal.com");
     </script>
     </body>
 </html>
+ 

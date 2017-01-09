@@ -5337,7 +5337,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     border-radius: 0px;
 }
 .rewardTileOnFundPage .badge{
-	background-color:#000;
+	background-color:#01bbd3;
 	color:#fff;
     padding: 4px 8px;
     font-size: 15px;
@@ -19682,3 +19682,33 @@ button.btn-pendingCampaign{
 div.TW-discover-leftpane-menu ul li a{
 	text-decoration: none;
 }
+
+button.donateNow{
+	background-color: #01bbd3 !important;
+    border-color: #01bbd3 !important;
+    font-family: Assistant;
+    font-size: 22px;
+    font-weight: bolder;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+button.donateNow:hover{
+	color: #ffffff;
+	background-color: #01bbd3 !important;
+    border-color: #01bbd3;
+}
+
+input.ansNine{
+	margin-left: 15px;
+}
+
+div.answerNine{
+	padding-bottom: 0px;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+	
+	
+	
+	

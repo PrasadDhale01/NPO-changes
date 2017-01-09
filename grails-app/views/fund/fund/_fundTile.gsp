@@ -34,6 +34,18 @@
 	       <img src="//s3.amazonaws.com/crowdera/assets/ended-tag.png" alt="Ended" />
 	   </div>
 	</g:elseif>
+	<div class="panel panel-default">
+                 <div class="panel-body">
+                     <g:if test="${fundraiser != null}">
+                         <div class="form-group">
+                             <div class="col-sm-12"><b>Fundraiser:</b></div>
+                             <div class="col-sm-12">
+                                 <span>${fundraiser.firstName} ${fundraiser.lastName}</span>
+                             </div>
+                         </div>
+                     </g:if>
+                 </div>
+             </div>
 	<div class="blacknwhite tile">
 		<a href="javascript:void(0)" onclick="submitCampaignShowForm('show','${project.id}','${username}');" >
 			<div class="imageWithTag">

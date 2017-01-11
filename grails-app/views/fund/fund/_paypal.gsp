@@ -54,19 +54,56 @@
                    <input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
                 </label>
     
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <g:if test="${fundraiser != null}">
-                            <div class="form-group">
-                                <div class="col-sm-12"><b>Fundraiser:</b></div>
-                                <div class="col-sm-12">
-                                <span>${fundraiser.firstName} ${fundraiser.lastName}</span>
-                                </div>
-                            </div>
-                        </g:if>
-                    </div>
-                </div>
-    
+<%--                <div class="panel panel-default">--%>
+<%--                    <div class="panel-body">--%>
+<%--                        <g:if test="${fundraiser != null}">--%>
+<%--                            <div class="form-group">--%>
+<%--                                <div class="col-sm-12"><b>Fundraiser:</b></div>--%>
+<%--                                <div class="col-sm-12">--%>
+<%--                                <span>${fundraiser.firstName} ${fundraiser.lastName}</span>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </g:if>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+    			<div class="panel panel-default">
+                     <div class="panel-heading">
+                         <h3 class="panel-title">Contact details (for your receipt)</h3>
+                     </div>
+                     <div class="panel-body">
+                         <div class="col-md-12 col-sm-6 col-xs-12">
+                             <div class="form-group">
+                                 <div class="input-group col-md-12">
+                                     <g:if test="${user}">
+                                         <input class="form-control" type="text" placeholder="First Name" name="firstname" value="${user.firstName}" required>
+                                     </g:if>
+                                     <g:else>
+                                         <input class="form-control" type="text" placeholder="First Name" name="firstname" required>
+                                     </g:else>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-md-12 col-sm-6 col-xs-12">
+                             <div class="form-group">
+                                 <div class="input-group col-md-12">
+                                     <g:if test="${user}">
+                                         <input class="form-control" type="text" placeholder="Last Name" name="lastname" value="${user.lastName}" required>
+                                     </g:if>
+                                     <g:else>
+                                         <input class="form-control" type="text" placeholder="Last Name" name="lastname" required>
+                                     </g:else>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-md-12 col-sm-6 col-xs-12">
+                             <div class="form-group">
+                                 <div class="input-group col-md-12">
+                                     <input class="form-control" type="email" placeholder="Email" name="email" value="${user?.email}" required>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                         <label class="checkbox control-label">

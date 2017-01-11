@@ -936,7 +936,7 @@
                     </div>
                 </g:else>
 
-                <div class="col-sm-12">
+                <div class="col-sm-12 <g:if test="${(country_code == 'in')}">internationalFunding</g:if>">
                     <div class="col-md-offset-4 col-md-8 col-sm-offset-3 col-sm-9">
                         <div class="form-group form-group-termsOfUse <g:if test="${(project.fundsRecievedBy != 'NGO' && (country_code == 'in')) || (project.fundsRecievedBy != 'NON-PROFIT' && (country_code == 'us'))}">tax-reciept</g:if>" id="tax-reciept">
                             <input type="checkbox" name="tax-reciept-checkbox" class="tax-reciept-checkbox" id="tax-reciept-checkbox" <g:if test="${project.offeringTaxReciept}">checked="checked"</g:if>>

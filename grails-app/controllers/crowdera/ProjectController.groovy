@@ -1094,7 +1094,10 @@ class ProjectController {
             def categoryOptions
             def spends = project.spend
             spends = spends.sort{it.numberAvailable}
-            if('in'.equalsIgnoreCase(country_code)){
+            
+            String countryCode = project?.country?.countryCode
+            
+            if('in'.equalsIgnoreCase(countryCode)){
                 categoryOptions = projectService.getIndiaCategoryList()
             } else {
                 categoryOptions = projectService.getCategoryList()
@@ -1119,7 +1122,7 @@ class ProjectController {
             }
             def adminemails = projectService.getAdminEmail(project)
             def payOpts
-            if ('in'.equalsIgnoreCase(country_code)){
+            if ('in'.equalsIgnoreCase(countryCode)){
                 payOpts = projectService.getIndiaPaymentGateway()
             } else {
                 payOpts = projectService.getPayment()
@@ -1130,18 +1133,21 @@ class ProjectController {
             //USA: Map value is fetching for country like, ALBANIA is fetching for AL:"ALBANIA"
            // def selectedCountry = (project.beneficiary.country.length() > 3 ) ? projectService.getCountryKey(project.beneficiary.country) : project.beneficiary.country
             def selectedCountry;
-		if (project.beneficiary.country != null) {
-			selectedCountry = (project.beneficiary.country?.length() > 3 ) ? projectService.getCountryKey(project.beneficiary.country) : project.beneficiary.country
-		}
-		def beneficiary = project.beneficiary
+    		if (project.beneficiary.country != null) {
+    			selectedCountry = (project.beneficiary.country?.length() > 3 ) ? projectService.getCountryKey(project.beneficiary.country) : project.beneficiary.country
+    		}
+    		def beneficiary = project.beneficiary
+            
             def reasonsToFund = projectService.getProjectReasonsToFund(project)
             def qA = projectService.getProjectQA(project)
             def taxReciept = projectService.getTaxRecieptOfProject(project)
             def deductibleStatusList = projectService.getDeductibleStatusList()
             def stateInd = projectService.getIndianState()
             def pieList = projectService.getPieList(project);
+            
 			println("from edit() == " + params.country_code )
-			def country_code = params.country_code
+			
+            def country_code = params.country_code
             render (view: 'edit/index',
             model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,spends:spends,
                 'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit,

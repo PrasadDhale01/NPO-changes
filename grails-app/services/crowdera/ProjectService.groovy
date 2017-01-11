@@ -55,6 +55,7 @@ class ProjectService {
         if (projectId) {
             return Project.get(projectId)
         }
+        
     }
 
     def getTaxRecieptById(def taxRecieptId){
@@ -554,6 +555,7 @@ class ProjectService {
             userId = request.getParameter('tempValue')
             anonymous = request.getParameter('anonymous')
         }
+        
         def shippingDetail=checkShippingDetail(emailId,twitter,address, custom)
         def name
         def username
@@ -1181,7 +1183,7 @@ class ProjectService {
     def getPayment(){
         def currentEnv = getCurrentEnvironment();
         def payment;
-        if (currentEnv == "test") {
+        if (currentEnv == "test" && currentEnv == "development") {
             payment = [
                 PAY:'Paypal',
                 FIR:'FirstGiving',
@@ -1199,17 +1201,10 @@ class ProjectService {
 	def getIndiaPaymentGateway() {
         def currentEnv = getCurrentEnvironment();
         
-        def payment;
-        if (currentEnv == 'test') {
-            payment = [
+        def payment = [
                 PAYU  : 'PayUMoney',
                 CITRUS: 'Citrus'
             ]
-        } else {
-            payment = [
-                PAYU : 'PayUMoney'
-            ]
-        }
 		
 		return payment
 	}
@@ -5987,7 +5982,7 @@ class ProjectService {
         }
         
         
-        String splitId = getSplitIdForTransactionId(marketplaceTxId, project.sellerId, amount, issuerRefNo) 
+        /*String splitId = getSplitIdForTransactionId(marketplaceTxId, project.sellerId, amount, issuerRefNo) */
 
         Contribution contribution = new Contribution(
             date             : new Date(),
@@ -6002,9 +5997,9 @@ class ProjectService {
             physicalAddress  : shippingDetail.address,
             currency         : 'INR',
             panNumber        : panNumber,
-            merchantTxId     : marketplaceTxId,
+            merchantTxId     : marketplaceTxId/*,
             splitRef         : issuerRefNo,
-            splitId          : splitId
+            splitId          : splitId*/
         )
         
         project.addToContributions(contribution).save(failOnError: true)
@@ -6896,7 +6891,7 @@ class ProjectService {
 		/**Change the country to 'in' if you want to test the India flow on development ENV*/
 		def currentEnv = getCurrentEnvironment();
 		if( currentEnv == 'development'|| currentEnv == 'test'){
-			country_code  = "us"
+			country_code  = "in"
 		}else if (currentEnv == 'testIndia' || currentEnv==''){
 			country_code = "in"
 		}else if(currentEnv == 'staging') {

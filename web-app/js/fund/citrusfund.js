@@ -715,7 +715,7 @@ $(function() {
                 
                 $.ajax({
                     type    :'post',
-                    url     : $("#b_url").val()+'/fund/setCitrusInfo',
+                    url     : $('#url').val()+'/fund/setCitrusInfo',
                     data    : formDataObj,
                     processData	: false,
                     contentType: false,

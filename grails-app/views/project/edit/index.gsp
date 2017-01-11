@@ -1000,21 +1000,20 @@
                                  </div>
                              </div>
                         </div>
-                        <g:if test="${currentEnv == 'testIndia'}">
-	                        <div id="CitrusPay">
-	                            <div class="form-group">
-	                                <label class="col-sm-4 control-label">Email</label>
-	                                <div class="col-sm-6 col-xs-10">
-	                                    <g:if test="${project.citrusEmail}">
-	                                        <input type="email" id="citrusemail" maxlength="64" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.CITRUSEMAIL}" value="${project.citrusEmail}">
-	                                    </g:if>
-	                                    <g:else>
-	                                        <input type="email" id="citrusemail" maxlength="64" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.CITRUSEMAIL}">
-	                                    </g:else>
-	                                </div>
-	                            </div>
-	                        </div>
-                        </g:if>
+                        
+                        <div id="CitrusPay">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Email</label>
+                                <div class="col-sm-6 col-xs-10">
+                                    <g:if test="${project.citrusEmail}">
+                                        <input type="email" id="citrusemail" maxlength="64" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.CITRUSEMAIL}" value="${project.citrusEmail}">
+                                    </g:if>
+                                    <g:else>
+                                        <input type="email" id="citrusemail" maxlength="64" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.CITRUSEMAIL}">
+                                    </g:else>
+                                </div>
+                            </div>
+                        </div>
                     </g:if>
                     <g:else>
                         <div class="col-sm-12" id="paypalemail">

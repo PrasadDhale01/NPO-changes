@@ -27,14 +27,12 @@ $(function() {
     
     var currentEnv = $("#currentEnv").val();
     
-    if (currentEnv == "testIndia") {
-	    if ($('#citrusemail').val()) {
-	    	$('#CitrusPay').show();
-	    	$('#PayUMoney').hide();
-	    } else {
-	    	$('#CitrusPay').hide();
-	    	$('#PayUMoney').show();
-	    }
+    if ($('#citrusemail').val()) {
+    	$('#CitrusPay').show();
+    	$('#PayUMoney').hide();
+    } else {
+    	$('#CitrusPay').hide();
+    	$('#PayUMoney').show();
     }
 
     var storyPlaceholder = "<p><h3>Introduce Your Campaign</h3></p>"+
@@ -652,13 +650,11 @@ $(function() {
                 maxlength: 50
             });
             
-            if (currentEnv == "testIndia") {
-	            $( '[name="citrusEmail"]' ).rules( "add", {
-	                required: true,
-	                email:true,
-	                maxlength: 50
-	            });
-            }
+            $( '[name="citrusEmail"]' ).rules( "add", {
+                required: true,
+                email:true,
+                maxlength: 50
+            });
 
         } else {
         	$('.rewardPrice').each(function () {
@@ -989,13 +985,11 @@ $(function() {
                 maxlength: 50
             });
             
-            if (currentEnv == "testIndia") {
-	            $( '[name="citrusEmail"]' ).rules( "add", {
-	                required: true,
-	                email:true,
-	                maxlength: 50
-	            });
-            }
+            $( '[name="citrusEmail"]' ).rules( "add", {
+                required: true,
+                email:true,
+                maxlength: 50
+            });
         } else {
         	$('.rewardPrice').each(function () {
                 $(this).rules("add", {
@@ -1524,19 +1518,19 @@ $(function() {
 
      $('#paymentOpt').change(function(){
     	 var payind = $('#paymentOpt').val();
-    	 if (currentEnv == "testIndia") {
-	    	 if(payind === 'PAYU'){
-	    		 $('#PayUMoney').show();
-	    		 $('#CitrusPay').hide();
-	    	 } else if (payind === 'CITRUS') {
-	    		 $('#CitrusPay').show();
-	    		 $('#PayUMoney').hide();
-	    	 }
-    	 } else {
+    	 /*if (currentEnv == "testIndia") {*/
+    	 if(payind === 'PAYU'){
+    		 $('#PayUMoney').show();
+    		 $('#CitrusPay').hide();
+    	 } else if (payind === 'CITRUS') {
+    		 $('#CitrusPay').show();
+    		 $('#PayUMoney').hide();
+    	 }
+    	 /*} else {
     		 if(payind === 'PAYU'){
 	    		 $('#PayUMoney').show();
 	    	 }
-    	 }
+    	 }*/
      });
 
 	$('#countryList').change(function(){
@@ -3053,14 +3047,12 @@ $(function() {
         }
     });
     
-    if (currentEnv == "testIndia") {
-	    $('#citrusemail').blur(function (){
-	        var citrusEmail = $(this).val();
-	        if (validator.element( "#citrusemail")) {
-	            autoSave('citrusEmail', citrusEmail);
-	        }
-	    });
-    }
+    $('#citrusemail').blur(function (){
+        var citrusEmail = $(this).val();
+        if (validator.element( "#citrusemail")) {
+            autoSave('citrusEmail', citrusEmail);
+        }
+    });
 
     $('#secretKey').blur(function (){
         var secretKey = $(this).val();

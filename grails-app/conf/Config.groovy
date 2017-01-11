@@ -171,6 +171,13 @@ environments {
 		crowdera.CITRUS.ACCESS_KEY = "VVXKH02XVEWHUGWJHAMI"
 		crowdera.CITRUS.SECRETE_KEY = "4c86cabfc7fb68d2261f35087a8edece44f856bd"
 		crowdera.CITRUS.VANITYURL = "8wqhvmq506"
+        
+        /* Wepay Details */
+        crowdera.wepay.BASE_URL= 'https://stage.wepayapi.com/v2'
+        crowdera.wepay.CLIENT_ID= '181922'
+        crowdera.wepay.CLIENT_SECRET= 'd6f70985bc'
+        crowdera.wepay.ACCESS_TOKEN = 'STAGE_5fe2214cb89aecdb2c567d5fd58080d048cc0c5afad52a65738101beab47d94c'
+        crowdera.wepay.account_id = '1456620204'
 		
 		/*ConstantContact details*/
 		crowdera.cc.OAUTH_URL='https://oauth2.constantcontact.com/oauth2/oauth/siteowner/authorize?response_type=code&display=page&'
@@ -391,9 +398,9 @@ environments {
         /*Citrus Credentials*/
         crowdera.CITRUS.SPLITPAY_URL = "https://splitpaysbox.Citruspay.com"
         crowdera.CITRUS.BASE_URL = "https://splitpay.citruspay.com"
-        crowdera.CITRUS.ACCESS_KEY = "VVXKH02XVEWHUGWJHAMI"
-        crowdera.CITRUS.SECRETE_KEY = "4c86cabfc7fb68d2261f35087a8edece44f856bd"
-        crowdera.CITRUS.VANITYURL = "8wqhvmq506"
+        crowdera.CITRUS.ACCESS_KEY = "0OPFFQDNQ9WEZM9UVIMZ"
+        crowdera.CITRUS.SECRETE_KEY = "54912af376b8c3463b59a188551a1236fb2fb5c1"
+        crowdera.CITRUS.VANITYURL = "c5vrgwoucm"
 		
 		/* FreshDesk Details */
 		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
@@ -504,9 +511,9 @@ environments {
         /*Citrus Credentials*/
         crowdera.CITRUS.SPLITPAY_URL = "https://splitpaysbox.Citruspay.com"
         crowdera.CITRUS.BASE_URL = "https://splitpay.citruspay.com"
-        crowdera.CITRUS.ACCESS_KEY = "VVXKH02XVEWHUGWJHAMI"
-        crowdera.CITRUS.SECRETE_KEY = "4c86cabfc7fb68d2261f35087a8edece44f856bd"
-        crowdera.CITRUS.VANITYURL = "8wqhvmq506"
+        crowdera.CITRUS.ACCESS_KEY = "0OPFFQDNQ9WEZM9UVIMZ"
+        crowdera.CITRUS.SECRETE_KEY = "54912af376b8c3463b59a188551a1236fb2fb5c1"
+        crowdera.CITRUS.VANITYURL = "c5vrgwoucm"
 		
 		/* FreshDesk Details */
 		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'

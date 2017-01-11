@@ -943,10 +943,9 @@
                             Do you want to offer donation receipt to your contributors?
                         </div>
                         <g:if test="${country_code == 'in'}">
-                        	Do you want to receive funds from other countries?
                         	<div class="question-ans question-ans-1 form-group answerNine">
-                            	<p><input type="radio" id="crowdera-email" name="ans9" class="ans9 yes" value="yes" <g:if test="${qA && qA.ans4 && qA.ans9 == 'yes'}">checked="checked"</g:if>>&nbsp;YES
-                            	<input type="radio" name="ans9" class="ans9 no ansNine" value="no" <g:if test="${qA && qA.ans4 && qA.ans9 == 'no'}">checked="checked"</g:if>>&nbsp;NO</p>
+                        		<input type="checkbox" name="ans9"  id="crowdera-email">
+                        		Do you want to receive foreign contribution ?
                         	</div><br>
                         </g:if>
                     </div>
@@ -959,7 +958,7 @@
                                     <input id="paypalEmailId" type="email" maxlength="64" class="form-control paypal-create form-control-no-border cr-placeholder cr-chrome-place" value="${project.paypalEmail}" name="${FORMCONSTANTS.PAYPALEMAIL}">
                                 </g:if>
                                 <g:else>
-                                    <input id="paypalEmailId" type="text" maxlength="64" class="form-control crowderaPaypalId paypal-create form-control-no-border cr-placeholder cr-chrome-place" name="${FORMCONSTANTS.PAYPALEMAIL}" value="crowderainternational@paypal.com" readonly>
+                                    <input id="paypalEmailId" type="text" maxlength="64" class="form-control crowderaPaypalId paypal-create form-control-no-border cr-placeholder cr-chrome-place" name="${FORMCONSTANTS.PAYPALEMAIL}">
                                 </g:else>
                                 <g:hiddenField name="paypalEmailAck" value="${project.paypalEmail}" id="paypalEmailAck"/>
                             </div>
@@ -1627,20 +1626,18 @@
         }).error(function(){
         });
     }
-    
-    $(document).ready(function() {
-    	   $('input[type="radio"]').click(function() {
-    	       if($(this).attr('id') == 'crowdera-email') {
-    	            $('#paypalemail-cr').show();    
-    	       }
-    	       
-    	       else {
-    	            $('#paypalemail-cr').hide();   
-    	       }
-    	   });
-    	});
 
-    $('.crowderaPaypalId').val("crowderainternational@paypal.com");
+    $(document).ready(function(){
+        $('input[id="crowdera-email"]').click(function(){
+            if($(this).prop("checked") == true){
+               $('#paypalEmailId').val("international@crowdera.co");
+            }
+            else if($(this).prop("checked") == false){
+                $('#paypalEmailId').val("");
+            }
+        });
+    });
+
     </script>
     </body>
 </html>

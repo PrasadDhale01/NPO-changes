@@ -5644,6 +5644,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.internationalFunding{
+	    height: auto;  
+	}
+	div.answerNine{
+	    padding-left: 0px;
+	    margin-left: -15px !important;
+	}
 	form.updateCampaign {
         margin-left: 0px;
         width: 95.2%;
@@ -8105,6 +8112,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+	div.answerNine {
+    	margin-left: 0;
+    	padding-left: 48px;
+    }
 	div.show-alertMsz {
         margin-left: 2%;
         width: 96%;
@@ -15509,6 +15520,15 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	div.internationalFunding{
+	    margin-bottom: -15px;
+	    height: auto;  
+	}
+	div.answerNine{
+		position: relative;
+		left: -14px;
+	    margin-left: 0px !important;
+	}
     div.show-alertMsz {
         margin-left: 3.5%;
         width: 94%;
@@ -19703,12 +19723,12 @@ input.ansNine{
 	margin-left: 15px;
 }
 
-div.answerNine{
+.answerNine{
 	padding-bottom: 0px;
     margin-left: 0px;
     padding-left: 0px;
 }
-	
-	
-	
-	
+
+.internationalFunding{
+	height: 80px;
+}

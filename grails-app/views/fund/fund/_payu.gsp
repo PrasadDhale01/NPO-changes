@@ -150,14 +150,7 @@
              </div>
              
          </g:if>
-     </div>
-     </div>
-     <div class="col-md-4">
-         <g:if test="${project.rewards.size()>1  && country_code == 'in'}">
-             <g:render template="fund/rewards" model="[user:user]" />
-         </g:if>
          <g:else>
-        	<g:if test="${country_code == 'in'}">
              <div class="col-md-12 col-sm-12 col-xs-12">
              
                   <div class="panel panel-default">
@@ -220,8 +213,13 @@
                 </div>
 
              </div>
-             </g:if>
          </g:else>
+     </div>
+     </div>
+     <div class="col-md-4">
+         <g:if test="${project.rewards.size()>1}">
+             <g:render template="fund/rewards" model="[user:user]" />
+         </g:if>
     </div>
     <div class="col-md-4 visible-sm visible-xs" id="perkShippingInfo-sm">
         <g:render template="fund/perkShippingDetails" model="[anonymous:'false']"></g:render>

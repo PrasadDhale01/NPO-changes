@@ -155,7 +155,7 @@
         </div>
     </div>
     <div class="col-md-4">
-        <g:if test="${project.rewards.size()>1}">
+        <g:if test="${project.rewards.size()>1 && ((project.paypalEmail && project.payuEmail) == null)}">
             <g:render template="fund/rewards" model="[user:user]" />
         </g:if>
     </div>

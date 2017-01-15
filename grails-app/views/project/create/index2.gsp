@@ -1245,7 +1245,7 @@
                                 <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
                                     <div class="col-sm-4">
                                         <div class="form-group form-group-tax-reciept">
-                                            <input type="text" maxlength="32" placeholder="EIN" class="form-control ein" name="ein" value="${taxReciept.ein}">
+                                            <input type="text" maxlength="9" placeholder="EIN" class="form-control ein" name="ein" value="${taxReciept.ein}">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
@@ -1337,7 +1337,7 @@
                                 <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
                                     <div class="col-sm-4">
                                         <div class="form-group form-group-tax-reciept">
-                                            <input type="text" maxlength="32" placeholder="EIN" class="form-control ein" name="ein">
+                                            <input type="text" maxlength="9" placeholder="EIN" class="form-control ein" name="ein">
                                         </div>
                                     </div>
                                     <div class="col-sm-4">

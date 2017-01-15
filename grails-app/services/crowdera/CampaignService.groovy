@@ -115,13 +115,9 @@ class CampaignService {
     
     public boolean isTaxReceiptExist(String projectId) {
         String currentEnv = projectService.getCurrentEnvironment();
-        if (currentEnv == "testIndia" || currentEnv == "stagingIndia" || currentEnv == "prodIndia") {
-            Long rowCount = (Long) TaxReciept.createCriteria().add(Restrictions.eq("project.id", projectId))
-                            .createAlias("project", "project").setProjection(Projections.rowCount()).uniqueResult();
-            return (rowCount.intValue() != 0) ? true : false;
-        } else {
-            return false;
-        }
+        Long rowCount = (Long) TaxReciept.createCriteria().add(Restrictions.eq("project.id", projectId))
+                        .createAlias("project", "project").setProjection(Projections.rowCount()).uniqueResult();
+        return (rowCount.intValue() != 0) ? true : false;
     }
     
     def isUserProjectHavingContribution(User user, def projectAdmins, String environment){

@@ -884,8 +884,6 @@ class ProjectController {
 
 			if('in'.equalsIgnoreCase(params.country_code)){
 				project.payuStatus = true
-			}else if(currentEnv == 'production' && 'in'.equalsIgnoreCase(params.country_code)){
-				project.payuStatus = true
 			}
 			
 			if(project.save(failOnError: true)){

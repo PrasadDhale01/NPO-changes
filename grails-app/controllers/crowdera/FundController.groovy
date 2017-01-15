@@ -1011,7 +1011,9 @@ class FundController {
 
         if (contributionId && fundraiser) {
             redirect(controller: 'fund', action: 'acknowledge' , params: [cb: contributionId, fr:fundraiser.id, projectTitle: projectTitle])
-        }
+        } else {
+			render view: 'error', model: [message: 'There was an error charging. Don\'t worry, your card was not charged. Please try again.']
+		}
     }
 
     def getseller() {

@@ -754,7 +754,8 @@ $(function() {
         } else {
         	$( '[name="ein"]' ).rules( "add", {
                 required: true,
-                minlength:9
+                minlength:9,
+                maxlength:9
             });
 
             $( '[name="tax-reciept-deductible-status"]' ).rules( "add", {
@@ -1102,7 +1103,8 @@ $(function() {
             } else {
             	$( '[name="ein"]' ).rules( "add", {
                     required: true,
-                    minlength:9
+                    minlength:9, 
+                    maxlength:9
                 });
 
                 $( '[name="tax-reciept-deductible-status"]' ).rules( "add", {

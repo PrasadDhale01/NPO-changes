@@ -3046,6 +3046,7 @@ class ProjectService {
             sortedIndiaProjects = activeIndiaProjects.sort{contributionService.getPercentageContributionForProject(it)}
             sortedUsProjects = activeUsProjects.sort{contributionService.getPercentageContributionForProject(it)}
             finalList = draftIndiaProjects.reverse() + draftUsProjects.reverse() + pendingIndiaProjects.reverse() + pendingUsProjects.reverse() + sortedIndiaProjects.reverse() + sortedUsProjects.reverse() + endedIndiaProjects.reverse() + endedUsProjects.reverse()
+			
         } else{
             def projects= Project.findAllWhere(user:user,payuStatus: false)
             projects.each { project->
@@ -3159,13 +3160,15 @@ class ProjectService {
         def contributions = Contribution.findAllByUser(user)
         List payuContributions=[]
         List otherContributions=[]
+		
         contributions.each{
-            if(it.project.payuStatus == true && it.project.payuEmail != null){
+            if(it.project?.payuStatus){
                 payuContributions.add(it)
-            } else if(it.project.payuStatus == false){
+            } else {
                 otherContributions.add(it)
             }
         }
+		
         if('in'.equalsIgnoreCase(country_code)){
             return payuContributions
         } else {

@@ -1,7 +1,8 @@
 <g:set var="projectService" bean="projectService" />
 <%
     def index = 1;
-    def base_url = grailsApplication.config.crowdera.BASE_URL
+    String baseUrl = grailsApplication.config.crowdera.BASE_URL
+	def base_url = baseUrl.substring(0, (baseUrl.length() - 1))
 %>
 <g:if test="${totalCampaignSupported.size() == 0}">
     <div class="col-sm-12">

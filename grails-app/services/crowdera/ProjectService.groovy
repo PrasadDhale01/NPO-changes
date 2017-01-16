@@ -50,6 +50,11 @@ class ProjectService {
     def roleService
     
     SessionFactory sessionFactory;
+	@Lazy
+	private static List<Team> allTeams = new ArrayList<Team>()
+	
+	private static List<Team> allSortedTeams = new ArrayList<Team>()
+
 
     def getProjectById(def projectId){
         if (projectId) {
@@ -144,7 +149,7 @@ class ProjectService {
          Project project = new Project(projectParams)
 		 Beneficiary beneficiary = new Beneficiary();
          project.beneficiary = beneficiary
-         project.category = "OTHER"
+         project.category = "Others"
          project.created = new Date()
          User user = userService.getCurrentUser()
          project.user = user
@@ -1494,27 +1499,42 @@ class ProjectService {
         }
     }*/
     
-    def getCategoryList() {
+     def getCategoryList() {
         def categoryOptions = [
-            (Project.Category.ANIMALS): "Animals",
-            (Project.Category.ARTS): "Arts",
-            (Project.Category.CHILDREN): "Children",
-            (Project.Category.COMMUNITY): "Community",
-			(Project.Category.CIVIC_NEEDS): "Civic Needs",
-            (Project.Category.EDUCATION): "Education",
-            (Project.Category.ELDERLY): "Elderly",
-            (Project.Category.ENVIRONMENT): "Environment",
-			(Project.Category.FILM): "Film",
-            (Project.Category.HEALTH): "Health",
-			(Project.Category.NON_PROFITS):"Non Profits",
-            (Project.Category.SOCIAL_INNOVATION): "Social Innovation",
-            (Project.Category.RELIGION): "Religion",
-            (Project.Category.OTHER): "Other"
+            (Project.Category.Poverty_Hunger): "Poverty & Hunger",
+            (Project.Category.Health_Fitness): "Health & Fitness",
+            (Project.Category.Education_Schools_PTAs): "Education, Schools, PTAs",
+            (Project.Category.Gender_Equality): "Gender Equality",
+			(Project.Category.LGBT): "LGBT",
+            (Project.Category.Clean_Water): "Clean Water",
+            (Project.Category.Clean_Energy): "Clean Energy",
+            (Project.Category.Social_Entrepreneurship): "Social Entrepreneurship",
+			(Project.Category.Social_Innovation): "Social Innovation",
+            (Project.Category.Community_CivicNeeds): "Community & Civic Needs",
+			(Project.Category.Africa):"Africa",
+            (Project.Category.Climate_Change): "Climate Change",
+            (Project.Category.Ocean_Life): "Ocean Life",
+            (Project.Category.Animal_Safety): "Animal Safety",
+			(Project.Category.Environment): "Environment",
+			(Project.Category.Peace_CivilRights_Justice): "Peace, Civil Rights & Justice",
+			(Project.Category.Funds_Syndicates): "Funds Syndicates",
+			(Project.Category.Disaster_Relief): "Disaster Relief",
+			(Project.Category.Celebrations): "Celebrations",
+			(Project.Category.Accidents_Medical_Emergencies): "Accidents & Medical Emergencies",
+			(Project.Category.Faith_Religion_Politics): "Faith, Religion, & Politics",
+			(Project.Category.Memorials): "Memorials",
+			(Project.Category.Volunteering): "Volunteering",
+			(Project.Category.Entrepreneurship_Startup): "Entrepreneurship & Startup",
+			(Project.Category.Arts_Sports_Culture): "Arts, Sports, & Culture",
+			(Project.Category.Film_Theater_Music): "Film, Theater, & Music",
+			(Project.Category.Children_Women_Elders): "Children, Women & Elders",
+			(Project.Category.Veterans): "Veterans",
+			(Project.Category.Others): "Others"
         ]
         return categoryOptions
     }
 	
-	def getIndiaCategoryList() {
+	/*def getIndiaCategoryList() {
 		def categoryOptions = [
 			(Project.Category.ANIMALS): "Animals",
 			(Project.Category.ARTS): "Arts",
@@ -1531,29 +1551,45 @@ class ProjectService {
 			(Project.Category.OTHER): "Other"
 		]
 		return categoryOptions
-	}
+	}*/
     
    def getCategory(){
 	   def categoryOptions = [
-		   ALL: "All Categories",
-		   ANIMALS: "Animals",
-		   ARTS: "Arts",
-		   CHILDREN: "Children",
-		   COMMUNITY: "Community",
-		   CIVIC_NEEDS: "Civic Needs",
-		   EDUCATION: "Education",
-		   ELDERLY: "Elderly",
-		   ENVIRONMENT: "Environment",
-		   FILM: "Film",
-		   HEALTH: "Health",
-		   NON_PROFITS:"Non Profits",
-		   SOCIAL_INNOVATION: "Social Innovation",
-		   RELIGION: "Religion",
-		   OTHER: "Other"
+		 //  	ALL:"All Categories",
+		   	Poverty_Hunger:"Poverty & Hunger",
+			Health_Fitness:"Health & Fitness",
+			Education_Schools_PTAs:"Education,Schools & PTAs",
+			Gender_Equality:"Gender Equality",
+			LGBT:"LGBT",
+			Clean_Water:"Clean Water",
+			Clean_Energy:"Clean Energy",
+			Social_Entrepreneurship:"Social Entrepreneurship",
+			Social_Innovation:"Social Innovation",
+			Community_CivicNeeds:"Community & CivicNeeds",
+			Africa:"Africa",
+			Climate_Change:"Climate Change",
+			Ocean_Life:"Ocean Life",
+			Animal_Safety:"Animal Safety",
+			Environment:"Environment",
+			Peace_CivilRights_Justice:"Peace,CivilRights & Justice",
+			Funds_Syndicates:"Funds & Syndicates",
+			Disaster_Relief:"Disaster Relief",
+			Celebrations:"Celebrations",
+			Accidents_Medical_Emergencies:"Accidents & Medical Emergencies",
+			Faith_Religion_Politics:"Faith,Religion & Politics",
+			Memorials:"Memorials",
+			Volunteering:"Volunteering",
+			Entrepreneurship_Startup:"Entrepreneurship & Startup",
+			Arts_Sports_Culture:"Arts,Sports & Culture",
+			Film_Theater_Music:"Film,Theater & Music",
+			Children_Women_Elders:"Children,Women & Elders",
+			Veterans:"Veterans",
+			Others:"Others"
 	   ]
 	   return categoryOptions
    }
-   def getIndiaCategory(){
+   
+  /* def getIndiaCategory(){
 	   def categoryOptions = [
 		   ALL: "All Categories",
 		   ANIMALS: "Animals",
@@ -1571,7 +1607,7 @@ class ProjectService {
 		   OTHER: "Other"
 	   ]
 	   return categoryOptions
-	}
+	}*/
    
 	def getDiscoverTopCategory(){
 		def categoryOptions = [
@@ -2670,8 +2706,18 @@ class ProjectService {
 				String strSocialCategory = it.usedFor
 				String strNonProfit = "NON_PROFITS"
 				String strSocialGood = "Social_Innovation"
-				
+				categories = categories.replace('-&-','_')
+				categories = categories.replace(',','_')
+				categories = categories.replace('-','_')
+				println("categories== " + categories + " str== " + str)
 				if (str.equalsIgnoreCase(categories)){
+					list.add(it)
+				}else if(it?.beneficiary?.country !=null && (it?.beneficiary?.country == categories.replace('-',' '))){
+					list.add(it)
+				}else{
+					return null
+				}
+				/*if (str.equalsIgnoreCase(categories)){
 					if(strSocialGood.equalsIgnoreCase(categories.replace("Innovation","Needs")) && strSocialCategory !=null){
 						String strSocialNeeds = strSocialGood.replace("Innovation","Needs")
 						if(strSocialCategory.equalsIgnoreCase(strSocialNeeds.replace('-','_'))){
@@ -2697,7 +2743,7 @@ class ProjectService {
 				 	}
 				}else{
 					return null
-				}
+				}*/
 			}
 			return list
         }
@@ -6904,5 +6950,86 @@ class ProjectService {
 		}
 		return country_code;
 		
+	}
+	
+	
+	def getTeamList(Project project,def type){
+		
+		List<Team> listOfTeam = new ArrayList<Team>()
+		def teams =  Team.findAllWhere(project:project, enable:true, validated:true).collect {
+			[
+					id : it.id,
+					amount: it.amount,
+					description:it.description,
+					enable:true, validated:true,
+					user: it.user,
+					projectId : project.id,
+					projectTitle : project.title,
+					projectOwner:project.user.username,
+					contributions: it.contributions,
+					sumOfTeamContributions: it.contributions.sum{ if(it?.amount){it?.amount}},
+					campaignOwnerId: project.user.id
+			]
+		}
+			   
+		teams.each{team ->
+
+			def percentage = contributionService.getPercentageContributionForTeam(team)
+			def ended = isProjectDeadlineCrossed(project)
+			def amount = getDataType(team.amount)
+			def imageLink = getProjectImageLink(project)
+			def remainingDay = getRemainingDay(project)
+			def isAdminOrBeneficiary = userService.isCampaignBeneficiaryOrAdmin(project, team.user)
+			def isCampaignAdmin = userService.isCampaignAdmin(project, team.user.username)
+			def isCampaignAdminByUser=userService.isCampaignAdminByUserID(project, team.user)
+			//def multiplier = getCurrencyConverter();
+			def alphabet = userService.getCurrentUserImage(team.user.username)
+			def country = getCountryForProject(project)
+			def currencyValue = getCurrencyByCountryId(country)
+			def countryCode = project.country.countryCode
+			def userName = userService.getVanityNameFromUsername(team?.user?.username, team?.id)
+			
+			
+			if(team.contributions==null){
+				team["contributions"] = 0
+			}else{
+				team["contributions"] = team.contributions.sum{ (it?.amount != null)?it?.amount:0}
+			}
+
+			//team["contributions"] = team.contributions.sum{ (it?.amount != null)?it?.amount:0}
+			team["percentage"] = percentage;
+			team["ended"] = ended;
+			team["amount"]=amount;
+			team["imageLink"] = imageLink;
+			team["remainingDay"]= remainingDay
+			team["description"]=project.description
+			team["organizationName"]=project.organizationName
+			team["title"]= getVanityTitleFromId(project?.id)
+			team["isAdminOrBeneficiary"] = isAdminOrBeneficiary
+			team["isCampaignAdmin"] = isCampaignAdmin
+			team["isCampaignAdminByUser"] = isCampaignAdminByUser
+			//team["multiplier"] = multiplier
+			team["alphabet"]=alphabet
+			team["payuStatus"] = project.payuStatus
+			team["countryCode"]= countryCode
+			team["currencyValue"]= currencyValue
+			team["fundsRecievedBy"]= project.fundsRecievedBy
+			team["username"]=userName
+
+			if(type.equals("allTeams")){
+				if(percentage >= 17) {
+					allTeams.add(team)
+				}
+				
+			}else if(type.equals("allSortedTeams")){
+					allSortedTeams.add(team)
+			}
+		}
+		if(type.equals("allTeams")){
+			return allTeams
+		}else{
+			return allSortedTeams
+		}
+			
 	}
 }

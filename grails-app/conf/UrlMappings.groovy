@@ -50,6 +50,8 @@ class UrlMappings {
 
 		/*Terms of Use*/
 		"/termsofuse"(view:'/termsofuse/index')
+		"/in/tos"(view:'/termsofuse/india-tos')
+		
 
 		/*privacy policy*/
 		"/privacypolicy"(view:'/privacypolicy/index')

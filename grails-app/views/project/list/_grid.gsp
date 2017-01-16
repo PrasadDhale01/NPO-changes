@@ -19,9 +19,6 @@
 <%--    </div>--%>
 <%--</g:each>--%>
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <ul class="thumbnails list-unstyled">
         <g:each in="${projects}" var="project">
             <li class="col-md-6 col-lg-4 col-sm-6 col-xs-12 TW-discover-pg-tile-width">

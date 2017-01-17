@@ -80,7 +80,7 @@
     </div>
     <div id="loadFooter"></div>
     <g:render template="/layouts/ga"/>
-
+	<g:render template="/layouts/interakt"/>
     <!-- Include all javascript assets -->
     <r:require modules="crowderajs"/>
 <%--    <r:require module="googleanalytics"/>--%>

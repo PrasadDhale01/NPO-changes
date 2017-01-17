@@ -5644,6 +5644,22 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.allCategoriesSortby {
+		margin-left: 30px;
+	    width: 100%;
+	    cursor: pointer;
+	}
+	div.sortBy-mobile{
+		width: 100%;
+		text-align: center;
+	}
+	div.allCategoriesSortby img {
+    	float: none;
+    	margin: 0 auto;
+    	position: relative;
+    	left: -55px;
+    	top: 18px;
+	}
 	div.internationalFunding{
 	    height: auto;  
 	}
@@ -15521,6 +15537,22 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	div.allCategoriesSortby {
+		margin-left: 30px;
+	    width: 100%;
+	    cursor: pointer;
+	}
+	div.sortBy-mobile{
+		width: 100%;
+		text-align: center;
+	}
+	div.allCategoriesSortby img {
+    	float: none;
+    	margin: 0 auto;
+    	position: relative;
+    	left: -55px;
+    	top: 18px;
+	}
 	div.internationalFunding{
 	    margin-bottom: -15px;
 	    height: auto;  

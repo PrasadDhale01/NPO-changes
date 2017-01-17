@@ -2971,6 +2971,44 @@ $(function() {
             }
         }
     });
+    
+    if($('.col-tax-reciept-panel').css('display') == 'none')
+	{	$('#tax-reciept').show();
+		$('.tax-reciept-checkbox').attr('checked', false);
+        $('#taxRecieptId').val(null);
+	}else{
+		$('#tax-reciept').show();
+		$('.tax-reciept-checkbox').attr('checked', true);
+        $('#taxRecieptId').val(true);
+	}
+    
+    $(document).ready(function(){
+        $('input[id="crowdera-email"]').click(function(){
+            if($(this).prop("checked") == true){
+               $('#paypalEmailId').val("international@crowdera.co");
+            }
+            else if($(this).prop("checked") == false){
+                $('#paypalEmailId').val(null);
+            }
+        });
+    });
+
+    $('#crowdera-email').change(function(){
+        if($("#crowdera-email").prop('checked') == false)
+        {
+            var confirmMsg = window.confirm("Are you sure, you don't want to receive foreign funding?");
+            if(confirmMsg == true)
+            {
+                $("#crowdera-email").prop('checked', false);
+                $('#paypalEmailId').val(null);
+            }
+            else
+            {
+                $("#crowdera-email").prop('checked', true);
+                $('#paypalEmailId').val("international@crowdera.co");
+            }
+        }
+    });
 
     $('.fcra-checkbox').click(function(){
         if ($('input[name="fcra-checkbox"]:checked').length > 0){

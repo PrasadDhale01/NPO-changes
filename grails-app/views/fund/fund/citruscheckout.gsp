@@ -9,7 +9,16 @@
     <title>Crowdera- Contribute</title>
     
     <script src="/js/jquery-1.11.1.min.js"> </script>
-    <script src="/js/citrus.js"></script>
+    
+    <g:if env="development">
+	    <script src="/js/citrus.js"></script>
+    </g:if>
+    <g:elseif env="staging">
+    	<script src="https://www.citruspay.com/resources/pg/js/webjs/citrus.min.js"></script>
+    </g:elseif>
+    <g:elseif env="production">
+    	<script src="https://www.citruspay.com/resources/pg/js/webjs/citrus.min.js"></script>
+    </g:elseif>
 </head>
 <body>
     <div class="feducontent">

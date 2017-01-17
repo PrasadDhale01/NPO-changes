@@ -1894,62 +1894,32 @@ class ProjectService {
         List listUsAdmins = []
         List listIndTeams = []
         List listUsTeams = []
-        if('in'.equalsIgnoreCase(country_code)){
-            projects.each {
-                if(it.inactive == false) {
-                    list.add(it)
-                }
-            }
-            projectAdmins.each {
-                def project = Project.findById(it.projectId)
-                if(project.inactive == false) {
-                    (project.payuStatus) ? listIndAdmins.add(project) : listUsAdmins.add(project)
-                }
-            }
-            fundRaisers.each { fundRaiser ->
-                def project = fundRaiser.project
-                def isProjectexist = false
-                list.each {
-                    if (project == it) {
-                        isProjectexist = true
-                    }
-                }
-                if (!isProjectexist) {
-                    if (project.inactive == false) {
-                        (project.payuStatus) ? listIndTeams.add(project) : listUsTeams.add(project)
-                    }
-                }
-            }
-			list = list + listIndAdmins + listUsAdmins + listIndTeams + listUsTeams
-        } else{
-            projects.each {
-                if(it.inactive == false && it.payuStatus==false) {
-                   list.add(it)
-                }
-            }
-
-            projectAdmins.each {
-                def project = Project.findById(it.projectId)
-                if(project.inactive == false && project.payuStatus==false) {
-                    list.add(project)
-                }
-            }
-
-            fundRaisers.each { fundRaiser ->
-                def project = fundRaiser.project
-                def isProjectexist = false
-                list.each {
-                    if (project == it && project.payuStatus==false) {
-                        isProjectexist = true
-                    }
-                }
-                if(!isProjectexist) {
-                    if(project.inactive == false && project.payuStatus==false) {
-                       list.add(project)
-                    }
-                }
-            }
-        }
+		projects.each {
+			if(it.inactive == false) {
+				list.add(it)
+			}
+		}
+		projectAdmins.each {
+			def project = Project.findById(it.projectId)
+			if(project.inactive == false) {
+				(project.payuStatus) ? listIndAdmins.add(project) : listUsAdmins.add(project)
+			}
+		}
+		fundRaisers.each { fundRaiser ->
+			def project = fundRaiser.project
+			def isProjectexist = false
+			list.each {
+				if (project == it) {
+					isProjectexist = true
+				}
+			}
+			if (!isProjectexist) {
+				if (project.inactive == false) {
+					(project.payuStatus) ? listIndTeams.add(project) : listUsTeams.add(project)
+				}
+			}
+		}
+		list = list + listIndAdmins + listUsAdmins + listIndTeams + listUsTeams
         return list
     }
     
@@ -3072,44 +3042,24 @@ class ProjectService {
         List activeIndiaProjects = []
         List activeUsProjects = []
         def finalList
-		
-        
-        if('in'.equalsIgnoreCase(country_code)){
-            def projects= Project.findAllWhere(user:user)
-            projects.each { project->
-                boolean ended = isProjectDeadlineCrossed(project)
-                if(project.draft==true){
-                    (project.payuStatus) ? draftIndiaProjects.add(project) : draftUsProjects.add(project)
-                } else if(project.inactive==false && project.validated==false && project.draft==false){
-                    (project.payuStatus) ? pendingIndiaProjects.add(project) : pendingUsProjects.add(project)
-                } else if (ended) {
-                    (project.payuStatus) ? endedIndiaProjects.add(project) : endedUsProjects.add(project)
-                } else if(project.validated==true && project.inactive==false){
-                    (project.payuStatus) ? activeIndiaProjects.add(project) : activeUsProjects.add(project)
-                }
-            }
+		def projects= Project.findAllWhere(user:user)
+		projects.each { project->
+			boolean ended = isProjectDeadlineCrossed(project)
+			if(project.draft==true){
+				(project.payuStatus) ? draftIndiaProjects.add(project) : draftUsProjects.add(project)
+			} else if(project.inactive==false && project.validated==false && project.draft==false){
+				(project.payuStatus) ? pendingIndiaProjects.add(project) : pendingUsProjects.add(project)
+			} else if (ended) {
+				(project.payuStatus) ? endedIndiaProjects.add(project) : endedUsProjects.add(project)
+			} else if(project.validated==true && project.inactive==false){
+				(project.payuStatus) ? activeIndiaProjects.add(project) : activeUsProjects.add(project)
+			}
+		}
 
-            sortedIndiaProjects = activeIndiaProjects.sort{contributionService.getPercentageContributionForProject(it)}
-            sortedUsProjects = activeUsProjects.sort{contributionService.getPercentageContributionForProject(it)}
-            finalList = draftIndiaProjects.reverse() + draftUsProjects.reverse() + pendingIndiaProjects.reverse() + pendingUsProjects.reverse() + sortedIndiaProjects.reverse() + sortedUsProjects.reverse() + endedIndiaProjects.reverse() + endedUsProjects.reverse()
-			
-        } else{
-            def projects= Project.findAllWhere(user:user,payuStatus: false)
-            projects.each { project->
-                boolean ended = isProjectDeadlineCrossed(project)
-                if(project.draft==true) {
-                    draftProjects.add(project)
-                } else if(project.inactive==false && project.validated==false && project.draft==false){
-                    pendingProjects.add(project)
-                } else if(ended){
-                    endedProjects.add(project)
-                } else if(project.payuEmail==null && project.validated==true){
-                    activeProjects.add(project)
-                }
-            }
-            sortedProjects =activeProjects.sort{contributionService.getPercentageContributionForProject(it)}
-            finalList = draftProjects.sort{it.created}.reverse() + pendingProjects.sort{it.created}.reverse() + sortedProjects.sort{it.created}.reverse() + endedProjects.sort{it.created}.reverse()
-        }
+		sortedIndiaProjects = activeIndiaProjects.sort{contributionService.getPercentageContributionForProject(it)}
+		sortedUsProjects = activeUsProjects.sort{contributionService.getPercentageContributionForProject(it)}
+		finalList = draftIndiaProjects.reverse() + draftUsProjects.reverse() + pendingIndiaProjects.reverse() + pendingUsProjects.reverse() + sortedIndiaProjects.reverse() + sortedUsProjects.reverse() + endedIndiaProjects.reverse() + endedUsProjects.reverse()
+
         return finalList
     }
 

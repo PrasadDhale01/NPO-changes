@@ -119,17 +119,31 @@
 	/*sorting contribution list*/
 	$('.contributorsSort').change(function (){
 		var vanityTitle = $('.vanityTitle').val();
+
+		var formData;
+        if ($(this).val() == 3) {
+        	$('#customDateSelect').modal('show');
+        	/*data = 'vanityTitle='+vanityTitle+'&sort='+$(this).val()+'&isBackRequired='+isBackRequired;*/
+        } else {
+        	formData = 'vanityTitle='+vanityTitle+'&sort='+$(this).val()+'&isBackRequired='+isBackRequired;
+        	loadTaxReceipt(formData)
+        }
+        
+	});
+
+	function loadTaxReceipt(formData) {
 		var grid = $(".send-tax-receipt-to-contributors");
+		
 		$.ajax({
 			type: 'post',
 			url:baseUrl+'/user/sortContributorsList',
-			data:'vanityTitle='+vanityTitle+'&sort='+$(this).val()+'&isBackRequired='+isBackRequired,
+			data: formData,
 			success: function(data) {
 			    $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
 			}
 		}).error(function(){
 		});
-	});
+	}
 	
 	/*back to campaign tiles*/
 	$('.backToTiles').click(function (){

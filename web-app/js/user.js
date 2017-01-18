@@ -25,19 +25,25 @@ $(function() {
     $('.contributorsSort').change(function (){
         var vanityTitle = $('.vanityTitle').val();
         var isBackRequired = $('#isBackRequired').val();
-        var grid = $(".send-tax-receipt-to-contributors");
-        var baseUrl = $('#baseUrl').val();
-
-        $.ajax({
-            type: 'post',
-            url :   baseUrl+'/user/sortContributorsList',
-            data:  'vanityTitle='+vanityTitle+'&sort='+$(this).val()+'&isBackRequired='+isBackRequired,
-            success: function(data) {
-                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
-            }
-        }).error(function(){
-        });
+        
+        var formData;
+        if ($(this).val() == 3) {
+        	$('#customDateSelect').modal('show');
+        	/**/
+        } else {
+        	formData = 'vanityTitle='+vanityTitle+'&sort='+$(this).val()+'&isBackRequired='+isBackRequired;
+        	loadTaxReceiptData(formData);
+        }
+        
     });
+    
+    $("#selectDateBtn").click(function() {
+    	 var vanityTitle = $('.vanityTitle').val();
+         var isBackRequired = $('#isBackRequired').val();
+         
+         var formData = 'vanityTitle='+vanityTitle+'&sort='+$(this).val()+'&isBackRequired='+isBackRequired;
+    });
+    
 
     $('#side-menu').find('.li').click(function() {
         $('#side-menu').find('.li').removeClass('active');
@@ -592,3 +598,19 @@ function setSelectedFileName(){
             } 
        });
 }
+
+function loadTaxReceiptData(formData) {
+	var grid = $(".send-tax-receipt-to-contributors");
+    var baseUrl = $('#baseUrl').val();
+    
+	 $.ajax({
+        type: 'post',
+        url :   baseUrl+'/user/sortContributorsList',
+        data:  formData,
+        success: function(data) {
+            $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+        }
+    }).error(function(){
+    });
+}
+

@@ -24,13 +24,13 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
             </a>
         </div>
         <div class="navbar-collapse collapse" id="TW-navbar-collapse">
-            <ul class="nav navbar-nav nav-icon-bar">
+            <ul class="nav navbar-nav nav-icon-bar newHeaderbar">
                 <li class="discover">
-				  	<g:link mapping="listCampaigns" params="[country_code: country_code]" class="nav-text2 hm-back-width hed-font-sizes">
-						<img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/icon-discover-new.png" alt="discover">&nbsp;&nbsp;&nbsp;&nbsp;Discover</img>
+				  	<g:link mapping="listCampaigns" params="[country_code: country_code]" class="nav-text2 hm-back-width hed-font-sizes newHeaferfont">
+				  	<img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/icon-discover-new.png" alt="discover">&nbsp;&nbsp;&nbsp;&nbsp;DISCOVER
 					</g:link>	
 				</li>
-                <li class="learn"><a href="${resource(dir: '/howitworks')}" class="nav-text3 hm-back-width hed-font-sizes"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/learn-icon-dropdowns.png" alt="learn">&nbsp;&nbsp;&nbsp;&nbsp;Learn</a></li>
+                <li class="learn newHowit"><a href="${resource(dir: '/howitworks')}" class="learnNewheader nav-text3 hm-back-width hed-font-sizes newHeaferfont"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/learn-icon-dropdowns.png" alt="learn">&nbsp;&nbsp;&nbsp;&nbsp;HOW IT WORKS</a></li>
                 <li class="searchengine hidden-xs">
                     <form action="/campaign" name="SearchForm">
                         <div class="inner-addon left-addon search-icon-header search-image-header">
@@ -49,24 +49,24 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                     </form>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right nav-create-button">
-                <li class="hidden-xs noscrollHeaderHelpLink">
+            <ul class="nav navbar-nav navbar-right nav-create-button no-margin-top">
+                <li class="hidden-xs noscrollHeaderHelpLink createBtn-height">
 <%--                    <g:link controller="project" action="create" class=" btn btn-info nav-text1 TW-header-helpLinkLogged">--%>
-                    <g:link mapping="createCampaign" params="[country_code: country_code]" class="btn btn-info nav-text1 TW-header-helpLinkLogged">
-                        <span class="TW-header-helpTxtLogged">Create</span>
+                    <g:link mapping="createCampaign" params="[country_code: country_code]" class="btn btn-info nav-text1 newCreatebtn TW-header-helpLinkLogged">
+                        <span class="TW-header-helpTxtLogged btnSpan">CREATE</span>
                     </g:link>
                 </li> 
                 <li class="hidden-lg hidden-md hidden-sm hed-font-sizes">
 					<g:link controller="createCampaign" params="[country_code: country_code]" class="nav-item-1">
-                    	<img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/create-icon-dropdown.png" alt="create">&nbsp;&nbsp;&nbsp;&nbsp;Create
+                    	<img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/create-icon-dropdown.png" alt="create">&nbsp;&nbsp;&nbsp;&nbsp;CREATE
                     </g:link>       
                  </li>
             </ul>
             
             <ul class="nav navbar-nav navbar-right <g:if test="${user}">navbar-right-logged-in</g:if>">
                 <sec:ifNotLoggedIn>
-                    <li><g:link controller="login" action="auth" params="[country_code: country_code]" class="nav-item-2"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/login-reg-dropdowns.png" alt="login">&nbsp;&nbsp;&nbsp;&nbsp;Login</g:link></li>
-                    <li><g:link controller="login" action="register" class="nav-item-3"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/sign-in-icon-register-dropsowns.png" alt="signup">&nbsp;&nbsp;&nbsp;&nbsp;Sign up</g:link></li>
+                    <li><g:link controller="login" action="auth" params="[country_code: country_code]" class="nav-item-2 newHeaferfont"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/login-reg-dropdowns.png" alt="login">&nbsp;&nbsp;&nbsp;&nbsp;LOG IN</g:link></li>
+<%--                    <li><g:link controller="login" action="register" class="nav-item-3"><img class="hidden-sm hidden-lg hidden-md newHeaferfont" src="//s3.amazonaws.com/crowdera/assets/sign-in-icon-register-dropsowns.png" alt="signup">&nbsp;&nbsp;&nbsp;&nbsp;SIGN UP</g:link></li>--%>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
                     <li class="dropdown dropdown-head hover-dropdown home-dropdown drop imgs-all user-img">

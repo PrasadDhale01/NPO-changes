@@ -131,7 +131,7 @@
                         <g:render template="list/new-grid" model="['projects': projects]"></g:render>
                     </g:else>
                 </div>
-                <div class="TW-discover-pane-width-right">
+                <div class="TW-discover-pane-width-right hidden-xs">
                    <div  class="allCategoriesSortby">
             	      <img class="img-responsive " src="//s3.amazonaws.com/crowdera/project-images/f3f4ec2e-7efc-4cc6-8ec2-f81ed6fa90a1.png" title="Sort-by - Icon.png">
             	      <p>Sort By</p>

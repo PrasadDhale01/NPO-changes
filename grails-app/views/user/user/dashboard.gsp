@@ -152,17 +152,17 @@
                     <li>
                         <a href="#mycontributions" data-toggle="tab"> Campaigns Supported</a>
                     </li>
-                    <g:if test="${(isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                    <g:if test="${isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo}">
                         <li>
                             <a href="#taxReceipt" data-toggle="tab">Donation Receipts</a>
                         </li>
                     </g:if>
-                    <g:elseif test="${isUserProjectHavingContribution && !userHasContributedToNonProfitOrNgo && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                    <g:elseif test="${isUserProjectHavingContribution && !userHasContributedToNonProfitOrNgo}">
                         <li>
                             <a href="#sendtaxReceipt" data-toggle="tab">Donation Receipts</a>
                         </li>
                     </g:elseif>
-                    <g:elseif test="${!isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                    <g:elseif test="${!isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo}">
                         <li>
                             <a href="#exporttaxReceipt" data-toggle="tab">Donation Receipts</a>
                         </li>
@@ -263,14 +263,14 @@
                         </div>
                     </div>
 
-                    <g:if test="${(isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                    <g:if test="${isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo}">
                         <div class="tab-pane tab-pane-active" id="taxReceipt">
                             <div class="col-sm-12">
                                 <g:render template="/user/partner/receiptBoard"/>
                             </div>
                         </div>
                     </g:if>
-                    <g:elseif test="${(isUserProjectHavingContribution && !userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                    <g:elseif test="${isUserProjectHavingContribution && !userHasContributedToNonProfitOrNgo}">
                         <div class="tab-pane tab-pane-active" id="sendtaxReceipt">
                             <div class="col-sm-12 sendTaxReceiptBoard"><br>
                                 <g:if test="${contributionList}">
@@ -286,7 +286,7 @@
                             </div>
                         </div>
                     </g:elseif>
-                    <g:elseif test="${(!isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                    <g:elseif test="${!isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo}">
                         <div class="tab-pane tab-pane-active exportTaxReceiptThumbnail" id="exporttaxReceipt">
                             <div class="col-sm-12">
                                 <br><g:render template="/user/user/exportTaxReceipt"/>

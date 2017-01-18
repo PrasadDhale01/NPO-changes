@@ -613,14 +613,21 @@ class ContributionService {
         List<Contribution> totalContributions =  Contribution.findAllWhere(project:project)
         List<Contribution> contributionList = new ArrayList<>();
         
-        if ('in'.equalsIgnoreCase(country_code)) {
+        if ('in'.equalsIgnoreCase(project?.country?.countryCode)) {
             totalContributions.each {
                 if (it.panNumber != null) {
                     contributionList.add(it);
                 }
             }
-            totalContributions = contributionList;
-        } 
+            
+        } else {
+			totalContributions.each {
+				contributionList.add(it);
+			}
+		}
+		
+		totalContributions = contributionList;
+		
         
         List contributions
         if (!totalContributions.empty){

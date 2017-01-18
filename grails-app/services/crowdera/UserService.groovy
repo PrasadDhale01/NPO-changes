@@ -1506,31 +1506,35 @@ class UserService {
     def userHasContributedToNonProfitOrNgo(User user) {
         List<Contribution> contributions = [];
         boolean result = false;
-        String environment = projectService.getCurrentEnvironment();
-        
+		
         contributions = Contribution.findAllWhere(user:user, receiptSent: true);
         if (contributions) {
-            if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
-                contributions.each {
-                    if (it.panNumber != null) {
-                        result = true;
-                    }
-                }
-            } else {
-                result = true;
+			
+            for (Contribution contribution : contributions) {
+                if ("in".equalsIgnoreCase(contribution.project?.country?.countryCode)) {
+					if (contribution.panNumber != null) {
+						result = true;
+						break;
+					}
+                } else {
+					result = true;
+					break;
+				}
             }
+			
         } 
         return result;
     }
-
-    def getContributionsForWhichTaxReceiptreceived(User user, def params){
-        def contributions = Contribution.findAllWhere(user:user, receiptSent: true)
+	
+	
+    def getContributionsForWhichTaxReceiptreceived(User user, def params) {
+        List<Contribution> contributions = Contribution.findAllWhere(user:user, receiptSent: true)
         List contributionList = []
         def contributionsOffset
         
         String environment = projectService.getCurrentEnvironment()         
         contributions?.each {
-            if (it.project?.payuStatus) {
+            if ("in".equalsIgnoreCase(it.project?.country?.countryCode)) {
                 if (it.panNumber != null) {
                     contributionList.add(it);
                 }

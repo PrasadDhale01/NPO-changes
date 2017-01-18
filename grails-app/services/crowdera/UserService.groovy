@@ -1566,7 +1566,7 @@ class UserService {
         def contributionsOffset
         
         SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        
+		
         switch (params.sort) {
             case '1':
                 def criteria = Contribution.createCriteria();
@@ -1608,11 +1608,11 @@ class UserService {
                 contributions = Contribution.findAllWhere(project:project, isAnonymous:false)
                 break;
 
-            case ('Receipt Sent' || '4'):
+            case '4':
                 contributions = Contribution.findAllWhere(project:project, receiptSent:true)
                 break;
 
-            case ('Receipt Not Sent' || '5' ):
+            case '5' :
                 contributions = Contribution.findAllWhere(project:project, receiptSent:false)
                 break;
 

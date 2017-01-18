@@ -299,6 +299,40 @@
           
          </div>
      </div>
+     
+     <%-- customDateSelect Modal --%>
+     <div class="modal fade" id="customDateSelect" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-sm-12 margin">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="heading text-center crowderasupport"><b>Select Custom Date</b></h4>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="text col-sm-3">From Date</label>
+                            <div class="col-sm-9"> 
+                            	<input type="text" class="form-control fromDate" name="fromDate" id="fromDate"><br>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text col-sm-3">To Date</label>
+                            <div class="col-sm-9"> 
+                            	<input type="text" class="form-control toDate" name="toDate" id="toDate"><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-primary">Close</button>
+                    <button class="btn btn-primary" type="button" id="selectDateBtn">Save</button>
+                </div>
+            </div>
+        </div>
+     </div>
+	
      <div class="loadingfilegif text-center" id="loadingfilegif">
          <img src="//s3.amazonaws.com/crowdera/assets/loading.gif" alt="'loadingImage'" id="loading-file-gif-img">
      </div>

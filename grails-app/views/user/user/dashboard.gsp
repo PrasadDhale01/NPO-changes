@@ -333,7 +333,7 @@
                 <div class="clear"></div>
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn btn-primary">Close</button>
-                    <button class="btn btn-primary" type="button" id="selectDateBtn">Save</button>
+                    <button class="btn btn-primary" type="button" id="selectDateBtn">Show</button>
                 </div>
             </div>
         </div>

@@ -20107,6 +20107,7 @@ input.ansNine{
     font-family: "Assistant";
     font-size: 12px;
     font-weight: 500;
+    margin-left: 25px;
 }
 
 li.newLeftlist a:hover{
@@ -20156,6 +20157,7 @@ ul.allCategoriesSortd >li{
     font-size: 12px;
     font-weight: 500;
     padding-right: 44px;
+    margin-left: 25px;
 }
 
 .allCategoriesSortby{
@@ -20208,6 +20210,7 @@ a.newCreatebtn{
     margin-top: 0 !important;
     padding-top: 4px;
     width: 135px;
+    font-family: Assistant;
 }
 
 span.btnSpan{
@@ -20216,9 +20219,9 @@ span.btnSpan{
 }
 
 a.newHeaferfont {
-	font-family: verdana !important;
-	font-weight: 500;
-	color: #4c4c4c !important;
+	font-family: Assistant;
+	font-weight: bold;
+	color: #4c4c4c;
 }
 
 .learnNewheader{

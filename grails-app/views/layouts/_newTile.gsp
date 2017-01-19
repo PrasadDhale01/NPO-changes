@@ -57,7 +57,7 @@
                             <div class="mask">
                                  <div class="dis-supported-the">
                                     <g:if test="${project.campaignOwnerId != project.user?.id}">
-	                                     SUPPORTING THE<br>
+	                                     SUPPORTING<br>
 	                                     <g:if test="${project.organizationName}">
 	                                         ${project.organizationName}
 	                                     </g:if>

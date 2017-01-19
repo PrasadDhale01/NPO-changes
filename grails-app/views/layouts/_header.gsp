@@ -65,7 +65,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
             
             <ul class="nav navbar-nav navbar-right <g:if test="${user}">navbar-right-logged-in</g:if>">
                 <sec:ifNotLoggedIn>
-                    <li><g:link controller="login" action="auth" params="[country_code: country_code]" class="nav-item-2 newHeaferfont"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/login-reg-dropdowns.png" alt="login">&nbsp;&nbsp;&nbsp;&nbsp;LOG IN</g:link></li>
+                    <li><g:link controller="login" action="auth" params="[country_code: country_code]" class="nav-item-2 newHeaferfont"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/login-reg-dropdowns.png" alt="login">&nbsp;&nbsp;&nbsp;&nbsp;LOGIN</g:link></li>
 <%--                    <li><g:link controller="login" action="register" class="nav-item-3"><img class="hidden-sm hidden-lg hidden-md newHeaferfont" src="//s3.amazonaws.com/crowdera/assets/sign-in-icon-register-dropsowns.png" alt="signup">&nbsp;&nbsp;&nbsp;&nbsp;SIGN UP</g:link></li>--%>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>

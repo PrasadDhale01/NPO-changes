@@ -37,11 +37,20 @@ $(function() {
         
     });
     
-    $("#selectDateBtn").click(function() {
+    
+    $(document).on("click", "#selectDateBtn", function() {
     	 var vanityTitle = $('.vanityTitle').val();
          var isBackRequired = $('#isBackRequired').val();
          
-         var formData = 'vanityTitle='+vanityTitle+'&sort='+$(this).val()+'&isBackRequired='+isBackRequired;
+         var fromDate = $("#fromDate").val();
+         var toDate = $("#toDate").val();
+         
+         var formData = 'vanityTitle='+vanityTitle+'&sort=3&isBackRequired='+isBackRequired+'&fromDate='+fromDate+'&toDate='+toDate;
+         $('#customDateSelect').modal('hide');
+         $("#fromDate").val('');
+         $("#toDate").val('');
+         
+         loadTaxReceiptData(formData);
     });
     
 
@@ -614,3 +623,38 @@ function loadTaxReceiptData(formData) {
     });
 }
 
+function sendEmailToContributors(vanityTitle, list) {
+	$.ajax({
+		type: 'post',
+		url:baseUrl+'/user/sendTaxReceiptToContributors',
+		data:'vanityTitle='+vanityTitle+'&list='+list,
+		beforeSend: function(data){
+			if(list.length > 0){
+	            $('.sendemailtocontributors').show();
+	        }else{
+	             $('#email-send-confirmation').text("Please, select atleast one.").show().fadeOut(9000);
+	        }
+		},
+		success: function(data) {
+			if(data==="true"){
+			    $('.sendemailtocontributors').hide();
+		        $('#email-send-confirmation').text("Email has been sent successfully!").show().fadeOut(9000);
+			}
+			
+			$.each(list, function(index, value) {
+				$("#sendEmailBtn"+value).text("Resend");
+			})
+		}
+	}).error(function() {
+		$('.sendemailtocontributors').hide();
+	});
+}
+
+
+function sendOrResendEmailToContributor(id) {
+	var list =[];
+	var vanityTitle = $('.vanityTitle').val();
+	list.push(id);
+	
+	sendEmailToContributors(vanityTitle, list);
+}

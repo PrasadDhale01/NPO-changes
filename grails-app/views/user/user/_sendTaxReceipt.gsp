@@ -203,26 +203,8 @@
 		    list.push(this.id);
 		});
 
-		$.ajax({
-			type: 'post',
-			url:baseUrl+'/user/sendTaxReceiptToContributors',
-			data:'vanityTitle='+vanityTitle+'&list='+list,
-			beforeSend: function(data){
-				if(list.length > 0){
-		            $('.sendemailtocontributors').show();
-		        }else{
-		             $('#email-send-confirmation').text("Please, select atleast one.").show().fadeOut(9000);
-		        }
-			},
-			success: function(data) {
-				if(data==="true"){
-				    $('.sendemailtocontributors').hide();
-			        $('#email-send-confirmation').text("Email has been sent successfully!").show().fadeOut(9000);
-				}
-			}
-		}).error(function(){
-			$('.sendemailtocontributors').hide();
-		});
+		sendEmailToContributors(vanityTitle, list);
 	
 	});
+
 </script>

@@ -11,6 +11,12 @@
     <meta name="layout" content="main" />
     <r:require modules="timelinecss, bootstrapsocialcss"/>
     <r:require modules="userjs"/>
+    
+    <style>
+    	.datepicker {
+    		z-index:9999 !important;
+    	}
+    </style>
 </head>
 <body>
 <g:if test="${user?.email == 'campaignadmin@crowdera.co'}">
@@ -313,13 +319,13 @@
                         <div class="form-group">
                             <label class="text col-sm-3">From Date</label>
                             <div class="col-sm-9"> 
-                            	<input type="text" class="form-control fromDate" name="fromDate" id="fromDate"><br>
+                            	<input type="text" class="form-control fromDate" name="fromDate" id="fromDate" readonly><br>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="text col-sm-3">To Date</label>
                             <div class="col-sm-9"> 
-                            	<input type="text" class="form-control toDate" name="toDate" id="toDate"><br>
+                            	<input type="text" class="form-control toDate" name="toDate" id="toDate" readonly><br>
                             </div>
                         </div>
                     </div>
@@ -327,7 +333,7 @@
                 <div class="clear"></div>
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn btn-primary">Close</button>
-                    <button class="btn btn-primary" type="button" id="selectDateBtn">Save</button>
+                    <button class="btn btn-primary" type="button" id="selectDateBtn">Show</button>
                 </div>
             </div>
         </div>
@@ -340,5 +346,24 @@
 <div id="loading-gif" class="loadinggif text-center" style="display: none;">
     <img id="loading-gif-img" alt="'loadingImage'" src="//s3.amazonaws.com/crowdera/documents/loading.gif">
 </div>
+
+<script src="/js/main.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+
+<script>
+	var j = jQuery.noConflict();
+	j(function() {
+		j('#fromDate').datepicker({
+			
+		}).on('changeDate', function(){
+		});
+		
+		j('#toDate').datepicker({
+			
+		}).on('changeDate', function(){
+		});
+
+	});
+</script>
 </body>
 </html>

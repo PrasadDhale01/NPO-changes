@@ -1138,10 +1138,10 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                <input type="text" maxlength="16" placeholder="PAN Card Number" class="form-control tax-reciept-holder-pan-card" name="tax-reciept-holder-pan-card" value="${taxReciept.panCardNumber}">
+                                                <input type="text" maxlength="10" placeholder="PAN Card Number" class="form-control tax-reciept-holder-pan-card" name="tax-reciept-holder-pan-card" value="${taxReciept.panCardNumber}">
                                             </div>
                                             <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                <input type="text" maxlength="16" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone" value="${taxReciept.phone}" >
+                                                <input type="text" maxlength="10" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone" value="${taxReciept.phone}" >
                                             </div>
                                             <div class="col-sm-12 form-group form-group-tax-reciept">
                                                 <input type="text" maxlength="32" class="form-control tax-reciept-holder-city" placeholder="City" name="tax-reciept-holder-city" value="${taxReciept.city}">
@@ -1280,10 +1280,10 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                <input type="text" maxlength="16" placeholder="PAN Card Number" class="form-control tax-reciept-holder-pan-card" name="tax-reciept-holder-pan-card">
+                                                <input type="text" maxlength="10" placeholder="PAN Card Number" class="form-control tax-reciept-holder-pan-card" name="tax-reciept-holder-pan-card">
                                             </div>
                                             <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                <input type="text" maxlength="16" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone">
+                                                <input type="text" maxlength="10" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone">
                                             </div>
                                             <div class="col-sm-12 form-group form-group-tax-reciept">
                                                 <input type="text" maxlength="32" class="form-control tax-reciept-holder-city" placeholder="City" name="tax-reciept-holder-city">
@@ -1422,7 +1422,7 @@
                                     <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
                                         <div class="col-sm-4 col-xs-12">
                                             <div class="form-group form-group-tax-reciept">
-                                                <input type="text" maxlength="16" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone" value="${taxReciept.phone}">
+                                                <input type="text" maxlength="10" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone" value="${taxReciept.phone}">
                                             </div>
                                         </div>
                                         <div class="form-group col-sm-8 col-xs-12">
@@ -1514,7 +1514,7 @@
                                     <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
                                         <div class="col-sm-4 col-xs-12">
                                             <div class="form-group form-group-tax-reciept">
-                                                <input type="text" maxlength="16" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone">
+                                                <input type="text" maxlength="10" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone">
                                             </div>
                                         </div>
                                         <div class="form-group col-sm-8 col-xs-12">

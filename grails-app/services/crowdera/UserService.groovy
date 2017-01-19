@@ -1598,6 +1598,18 @@ class UserService {
                 break;
                 
             case '3' :
+				def criteria = Contribution.createCriteria();
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+				Date fromDate = sdf.parse(params.fromDate);
+				Date toDate = sdf.parse(params.toDate);
+				
+				println "fromDate = "+ fromDate + " toDate = "+ toDate
+				
+				contributions = criteria.list {
+					createAlias('project', 'project')
+					eq("project.id", project.id)
+					between("date", fromDate , toDate)
+				}
                 break;
                 
             case 'Anonymous':

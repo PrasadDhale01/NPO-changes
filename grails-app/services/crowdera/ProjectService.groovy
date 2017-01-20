@@ -3204,7 +3204,7 @@ class ProjectService {
 	
     def getContibutionByUser(User user,def country_code){
         def contributions = Contribution.findAllByUser(user)
-        List payuContributions=[]
+        /*List payuContributions=[]
         List otherContributions=[]
 		
         contributions.each{
@@ -3219,7 +3219,9 @@ class ProjectService {
             return payuContributions
         } else {
             return otherContributions
-        }
+        }*/
+		
+		return contributions;
     }
 
     def shareCampaignOrTeamByEmail(def params, def fundRaiser) {

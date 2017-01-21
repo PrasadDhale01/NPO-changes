@@ -8657,6 +8657,27 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	div.tab-center{
+	    float: none;
+	    margin: 0 auto;
+	}
+	div.allCategoriesSortby {
+		margin-left: 30px;
+	    width: 100%;
+	    cursor: pointer;
+	}
+	div.sortBy-mobile{
+		margin-top: 65px;
+		width: 100%;
+		text-align: center;
+	}
+	div.allCategoriesSortby img {
+    	float: none;
+    	margin: 0 auto;
+    	position: relative;
+    	left: -55px;
+    	top: 18px;
+	}
 	li.searchPadding{
  	    padding-left: 35px !important;
  	}
@@ -12431,6 +12452,26 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	div.tab-center{
+	    float: none;
+	    margin: 0 auto;
+	}
+	div.allCategoriesSortby {
+		margin-left: 30px;
+	    width: 100%;
+	    cursor: pointer;
+	}
+	div.sortBy-mobile{
+		width: 100%;
+		text-align: center;
+	}
+	div.allCategoriesSortby img {
+    	float: none;
+    	margin: 0 auto;
+    	position: relative;
+    	left: -55px;
+    	top: 18px;
+	}
 	img.tabImage {
         height: 110 !important;
     }

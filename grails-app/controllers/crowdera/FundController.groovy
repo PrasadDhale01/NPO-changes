@@ -81,7 +81,9 @@ class FundController {
                         vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, key:key, salt:salt,
                         service_provider:service_provider, isTaxReceipt: isTaxReceipt,country_code:country_code]
                     
-                } else if (project.citrusEmail) {
+				} else if (project.paypalEmail && project.citrusEmail && ('us'.equalsIgnoreCase(country_code))) {
+					render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo,country_code:country_code]
+				} else if (project.citrusEmail) {
 
                     def cardTypes = projectService.getcardtypes()
                     def title = projectService.getTitle()

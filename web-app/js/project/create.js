@@ -2996,7 +2996,7 @@ $(function() {
     $('#crowdera-email').change(function(){
         if($("#crowdera-email").prop('checked') == false)
         {
-            var confirmMsg = window.confirm("Are you sure, you don't want to receive foreign funding?");
+            var confirmMsg = window.confirm("Are you sure, you don't want to receive foreign contribution?");
             if(confirmMsg == true)
             {
                 $("#crowdera-email").prop('checked', false);

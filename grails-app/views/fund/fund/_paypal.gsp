@@ -125,29 +125,29 @@
             </div>
 
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <g:if test="${!user}">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Contact details (for your receipt)</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="col-md-12 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="input-group col-md-12">
-                                        <input class="form-control" type="text" placeholder="Full Name" name="receiptName" id="receiptName">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="input-group col-md-12">
-                                        <input class="form-control" type="text" placeholder="Email" name="receiptEmail">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </g:if>
+<%--                <g:if test="${!user}">--%>
+<%--                    <div class="panel panel-default">--%>
+<%--                        <div class="panel-heading">--%>
+<%--                            <h3 class="panel-title">Contact details (for your receipt)</h3>--%>
+<%--                        </div>--%>
+<%--                        <div class="panel-body">--%>
+<%--                            <div class="col-md-12 col-sm-6 col-xs-12">--%>
+<%--                                <div class="form-group">--%>
+<%--                                    <div class="input-group col-md-12">--%>
+<%--                                        <input class="form-control" type="text" placeholder="Full Name" name="receiptName" id="receiptName">--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="col-md-12 col-sm-6 col-xs-12">--%>
+<%--                                <div class="form-group">--%>
+<%--                                    <div class="input-group col-md-12">--%>
+<%--                                        <input class="form-control" type="text" placeholder="Email" name="receiptEmail">--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </g:if>--%>
                 <div class="hidden-sm hidden-xs" id="perkShippingInfo">
                     <g:render template="fund/perkShippingDetails" model="[anonymous:'false']"></g:render>
                 </div>

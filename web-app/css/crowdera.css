@@ -8128,6 +8128,22 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+	a.newCreatebtn{
+ 	    width: 105px !important;
+ 	}
+ 	li.createBtn-height{
+ 	    width: 105px !important;
+ 	}
+ 	li.searchengine{
+ 	    margin-top: 7px;
+ 	}
+ 	img.nav-lineHeigh{
+ 	    width: 115px;
+ 	}
+ 	ul.navbar-right-logged-in{
+ 	    padding-right: 0px !important;
+ 	    width: 240px !important;
+ 	} 
 	div.answerNine {
     	margin-left: 0;
     	padding-left: 48px;
@@ -8641,6 +8657,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	li.searchPadding{
+ 	    padding-left: 35px !important;
+ 	}
 	a.learnNewheader {
         margin-top: 5px !important;
 	}
@@ -20200,17 +20219,18 @@ ul.no-margin-top{
 }
 
 li.createBtn-height{
-	height: 44px;
+	height: 64px;
+	width: 210px;
 }
 
 a.newCreatebtn{
-	height: 50px;
+	height: 64px;
     margin-bottom: 0 !important;
     margin-right: 0 !important;
     margin-top: 0 !important;
     padding-top: 4px;
-    width: 135px;
-    font-family: Assistant;
+    width: 210px;
+    font-family: assistant !important;
 }
 
 span.btnSpan{
@@ -20219,9 +20239,11 @@ span.btnSpan{
 }
 
 a.newHeaferfont {
-	font-family: Assistant;
-	font-weight: bold;
-	color: #4c4c4c;
+	font-family: Assistant !important;
+	font-weight: 500px;
+	color: #4a4a4a !important;
+ 	font-size: 14px !important;
+ 	display: block;
 }
 
 .learnNewheader{
@@ -20232,3 +20254,23 @@ a.newHeaferfont {
 li.newHowit{
 	width: 142px !important;
 }
+li.nav-lineHeight  a{
+ 	line-height: 34px !important;
+ }
+ 
+ img.nav-lineHeight{
+ 	padding-top: 12px !important;
+ }
+ 
+ img.nav-lineHeigh{
+ 	margin-top: 6px ;
+ }
+ 
+ li.nav-lineHeig{
+ 	padding-top: 7px;
+     padding-right: 12px;
+ }
+ 
+ a.nav-lineHeight img{
+ 	padding-top: 12px !important;
+  } 

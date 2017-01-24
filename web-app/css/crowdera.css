@@ -5644,6 +5644,22 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.allCategoriesSortby {
+		margin-left: 30px;
+	    width: 100%;
+	    cursor: pointer;
+	}
+	div.sortBy-mobile{
+		width: 100%;
+		text-align: center;
+	}
+	div.allCategoriesSortby img {
+    	float: none;
+    	margin: 0 auto;
+    	position: relative;
+    	left: -55px;
+    	top: 18px;
+	}
 	div.internationalFunding{
 	    height: auto;  
 	}
@@ -8112,6 +8128,22 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+	a.newCreatebtn{
+ 	    width: 105px !important;
+ 	}
+ 	li.createBtn-height{
+ 	    width: 105px !important;
+ 	}
+ 	li.searchengine{
+ 	    margin-top: 7px;
+ 	}
+ 	img.nav-lineHeigh{
+ 	    width: 115px;
+ 	}
+ 	ul.navbar-right-logged-in{
+ 	    padding-right: 0px !important;
+ 	    width: 240px !important;
+ 	} 
 	div.answerNine {
     	margin-left: 0;
     	padding-left: 48px;
@@ -8625,6 +8657,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	li.searchPadding{
+ 	    padding-left: 35px !important;
+ 	}
+	a.learnNewheader {
+        margin-top: 5px !important;
+	}
+	ul.newHeaderbar{
+	    width: 36% !important;
+	}
 	ul.tab-team-mng li {
         margin-right: 70px;
 	}
@@ -13385,7 +13426,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 250px !important;
     }
     ul.nav.navbar-nav.nav-icon-bar li.searchengine {
-        margin-top: 4px !important;
+        margin-top: 4px ;
     }
 
     .nav-create-button {
@@ -13708,7 +13749,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	/*************EndManageTeamButtons************/	
 	
     ul.nav.navbar-nav.nav-icon-bar {
-        width: 24% !important;
+        width: 24% ;
     }
     #hiddensearch {
         display: none;
@@ -13780,7 +13821,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		font-size: 9px;
 	}
 	ul.nav.navbar-nav.nav-icon-bar {
-        width: 32% !important;
+        width: 32% ;
     }
 	
 	 /**********************dropdown********************/
@@ -13923,7 +13964,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    width:100%;
 	}
 	ul.nav.navbar-nav.nav-icon-bar {
-        width: 25% !important;
+        width: 25% ;
     }
     ul.nav-icon-bar {
         padding-left: 10px !important;
@@ -15521,6 +15562,22 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	div.allCategoriesSortby {
+		margin-left: 30px;
+	    width: 100%;
+	    cursor: pointer;
+	}
+	div.sortBy-mobile{
+		width: 100%;
+		text-align: center;
+	}
+	div.allCategoriesSortby img {
+    	float: none;
+    	margin: 0 auto;
+    	position: relative;
+    	left: -55px;
+    	top: 18px;
+	}
 	div.internationalFunding{
 	    margin-bottom: -15px;
 	    height: auto;  
@@ -20069,6 +20126,7 @@ input.ansNine{
     font-family: "Assistant";
     font-size: 12px;
     font-weight: 500;
+    margin-left: 25px;
 }
 
 li.newLeftlist a:hover{
@@ -20118,6 +20176,7 @@ ul.allCategoriesSortd >li{
     font-size: 12px;
     font-weight: 500;
     padding-right: 44px;
+    margin-left: 25px;
 }
 
 .allCategoriesSortby{
@@ -20155,3 +20214,63 @@ a.noBorderr:hover{
 	height: 80px;
 }
 	
+ul.no-margin-top{
+	margin-top: 0px !important;
+}
+
+li.createBtn-height{
+	height: 64px;
+	width: 210px;
+}
+
+a.newCreatebtn{
+	height: 64px;
+    margin-bottom: 0 !important;
+    margin-right: 0 !important;
+    margin-top: 0 !important;
+    padding-top: 4px;
+    width: 210px;
+    font-family: assistant !important;
+}
+
+span.btnSpan{
+	margin-top: 8px !important;
+	font-size: 16px !important;
+}
+
+a.newHeaferfont {
+	font-family: Assistant !important;
+	font-weight: 500px;
+	color: #4a4a4a !important;
+ 	font-size: 14px !important;
+ 	display: block;
+}
+
+.learnNewheader{
+	width: 142px !important; 
+	margin-top: 8px !important;
+}
+
+li.newHowit{
+	width: 142px !important;
+}
+li.nav-lineHeight  a{
+ 	line-height: 34px !important;
+ }
+ 
+ img.nav-lineHeight{
+ 	padding-top: 12px !important;
+ }
+ 
+ img.nav-lineHeigh{
+ 	margin-top: 6px ;
+ }
+ 
+ li.nav-lineHeig{
+ 	padding-top: 7px;
+     padding-right: 12px;
+ }
+ 
+ a.nav-lineHeight img{
+ 	padding-top: 12px !important;
+  } 

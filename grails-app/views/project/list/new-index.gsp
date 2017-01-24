@@ -70,6 +70,34 @@
                  </div>
         	</div>
         </div>
+        <div class="visible-xs sortBy-mobile">
+               <div class="allCategoriesSortby collapsed" data-toggle="collapse" data-target="#demo">
+		           		<img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/f3f4ec2e-7efc-4cc6-8ec2-f81ed6fa90a1.png" alt="Sort-by - Icon.png">
+		           		<p>Sort By</p>
+               </div>
+	            <div id="demo" class="collapse">
+	    			<ul class="allCategoriesSortd allCategoriesSortbyMobile">
+	                      <li>
+	                         <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Live']">Recently Launched</g:link>  
+	                      </li>
+	                      <li>
+	                      	<g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Latest']">Trending</g:link>  
+	                      </li>
+	                      <li>
+	                      	<g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Most-Funded']">Most Funded</g:link>  
+	                      </li>
+	                      <li>
+	                          <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Offering-Perks']">Offering Perks</g:link>  
+	                      </li>
+	                      <li>
+	                        <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Ending-Soon']">Ending Soon</g:link>  
+	                      </li>
+	                      <li>
+	                            <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Ended']">Ended</g:link>  
+	                      </li>
+	                   </ul>
+	 				</div>
+	            </div>
         <div class="container discover-inner-container">
 <%--            	<h1><span class="TW-discover-title"><img src="//s3.amazonaws.com/crowdera/assets/discover-arrow.png" alt="Discover title">&nbsp;&nbsp;Explore Campaigns Raising Money for</span></h1>--%>
            	<%--<div class="TW-discover-topTab">
@@ -103,7 +131,7 @@
                         <g:render template="list/new-grid" model="['projects': projects]"></g:render>
                     </g:else>
                 </div>
-                <div class="TW-discover-pane-width-right">
+                <div class="TW-discover-pane-width-right hidden-xs">
                    <div  class="allCategoriesSortby">
             	      <img class="img-responsive " src="//s3.amazonaws.com/crowdera/project-images/f3f4ec2e-7efc-4cc6-8ec2-f81ed6fa90a1.png" title="Sort-by - Icon.png">
             	      <p>Sort By</p>

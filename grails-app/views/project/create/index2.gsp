@@ -936,13 +936,13 @@
                     </div>
                 </g:else>
 
-                <div class="col-sm-12 <g:if test="${(country_code == 'in')}">internationalFunding</g:if>">
+                <div class="col-sm-12 <g:if test="${'in'.equalsIgnoreCase(country_code)}">internationalFunding</g:if>">
                     <div class="col-md-offset-4 col-md-8 col-sm-offset-3 col-sm-9">
                         <div class="form-group form-group-termsOfUse <g:if test="${(project.fundsRecievedBy != 'NGO' && (country_code == 'in')) || (project.fundsRecievedBy != 'NON-PROFIT' && (country_code == 'us'))}">tax-reciept</g:if>" id="tax-reciept">
                             <input type="checkbox" name="tax-reciept-checkbox" class="tax-reciept-checkbox" id="tax-reciept-checkbox" <g:if test="${project.offeringTaxReciept}">checked="checked"</g:if>>
                             Do you want to offer donation receipt to your contributors?
                         </div>
-                        <g:if test="${country_code == 'in'}">
+                        <g:if test="${'in'.equalsIgnoreCase(country_code)}">
                         	<div class="question-ans question-ans-1 form-group answerNine">
                         		<input type="checkbox" name="ans9"  id="crowdera-email">
                         		Do you want to receive foreign contribution ?
@@ -1627,16 +1627,6 @@
         });
     }
 
-    $(document).ready(function(){
-        $('input[id="crowdera-email"]').click(function(){
-            if($(this).prop("checked") == true){
-               $('#paypalEmailId').val("international@crowdera.co");
-            }
-            else if($(this).prop("checked") == false){
-                $('#paypalEmailId').val("");
-            }
-        });
-    });
 
     </script>
     </body>

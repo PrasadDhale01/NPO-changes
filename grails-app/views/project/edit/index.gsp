@@ -1085,6 +1085,26 @@
                                 <input type="checkbox" name="tax-reciept-checkbox" id="tax-reciept-checkbox" class="tax-reciept-checkbox" <g:if test="${project.offeringTaxReciept}">checked="checked"</g:if>>
                                 Do you want to offer donation receipt to your contributors?
                             </div>
+                            <g:if test="${'in'.equalsIgnoreCase(country_code)}">
+                        	   <div class="question-ans question-ans-1 form-group answerNine">
+                        		<input type="checkbox" name="ans9"  id="crowdera-email">
+                        		Do you want to receive foreign contribution ?
+                        	   </div><br>
+                        	</g:if>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" id="paypalemail-cr" style='display:none'>
+                        <div class="form-group">
+                            <img class="col-sm-4 cr-paypal-image" src="//s3.amazonaws.com/crowdera/assets/paypal-Image.png" alt="paypal">
+                            <div class="col-sm-6 paypalVerification">
+                                <g:if test="${project.paypalEmail}">
+                                    <input id="paypalEmailId" type="email" maxlength="64" class="form-control paypal-create form-control-no-border cr-placeholder cr-chrome-place" value="${project.paypalEmail}" name="${FORMCONSTANTS.PAYPALEMAIL}">
+                                </g:if>
+                                <g:else>
+                                    <input id="paypalEmailId" type="text" maxlength="64" class="form-control crowderaPaypalId paypal-create form-control-no-border cr-placeholder cr-chrome-place" name="${FORMCONSTANTS.PAYPALEMAIL}">
+                                </g:else>
+                                <g:hiddenField name="paypalEmailAck" value="${project.paypalEmail}" id="paypalEmailAck"/>
+                            </div>
                         </div>
                     </div>
 
@@ -1685,6 +1705,9 @@
                  console.log('Error occured on deleting the Tax reciept file');
             });
         }
+
+      
     </script>
 </body>
 </html>
+ 

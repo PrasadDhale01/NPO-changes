@@ -3,16 +3,6 @@
 <g:set var="projectService" bean="projectService"/>
 <g:set var="userService" bean="userService"/>
 <%
-
-  //  def percentage = contribution4Project.get(project.id).getAt(0)//contributionService.getPercentageContributionForProject(project)
-  //  boolean ended = contribution4Project.get(project.id).getAt(1)//projectService.isProjectDeadlineCrossed(project)
-  //  def contribution =  contribution4Project.get(project.id).getAt(2)//projectService.getDataType(contributedSoFar)
-  //  def amount =  contribution4Project.get(project.id).getAt(3)//projectService.getDataType(project.amount)
-  // def imagelink =  contribution4Project.get(project.id).getAt(4)
-  //  def username = project.user.username
-  //  def user = project.user
-  //  user.refresh()
-  // def remainingDay = contribution4Project.get(project.id).getAt(5)
      SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
      def percentage = project.percentage
     def cents
@@ -21,19 +11,8 @@
     } else {
         cents = percentage
     }
-
-  //  def conversionMultiplier = multiplier
- //   alphabet = userService.getCurrentUserImage(project.user)
     def userImageUrl = project.user.userImageUrl
       def uri = request.forwardURI
- //   def isAdminOrBeneficiary = userService.isCampaignBeneficiaryOrAdmin(project.project, user)
-
- //   def isCampaignAdmin = userService.isCampaignAdmin(project.project, username)
- //   def isCampaignAdminByUser=userService.isCampaignAdminByUserID(project.project, user)
-
-    def currentEnv = projectService.getCurrentEnvironment()
-
-
 %>
 <g:if test="${project.validated}">
     <div class="fedu thumbnail grow tile-pad">
@@ -78,7 +57,7 @@
                             <div class="mask">
                                  <div class="dis-supported-the">
                                     <g:if test="${project.campaignOwnerId != project.user?.id}">
-	                                     SUPPORTING THE<br>
+	                                     SUPPORTING<br>
 	                                     <g:if test="${project.organizationName}">
 	                                         ${project.organizationName}
 	                                     </g:if>
@@ -192,18 +171,21 @@
 <%--                        </g:else>--%>
 <%--                    </span>--%>
 <%--                </div>--%>
-			
 			<div class="col-md-4 col-xs-4 amount-alignment amount-text-align text-center">
                 <span class="text-center tile-goal">
                     <g:if test="${project.countryCode.toLowerCase() == 'in'}">
-                       <!--  <span class="fa fa-inr"></span>-->
-                       ${project.currencyValue}
-                        <g:if test="${project.payuStatus}">
-                        	<span class="lead">${project.contributions.round()}</span>
+                    	<g:if test="${project.contributions == null}">
+                        	${project.currencyValue}<span class="lead">0</span>
                         </g:if>
                         <g:else>
-                        	<span class="lead">${project.contributions.round()}</span>
-                        </g:else>
+	                       ${project.currencyValue}
+	                        <g:if test="${project.payuStatus}">
+	                        	<span class="lead">${project.contributions.round()}</span>
+	                        </g:if>
+	                        <g:else>
+	                        	<span class="lead">${project.contributions.round()}</span>
+	                        </g:else>
+	                     </g:else>  
                     </g:if>
                     <g:else>
                     	<g:if test="${project.contributions == null}">

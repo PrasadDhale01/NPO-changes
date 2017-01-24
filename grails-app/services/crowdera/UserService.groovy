@@ -1990,10 +1990,16 @@ class UserService {
         
         def reportDef
         
-        if (contribution.project.payuStatus) {
-            reportParams.put("amountInWord", "INR "+convert((long)contribution.amount));
-            reportParams.put("amountInNo", "INR "+contribution.amount.round().toString());
-            
+        if ('in'.equalsIgnoreCase(contribution?.project?.country?.countryCode)) {
+			
+			if ('usd'.equalsIgnoreCase(contribution?.currency)) {
+				reportParams.put("amountInWord", "USD "+convert((long)contribution.amount));
+				reportParams.put("amountInNo", "USD "+contribution.amount.round().toString());
+			} else {
+	            reportParams.put("amountInWord", "INR "+convert((long)contribution.amount));
+	            reportParams.put("amountInNo", "INR "+contribution.amount.round().toString());
+			}
+			
             reportParams.put("panNumber", taxReciept.panCardNumber);
             reportParams.put("panOfContributor", contribution?.panNumber);
             reportParams.put("receiptNo", transaction.transactionId);

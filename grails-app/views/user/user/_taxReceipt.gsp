@@ -4,7 +4,7 @@
     def date = dateFormat.format(contribution.date)
 %>
 
-<g:if test="${project.payuStatus}">
+<g:if test="${'in'.equalsIgnoreCase(project?.country?.countryCode)}">
     <div class="row">
         <div class="col-sm-4 col-xs-6 taxreceiptbgcolor tax-receipt-logo">
             <img class="img-responsive img-thumbnail" src="${project.organizationIconUrl}" alt="orglogo"/>
@@ -77,7 +77,14 @@
                         <label class="pull-right taxreceiptdetailsfont">Contributed amount in words:</label>
                     </div>
                     <div class="col-xs-6 taxreceipttop">
-                        <div class="taxreceipttop"><span class="fa fa-inr"></span> ${amountInWords}</div>
+                        <div class="taxreceipttop">
+                        	<g:if test="${'usd'.equalsIgnoreCase(contribution?.currency)}">
+                        		$
+                        	</g:if>
+                        	<g:else>
+                        		<span class="fa fa-inr"></span>
+                        	</g:else> ${amountInWords}
+                        </div>
                     </div>
                     <div class="clear"></div>
                     
@@ -85,7 +92,14 @@
                         <label class="pull-right taxreceiptdetailsfont">Contributed amount in number:</label>
                     </div>
                     <div class="col-xs-6 taxreceipttop">
-                        <div class="taxreceipttop"><span class="fa fa-inr"></span> ${contribution.amount.round()}</div>
+                        <div class="taxreceipttop">
+                        	<g:if test="${'usd'.equalsIgnoreCase(contribution?.currency)}">
+                        		$
+                        	</g:if>
+                        	<g:else>
+                        		<span class="fa fa-inr"></span>
+                        	</g:else> ${contribution.amount.round()}
+                        </div>
                     </div>
                     <div class="clear"></div>
                     

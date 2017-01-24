@@ -10,7 +10,7 @@
 %>
 <head>
     <title>Crowdera- Login</title>
-    <link rel="canonical" href="${grailsApplication.config.crowdera.BASE_URL}/login"/>
+    <link rel="canonical" href="${grailsApplication.config.crowdera.BASE_URL}login"/>
     <meta name='layout' content='main'/>
     <r:require modules="bootstrapsocialcss, loginjs, registrationjs"/>
 </head>

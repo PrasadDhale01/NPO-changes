@@ -16,8 +16,18 @@
 	<td class="text-center col-sm-3">${contribution.contributorName}</td>
 	<td class="text-center col-sm-3">${contribution.contributorEmail}</td>
 	<td class="text-center">
-		<g:if test="${'in'.equalsIgnoreCase(contribution.project?.country?.countryCode)}">Rs. </g:if>
-		<g:else>$</g:else>${contribution.amount.round()}
+		<g:if test="${'in'.equalsIgnoreCase(contribution.project?.country?.countryCode)}">
+			<g:if test="${'usd'.equalsIgnoreCase(contribution.currency)}">
+				$ 
+			</g:if>
+			<g:else>
+				Rs.
+			</g:else>
+		</g:if>
+		<g:else>
+			$
+		</g:else>
+		${contribution.amount.round()}
     </td>
 	<td class="text-center">${date}</td>
 	<td class="text-center">

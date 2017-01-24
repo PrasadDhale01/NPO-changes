@@ -24,7 +24,7 @@
             goal = currentTeam.amount.round()
         }
          
-        contributedAmount = contributionService.getTotalContributionForUser(currentTeam.contributions)
+        contributedAmount = contributionService.getTotalContributionForUser(project?.country?.countryCode, currentTeam.contributions, project?.country?.currency?.dollar)
     }
 
     def amount = projectService.getDataType(contributedAmount)

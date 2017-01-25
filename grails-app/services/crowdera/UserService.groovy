@@ -1603,8 +1603,6 @@ class UserService {
 				Date fromDate = sdf.parse(params.fromDate);
 				Date toDate = sdf.parse(params.toDate);
 				
-				println "fromDate = "+ fromDate + " toDate = "+ toDate
-				
 				contributions = criteria.list {
 					createAlias('project', 'project')
 					eq("project.id", project.id)
@@ -1661,7 +1659,7 @@ class UserService {
         List<Contribution> contributionList = new ArrayList<>();
         String environment = projectService.getCurrentEnvironment();
         
-        if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+        if ('in'.equalsIgnoreCase(project?.country?.countryCode)) {
             contributions.each {
                 if (it.panNumber != null) {
                     contributionList.add(it);

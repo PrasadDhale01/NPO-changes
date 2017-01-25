@@ -318,7 +318,8 @@ class ProjectController {
 			def totalContribution = contributionService.getTotalContributionForProject(project)
 			def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
 
-			def teamContribution = contributionService.getTotalContributionForUser(currentTeam?.contributions)
+			def teamContribution = contributionService.getTotalContributionForUser(project?.country?.countryCode, currentTeam?.contributions, project?.country?.currency?.dollar)
+			
 			def teamPercentage = contributionService.getPercentageContributionForTeam(teamContribution, currentTeam)
 			def isCrFrCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)
 			def isCampaignAdmin = userService.isCampaignAdmin(project, username)
@@ -485,14 +486,14 @@ class ProjectController {
                 def currentUser = userService.getCurrentUser()
                 def currentFundraiser = project.user
                 def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
-                def totalContribution = contributionService.getTotalContributionForProject(project)
-                def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
+                def totalContribution = 0;/*contributionService.getTotalContributionForProject(project)*/
+                def percentage = 0;/*contributionService.getPercentageContributionForProject(totalContribution, project)*/
                 
                 def teamContribution
                 def teamPercentage
                 if (currentTeam) {
-                    teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
-                    teamPercentage = contributionService.getPercentageContributionForTeam(teamContribution, currentTeam)
+                    teamContribution = 0;/*contributionService.getTotalContributionForUser(currentTeam.contributions)*/
+                    teamPercentage = 0;/*contributionService.getPercentageContributionForTeam(teamContribution, currentTeam)*/
                 }
                 def isCrFrCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)
                 def isCrUserCampBenOrAdmin

@@ -100,14 +100,24 @@ class ContributionService {
         return user
     }
 	
-	def getTotalContributionForUser(def contribution) {
-	    if (!contribution) {
+	def getTotalContributionForUser(String countryCode , List<Contribution> contributions, def dollar) {
+	    if (!contributions) {
 		   return 0
 		}
 		
 		double total = 0
-		contribution.each {
-		   total += it.amount
+		if ('in'.equalsIgnoreCase(countryCode)) {
+			contributions.each { contribution ->
+				if ('usd'.equalsIgnoreCase(contribution.currency)) {
+					total += (contribution.amount * dollar)
+				} else {
+					total += contribution.amount
+				}
+			}
+		} else {
+			contributions.each { contribution ->
+				total += contribution.amount
+			}
 		}
 		return total.round()
 	}
@@ -134,12 +144,23 @@ class ContributionService {
         }
 
         double total = 0
-        if(project.contributions){
-            project.contributions.each { contribution ->
-                total += contribution.amount
-            }
+        if(project.contributions) {
+			if ('in'.equalsIgnoreCase(project?.country?.countryCode)) {
+				project.contributions.each { contribution ->
+					if ('usd'.equalsIgnoreCase(contribution.currency)) {
+						total += (contribution.amount * project.country?.currency?.dollar)
+					} else {
+						total += contribution.amount
+					}
+				}
+			} else {
+				project.contributions.each { contribution ->
+					total += contribution.amount
+				}
+			}
+            
             return total.round()
-        }else{
+        } else {
             return 0
         }
     }
@@ -199,11 +220,13 @@ class ContributionService {
         return percentage
     }
 	
-    def getPercentageContributionForTeam(def team){
+    def getPercentageContributionForTeam(String countryCode, def team, def dollar) {
         if (!team) {
             return null
         }
-        double totalContribution = getTotalContributionForUser(team.contributions)
+		
+        double totalContribution = getTotalContributionForUser(countryCode , team.contributions, dollar)
+		
         def percentage
         if (totalContribution == 0) {
             percentage = 0

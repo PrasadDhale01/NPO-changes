@@ -536,7 +536,6 @@ class ProjectService {
 		}catch(Exception e){
 			return facebookCount
 		}
-		
 			
 		return facebookCount
 	}
@@ -544,33 +543,36 @@ class ProjectService {
     def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
         def emailId, twitter,custom, userId,anonymous,panNumber
         def currency
-        if (project.payuEmail) {
+		
+		def countryCode = getCountryCodeForCurrentEnv(request)
+		
+        if ((project.payuEmail && project.paypalEmail && 'us'.equalsIgnoreCase(countryCode)) || project.charitableId || 
+			(project.citrusEmail && project.paypalEmail && 'us'.equalsIgnoreCase(countryCode)) ) {
+			
+			currency = 'USD'
+			twitter = request.getParameter('twitterHandle')
+		} else if(project.payuEmail) {
             currency = 'INR'
-            emailId = request.getParameter('shippingEmail')
-            twitter =request.getParameter('shippingTwitter')
-            custom =  request.getParameter('shippingCustom')
-            userId = request.getParameter('tempValue')
-            anonymous = request.getParameter('anonymous')
+            twitter = request.getParameter('shippingTwitter')
             panNumber = request.getParameter('panNumber')
-        } else {
+			
+        } else if (project.paypalEmail) {
             currency = 'USD'
-            emailId = request.getParameter('shippingEmail')
             twitter = request.getParameter('twitterHandle')
-            custom = request.getParameter('shippingCustom')
-            userId = request.getParameter('tempValue')
-            anonymous = request.getParameter('anonymous')
         }
+		
+		emailId = request.getParameter('shippingEmail')
+		anonymous = request.getParameter('anonymous')
+		userId = request.getParameter('tempValue')
+		custom =  request.getParameter('shippingCustom')
         
-        def shippingDetail=checkShippingDetail(emailId,twitter,address, custom)
+        def shippingDetail = checkShippingDetail(emailId,twitter,address, custom)
         def name
         def username
  
         if (userId == null || userId == 'null' || userId.isAllWhitespace()) {
-            if (project.paypalEmail){
+            if (project.paypalEmail || project.payuEmail) {
                 name = request.getParameter('name')      
-                username = request.getParameter('email')
-            } else if (project.payuEmail){
-                name = request.getParameter('name')
                 username = request.getParameter('email')
             } else {
                 name = params.billToFirstName + " " +params.billToLastName
@@ -6923,10 +6925,11 @@ class ProjectService {
 					campaignOwnerId: project.user.id
 			]
 		}
-			   
-		teams.each{team ->
+	    
+		teams.each{ team ->
 
-			def percentage = contributionService.getPercentageContributionForTeam(team)
+			def percentage = contributionService.getPercentageContributionForTeam(project?.country?.countryCode, team, project?.country?.currency?.dollar)
+			
 			def ended = isProjectDeadlineCrossed(project)
 			def amount = getDataType(team.amount)
 			def imageLink = getProjectImageLink(project)
@@ -6942,10 +6945,23 @@ class ProjectService {
 			def userName = userService.getVanityNameFromUsername(team?.user?.username, team?.id)
 			
 			
-			if(team.contributions==null){
+			if(team.contributions == null){
 				team["contributions"] = 0
-			}else{
-				team["contributions"] = team.contributions.sum{ (it?.amount != null)?it?.amount:0}
+			} else {
+				
+				if ('in'.equalsIgnoreCase(project?.country?.countryCode)) {
+					team["contributions"] = team.contributions.sum{
+						if ('usd'.equalsIgnoreCase(it?.currency)) {
+							it?.amount * project.country?.currency?.dollar
+						} else {
+							(it?.amount != null) ? it?.amount : 0
+						}
+					}
+				} else {
+					team["contributions"] = team.contributions.sum{ 
+						(it?.amount != null) ? it?.amount : 0
+					}
+				}
 			}
 
 			//team["contributions"] = team.contributions.sum{ (it?.amount != null)?it?.amount:0}

@@ -33,46 +33,82 @@
                     imageUrl = obj.userImage
                 }
             %>
+            
             <g:if test="${!contribution.isContributionOffline}">
+            
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 top-pan manage-contribution-md-tabs contribution-inr  manage-contributiontile">
                     <div <g:if test='${contribution.isAnonymous}'>class ="pans alphabet-A"</g:if><g:else>class ="pans ${alphabet}"</g:else>>
                         <div class ="col-sm-3 col-xs-3 img-contribution">
                             <img class="user-img-header" src="${imageUrl}" alt="alphabet">
                         </div>
                         <div class="col-sm-9 col-xs-9 pn-word">
+                            
                             <g:if test="${isFacebookUser}">
+                            
                                 <h4><a href="${userFacebookUrl}">${friendlyName}</a></h4>
                                 <span class="sso">
-                                    <g:if test="${project.payuStatus}">
-                                        <span class="fa fa-inr"><b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                    <g:if test="${'in'.equalsIgnoreCase(contribution.project?.country?.countryCode)}">
+                                        <g:if test="${'inr'.equalsIgnoreCase(contribution.currency)}">
+	                                        <span class="fa fa-inr">
+	                                        	<b>${contribution.amount.round()}</b>
+	                                        </span>
+                                        </g:if>
+                                        <g:else>
+                                        	$<b>${contribution.amount.round()}</b>
+                                        </g:else>
                                     </g:if>
                                     <g:else>
-                                        $<b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                        $<b>${contribution.amount.round()}</b>
                                     </g:else>
+                                    <span class="font-usd">&nbsp;&nbsp;${contribution.currency}</span>
                                 </span>
                                 <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
+                            
                             </g:if>
                             <g:else>
+                            
                                 <g:if test="${contribution.contributorName}">
                                     <h4>${contribution.contributorName}</h4>
                                     <span class="sso">
-                                        <g:if test="${project.payuStatus}">
-                                            <span class="fa fa-inr"><b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                        <g:if test="${'in'.equalsIgnoreCase(contribution.project?.country?.countryCode)}">
+                                            <g:if test="${'inr'.equalsIgnoreCase(contribution.currency)}">
+		                                        <span class="fa fa-inr">
+		                                        	<b>${contribution.amount.round()}</b>
+		                                        </span>
+	                                        </g:if>
+	                                        <g:else>
+	                                        	$<b>${contribution.amount.round()}</b>
+	                                        </g:else>
                                         </g:if>
                                         <g:else>
-                                            $<b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                            $<b>${contribution.amount.round()}</b>
                                         </g:else>
+                                        <span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                     </span>
-                                    <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
+                                    <div class="font-days">
+	                                    <g:if test="${numberOfDays >1}">
+	                                    	${numberOfDays}&nbsp;&nbsp;Days Ago
+	                                    </g:if>
+	                                    <g:elseif test="${numberOfDays == 1}">
+	                                    	${numberOfDays}&nbsp;&nbsp;Day Ago
+	                                    </g:elseif>
+	                                    <g:else>
+	                                    	Today
+	                                    </g:else>
+	                                </div>
+	                                
                                 </g:if>
                                 <g:else>
                                     <h4>${friendlyName}</h4>
                                     <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
                                 </g:else>
+                                
                             </g:else>
+                            
                         </div>
                     </div>
                 </div>
+            
             </g:if>
             <g:else>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 top-pan manage-contribution-md-tabs offline-contribution-pans manage-contributiontile">
@@ -83,36 +119,50 @@
                         <div class="col-sm-9 col-xs-9 pn-word">
                             <h4>${contribution.contributorName}</h4> 
                             <span class="sso">
-                                <g:if test="${project.payuStatus}">
-                                    <span class="fa fa-inr"><b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                <g:if test="${'in'.equalsIgnoreCase(contribution.project?.country?.countryCode)}">
+                                    <g:if test="${'inr'.equalsIgnoreCase(contribution.currency)}">
+                                        <span class="fa fa-inr">
+                                     	    <b>${contribution.amount.round()}</b>
+                                        </span>
+                                    </g:if>
+                                    <g:else>
+                                    	$<b>${contribution.amount.round()}</b>
+                                    </g:else>
                                 </g:if>
                                 <g:else>
-                                    $<b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                    $<b>${contribution.amount.round()}</b>
                                 </g:else>
+                                <span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                             </span>
+                            
                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
+                            
                             <div class="clear"></div>
+                            
                             <g:if test="${contribution.fundRaiser.equals(fundRaiser)}">
                                 <div class="col-sm-8 col-xs-8">
                                     <div class="offline-contribution">Offline Contribution</div>
                                 </div>
+                                
                                 <g:if test="${!ended}">
-                                <div class="col-sm-4 col-xs-4 edit-delete-fund manage-editdel-width">
-                                    <div class="offline-edit-delete-btn">
-                                       <button class="projectedit close manage-contribution-delete editofflinecontribution"  data-toggle="modal" data-target="#contributionedit" data-id="${contribution.id}">
-                                           <i class="glyphicon glyphicon-edit" ></i>
-                                       </button>
-
-                                       <g:form controller="project" action="contributiondelete" method="post" id="${contribution.id}" params="['projectId':projectId, 'fr': fundRaiser, 'offset': offset]">
-                                           <g:hiddenField name="manageCampaign" value="${manageCampaign}" id="manageCampaign${contribution.id}"></g:hiddenField>
-                                           <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this contribution?&#39;);">
-                                               <i class="glyphicon glyphicon-trash" ></i>
-                                           </button>
-                                       </g:form>
-                                   </div>
-                               </div>
-                               </g:if>
-                           </g:if>
+	                                <div class="col-sm-4 col-xs-4 edit-delete-fund manage-editdel-width">
+	                                    <div class="offline-edit-delete-btn">
+	                                       <button class="projectedit close manage-contribution-delete editofflinecontribution"  data-toggle="modal" data-target="#contributionedit" data-id="${contribution.id}">
+	                                           <i class="glyphicon glyphicon-edit" ></i>
+	                                       </button>
+	
+	                                       <g:form controller="project" action="contributiondelete" method="post" id="${contribution.id}" params="['projectId':projectId, 'fr': fundRaiser, 'offset': offset]">
+	                                           <g:hiddenField name="manageCampaign" value="${manageCampaign}" id="manageCampaign${contribution.id}"></g:hiddenField>
+	                                           <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this contribution?&#39;);">
+	                                               <i class="glyphicon glyphicon-trash" ></i>
+	                                           </button>
+	                                       </g:form>
+	                                   </div>
+	                               </div>
+                                </g:if>
+                               
+                            </g:if>
+                           
                        </div>
                    </div>
                    <div class="clear"></div>
@@ -159,9 +209,16 @@
 	                        </div>
 	                        <div class="col-sm-12 margin-btm-10">
 	                            <div class="form-group">
-	                                <label class="text col-sm-3">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+	                                <label class="text col-sm-3">
+	                                	Amount(<g:if test="${'in'.equalsIgnoreCase(project?.country?.countryCode)}">
+	                                				<span class="fa fa-inr"></span>
+	                                			</g:if>
+	                                			<g:else>
+	                                				$
+	                                			</g:else>)
+	                                </label>
 	                                <div class="col-sm-9"> 
-	                                <input type="text" class="form-control contributioninput offlineAmount" name="amount" id="contributorAmount-edit">
+	                                	<input type="text" class="form-control contributioninput offlineAmount" name="amount" id="contributorAmount-edit">
 	                                </div>
 	                            </div>
 	                            <div class="contributionerrormsg"></div>
@@ -194,6 +251,7 @@
 	                </div>
 	            </div>
 	        </g:form>
+	        
 	    </div>
                    
     </div>

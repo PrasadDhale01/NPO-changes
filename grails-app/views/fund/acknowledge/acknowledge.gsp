@@ -14,10 +14,13 @@
     def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 + country_code : grailsApplication.config.crowdera.BASE_URL + country_code
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+fundraiser.username
 	def beneficiaryName = (project.beneficiary.lastName) ? project.beneficiary.firstName + ' ' + project.beneficiary.lastName : project.beneficiary.firstName;
+	
+	def username = userService.getVanityNameFromUsername(project.user.username, project.id)
+	def title = projectService.getVanityTitleFromId(project.id)
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-     <link rel="canonical" href="${base_url}/fund"/>
+    <link rel="canonical" href="${base_url}/fund"/>
     <meta property="og:title" content="Crowdera : ${project.title}" />
     <meta property="og:url" content="${fbShareUrl}" />
     <g:if test="${project.organizationIconUrl}">
@@ -30,20 +33,6 @@
     <meta property="og:type" content="website" />
     <meta name="layout" content="main" />
     <r:require modules="fundjs" />
-    <script>
-        function submitCampaignShowForm(pkey, projectId, fr){
-            $.ajax({
-                type    :'post',
-                url     : $("#b_url").val()+'/project/urlBuilder',
-                data    : "projectId="+projectId+"&fr="+fr+"&pkey="+pkey,
-                success : function(response){
-                    $(location).attr('href', response);
-                }
-            }).error(function(){
-                console.log("Error in redirecting");
-            });
-         }
-    </script>
 </head>
 <body>
 <g:hiddenField name="projectId" value="${project.id}" id="projectId"/>
@@ -75,7 +64,11 @@
                     <tbody>
                     <tr class="ack-table-color-green">
                         <td class="ack-table-heading-padding">Campaign</td>
-                        <td><a href="javascript:void(0)" onclick="submitCampaignShowForm('show','${project.id}','${fundraiser.username}');" >${project.title}</a></td>
+                        <td>
+                        	<g:link mapping="showCampaign" params="[country_code: project?.country?.countryCode.toLowerCase(), projectTitle:title, fr: username, category:project.fundsRecievedBy.toLowerCase()]">
+                        		${project.title}
+                        	</g:link>
+                        </td>
                     </tr>
                     <tr>
                         <td class="ack-table-heading-padding">Beneficiary</td>
@@ -101,7 +94,20 @@
                     </g:else>
                         <tr class="ack-table-color-red">
                             <td class="ack-table-heading-padding">Amount</td>
-                            <td><g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${contribution.amount.round()}</td>
+                            <td>
+                            	<g:if test="${'in'.equalsIgnoreCase(project?.country?.countryCode)}">
+                            		<g:if test="${'usd'.equalsIgnoreCase(contribution?.currency)}">
+                            			$
+                            		</g:if>
+                            		<g:else>
+                            			<span class="fa fa-inr"></span>
+                            		</g:else>
+                            	</g:if>
+                            	<g:else>
+                            		$
+                            	</g:else>
+                            	${contribution.amount.round()}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -228,7 +234,8 @@
                 </g:else>
             </div>
        </div>
-            <div id="ackDesktopView" class="col-lg-4 col-sm-4 col-md-4 col-xs-12 hidden-xs <g:if test="${project.rewards.size()>1 }">acknowledge-tile-tag ack-tile-height</g:if><g:else>ack-panel-tile</g:else>"></div>
+       
+       <div id="ackDesktopView" class="col-lg-4 col-sm-4 col-md-4 col-xs-12 hidden-xs <g:if test="${project.rewards.size()>1 }">acknowledge-tile-tag ack-tile-height</g:if><g:else>ack-panel-tile</g:else>"></div>
                 
     </div>
 </div>

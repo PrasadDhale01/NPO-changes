@@ -12,7 +12,7 @@ class Currency {
 	String currency_name
 	String currency_code
 	String currency_value
-   // double dollar
+    double dollar = 0;
 		  
 	  static constraints = {
 		  currency_name (nullable: true)

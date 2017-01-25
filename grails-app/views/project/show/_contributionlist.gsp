@@ -15,6 +15,7 @@
     def projectId = project.id
    	def country = projectService.getCountryForProject(project)
 	def currencyValue = projectService.getCurrencyByCountryId(country)
+	
 	def country_code = projectService.getCountryCodeForCurrentEnv(request)
 	
 %>
@@ -27,7 +28,6 @@
                 def friendlyName = userService.getFriendlyName(contribution.user)
                 def isFacebookUser = userService.isFacebookUser(contribution.user)
                 def userFacebookUrl = facebookService.getUserFacebookUrl(contribution.user)
-                def amount = projectService.getDataType(contribution.amount)
                 def numberOfDays = contributionService.getNumberOfDaysForContribution(contribution)
 
                 def imageUrl
@@ -40,86 +40,14 @@
                     imageUrl = obj.userImage
                 }
             %>
+            
             <g:if test="${!contribution.isContributionOffline}">
                 <div class="col-sm-6 col-lg-6 col-md-6 show-contributionpadding">
                     <g:if test="${!contribution.isAnonymous}">
                  	    <%
                             def contributorEmail = contribution.contributorEmail
                         %>
-                        <g:if test="${currentEnv=='testIndia' || currentEnv=='test' }">
-                            <g:link controller="user" action="viewUserProfile" id="${contribution.user.id}" params="[amount:amount, contributorEmail: contributorEmail]" target="_blank">
-                                <div <g:if test='${contribution.isAnonymous}'>class ="pan alphabet-A"</g:if><g:else>class ="pan ${alphabet}"</g:else>>
-                                <div class ="col-sm-4 col-xs-4 img-panel">
-                                    <g:if test="${contribution.isAnonymous}">
-                                        <img class="user-img-header" src="//s3.amazonaws.com/crowdera/assets/alphabet-A.png" alt="alphabet">
-                                    </g:if>
-                                    <g:else>
-                                        <img class="user-img-header" src="${imageUrl}" alt="alphabet">
-                                    </g:else>
-                                </div>
-                                <div class="col-sm-8 col-xs-8 pn-word contribution-inr">
-                                    <g:if test="${contribution.isAnonymous}">
-                                        <g:if test="${isCrUserCampBenOrAdmin && CurrentUserTeam && currentFundraiser == team}">
-                                            <h4>${contribution.contributorName}</h4> 
-                                            <span class="sso">
-                                                <g:if test="${country_code == 'in'}">
-                                                    <!--  <span class="fa fa-inr"></span>-->
-                      								 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
-                                                </g:if>
-                                                <g:else>
-                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
-                                                </g:else>
-                                            </span>
-                                            <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
-                                        </g:if>
-                                        <g:else>
-                                            <h4 class="anonymous-top">Anonymous Good Soul</h4>
-                                            <span class="sso">
-                                                <g:if test="${country_code == 'in'}">
-                                                    <!-- <span class="fa fa-inr"></span>-->
-                       									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
-                                                </g:if>
-                                                <g:else>
-                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
-                                                </g:else>
-                                            </span>
-                                            <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
-                                        </g:else>
-                                    </g:if>
-                                    <g:else>
-                                        <g:if test="${contribution.contributorName}">
-                                            <h4>${contribution.contributorName}</h4>
-                                            <span class="sso">
-                                                <g:if test="${country_code == 'in'}">
-                                                    <!-- <span class="fa fa-inr"></span>-->
-                        								${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
-                                                </g:if>
-                                                <g:else>
-                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
-                                                </g:else>
-                                            </span>
-                                            <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
-                                        </g:if>
-                                        <g:else>
-                                            <h4>${friendlyName}</h4>
-                                            <span class="sso">
-                                                <g:if test="${country_code == 'in'}">
-                                                    <!-- <span class="fa fa-inr"></span>-->
-                       									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
-                                                </g:if>
-                                                <g:else>
-                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
-                                                </g:else>
-                                            </span>
-                                            <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
-                                        </g:else>
-                                    </g:else>
-                                
-                                </div>
-                            </div>
-                            </g:link>
-                        </g:if>
-                        <g:else>
+                        
                             <div <g:if test='${contribution.isAnonymous}'>class ="pan alphabet-A"</g:if><g:else>class ="pan ${alphabet}"</g:else>>
                                 <div class ="col-sm-4 col-xs-4 img-panel">
                                     <g:if test="${contribution.isAnonymous}">
@@ -134,26 +62,41 @@
                                         <g:if test="${isCrUserCampBenOrAdmin && CurrentUserTeam && currentFundraiser == team}">
                                             <h4>${contribution.contributorName}</h4> 
                                             <span class="sso">
-                                                <g:if test="${country_code == 'in'}">
-                                                    <!-- <span class="fa fa-inr"></span>-->
-                        ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                            	<g:if test="${'in'.equalsIgnoreCase(contribution.project?.country?.countryCode)}">
+                      								<g:if test="${'inr'.equalsIgnoreCase(contribution.currency)}">
+				                                        <span class="fa fa-inr">
+				                                        	<b>${contribution.amount.round()}</b>
+				                                        </span>
+			                                        </g:if>
+			                                        <g:else>
+			                                        	$<b>${contribution.amount.round()}</b>
+			                                        </g:else>
                                                 </g:if>
                                                 <g:else>
-                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                                    $<b>${contribution.amount.round()}</b>
                                                 </g:else>
+                                                <span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
                                         </g:if>
                                         <g:else>
                                             <h4 class="anonymous-top">Anonymous Good Soul</h4>
                                             <span class="sso">
-                                               <g:if test="${country_code == 'in'}">
-                                                    <!-- <span class="fa fa-inr"></span>-->
-                       									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                            	<g:if test="${'in'.equalsIgnoreCase(contribution.project?.country?.countryCode)}">
+                      								<g:if test="${'inr'.equalsIgnoreCase(contribution.currency)}">
+				                                        <span class="fa fa-inr">
+				                                        	<b>${contribution.amount.round()}</b>
+				                                        </span>
+			                                        </g:if>
+			                                        <g:else>
+			                                        	$<b>${contribution.amount.round()}</b>
+			                                        </g:else>
                                                 </g:if>
                                                 <g:else>
-                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                                    $<b>${contribution.amount.round()}</b>
                                                 </g:else>
+                                                <span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                                
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
                                         </g:else>
@@ -162,26 +105,43 @@
                                         <g:if test="${contribution.contributorName}">
                                             <h4>${contribution.contributorName}</h4>
                                             <span class="sso">
-                                                <g:if test="${country_code == 'in'}">
-                                                    <!--  <span class="fa fa-inr"></span>-->
-                      									 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                                
+                                                <g:if test="${'in'.equalsIgnoreCase(contribution.project?.country?.countryCode)}">
+                      								 <g:if test="${'inr'.equalsIgnoreCase(contribution.currency)}">
+				                                        <span class="fa fa-inr">
+				                                        	<b>${contribution.amount.round()}</b>
+				                                        </span>
+			                                        </g:if>
+			                                        <g:else>
+			                                        	$<b>${contribution.amount.round()}</b>
+			                                        </g:else>
                                                 </g:if>
                                                 <g:else>
-                                                    ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                                    $<b>${contribution.amount.round()}</b>
                                                 </g:else>
+                                                <span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                                
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
                                         </g:if>
                                         <g:else>
                                             <h4>${friendlyName}</h4>
                                             <span class="sso">
-                                               <g:if test="${country_code == 'in'}">
-                                                    <!-- <span class="fa fa-inr"></span>-->
-                       										 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                            	<g:if test="${'in'.equalsIgnoreCase(contribution.project?.country?.countryCode)}">
+                      								<g:if test="${'inr'.equalsIgnoreCase(contribution.currency)}">
+				                                        <span class="fa fa-inr">
+				                                        	<b>${contribution.amount.round()}</b>
+				                                        </span>
+			                                        </g:if>
+			                                        <g:else>
+			                                        	$<b>${contribution.amount.round()}</b>
+			                                        </g:else>
                                                 </g:if>
                                                 <g:else>
-                                                   ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                                    $<b>${contribution.amount.round()}</b>
                                                 </g:else>
+                                                <span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                                
                                             </span>
                                             <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
                                         </g:else>
@@ -189,7 +149,6 @@
                                 
                                 </div>
                             </div>
-                	   </g:else>
                 	</g:if>
                 	<g:else>
                     <div <g:if test='${contribution.isAnonymous}'>class ="pan alphabet-A"</g:if><g:else>class ="pan ${alphabet}"</g:else>>
@@ -206,26 +165,43 @@
                                 <g:if test="${isCrUserCampBenOrAdmin && CurrentUserTeam && currentFundraiser == team}">
                                     <h4>${contribution.contributorName}</h4> 
                                     <span class="sso">
-                                        <g:if test="${country_code == 'in'}">
-                                            <!-- <span class="fa fa-inr"></span>-->
-                        						${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                    	
+                                    	<g:if test="${'in'.equalsIgnoreCase(contribution.project?.country?.countryCode)}">
+                   							<g:if test="${'inr'.equalsIgnoreCase(contribution.currency)}">
+		                                        <span class="fa fa-inr">
+		                                        	<b>${contribution.amount.round()}</b>
+		                                        </span>
+	                                        </g:if>
+	                                        <g:else>
+	                                        	$<b>${contribution.amount.round()}</b>
+	                                        </g:else>
                                         </g:if>
                                         <g:else>
-                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                            $<b>${contribution.amount.round()}</b>
                                         </g:else>
+                                        <span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                        
                                     </span>
                                     <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
                                 </g:if>
                                 <g:else>
                                     <h4 class="anonymous-top">Anonymous Good Soul</h4>
                                     <span class="sso">
-                                        <g:if test="${country_code == 'in'}">
-                                            <!-- <span class="fa fa-inr"></span>-->
-                       							 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                        <g:if test="${'in'.equalsIgnoreCase(contribution.project?.country?.countryCode)}">
+	                  						<g:if test="${'inr'.equalsIgnoreCase(contribution.currency)}">
+		                                        <span class="fa fa-inr">
+		                                        	<b>${contribution.amount.round()}</b>
+		                                        </span>
+		                                    </g:if>
+		                                    <g:else>
+		                                       	$<b>${contribution.amount.round()}</b>
+		                                    </g:else>
                                         </g:if>
                                         <g:else>
-                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                            $<b>${contribution.amount.round()}</b>
                                         </g:else>
+                                        <span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                                
                                     </span>
                                     <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
                                 </g:else>
@@ -234,26 +210,42 @@
                                 <g:if test="${contribution.contributorName}">
                                     <h4>${contribution.contributorName}</h4>
                                     <span class="sso">
-                                        <g:if test="${country_code == 'in'}">
-                                            <!--  <span class="fa fa-inr"></span>-->
-                       							${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                        
+                                        <g:if test="${'in'.equalsIgnoreCase(contribution.project?.country?.countryCode)}">
+	                  						<g:if test="${'inr'.equalsIgnoreCase(contribution.currency)}">
+		                                        <span class="fa fa-inr">
+		                                        	<b>${contribution.amount.round()}</b>
+		                                        </span>
+		                                    </g:if>
+		                                    <g:else>
+		                                       	$<b>${contribution.amount.round()}</b>
+		                                    </g:else>
                                         </g:if>
                                         <g:else>
-                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                            $<b>${contribution.amount.round()}</b>
                                         </g:else>
+                                        <span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                        
                                     </span>
                                     <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
                                 </g:if>
                                 <g:else>
                                     <h4>${friendlyName}</h4>
                                     <span class="sso">
-                                        <g:if test="${country_code == 'in'}">
-                                            <!--  <span class="fa fa-inr"></span>-->
-                      								 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount}</b></g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                        <g:if test="${'in'.equalsIgnoreCase(contribution.project?.country?.countryCode)}">
+	                  						<g:if test="${'inr'.equalsIgnoreCase(contribution.currency)}">
+		                                        <span class="fa fa-inr">
+		                                        	<b>${contribution.amount.round()}</b>
+		                                        </span>
+		                                    </g:if>
+		                                    <g:else>
+		                                       	$<b>${contribution.amount.round()}</b>
+		                                    </g:else>
                                         </g:if>
                                         <g:else>
-                                            ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                            $<b>${contribution.amount.round()}</b>
                                         </g:else>
+                                        <span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                     </span>
                                     <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
                                 </g:else>
@@ -275,13 +267,20 @@
                             <div class="col-sm-8 col-xs-8 pn-word contribution-inr">
                                 <h4>${contribution.contributorName}</h4> 
                                 <span class="sso">
-                                    <g:if test="${country_code == 'in'}">
-                                        <!--  <span class="fa fa-inr"></span>-->
-                      						 ${currencyValue}<g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else>${amount}</g:else><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                    <g:if test="${'in'.equalsIgnoreCase(contribution.project?.country?.countryCode)}">
+                 						<g:if test="${'inr'.equalsIgnoreCase(contribution.currency)}">
+	                                        <span class="fa fa-inr">
+	                                        	<b>${contribution.amount.round()}</b>
+	                                        </span>
+	                                    </g:if>
+	                                    <g:else>
+	                                       	$<b>${contribution.amount.round()}</b>
+	                                    </g:else>
                                     </g:if>
                                     <g:else>
-                                        ${currencyValue}<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
+                                        $<b>${contribution.amount.round()}</b>
                                     </g:else>
+                                    <span class="font-usd">&nbsp;&nbsp;${contribution?.currency}</span>
                                 </span>
                                 <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
                             </div>

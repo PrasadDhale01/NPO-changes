@@ -14,7 +14,7 @@
     } else {
         goal = team.amount.round()
     }
-    def contributedAmount = contributionService.getTotalContributionForUser(team.contributions)
+    def contributedAmount = contributionService.getTotalContributionForUser(project?.country?.countryCode, team.contributions, project?.country?.currency?.dollar)
     def amount = projectService.getDataType(contributedAmount)
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
     def uri = request.forwardURI
@@ -22,7 +22,8 @@
     def isAdminOrBeneficiary = userService.isCampaignBeneficiaryOrAdmin(project, user)
     def isCampaignAdmin = userService.isCampaignAdmin(project, username)
     def isCampaignAdminByUser=userService.isCampaignAdminByUserID(project, user)
-    def percentage = contributionService.getPercentageContributionForTeam(team)
+	
+    def percentage = contributionService.getPercentageContributionForTeam(contributedAmount, team)
     
     def title = projectService.getVanityTitleFromId(project?.id)
     def teamUserName = userService.getVanityNameFromUsername(username, project?.id)

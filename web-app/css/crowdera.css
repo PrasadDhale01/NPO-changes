@@ -3585,7 +3585,7 @@ header.cr-tabs-link {
 	padding-left: 250px;
 	padding-right: 300px;
 	position:fixed;
-	top:45px;
+	top:64px;
 	font-size: 15px;
 	z-index:500;
 }
@@ -3615,6 +3615,7 @@ input#datepicker {
 .cr1-header-indx1{
     background-color: #f6bf0b;
     padding: 7px;
+    padding-top: 22px;
 }
 h1.text-center.cr-header-name {
   color: white;

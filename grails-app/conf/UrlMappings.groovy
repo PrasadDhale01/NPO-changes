@@ -67,7 +67,8 @@ class UrlMappings {
 		"/Learning-Center"(view: 'learnMore/learningCenter')
 		"/Learning-Center/${question}"(controller:"home", action:'getLearnMore')
 		
-		
+		/*Transaction Fee Details*/
+		"/Fee-and-Pricing-Information"(view: '/transactionFee/pricingPage')
 
 		/*Url shortener*/
 		"/c/$url"(controller: 'project', action:'getCampaignFromShortUrl')

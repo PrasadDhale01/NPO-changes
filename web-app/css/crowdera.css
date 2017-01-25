@@ -2738,7 +2738,8 @@ ul.dropdown-menu.admin.admin-dropdown{
 	width: 100%;
 }
 ul.dropdown-menu.usr.user-dropdown{
-	width: 100%;
+	width: 95%;
+	left: 0 !important;
 }
 .dropdown-menu-head {
 /* 	top: 100%; */
@@ -8658,6 +8659,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.payTransaction{
+	    width: 600px;
+	} 
+	div.payTransactiontable{
+	    width: 600px;
+	}
 	div.tab-center{
 	    float: none;
 	    margin: 0 auto;
@@ -12429,6 +12436,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1050px){
+	div.payTransactiontable{
+	    width: 92% !important;
+	}
     ul.show-paddingsbtn-submitapprov {
         margin-right: -72px !important;
         padding-left: 109px;
@@ -12445,6 +12455,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width:1051px) and (max-width: 1080px){
+	div.payTransactiontable{
+	    width: 100% !important;
+	}
     li.sh-button-fund-secandaryheader {
         left: 19.6% !important;
         position: absolute;
@@ -13639,7 +13652,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		width: 111% !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
-		width: 100% !important;
+		width: 95% !important;
+		left: 0 !important;
 	}
 	ul.dropdown-menu.admin.admin-dropdown{
 		width: 100% !important;
@@ -13875,7 +13889,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		width: 108% !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
-		width: 100% !important;
+		width: 95% !important;
+		left: 0 !important;
 	}
 	ul.dropdown-menu.admin.admin-dropdown{
 		width: 100% !important;
@@ -14203,7 +14218,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		width: 108% !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
-		width: 100% !important;
+		width: 95% !important;
+		left: 0 !important;
 	}
 	ul.dropdown-menu.admin.admin-dropdown{
 		width: 100% !important;
@@ -20241,6 +20257,7 @@ a.noBorderr{
 a.noBorderr:hover{
 	color: grey;
 }
+
 .noBorderr:hover{
 	color: grey;
 	text-decoration: none;
@@ -20296,23 +20313,115 @@ a.newHeaferfont {
 li.newHowit{
 	width: 142px !important;
 }
+
 li.nav-lineHeight  a{
  	line-height: 34px !important;
- }
+}
  
- img.nav-lineHeight{
+img.nav-lineHeight{
  	padding-top: 12px !important;
- }
+}
  
- img.nav-lineHeigh{
+img.nav-lineHeigh{
  	margin-top: 6px ;
- }
+}
  
- li.nav-lineHeig{
- 	padding-top: 7px;
-     padding-right: 12px;
- }
+li.nav-lineHeig{
+    padding-top: 7px;
+    padding-right: 12px;
+}
  
- a.nav-lineHeight img{
+a.nav-lineHeight img{
  	padding-top: 12px !important;
-  } 
+} 
+
+/* Payment-Transaction */
+.transactionDiv{
+	float: none;
+    margin: 0 auto;
+    padding: 50px 10px;
+    text-align: center;
+    width: 95%;
+}
+
+.payTransaction h1 {
+    font-family: "Assistant",sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.payTransaction h2 {
+    font-family: "Assistant",sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    line-height: 0.5;
+}
+
+.payTransaction{
+	 padding-top: 15px;
+	 font-family: "Assistant",sans-serif;
+	 width: 1000px;
+}
+
+.payTransactioncontent{
+	color: rgba(0, 0, 0, 0.8);
+    padding-top: 15px; 
+    padding-right: 100px; 
+    padding-left: 40px; 
+    text-align: start;
+}
+  
+.payTransactioncontent b{
+	font-size: 18px;
+}
+
+.payTransactioncontent p{
+	margin: 5px 0;
+}
+
+tr.payTransacrow th{
+	border: 1px solid;
+	padding: 10px;
+	font-family: "Assistant",sans-serif;
+	font-size: 18px;
+}
+
+tr.payTransacrow td{
+	border: 1px solid;
+	padding: 10px;
+	font-family: "Assistant",sans-serif;
+	font-size: 18px;
+}
+
+.payTransactiontable table{
+	border-collapse: separate;
+    border-spacing: 2px;
+}
+
+.payTransactiontable{
+	padding: 40px 10px;
+	width: 1000px;
+}
+
+.payTransacterms{
+	font-family: "Assistant",sans-serif;
+	font-size: 18px;
+    text-align: start;
+}
+
+.payTransacterms p span,
+.payTransactioncontent p span{
+	font-weight: bold;
+}
+
+.payTransaction h3 {
+    font-family: "Assistant",sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+}
+ 

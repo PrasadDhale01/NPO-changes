@@ -26,7 +26,9 @@
     			<g:elseif test="${project.charitableId}" >
         			<g:render template="fund/firstgiving"/>
     			</g:elseif>
-				
+				<g:elseif test="${project.paypalEmail}">
+					<g:render template="fund/paypal"/>
+				</g:elseif>
 
                 <g:if test="${project.paypalEmail || project.payuStatus}">
                     <div class="col-md-4 hidden-sm hidden-xs campaignTile ">

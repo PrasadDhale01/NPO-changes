@@ -978,15 +978,15 @@ class MandrillService {
         def currentEnv = Environment.current.getName()
         def cdraDomain = getCdraDomain(currentEnv)
         def fblink = "https://www.facebook.com"
-        def currency
         def naamFoundationCampaign
         
         def countryCode = project?.country?.countryCode?.toLowerCase();
-        if("in".equalsIgnoreCase(countryCode)){
+		def currency = contribution.currency
+        /*if("in".equalsIgnoreCase(countryCode)){
             currency = 'INR'
         } else if ("us".equalsIgnoreCase(countryCode)) {
             currency = 'USD'
-        }
+        }*/
 
         if (project.id == '2c9f8f3b4feeeee0014fefed7fae0001'){
             naamFoundationCampaign = 'yes'

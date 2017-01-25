@@ -1070,7 +1070,7 @@ class UserController {
             def reportDef = userService.generateTaxreceiptPdf(contribution);
             
             ByteArrayOutputStream bytes = jasperService.generateReport(reportDef)
-            response.setHeader("Content-Disposition", 'attachment; filename=taxreceipt-'+title+'.pdf');
+            response.setHeader("Content-Disposition", 'attachment; filename=DonationReceipt-'+title+'.pdf');
             response.setContentType("application/pdf")
             response.outputStream << bytes.toByteArray()
         

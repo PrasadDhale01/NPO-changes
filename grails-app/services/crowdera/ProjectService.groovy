@@ -6327,13 +6327,12 @@ class ProjectService {
         List<ProjectUpdate> projectUpdates = []
         
         Session session = sessionFactory.getCurrentSession();
-        if (currentEnv == "testIndia" || currentEnv == "stagingIndia" || currentEnv == "prodIndia") {
-             projectUpdates = session.createSQLQuery("select * from project_update join project on project_update.project_id = project.id where payu_status=1 and islive=0 and is_scheduled=1")
-                             .addEntity(ProjectUpdate.class).list();
-        } else {
+        projectUpdates = session.createSQLQuery("select * from project_update join project on project_update.project_id = project.id where islive=0 and is_scheduled=1")
+                         .addEntity(ProjectUpdate.class).list();
+        /*} else {
              projectUpdates = session.createSQLQuery("select * from project_update join project on project_update.project_id = project.id where payu_status=0 and islive=0 and is_scheduled=1")
                              .addEntity(ProjectUpdate.class).list();
-        }
+        }*/
         
         projectUpdates.each { projectUpdate ->
             def cronExp

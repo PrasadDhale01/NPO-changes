@@ -4,7 +4,7 @@
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="379"/>
 	<property name="net.sf.jasperreports.export.pdf.force.linebreak.policy" value="true"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
@@ -80,7 +80,7 @@
 				<reportElement x="28" y="26" width="145" height="145" uuid="815dc0fb-24b0-4655-a14d-7a56267f5584"/>
 				<imageExpression><![CDATA[$P{orgLogo}]]></imageExpression>
 			</image>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="360" y="38" width="174" height="20" uuid="6798b62f-a440-42f9-9400-1312922f7430"/>
 				<textElement>
 					<font size="12"/>
@@ -101,7 +101,7 @@
 				</textElement>
 				<text><![CDATA[Website:]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="360" y="8" width="174" height="20" uuid="4f32a51f-4701-49c4-ae7e-ee7e12c0ae18"/>
 				<textElement>
 					<font size="12"/>
@@ -115,21 +115,21 @@
 				</textElement>
 				<text><![CDATA[Organization Address:]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="360" y="132" width="173" height="62" uuid="470e2dac-2aab-43b8-ac00-c84241dd5e2b"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{orgAddress}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="360" y="98" width="174" height="20" uuid="ca3d6949-c4e1-435b-b250-cec5654afe1c"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{phone}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="360" y="68" width="175" height="20" uuid="33c42929-2216-4310-b940-5286a4a2eb19"/>
 				<textElement>
 					<font size="12"/>
@@ -197,28 +197,28 @@
 				</textElement>
 				<text><![CDATA[TAX DEDUCTION DETAILS]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="268" y="245" width="253" height="20" uuid="638149b2-3de8-4268-90cb-31883b830155"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{amountInNo}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="268" y="273" width="252" height="20" uuid="13de8d7d-0a92-4db1-a047-c1d58e90148d"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{amountInWord}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="268" y="301" width="251" height="20" uuid="59b55c84-0c29-4974-9564-8e452c3928e9"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{contributorName}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="268" y="360" width="252" height="44" uuid="81092ca0-ec8b-461c-94a4-c0b4711210ae"/>
 				<textElement>
 					<font size="12"/>
@@ -253,7 +253,7 @@
 				</textElement>
 				<text><![CDATA[    Legal Status / % of Exemption:]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="269" y="521" width="251" height="22" uuid="78babcad-5e4b-47b9-9f6d-29c687696463"/>
 				<textElement>
 					<font size="12" isBold="false"/>
@@ -264,14 +264,14 @@
 				<reportElement x="270" y="546" width="251" height="101" uuid="e25d78a8-6697-4203-9800-d01289198d96"/>
 				<imageExpression><![CDATA[$P{signatureUrl}]]></imageExpression>
 			</image>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="269" y="460" width="253" height="20" uuid="eaa3aa23-d40f-4749-ba5c-5235a80f1c66"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{federalId}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="270" y="489" width="253" height="20" uuid="1effcf82-f9ef-4ca1-9ea7-8fc2b299491d"/>
 				<textElement>
 					<font size="12"/>
@@ -282,7 +282,7 @@
 				<reportElement x="23" y="379" width="245" height="16" uuid="f6be75dd-d9e6-43cb-9f54-7006b635448a"/>
 				<text><![CDATA[  (goods or service in exchange of contributions)]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="269" y="329" width="251" height="20" uuid="ae2c1eb0-7dc6-4f65-a9a2-4f7a4f50910c"/>
 				<textElement>
 					<font size="12"/>

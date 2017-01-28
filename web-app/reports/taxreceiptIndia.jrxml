@@ -4,7 +4,8 @@
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="355"/>
+	<property name="ireport.y" value="379"/>
+	<property name="net.sf.jasperreports.export.pdf.force.linebreak.policy" value="true"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
@@ -106,7 +107,7 @@
 				</textElement>
 				<text><![CDATA[Registration Date:]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="370" y="8" width="164" height="20" uuid="4f32a51f-4701-49c4-ae7e-ee7e12c0ae18"/>
 				<textElement>
 					<font size="12"/>
@@ -120,7 +121,7 @@
 				</textElement>
 				<text><![CDATA[Organization Address:]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="370" y="143" width="163" height="49" uuid="470e2dac-2aab-43b8-ac00-c84241dd5e2b"/>
 				<textElement>
 					<font size="12"/>
@@ -203,7 +204,7 @@
 				</textElement>
 				<text><![CDATA[TAX DEDUCTION DETAILS]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="268" y="247" width="253" height="20" uuid="638149b2-3de8-4268-90cb-31883b830155"/>
 				<textElement>
 					<font size="12"/>
@@ -260,7 +261,7 @@
 				</textElement>
 				<text><![CDATA[% of Exemption:]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="267" y="432" width="251" height="22" uuid="78babcad-5e4b-47b9-9f6d-29c687696463"/>
 				<textElement>
 					<font size="12" isBold="false"/>

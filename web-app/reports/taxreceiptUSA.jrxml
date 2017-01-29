@@ -4,7 +4,7 @@
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="379"/>
+	<property name="ireport.y" value="0"/>
 	<property name="net.sf.jasperreports.export.pdf.force.linebreak.policy" value="true"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
@@ -65,7 +65,7 @@
 	<summary>
 		<band height="662" splitType="Stretch">
 			<rectangle>
-				<reportElement x="2" y="449" width="531" height="203" forecolor="#F4F4F4" backcolor="#F4F4F4" uuid="0833ae9d-77d7-479b-8b73-8975e7152c11"/>
+				<reportElement x="2" y="448" width="531" height="203" forecolor="#F4F4F4" backcolor="#F4F4F4" uuid="0833ae9d-77d7-479b-8b73-8975e7152c11"/>
 			</rectangle>
 			<rectangle>
 				<reportElement x="1" y="237" width="535" height="172" forecolor="#F4F4F4" backcolor="#F4F4F4" uuid="82bf9a2d-ed4c-4fbe-8f0e-eae3aaf87f8a"/>
@@ -109,11 +109,11 @@
 				<textFieldExpression><![CDATA[$P{orgName}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="226" y="132" width="134" height="20" uuid="d661c48c-2d8c-4112-8d9d-d5fc3a2cab61"/>
+				<reportElement x="223" y="132" width="137" height="20" uuid="d661c48c-2d8c-4112-8d9d-d5fc3a2cab61"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Organization Address:]]></text>
+				<text><![CDATA[ Organization Address:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="360" y="132" width="173" height="62" uuid="470e2dac-2aab-43b8-ac00-c84241dd5e2b"/>
@@ -158,30 +158,30 @@
 				<text><![CDATA[CONTRIBUTOR DETAILS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="82" y="245" width="185" height="20" uuid="4a62c4e7-89b4-444f-9719-97fb1d5aa379"/>
+				<reportElement x="75" y="245" width="192" height="20" uuid="4a62c4e7-89b4-444f-9719-97fb1d5aa379"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Contributed amount in Number:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="90" y="273" width="178" height="20" uuid="12e9e613-4eaf-4702-bd0b-8ddd4c601d4f"/>
+				<reportElement x="77" y="273" width="190" height="20" uuid="12e9e613-4eaf-4702-bd0b-8ddd4c601d4f"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Contributed amount in words:
+				<text><![CDATA[ Contributed amount in words:
 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="140" y="329" width="129" height="20" uuid="1da17fcd-df07-4896-8f6c-c5793ed66900"/>
+				<reportElement x="130" y="329" width="139" height="20" uuid="1da17fcd-df07-4896-8f6c-c5793ed66900"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Date of contribution:
+				<text><![CDATA[ Date of contribution:
 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="13" y="360" width="255" height="20" uuid="2041a2fb-6004-4523-badb-c8f607bf8a96"/>
+				<reportElement x="3" y="360" width="265" height="20" uuid="2041a2fb-6004-4523-badb-c8f607bf8a96"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -230,17 +230,17 @@
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[           Name and Signature of]]></text>
+				<text><![CDATA[       Name and Signature of]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="6" y="539" width="264" height="20" uuid="085042ee-f703-4f4c-9bad-561f7660def5"/>
+				<reportElement x="3" y="539" width="267" height="20" uuid="085042ee-f703-4f4c-9bad-561f7660def5"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[  Authorized Representative of Organization:]]></text>
+				<text><![CDATA[Authorized Representative of Organization:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="90" y="460" width="179" height="20" uuid="d95141a1-9a25-47e2-9838-a1024b05f211"/>
+				<reportElement x="77" y="460" width="192" height="20" uuid="d95141a1-9a25-47e2-9838-a1024b05f211"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -251,7 +251,7 @@
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[    Legal Status / % of Exemption:]]></text>
+				<text><![CDATA[Legal Status / % of Exemption:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="269" y="521" width="251" height="22" uuid="78babcad-5e4b-47b9-9f6d-29c687696463"/>
@@ -279,7 +279,7 @@
 				<textFieldExpression><![CDATA[$P{exemptionPer}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="23" y="379" width="245" height="16" uuid="f6be75dd-d9e6-43cb-9f54-7006b635448a"/>
+				<reportElement x="17" y="379" width="251" height="16" uuid="f6be75dd-d9e6-43cb-9f54-7006b635448a"/>
 				<text><![CDATA[  (goods or service in exchange of contributions)]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
@@ -290,11 +290,11 @@
 				<textFieldExpression><![CDATA[$P{contributiondate}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="101" y="301" width="169" height="20" uuid="19539bcd-4219-4b91-ae96-b68166d47b45"/>
+				<reportElement x="77" y="301" width="183" height="20" uuid="19539bcd-4219-4b91-ae96-b68166d47b45"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Contribution received from:
+				<text><![CDATA[     Contribution received from:
 ]]></text>
 			</staticText>
 		</band>

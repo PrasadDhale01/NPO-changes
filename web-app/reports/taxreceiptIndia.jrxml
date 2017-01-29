@@ -46,7 +46,7 @@
 				<textElement textAlignment="Center">
 					<font fontName="Times New Roman" size="24" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Tax Receipt ]]></text>
+				<text><![CDATA[Donation Receipt ]]></text>
 			</staticText>
 		</band>
 	</title>

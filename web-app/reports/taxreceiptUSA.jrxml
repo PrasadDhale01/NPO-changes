@@ -4,7 +4,7 @@
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="135"/>
+	<property name="ireport.y" value="80"/>
 	<property name="net.sf.jasperreports.export.pdf.force.linebreak.policy" value="true"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
@@ -43,7 +43,7 @@
 				<textElement textAlignment="Center">
 					<font fontName="Times New Roman" size="22" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Tax Receipt ]]></text>
+				<text><![CDATA[Donation Receipt ]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -88,14 +88,14 @@
 				<textFieldExpression><![CDATA[$P{webUrl}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="226" y="68" width="134" height="20" uuid="a5e2ff6c-84e3-4dcb-8399-4ffecf23b176"/>
+				<reportElement x="213" y="68" width="147" height="20" uuid="a5e2ff6c-84e3-4dcb-8399-4ffecf23b176"/>
 				<textElement>
 					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Email:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="225" y="38" width="135" height="20" uuid="2e28fb0d-f754-418f-888f-0e67d4e299fd"/>
+				<reportElement x="213" y="38" width="147" height="20" uuid="2e28fb0d-f754-418f-888f-0e67d4e299fd"/>
 				<textElement>
 					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
@@ -109,7 +109,7 @@
 				<textFieldExpression><![CDATA[$P{orgName}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="223" y="132" width="137" height="20" uuid="d661c48c-2d8c-4112-8d9d-d5fc3a2cab61"/>
+				<reportElement x="213" y="132" width="147" height="20" uuid="d661c48c-2d8c-4112-8d9d-d5fc3a2cab61"/>
 				<textElement>
 					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
@@ -137,14 +137,14 @@
 				<textFieldExpression><![CDATA[$P{email}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="223" y="8" width="137" height="20" uuid="28767be8-4667-4144-8bb6-dd1ccebb5706"/>
+				<reportElement x="213" y="8" width="147" height="20" uuid="28767be8-4667-4144-8bb6-dd1ccebb5706"/>
 				<textElement>
 					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Organization Name:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="226" y="98" width="134" height="20" uuid="670be7e0-17de-47ba-96b7-5d9662c11635"/>
+				<reportElement x="213" y="98" width="147" height="20" uuid="670be7e0-17de-47ba-96b7-5d9662c11635"/>
 				<textElement>
 					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>

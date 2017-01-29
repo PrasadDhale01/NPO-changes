@@ -4,7 +4,7 @@
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="379"/>
+	<property name="ireport.y" value="383"/>
 	<property name="net.sf.jasperreports.export.pdf.force.linebreak.policy" value="true"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
@@ -71,7 +71,7 @@
 				<reportElement x="268" y="434" width="250" height="20" uuid="41d37ded-fd79-4646-a23a-1860c9c009a8"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="2" y="415" width="531" height="230" forecolor="#F4F4F4" backcolor="#F4F4F4" uuid="0833ae9d-77d7-479b-8b73-8975e7152c11"/>
+				<reportElement x="2" y="417" width="531" height="230" forecolor="#F4F4F4" backcolor="#F4F4F4" uuid="0833ae9d-77d7-479b-8b73-8975e7152c11"/>
 			</rectangle>
 			<rectangle>
 				<reportElement x="1" y="237" width="535" height="131" forecolor="#F4F4F4" backcolor="#F4F4F4" uuid="82bf9a2d-ed4c-4fbe-8f0e-eae3aaf87f8a"/>
@@ -233,36 +233,36 @@
 				<textFieldExpression><![CDATA[$P{panOfContributor}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="124" y="432" width="300" height="100" uuid="71782791-5641-445f-b71b-10f446beb3bb"/>
+				<reportElement x="86" y="432" width="181" height="19" uuid="71782791-5641-445f-b71b-10f446beb3bb"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Name and Signature of]]></text>
+				<text><![CDATA[          Name and Signature of]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="14" y="452" width="300" height="100" uuid="085042ee-f703-4f4c-9bad-561f7660def5"/>
+				<reportElement x="4" y="452" width="263" height="20" uuid="085042ee-f703-4f4c-9bad-561f7660def5"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Authorized Representative of Organization:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="124" y="584" width="300" height="100" uuid="d95141a1-9a25-47e2-9838-a1024b05f211"/>
+				<reportElement x="102" y="584" width="165" height="20" uuid="d95141a1-9a25-47e2-9838-a1024b05f211"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Status of Organization:
+				<text><![CDATA[    Status of Organization:
 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="161" y="613" width="300" height="100" uuid="48600985-8689-4890-956a-b30735789658"/>
+				<reportElement x="102" y="613" width="167" height="20" uuid="48600985-8689-4890-956a-b30735789658"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[% of Exemption:]]></text>
+				<text><![CDATA[               % of Exemption:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="267" y="432" width="300" height="100" uuid="78babcad-5e4b-47b9-9f6d-29c687696463"/>
+				<reportElement x="267" y="432" width="251" height="22" uuid="78babcad-5e4b-47b9-9f6d-29c687696463"/>
 				<textElement>
 					<font size="12" isBold="false"/>
 				</textElement>
@@ -273,14 +273,14 @@
 				<imageExpression><![CDATA[$P{signatureUrl}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="267" y="584" width="300" height="100" uuid="eaa3aa23-d40f-4749-ba5c-5235a80f1c66"/>
+				<reportElement x="267" y="584" width="253" height="20" uuid="eaa3aa23-d40f-4749-ba5c-5235a80f1c66"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{orgStatus}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="267" y="613" width="300" height="100" uuid="1effcf82-f9ef-4ca1-9ea7-8fc2b299491d"/>
+				<reportElement x="267" y="613" width="253" height="20" uuid="1effcf82-f9ef-4ca1-9ea7-8fc2b299491d"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>

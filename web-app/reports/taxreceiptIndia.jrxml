@@ -4,7 +4,7 @@
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="383"/>
+	<property name="ireport.y" value="0"/>
 	<property name="net.sf.jasperreports.export.pdf.force.linebreak.policy" value="true"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
@@ -44,7 +44,7 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font fontName="Times New Roman" size="22" isBold="true"/>
+					<font fontName="Times New Roman" size="24" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tax Receipt ]]></text>
 			</staticText>
@@ -74,7 +74,7 @@
 				<reportElement x="2" y="417" width="531" height="230" forecolor="#F4F4F4" backcolor="#F4F4F4" uuid="0833ae9d-77d7-479b-8b73-8975e7152c11"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="1" y="237" width="535" height="131" forecolor="#F4F4F4" backcolor="#F4F4F4" uuid="82bf9a2d-ed4c-4fbe-8f0e-eae3aaf87f8a"/>
+				<reportElement x="0" y="237" width="535" height="131" forecolor="#F4F4F4" backcolor="#F4F4F4" uuid="82bf9a2d-ed4c-4fbe-8f0e-eae3aaf87f8a"/>
 			</rectangle>
 			<rectangle>
 				<reportElement mode="Opaque" x="0" y="205" width="535" height="33" forecolor="#889299" backcolor="#889299" uuid="49c41cd7-75e3-41be-a42b-3372c90c875c"/>
@@ -89,70 +89,70 @@
 			<textField>
 				<reportElement x="371" y="38" width="163" height="20" uuid="6798b62f-a440-42f9-9400-1312922f7430"/>
 				<textElement>
-					<font size="12"/>
+					<font fontName="Times New Roman" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{regDate}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="226" y="68" width="144" height="20" uuid="a5e2ff6c-84e3-4dcb-8399-4ffecf23b176"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[PAN no. of Organization:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="225" y="38" width="146" height="20" uuid="2e28fb0d-f754-418f-888f-0e67d4e299fd"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Registration Date:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="370" y="8" width="164" height="20" uuid="4f32a51f-4701-49c4-ae7e-ee7e12c0ae18"/>
 				<textElement>
-					<font size="12"/>
+					<font fontName="Times New Roman" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{orgName}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="226" y="143" width="144" height="20" uuid="d661c48c-2d8c-4112-8d9d-d5fc3a2cab61"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Organization Address:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="370" y="143" width="163" height="49" uuid="470e2dac-2aab-43b8-ac00-c84241dd5e2b"/>
 				<textElement>
-					<font size="12"/>
+					<font fontName="Times New Roman" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{orgAddress}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="370" y="98" width="164" height="20" uuid="ca3d6949-c4e1-435b-b250-cec5654afe1c"/>
 				<textElement>
-					<font size="12"/>
+					<font fontName="Times New Roman" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{receiptNo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="370" y="68" width="165" height="20" uuid="33c42929-2216-4310-b940-5286a4a2eb19"/>
 				<textElement>
-					<font size="12"/>
+					<font fontName="Times New Roman" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{panNumber}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="223" y="8" width="147" height="20" uuid="28767be8-4667-4144-8bb6-dd1ccebb5706"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[organization Name:]]></text>
+				<text><![CDATA[Organization Name:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="226" y="98" width="144" height="35" uuid="670be7e0-17de-47ba-96b7-5d9662c11635"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Receipt Number / Transaction Number:
 ]]></text>
@@ -160,21 +160,21 @@
 			<staticText>
 				<reportElement x="3" y="211" width="250" height="27" forecolor="#FFFFFF" uuid="e8ed9e66-f421-4899-91c0-7c51f59b79f2"/>
 				<textElement>
-					<font size="16" isBold="true"/>
+					<font fontName="Times New Roman" size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CONTRIBUTOR DETAILS]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="86" y="247" width="182" height="20" uuid="4a62c4e7-89b4-444f-9719-97fb1d5aa379"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Contributed amount in words:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="86" y="276" width="182" height="20" uuid="12e9e613-4eaf-4702-bd0b-8ddd4c601d4f"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Contributed amount in number:
 ]]></text>
@@ -182,7 +182,7 @@
 			<staticText>
 				<reportElement x="87" y="306" width="182" height="20" uuid="1da17fcd-df07-4896-8f6c-c5793ed66900"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Date of contribution:
 ]]></text>
@@ -190,7 +190,7 @@
 			<staticText>
 				<reportElement x="86" y="335" width="182" height="20" uuid="2041a2fb-6004-4523-badb-c8f607bf8a96"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[PAN No. of Contributor:]]></text>
 			</staticText>
@@ -200,71 +200,71 @@
 			<staticText>
 				<reportElement x="4" y="388" width="250" height="27" forecolor="#FFFFFF" uuid="da11ef61-1b62-4f8f-9138-7beea966f7b1"/>
 				<textElement>
-					<font size="16" isBold="true"/>
+					<font fontName="Times New Roman" size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TAX DEDUCTION DETAILS]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="268" y="247" width="253" height="20" uuid="638149b2-3de8-4268-90cb-31883b830155"/>
 				<textElement>
-					<font size="12"/>
+					<font fontName="Times New Roman" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{amountInWord}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="268" y="276" width="252" height="20" uuid="13de8d7d-0a92-4db1-a047-c1d58e90148d"/>
 				<textElement>
-					<font size="12"/>
+					<font fontName="Times New Roman" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{amountInNo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="269" y="306" width="251" height="20" uuid="59b55c84-0c29-4974-9564-8e452c3928e9"/>
 				<textElement>
-					<font size="12"/>
+					<font fontName="Times New Roman" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{contributiondate}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="268" y="335" width="252" height="20" uuid="81092ca0-ec8b-461c-94a4-c0b4711210ae"/>
 				<textElement>
-					<font size="12"/>
+					<font fontName="Times New Roman" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{panOfContributor}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="86" y="432" width="181" height="19" uuid="71782791-5641-445f-b71b-10f446beb3bb"/>
+				<reportElement x="17" y="432" width="250" height="19" uuid="71782791-5641-445f-b71b-10f446beb3bb"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[          Name and Signature of]]></text>
+				<text><![CDATA[  Name and Signature of Authorized]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="4" y="452" width="263" height="20" uuid="085042ee-f703-4f4c-9bad-561f7660def5"/>
+				<reportElement x="17" y="451" width="252" height="20" uuid="085042ee-f703-4f4c-9bad-561f7660def5"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Authorized Representative of Organization:]]></text>
+				<text><![CDATA[       Representative of Organization:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="102" y="584" width="165" height="20" uuid="d95141a1-9a25-47e2-9838-a1024b05f211"/>
+				<reportElement x="86" y="584" width="181" height="20" uuid="d95141a1-9a25-47e2-9838-a1024b05f211"/>
 				<textElement>
-					<font size="12" textAlignment="left" isBold="true"/>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[    Status of Organization:
 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="102" y="613" width="167" height="20" uuid="48600985-8689-4890-956a-b30735789658"/>
+				<reportElement x="76" y="613" width="193" height="20" uuid="48600985-8689-4890-956a-b30735789658"/>
 				<textElement>
-					<font size="10" isBold="true"/>
+					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[               % of Exemption:]]></text>
+				<text><![CDATA[                % of Exemption:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="267" y="432" width="251" height="22" uuid="78babcad-5e4b-47b9-9f6d-29c687696463"/>
 				<textElement>
-					<font size="12" isBold="false"/>
+					<font fontName="Times New Roman" size="14" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{authorizedPerson}]]></textFieldExpression>
 			</textField>
@@ -275,14 +275,14 @@
 			<textField>
 				<reportElement x="267" y="584" width="253" height="20" uuid="eaa3aa23-d40f-4749-ba5c-5235a80f1c66"/>
 				<textElement>
-					<font size="12"/>
+					<font fontName="Times New Roman" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{orgStatus}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="267" y="613" width="253" height="20" uuid="1effcf82-f9ef-4ca1-9ea7-8fc2b299491d"/>
 				<textElement>
-					<font size="12"/>
+					<font fontName="Times New Roman" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{exemptionPer}]]></textFieldExpression>
 			</textField>

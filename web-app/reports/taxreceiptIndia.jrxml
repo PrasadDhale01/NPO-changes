@@ -249,7 +249,7 @@
 			<staticText>
 				<reportElement x="124" y="584" width="300" height="100" uuid="d95141a1-9a25-47e2-9838-a1024b05f211"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font size="12" textAlignment="left" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Status of Organization:
 ]]></text>
@@ -257,7 +257,7 @@
 			<staticText>
 				<reportElement x="161" y="613" width="300" height="100" uuid="48600985-8689-4890-956a-b30735789658"/>
 				<textElement>
-					<font size="12" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[% of Exemption:]]></text>
 			</staticText>

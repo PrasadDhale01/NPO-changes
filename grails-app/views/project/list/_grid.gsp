@@ -18,7 +18,7 @@
 <%--        </ul>--%>
 <%--    </div>--%>
 <%--</g:each>--%>
-<div class="row ">
+
     <ul class="thumbnails list-unstyled">
         <g:each in="${projects}" var="project">
             <li class="col-md-6 col-lg-4 col-sm-6 col-xs-12 TW-discover-pg-tile-width">
@@ -26,4 +26,3 @@
             </li>
         </g:each>
     </ul>
-</div>

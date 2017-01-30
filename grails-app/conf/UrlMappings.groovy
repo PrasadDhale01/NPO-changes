@@ -50,6 +50,8 @@ class UrlMappings {
 
 		/*Terms of Use*/
 		"/termsofuse"(view:'/termsofuse/index')
+		"/in/tos"(view:'/termsofuse/india-tos')
+		
 
 		/*privacy policy*/
 		"/privacypolicy"(view:'/privacypolicy/index')
@@ -65,7 +67,8 @@ class UrlMappings {
 		"/Learning-Center"(view: 'learnMore/learningCenter')
 		"/Learning-Center/${question}"(controller:"home", action:'getLearnMore')
 		
-		
+		/*Transaction Fee Details*/
+		"/Fee-and-Pricing-Information"(view: '/transactionFee/pricingPage')
 
 		/*Url shortener*/
 		"/c/$url"(controller: 'project', action:'getCampaignFromShortUrl')

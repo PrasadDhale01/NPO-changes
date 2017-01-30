@@ -7,20 +7,6 @@
 	<r:require modules="fundjs" />
 	<r:require modules="fundcss" />
 	<title>Crowdera- Contribute</title>
-<script>
-    function submitCampaignShowForm(pkey, projectId, fr){
-        $.ajax({
-            type    :'post',
-            url     : $("#b_url").val()+'/project/urlBuilder',
-            data    : "projectId="+projectId+"&fr="+fr+"&pkey="+pkey,
-            success : function(response){
-                $(location).attr('href', response);
-            }
-       }).error(function(){
-           console.log("Error in redirecting");
-       });
-    }
-</script>
 </head>
 <body>
     <div class="feducontent">
@@ -31,19 +17,18 @@
                     <b>Sorry ! You cannot select twitter perk as you are contributing anonymously.</b>
                 </div>
                 
-                <g:if test="${project.payuEmail}">
-                    <g:render template="fund/payu"/>
-				</g:if>
-                <g:elseif test="${project.paypalEmail}">
+                <g:if test="${project.paypalEmail && ('us'.equalsIgnoreCase(country_code)) || (project.paypalEmail && project.citrusEmail && ('us'.equalsIgnoreCase(country_code))) || (project.paypalEmail && project.payuEmail && ('us'.equalsIgnoreCase(country_code)))}">
                     <g:render template="fund/paypal"/>
+    			</g:if>
+                <g:elseif test="${project.payuEmail}">
+                    <g:render template="fund/payu"/>
+    			</g:elseif>
+    			<g:elseif test="${project.charitableId}" >
+        			<g:render template="fund/firstgiving"/>
+    			</g:elseif>
+				<g:elseif test="${project.paypalEmail}">
+					<g:render template="fund/paypal"/>
 				</g:elseif>
-				<g:elseif test="${project.citrusEmail}">
-					<g:render template="fund/citrus"/>
-				</g:elseif>
-				<g:else>
-				    <g:render template="fund/firstgiving"/>
-				</g:else>
-				
 
                 <g:if test="${project.paypalEmail || project.payuStatus}">
                     <div class="col-md-4 hidden-sm hidden-xs campaignTile ">

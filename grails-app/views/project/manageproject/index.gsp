@@ -195,7 +195,7 @@
                         </g:link>
                     </div>
 				</g:else>
-				
+				<div class="clear"></div>
 				<div class="row">
 					<g:if test="${flash.prj_mngprj_message}">
 						<div class="alert alert-success show-msz show-alertMsz" align="center">
@@ -472,7 +472,7 @@
 						<div class="row manage-edit-delete-btn">
 							<g:if test="${!project.draft || project.validated}">
 						      <div class="fullwidth pull-right manage-edit-mobilebtns">
-						         <g:if test="${username.equals('campaignadmin@crowdera.co') || isAdmin}">
+						         <g:if test="${username.equals('campaignadmin@crowdera.co') || isAdmin &&  !project.validated}">
 						               <g:link mapping="editCampaign" params="[country_code: project.country.countryCode,fr:username,id: project.id]" class="manage-edit-draft-left col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						                 <span class="btn btn-default manage-btn-width manage-btn-back-color" aria-label="Edit project"><i class="fa fa-pencil-square-o edit-space"></i>EDIT
 						                 </span>
@@ -498,16 +498,11 @@
 						         </g:else>
 						    </div>
 						</g:if>
-						<g:if test="${project.draft && percentage <= 999 && (loggedInUser.equals(project.user)|| username.equals('campaignadmin@crowdera.co') || isAdmin || isTeamAdmin)}">
+						<g:if test="${project.draft || project.validated && percentage <= 999 && (loggedInUser.equals(project.user)|| username.equals('campaignadmin@crowdera.co') || isAdmin || isTeamAdmin)}">
 					         <g:link mapping="editCampaign" params="[country_code: project.country.countryCode,fr:username,id: project.id]" class="manage-edit-left">
 					                 <span class="btn btn-default manage-btn-width-aft-validated manage-btn-back-color"  aria-label="Edit project" ><i class="fa fa-pencil-square-o edit-space"></i>EDIT CAMPAIGN
 					                 </span>
 				              </g:link>
-						</g:if>
-						<g:if test="${project.validated && percentage <= 999 && (loggedInUser.equals(project.user)|| username.equals('campaignadmin@crowdera.co') || isAdmin || isTeamAdmin)}">
-					         <g:uploadForm class="manage-edit-left updateCampaign" controller="project" action="projectupdate" params="['projectTitle':vanityTitle]">
-            <button type="submit" class="btn btn-default update-campaign-btn manage-btn-width-aft-validated manage-btn-back-color" name="button" value="draft">Update Campaign</button>
-        </g:uploadForm>
 						</g:if>
 						</div>
 						<%--               user profile code  --%>
@@ -593,29 +588,30 @@
                         <div class="clear"></div>
                         
                         <g:if test="${project.draft}">
-                           <div class="submitForApprovalSectionbtn">
-                                        <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail || project.citrusEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
-                                            <g:form controller="project" action="saveasdraft" id="${project.id}">
-                                                <button class="btn btn-block btn-primary manage-submitaprroval mange-btnsubmitapprov-size"><i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL</button>
-                                            </g:form>
-                                        </g:if>
-                                        <g:else>
-                                            <button class="btn btn-block btn-primary manage-submitaprroval mange-btnsubmitapprov-size" id="submitForApprovalBtnright"><i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL</button>
-                                        </g:else>
+                            <div class="submitForApprovalSectionbtn">
+                                 <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail || project.citrusEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                                     <g:form controller="project" action="saveasdraft" id="${project.id}">
+                                         <button type="submit" class="btn btn-block btn-primary manage-submitaprroval mange-btnsubmitapprov-size"><i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL</button>
+                                     </g:form>
+                                 </g:if>
+                                 <g:else>
+                                     <button class="btn btn-block btn-primary manage-submitaprroval mange-btnsubmitapprov-size" id="submitForApprovalBtnright"><i class="glyphicon glyphicon-check"></i>&nbsp;SUBMIT FOR APPROVAL</button>
+                                 </g:else>
+                            </div>
+                        </g:if>
+                        <g:if test="${!project.draft && !project.validated}">
+                            <div class="pendingCampaign-btn">
+                                <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail || project.citrusEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                                    <g:form controller="project" action="saveasdraft" id="${project.id}">
+                                        <button class="btn btn-pendingCampaign btn-block btn-primary manage-submitaprroval mange-btnsubmitapprov-size" disabled>PENDING FOR APPROVAL</button>
+                                    </g:form>
+                                </g:if>
+                                <g:else>
+                                    <button class="btn btn-block btn-primary manage-submitaprroval mange-btnsubmitapprov-size" id="submitForApprovalBtnright">PENDING FOR APPROVAL</button>
+                                </g:else>
                               </div>
                           </g:if>
-                           <g:if test="${!project.draft && !project.validated}">
-                           <div class="pendingCampaign-btn">
-                                        <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail || project.citrusEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
-                                            <g:form controller="project" action="saveasdraft" id="${project.id}">
-                                                <button class="btn btn-pendingCampaign btn-block btn-primary manage-submitaprroval mange-btnsubmitapprov-size" disabled>PENDING FOR APPROVAL</button>
-                                            </g:form>
-                                        </g:if>
-                                        <g:else>
-                                            <button class="btn btn-block btn-primary manage-submitaprroval mange-btnsubmitapprov-size" id="submitForApprovalBtnright">PENDING FOR APPROVAL</button>
-                                        </g:else>
-                              </div>
-                          </g:if>
+                          
                       </g:if>
                       
                       

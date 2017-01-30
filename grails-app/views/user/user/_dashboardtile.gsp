@@ -9,7 +9,10 @@
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
     def contribution = projectService.getDataType(contributedSoFar)
     def amount = projectService.getDataType(project.amount)
-    def username = project.user.username
+	
+	def username = userService.getVanityNameFromUsername(project.user.username, project.id)
+	def title = projectService.getVanityTitleFromId(project.id)
+	
     def cents
     if(percentage >= 100) {
         cents = 100
@@ -21,8 +24,9 @@
 <g:if test="${project.validated}">
     <div class="fedu thumbnail grow userdashboard-tiles">
         <g:hiddenField name="projectId" class="projectId" id="projectId" value="${project.id}"/>
+        
         <div class="blacknwhite dashboardtileheight">
-            <a href="javascript:void(0)" onclick="submitCampaignShowForm('show','${project.id}','${username}');"  >
+        	<g:link mapping="showCampaign" params="[country_code: country_code?.toLowerCase(), projectTitle:title,fr: username,category:project.fundsRecievedBy.toLowerCase()]">
                 <div class="dashboard-imageWithTag">
                     <div class="under">
                         <img alt="${project.title}" class="dashboard-project-img" src="${projectService.getProjectImageLink(project)}">
@@ -37,13 +41,13 @@
                         </div>
                     </div>
                 </div>
-            </a>
+            </g:link>
         </div>
     
         <div class="tile-title-descrp project-title project-story-span">
-            <a href="javascript:void(0)" onclick="submitCampaignShowForm('show','${project.id}','${username}');">
+            <g:link mapping="showCampaign" params="[country_code: country_code?.toLowerCase(), projectTitle:title,fr: username,category:project.fundsRecievedBy.toLowerCase()]">
                 ${project.title.toUpperCase()}
-            </a>
+            </g:link>
             <div class="campaign-title-margin-bottom"></div>
         </div>
         

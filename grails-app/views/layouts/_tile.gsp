@@ -25,7 +25,19 @@
 %>
 <g:if test="${project.validated}">
 <div class="fedu thumbnail grow tile-pad">
-<%--    <g:hiddenField name="projectId" class="projectId" id="projectId:${project.id}" value="${project.id}"/>--%>
+<%--<div class="panel panel-default">
+   <div class="panel-body">
+      <g:if test="${fundraiser != null}">
+         <div class="form-group">
+            <div class="col-sm-12"><b>Fundraiser:</b></div>
+            <div class="col-sm-12">
+               <span>${fundraiser.firstName} ${fundraiser.lastName}</span>
+            </div>
+         </div>
+      </g:if>
+   </div>
+</div>
+--%><%--    <g:hiddenField name="projectId" class="projectId" id="projectId:${project.id}" value="${project.id}"/>--%>
     <g:if test="${percentage >= 75}">
         <div class="over show-tile">
             <img src="//s3.amazonaws.com/crowdera/assets/Funded-Tag.png" alt="Funded"/>

@@ -126,11 +126,11 @@
                             <g:elseif test="${project.charitableId}">
                                 <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="FIR" optionKey="key" optionValue="value" />
                             </g:elseif>
-                            <g:elseif test="${project.paypalEmail}">
-                                <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAY" optionKey="key" optionValue="value" />
-                            </g:elseif>
                             <g:elseif test="${project.citrusEmail}">
                                 <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="CITRUS" optionKey="key" optionValue="value" />
+                            </g:elseif>
+                            <g:elseif test="${project.paypalEmail}">
+                                <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAY" optionKey="key" optionValue="value" />
                             </g:elseif>
                             <g:else>
                                 <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="${FORMCONSTANTS.PAYMENT}" optionKey="key" optionValue="value" noSelection="['null':'Payment']"/>
@@ -1000,21 +1000,20 @@
                                  </div>
                              </div>
                         </div>
-                        <g:if test="${currentEnv == 'testIndia'}">
-	                        <div id="CitrusPay">
-	                            <div class="form-group">
-	                                <label class="col-sm-4 control-label">Email</label>
-	                                <div class="col-sm-6 col-xs-10">
-	                                    <g:if test="${project.citrusEmail}">
-	                                        <input type="email" id="citrusemail" maxlength="64" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.CITRUSEMAIL}" value="${project.citrusEmail}">
-	                                    </g:if>
-	                                    <g:else>
-	                                        <input type="email" id="citrusemail" maxlength="64" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.CITRUSEMAIL}">
-	                                    </g:else>
-	                                </div>
-	                            </div>
-	                        </div>
-                        </g:if>
+                        
+                        <div id="CitrusPay">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Email</label>
+                                <div class="col-sm-6 col-xs-10">
+                                    <g:if test="${project.citrusEmail}">
+                                        <input type="email" id="citrusemail" maxlength="64" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.CITRUSEMAIL}" value="${project.citrusEmail}">
+                                    </g:if>
+                                    <g:else>
+                                        <input type="email" id="citrusemail" maxlength="64" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.CITRUSEMAIL}">
+                                    </g:else>
+                                </div>
+                            </div>
+                        </div>
                     </g:if>
                     <g:else>
                         <div class="col-sm-12" id="paypalemail">
@@ -1086,6 +1085,31 @@
                                 <input type="checkbox" name="tax-reciept-checkbox" id="tax-reciept-checkbox" class="tax-reciept-checkbox" <g:if test="${project.offeringTaxReciept}">checked="checked"</g:if>>
                                 Do you want to offer donation receipt to your contributors?
                             </div>
+                            <g:if test="${'in'.equalsIgnoreCase(country_code)}">
+                        	   <div class="question-ans question-ans-1 form-group answerNine">
+                        	   <g:if test="${project.paypalEmail}">
+                        			<input type="checkbox" name="ans9" id="crowdera-email" checked>
+                        		</g:if>
+                        		<g:else>
+                        			<input type="checkbox" name="ans9" id="crowdera-email">
+                        		</g:else>
+                        		Do you want to receive foreign contribution ?
+                        	   </div><br>
+                        	</g:if>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" id="paypalemail-cr" style='display:none'>
+                        <div class="form-group">
+                            <img class="col-sm-4 cr-paypal-image" src="//s3.amazonaws.com/crowdera/assets/paypal-Image.png" alt="paypal">
+                            <div class="col-sm-6 paypalVerification">
+                                <g:if test="${project.paypalEmail}">
+                                    <input id="paypalEmailId" type="email" maxlength="64" class="form-control paypal-create form-control-no-border cr-placeholder cr-chrome-place" value="${project.paypalEmail}" name="${FORMCONSTANTS.PAYPALEMAIL}">
+                                </g:if>
+                                <g:else>
+                                    <input id="paypalEmailId" type="text" maxlength="64" class="form-control crowderaPaypalId paypal-create form-control-no-border cr-placeholder cr-chrome-place" name="${FORMCONSTANTS.PAYPALEMAIL}">
+                                </g:else>
+                                <g:hiddenField name="paypalEmailAck" value="${project.paypalEmail}" id="paypalEmailAck"/>
+                            </div>
                         </div>
                     </div>
 
@@ -1139,10 +1163,10 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                <input type="text" maxlength="16" placeholder="PAN Card Number" class="form-control tax-reciept-holder-pan-card" name="tax-reciept-holder-pan-card" value="${taxReciept.panCardNumber}">
+                                                <input type="text" maxlength="10" placeholder="PAN Card Number" class="form-control tax-reciept-holder-pan-card" name="tax-reciept-holder-pan-card" value="${taxReciept.panCardNumber}">
                                             </div>
                                             <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                <input type="text" maxlength="16" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone" value="${taxReciept.phone}" >
+                                                <input type="text" maxlength="10" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone" value="${taxReciept.phone}" >
                                             </div>
                                             <div class="col-sm-12 form-group form-group-tax-reciept">
                                                 <input type="text" maxlength="32" class="form-control tax-reciept-holder-city" placeholder="City" name="tax-reciept-holder-city" value="${taxReciept.city}">
@@ -1281,10 +1305,10 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                <input type="text" maxlength="16" placeholder="PAN Card Number" class="form-control tax-reciept-holder-pan-card" name="tax-reciept-holder-pan-card">
+                                                <input type="text" maxlength="10" placeholder="PAN Card Number" class="form-control tax-reciept-holder-pan-card" name="tax-reciept-holder-pan-card">
                                             </div>
                                             <div class="col-sm-12 form-group form-group-tax-reciept">
-                                                <input type="text" maxlength="16" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone">
+                                                <input type="text" maxlength="10" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone">
                                             </div>
                                             <div class="col-sm-12 form-group form-group-tax-reciept">
                                                 <input type="text" maxlength="32" class="form-control tax-reciept-holder-city" placeholder="City" name="tax-reciept-holder-city">
@@ -1371,7 +1395,7 @@
                                     <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
                                         <div class="col-sm-4">
                                             <div class="form-group form-group-tax-reciept">
-                                                <input type="text" maxlength="32" placeholder="EIN" class="form-control ein" name="ein" value="${taxReciept.ein}">
+                                                <input type="text" maxlength="9" placeholder="EIN" class="form-control ein" name="ein" value="${taxReciept.ein}">
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -1423,7 +1447,7 @@
                                     <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
                                         <div class="col-sm-4 col-xs-12">
                                             <div class="form-group form-group-tax-reciept">
-                                                <input type="text" maxlength="16" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone" value="${taxReciept.phone}">
+                                                <input type="text" maxlength="10" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone" value="${taxReciept.phone}">
                                             </div>
                                         </div>
                                         <div class="form-group col-sm-8 col-xs-12">
@@ -1463,7 +1487,7 @@
                                     <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
                                         <div class="col-sm-4">
                                             <div class="form-group form-group-tax-reciept">
-                                                <input type="text" maxlength="32" placeholder="EIN" class="form-control ein" name="ein">
+                                                <input type="text" maxlength="9" placeholder="EIN" class="form-control ein" name="ein">
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -1515,7 +1539,7 @@
                                     <div class="col-sm-12 col-xs-12 col-plr-0 rowseperator">
                                         <div class="col-sm-4 col-xs-12">
                                             <div class="form-group form-group-tax-reciept">
-                                                <input type="text" maxlength="16" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone">
+                                                <input type="text" maxlength="10" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone">
                                             </div>
                                         </div>
                                         <div class="form-group col-sm-8 col-xs-12">
@@ -1686,6 +1710,9 @@
                  console.log('Error occured on deleting the Tax reciept file');
             });
         }
+
+      
     </script>
 </body>
 </html>
+ 

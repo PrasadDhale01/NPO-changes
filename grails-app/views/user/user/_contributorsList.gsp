@@ -16,16 +16,26 @@
 	<td class="text-center col-sm-3">${contribution.contributorName}</td>
 	<td class="text-center col-sm-3">${contribution.contributorEmail}</td>
 	<td class="text-center">
-		<g:if test="${environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'}">Rs. </g:if>
-		<g:else>$</g:else>${contribution.amount.round()}
+		<g:if test="${'in'.equalsIgnoreCase(contribution.project?.country?.countryCode)}">
+			<g:if test="${'usd'.equalsIgnoreCase(contribution.currency)}">
+				$ 
+			</g:if>
+			<g:else>
+				Rs.
+			</g:else>
+		</g:if>
+		<g:else>
+			$
+		</g:else>
+		${contribution.amount.round()}
     </td>
 	<td class="text-center">${date}</td>
 	<td class="text-center">
 	    <g:if test="${contribution.receiptSent}">
-	        resend
+	        <button class="btn btn-primary btn-xs" onclick="sendOrResendEmailToContributor(${contribution.id})" id = "sendEmailBtn${contribution.id}">Resend</button>
 	    </g:if>
 	    <g:else>
-	        send now
+	    	<button class="btn btn-primary btn-xs" onclick="sendOrResendEmailToContributor(${contribution.id})" id="sendEmailBtn${contribution.id}">Send Now</button>
 	    </g:else>
 	</td>
 </tr>

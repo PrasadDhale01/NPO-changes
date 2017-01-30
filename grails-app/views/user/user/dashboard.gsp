@@ -11,6 +11,12 @@
     <meta name="layout" content="main" />
     <r:require modules="timelinecss, bootstrapsocialcss"/>
     <r:require modules="userjs"/>
+    
+    <style>
+    	.datepicker {
+    		z-index:9999 !important;
+    	}
+    </style>
 </head>
 <body>
 <g:if test="${user?.email == 'campaignadmin@crowdera.co'}">
@@ -152,17 +158,17 @@
                     <li>
                         <a href="#mycontributions" data-toggle="tab"> Campaigns Supported</a>
                     </li>
-                    <g:if test="${(isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                    <g:if test="${isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo}">
                         <li>
                             <a href="#taxReceipt" data-toggle="tab">Donation Receipts</a>
                         </li>
                     </g:if>
-                    <g:elseif test="${isUserProjectHavingContribution && !userHasContributedToNonProfitOrNgo && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                    <g:elseif test="${isUserProjectHavingContribution && !userHasContributedToNonProfitOrNgo}">
                         <li>
                             <a href="#sendtaxReceipt" data-toggle="tab">Donation Receipts</a>
                         </li>
                     </g:elseif>
-                    <g:elseif test="${!isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                    <g:elseif test="${!isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo}">
                         <li>
                             <a href="#exporttaxReceipt" data-toggle="tab">Donation Receipts</a>
                         </li>
@@ -263,14 +269,14 @@
                         </div>
                     </div>
 
-                    <g:if test="${(isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                    <g:if test="${isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo}">
                         <div class="tab-pane tab-pane-active" id="taxReceipt">
                             <div class="col-sm-12">
                                 <g:render template="/user/partner/receiptBoard"/>
                             </div>
                         </div>
                     </g:if>
-                    <g:elseif test="${(isUserProjectHavingContribution && !userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                    <g:elseif test="${isUserProjectHavingContribution && !userHasContributedToNonProfitOrNgo}">
                         <div class="tab-pane tab-pane-active" id="sendtaxReceipt">
                             <div class="col-sm-12 sendTaxReceiptBoard"><br>
                                 <g:if test="${contributionList}">
@@ -286,7 +292,7 @@
                             </div>
                         </div>
                     </g:elseif>
-                    <g:elseif test="${(!isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo) && (currentEnv == 'test' || currentEnv == 'testIndia' || currentEnv == 'development')}">
+                    <g:elseif test="${!isUserProjectHavingContribution && userHasContributedToNonProfitOrNgo}">
                         <div class="tab-pane tab-pane-active exportTaxReceiptThumbnail" id="exporttaxReceipt">
                             <div class="col-sm-12">
                                 <br><g:render template="/user/user/exportTaxReceipt"/>
@@ -299,6 +305,40 @@
           
          </div>
      </div>
+     
+     <%-- customDateSelect Modal --%>
+     <div class="modal fade" id="customDateSelect" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-sm-12 margin">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="heading text-center crowderasupport"><b>Select Custom Date</b></h4>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="text col-sm-3">From Date</label>
+                            <div class="col-sm-9"> 
+                            	<input type="text" class="form-control fromDate" name="fromDate" id="fromDate" readonly><br>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text col-sm-3">To Date</label>
+                            <div class="col-sm-9"> 
+                            	<input type="text" class="form-control toDate" name="toDate" id="toDate" readonly><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-primary">Close</button>
+                    <button class="btn btn-primary" type="button" id="selectDateBtn">Show</button>
+                </div>
+            </div>
+        </div>
+     </div>
+	
      <div class="loadingfilegif text-center" id="loadingfilegif">
          <img src="//s3.amazonaws.com/crowdera/assets/loading.gif" alt="'loadingImage'" id="loading-file-gif-img">
      </div>
@@ -306,5 +346,24 @@
 <div id="loading-gif" class="loadinggif text-center" style="display: none;">
     <img id="loading-gif-img" alt="'loadingImage'" src="//s3.amazonaws.com/crowdera/documents/loading.gif">
 </div>
+
+<script src="/js/main.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+
+<script>
+	var j = jQuery.noConflict();
+	j(function() {
+		j('#fromDate').datepicker({
+			
+		}).on('changeDate', function(){
+		});
+		
+		j('#toDate').datepicker({
+			
+		}).on('changeDate', function(){
+		});
+
+	});
+</script>
 </body>
 </html>

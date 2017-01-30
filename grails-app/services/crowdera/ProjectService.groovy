@@ -50,11 +50,17 @@ class ProjectService {
     def roleService
     
     SessionFactory sessionFactory;
+	@Lazy
+	private static List<Team> allTeams = new ArrayList<Team>()
+	
+	private static List<Team> allSortedTeams = new ArrayList<Team>()
+
 
     def getProjectById(def projectId){
         if (projectId) {
             return Project.get(projectId)
         }
+        
     }
 
     def getTaxRecieptById(def taxRecieptId){
@@ -143,7 +149,7 @@ class ProjectService {
          Project project = new Project(projectParams)
 		 Beneficiary beneficiary = new Beneficiary();
          project.beneficiary = beneficiary
-         project.category = "OTHER"
+         project.category = "Others"
          project.created = new Date()
          User user = userService.getCurrentUser()
          project.user = user
@@ -530,7 +536,6 @@ class ProjectService {
 		}catch(Exception e){
 			return facebookCount
 		}
-		
 			
 		return facebookCount
 	}
@@ -538,32 +543,36 @@ class ProjectService {
     def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
         def emailId, twitter,custom, userId,anonymous,panNumber
         def currency
-        if (project.payuEmail) {
+		
+		def countryCode = getCountryCodeForCurrentEnv(request)
+		
+        if ((project.payuEmail && project.paypalEmail && 'us'.equalsIgnoreCase(countryCode)) || project.charitableId || 
+			(project.citrusEmail && project.paypalEmail && 'us'.equalsIgnoreCase(countryCode)) ) {
+			
+			currency = 'USD'
+			twitter = request.getParameter('twitterHandle')
+		} else if(project.payuEmail) {
             currency = 'INR'
-            emailId = request.getParameter('shippingEmail')
-            twitter =request.getParameter('shippingTwitter')
-            custom =  request.getParameter('shippingCustom')
-            userId = request.getParameter('tempValue')
-            anonymous = request.getParameter('anonymous')
+            twitter = request.getParameter('shippingTwitter')
             panNumber = request.getParameter('panNumber')
-        } else {
+			
+        } else if (project.paypalEmail) {
             currency = 'USD'
-            emailId = request.getParameter('shippingEmail')
             twitter = request.getParameter('twitterHandle')
-            custom = request.getParameter('shippingCustom')
-            userId = request.getParameter('tempValue')
-            anonymous = request.getParameter('anonymous')
         }
-        def shippingDetail=checkShippingDetail(emailId,twitter,address, custom)
+		
+		emailId = request.getParameter('shippingEmail')
+		anonymous = request.getParameter('anonymous')
+		userId = request.getParameter('tempValue')
+		custom =  request.getParameter('shippingCustom')
+        
+        def shippingDetail = checkShippingDetail(emailId,twitter,address, custom)
         def name
         def username
  
         if (userId == null || userId == 'null' || userId.isAllWhitespace()) {
-            if (project.paypalEmail){
+            if (project.paypalEmail || project.payuEmail) {
                 name = request.getParameter('name')      
-                username = request.getParameter('email')
-            } else if (project.payuEmail){
-                name = request.getParameter('name')
                 username = request.getParameter('email')
             } else {
                 name = params.billToFirstName + " " +params.billToLastName
@@ -1181,7 +1190,7 @@ class ProjectService {
     def getPayment(){
         def currentEnv = getCurrentEnvironment();
         def payment;
-        if (currentEnv == "test") {
+        if (currentEnv == "test" && currentEnv == "development") {
             payment = [
                 PAY:'Paypal',
                 FIR:'FirstGiving',
@@ -1199,17 +1208,10 @@ class ProjectService {
 	def getIndiaPaymentGateway() {
         def currentEnv = getCurrentEnvironment();
         
-        def payment;
-        if (currentEnv == 'test') {
-            payment = [
+        def payment = [
                 PAYU  : 'PayUMoney',
                 CITRUS: 'Citrus'
             ]
-        } else {
-            payment = [
-                PAYU : 'PayUMoney'
-            ]
-        }
 		
 		return payment
 	}
@@ -1499,27 +1501,42 @@ class ProjectService {
         }
     }*/
     
-    def getCategoryList() {
+     def getCategoryList() {
         def categoryOptions = [
-            (Project.Category.ANIMALS): "Animals",
-            (Project.Category.ARTS): "Arts",
-            (Project.Category.CHILDREN): "Children",
-            (Project.Category.COMMUNITY): "Community",
-			(Project.Category.CIVIC_NEEDS): "Civic Needs",
-            (Project.Category.EDUCATION): "Education",
-            (Project.Category.ELDERLY): "Elderly",
-            (Project.Category.ENVIRONMENT): "Environment",
-			(Project.Category.FILM): "Film",
-            (Project.Category.HEALTH): "Health",
-			(Project.Category.NON_PROFITS):"Non Profits",
-            (Project.Category.SOCIAL_INNOVATION): "Social Innovation",
-            (Project.Category.RELIGION): "Religion",
-            (Project.Category.OTHER): "Other"
+            (Project.Category.Poverty_Hunger): "Poverty & Hunger",
+            (Project.Category.Health_Fitness): "Health & Fitness",
+            (Project.Category.Education_Schools_PTAs): "Education, Schools, PTAs",
+            (Project.Category.Gender_Equality): "Gender Equality",
+			(Project.Category.LGBT): "LGBT",
+            (Project.Category.Clean_Water): "Clean Water",
+            (Project.Category.Clean_Energy): "Clean Energy",
+            (Project.Category.Social_Entrepreneurship): "Social Entrepreneurship",
+			(Project.Category.Social_Innovation): "Social Innovation",
+            (Project.Category.Community_CivicNeeds): "Community & Civic Needs",
+			(Project.Category.Africa):"Africa",
+            (Project.Category.Climate_Change): "Climate Change",
+            (Project.Category.Ocean_Life): "Ocean Life",
+            (Project.Category.Animal_Safety): "Animal Safety",
+			(Project.Category.Environment): "Environment",
+			(Project.Category.Peace_CivilRights_Justice): "Peace, Civil Rights & Justice",
+			(Project.Category.Funds_Syndicates): "Funds Syndicates",
+			(Project.Category.Disaster_Relief): "Disaster Relief",
+			(Project.Category.Celebrations): "Celebrations",
+			(Project.Category.Accidents_Medical_Emergencies): "Accidents & Medical Emergencies",
+			(Project.Category.Faith_Religion_Politics): "Faith, Religion, & Politics",
+			(Project.Category.Memorials): "Memorials",
+			(Project.Category.Volunteering): "Volunteering",
+			(Project.Category.Entrepreneurship_Startup): "Entrepreneurship & Startup",
+			(Project.Category.Arts_Sports_Culture): "Arts, Sports, & Culture",
+			(Project.Category.Film_Theater_Music): "Film, Theater, & Music",
+			(Project.Category.Children_Women_Elders): "Children, Women & Elders",
+			(Project.Category.Veterans): "Veterans",
+			(Project.Category.Others): "Others"
         ]
         return categoryOptions
     }
 	
-	def getIndiaCategoryList() {
+	/*def getIndiaCategoryList() {
 		def categoryOptions = [
 			(Project.Category.ANIMALS): "Animals",
 			(Project.Category.ARTS): "Arts",
@@ -1536,29 +1553,45 @@ class ProjectService {
 			(Project.Category.OTHER): "Other"
 		]
 		return categoryOptions
-	}
+	}*/
     
    def getCategory(){
 	   def categoryOptions = [
-		   ALL: "All Categories",
-		   ANIMALS: "Animals",
-		   ARTS: "Arts",
-		   CHILDREN: "Children",
-		   COMMUNITY: "Community",
-		   CIVIC_NEEDS: "Civic Needs",
-		   EDUCATION: "Education",
-		   ELDERLY: "Elderly",
-		   ENVIRONMENT: "Environment",
-		   FILM: "Film",
-		   HEALTH: "Health",
-		   NON_PROFITS:"Non Profits",
-		   SOCIAL_INNOVATION: "Social Innovation",
-		   RELIGION: "Religion",
-		   OTHER: "Other"
+		 //  	ALL:"All Categories",
+		   	Poverty_Hunger:"Poverty & Hunger",
+			Health_Fitness:"Health & Fitness",
+			Education_Schools_PTAs:"Education,Schools & PTAs",
+			Gender_Equality:"Gender Equality",
+			LGBT:"LGBT",
+			Clean_Water:"Clean Water",
+			Clean_Energy:"Clean Energy",
+			Social_Entrepreneurship:"Social Entrepreneurship",
+			Social_Innovation:"Social Innovation",
+			Community_CivicNeeds:"Community & CivicNeeds",
+			Africa:"Africa",
+			Climate_Change:"Climate Change",
+			Ocean_Life:"Ocean Life",
+			Animal_Safety:"Animal Safety",
+			Environment:"Environment",
+			Peace_CivilRights_Justice:"Peace,CivilRights & Justice",
+			Funds_Syndicates:"Funds & Syndicates",
+			Disaster_Relief:"Disaster Relief",
+			Celebrations:"Celebrations",
+			Accidents_Medical_Emergencies:"Accidents & Medical Emergencies",
+			Faith_Religion_Politics:"Faith,Religion & Politics",
+			Memorials:"Memorials",
+			Volunteering:"Volunteering",
+			Entrepreneurship_Startup:"Entrepreneurship & Startup",
+			Arts_Sports_Culture:"Arts,Sports & Culture",
+			Film_Theater_Music:"Film,Theater & Music",
+			Children_Women_Elders:"Children,Women & Elders",
+			Veterans:"Veterans",
+			Others:"Others"
 	   ]
 	   return categoryOptions
    }
-   def getIndiaCategory(){
+   
+  /* def getIndiaCategory(){
 	   def categoryOptions = [
 		   ALL: "All Categories",
 		   ANIMALS: "Animals",
@@ -1576,7 +1609,7 @@ class ProjectService {
 		   OTHER: "Other"
 	   ]
 	   return categoryOptions
-	}
+	}*/
    
 	def getDiscoverTopCategory(){
 		def categoryOptions = [
@@ -1863,62 +1896,32 @@ class ProjectService {
         List listUsAdmins = []
         List listIndTeams = []
         List listUsTeams = []
-        if('in'.equalsIgnoreCase(country_code)){
-            projects.each {
-                if(it.inactive == false) {
-                    list.add(it)
-                }
-            }
-            projectAdmins.each {
-                def project = Project.findById(it.projectId)
-                if(project.inactive == false) {
-                    (project.payuStatus) ? listIndAdmins.add(project) : listUsAdmins.add(project)
-                }
-            }
-            fundRaisers.each { fundRaiser ->
-                def project = fundRaiser.project
-                def isProjectexist = false
-                list.each {
-                    if (project == it) {
-                        isProjectexist = true
-                    }
-                }
-                if (!isProjectexist) {
-                    if (project.inactive == false) {
-                        (project.payuStatus) ? listIndTeams.add(project) : listUsTeams.add(project)
-                    }
-                }
-            }
-			list = list + listIndAdmins + listUsAdmins + listIndTeams + listUsTeams
-        } else{
-            projects.each {
-                if(it.inactive == false && it.payuStatus==false) {
-                   list.add(it)
-                }
-            }
-
-            projectAdmins.each {
-                def project = Project.findById(it.projectId)
-                if(project.inactive == false && project.payuStatus==false) {
-                    list.add(project)
-                }
-            }
-
-            fundRaisers.each { fundRaiser ->
-                def project = fundRaiser.project
-                def isProjectexist = false
-                list.each {
-                    if (project == it && project.payuStatus==false) {
-                        isProjectexist = true
-                    }
-                }
-                if(!isProjectexist) {
-                    if(project.inactive == false && project.payuStatus==false) {
-                       list.add(project)
-                    }
-                }
-            }
-        }
+		projects.each {
+			if(it.inactive == false) {
+				list.add(it)
+			}
+		}
+		projectAdmins.each {
+			def project = Project.findById(it.projectId)
+			if(project.inactive == false) {
+				(project.payuStatus) ? listIndAdmins.add(project) : listUsAdmins.add(project)
+			}
+		}
+		fundRaisers.each { fundRaiser ->
+			def project = fundRaiser.project
+			def isProjectexist = false
+			list.each {
+				if (project == it) {
+					isProjectexist = true
+				}
+			}
+			if (!isProjectexist) {
+				if (project.inactive == false) {
+					(project.payuStatus) ? listIndTeams.add(project) : listUsTeams.add(project)
+				}
+			}
+		}
+		list = list + listIndAdmins + listUsAdmins + listIndTeams + listUsTeams
         return list
     }
     
@@ -2675,8 +2678,18 @@ class ProjectService {
 				String strSocialCategory = it.usedFor
 				String strNonProfit = "NON_PROFITS"
 				String strSocialGood = "Social_Innovation"
-				
+				categories = categories.replace('-&-','_')
+				categories = categories.replace(',','_')
+				categories = categories.replace('-','_')
+				println("categories== " + categories + " str== " + str)
 				if (str.equalsIgnoreCase(categories)){
+					list.add(it)
+				}else if(it?.beneficiary?.country !=null && (it?.beneficiary?.country == categories.replace('-',' '))){
+					list.add(it)
+				}else{
+					return null
+				}
+				/*if (str.equalsIgnoreCase(categories)){
 					if(strSocialGood.equalsIgnoreCase(categories.replace("Innovation","Needs")) && strSocialCategory !=null){
 						String strSocialNeeds = strSocialGood.replace("Innovation","Needs")
 						if(strSocialCategory.equalsIgnoreCase(strSocialNeeds.replace('-','_'))){
@@ -2702,7 +2715,7 @@ class ProjectService {
 				 	}
 				}else{
 					return null
-				}
+				}*/
 			}
 			return list
         }
@@ -3031,43 +3044,24 @@ class ProjectService {
         List activeIndiaProjects = []
         List activeUsProjects = []
         def finalList
-		
-        
-        if('in'.equalsIgnoreCase(country_code)){
-            def projects= Project.findAllWhere(user:user)
-            projects.each { project->
-                boolean ended = isProjectDeadlineCrossed(project)
-                if(project.draft==true){
-                    (project.payuStatus) ? draftIndiaProjects.add(project) : draftUsProjects.add(project)
-                } else if(project.inactive==false && project.validated==false && project.draft==false){
-                    (project.payuStatus) ? pendingIndiaProjects.add(project) : pendingUsProjects.add(project)
-                } else if (ended) {
-                    (project.payuStatus) ? endedIndiaProjects.add(project) : endedUsProjects.add(project)
-                } else if(project.validated==true && project.inactive==false){
-                    (project.payuStatus) ? activeIndiaProjects.add(project) : activeUsProjects.add(project)
-                }
-            }
+		def projects= Project.findAllWhere(user:user)
+		projects.each { project->
+			boolean ended = isProjectDeadlineCrossed(project)
+			if(project.draft==true){
+				(project.payuStatus) ? draftIndiaProjects.add(project) : draftUsProjects.add(project)
+			} else if(project.inactive==false && project.validated==false && project.draft==false){
+				(project.payuStatus) ? pendingIndiaProjects.add(project) : pendingUsProjects.add(project)
+			} else if (ended) {
+				(project.payuStatus) ? endedIndiaProjects.add(project) : endedUsProjects.add(project)
+			} else if(project.validated==true && project.inactive==false){
+				(project.payuStatus) ? activeIndiaProjects.add(project) : activeUsProjects.add(project)
+			}
+		}
 
-            sortedIndiaProjects = activeIndiaProjects.sort{contributionService.getPercentageContributionForProject(it)}
-            sortedUsProjects = activeUsProjects.sort{contributionService.getPercentageContributionForProject(it)}
-            finalList = draftIndiaProjects.reverse() + draftUsProjects.reverse() + pendingIndiaProjects.reverse() + pendingUsProjects.reverse() + sortedIndiaProjects.reverse() + sortedUsProjects.reverse() + endedIndiaProjects.reverse() + endedUsProjects.reverse()
-        } else{
-            def projects= Project.findAllWhere(user:user,payuStatus: false)
-            projects.each { project->
-                boolean ended = isProjectDeadlineCrossed(project)
-                if(project.draft==true) {
-                    draftProjects.add(project)
-                } else if(project.inactive==false && project.validated==false && project.draft==false){
-                    pendingProjects.add(project)
-                } else if(ended){
-                    endedProjects.add(project)
-                } else if(project.payuEmail==null && project.validated==true){
-                    activeProjects.add(project)
-                }
-            }
-            sortedProjects =activeProjects.sort{contributionService.getPercentageContributionForProject(it)}
-            finalList = draftProjects.sort{it.created}.reverse() + pendingProjects.sort{it.created}.reverse() + sortedProjects.sort{it.created}.reverse() + endedProjects.sort{it.created}.reverse()
-        }
+		sortedIndiaProjects = activeIndiaProjects.sort{contributionService.getPercentageContributionForProject(it)}
+		sortedUsProjects = activeUsProjects.sort{contributionService.getPercentageContributionForProject(it)}
+		finalList = draftIndiaProjects.reverse() + draftUsProjects.reverse() + pendingIndiaProjects.reverse() + pendingUsProjects.reverse() + sortedIndiaProjects.reverse() + sortedUsProjects.reverse() + endedIndiaProjects.reverse() + endedUsProjects.reverse()
+
         return finalList
     }
 
@@ -3162,20 +3156,24 @@ class ProjectService {
 	
     def getContibutionByUser(User user,def country_code){
         def contributions = Contribution.findAllByUser(user)
-        List payuContributions=[]
+        /*List payuContributions=[]
         List otherContributions=[]
+		
         contributions.each{
-            if(it.project.payuStatus == true && it.project.payuEmail != null){
+            if(it.project?.payuStatus){
                 payuContributions.add(it)
-            } else if(it.project.payuStatus == false){
+            } else {
                 otherContributions.add(it)
             }
         }
+		
         if('in'.equalsIgnoreCase(country_code)){
             return payuContributions
         } else {
             return otherContributions
-        }
+        }*/
+		
+		return contributions;
     }
 
     def shareCampaignOrTeamByEmail(def params, def fundRaiser) {
@@ -5987,7 +5985,7 @@ class ProjectService {
         }
         
         
-        String splitId = getSplitIdForTransactionId(marketplaceTxId, project.sellerId, amount, issuerRefNo) 
+        /*String splitId = getSplitIdForTransactionId(marketplaceTxId, project.sellerId, amount, issuerRefNo) */
 
         Contribution contribution = new Contribution(
             date             : new Date(),
@@ -6002,9 +6000,9 @@ class ProjectService {
             physicalAddress  : shippingDetail.address,
             currency         : 'INR',
             panNumber        : panNumber,
-            merchantTxId     : marketplaceTxId,
+            merchantTxId     : marketplaceTxId/*,
             splitRef         : issuerRefNo,
-            splitId          : splitId
+            splitId          : splitId*/
         )
         
         project.addToContributions(contribution).save(failOnError: true)
@@ -6329,13 +6327,12 @@ class ProjectService {
         List<ProjectUpdate> projectUpdates = []
         
         Session session = sessionFactory.getCurrentSession();
-        if (currentEnv == "testIndia" || currentEnv == "stagingIndia" || currentEnv == "prodIndia") {
-             projectUpdates = session.createSQLQuery("select * from project_update join project on project_update.project_id = project.id where payu_status=1 and islive=0 and is_scheduled=1")
-                             .addEntity(ProjectUpdate.class).list();
-        } else {
+        projectUpdates = session.createSQLQuery("select * from project_update join project on project_update.project_id = project.id where islive=0 and is_scheduled=1")
+                         .addEntity(ProjectUpdate.class).list();
+        /*} else {
              projectUpdates = session.createSQLQuery("select * from project_update join project on project_update.project_id = project.id where payu_status=0 and islive=0 and is_scheduled=1")
                              .addEntity(ProjectUpdate.class).list();
-        }
+        }*/
         
         projectUpdates.each { projectUpdate ->
             def cronExp
@@ -6896,7 +6893,7 @@ class ProjectService {
 		/**Change the country to 'in' if you want to test the India flow on development ENV*/
 		def currentEnv = getCurrentEnvironment();
 		if( currentEnv == 'development'|| currentEnv == 'test'){
-			country_code  = "us"
+			country_code  = "in"
 		}else if (currentEnv == 'testIndia' || currentEnv==''){
 			country_code = "in"
 		}else if(currentEnv == 'staging') {
@@ -6906,5 +6903,100 @@ class ProjectService {
 		}
 		return country_code;
 		
+	}
+	
+	
+	def getTeamList(Project project,def type){
+		
+		List<Team> listOfTeam = new ArrayList<Team>()
+		def teams =  Team.findAllWhere(project:project, enable:true, validated:true).collect {
+			[
+					id : it.id,
+					amount: it.amount,
+					description:it.description,
+					enable:true, validated:true,
+					user: it.user,
+					projectId : project.id,
+					projectTitle : project.title,
+					projectOwner:project.user.username,
+					contributions: it.contributions,
+					sumOfTeamContributions: it.contributions.sum{ if(it?.amount){it?.amount}},
+					campaignOwnerId: project.user.id
+			]
+		}
+	    
+		teams.each{ team ->
+
+			def percentage = contributionService.getPercentageContributionForTeam(project?.country?.countryCode, team, project?.country?.currency?.dollar)
+			
+			def ended = isProjectDeadlineCrossed(project)
+			def amount = getDataType(team.amount)
+			def imageLink = getProjectImageLink(project)
+			def remainingDay = getRemainingDay(project)
+			def isAdminOrBeneficiary = userService.isCampaignBeneficiaryOrAdmin(project, team.user)
+			def isCampaignAdmin = userService.isCampaignAdmin(project, team.user.username)
+			def isCampaignAdminByUser=userService.isCampaignAdminByUserID(project, team.user)
+			//def multiplier = getCurrencyConverter();
+			def alphabet = userService.getCurrentUserImage(team.user.username)
+			def country = getCountryForProject(project)
+			def currencyValue = getCurrencyByCountryId(country)
+			def countryCode = project.country.countryCode
+			def userName = userService.getVanityNameFromUsername(team?.user?.username, team?.id)
+			
+			
+			if(team.contributions == null){
+				team["contributions"] = 0
+			} else {
+				
+				if ('in'.equalsIgnoreCase(project?.country?.countryCode)) {
+					team["contributions"] = team.contributions.sum{
+						if ('usd'.equalsIgnoreCase(it?.currency)) {
+							it?.amount * project.country?.currency?.dollar
+						} else {
+							(it?.amount != null) ? it?.amount : 0
+						}
+					}
+				} else {
+					team["contributions"] = team.contributions.sum{ 
+						(it?.amount != null) ? it?.amount : 0
+					}
+				}
+			}
+
+			//team["contributions"] = team.contributions.sum{ (it?.amount != null)?it?.amount:0}
+			team["percentage"] = percentage;
+			team["ended"] = ended;
+			team["amount"]=amount;
+			team["imageLink"] = imageLink;
+			team["remainingDay"]= remainingDay
+			team["description"]=project.description
+			team["organizationName"]=project.organizationName
+			team["title"]= getVanityTitleFromId(project?.id)
+			team["isAdminOrBeneficiary"] = isAdminOrBeneficiary
+			team["isCampaignAdmin"] = isCampaignAdmin
+			team["isCampaignAdminByUser"] = isCampaignAdminByUser
+			//team["multiplier"] = multiplier
+			team["alphabet"]=alphabet
+			team["payuStatus"] = project.payuStatus
+			team["countryCode"]= countryCode
+			team["currencyValue"]= currencyValue
+			team["fundsRecievedBy"]= project.fundsRecievedBy
+			team["username"]=userName
+
+			if(type.equals("allTeams")){
+				if(percentage >= 17) {
+					allTeams.add(team)
+				}
+				
+			}else if(type.equals("allSortedTeams")){
+					allSortedTeams.add(team)
+			}
+		}
+		if(type.equals("allTeams")){
+			return allTeams
+		}else{
+			return allSortedTeams
+		}
+			
 	}
 }

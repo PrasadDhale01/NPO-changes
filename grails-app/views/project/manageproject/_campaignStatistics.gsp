@@ -4,7 +4,7 @@
 <%
     def projectAmount = project.amount.round()
     def teamAmount = team.amount.round()
-    def achievedAmount = contributionService.getTotalContributionForUser(team.contributions)
+    def achievedAmount = contributionService.getTotalContributionForUser(project?.country?.countryCode, team.contributions, project?.country?.currency?.dollar)
     def amountLeft = teamAmount-achievedAmount
     def joiningDate = team.joiningDate
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d yyyy");

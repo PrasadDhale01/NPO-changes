@@ -22,9 +22,9 @@
             </div>
         </g:if>
         <div class="row">
-            <div class="col-md-12 col-sm-6 col-xs-12">
+        <%--     <div class="col-md-12 col-sm-6 col-xs-12">
                 <h1>Amount</h1>
-            </div>
+            </div>--%>
         </div>
     
         <g:hiddenField name="campaignId" id="projectId" value="${project.id}" />
@@ -40,7 +40,7 @@
                 <div class="form-group">
                    <div class="input-group">
                        <span class="amount input-group-addon"><span class="glyphicon glyphicon-usd"></span></span>
-                       <input class="amount form-control" <g:if test="${perk}">value="${reward.price.round()}"</g:if><g:else>value=""</g:else> id="amount" name="amount" type="text">
+                       <input class="amount form-control" Placeholder="Enter Donation Amount" <g:if test="${perk}">value="${reward.price.round()}"</g:if><g:else>value=""</g:else> id="amount" name="amount" type="text">
                    </div>
                    <span id="errormsg"></span>
                 </div>
@@ -54,27 +54,64 @@
                    <input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
                 </label>
     
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <g:if test="${fundraiser != null}">
-                            <div class="form-group">
-                                <div class="col-sm-12"><b>Fundraiser:</b></div>
-                                <div class="col-sm-12">
-                                <span>${fundraiser.firstName} ${fundraiser.lastName}</span>
-                                </div>
-                            </div>
-                        </g:if>
-                    </div>
-                </div>
-    
+<%--                <div class="panel panel-default">--%>
+<%--                    <div class="panel-body">--%>
+<%--                        <g:if test="${fundraiser != null}">--%>
+<%--                            <div class="form-group">--%>
+<%--                                <div class="col-sm-12"><b>Fundraiser:</b></div>--%>
+<%--                                <div class="col-sm-12">--%>
+<%--                                <span>${fundraiser.firstName} ${fundraiser.lastName}</span>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </g:if>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+    			<div class="panel panel-default">
+                     <div class="panel-heading">
+                         <h3 class="panel-title">Contact details (for your receipt)</h3>
+                     </div>
+                     <div class="panel-body">
+                         <div class="col-md-12 col-sm-6 col-xs-12">
+                             <div class="form-group">
+                                 <div class="input-group col-md-12">
+                                     <g:if test="${user}">
+                                         <input class="form-control" type="text" placeholder="First Name" name="firstname" value="${user.firstName}" required>
+                                     </g:if>
+                                     <g:else>
+                                         <input class="form-control" type="text" placeholder="First Name" name="firstname" required>
+                                     </g:else>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-md-12 col-sm-6 col-xs-12">
+                             <div class="form-group">
+                                 <div class="input-group col-md-12">
+                                     <g:if test="${user}">
+                                         <input class="form-control" type="text" placeholder="Last Name" name="lastname" value="${user.lastName}" required>
+                                     </g:if>
+                                     <g:else>
+                                         <input class="form-control" type="text" placeholder="Last Name" name="lastname" required>
+                                     </g:else>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-md-12 col-sm-6 col-xs-12">
+                             <div class="form-group">
+                                 <div class="input-group col-md-12">
+                                     <input class="form-control" type="email" placeholder="Email" name="email" value="${user?.email}" required>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                         <label class="checkbox control-label">
                         <input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse"> By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
                         </label>
-                        <div class="amount-button"><button type="submit" class="btn btn-primary btnChargeContinue visible-lg visible-md">Fund This Campaign</button></div>
-                        <div class="amount-button"><button type="submit" class="btn btn-primary visible-sm btnChargeContinue-md">Fund this Campaign</button></div>
-                        <div><button type="submit" class="btn btn-primary btn-block visible-xs">Fund this Campaign</button></div>
+                        <div class="amount-button"><button type="submit" class="btn donateNow btnChargeContinue visible-lg visible-md">DONATE NOW</button></div>
+                        <div class="amount-button"><button type="submit" class="btn donateNow visible-sm btnChargeContinue-md">DONATE NOW</button></div>
+                        <div><button type="submit" class="btn donateNow btn-block visible-xs">DONATE NOW</button></div>
                         <p>Powered By Paypal</p>
                         <div class="powerdbyPaypal">
                             <p><img src="//s3.amazonaws.com/crowdera/assets/poweredByFirstgiving.jpg" alt="Powered By paypal"/></p>
@@ -88,29 +125,29 @@
             </div>
 
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <g:if test="${!user}">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Contact details (for your receipt)</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="col-md-12 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="input-group col-md-12">
-                                        <input class="form-control" type="text" placeholder="Full Name" name="receiptName" id="receiptName">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <div class="input-group col-md-12">
-                                        <input class="form-control" type="text" placeholder="Email" name="receiptEmail">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </g:if>
+<%--                <g:if test="${!user}">--%>
+<%--                    <div class="panel panel-default">--%>
+<%--                        <div class="panel-heading">--%>
+<%--                            <h3 class="panel-title">Contact details (for your receipt)</h3>--%>
+<%--                        </div>--%>
+<%--                        <div class="panel-body">--%>
+<%--                            <div class="col-md-12 col-sm-6 col-xs-12">--%>
+<%--                                <div class="form-group">--%>
+<%--                                    <div class="input-group col-md-12">--%>
+<%--                                        <input class="form-control" type="text" placeholder="Full Name" name="receiptName" id="receiptName">--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="col-md-12 col-sm-6 col-xs-12">--%>
+<%--                                <div class="form-group">--%>
+<%--                                    <div class="input-group col-md-12">--%>
+<%--                                        <input class="form-control" type="text" placeholder="Email" name="receiptEmail">--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </g:if>--%>
                 <div class="hidden-sm hidden-xs" id="perkShippingInfo">
                     <g:render template="fund/perkShippingDetails" model="[anonymous:'false']"></g:render>
                 </div>
@@ -118,7 +155,7 @@
         </div>
     </div>
     <div class="col-md-4">
-        <g:if test="${project.rewards.size()>1}">
+        <g:if test="${project.rewards.size()>1 && ((project.paypalEmail && project.payuEmail) == null)}">
             <g:render template="fund/rewards" model="[user:user]" />
         </g:if>
     </div>

@@ -13,7 +13,6 @@
 		</script>
 		<script>
 			window.mySettings = {
-			name = '',
 			// TODO: The current logged in user's email address.
 			email: '',
 			// TODO: The current logged in user's sign-up date in Unix epoch time.

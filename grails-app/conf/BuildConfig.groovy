@@ -45,12 +45,15 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
         mavenRepo 'http://repo.spring.io/milestone' // spring-security-core
+		mavenRepo 'https://mvnrepository.com/artifact/ar.com.fdvs/DynamicJasper-core-fonts'
     }
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
         runtime 'mysql:mysql-connector-java:5.1.27'
         runtime 'org.springframework:spring-test:3.1.0.RELEASE'
+		runtime 'ar.com.fdvs:DynamicJasper-core-fonts:1.0'
+		
     }
 
     plugins {

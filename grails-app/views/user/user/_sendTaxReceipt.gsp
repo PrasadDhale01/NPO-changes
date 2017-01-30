@@ -119,17 +119,31 @@
 	/*sorting contribution list*/
 	$('.contributorsSort').change(function (){
 		var vanityTitle = $('.vanityTitle').val();
+
+		var formData;
+        if ($(this).val() == 3) {
+        	$('#customDateSelect').modal('show');
+        	/*data = 'vanityTitle='+vanityTitle+'&sort='+$(this).val()+'&isBackRequired='+isBackRequired;*/
+        } else {
+        	formData = 'vanityTitle='+vanityTitle+'&sort='+$(this).val()+'&isBackRequired='+isBackRequired;
+        	loadTaxReceipt(formData)
+        }
+        
+	});
+
+	function loadTaxReceipt(formData) {
 		var grid = $(".send-tax-receipt-to-contributors");
+		
 		$.ajax({
 			type: 'post',
 			url:baseUrl+'/user/sortContributorsList',
-			data:'vanityTitle='+vanityTitle+'&sort='+$(this).val()+'&isBackRequired='+isBackRequired,
+			data: formData,
 			success: function(data) {
 			    $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
 			}
 		}).error(function(){
 		});
-	});
+	}
 	
 	/*back to campaign tiles*/
 	$('.backToTiles').click(function (){
@@ -189,26 +203,8 @@
 		    list.push(this.id);
 		});
 
-		$.ajax({
-			type: 'post',
-			url:baseUrl+'/user/sendTaxReceiptToContributors',
-			data:'vanityTitle='+vanityTitle+'&list='+list,
-			beforeSend: function(data){
-				if(list.length > 0){
-		            $('.sendemailtocontributors').show();
-		        }else{
-		             $('#email-send-confirmation').text("Please, select atleast one.").show().fadeOut(9000);
-		        }
-			},
-			success: function(data) {
-				if(data==="true"){
-				    $('.sendemailtocontributors').hide();
-			        $('#email-send-confirmation').text("Email has been sent successfully!").show().fadeOut(9000);
-				}
-			}
-		}).error(function(){
-			$('.sendemailtocontributors').hide();
-		});
+		sendEmailToContributors(vanityTitle, list);
 	
 	});
+
 </script>

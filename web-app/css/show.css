@@ -610,9 +610,10 @@ span.show-fb-height{
     overflow:hidden;
 }
 
-.manage-edit-delete-btn{
-	margin-right: -11px !important;
-}
+/* .manage-edit-delete-btn{ */
+/* 	margin-right: -11px !important; */
+/* } */
+
 .managepage-campaign-title {
 	margin-bottom: 20px;
 }

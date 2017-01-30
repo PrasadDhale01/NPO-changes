@@ -27,53 +27,51 @@ $(function() {
     
     var currentEnv = $("#currentEnv").val();
     
-    if (currentEnv == "testIndia") {
-	    if ($('#citrusemail').val()) {
-	    	$('#CitrusPay').show();
-	    	$('#PayUMoney').hide();
-	    } else {
-	    	$('#CitrusPay').hide();
-	    	$('#PayUMoney').show();
-	    }
+    if ($('#citrusemail').val()) {
+    	$('#CitrusPay').show();
+    	$('#PayUMoney').hide();
+    } else {
+    	$('#CitrusPay').hide();
+    	$('#PayUMoney').show();
     }
 
-    var storyPlaceholder = "<p><h3>Introduce Your Campaign</h3></p>"+
-    	"<p>Contributors want to know all about your cause and the details related to your organization, so think of this section as an executive summary to get your audience introduced to your campaign! Here are some essential components of a campaign introduction:</p>"+ 
-    		"<ul>"+
-    	    "<li>	Introduce yourself and your organization </li>"+
-    		"<li>	Describe your campaign and why it's important to you </li>"+
-    		"<li>	Convey the importance of a single contribution </li>"+
-    		"</ul>"+
-    		"<p>The key here is to keep your information brief and concise; this is the hook to getting the attention of your crowd! </p><br>"+
+    var storyPlaceholder = "<p>Introduce Your Campaign</p>"+
+	"<p>Contributors want to know all about your cause and the details related to your organization, so think of this section as an executive summary to get your audience introduced to your campaign! Here are some essential components of a campaign introduction:</p>"+ 
+		"<ul>"+
+	    "<li>	Introduce yourself and your organization </li>"+
+		"<li>	Describe your campaign and why it's important to you </li>"+
+		"<li>	Convey the importance of a single contribution </li>"+
+		"</ul>"+
+		"<p>The key here is to keep your information brief and concise; this is the hook to getting the attention of your crowd! </p>"+
 
-    		"<p><h3>Share details about your need and plan</h3><p>"+
-    		"<p>Now that your audience is familiar with your mission, it's time to go more in-depth. In this section you should: </p>"+
-    			"<ul>"+
-    		    "<li>	Explain your funding goal and delineate precisely how the funds will be used</li>"+
-    			"<li>	Describe your plan if your campaign doesn't reach it's goal</li>"+
-    			"<li>	Share your plan for any risks or obstacles you may face</li>"+
-    			"<li>	Outline the information for any rewards or perks programs! </li>"+
-    			"</ul>"+
-    			"<p>It is vital that you are straightforward and transparent in this section, be as detailed as possible. People value honesty - the more they believe in you and your cause, the more likely they are to contribute. </p><br>"+
+		"<p>Share details about your need and plan<p>"+
+		"<p>Now that your audience is familiar with your mission, it's time to go more in-depth. In this section you should: </p>"+
+			"<ul>"+
+		    "<li>	Explain your funding goal and delineate precisely how the funds will be used</li>"+
+			"<li>	Describe your plan if your campaign doesn't reach it's goal</li>"+
+			"<li>	Share your plan for any risks or obstacles you may face</li>"+
+			"<li>	Outline the information for any rewards or perks programs! </li>"+
+			"</ul>"+
+			"<p>It is vital that you are straightforward and transparent in this section, be as detailed as possible. People value honesty - the more they believe in you and your cause, the more likely they are to contribute. </p>"+
 
-    			"<p><h3>Make It Visual</h3></p>"+
-    			"<p>Remember to include some images or videos so you can break the monotony of text and bring your campaign to life. </p>"+
-    			"<ul>"+
-    			"<li>	Use charts to show the breakdown of your costs and describe the full financial plan</li>"+
-    			"<li>	Share any prototypes you have developed prior to the campaign</li>"+
-    			"<li>	Add videos to better explain your cause and connect with your audience</li>"+
-    			"</ul>"+
-    			"<p>Contributors love to actually see and visualize your campaign progress so they can become more enthusiastic about your cause! </p><br>"+
+			"<p>Make It Visual</p>"+
+			"<p>Remember to include some images or videos so you can break the monotony of text and bring your campaign to life. </p>"+
+			"<ul>"+
+			"<li>	Use charts to show the breakdown of your costs and describe the full financial plan</li>"+
+			"<li>	Share any prototypes you have developed prior to the campaign</li>"+
+			"<li>	Add videos to better explain your cause and connect with your audience</li>"+
+			"</ul>"+
+			"<p>Contributors love to actually see and visualize your campaign progress so they can become more enthusiastic about your cause! </p>"+
 
-    			"<p><h3>Talk about the impact</h3></p>"+
-    			"<p>This section is a great opportunity to reiterate your passion for this cause and let people know how their contribution will make a difference! </p>"+
-    			"<ul>"+
-    			"<li>	Explain why this campaign will be beneficial to your audience and the community</li>"+
-    			"<li>	Specify what makes you qualified to take on such an important cause</li>"+
-    			"<li>	Call your audience to action and discuss any other ways they can get involved</li>"+
-    			"<li>	Wear your enthusiasm loud and proud - get your crowd excited! </li>"+
-    			"</ul>"+
-    			"<p>Your mission is the heart of your campaign; it's what makes your fundraising efforts unique. Don't be shy in making your goal clear! Energize your crowd with your passion and get ready to make a difference! </p>";
+			"<p>Talk about the impact</p>"+
+			"<p>This section is a great opportunity to reiterate your passion for this cause and let people know how their contribution will make a difference! </p>"+
+			"<ul>"+
+			"<li>	Explain why this campaign will be beneficial to your audience and the community</li>"+
+			"<li>	Specify what makes you qualified to take on such an important cause</li>"+
+			"<li>	Call your audience to action and discuss any other ways they can get involved</li>"+
+			"<li>	Wear your enthusiasm loud and proud - get your crowd excited! </li>"+
+			"</ul>"+
+			"<p>Your mission is the heart of your campaign; it's what makes your fundraising efforts unique. Don't be shy in making your goal clear! Energize your crowd with your passion and get ready to make a difference! </p>";
 
 
     $('.redactorEditor').redactor({
@@ -652,13 +650,11 @@ $(function() {
                 maxlength: 50
             });
             
-            if (currentEnv == "testIndia") {
-	            $( '[name="citrusEmail"]' ).rules( "add", {
-	                required: true,
-	                email:true,
-	                maxlength: 50
-	            });
-            }
+            $( '[name="citrusEmail"]' ).rules( "add", {
+                required: true,
+                email:true,
+                maxlength: 50
+            });
 
         } else {
         	$('.rewardPrice').each(function () {
@@ -758,7 +754,8 @@ $(function() {
         } else {
         	$( '[name="ein"]' ).rules( "add", {
                 required: true,
-                minlength:9
+                minlength:9,
+                maxlength:9
             });
 
             $( '[name="tax-reciept-deductible-status"]' ).rules( "add", {
@@ -989,13 +986,11 @@ $(function() {
                 maxlength: 50
             });
             
-            if (currentEnv == "testIndia") {
-	            $( '[name="citrusEmail"]' ).rules( "add", {
-	                required: true,
-	                email:true,
-	                maxlength: 50
-	            });
-            }
+            $( '[name="citrusEmail"]' ).rules( "add", {
+                required: true,
+                email:true,
+                maxlength: 50
+            });
         } else {
         	$('.rewardPrice').each(function () {
                 $(this).rules("add", {
@@ -1108,7 +1103,8 @@ $(function() {
             } else {
             	$( '[name="ein"]' ).rules( "add", {
                     required: true,
-                    minlength:9
+                    minlength:9, 
+                    maxlength:9
                 });
 
                 $( '[name="tax-reciept-deductible-status"]' ).rules( "add", {
@@ -1524,19 +1520,19 @@ $(function() {
 
      $('#paymentOpt').change(function(){
     	 var payind = $('#paymentOpt').val();
-    	 if (currentEnv == "testIndia") {
-	    	 if(payind === 'PAYU'){
-	    		 $('#PayUMoney').show();
-	    		 $('#CitrusPay').hide();
-	    	 } else if (payind === 'CITRUS') {
-	    		 $('#CitrusPay').show();
-	    		 $('#PayUMoney').hide();
-	    	 }
-    	 } else {
+    	 /*if (currentEnv == "testIndia") {*/
+    	 if(payind === 'PAYU'){
+    		 $('#PayUMoney').show();
+    		 $('#CitrusPay').hide();
+    	 } else if (payind === 'CITRUS') {
+    		 $('#CitrusPay').show();
+    		 $('#PayUMoney').hide();
+    	 }
+    	 /*} else {
     		 if(payind === 'PAYU'){
 	    		 $('#PayUMoney').show();
 	    	 }
-    	 }
+    	 }*/
      });
 
 	$('#countryList').change(function(){
@@ -2975,6 +2971,44 @@ $(function() {
             }
         }
     });
+    
+    if($('.col-tax-reciept-panel').css('display') == 'none')
+	{	$('#tax-reciept').show();
+		$('.tax-reciept-checkbox').attr('checked', false);
+        $('#taxRecieptId').val(null);
+	}else{
+		$('#tax-reciept').show();
+		$('.tax-reciept-checkbox').attr('checked', true);
+        $('#taxRecieptId').val(true);
+	}
+    
+    $(document).ready(function(){
+        $('input[id="crowdera-email"]').click(function(){
+            if($(this).prop("checked") == true){
+               $('#paypalEmailId').val("international@crowdera.co");
+            }
+            else if($(this).prop("checked") == false){
+                $('#paypalEmailId').val(null);
+            }
+        });
+    });
+
+    $('#crowdera-email').change(function(){
+        if($("#crowdera-email").prop('checked') == false)
+        {
+            var confirmMsg = window.confirm("Are you sure, you don't want to receive foreign contribution?");
+            if(confirmMsg == true)
+            {
+                $("#crowdera-email").prop('checked', false);
+                $('#paypalEmailId').val(null);
+            }
+            else
+            {
+                $("#crowdera-email").prop('checked', true);
+                $('#paypalEmailId').val("international@crowdera.co");
+            }
+        }
+    });
 
     $('.fcra-checkbox').click(function(){
         if ($('input[name="fcra-checkbox"]:checked').length > 0){
@@ -3053,14 +3087,12 @@ $(function() {
         }
     });
     
-    if (currentEnv == "testIndia") {
-	    $('#citrusemail').blur(function (){
-	        var citrusEmail = $(this).val();
-	        if (validator.element( "#citrusemail")) {
-	            autoSave('citrusEmail', citrusEmail);
-	        }
-	    });
-    }
+    $('#citrusemail').blur(function (){
+        var citrusEmail = $(this).val();
+        if (validator.element( "#citrusemail")) {
+            autoSave('citrusEmail', citrusEmail);
+        }
+    });
 
     $('#secretKey').blur(function (){
         var secretKey = $(this).val();

@@ -22,8 +22,10 @@
         </div>
         <div class="container discover-inner-container">
             <g:hiddenField name='currentEnv' value='${currentEnv}' id='currentEnv'/>
+            	<div class="TW-discover-topTab">
+           	</div>
 <%--            	<h1><span class="TW-discover-title"><img src="//s3.amazonaws.com/crowdera/assets/discover-arrow.png" alt="Discover title">&nbsp;&nbsp;Explore Campaigns Raising Money for</span></h1>--%>
-            <div class="TW-discover-topTab" style="margin-top: 40px;">
+            <%--<div class="TW-discover-topTab">
             	<div class="col-md-2 col-lg-2 col-sm-2 categoryList list-category TW-dis-tab-padding panel-body TW-discover-select-width left-select-margin TW-discover-drpdwn-right-border">
                     <g:form action="category" controller="project" name="categoryForm">
                         <g:select class="selectpicker" id="category" name="country" from="${countryOptions}" value="${selectedCategory}" optionKey="value" optionValue="value" noSelection="['Country':'Country']" onchange="selectedCategory()"/>
@@ -40,19 +42,28 @@
 					<g:link controller="project" action="category" params="[usedfor:'Social-Innovation']" class="btn btn-default ${params.usedfor == 'Social-Innovation' ? 'TW-Discover-selected-usedfor':''}  col-sm-3 col-xs-12 TW-discover-tab-decoration TW-padding-align innovatingtab-padding"><span class="cr-pay-rd TW-cr-pay-rd">Social</span><span class="cr-reci-siz TW-cr-reci-siz">&nbsp;Innovation</span></g:link>
 					<g:link controller="project" action="category" params="[usedfor:'Personal-Needs']" class="btn btn-default ${params.usedfor == 'Personal-Needs' ? 'TW-Discover-selected-usedfor':''} col-sm-2 col-xs-12 cr-mob-payments TW-discover-tab-decoration TW-padding-align"><span class="cr-pay-rd TW-cr-pay-rd">Personal&nbsp;</span><span  class="cr-reci-siz TW-cr-reci-siz">Needs</span></g:link>
 				</div>
-                <!-- Search -->
                 <g:render template="list/search"></g:render>
             </div>
-            <br>
-            <div class="row TW-Container-alignment">
-            	<div class="col-lg-2 col-xs-12  col-sm-2 hidden-xs TW-discover-leftpane-menu TW-discover-pane-width">
-            		<ul>
-			    <g:each in="${discoverLeftCategoryOptions}" var="categories">
-			        <li><a <g:if test="${selectedCategory == categories.value}">class="categorylink"</g:if> href="/campaigns/category/${categories.value.replace(' ','-')}" >${categories.value}</a></li>
-			    </g:each>
-			</ul>
-            	</div>
-                <div class="col-md-10 col-lg-12 col-sm-10 col-xs-12 TW-discover-campaign-centering">
+            --%><br>
+          <div class="row TW-Container-alignment">
+          
+            <div class="col-lg-2 col-xs-12  col-sm-2 hidden-xs TW-discover-leftpane-menu TW-discover-pane-width">
+            	  <div  class="allCategories">
+            	      <img class="img-responsive " src="//s3.amazonaws.com/crowdera/project-images/0b2f7d15-24ac-4273-9311-67f9e2f7d118.png" title="All-Categories - Icon.png">
+            	      <p><a href="/campaigns/category/All-Categories">All Categories</a></p>
+            	   </div>
+            		<ul class="allCategoriesSortd">
+					    <g:each in="${discoverLeftCategoryOptions}" var="categories">
+					        <li>
+						        <a 
+						        	<g:if test="${selectedCategory == categories.value}">class="categorylink"</g:if> 
+						        	href="/campaigns/category/${categories.value.replace(' ','-')}" >${categories.value}
+						        </a>
+					        </li>
+					    </g:each>
+					</ul>
+            </div>
+            <div class="col-md-10 col-lg-12 col-sm-10 col-xs-12 TW-discover-campaign-centering">
                     <g:if test="${flash.catmessage}">
                         <div class="alert alert-danger flashmsg-width">
                             ${flash.catmessage}
@@ -62,10 +73,35 @@
                         <!-- Carousel -->
                         <g:render template="list/grid" model="['projects': projects]"></g:render>
                     </g:else>
+            </div>
+             <div class="TW-discover-pane-width-right nevlftSortby">
+                   <div  class="allCategoriesSortby">
+            	      <img class="img-responsive " src="//s3.amazonaws.com/crowdera/project-images/f3f4ec2e-7efc-4cc6-8ec2-f81ed6fa90a1.png" title="Sort-by - Icon.png">
+            	      <p>Sort By</p>
+            	   </div>
+                  <ul class="allCategoriesSortd">
+                      <li>
+                         <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Live']">Recently Launched</g:link>  
+                      </li>
+                      <li>
+                      	 <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Latest']">Trending</g:link>  
+                      </li>
+                      <li>
+                      	 <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Most-Funded']">Most Funded</g:link>  
+                      </li>
+                      <li>
+                          <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Offering-Perks']">Offering Perks</g:link>  
+                      </li>
+                      <li>
+                        <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Ending-Soon']">Ending Soon</g:link>  
+                      </li>
+                      <li>
+                         <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Ended']">Ended</g:link>  
+                      </li>
+                   </ul>
                 </div>
-                <div class="TW-discover-pane-width-right"></div>
             </div>
         </div>
-    </div>
+       </div> 
 </body>
 </html>

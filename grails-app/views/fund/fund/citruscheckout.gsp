@@ -9,7 +9,16 @@
     <title>Crowdera- Contribute</title>
     
     <script src="/js/jquery-1.11.1.min.js"> </script>
-    <script src="/js/citrus.js"></script>
+    
+    <g:if env="development">
+	    <script src="/js/citrus.js"></script>
+    </g:if>
+    <g:elseif env="staging">
+    	<script src="https://www.citruspay.com/resources/pg/js/webjs/citrus.min.js"></script>
+    </g:elseif>
+    <g:elseif env="production">
+    	<script src="https://www.citruspay.com/resources/pg/js/webjs/citrus.min.js"></script>
+    </g:elseif>
 </head>
 <body>
     <div class="feducontent">
@@ -29,9 +38,13 @@
                     def citrusAvailableOptions = ['CID002':'AXIS Bank', 'CID019':'Bank of India']
 					def country_code = projectService.getCountryCodeForCurrentEnv(request);
                     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-                    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 + country_code : grailsApplication.config.crowdera.BASE_URL + country_code
+                    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
                     
-                    def returnURL = base_url + '/fund/citrusreturn'
+                    def baseUrl = base_url.substring(0, (base_url.length() - 1))
+                    def returnURL = baseUrl + '/fund/citrusreturn'
+                    
+                    def accessKey = grailsApplication.config.crowdera.CITRUS.ACCESS_KEY
+                    def citrusVanityUrl = grailsApplication.config.crowdera.CITRUS.VANITYURL
                 %>
                 <div id="myWizard">
                     <g:form action="charge" method="POST" class="payment-form" id="payment-form" name="payment-form">
@@ -61,7 +74,7 @@
                                 <g:hiddenField name="projectId" value="${project.id}" />
                                 <g:hiddenField name="fr" value="${vanityUsername}" />
                                 <g:hiddenField name="rewardId" />
-                                <g:hiddenField name="url" value="${base_url}" id="url"/>
+                                <g:hiddenField name="url" value="${baseUrl}" id="url"/>
                                 <g:hiddenField name="anonymous" value="false" id="anonymous"/>
                                 <g:hiddenField name="projectTitle" value="${vanityTitle}"/>
                                 <input type="hidden" name="projectAmount" id="projectAmount" value="${project.amount.round() }"/>
@@ -341,8 +354,8 @@
         CitrusPay.Merchant.Config = {
             // Merchant details
             Merchant: {
-                accessKey: 'VVXKH02XVEWHUGWJHAMI', //Replace with your access key
-                vanityUrl: '8wqhvmq506'  //Replace with your vanity URL
+                accessKey: '${accessKey}', //Replace with your access key
+                vanityUrl: '${citrusVanityUrl}'  //Replace with your vanity URL
             }
         };
     

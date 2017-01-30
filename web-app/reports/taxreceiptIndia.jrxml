@@ -94,14 +94,14 @@
 				<textFieldExpression><![CDATA[$P{regDate}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="226" y="68" width="144" height="20" uuid="a5e2ff6c-84e3-4dcb-8399-4ffecf23b176"/>
+				<reportElement x="213" y="68" width="157" height="20" uuid="a5e2ff6c-84e3-4dcb-8399-4ffecf23b176"/>
 				<textElement>
 					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[PAN no. of Organization:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="225" y="38" width="146" height="20" uuid="2e28fb0d-f754-418f-888f-0e67d4e299fd"/>
+				<reportElement x="213" y="38" width="158" height="20" uuid="2e28fb0d-f754-418f-888f-0e67d4e299fd"/>
 				<textElement>
 					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
@@ -115,7 +115,7 @@
 				<textFieldExpression><![CDATA[$P{orgName}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="226" y="143" width="144" height="20" uuid="d661c48c-2d8c-4112-8d9d-d5fc3a2cab61"/>
+				<reportElement x="213" y="143" width="157" height="20" uuid="d661c48c-2d8c-4112-8d9d-d5fc3a2cab61"/>
 				<textElement>
 					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
@@ -143,14 +143,14 @@
 				<textFieldExpression><![CDATA[$P{panNumber}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="223" y="8" width="147" height="20" uuid="28767be8-4667-4144-8bb6-dd1ccebb5706"/>
+				<reportElement x="213" y="8" width="157" height="20" uuid="28767be8-4667-4144-8bb6-dd1ccebb5706"/>
 				<textElement>
 					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Organization Name:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="226" y="98" width="144" height="35" uuid="670be7e0-17de-47ba-96b7-5d9662c11635"/>
+				<reportElement x="213" y="98" width="157" height="35" uuid="670be7e0-17de-47ba-96b7-5d9662c11635"/>
 				<textElement>
 					<font fontName="Times New Roman" size="14" isBold="true"/>
 				</textElement>

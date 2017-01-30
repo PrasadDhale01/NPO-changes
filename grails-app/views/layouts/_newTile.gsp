@@ -72,7 +72,7 @@
                                         <img class="user-img-header img-responsive img-circle user-discover-img" src="${project.alphabet.userImage}" alt="user alphabet icon">
                                     </g:else>
                                     <div class="discover-user-name">
-                                        Campaign by<br>${project.user?.firstName}
+                                        Campaign by<br>${project.user?.firstName} ${project.user?.lastName}
                                     </div>
                                 </g:if>
                             </div>

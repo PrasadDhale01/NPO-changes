@@ -19209,7 +19209,7 @@ img.home-pg-icons{
     display: none;
     box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.25);
     display: block;
-    height: 49px;
+    height: 64px;
     padding-top: 10px;
     margin:0px;
     width: 100%;
@@ -19243,7 +19243,7 @@ img.home-pg-icons{
         display: none;
         box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.25);
         display: block;
-        height: 49px;
+        height: 64px;
         padding-top: 10px;
         margin:0px;
         width: 100%;
@@ -19262,7 +19262,7 @@ img.home-pg-icons{
         background-color: white;
         left: 0;
         position: fixed;
-        top: 48px;
+        top: 62px;
         width: 100%;
         z-index: 999;
         display: none;
@@ -19317,7 +19317,7 @@ li.sh-button-fund-secandaryheader{
 
 .sh-logo-color{
     height:44px;
-    margin-top: -9px;
+    margin-top: -4px;
 }
 .sh-logo-color:hover,
 .sh-logo-color:focus{
@@ -19327,7 +19327,7 @@ li.sh-button-fund-secandaryheader{
     background-color: #fff;
     left: 0;
     position: fixed;
-    top: 48px;
+    top: 62px;
     width: 100%;
     z-index: 999;
     display: none;
@@ -20426,5 +20426,10 @@ tr.payTransacrow td{
     font-size: 25px;
     font-weight: bold;
     text-align: center;
+}
+
+.new-nav-align{
+	left: 0 !important;
+    padding-left: 10px !important;
 }
  

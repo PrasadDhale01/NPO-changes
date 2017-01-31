@@ -100,15 +100,18 @@ class ProjectController {
 		}
 	}*/
 	
-	def sortCampaign(){
-		if(params.documentLoaded==null || params.documentLoaded==true){
+	def sortCampaign() {
+		if(params.documentLoaded == null || params.documentLoaded == true) {
 			ProjectService.allSortedTeams.clear()
 		}
+		
 		Integer pageSize;
 		Integer currentPageNumber;
 		params.pageSize = Math.min(pageSize  ?: 6, 50)
 		params.currentPageNumber  = params.currentPageNumber  ?: 0  // require offset for pagination
-		println("documentLoaded status=="+params.documentLoaded)
+		
+		/*println("documentLoaded status=="+params.documentLoaded)*/
+		
 		def countryOptions = projectService.getCountry()
 		def environment = projectService.getCurrentEnvironment()
 		def country_code = params.country_code
@@ -119,35 +122,48 @@ class ProjectController {
 		def allTeamsList = new ArrayList();
 		def team
 		def teamsList
-		if(ProjectService.allSortedTeams.empty){
+		if (request.xhr) {
+			if(ProjectService.allSortedTeams.empty) {
+				List campaignsorts = projectService.isCampaignsorts(sorts, country_code)
+				for(Project prj : campaignsorts) {
+					team = projectService.getTeamList(prj,"allSortedTeams")         // if static array list is empty then it first fetch from database
+					teamsList = team.toList()
+				}
+				
+			} else {
+				team = ProjectService.allSortedTeams					 // if static array list is  not empty then it  fetch from static arraylist
+				teamsList = team.toList()
+			}
+		} else {
+		
+			ProjectService.allSortedTeams.clear();
+		
 			List campaignsorts = projectService.isCampaignsorts(sorts, country_code)
-			for(Project prj : campaignsorts){
+			for(Project prj : campaignsorts) {
 				team = projectService.getTeamList(prj,"allSortedTeams")         // if static array list is empty then it first fetch from database
 				teamsList = team.toList()
 			}
-			
-		}else{
-			team = ProjectService.allSortedTeams					 // if static array list is  not empty then it  fetch from static arraylist
-			teamsList = team.toList()
 		}
-		if(!ProjectService.allSortedTeams.empty){
+		
+		if(!ProjectService.allSortedTeams.empty) {
 			teamsList.sort{a,b-> b.percentage<=>a.percentage}
 	
-			use(PaginateableList){
+			use(PaginateableList) {
 				allTeamsList = teamsList.toList()
 				def to = params.int('currentPageNumber') * 6;
 				allTeamsList= allTeamsList.paginate(params.pageSize, to)
 			}
 		}
-		if(params.currentPageNumber==0){
-			if(allTeamsList.size()<1){
+		
+		if(params.currentPageNumber==0) {
+			if(allTeamsList.size() < 1) {
 				flash.catmessage="No campaign found."
 				render (view: 'list/new-index', model: [projects: allTeamsList,sorts: sorts.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions,country_code:country_code,query:sorts])
 			} else {
 				render (view: 'list/new-index', model: [projects: allTeamsList,sorts: sorts.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions,country_code:country_code,query:sorts])
 			}
-		}else{
-				render (template: 'list/new-grid', model: [projects: allTeamsList,selectedCategory: selectedCategory, countryOptions: countryOptions, sortsOptions: sortsOptions,
+		} else {
+			render (template: 'list/new-grid', model: [projects: allTeamsList,selectedCategory: selectedCategory, countryOptions: countryOptions, sortsOptions: sortsOptions,
 												   discoverLeftCategoryOptions:discoverLeftCategoryOptions,currentPageNumber:params.currentPageNumber,pageSize:params.pageSize,country_code:country_code,query:sorts])
 		}
 	}
@@ -167,30 +183,39 @@ class ProjectController {
 		def selectedCategory = "All Categories"
 		def team
 		def teamsList
-		if(ProjectService.allTeams.empty){
+		if (request.xhr) {
+			if(ProjectService.allTeams.empty) {
+				def projects = projectService.getValidatedProjectsByPercentage(country_code)//projectService.getValidatedProjects(currentEnv)
+				for(Project prj : projects){
+						team = projectService.getTeamList(prj,"allTeams")         // if static array list is empty then it first fetch from database
+						teamsList = team.toList()
+				}
+	
+			} else {
+				team = ProjectService.allTeams					 // if static array list is  not empty then it  fetch from static arraylist
+				teamsList = team.toList()
+			}
+		} else {
+			ProjectService.allTeams.clear();
 			def projects = projectService.getValidatedProjectsByPercentage(country_code)//projectService.getValidatedProjects(currentEnv)
 			for(Project prj : projects){
 					team = projectService.getTeamList(prj,"allTeams")         // if static array list is empty then it first fetch from database
 					teamsList = team.toList()
 			}
-
-		}else{
-			team = ProjectService.allTeams					 // if static array list is  not empty then it  fetch from static arraylist
-			teamsList = team.toList()
 		}
 
 		teamsList.sort{a,b-> b.percentage<=>a.percentage}
 		
-			def allTeamsList = new ArrayList();
-		use(PaginateableList){
+		def allTeamsList = new ArrayList();
+		use(PaginateableList) {
 			allTeamsList = teamsList.toList()
-			println("pageSize : "+ params.pageSize+ " currentPageNumber : "+ params.currentPageNumber )
+			/*println("pageSize : "+ params.pageSize+ " currentPageNumber : "+ params.currentPageNumber )*/
 			def to = params.int('currentPageNumber') * 6;
 			allTeamsList= allTeamsList.paginate(params.pageSize, to)
 		}
 		
-		if(params.currentPageNumber==0){
-			if(allTeamsList.size()<1){
+		if(params.currentPageNumber==0) {
+			if(allTeamsList.size()<1) {
 				flash.catmessage="There are no campaigns"
 				render (view: 'list/new-index', model: [countryOptions: countryOptions, sortsOptions: sortsOptions,discoverLeftCategoryOptions: discoverLeftCategoryOptions])
 			}else {
@@ -198,7 +223,7 @@ class ProjectController {
 														discoverLeftCategoryOptions:discoverLeftCategoryOptions,currentPageNumber:currentPageNumber,pageSize:pageSize,country_code:country_code,isDeviceMobileOrTab:isDeviceMobileOrTab])
 
 			}
-		}else {
+		} else {
 			render (template: 'list/new-grid', model: [projects: allTeamsList,selectedCategory: selectedCategory, currentEnv: currentEnv, countryOptions: countryOptions, sortsOptions: sortsOptions,
 												   discoverLeftCategoryOptions:discoverLeftCategoryOptions,currentPageNumber:params.currentPageNumber,pageSize:params.pageSize,country_code:country_code,isDeviceMobileOrTab:isDeviceMobileOrTab])
 		}
@@ -206,12 +231,11 @@ class ProjectController {
 
 	@Category(List) // From Colin Harrington's post
 	class PaginateableList {
-		List paginate(max, offset=0 )
-		{
-			println("max:=="+ max)
+		List paginate(max, offset=0 ) {
+			/*println("max:=="+ max)
 			print("offset:=="+ offset)
 			println("Hello1 "+Math.min( offset as Integer, this.size() ))
-			println("Hello2 "+Math.min( (offset as Integer) + (max as Integer), this.size() ))
+			println("Hello2 "+Math.min( (offset as Integer) + (max as Integer), this.size() ))*/
 
 			((max as Integer) <= 0 || (offset as Integer) < 0) ? [] : this.subList( Math.min( offset as Integer, this.size() ), Math.min( (offset as Integer) + (max as Integer), this.size() ) )
 		}

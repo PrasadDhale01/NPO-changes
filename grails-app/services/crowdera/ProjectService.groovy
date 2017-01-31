@@ -26,14 +26,15 @@ import org.apache.http.client.HttpClient
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
-
 import org.hibernate.Session
 import org.hibernate.SessionFactory
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.model.*
+
 import grails.util.Environment
 import groovy.json.JsonSlurper
 import static java.util.Calendar.*
+
 import org.apache.http.util.EntityUtils
 import org.jets3t.service.security.AWSCredentials
 /*Merging Master branch changes*/
@@ -6926,11 +6927,59 @@ class ProjectService {
 		}
 	    
 		teams.each{ team ->
-
-			def percentage = contributionService.getPercentageContributionForTeam(project?.country?.countryCode, team, project?.country?.currency?.dollar)
+			def amount = 0;
+			def percentage = 0;
+			
+			if (project?.user?.id == team?.user?.id) {
+				amount = getDataType(project.amount)
+				
+				if(team.contributions == null){
+					team["contributions"] = 0
+				} else {
+					
+					if ('in'.equalsIgnoreCase(project?.country?.countryCode)) {
+						team["contributions"] = project.contributions.sum {
+							if ('usd'.equalsIgnoreCase(it?.currency)) {
+								it?.amount * project.country?.currency?.dollar
+							} else {
+								(it?.amount != null) ? it?.amount : 0
+							}
+						}
+					} else {
+						team["contributions"] = project.contributions.sum {
+							(it?.amount != null) ? it?.amount : 0
+						}
+					}
+				}
+				
+				percentage = contributionService.getPercentageContributionForProject(team["contributions"], project)
+			} else {
+				amount = getDataType(team.amount)
+				percentage = contributionService.getPercentageContributionForTeam(project?.country?.countryCode, team, project?.country?.currency?.dollar);
+				
+				if(team.contributions == null){
+					team["contributions"] = 0
+				} else {
+					
+					if ('in'.equalsIgnoreCase(project?.country?.countryCode)) {
+						team["contributions"] = team.contributions.sum {
+							if ('usd'.equalsIgnoreCase(it?.currency)) {
+								it?.amount * project.country?.currency?.dollar
+							} else {
+								(it?.amount != null) ? it?.amount : 0
+							}
+						}
+					} else {
+						team["contributions"] = team.contributions.sum {
+							(it?.amount != null) ? it?.amount : 0
+						}
+					}
+				}
+			}
 			
 			def ended = isProjectDeadlineCrossed(project)
-			def amount = getDataType(team.amount)
+			
+			
 			def imageLink = getProjectImageLink(project)
 			def remainingDay = getRemainingDay(project)
 			def isAdminOrBeneficiary = userService.isCampaignBeneficiaryOrAdmin(project, team.user)
@@ -6943,30 +6992,10 @@ class ProjectService {
 			def countryCode = project.country.countryCode
 			def userName = userService.getVanityNameFromUsername(team?.user?.username, team?.id)
 			
-			
-			if(team.contributions == null){
-				team["contributions"] = 0
-			} else {
-				
-				if ('in'.equalsIgnoreCase(project?.country?.countryCode)) {
-					team["contributions"] = team.contributions.sum{
-						if ('usd'.equalsIgnoreCase(it?.currency)) {
-							it?.amount * project.country?.currency?.dollar
-						} else {
-							(it?.amount != null) ? it?.amount : 0
-						}
-					}
-				} else {
-					team["contributions"] = team.contributions.sum{ 
-						(it?.amount != null) ? it?.amount : 0
-					}
-				}
-			}
-
 			//team["contributions"] = team.contributions.sum{ (it?.amount != null)?it?.amount:0}
 			team["percentage"] = percentage;
 			team["ended"] = ended;
-			team["amount"]=amount;
+			team["amount"] = amount;
 			team["imageLink"] = imageLink;
 			team["remainingDay"]= remainingDay
 			team["description"]=project.description
@@ -6992,6 +7021,7 @@ class ProjectService {
 					allSortedTeams.add(team)
 			}
 		}
+		
 		if(type.equals("allTeams")){
 			return allTeams
 		}else{

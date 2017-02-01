@@ -198,7 +198,7 @@ class ContributionService {
     }
     
     def getPercentageContributionForProject(def totalContribution, Project project) {
-        if (!project || !totalContribution) {
+        if (!project) {
             return null
         }
 

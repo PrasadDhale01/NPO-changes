@@ -123,7 +123,7 @@ class ProjectController {
 		def team
 		def teamsList
 		if (request.xhr) {
-			if(ProjectService.allSortedTeams.isEmpty()) {
+			if(ProjectService.allSortedTeams.empty) {
 				List campaignsorts = projectService.isCampaignsorts(sorts, country_code)
 				for(Project prj : campaignsorts) {
 					team = projectService.getTeamList(prj,"allSortedTeams")         // if static array list is empty then it first fetch from database
@@ -184,7 +184,7 @@ class ProjectController {
 		def team
 		def teamsList
 		if (request.xhr) {
-			if(ProjectService.allTeams.isEmpty()) {
+			if(ProjectService.allTeams.empty) {
 				def projects = projectService.getValidatedProjectsByPercentage(country_code)//projectService.getValidatedProjects(currentEnv)
 				for(Project prj : projects){
 						team = projectService.getTeamList(prj,"allTeams")         // if static array list is empty then it first fetch from database
@@ -196,7 +196,6 @@ class ProjectController {
 				teamsList = team.toList()
 			}
 		} else {
-			
 			ProjectService.allTeams.clear();
 			def projects = projectService.getValidatedProjectsByPercentage(country_code)//projectService.getValidatedProjects(currentEnv)
 			for(Project prj : projects){

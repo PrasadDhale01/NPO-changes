@@ -123,7 +123,7 @@
     </g:else>
     <div class="blacknwhite tile">
         <g:if test="${iscampaignAdmin}">
-            <g:link controller="project" action="manageCampaign" id="${project.id}" country_code="${project.country.countryCode}" title="${project.title}">
+            <g:link mapping="managecampaign" params="[country_code: project.country.countryCode,category : project.fundsRecievedBy, id: project.id, title:project.title]">
                 <div class="imageWithTag">
                     <div class="under">
                         <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}">

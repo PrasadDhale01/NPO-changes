@@ -119,7 +119,31 @@ class ProjectController {
 		def allTeamsList = new ArrayList();
 		def team
 		def teamsList
-		if(ProjectService.allSortedTeams.empty){
+		
+		if (request.xhr) {
+			if(ProjectService.allSortedTeams.isEmpty()) {
+				List campaignsorts = projectService.isCampaignsorts(sorts, country_code)
+				for(Project prj : campaignsorts) {
+					team = projectService.getTeamList(prj,"allSortedTeams")   // if static array list is empty then it first fetch from database
+					teamsList = team.toList()
+				}
+
+			} else {
+				team = ProjectService.allSortedTeams    // if static array list is  not empty then it  fetch from static arraylist
+				teamsList = team.toList()
+			}
+		} else {
+
+			ProjectService.allSortedTeams.clear();
+
+			List campaignsorts = projectService.isCampaignsorts(sorts, country_code)
+			for(Project prj : campaignsorts) {
+				 team = projectService.getTeamList(prj,"allSortedTeams")   // if static array list is empty then it first fetch from database
+				 teamsList = team.toList()
+			 }
+		}
+		
+		if(ProjectService.allSortedTeams.isEmpty()) {
 			List campaignsorts = projectService.isCampaignsorts(sorts, country_code)
 			for(Project prj : campaignsorts){
 				team = projectService.getTeamList(prj,"allSortedTeams")         // if static array list is empty then it first fetch from database
@@ -133,14 +157,14 @@ class ProjectController {
 		if(!ProjectService.allSortedTeams.empty){
 			teamsList.sort{a,b-> b.percentage<=>a.percentage}
 	
-			use(PaginateableList){
+			use(PaginateableList) {
 				allTeamsList = teamsList.toList()
 				def to = params.int('currentPageNumber') * 6;
 				allTeamsList= allTeamsList.paginate(params.pageSize, to)
 			}
 		}
-		if(params.currentPageNumber==0){
-			if(allTeamsList.size()<1){
+		if(params.currentPageNumber==0) {
+			if(allTeamsList.size()<1) {
 				flash.catmessage="No campaign found."
 				render (view: 'list/new-index', model: [projects: allTeamsList,sorts: sorts.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions,country_code:country_code,query:sorts])
 			} else {
@@ -167,30 +191,31 @@ class ProjectController {
 		def selectedCategory = "All Categories"
 		def team
 		def teamsList
-		if(ProjectService.allTeams.empty){
+		
+		if(ProjectService.allTeams.isEmpty()) {
 			def projects = projectService.getValidatedProjectsByPercentage(country_code)//projectService.getValidatedProjects(currentEnv)
 			for(Project prj : projects){
-					team = projectService.getTeamList(prj,"allTeams")         // if static array list is empty then it first fetch from database
+					team = projectService.getTeamList(prj,"allTeams")   // if static array list is empty then it first fetch from database
 					teamsList = team.toList()
 			}
 
 		}else{
-			team = ProjectService.allTeams					 // if static array list is  not empty then it  fetch from static arraylist
+			team = ProjectService.allTeams	// if static array list is  not empty then it  fetch from static arraylist
 			teamsList = team.toList()
 		}
 
 		teamsList.sort{a,b-> b.percentage<=>a.percentage}
 		
-			def allTeamsList = new ArrayList();
+		def allTeamsList = new ArrayList();
 		use(PaginateableList){
 			allTeamsList = teamsList.toList()
-			println("pageSize : "+ params.pageSize+ " currentPageNumber : "+ params.currentPageNumber )
+			/*println("pageSize : "+ params.pageSize+ " currentPageNumber : "+ params.currentPageNumber )*/
 			def to = params.int('currentPageNumber') * 6;
 			allTeamsList= allTeamsList.paginate(params.pageSize, to)
 		}
 		
-		if(params.currentPageNumber==0){
-			if(allTeamsList.size()<1){
+		if(params.currentPageNumber == 0) {
+			if(allTeamsList.isEmpty()) {
 				flash.catmessage="There are no campaigns"
 				render (view: 'list/new-index', model: [countryOptions: countryOptions, sortsOptions: sortsOptions,discoverLeftCategoryOptions: discoverLeftCategoryOptions])
 			}else {
@@ -198,7 +223,7 @@ class ProjectController {
 														discoverLeftCategoryOptions:discoverLeftCategoryOptions,currentPageNumber:currentPageNumber,pageSize:pageSize,country_code:country_code,isDeviceMobileOrTab:isDeviceMobileOrTab])
 
 			}
-		}else {
+		} else {
 			render (template: 'list/new-grid', model: [projects: allTeamsList,selectedCategory: selectedCategory, currentEnv: currentEnv, countryOptions: countryOptions, sortsOptions: sortsOptions,
 												   discoverLeftCategoryOptions:discoverLeftCategoryOptions,currentPageNumber:params.currentPageNumber,pageSize:params.pageSize,country_code:country_code,isDeviceMobileOrTab:isDeviceMobileOrTab])
 		}
@@ -206,12 +231,12 @@ class ProjectController {
 
 	@Category(List) // From Colin Harrington's post
 	class PaginateableList {
-		List paginate(max, offset=0 )
-		{
-			println("max:=="+ max)
+		List paginate(max, offset=0 ) {
+			
+			/*println("max:=="+ max)
 			print("offset:=="+ offset)
 			println("Hello1 "+Math.min( offset as Integer, this.size() ))
-			println("Hello2 "+Math.min( (offset as Integer) + (max as Integer), this.size() ))
+			println("Hello2 "+Math.min( (offset as Integer) + (max as Integer), this.size() ))*/
 
 			((max as Integer) <= 0 || (offset as Integer) < 0) ? [] : this.subList( Math.min( offset as Integer, this.size() ), Math.min( (offset as Integer) + (max as Integer), this.size() ) )
 		}
@@ -282,7 +307,7 @@ class ProjectController {
 		}
 		Project project = projectService.getProjectById(projectId)
 		
-		def country_code = project.country.countryCode
+		def country_code = project?.country?.countryCode
 		
 		redirect (action:'show', params:['projectTitle':params.projectTitle,'country_code':country_code.toLowerCase()]);
 	}
@@ -292,7 +317,7 @@ class ProjectController {
 		def projectId
 		def username
 		country_code = params.country_code
-		if (params?.projectTitle){
+		if (params?.projectTitle) {
 			projectId = projectService.getProjectIdFromVanityTitle(params?.projectTitle)
 		} else {
 			projectId = params?.id
@@ -978,7 +1003,7 @@ class ProjectController {
 			project.country = country
 			project.fundsRecievedBy = "NGO";
 
-            if (params.usedFor == 'SOCIAL_NEEDS'){
+            if (params.usedFor == 'SOCIAL_NEEDS') {
                 project.hashtags = '#Social-Innovtion'
             } else if (params.usedFor == 'PERSONAL_NEEDS'){
                 project.hashtags = '#Personal-Needs'
@@ -994,7 +1019,7 @@ class ProjectController {
 				project.payuStatus = true
 			}
 			
-			if(project.save(failOnError: true)){
+			if(project.save(failOnError: true)) {
                 projectTitle = (project.customVanityUrl)? projectService.getCustomVanityUrl(project) : projectService.getProjectVanityTitle(project)
                 projectService.getFundRaisersForTeam(project, user)
                 projectService.getdefaultAdmin(project, user)

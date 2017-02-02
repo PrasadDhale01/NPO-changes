@@ -26,16 +26,20 @@ import org.apache.http.client.HttpClient
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
-
 import org.hibernate.Session
 import org.hibernate.SessionFactory
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.model.*
+
 import grails.util.Environment
 import groovy.json.JsonSlurper
 import static java.util.Calendar.*
+
 import org.apache.http.util.EntityUtils
 import org.jets3t.service.security.AWSCredentials
+
 /*Merging Master branch changes*/
 class ProjectService {
     def userService
@@ -50,6 +54,7 @@ class ProjectService {
     def roleService
     
     SessionFactory sessionFactory;
+	
 	@Lazy
 	private static List<Team> allTeams = new ArrayList<Team>()
 	
@@ -1692,9 +1697,8 @@ class ProjectService {
 		sortIndiaCampaign = indiaOpenCampaign.sort {contributionService.getPercentageContributionForProject(it)}
 		sortUsCampaign = usOpenCampaign.sort {contributionService.getPercentageContributionForProject(it)}
 		finalList = sortIndiaCampaign.reverse() + sortUsCampaign.reverse() + indiaEndedCampaign.reverse() + usEndedCampaign.reverse()
+
 		return finalList
-		
-        return finalList
     }
     
     def getValidatedProjectsByPercentage(def country_code) {
@@ -1748,15 +1752,17 @@ class ProjectService {
 				(project.payuStatus) ? indiaOpenCampaign.add(project) : usOpenCampaign.add(project)
 			}
 		}
-		indiaEndedCampaign = indiaEndedCampaign.sort {contributionService.getPercentageContributionForProject(it)}
+		
+		/*indiaEndedCampaign = indiaEndedCampaign.sort {contributionService.getPercentageContributionForProject(it)}
 		usEndedCampaign = usEndedCampaign.sort {contributionService.getPercentageContributionForProject(it)}
 		sortIndiaCampaign = indiaOpenCampaign.sort {contributionService.getPercentageContributionForProject(it)}
-		sortUsCampaign = usOpenCampaign.sort {contributionService.getPercentageContributionForProject(it)}
+		sortUsCampaign = usOpenCampaign.sort {contributionService.getPercentageContributionForProject(it)}*/
+		
 		finalList = sortIndiaCampaign.reverse() + sortUsCampaign.reverse() + indiaEndedCampaign.reverse() + usEndedCampaign.reverse()
         
-        finalList.each{
+        finalList.each {
             def percentage = contributionService.getPercentageContributionForProject(it)
-            if(percentage >= 17){
+            if(percentage >= 17) {
                 sortedCampaignByPercentage.add(it)
             }
         }
@@ -1764,10 +1770,10 @@ class ProjectService {
         
     }
 
-    def isPayuProject(Project project){
-		if(project.payuStatus==true){
+    def isPayuProject(Project project) {
+		if(project.payuStatus==true) {
 			return true
-		}else{
+		} else {
 		   return false
 		}
 	}
@@ -3331,19 +3337,14 @@ class ProjectService {
     def getProjectVanityTitle(Project project) {
         def projectTitle = project?.title.trim()
         def title = projectTitle.replaceAll("[^a-zA-Z0-9]", "-")
-        def list = VanityTitle.list()
-        List result = []
-        def vanitytitle
-        list.each{
-            if (it?.title.equalsIgnoreCase(title)) {
-                result.add(it)
-            }
-        }
+		
+		Long rowCount = (Long) VanityTitle.createCriteria().add(Restrictions.eq("title", title)).setProjection(Projections.rowCount()).uniqueResult();
 
-        if (result.isEmpty()){
+		def vanitytitle
+        if (rowCount.intValue() == 0) {
 			vanitytitle = title
-        }else{
-            vanitytitle = title+"-"+result.size()
+        } else {
+            vanitytitle = title+"-"+rowCount.intValue()
         }
 
         new VanityTitle(
@@ -3357,11 +3358,10 @@ class ProjectService {
     }
 	
     def getCustomVanityUrl(Project project){
-        def projectCustomVanity = project.customVanityUrl.trim()
-        def title = projectCustomVanity.replaceAll("[^a-zA-Z0-9]", "-")
+        def title = project.customVanityUrl.trim()
         def result = VanityTitle.findByVanityTitle(title)
 
-        if (!result){
+        if (!result) {
             new VanityTitle(
                project:project,
                projectTitle:title,
@@ -3373,28 +3373,24 @@ class ProjectService {
         return title
     }
 
-    def getVanityTitleFromId(def projectId){
+    def getVanityTitleFromId(def projectId) {
         def vanity_title
         def project = Project.get(projectId)
-		def title
-        if(project){
-            def status = false
-            if (project?.customVanityUrl){
-                VanityTitle vanitytitle = VanityTitle.findByVanityTitle(project?.customVanityUrl.trim())
-                title = (vanitytitle) ? project?.customVanityUrl.trim() : project?.title.trim()
-            } else {
-                title = project?.title.trim()
-            }
-            vanity_title= title?.replaceAll("[^a-zA-Z0-9]", "-")
-            def vanity = VanityTitle.findAllWhere(project:project)
-            vanity.each{
-                if (it?.title.equals(vanity_title)){
-                    status = true
-                    vanity_title = it?.vanityTitle
-                }
-            }
-            if (!status)
-                vanity_title = getProjectVanityTitle(project)
+		VanityTitle vanitytitle;
+		
+        if(project) {
+            
+			if (project?.customVanityUrl) {
+                vanitytitle = VanityTitle.findByVanityTitle(project?.customVanityUrl.trim())
+            } 
+			
+			if (vanitytitle) {
+				vanity_title = vanitytitle?.vanityTitle
+			} else {
+				List<VanityTitle> vanityTitles = VanityTitle.findAllWhere(project:project)
+				vanitytitle = vanityTitles?.last();
+				vanity_title = vanitytitle?.vanityTitle;
+			}
         }
         return vanity_title
     }
@@ -6927,10 +6923,59 @@ class ProjectService {
 	    
 		teams.each{ team ->
 
-			def percentage = contributionService.getPercentageContributionForTeam(project?.country?.countryCode, team, project?.country?.currency?.dollar)
+			def amount = 0;
+			def percentage = 0;
+
+			if (project?.user?.id == team?.user?.id) {
+				amount = getDataType(project.amount)
+
+				if(team.contributions == null){
+					team["contributions"] = 0
+				} else {
+
+					if ('in'.equalsIgnoreCase(project?.country?.countryCode)) {
+						team["contributions"] = project.contributions.sum {
+							if ('usd'.equalsIgnoreCase(it?.currency)) {
+								it?.amount * project.country?.currency?.dollar
+							} else {
+								(it?.amount != null) ? it?.amount : 0
+							}
+						}
+					} else {
+						team["contributions"] = project.contributions.sum {
+							(it?.amount != null) ? it?.amount : 0
+						}
+					}
+				}
+
+				percentage = contributionService.getPercentageContributionForProject(team["contributions"], project)
+			} else {
+				amount = getDataType(team.amount)
+
+				if(team.contributions == null){
+					team["contributions"] = 0
+				} else {
+
+					if ('in'.equalsIgnoreCase(project?.country?.countryCode)) {
+						team["contributions"] = team.contributions.sum {
+							if ('usd'.equalsIgnoreCase(it?.currency)) {
+								it?.amount * project.country?.currency?.dollar
+							} else {
+								(it?.amount != null) ? it?.amount : 0
+							}
+						}
+					} else {
+						team["contributions"] = team.contributions.sum {
+							(it?.amount != null) ? it?.amount : 0
+						}
+					}
+				}
+				
+				percentage = contributionService.getPercentageContributionForTeam(team["contributions"], team);
+			}
 			
 			def ended = isProjectDeadlineCrossed(project)
-			def amount = getDataType(team.amount)
+
 			def imageLink = getProjectImageLink(project)
 			def remainingDay = getRemainingDay(project)
 			def isAdminOrBeneficiary = userService.isCampaignBeneficiaryOrAdmin(project, team.user)
@@ -6943,26 +6988,6 @@ class ProjectService {
 			def countryCode = project.country.countryCode
 			def userName = userService.getVanityNameFromUsername(team?.user?.username, team?.id)
 			
-			
-			if(team.contributions == null){
-				team["contributions"] = 0
-			} else {
-				
-				if ('in'.equalsIgnoreCase(project?.country?.countryCode)) {
-					team["contributions"] = team.contributions.sum{
-						if ('usd'.equalsIgnoreCase(it?.currency)) {
-							it?.amount * project.country?.currency?.dollar
-						} else {
-							(it?.amount != null) ? it?.amount : 0
-						}
-					}
-				} else {
-					team["contributions"] = team.contributions.sum{ 
-						(it?.amount != null) ? it?.amount : 0
-					}
-				}
-			}
-
 			//team["contributions"] = team.contributions.sum{ (it?.amount != null)?it?.amount:0}
 			team["percentage"] = percentage;
 			team["ended"] = ended;

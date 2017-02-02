@@ -307,7 +307,7 @@ class ProjectController {
 		}
 		Project project = projectService.getProjectById(projectId)
 		
-		def country_code = project.country.countryCode
+		def country_code = project?.country?.countryCode
 		
 		redirect (action:'show', params:['projectTitle':params.projectTitle,'country_code':country_code.toLowerCase()]);
 	}
@@ -317,7 +317,7 @@ class ProjectController {
 		def projectId
 		def username
 		country_code = params.country_code
-		if (params?.projectTitle){
+		if (params?.projectTitle) {
 			projectId = projectService.getProjectIdFromVanityTitle(params?.projectTitle)
 		} else {
 			projectId = params?.id
@@ -1003,7 +1003,7 @@ class ProjectController {
 			project.country = country
 			project.fundsRecievedBy = "NGO";
 
-            if (params.usedFor == 'SOCIAL_NEEDS'){
+            if (params.usedFor == 'SOCIAL_NEEDS') {
                 project.hashtags = '#Social-Innovtion'
             } else if (params.usedFor == 'PERSONAL_NEEDS'){
                 project.hashtags = '#Personal-Needs'
@@ -1019,7 +1019,7 @@ class ProjectController {
 				project.payuStatus = true
 			}
 			
-			if(project.save(failOnError: true)){
+			if(project.save(failOnError: true)) {
                 projectTitle = (project.customVanityUrl)? projectService.getCustomVanityUrl(project) : projectService.getProjectVanityTitle(project)
                 projectService.getFundRaisersForTeam(project, user)
                 projectService.getdefaultAdmin(project, user)

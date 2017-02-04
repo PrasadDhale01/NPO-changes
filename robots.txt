@@ -1,5 +1,4 @@
 User-agent: *
-Disallow: /cdn-cgi/
 Disallow:https://gocrowdera.com/us/non-profit/Building-Character---Training-Blackbelts-20824/MACDA-1204
 Disallow:https://gocrowdera.com/us/non-profit/Building-Character---Training-Blackbelts-22268/MACDA-1204
 Disallow:https://gocrowdera.com/us/non-profit/Building-Character---Training-Blackbelts-21740/MACDA-1204

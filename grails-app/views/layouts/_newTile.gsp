@@ -91,7 +91,7 @@
         <div class="caption tile-title-descrp project-title project-story-span tile-min-height">
 
             <g:link  mapping="showCampaign" params="[country_code:project.countryCode.toLowerCase(),projectTitle:project.title,fr:project.username,category:project.fundsRecievedBy.toLowerCase()]">
-                ${project.title.toUpperCase()}
+                ${project.projectTitle.toUpperCase()}
             </g:link>
             <div class="campaign-title-margin-bottom"></div>
             <span>${project.description}</span>

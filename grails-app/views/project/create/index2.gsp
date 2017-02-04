@@ -966,7 +966,7 @@
                     </div>
                 <div class="col-sm-12 padding-tax-reciept-xs col-tax-reciept-panel <g:if test="${!project.offeringTaxReciept}">col-reciept-display-none</g:if>">
                     <div class="cr-spend-matrix">
-                         <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Donation receipts</span></label>
+                         <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font donation-font">Donation Receipts</span></label>
                          <label class="col-md-10 col-sm-9 hidden-xs cr-panel-spend-matrix-guide">
                          </label>
                     </div>

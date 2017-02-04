@@ -349,7 +349,7 @@
                         </div>
 <%--                        <div class="rightBorder-logo"></div>--%>
                     </div>
-                    <div class="collapse navbar-collapse col-lg-8 col-sm-8 col-md-8 show-header-tabsmanage show-tabsDesktop-headers">
+                    <div class="collapse navbar-collapse col-lg-8 col-sm-8 col-md-8 show-header-tabsmanage show-tabsDesktop-headers new-nav-align">
                         <ul class="nav nav-pills nav-justified nav-justi sh-tabs show-pages-width">
                                               
                         <li><span class="active show-tbs-right-borders  hidden-xs">

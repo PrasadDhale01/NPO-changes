@@ -4900,11 +4900,11 @@ a.customer-support-a {
     color: #686868 !important;
     padding-right: 2px;
 }
-.contribution-inr .fa-inr {
-    font-size: large !important;
-    color: #686868 !important;
-    padding-right: 2px;
-}
+/* .contribution-inr .fa-inr { */
+/*     font-size: large !important; */
+/*     color: #686868 !important; */
+/*     padding-right: 2px; */
+/* } */
 .tile-goal-show .fa-inr {
     font-size: 20px !important;
     color: #686868 !important;
@@ -12339,10 +12339,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    font-weight: 300;
 	    line-height: 0;
     }
-    .contribution-inr .fa-inr {
-        font-size: 15px !important;
-        color: #686868 !important;
-    }
+/*     .contribution-inr .fa-inr { */
+/*         font-size: 15px !important; */
+/*         color: #686868 !important; */
+/*     } */
     b.subBoldHeading {
         font-size: 20px;
     }
@@ -12913,10 +12913,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.container.crewpage > h1 {
         text-align: center;
     }
-    .contribution-inr .fa-inr {
-        font-size: 15px !important;
-        color: #686868 !important;
-    }
+/*     .contribution-inr .fa-inr { */
+/*         font-size: 15px !important; */
+/*         color: #686868 !important; */
+/*     } */
     #page-content-wrapper {
         padding: 15px 0 15px 0;
     }

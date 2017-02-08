@@ -4709,7 +4709,7 @@ class ProjectService {
 	}
 
     def isCustomUrUnique(def vanityUrl, def projectId){
-        List title = VanityTitle.list()
+        /*List title = VanityTitle.list()
         Project project = Project.get(projectId)
         def status = true
         title.each {
@@ -4718,7 +4718,13 @@ class ProjectService {
                     status = false
             }
         }
-        return status
+        return status*/
+		
+		Long rowCount = (Long) VanityTitle.createCriteria().add(Restrictions.ne("project.id", projectId))
+						.add(Restrictions.eq("vanityTitle", vanityUrl))
+						.createAlias("project", "project").setProjection(Projections.rowCount()).uniqueResult();
+		
+		return (rowCount.intValue() == 0) ? true : false;
     }
 	
 	def getShippingInfo(def params){

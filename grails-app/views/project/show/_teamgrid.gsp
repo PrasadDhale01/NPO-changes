@@ -18,7 +18,7 @@
     </g:if>
 </div>
 
-<script data-cfasync="true">
+<script>
     $('.showmoreteams a').click(function(event) {
         event.preventDefault();
         var url = $(this).attr('href');

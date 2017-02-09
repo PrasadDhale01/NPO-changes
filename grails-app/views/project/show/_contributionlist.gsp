@@ -400,7 +400,7 @@
 <div class="contributionPaginate" id="contributionPaginate">
     <g:paginate controller="project" max="12" action="contributionList" maxsteps="5" total="${totalContributions.size()}" params="['projectId':projectId,'fr': vanityUsername]"/>
 </div>
- <script data-cfasync="false">
+ <script data-cfasync="true">
     $('#contributions-mobile, #contributions').find("#contributionList").find('.contributionPaginate a').click(function(event) {
         event.preventDefault();
         var url = $(this).attr('href');

@@ -9,6 +9,13 @@
     <g:hiddenField name="countryField" id="countryField" value="US"/>
     <g:hiddenField name="zipField" id="zipField" value=""/>
     <g:hiddenField name="otherField" id="otherField" value=""/>
+    
+    <%
+		String recepientName;
+		if (user) {
+			recepientName = user?.firstName + " " + user?.lastName
+		}
+	 %>
 
     <div class="col-md-4">
         <g:if test="${flash.amt_message}">
@@ -63,7 +70,7 @@
                  		<div class="col-md-12 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <div class="input-group col-md-12">
-                                    <input class="form-control" type="text" placeholder="Full Name" name="receiptName" id="receiptName" value="${user?.firstName} ${user?.lastName}">
+                                    <input class="form-control" type="text" placeholder="Full Name" name="receiptName" id="receiptName" value="${recepientName}">
                                 </div>
                             </div>
                         </div>

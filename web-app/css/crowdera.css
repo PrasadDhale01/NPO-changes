@@ -9772,8 +9772,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		word-wrap: break-word;
 	}
 	.discover-inner-container {
-		padding-left: 10px !important;
-		padding-right: 10px !important;
+		padding: 10px !important;
 		width: 750px !important;
 	}
 	.TW-discover-bannerheadbtmMargin b {
@@ -11746,8 +11745,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
             width: 10.5% !important;
 	}
 	.discover-inner-container {
-	   padding-left: 15px !important;
-	   padding-right: 15px !important;
+	   padding: 15px !important;
 	   width: 1170px !important;
 	}
 	.TW-dis-tab-padding {
@@ -11770,7 +11768,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1920px){
-	
+	.discover-inner-container {
+	   padding: 15px !important;
+	   width: 96% !important;
+	   position: relative;
+	}
     .chooseHomePageCampaign .dropdown-menu.open ul{
         max-height: 140px !important;
         min-height: 140px !important;
@@ -12398,9 +12400,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         left: 293px;
     }
 	.discover-inner-container {
-	   padding-left: 15px !important;
-	   padding-right: 15px !important;
-	   width: 1170px !important;
+	   padding: 15px !important;
+	   width: 96% !important;
 	}
 	.TW-dis-tab-padding {
 	   padding-left: 0;
@@ -12725,8 +12726,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		font-size: 12px !important;
 	}
 	.discover-inner-container {
-		padding-left: 10px !important;
-		padding-right: 10px !important;
+		padding: 10px !important;
 		width: 995px !important;
 	}
 	.TW-discover-select-width{
@@ -18468,8 +18468,7 @@ textarea.textarea-embed-video {
 	width:100%;
 }
 .discover-inner-container {
-	padding-left: 15px !important;
-	padding-right: 15px !important;
+	padding: 15px !important;
 	width: 100%;
 }
 .TW-dis-tab-padding{
@@ -18541,6 +18540,7 @@ textarea.textarea-embed-video {
 	display:-webkit-inline-flex;   /*** chrome ***/
 	margin-top: 0px;
 	width: 100%;
+	height: 100% !important;
 }
 .left-select-margin{
 	margin-left:6px;
@@ -18829,6 +18829,7 @@ a#downloadEbook{
 }
 .TW-discover-header-img > img {
     width: 100%;
+    height: 100% !important;
 }
 .scrollHeader{
 /* 	display:none; */
@@ -20296,7 +20297,7 @@ a.newCreatebtn{
 }
 
 span.btnSpan{
-	margin-top: 8px !important;
+	margin-top: 10px !important;
 	font-size: 16px !important;
 }
 
@@ -20330,7 +20331,7 @@ img.nav-lineHeigh{
 }
  
 li.nav-lineHeig{
-    padding-top: 7px;
+    padding-top: 9px;
     padding-right: 12px;
 }
  
@@ -20432,4 +20433,3 @@ tr.payTransacrow td{
 	left: 0 !important;
     padding-left: 10px !important;
 }
- 

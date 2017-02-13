@@ -208,6 +208,8 @@ class HomeController {
             
             switch(params.device){
                 case 'desktop':
+			        render template:'/layouts/header', model:model
+                break;
                 case 'tab':
                     render template:'/layouts/header', model:model
                 break;

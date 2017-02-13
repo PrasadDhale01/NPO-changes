@@ -1085,7 +1085,7 @@
                                 <input type="checkbox" name="tax-reciept-checkbox" id="tax-reciept-checkbox" class="tax-reciept-checkbox" <g:if test="${project.offeringTaxReciept}">checked="checked"</g:if>>
                                 Do you want to offer donation receipt to your contributors?
                             </div>
-                            <g:if test="${'in'.equalsIgnoreCase(country_code)}">
+                            <g:if test="${'in'.equalsIgnoreCase(country_code) && !project.validated}">
                         	   <div class="question-ans question-ans-1 form-group answerNine">
                         	   <g:if test="${project.paypalEmail}">
                         			<input type="checkbox" name="ans9" id="crowdera-email" checked>

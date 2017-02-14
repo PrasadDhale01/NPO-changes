@@ -106,7 +106,7 @@
 	            <div id="demo1" class="collapse">
 	    			<ul class="allCategoriesSortd allCategoriesSortbyMobile">
 	                      <li>
-	                         <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Live']">Recently Launched</g:link>  
+	                         <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Live']">Live</g:link>  
 	                      </li>
 	                      <li>
 	                      	<g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Latest']">Trending</g:link>  
@@ -166,7 +166,7 @@
             	   </div>
                    <ul class="allCategoriesSortd nevlftSortby">
                       <li>
-                         <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Live']">Recently Launched</g:link>  
+                         <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Live']">Live</g:link>  
                       </li>
                       <li>
                       	 <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Latest']">Trending</g:link>  

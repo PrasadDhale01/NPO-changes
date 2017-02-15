@@ -1347,7 +1347,7 @@ class ProjectService {
             projects.each {project ->
                 def percentage = contributionService.getPercentageContributionForProject(project)
                 boolean ended = isProjectDeadlineCrossed(project)
-                if(percentage >= 25 && (project.validated && ended == false)){
+                if(percentage <= 16 && (project.validated && ended == false)){
                     p.add(project)
                 }
             }
@@ -5219,9 +5219,11 @@ class ProjectService {
                 break;
             case 'Deleted':
                 if(country == "INDIA"){
-                    projects = Project.findAllWhere(payuStatus: true, inactive: true)
+                    def projectList = Project.findAllWhere(payuStatus: true, inactive: true)
+                    projects = projectList.title.sort{it.toLowerCase()}
                 }else if( country == 'USA'){
-                     projects = Project.findAllWhere(payuStatus: false, inactive: true)
+                    def projectList = Project.findAllWhere(payuStatus: false, inactive: true)
+                    projects = projectList.title.sort{it.toLowerCase()}
                 }
             break;
             default :

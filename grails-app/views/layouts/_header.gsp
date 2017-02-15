@@ -20,7 +20,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="${resource(dir: '/')}">
-                <img src="https://s3.amazonaws.com/crowdera/assets/crowdera-logo.png" class="nav-lineHeigh" alt="Crowdera">
+                <img src="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png" class="nav-lineHeigh" alt="Crowdera">
             </a>
         </div>
         <div class="navbar-collapse collapse" id="TW-navbar-collapse">
@@ -34,7 +34,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                 <li class="searchengine searchPadding hidden-xs nav-lineHeight">
                     <form action="${country_code}/campaign" name="SearchForm">
                         <div class="inner-addon left-addon search-icon-header search-image-header">
-                           <img src="https://s3.amazonaws.com/crowdera/assets/search-icon.png" alt="search" class="trigger  nav-lineHeight" id="trigger" onclick="toggleSearch();">
+                           <img src="//s3.amazonaws.com/crowdera/assets/search-icon.png" alt="search" class="trigger  nav-lineHeight" id="trigger" onclick="toggleSearch();">
                            <input type="search" class="form-control form-control-no-border search-box" name="q" value="${params.q}" id="search-bar" placeholder="Search....."/>
                         </div>
                     </form>
@@ -64,7 +64,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                 </li> 
                 <li class="hidden-lg hidden-md hidden-sm hed-font-sizes  nav-lineHeight">
 					<g:link controller="createCampaign" params="[country_code: country_code]" class="nav-item-1">
-                    	<img class="hidden-sm hidden-lg hidden-md" src="https://s3.amazonaws.com/crowdera/assets/create-icon-dropdown.png" alt="create">&nbsp;&nbsp;&nbsp;&nbsp;CREATE  A CAMPAIGN
+                    	<img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/create-icon-dropdown.png" alt="create">&nbsp;&nbsp;&nbsp;&nbsp;CREATE  A CAMPAIGN
                     </g:link>       
                  </li>
             </ul>
@@ -98,7 +98,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                         <g:if test="${userService.isAdmin()}">
                             <ul class="dropdown-menu admin  admin-dropdown dropdown-menu-head admin-selected-drop">
                                 <li><g:link controller="user" action="dashboard">
-                                    <img class="img-circle" src="https://s3.amazonaws.com/crowdera/assets/dropdown-setting-icon.png" alt="setting">&nbsp; Dashboard
+                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-setting-icon.png" alt="setting">&nbsp; Dashboard
                                 </g:link></li>
                                 <sec:ifAllGranted roles="ROLE_AUTHOR">
                                     <li><g:link controller="blog" action="manage">
@@ -110,14 +110,14 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                                 </sec:ifAllGranted>
                                 <li class="divider"></li>
                                 <li><g:link controller="logout">
-                                    <img class="img-circle" src="https://s3.amazonaws.com/crowdera/assets/dropdown-Logout-icon.png" alt="Logout">&nbsp; Log out
+                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-Logout-icon.png" alt="Logout">&nbsp; Log out
                                 </g:link></li>
                             </ul>
                         </g:if>
                         <g:else>
                             <ul class="dropdown-menu usr user-dropdown dropdown-menu-head user-selected-drop">
                                 <li><g:link controller="user" action="dashboard">
-                                    <img class="img-circle" src="https://s3.amazonaws.com/crowdera/assets/dropdown-setting-icon.png" alt="setting">&nbsp;&nbsp;&nbsp;&nbsp; Dashboard
+                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-setting-icon.png" alt="setting">&nbsp;&nbsp;&nbsp;&nbsp; Dashboard
                                 </g:link></li>
                                 <sec:ifAllGranted roles="ROLE_AUTHOR">
                                     <li><g:link controller="blog" action="manage"><span class="glyphicon glyphicon-book"></span> Manage blogs</g:link></li>
@@ -127,7 +127,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                                 </sec:ifAllGranted>
                                 <li class="divider"></li>
                                 <li><g:link controller="logout">
-                                    <img class="img-circle" src="https://s3.amazonaws.com/crowdera/assets/dropdown-Logout-icon.png" alt="Logout">&nbsp;&nbsp;&nbsp;&nbsp; Log out
+                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-Logout-icon.png" alt="Logout">&nbsp;&nbsp;&nbsp;&nbsp; Log out
                                 </g:link></li>
                             </ul>
                         </g:else>

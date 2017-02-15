@@ -66,7 +66,7 @@
         	<div class="row" >
         		<g:render template="list/discoverbanner"></g:render>
         		 <div class="container visible-xs">
-                    <img class="img-responsive mob-discoverBanner" src="//s3.amazonaws.com/crowdera/project-images/178e8473-1d94-46e6-a321-dfab845039d6.jpg" title="Discover banner for Mobile.jpg">
+                    <img class="img-responsive mob-discoverBanner" src="//s3.amazonaws.com/crowdera/project-images/178e8473-1d94-46e6-a321-dfab845039d6.jpg" alt="Discover banner for Mobile.jpg">
                  </div>
         	</div>
         </div>
@@ -78,7 +78,7 @@
 	            <div id="demo" class="collapse">
 	    			<ul class="allCategoriesSortd allCategoriesSortbyMobile">
 	                      <li>
-	                         <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Live']">Recently Launched</g:link>  
+	                         <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Live']">Live</g:link>  
 	                      </li>
 	                      <li>
 	                      	<g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Latest']">Trending</g:link>  
@@ -106,7 +106,7 @@
 	            <div id="demo1" class="collapse">
 	    			<ul class="allCategoriesSortd allCategoriesSortbyMobile">
 	                      <li>
-	                         <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Live']">Recently Launched</g:link>  
+	                         <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Live']">Live</g:link>  
 	                      </li>
 	                      <li>
 	                      	<g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Latest']">Trending</g:link>  
@@ -133,7 +133,7 @@
             --%><div class="row TW-Container-alignment">
             	<div class="col-lg-2 col-xs-12  col-sm-2 hidden-xs hidden-sm hidden-md TW-discover-leftpane-menu TW-discover-pane-width">
             	  <div  class="allCategories">
-            	      <img class="img-responsive " src="//s3.amazonaws.com/crowdera/project-images/0b2f7d15-24ac-4273-9311-67f9e2f7d118.png" title="All-Categories - Icon.png">
+            	      <img class="img-responsive " src="//s3.amazonaws.com/crowdera/project-images/0b2f7d15-24ac-4273-9311-67f9e2f7d118.png" alt="All-Categories - Icon.png">
             	      <p><a href="/campaigns/category/All-Categories">All Categories</a></p>
             	   </div>
             		<ul class="allCategoriesSortd">
@@ -161,12 +161,12 @@
                 </div>
                 <div class="TW-discover-pane-width-right hidden-xs  hidden-sm hidden-md">
                    <div  class="allCategoriesSortby">
-            	      <img class="img-responsive " src="//s3.amazonaws.com/crowdera/project-images/f3f4ec2e-7efc-4cc6-8ec2-f81ed6fa90a1.png" title="Sort-by - Icon.png">
+            	      <img class="img-responsive " src="//s3.amazonaws.com/crowdera/project-images/f3f4ec2e-7efc-4cc6-8ec2-f81ed6fa90a1.png" alt="Sort-by - Icon.png">
             	      <p>Sort By</p>
             	   </div>
                    <ul class="allCategoriesSortd nevlftSortby">
                       <li>
-                         <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Live']">Recently Launched</g:link>  
+                         <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Live']">Live</g:link>  
                       </li>
                       <li>
                       	 <g:link controller="project" action="campaignsSorts" name="sortsForm" method="POST" params="[sorts:'Latest']">Trending</g:link>  

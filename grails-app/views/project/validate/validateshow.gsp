@@ -25,7 +25,7 @@
     <g:hiddenField name="projectamount" value="${project.amount.round()}" id="projectamount"/>
     
         <div id="wrapper">
-
+		<g:if test="${!project.inactive}">
         <!-- Sidebar -->
         <div class="hidden-xs" id="sidebar-wrapper">
             <ul class="sidebar-nav">
@@ -67,10 +67,11 @@
                 </li>
             </ul>
         </div>
+        </g:if>
         <!-- /#sidebar-wrapper -->
         
         <!-- Page Content -->
-        <div id="page-content-wrapper">
+        <div id="page-content-wrapper"  <g:if test="${project.inactive}">class="deletedCamp" </g:if>>
             <div class="container-fluid">
               <div class="col-lg-offset-0 col-md-offset-0 col-lg-12 col-md-12 col-sm-offset-0 col-sm-12 col-xs-12">
                     <div class="alert alert-info text-center" id="validateChecklistmsg">
@@ -103,24 +104,28 @@
                             </div>
                             <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
                         </div>
-                        <g:link action="keepCampaignOnHold" controller="project" id="${project.id}" class="btn btn-sm btn-block btn-default validatebutton TW-text-decoration visible-xs">ON HOLD</g:link>
-                        <g:link controller="project" action="updateValidation" id="${project.id}" class="btn btn-sm btn-block btn-primary validatebutton TW-text-decoration hidden-sm approvebtn-md" role="button">
-                            <i class="glyphicon glyphicon-check validateshow-validate"></i>&nbsp;APPROVE
-                        </g:link>
-                        <g:form action="delete" controller="project" id="${project.id}" method="post">
-                            <button class="validatebtn btn btn-sm btn-danger btn-block validateshow-discard visible-xs" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to reject this campaign?&#39;);"><i class="fa fa-trash-o"></i>&nbsp;REJECT</button>
-                        </g:form>
+                        <g:if test="${!project.inactive}">
+	                        <g:link action="keepCampaignOnHold" controller="project" id="${project.id}" class="btn btn-sm btn-block btn-default validatebutton TW-text-decoration visible-xs">ON HOLD</g:link>
+	                        <g:link controller="project" action="updateValidation" id="${project.id}" class="btn btn-sm btn-block btn-primary validatebutton TW-text-decoration hidden-sm approvebtn-md" role="button">
+	                            <i class="glyphicon glyphicon-check validateshow-validate"></i>&nbsp;APPROVE
+	                        </g:link>
+	                        <g:form action="delete" controller="project" id="${project.id}" method="post">
+	                            <button class="validatebtn btn btn-sm btn-danger btn-block validateshow-discard visible-xs" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to reject this campaign?&#39;);"><i class="fa fa-trash-o"></i>&nbsp;REJECT</button>
+	                        </g:form>                        
+	                    </g:if>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <g:render template="/layouts/personaldetails"/>
-                        <g:link action="keepCampaignOnHold" controller="project" id="${project.id}" class="btn btn-sm btn-block btn-default validatebutton TW-text-decoration hidden-xs">ON HOLD</g:link>
-                        <g:link controller="project" action="updateValidation" id="${project.id}" class="visible-sm btn btn-sm btn-block btn-primary validatebutton TW-text-decoration approvebtn-sm" role="button">
-                            <i class="glyphicon glyphicon-check validateshow-validate"></i>&nbsp;APPROVE
-                        </g:link>
-                        
-                        <g:form action="delete" controller="project" id="${project.id}" method="post">
-                            <button class="validatebtn btn btn-sm btn-danger btn-block validateshow-discard visible-sm" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to reject this campaign?&#39;);"><i class="fa fa-trash-o"></i>&nbsp;REJECT</button>
-                        </g:form>
+                        <g:if test="${!project.inactive}">
+	                        <g:link action="keepCampaignOnHold" controller="project" id="${project.id}" class="btn btn-sm btn-block btn-default validatebutton TW-text-decoration hidden-xs">ON HOLD</g:link>
+	                        <g:link controller="project" action="updateValidation" id="${project.id}" class="visible-sm btn btn-sm btn-block btn-primary validatebutton TW-text-decoration approvebtn-sm" role="button">
+	                            <i class="glyphicon glyphicon-check validateshow-validate"></i>&nbsp;APPROVE
+	                        </g:link>
+	                        
+	                        <g:form action="delete" controller="project" id="${project.id}" method="post">
+	                            <button class="validatebtn btn btn-sm btn-danger btn-block validateshow-discard visible-sm" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to reject this campaign?&#39;);"><i class="fa fa-trash-o"></i>&nbsp;REJECT</button>
+	                        </g:form>
+	                    </g:if>
                     </div>
                     <div class="clear visible-sm"></div>
                     <div class="col-lg-offset-0 col-lg-4 col-md-4 col-sm-6 col-xs-12">
@@ -210,9 +215,11 @@
                             </div>
 
                         </div>
-                        <g:form action="delete" controller="project" id="${project.id}" method="post">
-                            <button class="validatebtn btn btn-sm btn-danger btn-block hidden-sm hidden-xs validateshow-discard" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to reject this campaign?&#39;);"><i class="fa fa-trash-o"></i>&nbsp;REJECT</button>
-                        </g:form>
+                        <g:if test="${!project.inactive}">
+	                        <g:form action="delete" controller="project" id="${project.id}" method="post">
+	                            <button class="validatebtn btn btn-sm btn-danger btn-block hidden-sm hidden-xs validateshow-discard" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to reject this campaign?&#39;);"><i class="fa fa-trash-o"></i>&nbsp;REJECT</button>
+	                        </g:form>
+                        </g:if>
                     </div>
                     <div class="col-lg-offset-0 col-lg-4 col-md-4 col-sm-6 col-xs-12 visible-sm">
                         <div class="panel panel-default organization-panel org-panel-4 org-padding">
@@ -346,6 +353,7 @@
                     </div>
                 </div>
                 
+                <g:if test="${!project.inactive}">
                 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 side-bar-top visible-xs">
                     <div class="panel panel-default validate-side-bar" id="validate-side-bar">
                         <div class="form-group">
@@ -386,6 +394,7 @@
                         </div>
                     </div>
                 </div>
+                </g:if>
             </div>
         
         </div>

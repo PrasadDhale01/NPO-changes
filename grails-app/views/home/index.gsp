@@ -109,8 +109,6 @@
     </div>
     <script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
 --%>
-<%--Adding interakt code--%>
-    <g:render template="/layouts/interakt"/>
 
 </body>
 </html>

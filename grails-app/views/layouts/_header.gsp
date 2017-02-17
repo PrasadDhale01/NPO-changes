@@ -32,7 +32,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
 				</li>
                 <li class="learn newHowit  nav-lineHeight"><a href="${resource(dir: '/howitworks')}" class="learnNewheader nav-text3 hm-back-width hed-font-sizes newHeaferfont"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/learn-icon-dropdowns.png" alt="learn">&nbsp;&nbsp;&nbsp;&nbsp;HOW IT WORKS</a></li>
                 <li class="searchengine searchPadding hidden-xs nav-lineHeight">
-                    <form action="${country_code}/campaign" name="SearchForm">
+                    <form action="/campaign" name="SearchForm">
                         <div class="inner-addon left-addon search-icon-header search-image-header">
                            <img src="//s3.amazonaws.com/crowdera/assets/search-icon.png" alt="search" class="trigger  nav-lineHeight" id="trigger" onclick="toggleSearch();">
                            <input type="search" class="form-control form-control-no-border search-box" name="q" value="${params.q}" id="search-bar" placeholder="Search....."/>
@@ -41,7 +41,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                 </li>
                 
                 <li class="hidden-lg hidden-md hidden-sm search-mob  nav-lineHeight">
-                    <form action="${country_code}/campaign"  name="searchableForm">
+                    <form action="/campaign"  name="searchableForm">
                         <span class="form-group inner-addon left-addon">
                             <i class="glyphicon glyphicon-search search-glyph-icon"></i>
                             <input type="search" name="q" class="form-control form-control-no-border search-box-xs" value="${params.q}" placeholder="Search.....">

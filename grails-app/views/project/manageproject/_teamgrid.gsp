@@ -12,10 +12,10 @@
 
 <div class="showmoreteams manage-teamgridTabs col-md-12 col-sm-12 col-xs-12">
     <g:if test="${totalteams.size() > teamOffset}">
-        <g:link class="btn btn-primary btn-sm showteambtn" action="teamList" controller="project" params="['teamOffset': teamOffset, 'projectId':projectId]">Show more</g:link>
+        <g:link class="btn btn-primary btn-sm showteambtn" action="teamList" controller="project" params="['teamOffset': teamOffset, 'projectId':projectId]">Show More</g:link>
     </g:if>
 </div>
-<script>
+<script data-cfasync="false">
     $('.showmoreteams a').click(function(event) {
         event.preventDefault();
         var url = $(this).attr('href');

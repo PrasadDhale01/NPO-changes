@@ -14,11 +14,11 @@
 
 <div class="showmoreteams col-md-4 col-sm-6 col-xs-12 text-center">
     <g:if test="${totalteams.size() > teamOffset}">
-        <g:link class="btn btn-primary btn-sm showteambtn" action="teamsList" controller="project" params="['teamOffset': teamOffset, 'projectId':projectId,'fr': vanityUsername]">Show more</g:link>
+        <g:link class="btn btn-primary btn-sm showteambtn" action="teamsList" controller="project" params="['teamOffset': teamOffset, 'projectId':projectId,'fr': vanityUsername]">Show More</g:link>
     </g:if>
 </div>
 
-<script>
+<script data-cfasync="false">
     $('.showmoreteams a').click(function(event) {
         event.preventDefault();
         var url = $(this).attr('href');

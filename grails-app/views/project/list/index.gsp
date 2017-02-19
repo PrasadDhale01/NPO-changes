@@ -63,7 +63,7 @@
 					    </g:each>
 					</ul>
             </div>
-            <div class="col-md-10 col-lg-12 col-sm-10 col-xs-12 TW-discover-campaign-centering">
+            <div class="col-md-10 col-lg-12 col-sm-10 col-xs-12 container TW-discover-campaign-centering">
                     <g:if test="${flash.catmessage}">
                         <div class="alert alert-danger flashmsg-width">
                             ${flash.catmessage}

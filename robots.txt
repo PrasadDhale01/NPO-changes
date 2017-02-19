@@ -1,15 +1,2 @@
 User-agent: *
-Disallow: /cdn-cgi/
-Disallow:https://gocrowdera.com/us/non-profit/Building-Character---Training-Blackbelts-20824/MACDA-1204
-Disallow:https://gocrowdera.com/us/non-profit/Building-Character---Training-Blackbelts-22268/MACDA-1204
-Disallow:https://gocrowdera.com/us/non-profit/Building-Character---Training-Blackbelts-21740/MACDA-1204
-Disallow:https://gocrowdera.com/us/non-profit/Building-Character---Training-Blackbelts-21229/MACDA-1204
-Disallow:https://gocrowdera.com/US/non-profit/Building-Character---Training-Blackbelts-21230/MACDA-1204
-Disallow:https://gocrowdera.com/us/non-profit/Building-Character---Training-Blackbelts-22763/MACDA-1204
-Disallow:https://gocrowdera.com/US/non-profit/Building-Character---Training-Blackbelts-22965/MACDA-1204
-Disallow:https://gocrowdera.com/in/individual/REDUCE-ON-ROAD-TRAFFIC-AND-AIR-POLLUTION-68097/Bhupinder-1440
-Disallow:https://gocrowdera.com/in/individual/REDUCE-ON-ROAD-TRAFFIC-AND-AIR-POLLUTION-77256/Manish-1422
-Disallow:https://gocrowdera.com/in/individual/REDUCE-ON-ROAD-TRAFFIC-AND-AIR-POLLUTION-76545/Manish-1422
-Disallow:https://gocrowdera.com/2016/07/07/remembering-the-homeland-through-music-movies-parades-at-the-festival-of-globe/
-Disallow:https://gocrowdera.com/IN/ngo?title=To+Organize+A+Bold+Pride+Parade+In+Orange+City+Nagpur&id=2c9f8f3b57c4b3e50158ae8fb11a0025&fr=109688132626896249703
-Disallow:https://gocrowdera.com/IN/ngo?title=To+Organize+A+Bold+Pride+Parade+In+Orange+City+Nagpur&id=2c9f8f3b57c4b3e50158ae8fb11a0025&fr=facebook_1459725211
+Disallow:

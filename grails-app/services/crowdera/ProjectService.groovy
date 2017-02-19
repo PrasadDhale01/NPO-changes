@@ -1347,7 +1347,7 @@ class ProjectService {
             projects.each {project ->
                 def percentage = contributionService.getPercentageContributionForProject(project)
                 boolean ended = isProjectDeadlineCrossed(project)
-                if(percentage <= 16 && (project.validated && ended == false)){
+                if(percentage >= 25 && (project.validated && ended == false)){
                     p.add(project)
                 }
             }
@@ -4709,7 +4709,7 @@ class ProjectService {
 	}
 
     def isCustomUrUnique(def vanityUrl, def projectId){
-        List title = VanityTitle.list()
+        /*List title = VanityTitle.list()
         Project project = Project.get(projectId)
         def status = true
         title.each {
@@ -4718,7 +4718,13 @@ class ProjectService {
                     status = false
             }
         }
-        return status
+        return status*/
+		
+		Long rowCount = (Long) VanityTitle.createCriteria().add(Restrictions.ne("project.id", projectId))
+						.add(Restrictions.eq("vanityTitle", vanityUrl))
+						.createAlias("project", "project").setProjection(Projections.rowCount()).uniqueResult();
+		
+		return (rowCount.intValue() == 0) ? true : false;
     }
 	
 	def getShippingInfo(def params){
@@ -5213,11 +5219,9 @@ class ProjectService {
                 break;
             case 'Deleted':
                 if(country == "INDIA"){
-                    def projectList = Project.findAllWhere(payuStatus: true, inactive: true)
-                    projects = projectList.title.sort{it.toLowerCase()}
+                    projects = Project.findAllWhere(payuStatus: true, inactive: true)
                 }else if( country == 'USA'){
-                    def projectList = Project.findAllWhere(payuStatus: false, inactive: true)
-                    projects = projectList.title.sort{it.toLowerCase()}
+                    projects = Project.findAllWhere(payuStatus: false, inactive: true)
                 }
             break;
             default :

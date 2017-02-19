@@ -5,7 +5,7 @@
                     <div class="col-sm-8">
                         <div class="chooseHomePageCampaign">
                             <g:select class="selectpicker form-control input-lg "
-                                name="deletedCampaign" from="${projects}" id="deletedCampaign"  value="${campaignOne}"
+                                name="deletedCampaign" from="${projects.title.sort{it.toLowerCase()}}" id="deletedCampaign"  value="${campaignOne}"
                                 noSelection="['': 'Please select a campaign to restore ']"/>
                         </div>
                         <div id="campaignStatus"></div>
@@ -17,7 +17,15 @@
             </g:form>
         </div>
     </div>
-        
+<div class="row">
+    <ul class="thumbnails list-unstyled">
+        <g:each in="${projects}" var="project">
+            <li class="col-md-6 col-lg-4 col-sm-6 col-xs-12 text-center validatetile">
+                <g:render template="/layouts/deletedtile" model="['project': project]"></g:render>
+            </li>
+        </g:each>
+    </ul>
+</div>
         
     <script type="text/javascript">
         $(function() {

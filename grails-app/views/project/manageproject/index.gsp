@@ -237,7 +237,71 @@
 							</div>
 							<%--                        <div class="rightBorder-logo"></div>--%>
 						</div>
-						<div class="collapse navbar-collapse col-lg-8 col-sm-8 col-md-8 show-header-tabsmanage show-tabsDesktop-headers">
+						<div class="collapse navbar-collapse col-lg-8 col-sm-8 col-md-8 show-header-tabsmanage show-tabsDesktop-headers new-nav-align">
+						   <ul class="nav nav-pills nav-justified nav-justi sh-tabs show-pages-width">
+                                              
+                        <li><span class="active show-tbs-right-borders  hidden-xs">
+                                <a href="#essentials" data-toggle="tab" class="show-tabs-text show-js-fileA essentials showStoryTemplate show-campaigndetails-font">
+                                    <span class="tab-text hidden-xs"> Story</span>
+                                </a>
+                                <span class="show-ids-header"></span>
+                            </span>
+                        </li>
+                        <g:if test="${!project?.projectUpdates.isEmpty() }">
+                            <li><span class="show-tbs-right-borders hidden-xs">
+                                    <a href="#projectupdates" data-toggle="tab" class="show-tabs-text projectupdates showUpdateTemplate show-campaigndetails-font">
+                                        <span class="tab-text hidden-xs"> Updates</span> 
+                                    </a>
+                                    <span class="show-tabs-count hidden-xs">
+                                        <g:if test="${project?.projectUpdates?.size() > 0}">${project?.projectUpdates?.size()}</g:if>
+                                    </span>
+                                    <span class="show-ids-header"></span>
+                                </span>
+                            </li>
+                        </g:if>
+                        <li><span class="show-tbs-right-borders hidden-xs">
+                                <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text show-js-fileB manageTeam showTeamTemplate ss show-campaigndetails-font">
+                                    <span class="tab-text"> Teams</span>
+                                </a>
+                                <span class="show-tabs-count hidden-xs">
+                                    <g:if test="${project?.teams?.size() > 0}">${project?.teams?.size()}</g:if>
+                                </span>
+                            </span>
+                        </li>
+                        <li><span class="show-tbs-right-borders hidden-xs">
+                                <a href="#rewards" data-toggle="tab"  class="show-tabs-text show-js-fileB manageTeam showTeamTemplate ss show-campaigndetails-font">
+                                    <span class="tab-text"> Perks</span>
+                                </a>
+                                <span class="show-tabs-count hidden-xs">
+                                    <g:if test="${project?.rewards?.size() > 0}">${project?.rewards?.size()}</g:if>
+                                </span>
+                            </span>
+                        </li>
+                        <g:if test="${project.payuStatus}">
+						<li><span class="show-tbs-right-borders hidden-xs">
+								 <a	href="#payments" data-toggle="tab"	class="show-tabs-text show-js-fileB payments ss show-campaigndetails-font">
+											<span class="tab-text">Payments</span>
+									</a> <span class="show-ids-header"></span>
+								</span></li>
+							</g:if>	
+                        <li><span class="show-tbs-right-borders hidden-xs">
+                                <a href="#contributions" data-toggle="tab"  class="show-tabs-text show-js-fileC contributions showContributionTemplate show-campaigndetails-font">
+                                    <span class="tab-text"> Contributions</span>
+                                </a>
+                                <span class="show-tabs-count hidden-xs">
+                                        <g:if test="${totalContributions?.size() > 0}">${totalContributions?.size()}</g:if>
+                                </span>
+                                <span class="show-ids-header"></span>
+                            </span>
+                        </li>
+                        <li><span class="show-comit-lft hidden-xs">
+                                <a href="#essentials" data-toggle="tab"  class="show-tabs-text comments scrollToComment showCommentTemplate show-campaigndetails-font">
+                                    <span class="tab-text hidden-xs"> Comments</span>
+                                </a>
+                                <span class="show-ids-header"></span>
+                            </span>
+                        </li>    
+                        </ul>
 						</div>
 					</div>
 

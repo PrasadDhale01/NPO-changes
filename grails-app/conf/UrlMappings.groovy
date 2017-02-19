@@ -128,7 +128,7 @@ class UrlMappings {
 			   
 		"/campaigns/$id/thumbnail"(controller:'project', action:'thumbnail')
 		"/campaigns/$id/fund"(controller:'fund', action:'fund')
-		"/$country_code/campaign"(controller:'project' , action:'search')
+		"/campaign"(controller:'project' , action:'search')
 		"/campaigns/country/$country"(controller:'project' , action:'categoryFilter')
 		"/campaigns/category/$category"(controller:'project' , action:'categoryFilter')
 		"/campaigns/usedfor/$usedfor"(controller:'project' , action:'categoryFilter')

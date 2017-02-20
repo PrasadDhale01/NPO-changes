@@ -5,11 +5,10 @@ class UpdateTeamListJob {
 	def projectService
 	
     static triggers = {
-      simple name = "UpdateTeamList", startDelay: 60000, repeatInterval: 3600000  // execute job once in 1 hour
+      simple name: 'updateTeamListTrigger', startDelay: 60000, repeatInterval: 3600000
     }
 
     def execute() {
-		println "Exceutted every 1hr"
 		ProjectService.allTeams.clear()
 		
 		def projects = projectService.getValidatedProjectsByPercentage("in")//projectService.getValidatedProjects(currentEnv)

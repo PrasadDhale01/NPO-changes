@@ -1086,6 +1086,9 @@ class ProjectController {
                 def taxReciept = projectService.getTaxRecieptOfProject(project)
                 def deductibleStatusList = projectService.getDeductibleStatusList()
                 def stateInd = projectService.getIndianState()
+				
+				BankInfo bankInfo = projectService.getBankInfoByProject(project);
+				
                 render(view: 'create/index2',
                 model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, 
                     nonIndprofit:nonIndprofit, nonProfit:nonProfit , currentEnv: currentEnv,
@@ -1095,7 +1098,7 @@ class ProjectController {
                     email2:adminemails.email2, email3:adminemails.email3,reasonsToFund:reasonsToFund, 
                     qA:qA, spends:spends, usedForCreate:usedForCreate, selectedCountry:selectedCountry, 
                     taxReciept:taxReciept, deductibleStatusList:deductibleStatusList,
-                    spendAmountPerList:pieList.spendAmountPerList,country_code:country_code])
+                    spendAmountPerList:pieList.spendAmountPerList,country_code:country_code, bankInfo: bankInfo])
             } else {
                 render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
             }
@@ -1222,7 +1225,7 @@ class ProjectController {
             
             String countryCode = project?.country?.countryCode
             
-			 def categoryOptions= projectService.getCategoryList()
+			def categoryOptions= projectService.getCategoryList()
             def user = project.user
             def country = projectService.getCountry()
             def nonProfit = projectService.getRecipientOfFunds()
@@ -1266,7 +1269,7 @@ class ProjectController {
             def stateInd = projectService.getIndianState()
             def pieList = projectService.getPieList(project);
             
-			println("from edit() == " + params.country_code )
+			BankInfo bankInfo = projectService.getBankInfoByProject(project);
 			
             def country_code = params.country_code
             render (view: 'edit/index',
@@ -1277,7 +1280,7 @@ class ProjectController {
                 project:project, user:user,campaignEndDate:campaignEndDate,reasonsToFund:reasonsToFund,
                 vanityTitle: vanityTitle, vanityUsername:vanityUsername, selectedCountry: selectedCountry,
                 email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3,
-                deductibleStatusList:deductibleStatusList,spendAmountPerList:pieList.spendAmountPerList,country_code:country_code])
+                deductibleStatusList:deductibleStatusList,spendAmountPerList:pieList.spendAmountPerList,country_code:country_code, bankInfo: bankInfo])
         } else {
             def previousPage = "manage"
         
@@ -3097,5 +3100,39 @@ class ProjectController {
             render ''
         }
     }
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def generateSellerId() {
+		String status = "FAILURE";
+		
+		println "generatesellerId"
+		Project project = projectService.getProjectById(params.projectId);
+		if (project) {
+			boolean isSellerIdGenerated = userService.setBankInfoDetails(params, project)
+			
+			if (isSellerIdGenerated && project.citrusEmail != null && project.payuStatus) {
+				def sellerObj = contributionService.setSellerId(project)
+				project.sellerId = sellerObj.sellerId
+				
+				if (sellerObj.sellerId && sellerObj.errorCode) {
+					project.save();
+				}
+				
+				status = "SUCCESS"
+			}
+		}
+		
+		/*
+		if (project && imageFile) {
+			json = projectService.getMultipleImageUrls(imageFile, project)
+		}
+		
+		render json*/
+		
+		println "status == "+ status
+		JSONObject json = new JSONObject();
+		json.put("status", status)
+		render json;
+	}
     
 }

@@ -841,10 +841,19 @@
                         You keep 100% of the money you raise. Crowdera does not charge any fee to you.</label>
                     </div>
                 </div>
-            </div><br>
+            </div>
+            
+            <g:if test ="${country_code == 'in'}">
+                <div class="col-sm-12" id="CitrusPay">
+                    <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-body">
+              		    <g:render template="create/payments"></g:render>
+			        </div>
+                </div>
+            </g:if>
+            <br>
             
             <div class="form-group">
-                  <g:if test="${country_code == 'in'}">
+                <g:if test="${country_code == 'in'}">
                     <div id="PayUMoney">
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Email</label>
@@ -859,7 +868,7 @@
                         </div>
                     </div>
                     
-                    <div id="CitrusPay">
+                    <%--<div id="CitrusPay">
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Email</label>
                             <div class="col-sm-6 col-xs-10">
@@ -872,7 +881,7 @@
                             </div>
                         </div>
                     </div>
-                    
+                --%>
                 </g:if>
                 <g:else>
                     <div class="col-sm-12" id="paypalemail">
@@ -889,6 +898,7 @@
                             </div>
                         </div>
                     </div>
+                    
                         <div class="col-sm-12 cr-tablet-space cr-center-charity" id="charitableId">
                             <div class="form-group">
 <%--                                <label class="col-sm-4 control-label">FirstGiving</label>--%>
@@ -951,19 +961,21 @@
                     </div>
                 </div>
                 <div class="col-sm-12" id="paypalemail-cr" style='display:none'>
-                        <div class="form-group">
-                            <img class="col-sm-4 cr-paypal-image" src="//s3.amazonaws.com/crowdera/assets/paypal-Image.png" alt="paypal">
-                            <div class="col-sm-6 paypalVerification">
-                                <g:if test="${project.paypalEmail}">
-                                    <input id="paypalEmailId" type="email" maxlength="64" class="form-control paypal-create form-control-no-border cr-placeholder cr-chrome-place" value="${project.paypalEmail}" name="${FORMCONSTANTS.PAYPALEMAIL}">
-                                </g:if>
-                                <g:else>
-                                    <input id="paypalEmailId" type="text" maxlength="64" class="form-control crowderaPaypalId paypal-create form-control-no-border cr-placeholder cr-chrome-place" name="${FORMCONSTANTS.PAYPALEMAIL}">
-                                </g:else>
-                                <g:hiddenField name="paypalEmailAck" value="${project.paypalEmail}" id="paypalEmailAck"/>
-                            </div>
+                    <div class="form-group">
+                        <img class="col-sm-4 cr-paypal-image" src="//s3.amazonaws.com/crowdera/assets/paypal-Image.png" alt="paypal">
+                        <div class="col-sm-6 paypalVerification">
+                            <g:if test="${project.paypalEmail}">
+                                <input id="paypalEmailId" type="email" maxlength="64" class="form-control paypal-create form-control-no-border cr-placeholder cr-chrome-place" value="${project.paypalEmail}" name="${FORMCONSTANTS.PAYPALEMAIL}">
+                            </g:if>
+                            <g:else>
+                                <input id="paypalEmailId" type="text" maxlength="64" class="form-control crowderaPaypalId paypal-create form-control-no-border cr-placeholder cr-chrome-place" name="${FORMCONSTANTS.PAYPALEMAIL}">
+                            </g:else>
+                            <g:hiddenField name="paypalEmailAck" value="${project.paypalEmail}" id="paypalEmailAck"/>
                         </div>
                     </div>
+                </div>
+                
+                
                 <div class="col-sm-12 padding-tax-reciept-xs col-tax-reciept-panel <g:if test="${!project.offeringTaxReciept}">col-reciept-display-none</g:if>">
                     <div class="cr-spend-matrix">
                          <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Donation receipts</span></label>

@@ -456,7 +456,7 @@ $(function() {
 
 
 
-    $('#saveButton, #saveButtonXS').on('click', function() {
+    $('#saveButton, #saveButtonXS').on('click', function(event) {
     	var storyValue = $('.redactorEditor').redactor('code.get');
         var storyEmpty = false;
         if (storyValue === '' || storyValue === undefined){
@@ -798,16 +798,29 @@ $(function() {
                 required: true
             });
         }
+        
+        if ($("#paymentOpt option:selected").val() == "CITRUS") {
+        	validateSellerDetails();
+        } else {
+        	removeSellersValidation();
+        }
 
         if (validator.form() && !storyEmpty) {
-            $('#saveButton, #saveButtonXS').attr('disabled','disabled');
-            $('#campaigncreate').find('form').submit();
+            
+            if ($("#paymentOpt option:selected").val() == "CITRUS") {
+            	event.preventDefault();
+            	generateSellerId(false);
+            } else {
+            	$('#saveButton, #saveButtonXS').attr('disabled','disabled');
+            	$('#campaigncreate').find('form').submit();
+            }
+            
         }
+        
     });
     
-    
 
-    $('#submitProject, #submitProjectXS').on('click', function() {
+    $('#submitProject, #submitProjectXS').on('click', function(event) {
         var storyValue = $('.redactorEditor').redactor('code.get');
         var storyEmpty = false;
         if (storyValue === '' || storyValue === undefined){
@@ -1024,137 +1037,151 @@ $(function() {
             maxlength: 8
         });
 
-        	$('.rewardDescription').each(function () {
-                $(this).rules("add", {
-                    required: true,
-                    minlength : 5
-                });
+    	$('.rewardDescription').each(function () {
+            $(this).rules("add", {
+                required: true,
+                minlength : 5
+            });
+        });
+
+       	$('.rewardTitle').each(function () {
+            $(this).rules("add", {
+                required: true,
+                minlength : 5
+            });
+       	});
+
+        if ($('[name="ansText1"]').length > 0){
+            $('[name="ansText1"]').rules( "add", {
+               required: true
+            });
+        }
+
+        if($('[name="ansText3"]').length > 0){
+           $('[name="ansText3"]').rules( "add", {
+              required: true,
+              maxlength: 128
+           });
+        }
+
+        $( '[name="tax-reciept-holder-city"]' ).rules( "add", {
+            required: true,
+            maxlength: 32,
+            minlength:2
+        });
+
+        $( '[name="tax-reciept-holder-name"]' ).rules( "add", {
+            required: true,
+            minlength:2,
+            isFullName: true
+        });
+
+        if (isIndianCampaign){
+        	$( '[name="reg-date"]' ).rules( "add", {
+                required: true
             });
 
-           	$('.rewardTitle').each(function () {
-                $(this).rules("add", {
-                    required: true,
-                    minlength : 5
-                });
-           	});
+            $( '[name="tax-reciept-registration-num"]' ).rules( "add", {
+                required: true
+            });
 
-            if ($('[name="ansText1"]').length > 0){
-                $('[name="ansText1"]').rules( "add", {
-                   required: true
-                });
-            }
-
-            if($('[name="ansText3"]').length > 0){
-               $('[name="ansText3"]').rules( "add", {
-                  required: true,
-                  maxlength: 128
-               });
-            }
-
-            $( '[name="tax-reciept-holder-city"]' ).rules( "add", {
+            $( '[name="tax-reciept-holder-pan-card"]' ).rules( "add", {
                 required: true,
-                maxlength: 32,
+                minlength:10
+            });
+
+            $( '[name="expiry-date"]' ).rules( "add", {
+                required: true
+            });
+
+            $( '[name="fcra-reg-no"]' ).rules( "add", {
+                required: true
+            });
+
+            $( '[name="fcra-reg-date"]' ).rules( "add", {
+                required: true
+            });
+            
+            $( '[name="tax-reciept-orgStatus"]' ).rules( "add", {
+                required: true,
+                minlength:2
+            });
+            
+            $( '[name="tax-reciept-exemptionPercentage"]' ).rules( "add", {
+                required: true,
+                min:0,
+                number: true
+            });
+            	 
+        } else {
+        	$( '[name="ein"]' ).rules( "add", {
+                required: true,
+                minlength:9, 
+                maxlength:9
+            });
+
+            $( '[name="tax-reciept-deductible-status"]' ).rules( "add", {
+                required: true,
                 minlength:2
             });
 
-            $( '[name="tax-reciept-holder-name"]' ).rules( "add", {
+            $( '[name="tax-reciept-holder-state"]' ).rules( "add", {
                 required: true,
-                minlength:2,
-                isFullName: true
+                minlength:2
             });
+        }
+        
+        $( '[name="tax-reciept-holder-phone"]' ).rules( "add", {
+            required: true,
+            minlength:9,
+            number:true
+        });
 
-            if (isIndianCampaign){
-            	$( '[name="reg-date"]' ).rules( "add", {
-                    required: true
-                });
+        $( '[name="addressLine1"]' ).rules( "add", {
+            required: true,
+            minlength:5,
+            maxlength: 50
+        });
 
-                $( '[name="tax-reciept-registration-num"]' ).rules( "add", {
-                    required: true
-                });
+        $( '[name="addressLine2"]' ).rules( "add", {
+            minlength:5,
+            maxlength: 50
+        });
 
-                $( '[name="tax-reciept-holder-pan-card"]' ).rules( "add", {
-                    required: true,
-                    minlength:10
-                });
+        $( '[name="zip"]' ).rules( "add", {
+            required: true,
+            maxlength: 30
+        });
 
-                $( '[name="expiry-date"]' ).rules( "add", {
-                    required: true
-                });
+        var signImgUrl = $('#editsignatureIcon').attr('src');
+        if (!signImgUrl) {
+            $('[name="digitalSign"]').rules( "add", {
+                required: true
+            });
+        }
 
-                $( '[name="fcra-reg-no"]' ).rules( "add", {
-                    required: true
-                });
+        if ($("#paymentOpt option:selected").val() == "CITRUS") {
+        	validateSellerDetails();
+        } else {
+        	removeSellersValidation();
+        }
 
-                $( '[name="fcra-reg-date"]' ).rules( "add", {
-                    required: true
-                });
-                
-                $( '[name="tax-reciept-orgStatus"]' ).rules( "add", {
-                    required: true,
-                    minlength:2
-                });
-                
-                $( '[name="tax-reciept-exemptionPercentage"]' ).rules( "add", {
-                    required: true,
-                    min:0,
-                    number: true
-                });
-                	 
+        if (validator.form() && !storyEmpty) {
+    		
+            if ($("#paymentOpt option:selected").val() == "CITRUS") {
+            	event.preventDefault();
+            	generateSellerId(true);
             } else {
-            	$( '[name="ein"]' ).rules( "add", {
-                    required: true,
-                    minlength:9, 
-                    maxlength:9
-                });
-
-                $( '[name="tax-reciept-deductible-status"]' ).rules( "add", {
-                    required: true,
-                    minlength:2
-                });
-
-                $( '[name="tax-reciept-holder-state"]' ).rules( "add", {
-                    required: true,
-                    minlength:2
-                });
+            	$('#campaigncreate').find('form').submit();
+            	
+            	$('#submitProject').attr('disabled','disabled');
+                $('#previewButton').attr('disabled','disabled');
+                $('#submitProjectXS').attr('disabled','disabled');
+                $('#previewButtonXS').attr('disabled','disabled');
             }
             
-            $( '[name="tax-reciept-holder-phone"]' ).rules( "add", {
-                required: true,
-                minlength:9,
-                number:true
-            });
-
-            $( '[name="addressLine1"]' ).rules( "add", {
-                required: true,
-                minlength:5,
-                maxlength: 50
-            });
-
-            $( '[name="addressLine2"]' ).rules( "add", {
-                minlength:5,
-                maxlength: 50
-            });
-
-            $( '[name="zip"]' ).rules( "add", {
-                required: true,
-                maxlength: 30
-            });
-
-            var signImgUrl = $('#editsignatureIcon').attr('src');
-            if (!signImgUrl) {
-                $('[name="digitalSign"]').rules( "add", {
-                    required: true
-                });
-            }
-
-    	if (validator.form() && !storyEmpty) {
-            $('#campaigncreate').find('form').submit();
-            $('#submitProject').attr('disabled','disabled');
-            $('#previewButton').attr('disabled','disabled');
-            $('#submitProjectXS').attr('disabled','disabled');
-            $('#previewButtonXS').attr('disabled','disabled');
     	}
-	     
+	    
     	if(!validator.form()){
     	    requiredFieldMessages();
     	}
@@ -3405,7 +3432,122 @@ $(function() {
                  $('#test').val('test');
              }
          }).error(function() {
-          });
+         });
+    }
+    
+    function generateSellerId(isCreate) {
+    	$('#loading-gif').show();
+    	
+    	console.log("seller === ")
+    	
+    	var formDataObj = new FormData();
+    	
+    	formDataObj.append('projectId', projectId);
+    	formDataObj.append('fullName', $("#citrusBeneficiaryname").val());
+    	formDataObj.append('email', $("#citrusemail").val());
+    	formDataObj.append('branch', $("#citrusBankBranch").val());
+    	formDataObj.append('ifscCode', $("#citrusIfscCode").val());
+    	formDataObj.append('accountType', $("#citrusAccountType").val());
+    	formDataObj.append('accountNumber', $("#citrusAccountNumber").val());
+    	formDataObj.append('payoutmode', $("#payoutmode").val());
+    	formDataObj.append('mobile', $("#citrusMobile").val());
+    	formDataObj.append('address1', $("#citrusAddress1").val());
+    	formDataObj.append('address2', $("#citrusAddress2").val());
+    	formDataObj.append('city', $("#citrusCity").val());
+    	formDataObj.append('zip', $("#citrusZip").val());
+    	formDataObj.append("state", $("#citrusState").val())
+    	formDataObj.append("country", $("#citrusCountry").val())
+        
+    	$.ajax({
+	    	type    :'post',
+	        url     : $("#b_url").val()+'/project/generateSellerId',
+	        data    : formDataObj,
+	        processData	: false,
+	        contentType: false,
+	        async: true,
+	        success : function(response) {
+	        	var jsonObj = JSON.parse(response);
+	        	$('#loading-gif').hide();
+	        	
+	        	// 231 -- valida IfSC code
+	        	
+	        	if (jsonObj != undefined && jsonObj.status == "SUCCESS") {
+	        		alert("inside ========")
+	        		if (isCreate) {
+	        			$('#submitProject').attr('disabled','disabled');
+		                $('#previewButton').attr('disabled','disabled');
+		                $('#submitProjectXS').attr('disabled','disabled');
+		                $('#previewButtonXS').attr('disabled','disabled');
+	        		} else {
+	        			$('#saveButton, #saveButtonXS').attr('disabled','disabled');
+	        		}
+	        		
+	        		$('#campaigncreate').find('form').submit();
+	        	}
+	        	
+	        }
+        }).error(function() {
+        	$('#loading-gif').hide();
+        });
+    	
+    } 
+    
+    
+    function validateSellerDetails() {
+    	$('[name="citrusBeneficiaryname"]').rules( "add", {
+            required: true,
+            minlength: 5,
+            maxlength: 64
+        });
+    	$('[name="citrusAccountNumber"]').rules( "add", {
+            required: true,
+            minlength: 10,
+            maxlength: 35
+        });
+    	$('[name="citrusIfscCode"]').rules( "add", {
+            required: true,
+            minlength: 3,
+            maxlength: 11
+        });
+    	$('[name="payoutmode"]').rules( "add", {
+            required: true,
+            minlength: 5,
+            maxlength: 140
+        });
+    	$('[name="citrusMobile"]').rules( "add", {
+            required: true,
+            minlength: 10,
+            maxlength: 10
+        });
+    	$('[name="citrusAddress1"]').rules( "add", {
+            required: true,
+            minlength: 6,
+            maxlength: 64
+        });
+    	$('[name="citrusAddress2"]').rules( "add", {
+            required: true,
+            minlength: 6,
+            maxlength: 64
+        });
+    	$('[name="citrusCity"]').rules( "add", {
+            required: true,
+            minlength: 2,
+            maxlength: 64
+        });
+    	$('[name="citrusZip"]').rules( "add", {
+            required: true,
+            minlength: 6,
+            maxlength: 8
+        });
+    }
+    
+    
+    function removeSellersValidation() {
+    	
+    	$('[name="citrusBeneficiaryname"], [name="citrusAccountNumber"],  [name="citrusIfscCode"], [name="payoutmode"], [name="citrusMobile"], [name="citrusAddress1"],[name="citrusAddress2"], [name="citrusCity"],[name="citrusZip"]').each(function () {
+            $(this).rules('remove');
+            $(this).closest('.form-group').removeClass('has-error');
+       });
     }
 
      $('#previewButton, #previewButtonXS').on('click', function(){

@@ -907,8 +907,10 @@ class UserService {
             bankInfo.project = project
             bankInfo.save(failOnError: true)
         }
+		
+		return true;
     }
-    
+	
     def getNumberOfCampaignsForUser(User user) {
         List projects = Project.findAllWhere(user: user)
         return projects.size()

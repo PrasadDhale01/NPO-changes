@@ -984,7 +984,18 @@
                                You keep 100% of the money you raise. Crowdera does not charge any fee to you.</label>
                         </div>
                     </div>
-                </div><br>
+                </div>
+                
+                <g:if test ="${project.payuStatus}">
+	                <div class="col-sm-12" id="CitrusPay">
+	                    <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-body">
+	                		 <g:render template="create/payments"></g:render>
+						</div>
+	                </div>
+                
+                </g:if>
+                <br>
+                
                 <div class="form-group">
                     <g:if test ="${project.payuStatus}">
                         <div id="PayUMoney">
@@ -999,20 +1010,6 @@
                                      </g:else>
                                  </div>
                              </div>
-                        </div>
-                        
-                        <div id="CitrusPay">
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Email</label>
-                                <div class="col-sm-6 col-xs-10">
-                                    <g:if test="${project.citrusEmail}">
-                                        <input type="email" id="citrusemail" maxlength="64" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.CITRUSEMAIL}" value="${project.citrusEmail}">
-                                    </g:if>
-                                    <g:else>
-                                        <input type="email" id="citrusemail" maxlength="64" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.CITRUSEMAIL}">
-                                    </g:else>
-                                </div>
-                            </div>
                         </div>
                     </g:if>
                     <g:else>

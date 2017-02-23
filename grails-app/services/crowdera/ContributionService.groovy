@@ -742,7 +742,8 @@ class ContributionService {
             def seller = getSellerIdByEmail(selleremail)
             def sellerId
             if (seller) {
-                return seller.sellerId
+				println "sellerId == "+ seller.sellerId
+                return [sellerId: seller.sellerId, errorCode: 0]
             } else {
                 def address1 = bankInfo.address1
                 def address2 = bankInfo.address2
@@ -769,7 +770,9 @@ class ContributionService {
                 HttpResponse httpres = httpclient.execute(httppost)
                 
                 int status = httpres.getStatusLine().getStatusCode()
-                if (status == 200){
+				
+				println "statusCode "+ status
+                if (status == 200) {
                     HttpEntity entity = httpres.getEntity()
                     if (entity != null){
                         def jsonString = EntityUtils.toString(entity)
@@ -779,14 +782,16 @@ class ContributionService {
                         if (sellerId != null) {
                             new Seller(email: selleremail, sellerId: sellerId).save();
                         }
+						
+						println "json "+ json
                     }
                     
                 }
                 
-                return sellerId
+                return [sellerId: sellerId, errorCode: 0]
             }
         } else {
-            return null;
+            return [sellerId: 0, errorCode: -999]
         }
     }
     

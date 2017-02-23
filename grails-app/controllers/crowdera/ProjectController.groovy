@@ -1038,10 +1038,11 @@ class ProjectController {
 	
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def redirectCreateNow() {
-		def country_code = params.country_code
         def vanityTitle = params.title
-        def project = projectService. getProjectFromVanityTitle(vanityTitle)
+        Project project = projectService. getProjectFromVanityTitle(vanityTitle)
+		
         if (project) {
+			def country_code = project.country.countryCode
             def user = project.user
             def currentUser = userService.getCurrentUser()
             def spends = project.spend
@@ -1115,15 +1116,16 @@ class ProjectController {
         if (project) {
             User user = userService.getCurrentUser()
             if (project.user == user) {
-                def currentEnv = projectService.getCurrentEnvironment()
+                
+				def currentEnv = projectService.getCurrentEnvironment()
 				if('in'.equalsIgnoreCase(country_code)){   
                     if(params.payuEmail){
                         project.payuEmail = params.payuEmail
                     }
 					if(params.paypalEmail){
 						project.paypalEmail = params.paypalEmail
-					   }
-			   }
+					}
+			    }
 				
 				projectService.saveLastSpendField(params);
                 rewardService.saveRewardDetails(params);
@@ -3105,32 +3107,29 @@ class ProjectController {
 	def generateSellerId() {
 		String status = "FAILURE";
 		
-		println "generatesellerId"
 		Project project = projectService.getProjectById(params.projectId);
+		JSONObject json = new JSONObject();
 		if (project) {
-			boolean isSellerIdGenerated = userService.setBankInfoDetails(params, project)
+			boolean statusFlag = userService.setBankInfoDetails(params, project)
 			
-			if (isSellerIdGenerated && project.citrusEmail != null && project.payuStatus) {
+			if (statusFlag && project.citrusEmail != null && project.payuStatus) {
 				def sellerObj = contributionService.setSellerId(project)
-				project.sellerId = sellerObj.sellerId
 				
-				if (sellerObj.sellerId && sellerObj.errorCode) {
-					project.save();
+				if (sellerObj.sellerId != null && sellerObj.errorCode == null) {
+					project.sellerId = sellerObj.sellerId
+					
+					if (sellerObj.sellerId && sellerObj.errorCode) {
+						project.save();
+					}
+					status = "SUCCESS"
+				} else {
+					status = "FAILURE"
+					json.put("errorDescription", sellerObj.errorDescription)
+					json.put("errorCode", sellerObj.errorCode)
 				}
-				
-				status = "SUCCESS"
 			}
 		}
 		
-		/*
-		if (project && imageFile) {
-			json = projectService.getMultipleImageUrls(imageFile, project)
-		}
-		
-		render json*/
-		
-		println "status == "+ status
-		JSONObject json = new JSONObject();
 		json.put("status", status)
 		render json;
 	}

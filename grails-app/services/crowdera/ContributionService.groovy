@@ -770,6 +770,8 @@ class ContributionService {
                 HttpResponse httpres = httpclient.execute(httppost)
                 
                 int status = httpres.getStatusLine().getStatusCode()
+				String errorCode;
+				String errorDescription;
 				
 				println "statusCode "+ status
                 if (status == 200) {
@@ -781,14 +783,17 @@ class ContributionService {
                         sellerId = json.sellerid
                         if (sellerId != null) {
                             new Seller(email: selleremail, sellerId: sellerId).save();
-                        }
+                        } 
+						
+						errorCode = json.error_id
+						errorDescription = json.error_description;
 						
 						println "json "+ json
                     }
                     
                 }
                 
-                return [sellerId: sellerId, errorCode: 0]
+                return [sellerId: sellerId, errorCode: errorCode, errorDescription: errorDescription]
             }
         } else {
             return [sellerId: 0, errorCode: -999]

@@ -6002,9 +6002,9 @@ class ProjectService {
             physicalAddress  : shippingDetail.address,
             currency         : 'INR',
             panNumber        : panNumber,
-            merchantTxId     : marketplaceTxId/*,
+            merchantTxId     : marketplaceTxId,
             splitRef         : issuerRefNo,
-            splitId          : splitId*/
+            splitId          : splitId
         )
         
         project.addToContributions(contribution).save(failOnError: true)
@@ -6096,6 +6096,7 @@ class ProjectService {
                 splitId = json.split_id
             }
         }
+		
         return splitId
     }
     

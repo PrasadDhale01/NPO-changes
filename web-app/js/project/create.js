@@ -3438,8 +3438,6 @@ $(function() {
     function generateSellerId(isCreate) {
     	$('#loading-gif').show();
     	
-    	console.log("seller === ")
-    	
     	var formDataObj = new FormData();
     	
     	formDataObj.append('projectId', projectId);
@@ -3470,9 +3468,9 @@ $(function() {
 	        	$('#loading-gif').hide();
 	        	
 	        	// 231 -- valida IfSC code
+	        	// 225 -- Seller Mobile already present in the system!!!
 	        	
 	        	if (jsonObj != undefined && jsonObj.status == "SUCCESS") {
-	        		alert("inside ========")
 	        		if (isCreate) {
 	        			$('#submitProject').attr('disabled','disabled');
 		                $('#previewButton').attr('disabled','disabled');
@@ -3483,6 +3481,10 @@ $(function() {
 	        		}
 	        		
 	        		$('#campaigncreate').find('form').submit();
+	        	
+	        	} else {
+	        		$('#requiredFieldMessage').html(jsonObj.errorDescription);
+	  	  		  	$('#requiredField').modal("show");
 	        	}
 	        	
 	        }
@@ -3543,7 +3545,6 @@ $(function() {
     
     
     function removeSellersValidation() {
-    	
     	$('[name="citrusBeneficiaryname"], [name="citrusAccountNumber"],  [name="citrusIfscCode"], [name="payoutmode"], [name="citrusMobile"], [name="citrusAddress1"],[name="citrusAddress2"], [name="citrusCity"],[name="citrusZip"]').each(function () {
             $(this).rules('remove');
             $(this).closest('.form-group').removeClass('has-error');
@@ -3590,6 +3591,10 @@ $(function() {
        	$('.rewardTitle').each(function () {
             $(this).rules("remove");
         });
+       	
+       	if ($("#paymentOpt option:selected").val() == "CITRUS") {
+       		removeSellersValidation();
+       	}
 
        	$("#createthumbnail").removeClass('has-error');
        	if (validator.form()) {
@@ -3599,9 +3604,11 @@ $(function() {
               $('#submitProjectXS').attr('disabled','disabled');
               $('#previewButtonXS').attr('disabled','disabled');
        	}
-       });
+    });
 
-/*Javascript error raised due to tooltip is resolved*/
+     
+     
+    /*Javascript error raised due to tooltip is resolved*/
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {
             $(this).popover('show');

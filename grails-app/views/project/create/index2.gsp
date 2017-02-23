@@ -2,7 +2,6 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-   // def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 + country_code: grailsApplication.config.crowdera.BASE_URL + country_code
 	String baseUrl = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
     def base_url = baseUrl.substring(0, (baseUrl.length() - 1))
 	def iteratorCount = 1
@@ -65,7 +64,7 @@
     <g:hiddenField name="offeringTaxReciept" id="offeringTaxReciept" value="${project.offeringTaxReciept}"/>
     
     <g:hiddenField name="isIndianCampaign" value="${project.payuStatus}" id="isIndianCampaign"/>
-	<g:hiddenField name="country_code" value="${country_code}"/>
+	
 	
     <div class="text-center">
         <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
@@ -80,10 +79,11 @@
     <div class="bg-color col-sm-12 col-xs-12 cr-top-space">
         <div class="container footer-container" id="campaigncreate">
         <g:uploadForm class="form-horizontal"  controller="project" action="campaignOnDraftAndLaunch" params="['title': vanityTitle, 'userName':vanityUsername]">
-           <g:hiddenField name="projectId" id="projectId" value="${project.id}"/>
-           <g:hiddenField name="country_code" value="${country_code}"/>
+           
             <div class="startsection"></div>
-
+			<g:hiddenField name="projectId" id="projectId" value="${project.id}"/>
+			<g:hiddenField name="country_code" value="${country_code}"/>
+			
             <div class="col-sm-12 cr-start-flex cr-lft-mobile cr-safari cr2-padding" id="start">
                 <div class="form-group col-lg-12 cr-start-space campaignEndDateError">
                     <div class="col-sm-3 cr2-width-dropdown1">
@@ -136,7 +136,7 @@
                     
                     <div class="col-sm-3 cr2-width-dropdown5">
                         <div class="cr-dropdown-alignment font-list">
-                            <g:if test="${country_code == 'in'}">
+                            <g:if test="${'in'.equalsIgnoreCase(country_code)}">
                                 <g:if test="${project.fundsRecievedBy}">
                                     <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-all-mobile-dropdown recipient cr2-funds-drop" name="fundsRecievedBy" from="${nonIndprofit}" value="${project.fundsRecievedBy}" optionKey="key" optionValue="value"/>
                                 </g:if>
@@ -267,7 +267,7 @@
                                     
                                         <span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>
                                         <div class="form-group col-sm-3 col-xs-4 col-sm-input-group">
-                           					<g:if test="${country_code == 'in'}">
+                           					<g:if test="${'in'.equalsIgnoreCase(country_code)}">
                                                  <span class="fa fa-inr cr-currency"></span>
                                             </g:if>
                                             <g:else>
@@ -305,7 +305,7 @@
                             <div class="col-sm-amt col-sm-12">
                                 <span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>
                                 <div class="form-group col-sm-3 col-xs-4 col-sm-input-group">
-                           			<g:if test="${country_code == 'in'}">
+                           			<g:if test="${'in'.equalsIgnoreCase(country_code)}">
                                         <span class="fa fa-inr cr-currency"></span>
                                     </g:if>
                                     <g:else>
@@ -670,7 +670,7 @@
                             <div class="col-sm-2">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                           				<g:if test="${country_code == 'in'}">
+                           				<g:if test="${'in'.equalsIgnoreCase(country_code)}">
                                             <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
                                             <input type="text" placeholder="Amount" name="rewardPrice${reward.rewardCount}" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${reward.rewardCount}" value="${price}">
                                         </g:if>
@@ -755,7 +755,7 @@
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <div class="col-sm-12 col-xs-12">
-                           			<g:if test="${country_code == 'in'}">
+                           			<g:if test="${'in'.equalsIgnoreCase(country_code)}">
                                         <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
                                         <input type="text" placeholder="Amount" name="rewardPrice1" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice1">
                                     </g:if>
@@ -843,7 +843,7 @@
                 </div>
             </div>
             
-            <g:if test ="${country_code == 'in'}">
+            <g:if test ="${'in'.equalsIgnoreCase(country_code)}">
                 <div class="col-sm-12" id="CitrusPay">
                     <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-body">
               		    <g:render template="create/payments"></g:render>
@@ -853,7 +853,7 @@
             <br>
             
             <div class="form-group">
-                <g:if test="${country_code == 'in'}">
+                <g:if test="${'in'.equalsIgnoreCase(country_code)}">
                     <div id="PayUMoney">
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Email</label>
@@ -948,7 +948,7 @@
 
                 <div class="col-sm-12 <g:if test="${'in'.equalsIgnoreCase(country_code)}">internationalFunding</g:if>">
                     <div class="col-md-offset-4 col-md-8 col-sm-offset-3 col-sm-9">
-                        <div class="form-group form-group-termsOfUse <g:if test="${(project.fundsRecievedBy != 'NGO' && (country_code == 'in')) || (project.fundsRecievedBy != 'NON-PROFIT' && (country_code == 'us'))}">tax-reciept</g:if>" id="tax-reciept">
+                        <div class="form-group form-group-termsOfUse <g:if test="${(project.fundsRecievedBy != 'NGO' && ('in'.equalsIgnoreCase(country_code))) || (project.fundsRecievedBy != 'NON-PROFIT' && ('us'.equalsIgnoreCase(country_code)))}">tax-reciept</g:if>" id="tax-reciept">
                             <input type="checkbox" name="tax-reciept-checkbox" class="tax-reciept-checkbox" id="tax-reciept-checkbox" <g:if test="${project.offeringTaxReciept}">checked="checked"</g:if>>
                             Do you want to offer donation receipt to your contributors?
                         </div>
@@ -1643,4 +1643,3 @@
     </script>
     </body>
 </html>
- 

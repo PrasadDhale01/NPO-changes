@@ -742,8 +742,7 @@ class ContributionService {
             def seller = getSellerIdByEmail(selleremail)
             def sellerId
             if (seller) {
-				println "sellerId == "+ seller.sellerId
-                return [sellerId: seller.sellerId, errorCode: 0]
+                return [sellerId: seller.sellerId]
             } else {
                 def address1 = bankInfo.address1
                 def address2 = bankInfo.address2
@@ -773,7 +772,6 @@ class ContributionService {
 				String errorCode;
 				String errorDescription;
 				
-				println "statusCode "+ status
                 if (status == 200) {
                     HttpEntity entity = httpres.getEntity()
                     if (entity != null){
@@ -781,14 +779,14 @@ class ContributionService {
                         def slurper = new JsonSlurper()
                         def json = slurper.parseText(jsonString)
                         sellerId = json.sellerid
-                        if (sellerId != null) {
+						
+                        if (sellerId != null && sellerId != "null") {
                             new Seller(email: selleremail, sellerId: sellerId).save();
                         } 
 						
 						errorCode = json.error_id
 						errorDescription = json.error_description;
 						
-						println "json "+ json
                     }
                     
                 }

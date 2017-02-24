@@ -1043,6 +1043,7 @@ class ProjectController {
 		
         if (project) {
 			def country_code = project.country.countryCode
+			
             def user = project.user
             def currentUser = userService.getCurrentUser()
             def spends = project.spend
@@ -1226,7 +1227,7 @@ class ProjectController {
             spends = spends.sort{it.numberAvailable}
             
             String countryCode = project?.country?.countryCode
-            
+			
 			def categoryOptions= projectService.getCategoryList()
             def user = project.user
             def country = projectService.getCountry()
@@ -1273,7 +1274,7 @@ class ProjectController {
             
 			BankInfo bankInfo = projectService.getBankInfoByProject(project);
 			
-            def country_code = params.country_code
+            def country_code = countryCode
             render (view: 'edit/index',
             model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,spends:spends,
                 'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit,
@@ -3109,7 +3110,8 @@ class ProjectController {
 		
 		Project project = projectService.getProjectById(params.projectId);
 		JSONObject json = new JSONObject();
-		if (project) {
+		
+		if (project != null && !project.validated) {
 			boolean statusFlag = userService.setBankInfoDetails(params, project)
 			
 			if (statusFlag && project.citrusEmail != null && project.payuStatus) {
@@ -3128,6 +3130,8 @@ class ProjectController {
 					json.put("errorCode", sellerObj.errorCode)
 				}
 			}
+		} else if (project.validated) {
+			json.put("status", "SUCCESS")
 		}
 		
 		json.put("status", status)

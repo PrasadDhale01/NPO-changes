@@ -1549,17 +1549,16 @@ $(function() {
     	 var payind = $('#paymentOpt').val();
     	 /*if (currentEnv == "testIndia") {*/
     	 if(payind === 'PAYU'){
+    		 autoSave('payuEmail', $('#payuemail').val());
     		 $('#PayUMoney').show();
     		 $('#CitrusPay').hide();
     	 } else if (payind === 'CITRUS') {
     		 $('#CitrusPay').show();
     		 $('#PayUMoney').hide();
+    		 
+    		 resetCitrusDetails();
     	 }
-    	 /*} else {
-    		 if(payind === 'PAYU'){
-	    		 $('#PayUMoney').show();
-	    	 }
-    	 }*/
+    	
      });
 
 	$('#countryList').change(function(){
@@ -3550,6 +3549,20 @@ $(function() {
             $(this).closest('.form-group').removeClass('has-error');
        });
     }
+    
+	function resetCitrusDetails() {
+		$("#citrusBeneficiaryname").val('');
+		$("#citrusemail").val('');
+		$("#citrusBankBranch").val('');
+		$("#citrusIfscCode").val('');
+		$("#citrusAccountType").val('');
+		$("#citrusAccountNumber").val('');
+		$("#citrusMobile").val('');
+		$("#citrusAddress1").val('');
+		$("#citrusAddress2").val('');
+		$("#citrusCity").val('');
+		$("#citrusZip").val('');
+	}
 
      $('#previewButton, #previewButtonXS').on('click', function(){
       	$('#isSubmitButton').val(false);

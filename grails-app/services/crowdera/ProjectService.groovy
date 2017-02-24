@@ -3752,15 +3752,25 @@ class ProjectService {
                 break;
 	
             case 'paypalEmailId':
-                project.paypalEmail = varValue;
-                project.charitableId = null;
-                isValueChanged = true;
+				if (!project.validated) {
+	                project.paypalEmail = varValue;
+	                project.charitableId = null;
+	                isValueChanged = true;
+				}
                 break;
 			
             case 'payuEmail':
-                project.payuEmail = varValue;
-                project.citrusEmail = null;
-                isValueChanged = true;
+				if (!project.validated) {
+					project.payuEmail = varValue;
+					project.citrusEmail = null;
+					project.sellerId = null;
+					
+					BankInfo bankInfo = getBankInfoByProject(project);
+					if (bankInfo) {
+						bankInfo.delete();
+					}
+					isValueChanged = true;
+				}
                 break;
 
             case 'story':
@@ -4408,9 +4418,11 @@ class ProjectService {
                 break;
                 
             case 'citrusEmail': 
-                project.citrusEmail = varValue
-                project.payuEmail = null
-                isValueChanged = true
+				if (!project.validated) {
+	                project.citrusEmail = varValue
+	                project.payuEmail = null
+	                isValueChanged = true
+				}
                 break;
                 
             default :

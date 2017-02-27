@@ -389,10 +389,10 @@ class ProjectService {
         if (project) {
             project.created = new Date()
             if(!project.validated) {
-                if (project.citrusEmail != null && project.payuStatus && getCurrentEnvironment() == "testIndia") {
+                /*if (project.citrusEmail != null && project.payuStatus) {
                     def sellerId = contributionService.setSellerId(project)
                     project.sellerId = sellerId
-                }
+                }*/
                 
                 project.validated = true
                 project.onHold = false
@@ -3752,15 +3752,25 @@ class ProjectService {
                 break;
 	
             case 'paypalEmailId':
-                project.paypalEmail = varValue;
-                project.charitableId = null;
-                isValueChanged = true;
+				if (!project.validated) {
+	                project.paypalEmail = varValue;
+	                project.charitableId = null;
+	                isValueChanged = true;
+				}
                 break;
 			
             case 'payuEmail':
-                project.payuEmail = varValue;
-                project.citrusEmail = null;
-                isValueChanged = true;
+				if (!project.validated) {
+					project.payuEmail = varValue;
+					project.citrusEmail = null;
+					project.sellerId = null;
+					
+					BankInfo bankInfo = getBankInfoByProject(project);
+					if (bankInfo) {
+						bankInfo.delete();
+					}
+					isValueChanged = true;
+				}
                 break;
 
             case 'story':
@@ -4408,9 +4418,11 @@ class ProjectService {
                 break;
                 
             case 'citrusEmail': 
-                project.citrusEmail = varValue
-                project.payuEmail = null
-                isValueChanged = true
+				if (!project.validated) {
+	                project.citrusEmail = varValue
+	                project.payuEmail = null
+	                isValueChanged = true
+				}
                 break;
                 
             default :
@@ -5985,7 +5997,7 @@ class ProjectService {
         }
         
         
-        /*String splitId = getSplitIdForTransactionId(marketplaceTxId, project.sellerId, amount, issuerRefNo) */
+        String splitId = getSplitIdForTransactionId(marketplaceTxId, project.sellerId, amount, issuerRefNo)
 
         Contribution contribution = new Contribution(
             date             : new Date(),
@@ -6000,9 +6012,9 @@ class ProjectService {
             physicalAddress  : shippingDetail.address,
             currency         : 'INR',
             panNumber        : panNumber,
-            merchantTxId     : marketplaceTxId/*,
+            merchantTxId     : marketplaceTxId,
             splitRef         : issuerRefNo,
-            splitId          : splitId*/
+            splitId          : splitId
         )
         
         project.addToContributions(contribution).save(failOnError: true)
@@ -6094,6 +6106,7 @@ class ProjectService {
                 splitId = json.split_id
             }
         }
+		
         return splitId
     }
     
@@ -7012,15 +7025,16 @@ class ProjectService {
 			team["fundsRecievedBy"]= project.fundsRecievedBy
 			team["username"]=userName
 
-			if(type.equals("allTeams")){
+			if(type.equals("allTeams")) {
 				if(percentage >= 17) {
 					allTeams.add(team)
 				}
 				
-			}else if(type.equals("allSortedTeams")){
-					allSortedTeams.add(team)
+			} else if(type.equals("allSortedTeams")) {
+				allSortedTeams.add(team)
 			}
 		}
+		
 		if(type.equals("allTeams")){
 			return allTeams
 		}else{

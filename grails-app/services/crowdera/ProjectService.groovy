@@ -6192,9 +6192,12 @@ class ProjectService {
     List<Contribution> getContributionsListByProjectId(String projectId) {
         List<Contribution> contributionList = new ArrayList<>();
         contributionList = Contribution.createCriteria().list{ 
-            eq("project.id", projectId)}
+            					eq("project.id", projectId)
+								eq("currency", "INR")
+							}
     }
     
+	
     StringBuilder getBuildURL(String pkey, String title, String name,String country_code) {
         
         StringBuilder builder = new StringBuilder()

@@ -799,34 +799,39 @@ class ContributionService {
     }
     
     def getAccessTokenForCitrus() {
-        def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
-        def url = citrusBaseUrl +"/marketplace/auth/"
-        
-        HttpClient httpclient = new DefaultHttpClient()
-        HttpPost httppost = new HttpPost(url)
-        
-        def access_key = grailsApplication.config.crowdera.CITRUS.ACCESS_KEY
-        def secret_key = grailsApplication.config.crowdera.CITRUS.SECRETE_KEY
-
-        StringEntity input = new StringEntity("{\"access_key\":\"${access_key}\",\"secret_key\":\"${secret_key}\"}")
-        
-        input.setContentType("application/json")
-        httppost.setEntity(input)
-
-        HttpResponse httpres = httpclient.execute(httppost)
-        def authToken
-        
-        int status = httpres.getStatusLine().getStatusCode()
-        if (status == 200){
-            HttpEntity entity = httpres.getEntity()
-            if (entity != null){
-                String jsonString = EntityUtils.toString(entity)
-                def slurper = new JsonSlurper()
-                def json = slurper.parseText(jsonString)
-                authToken = json.auth_token
-            }
-        }
-        return authToken
+		
+		try {
+	        def citrusBaseUrl = grailsApplication.config.crowdera.CITRUS.SPLITPAY_URL
+	        def url = citrusBaseUrl +"/marketplace/auth/"
+	        
+	        HttpClient httpclient = new DefaultHttpClient()
+	        HttpPost httppost = new HttpPost(url)
+	        
+	        def access_key = grailsApplication.config.crowdera.CITRUS.ACCESS_KEY
+	        def secret_key = grailsApplication.config.crowdera.CITRUS.SECRETE_KEY
+	
+	        StringEntity input = new StringEntity("{\"access_key\":\"${access_key}\",\"secret_key\":\"${secret_key}\"}")
+	        
+	        input.setContentType("application/json")
+	        httppost.setEntity(input)
+	
+	        HttpResponse httpres = httpclient.execute(httppost)
+	        def authToken
+	        
+	        int status = httpres.getStatusLine().getStatusCode()
+	        if (status == 200){
+	            HttpEntity entity = httpres.getEntity()
+	            if (entity != null){
+	                String jsonString = EntityUtils.toString(entity)
+	                def slurper = new JsonSlurper()
+	                def json = slurper.parseText(jsonString)
+	                authToken = json.auth_token
+	            }
+	        }
+	        return authToken;
+			
+		} catch(Exception e) {
+		}
     }
     
     def getSellerIdByEmail(String email) {

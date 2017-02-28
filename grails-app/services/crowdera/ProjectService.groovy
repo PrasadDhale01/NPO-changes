@@ -26,6 +26,7 @@ import org.apache.http.client.HttpClient
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
+import org.grails.datastore.mapping.query.Query.IsNotNull;
 import org.hibernate.Session
 import org.hibernate.SessionFactory
 import org.hibernate.criterion.Projections;
@@ -6158,6 +6159,7 @@ class ProjectService {
             eq("draft", false)
             eq("rejected", false)
             eq("inactive", false)
+			isNotNull("citrusEmail")
         }
         
         def raised;

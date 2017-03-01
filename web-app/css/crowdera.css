@@ -8134,37 +8134,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
-	/*Image collage styles*/
-	a.desktopCampaigntext{
-	    font-size: 12px !important;
-        font-weight: 600 !important;
-        padding-top: 12px !important;
-	}
-	div.desktopcampaignDivbutton{
-	    bottom: 135px;
-	    width: 170px !important; 
-	}
-	div.campaignDivbutton4{
-	    bottom: 175px !important;
-	}
-	div.rowTwo{
-	    margin-top: 15px;
-	}
-	div.divBtn3 {
-        bottom: 112px !important;
-    }
-	div.rowThree,
-	div.innerrowTwo {
-        margin-top: 45px;
-    }
-    img.imageNine{
-        height: 422px !important;
-    }
-    div.successfullcampaignLogos{
-        margin-left: 0;
-        margin-right: 0;
-    }
-	/*Image collage styles ended*/
 	a.newCreatebtn{
  	    width: 105px !important;
  	}
@@ -8694,32 +8663,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-	/*Image collage styles*/
-	img.tab-logo{
-	width: 50px !important;
-	}
-	div.homepageusCampaigns {
-        max-height: 1535px;
-        min-height: 1400px;
-    }
-	div.successfullcampaignLogos div.logolist-2 a {
-        padding: 10px 6px 0 0 !important;
-        width: 11%;
-    }
-    div.logolist-2 a img {
-        height: 35px;
-    }	
-	div.logolist-1 > a {
-        padding-right: 5px !important;
-        width: 10%;
-    }
-	div.rowThree{
-	    margin-bottom: -30px !important;
-	}
-	div.colrowHeight{
-	    height: 200px !important;
-	}
-	/*Image collage styles ended*/
 	div.discoverBannerText {
     	bottom: 222px !important;
     	position: relative !important;
@@ -11797,6 +11740,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width: 1281px) and (max-width: 1344px){
+	
     div.manage-alltabs {
         padding-left: 0;
     }
@@ -11989,33 +11933,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
-		/*Image collage styles*/
-	div.rowTwo{
-	    margin-top: 15px !important;
-	}
-	div.rowThree,
-	div.innerrowTwo{
-	    margin-top: 45px !important;
-	}
-	img.imageNine {
-	    height: 422px !important;
-	}
-	a.desktopCampaigntext{
-	    font-size: 12px !important;
-        font-weight: 600 !important;
-        padding-top: 12px !important;
-	}
-	div.desktopcampaignDivbutton{
-	    bottom: 135px;
-	    width: 170px !important; 
-	}
-	div.campaignDivbutton4{
-	    bottom: 175px !important;
-	}
-	div.divBtn3 {
-        bottom: 112px !important;
-    }
-	/*Image collage styles ended*/
 	img.tabImage {
         height: 145%;
     }
@@ -20527,163 +20444,4 @@ tr.payTransacrow td{
 
 .deletedCamp {
     margin-left: 94px;
-}
-
-
-											/*Image-collage-new*/
-											
-.homepageusCampaigns{
-	min-height: 1535px;
-}
-
-.imageCollage{
-	left: 0 !important;
-    padding-left: 15px !important;
-    right: 0 !important;
-    position: absolute;
-}
-
-.homepageusCampaigns h1{
-	margin-bottom: -10px;
-	font-family: "Assistant";
-	font-weight: 200;
-	font-size: 36px;
-	color: #44505d;
-	text-align: center;
-}
-
-.homepageusCampaigns b{
-	font-family: "Assistant";
-	font-weight: normal;
-	font-size: 16px;
-	color: #7c848d;
-	text-align: center;
-	display: block;
-}
-
-.rowOne{
-    padding-bottom: 0px;
-}
-
-.rowTwo{
-	margin-top: 45px;
-}
-
-.desktopcampaignDivbutton{
-	margin-left: auto;
-	margin-right: auto;
-    bottom: 180px;
-    width: 235px;
-    position: relative;
-    text-decoration: none;
-}
-
-a.desktopCampaigntext:hover,
-a.desktopCampaigntext:focus{
-	text-decoration: none;
-}
-
-a.desktopCampaigntext{
-	text-decoration: none;
-	font-family: "Assistant";
-    font-weight: 500;
-    color: white;
-    height: 52px;
-    padding-top: 8px;
-    padding-right: 5px;
-    margin-right: 0px;
-    padding-left: 5px;
-}
-
-.desktopCampaigntext{
-    border: thick solid #f6bf0b;
-    border-radius: 0;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 16px;
-    font-weight: normal;
-    line-height: 1.42857;
-    margin-bottom: 0;
-    padding: 6px 12px;
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap;
-     padding-top: 8px;
-    padding-right: 5px;
-    margin-right: 0px;
-    padding-left: 5px;
-}
-
-a.hm-howtoCreatecampaign-btn
-a.hm-howtoCreatecampaign-btn:hover
-a.hm-howtoCreatecampaign-btn:focus{
-    margin-top: 60%;
-    margin-bottom: -85%;
-    height: 64px;
-    width: 235px;
-    font-family: "Assistant";
-    background-color: rgba(239, 181, 11, 0);
-    color: #ffffff;
-    border-width: thick;
-    font-size: 16px;
-    font-weight: normal;
-    border-color: #0085f4;
-}
-
-.successfullcampaignLogos{
-	background-color: #f0f0f0;
-	padding: 30px 0 30px 0;
-}
-
-.colrowHeight{
-    margin-bottom: 20px;
-	height: 241px !important;
-}
-
-b.successfullcampaignBottomline{
-	font-family: "Assistant";
-	font-weight: normal;
-	font-size: 16px;
-	color: #7d7d7d;
-	font-style: italic;
-	text-align: center;
-	display: block;
-}
-
-.hoverButton,
-.hoverButton2,
-.hoverButton3,
-.hoverButton4{
-	display: none;
-}
-
-.divBtn2{
-	bottom: 260px !important; 
-}
-
-.divBtn3{
-	bottom: 145px !important; 
-}
-
-img.imageNine{
-	height: 477px;
-}
-
-.successfullcampaignLogos div a {
-    float: left;
-    display: inline;
-    padding-right: 22px;
-}
-
-.successfullcampaignLogos div.logolist-2 a {
-    padding: 10px 6px 0 0 !important;
-}
-
-.imageNine,
-.nineDiv {
-	height: 477px;
-}
-
-.successfullcampaignLogos div.row {
-    margin: 0 auto;
 }

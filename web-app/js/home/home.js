@@ -159,6 +159,45 @@ $(function() {
     
     });
     
+    /**************************Success-Stories*********************************/
+	$(document).ready(function(){
+		
+		 $(".imageHover").hover(
+				   function() {
+				    $('.hoverButton').show().appendTo(this);
+				}, function() {
+				    $('.hoverButton').hide();
+		 });
+		 $(".imageHover2").hover(
+				   function() {
+				    $('.hoverButton2').show().appendTo(this);
+				}, function() {
+				    $('.hoverButton2').hide();
+		 });
+		 $(".imageHover3").hover(
+				   function() {
+				    $('.hoverButton3').show().appendTo(this);
+				}, function() {
+				    $('.hoverButton3').hide();
+		 });
+		 $(".imageHover4").hover(
+				   function() {
+				    $('.hoverButton4').show().appendTo(this);
+				}, function() {
+				    $('.hoverButton4').hide();
+		 });
+			
+		 $('img.imgAltr').bind('mouseenter mouseleave', function() {
+			    $(this).attr({
+			        src: $(this).attr('data-alt-src') 
+			        , 'data-alt-src': $(this).attr('src') 
+			    })
+		});
+
+		 
+	});
+    /**************************************************************************/
+    
     $( document ).ready(function() {
     	
     	/***********************call homepage carousel images****************************/

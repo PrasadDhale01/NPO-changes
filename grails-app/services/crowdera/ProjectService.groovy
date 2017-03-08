@@ -552,7 +552,16 @@ class ProjectService {
 		
 		def countryCode = getCountryCodeForCurrentEnv(request)
 		
-        if ((project.payuEmail && project.paypalEmail && 'us'.equalsIgnoreCase(countryCode)) || project.charitableId || 
+		if(project.payuEmail && 'in'.equalsIgnoreCase(countryCode)) {
+			currency = 'INR'
+			twitter = request.getParameter('shippingTwitter')
+			panNumber = request.getParameter('panNumber')
+		} else if (project.paypalEmail || project.charitableId) {
+			currency = 'USD'
+			twitter = request.getParameter('twitterHandle')
+		}
+		
+        /*if ((project.payuEmail && project.paypalEmail && 'us'.equalsIgnoreCase(countryCode)) || project.charitableId || 
 			(project.citrusEmail && project.paypalEmail && 'us'.equalsIgnoreCase(countryCode)) ) {
 			
 			currency = 'USD'
@@ -565,7 +574,7 @@ class ProjectService {
         } else if (project.paypalEmail) {
             currency = 'USD'
             twitter = request.getParameter('twitterHandle')
-        }
+        }*/
 		
 		emailId = request.getParameter('shippingEmail')
 		anonymous = request.getParameter('anonymous')
@@ -3773,7 +3782,7 @@ class ProjectService {
 					isValueChanged = true;
 				}
                 break;
-
+				
             case 'story':
                 if (project.story != varValue) {
                     project.story = varValue;
@@ -5148,6 +5157,7 @@ class ProjectService {
                 total = total + spendMatrix.amount
             }
             if ((project.amount - total) > 0){
+				
                 def totalLeft = (project.amount - total);
                 sublist = sublist + ', ' +'Miscellaneous'
                 sublist1 = sublist1 + ', ' +totalLeft.round()

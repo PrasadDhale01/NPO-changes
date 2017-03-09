@@ -775,11 +775,11 @@ div.validate-show-div .show-description {
 }
 
 .media-stript-container{
-    background-color: #323232 !important;
+    background-color: #e7e7e7 !important;
 /*     border-top: 2px solid #01bbd2 !important; */
 }
 .hm-media-title h3{
-    color: #fff;
+    color: #44505d;
     font-size: 15px;
     font-weight: 900;
     margin-bottom: 0;

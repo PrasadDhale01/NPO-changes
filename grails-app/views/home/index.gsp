@@ -87,10 +87,11 @@
         </div>
     </div>
     <div class="hidden-xs">
-        <div class="whycrowderacontainer" id="loadWhyCrowdera"></div>
+        <div class="whycrowderacontainer many-reasons" id="loadWhyCrowdera"></div>
         <div class="success-stories-container">
             <g:render template="success-stories"></g:render>
         </div>
+        <g:render template="succesfullcampaignlogos"></g:render>
 <%--        <div class="proudassociates-container">--%>
 <%--            <g:render template="association"></g:render>--%>
 <%--        </div>--%>

@@ -1,3 +1,7 @@
+<g:set var="projectService" bean="projectService"/>
+<%
+def country_code = projectService.getCountryCodeForCurrentEnv(request)
+%>
 <div class="container how-it-work-container">
    <div class="row">
     <h1 class="text-center headingtext1">Multiple Reasons to Fundraise on Crowdera</h1>

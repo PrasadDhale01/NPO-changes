@@ -336,7 +336,7 @@
                    
                    <div class="hidden-xs">
                        <g:if test="${(project?.rewards?.size()>1 && !isPreview) || (project?.rewards?.size()>1 && project?.validated) }">
-                           <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail || project.citrusEmail}">
+                           <g:if test="${project.paypalEmail || project.charitableId || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
                                <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
                            </g:if>
                        </g:if>
@@ -861,7 +861,6 @@
                       </g:elseif>
                       <g:else>
                             
-                            
                           <g:if test="${project.paypalEmail || project.charitableId || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
                               <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
                                   <div class="show-A-fund"> </div>
@@ -1062,12 +1061,11 @@
                     
                       <div class="sh-mobperks new-mob-perk">    
                           <g:if test="${(project?.rewards?.size()>1 && !isPreview) || (project?.rewards?.size()>1 && project?.validated) }">
-                              <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail || project.citrusEmail}">
+                              <g:if test="${project.paypalEmail || project.charitableId || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
                                   <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
                               </g:if>
                           </g:if>
                       </div>
-                      
                       
                       
                       <div class="visible-xs sh-comments-align">

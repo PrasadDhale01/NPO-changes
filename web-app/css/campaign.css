@@ -785,6 +785,14 @@ div.validate-show-div .show-description {
     margin-bottom: 0;
     padding-top: 23px;
 }
+
+.hm-partners-title h3{
+    color: #44505d;
+    font-size: 15px;
+    font-weight: 900;
+    margin-bottom: 0;
+    padding-top: 23px;
+}
 .hm-media-padding {
     width: 109px;
     border-right: 1px solid #c9c9c9;

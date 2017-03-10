@@ -1249,7 +1249,7 @@ $(function() {
     .hover(showPopover, hidePopover);
     
     $("button[name='inactiveContributeButton']").popover({
-        content: 'This campaign is not accepting foreign funds.',
+        content: 'Currently this campaign does not accept foreign funding.',
         trigger: 'manual',
         placement: 'top'
     })

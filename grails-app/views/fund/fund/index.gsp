@@ -17,7 +17,17 @@
                     <b>Sorry ! You cannot select twitter perk as you are contributing anonymously.</b>
                 </div>
                 
-                <g:if test="${project.paypalEmail && ('us'.equalsIgnoreCase(country_code)) || (project.paypalEmail && project.citrusEmail && ('us'.equalsIgnoreCase(country_code))) || (project.paypalEmail && project.payuEmail && ('us'.equalsIgnoreCase(country_code)))}">
+                <g:if test="${project.payuEmail && 'in'.equalsIgnoreCase(country_code)}">
+                    <g:render template="fund/payu"/>
+    			</g:if>
+    			<g:elseif test="${project.charitableId}" >
+        			<g:render template="fund/firstgiving"/>
+    			</g:elseif>
+    			<g:elseif test="${project.paypalEmail}">
+					<g:render template="fund/paypal"/>
+				</g:elseif>
+                
+                <%--<g:if test="${project.paypalEmail && ('us'.equalsIgnoreCase(country_code)) || (project.paypalEmail && project.citrusEmail && ('us'.equalsIgnoreCase(country_code))) || (project.paypalEmail && project.payuEmail && ('us'.equalsIgnoreCase(country_code)))}">
                     <g:render template="fund/paypal"/>
     			</g:if>
                 <g:elseif test="${project.payuEmail}">
@@ -30,7 +40,8 @@
 					<g:render template="fund/paypal"/>
 				</g:elseif>
 
-                <g:if test="${project.paypalEmail || project.payuStatus}">
+                --%>
+                <g:if test="${project.paypalEmail || 'in'.equalsIgnoreCase(project?.country?.countryCode)}">
                     <div class="col-md-4 hidden-sm hidden-xs campaignTile ">
                         <g:render template="fund/fundTile"/>
                     </div>

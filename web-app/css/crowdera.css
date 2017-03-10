@@ -7,7 +7,7 @@
 body {
     margin-top: 50px;
     /* padding-bottom: 40px; */
-    color: #0e0e0e;
+    color: #44505d;
     /* background-image: url('https://www.candiedphotography.co.uk/wp-content/uploads/paper_background.jpg'); */
 }
 
@@ -22,9 +22,10 @@ h1.headingtext.how-it-works-title {
 }
 h1.headingtext {
 	color:#005f84;
-	font-size:42px;
-	font-weight: 900;
+	font-size:38px;
+	font-weight: lighter;
     padding: 30px 0 20px;
+    font-family: assistant,sans-serif;
 }
 span.headingtext{
 	font-size: 20px;
@@ -528,6 +529,8 @@ footer {
 	font-size:12px;
     line-height: 11px;
     width: 75px;
+    color: #666666;
+    padding-left: 10px;
 }
 .footer-newsletter .help-block{
 	color:#f04124;
@@ -552,12 +555,13 @@ hr.footer-hr{
     color: #666666;
     background-color: #666666;
     border-left-width: 25px;
-    margin-left: 11px;
+    margin-left: 28px;
     height: 1px;
     border: #666666;
     float:left;
-    margin-top:0px !important;
-    width: 98%;
+    margin-top:25px !important;
+    width: 96%;
+    margin-bottom: 30px !important;
 }
 .footer-first-section p{
     color:#ffffff;
@@ -614,6 +618,7 @@ p.egle {
 .footer-mid-section-menu ul li{
     list-style-type:none;
     margin-left:-39px;
+    line-height: 1.5;
 }
 input.text-email{
     width:130%;
@@ -627,7 +632,7 @@ input.text-email{
 	display:inline-flex;
 }
 input.button-signup{
-    background-image: url(https://s3.amazonaws.com/crowdera/assets/signup-footer.jpg); 
+    background-image: url(https://s3.amazonaws.com/crowdera/project-images/0f9da321-6cbf-4a6c-9456-0cca2354c103.png); 
     background-color: transparent;
     background-repeat: no-repeat;  
     border: none;                   
@@ -636,9 +641,9 @@ input.button-signup{
     width: 75px;
 }
 input.signup-lg{
-	margin-left:-34px;
+	margin-left:-60px;
 	height: 30px;
-	width: 75px;
+	width: 100px;
 }
 .footer-mid-section-img a{
     margin-left:-20px;
@@ -2954,16 +2959,18 @@ span.tile-day-num{
 }
 .headingtext1 {
 	color:#005f84;
-	font-size:42px;
-	font-weight: 900;
-	margin-bottom: 20px;
-	margin-top: 20px;
+	font-size: 38px;
+	font-weight: lighter;
+	margin-bottom: 30px;
+	margin-top: 50px;
+	font-family: assistant,sans-serif;
 }
 .subheadingtext {
 	color: #5f676f;
     font-size: 24px;
-	font-weight: 600;
+	font-weight: lighter;
 	padding-top: 12px;
+	font-family: assistant,sans-serif;
 }
 .crowderacontent1 {
 	color: #5f676f;
@@ -3128,6 +3135,7 @@ ul.menu{
 }
 .thomas-owens-testimonial-div{
 	padding-left:45px;
+	padding-top: 50px;
 }
 .thomas-owens-testimonial{
 	margin-top:15px;
@@ -4244,6 +4252,7 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 	margin-left:32px;
 }
 .footer-disclaimer{
+	color: #666666;
 	font-size:10px;
 	font-weight:normal;
 }
@@ -6155,6 +6164,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: 17px;
     }
     span.hm-media-title h3 {
+        text-align: center;
+        font-size: 15px;    
+    }
+    span.hm-partners-title h3 {
         text-align: center;
         font-size: 15px;    
     }
@@ -8134,6 +8147,37 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+	/*Image collage styles*/
+	a.desktopCampaigntext{
+	    font-size: 12px !important;
+        font-weight: 600 !important;
+        padding-top: 12px !important;
+	}
+	div.desktopcampaignDivbutton{
+	    bottom: 135px;
+	    width: 170px !important; 
+	}
+	div.campaignDivbutton4{
+	    bottom: 175px !important;
+	}
+	div.rowTwo{
+	    margin-top: 15px;
+	}
+	div.divBtn3 {
+        bottom: 112px !important;
+    }
+	div.rowThree,
+	div.innerrowTwo {
+        margin-top: 45px;
+    }
+    img.imageNine{
+        height: 422px !important;
+    }
+    div.successfullcampaignLogos{
+        margin-left: 0;
+        margin-right: 0;
+    }
+	/*Image collage styles ended*/
 	a.newCreatebtn{
  	    width: 105px !important;
  	}
@@ -8663,6 +8707,32 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	/*Image collage styles*/
+	img.tab-logo{
+	width: 50px !important;
+	}
+	div.homepageusCampaigns {
+        max-height: 1535px;
+        min-height: 1400px;
+    }
+	div.successfullcampaignLogos div.logolist-2 a {
+        padding: 10px 6px 0 0 !important;
+        width: 11%;
+    }
+    div.logolist-2 a img {
+        height: 35px;
+    }	
+	div.logolist-1 > a {
+        padding-right: 5px !important;
+        width: 10%;
+    }
+	div.rowThree{
+	    margin-bottom: -30px !important;
+	}
+	div.colrowHeight{
+	    height: 200px !important;
+	}
+	/*Image collage styles ended*/
 	div.discoverBannerText {
     	bottom: 222px !important;
     	position: relative !important;
@@ -11001,6 +11071,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-right: 9px;
 	} 
 	.payment-method-footer{
+	    color: #666666;
 		font-size:12px;
 		font-weight:normal;
 		margin-left: -2px !important;
@@ -11740,7 +11811,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width: 1281px) and (max-width: 1344px){
-	
     div.manage-alltabs {
         padding-left: 0;
     }
@@ -11890,8 +11960,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	color: #e3e3e3;
 	font-family: "OPEN SANS";
 	font-size: 12px !important;
-	margin-left: 18px !important;
-	text-align: center;
+	margin-left: 12px !important;
+	text-align: end;
+	margin-right: 6px !important;
     }
 }
 @media only screen and (min-width: 1921px) and (max-width: 2560px){
@@ -11933,6 +12004,33 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+		/*Image collage styles*/
+	div.rowTwo{
+	    margin-top: 15px !important;
+	}
+	div.rowThree,
+	div.innerrowTwo{
+	    margin-top: 45px !important;
+	}
+	img.imageNine {
+	    height: 422px !important;
+	}
+	a.desktopCampaigntext{
+	    font-size: 12px !important;
+        font-weight: 600 !important;
+        padding-top: 12px !important;
+	}
+	div.desktopcampaignDivbutton{
+	    bottom: 135px;
+	    width: 170px !important; 
+	}
+	div.campaignDivbutton4{
+	    bottom: 175px !important;
+	}
+	div.divBtn3 {
+        bottom: 112px !important;
+    }
+	/*Image collage styles ended*/
 	img.tabImage {
         height: 145%;
     }
@@ -19036,6 +19134,7 @@ span.abt-founderCo{
 }
 .col-md-6.footer-mid-section-menu {
     padding-left: 11px;
+    padding-top: 23px;
 }
 .dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.open .user-cl-caret::before {
     content: "";
@@ -20444,4 +20543,236 @@ tr.payTransacrow td{
 
 .deletedCamp {
     margin-left: 94px;
+}
+
+
+											/*Image-collage-new*/
+											
+.homepageusCampaigns{
+	min-height: 1200px;
+}
+
+.imageCollage{
+	left: 0 !important;
+    padding-left: 15px !important;
+    right: 0 !important;
+    position: absolute;
+}
+
+.homepageusCampaigns h1{
+	margin-bottom: -10px;
+	font-family: "Assistant",sans-serif;
+	font-weight: lighter;
+	font-size: 33px;
+	color: #005f84;
+	text-align: center;
+}
+
+.homepageusCampaigns h4{
+	font-family: "Assistant",sans-serif;
+	font-weight: normal;
+	font-size: 16px;
+	color: #1d1717;
+	text-align: center;
+	display: block;
+}
+
+.rowOne{
+    padding-bottom: 0px;
+}
+
+.rowTwo{
+	margin-top: 45px;
+}
+
+.desktopcampaignDivbutton{
+	margin-left: auto;
+	margin-right: auto;
+    bottom: 180px;
+    width: 235px;
+    position: relative;
+    text-decoration: none;
+}
+
+a.desktopCampaigntext:hover,
+a.desktopCampaigntext:focus{
+	text-decoration: none;
+}
+
+a.desktopCampaigntext{
+	text-decoration: none;
+	font-family: "Assistant";
+    font-weight: 500;
+    color: white;
+    height: 52px;
+    padding-top: 8px;
+    padding-right: 5px;
+    margin-right: 0px;
+    padding-left: 5px;
+}
+
+.desktopCampaigntext{
+    border: thick solid #f6bf0b;
+    border-radius: 0;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+     padding-top: 8px;
+    padding-right: 5px;
+    margin-right: 0px;
+    padding-left: 5px;
+}
+
+a.hm-howtoCreatecampaign-btn
+a.hm-howtoCreatecampaign-btn:hover
+a.hm-howtoCreatecampaign-btn:focus{
+    margin-top: 60%;
+    margin-bottom: -85%;
+    height: 64px;
+    width: 235px;
+    font-family: "Assistant";
+    background-color: rgba(239, 181, 11, 0);
+    color: #ffffff;
+    border-width: thick;
+    font-size: 16px;
+    font-weight: normal;
+    border-color: #0085f4;
+}
+
+.successfullcampaignLogos{
+	background-color: #f0f0f0;
+	padding:  0 30px 0;
+}
+
+.colrowHeight{
+    margin-bottom: 20px;
+	height: 241px !important;
+}
+
+b.successfullcampaignBottomline{
+	font-family: "Assistant";
+	font-weight: normal;
+	font-size: 16px;
+	color: #1d1717;
+	font-style: italic;
+	text-align: center;
+	display: block;
+	padding-top: 30px;
+}
+
+.hoverButton,
+.hoverButton2,
+.hoverButton3,
+.hoverButton4{
+	display: none;
+}
+
+.divBtn2{
+	bottom: 260px !important; 
+}
+
+.divBtn3{
+	bottom: 145px !important; 
+}
+
+img.imageNine{
+	height: 477px;
+}
+
+.successfullcampaignLogos div a {
+    float: left;
+    display: inline;
+    padding-right: 22px;
+}
+
+.successfullcampaignLogos div.logolist-2 a {
+    padding: 10px 6px 0 0 !important;
+}
+
+.imageNine,
+.nineDiv {
+	height: 477px;
+}
+
+.successfullcampaignLogos div.row {
+    margin: 0 auto;
+}
+
+.how-it-work-text{
+	position: relative; 
+	color: #005f84; 
+	bottom: -75px; 
+	left: 137px; 
+	z-index: 100;
+}
+
+.how-it-work-text h2{
+	font-family: assistant,sans-serif !important; 
+	font-size: 38px; 
+	font-weight: lighter; 
+}
+
+
+a.npoCreate-btn{
+	font-weight: 600 !important;
+}
+
+a.npoCreate-btn:hover{
+	background-color: #ffbf08 !important;
+}
+
+div.successfullcampaignLogos div{
+	padding-top: 15px;
+}
+
+.multiple-reason-btn1{
+	position: absolute;
+    right: 22.2%;
+    margin-top: 15px;
+}
+
+.multiple-reason-btn1 a{
+	background-color: #fff;
+    border: thick solid #5f676f;
+    border-color: thin;
+    color: #5f676f;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: "Assistant",sans-serif;
+}  
+
+.multiple-reason-btn2{
+	position: absolute;
+    left: 22.2%;
+    margin-top: 15px;
+}
+
+.multiple-reason-btn2 a{
+	background-color: #fff;
+    border: thick solid #5f676f;
+    border-color: thin;
+    color: #5f676f;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: "Assistant",sans-serif;
+}  
+
+.multiple-reason-btn1 a:hover,
+.multiple-reason-btn1 a:focus,
+.multiple-reason-btn2 a:hover,
+.multiple-reason-btn2 a:focus{
+	background-color: #5f676f;
+	border: thick solid #5f676f;
+	color: #ffffff;
+}
+
+.many-reasons{
+	min-height: 650px;
 }

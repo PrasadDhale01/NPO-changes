@@ -1038,10 +1038,12 @@ class ProjectController {
 	
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def redirectCreateNow() {
-		def country_code = params.country_code
         def vanityTitle = params.title
-        def project = projectService. getProjectFromVanityTitle(vanityTitle)
+        Project project = projectService. getProjectFromVanityTitle(vanityTitle)
+		
         if (project) {
+			def country_code = project.country.countryCode
+			
             def user = project.user
             def currentUser = userService.getCurrentUser()
             def spends = project.spend
@@ -1086,6 +1088,9 @@ class ProjectController {
                 def taxReciept = projectService.getTaxRecieptOfProject(project)
                 def deductibleStatusList = projectService.getDeductibleStatusList()
                 def stateInd = projectService.getIndianState()
+				
+				BankInfo bankInfo = projectService.getBankInfoByProject(project);
+				
                 render(view: 'create/index2',
                 model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, 
                     nonIndprofit:nonIndprofit, nonProfit:nonProfit , currentEnv: currentEnv,
@@ -1095,7 +1100,7 @@ class ProjectController {
                     email2:adminemails.email2, email3:adminemails.email3,reasonsToFund:reasonsToFund, 
                     qA:qA, spends:spends, usedForCreate:usedForCreate, selectedCountry:selectedCountry, 
                     taxReciept:taxReciept, deductibleStatusList:deductibleStatusList,
-                    spendAmountPerList:pieList.spendAmountPerList,country_code:country_code])
+                    spendAmountPerList:pieList.spendAmountPerList,country_code:country_code, bankInfo: bankInfo])
             } else {
                 render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
             }
@@ -1112,15 +1117,16 @@ class ProjectController {
         if (project) {
             User user = userService.getCurrentUser()
             if (project.user == user) {
-                def currentEnv = projectService.getCurrentEnvironment()
+                
+				def currentEnv = projectService.getCurrentEnvironment()
 				if('in'.equalsIgnoreCase(country_code)){   
                     if(params.payuEmail){
                         project.payuEmail = params.payuEmail
                     }
 					if(params.paypalEmail){
 						project.paypalEmail = params.paypalEmail
-					   }
-			   }
+					}
+			    }
 				
 				projectService.saveLastSpendField(params);
                 rewardService.saveRewardDetails(params);
@@ -1221,8 +1227,8 @@ class ProjectController {
             spends = spends.sort{it.numberAvailable}
             
             String countryCode = project?.country?.countryCode
-            
-			 def categoryOptions= projectService.getCategoryList()
+			
+			def categoryOptions= projectService.getCategoryList()
             def user = project.user
             def country = projectService.getCountry()
             def nonProfit = projectService.getRecipientOfFunds()
@@ -1266,9 +1272,9 @@ class ProjectController {
             def stateInd = projectService.getIndianState()
             def pieList = projectService.getPieList(project);
             
-			println("from edit() == " + params.country_code )
+			BankInfo bankInfo = projectService.getBankInfoByProject(project);
 			
-            def country_code = params.country_code
+            def country_code = countryCode
             render (view: 'edit/index',
             model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,spends:spends,
                 'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit,
@@ -1277,7 +1283,7 @@ class ProjectController {
                 project:project, user:user,campaignEndDate:campaignEndDate,reasonsToFund:reasonsToFund,
                 vanityTitle: vanityTitle, vanityUsername:vanityUsername, selectedCountry: selectedCountry,
                 email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3,
-                deductibleStatusList:deductibleStatusList,spendAmountPerList:pieList.spendAmountPerList,country_code:country_code])
+                deductibleStatusList:deductibleStatusList,spendAmountPerList:pieList.spendAmountPerList,country_code:country_code, bankInfo: bankInfo])
         } else {
             def previousPage = "manage"
         
@@ -3097,5 +3103,39 @@ class ProjectController {
             render ''
         }
     }
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def generateSellerId() {
+		String status = "FAILURE";
+		
+		Project project = projectService.getProjectById(params.projectId);
+		JSONObject json = new JSONObject();
+		
+		if (project != null && !project.validated) {
+			boolean statusFlag = userService.setBankInfoDetails(params, project)
+			
+			if (statusFlag && project.citrusEmail != null && project.payuStatus) {
+				def sellerObj = contributionService.setSellerId(project)
+				
+				if (sellerObj.sellerId != null && sellerObj.errorCode == null) {
+					project.sellerId = sellerObj.sellerId
+					
+					if (sellerObj.sellerId && sellerObj.errorCode) {
+						project.save();
+					}
+					status = "SUCCESS"
+				} else {
+					status = "FAILURE"
+					json.put("errorDescription", sellerObj.errorDescription)
+					json.put("errorCode", sellerObj.errorCode)
+				}
+			}
+		} else if (project.validated) {
+			json.put("status", "SUCCESS")
+		}
+		
+		json.put("status", status)
+		render json;
+	}
     
 }

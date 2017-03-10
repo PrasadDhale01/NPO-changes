@@ -26,6 +26,7 @@ import org.apache.http.client.HttpClient
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
+import org.grails.datastore.mapping.query.Query.IsNotNull;
 import org.hibernate.Session
 import org.hibernate.SessionFactory
 import org.hibernate.criterion.Projections;
@@ -389,10 +390,10 @@ class ProjectService {
         if (project) {
             project.created = new Date()
             if(!project.validated) {
-                if (project.citrusEmail != null && project.payuStatus && getCurrentEnvironment() == "testIndia") {
+                /*if (project.citrusEmail != null && project.payuStatus) {
                     def sellerId = contributionService.setSellerId(project)
                     project.sellerId = sellerId
-                }
+                }*/
                 
                 project.validated = true
                 project.onHold = false
@@ -551,7 +552,16 @@ class ProjectService {
 		
 		def countryCode = getCountryCodeForCurrentEnv(request)
 		
-        if ((project.payuEmail && project.paypalEmail && 'us'.equalsIgnoreCase(countryCode)) || project.charitableId || 
+		if(project.payuEmail && 'in'.equalsIgnoreCase(countryCode)) {
+			currency = 'INR'
+			twitter = request.getParameter('shippingTwitter')
+			panNumber = request.getParameter('panNumber')
+		} else if (project.paypalEmail || project.charitableId) {
+			currency = 'USD'
+			twitter = request.getParameter('twitterHandle')
+		}
+		
+        /*if ((project.payuEmail && project.paypalEmail && 'us'.equalsIgnoreCase(countryCode)) || project.charitableId || 
 			(project.citrusEmail && project.paypalEmail && 'us'.equalsIgnoreCase(countryCode)) ) {
 			
 			currency = 'USD'
@@ -564,7 +574,7 @@ class ProjectService {
         } else if (project.paypalEmail) {
             currency = 'USD'
             twitter = request.getParameter('twitterHandle')
-        }
+        }*/
 		
 		emailId = request.getParameter('shippingEmail')
 		anonymous = request.getParameter('anonymous')
@@ -3752,17 +3762,27 @@ class ProjectService {
                 break;
 	
             case 'paypalEmailId':
-                project.paypalEmail = varValue;
-                project.charitableId = null;
-                isValueChanged = true;
+				if (!project.validated) {
+	                project.paypalEmail = varValue;
+	                project.charitableId = null;
+	                isValueChanged = true;
+				}
                 break;
 			
             case 'payuEmail':
-                project.payuEmail = varValue;
-                project.citrusEmail = null;
-                isValueChanged = true;
+				if (!project.validated) {
+					project.payuEmail = varValue;
+					project.citrusEmail = null;
+					project.sellerId = null;
+					
+					BankInfo bankInfo = getBankInfoByProject(project);
+					if (bankInfo) {
+						bankInfo.delete();
+					}
+					isValueChanged = true;
+				}
                 break;
-
+				
             case 'story':
                 if (project.story != varValue) {
                     project.story = varValue;
@@ -4408,9 +4428,11 @@ class ProjectService {
                 break;
                 
             case 'citrusEmail': 
-                project.citrusEmail = varValue
-                project.payuEmail = null
-                isValueChanged = true
+				if (!project.validated) {
+	                project.citrusEmail = varValue
+	                project.payuEmail = null
+	                isValueChanged = true
+				}
                 break;
                 
             default :
@@ -5135,6 +5157,7 @@ class ProjectService {
                 total = total + spendMatrix.amount
             }
             if ((project.amount - total) > 0){
+				
                 def totalLeft = (project.amount - total);
                 sublist = sublist + ', ' +'Miscellaneous'
                 sublist1 = sublist1 + ', ' +totalLeft.round()
@@ -5985,7 +6008,7 @@ class ProjectService {
         }
         
         
-        /*String splitId = getSplitIdForTransactionId(marketplaceTxId, project.sellerId, amount, issuerRefNo) */
+        String splitId = getSplitIdForTransactionId(marketplaceTxId, project.sellerId, amount, issuerRefNo)
 
         Contribution contribution = new Contribution(
             date             : new Date(),
@@ -6000,9 +6023,9 @@ class ProjectService {
             physicalAddress  : shippingDetail.address,
             currency         : 'INR',
             panNumber        : panNumber,
-            merchantTxId     : marketplaceTxId/*,
+            merchantTxId     : marketplaceTxId,
             splitRef         : issuerRefNo,
-            splitId          : splitId*/
+            splitId          : splitId
         )
         
         project.addToContributions(contribution).save(failOnError: true)
@@ -6094,6 +6117,7 @@ class ProjectService {
                 splitId = json.split_id
             }
         }
+		
         return splitId
     }
     
@@ -6143,6 +6167,7 @@ class ProjectService {
             eq("draft", false)
             eq("rejected", false)
             eq("inactive", false)
+			isNotNull("citrusEmail")
         }
         
         def raised;
@@ -6177,9 +6202,12 @@ class ProjectService {
     List<Contribution> getContributionsListByProjectId(String projectId) {
         List<Contribution> contributionList = new ArrayList<>();
         contributionList = Contribution.createCriteria().list{ 
-            eq("project.id", projectId)}
+            					eq("project.id", projectId)
+								eq("currency", "INR")
+							}
     }
     
+	
     StringBuilder getBuildURL(String pkey, String title, String name,String country_code) {
         
         StringBuilder builder = new StringBuilder()
@@ -7012,15 +7040,16 @@ class ProjectService {
 			team["fundsRecievedBy"]= project.fundsRecievedBy
 			team["username"]=userName
 
-			if(type.equals("allTeams")){
+			if(type.equals("allTeams")) {
 				if(percentage >= 17) {
 					allTeams.add(team)
 				}
 				
-			}else if(type.equals("allSortedTeams")){
-					allSortedTeams.add(team)
+			} else if(type.equals("allSortedTeams")) {
+				allSortedTeams.add(team)
 			}
 		}
+		
 		if(type.equals("allTeams")){
 			return allTeams
 		}else{

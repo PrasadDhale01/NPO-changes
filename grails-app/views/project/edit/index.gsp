@@ -65,7 +65,13 @@
     <g:hiddenField name="taxRecieptId" value="${taxRecieptId}" id="taxRecieptId"/>
     <g:hiddenField name="offeringTaxReciept" id="offeringTaxReciept" value="${project.offeringTaxReciept}"/>
     
-    <g:hiddenField name="isIndianCampaign" value="${project.payuStatus}" id="isIndianCampaign"/>
+    <g:if test="${'in'.equalsIgnoreCase(country_code)}">
+    	<g:hiddenField name="isIndianCampaign" value="true" id="isIndianCampaign"/>
+    </g:if>
+    <g:else>
+    	<g:hiddenField name="isIndianCampaign" value="false" id="isIndianCampaign"/>
+    </g:else>
+    
     <g:hiddenField name="titleUniqueStatus" value="true" id="titleUniqueStatus"/>
     <g:hiddenField name="prjCategory" value="${project.category }" id="prjCategory"/>
     <g:hiddenField name="country_code" value="${country_code}"/>
@@ -140,7 +146,7 @@
                     
                     <div class="col-sm-3 cr2-width-dropdown5">
                         <div class="cr-dropdown-alignment font-list">
-                            <g:if test="${project.payuStatus}">
+                            <g:if test="${'in'.equalsIgnoreCase(country_code)}">
                                 <g:if test="${project.fundsRecievedBy}">
                                     <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color  cr-all-mobile-dropdown recipient cr2-edit-funds" name="#" from="${nonIndprofit}" value="${project.fundsRecievedBy}" optionKey="key" optionValue="value" />
                                 </g:if>
@@ -176,7 +182,7 @@
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-7">
                             <span class="col-lg-6 col-sm-6 col-md-6 cr-padding-index1">I need</span>
                             <div class="cr-tops">
-                                <g:if test="${project.payuStatus}">
+                                <g:if test="${'in'.equalsIgnoreCase(country_code)}">
                                     <span class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
                                 </g:if>
                                 <g:else>
@@ -188,7 +194,7 @@
                         </div>
                         
                         <div class="col-lg-1 col-md-1 col-sm-1 amount-popover cr1-mobile-padding-amt col-xs-1">
-                            <img class="cr1-amountInfo-img <g:if test="${project.payuStatus}">cr1-guidence-indo</g:if><g:else>cr1-guidence-us</g:else>" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
+                            <img class="cr1-amountInfo-img <g:if test="${'in'.equalsIgnoreCase(country_code)}">cr1-guidence-indo</g:if><g:else>cr1-guidence-us</g:else>" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                         </div>
                         
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 cr1-in-days">
@@ -216,7 +222,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-7">
                         <span class="col-lg-6 col-sm-6 col-md-6 cr-padding-index1">I need</span>
                         <div class="cr-tops">
-                            <g:if test="${project.payuStatus}">
+                            <g:if test="${'in'.equalsIgnoreCase(country_code)}">
                                 <span class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
                             </g:if>
                             <g:else>
@@ -228,7 +234,7 @@
                     </div>
                     
                     <div class="col-lg-1 col-md-1 col-sm-1 amount-popover cr1-mobile-padding-amt col-xs-1">
-                        <img class="cr1-amountInfo-img <g:if test="${project.payuStatus}">amountInfoInd-img</g:if><g:else>amountInfo-img</g:else>" 
+                        <img class="cr1-amountInfo-img <g:if test="${'in'.equalsIgnoreCase(country_code)}">amountInfoInd-img</g:if><g:else>amountInfo-img</g:else>" 
                              src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                     </div>
                     
@@ -250,7 +256,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 editCustomVanityUrl">
                         <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 hidden-xs">My campaign web address</label>
                         <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 visible-xs">
-                            <g:if test="${project.payuStatus}">
+                            <g:if test="${'in'.equalsIgnoreCase(country_code)}">
                                 gocrowdera.com/campaigns/
                             </g:if>
                             <g:else>
@@ -259,7 +265,7 @@
                         </label>
                         <div class="col-sm-12 col-xs-12 cr1-mobile-indx1 col-web-url">
                             <div class="cr1-vanityUrl-indx1 hidden-xs">
-                                <g:if test="${project.payuStatus}">
+                                <g:if test="${'in'.equalsIgnoreCase(country_code)}">
                                     gocrowdera.com/campaigns/
                                 </g:if>
                                 <g:else>
@@ -408,7 +414,7 @@
                                         <div class="col-sm-amt col-sm-12">
                                             <span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>
                                             <div class="form-group col-sm-3 col-xs-4 col-sm-input-group">
-                                                <g:if test="${project.payuStatus}">
+                                                <g:if test="${'in'.equalsIgnoreCase(country_code)}">
                                                      <span class="fa fa-inr cr-currency"></span>
                                                 </g:if>
                                                 <g:else>
@@ -446,7 +452,7 @@
                                     <div class="col-sm-amt col-sm-12">
                                         <span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>
                                         <div class="form-group col-sm-3 col-xs-4 col-sm-input-group">
-                                            <g:if test="${project.payuStatus}">
+                                            <g:if test="${'in'.equalsIgnoreCase(country_code)}">
                                                 <span class="fa fa-inr cr-currency"></span>
                                             </g:if>
                                             <g:else>
@@ -901,7 +907,7 @@
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <g:if test="${project.payuStatus}">
+                                    <g:if test="${'in'.equalsIgnoreCase(country_code)}">
                                         <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
                                         <input type="text" placeholder="Amount" name="rewardPrice1" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice1">
                                     </g:if>
@@ -984,9 +990,20 @@
                                You keep 100% of the money you raise. Crowdera does not charge any fee to you.</label>
                         </div>
                     </div>
-                </div><br>
+                </div>
+                
+                <g:if test ="${'in'.equalsIgnoreCase(country_code)}">
+	                <div class="col-sm-12" id="CitrusPay">
+	                    <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-body">
+	                		 <g:render template="create/payments"></g:render>
+						</div>
+	                </div>
+                
+                </g:if>
+                <br>
+                
                 <div class="form-group">
-                    <g:if test ="${project.payuStatus}">
+                    <g:if test ="${'in'.equalsIgnoreCase(country_code)}">
                         <div id="PayUMoney">
                              <div class="form-group">
                                  <label class="col-sm-4 control-label">Email</label>
@@ -999,20 +1016,6 @@
                                      </g:else>
                                  </div>
                              </div>
-                        </div>
-                        
-                        <div id="CitrusPay">
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">Email</label>
-                                <div class="col-sm-6 col-xs-10">
-                                    <g:if test="${project.citrusEmail}">
-                                        <input type="email" id="citrusemail" maxlength="64" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.CITRUSEMAIL}" value="${project.citrusEmail}">
-                                    </g:if>
-                                    <g:else>
-                                        <input type="email" id="citrusemail" maxlength="64" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.CITRUSEMAIL}">
-                                    </g:else>
-                                </div>
-                            </div>
                         </div>
                     </g:if>
                     <g:else>
@@ -1081,7 +1084,7 @@
 
                     <div class="col-sm-12">
                         <div class="col-md-offset-4 col-md-8 col-sm-offset-3 col-sm-9">
-                            <div class="form-group form-group-termsOfUse <g:if test="${(project.fundsRecievedBy != 'NGO' && (project.payuStatus)) || (project.fundsRecievedBy != 'NON-PROFIT' && (currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv == 'development'))}">tax-reciept</g:if>" id="tax-reciept">
+                            <div class="form-group form-group-termsOfUse <g:if test="${(project.fundsRecievedBy != 'NGO' && ('in'.equalsIgnoreCase(country_code))) || (project.fundsRecievedBy != 'NON-PROFIT' && (currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv == 'development'))}">tax-reciept</g:if>" id="tax-reciept">
                                 <input type="checkbox" name="tax-reciept-checkbox" id="tax-reciept-checkbox" class="tax-reciept-checkbox" <g:if test="${project.offeringTaxReciept}">checked="checked"</g:if>>
                                 Do you want to offer donation receipt to your contributors?
                             </div>
@@ -1120,7 +1123,7 @@
                             </label>
                         </div>
                         <div class="panel panel-body cr-panel-body-spend-matrix form-group cr-panel-body">
-                            <g:if test="${project.payuStatus}">
+                            <g:if test="${'in'.equalsIgnoreCase(country_code)}">
                                 <g:if test="${taxReciept}">
                                     <div class="row">
                                         <div class="col-sm-4">
@@ -1607,6 +1610,22 @@
         <div class="loadinggif text-center" id="loading-gif">
             <img src="//s3.amazonaws.com/crowdera/documents/loading.gif" alt="'loadingImage'" id="loading-gif-img">
         </div>
+        
+        <!-- Required field modal -->
+        <div class="modal fade" id="requiredField" tabindex="-1" role="dialog" aria-hidden="true">
+             <div class="modal-dialog modal-xs">
+                 <div class="modal-content">
+                     <div class="modal-header video-modal">
+                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                         <h3 class="modal-title text-center"><b>Information!</b></h3>
+                     </div>
+                     <div class="modal-body requireFieldBody">
+                         <h4 class="requiredFieldHeading"><span id="requiredFieldMessage"></span></h4>
+                     </div>
+                     
+                 </div>
+             </div>
+         </div>
  </div>
  <script src="/js/main.js"></script>
  <script src="/js/bootstrap-datepicker.js"></script>

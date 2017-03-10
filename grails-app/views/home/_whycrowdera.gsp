@@ -1,3 +1,7 @@
+<g:set var="projectService" bean="projectService"/>
+<%
+def country_code = projectService.getCountryCodeForCurrentEnv(request)
+%>
 <div class="container how-it-work-container">
    <div class="row">
     <h1 class="text-center headingtext1">Multiple Reasons to Fundraise on Crowdera</h1>
@@ -48,6 +52,11 @@
                     </div>
                 </div>
             </g:if>
+            <div class="col-md-12 whycrowderadiv whycrowderadiv4 whycrowderacol-md">
+	            <div class="multiple-reason-btn1">
+		           <a href="${resource(dir: '/'+"${country_code}"+'/campaign/create')}" class="btn btn-default btn-block ">START A CAMPAIGN</a>
+		        </div>
+	        </div>
         </div>
         <div class="col-md-6 whycrowderacol-md-12">
             <div class="col-md-12 whycrowderadiv whycrowderacol-md">
@@ -92,6 +101,11 @@
                     <p class="pull-left crowderacontent1">Step by step guidelines for crowdfunding.</p>
                 </div>
             </div>
+            <div class="col-md-12 whycrowderadiv whycrowderadiv4 whycrowderacol-md">
+	            <div class="multiple-reason-btn2">
+		           <a href="${resource(dir: '/'+"${country_code}"+'/campaigns')}" class="btn btn-default btn-block ">EXPLORE CAMPAIGNS</a>
+		        </div>
+	        </div>
         </div>
     </div>
 </div>

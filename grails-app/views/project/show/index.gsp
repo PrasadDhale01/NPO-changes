@@ -143,7 +143,7 @@
 <a href="javascript:" id="returnTotop"> <i class="icon-chevron-up"></i></a>
 <div class="feducontent new-mob-height campaign-bg-color">
     <g:if test="${isPreview}">
-        <g:if test="${country_code == 'in'}">
+        <g:if test="${'in'.equalsIgnoreCase(country_code)}">
             <div class="preview-banner-margin" id="preview-banner">
                 You are in preview mode. This is how your campaign will look like once it is live. Please note some links might not work in preview mode. If you like how your campaign has shaped up, Submit it for approval! 
             </div><br>
@@ -285,11 +285,14 @@
                     </g:elseif>
                     <g:else>
                         <div class="show-mobile-button">
-                            <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail || project.citrusEmail}">
+                            <g:if test="${project.paypalEmail || project.charitableId || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
                                 <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
                                     <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri"  id="btnFundMobile">DONATE NOW</button>
                                 </g:form>
                             </g:if>
+                            <g:elseif test="${(project.payuEmail || project.citrusEmail) && !('in'.equalsIgnoreCase(country_code))}">
+                            	<button name="inactiveContributeButton" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri">DONATE NOW</button>
+                            </g:elseif>
                             <g:else>
                                 <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri">DONATE NOW</button>
                             </g:else>
@@ -433,15 +436,20 @@
                             <ul class="nav navbar-nav navbar-right col-lg-6 col-sm-6 col-md-6 show-paddingsbtn">
                                 <li class="show-margin-right">
                                      <g:if test="${project?.paypalEmail || project?.charitableId || project?.payuEmail || project?.citrusEmail}">
-                                        <g:if test="${(project.payuStatus == false) && (country_code == 'in')}">
+                                        <g:if test="${!'in'.equalsIgnoreCase(project.country?.countryCode) && 'in'.equalsIgnoreCase(country_code)}">
                                             <div class="redirectCampaign">
                                                 <g:link class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js sh-fund-donate-contri" controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="btnFundDesktop">DONATE NOW</g:link>
                                             </div>
                                         </g:if>
                                         <g:else>
-                                            <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
-                                                <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js sh-fund-donate-contri">DONATE NOW</button>
-                                            </g:form>
+                                        	<g:if test="${project.paypalEmail || project.charitableId || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
+	                                            <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
+	                                                <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js sh-fund-donate-contri">DONATE NOW</button>
+	                                            </g:form>
+                                            </g:if>
+                                            <g:elseif test="${(project.payuEmail || project.citrusEmail) && !('in'.equalsIgnoreCase(country_code))}">
+				                            	<button name="inactiveContributeButton" class="btn btn-show-fund btn-lg btn-block sh-fund-2header mob-show-fund show-btn-js sh-fund-donate-contri">DONATE NOW</button>
+				                            </g:elseif>
                                         </g:else>
                                     </g:if>
                                     <g:else>
@@ -852,12 +860,17 @@
                           <button type="button" class="btn btn-warning btn-lg btn-block show-campaign-sucess-endedbtn mob-show-sucessend hidden-xs show-campaign-ended-funded" disabled>CAMPAIGN ENDED!</button>
                       </g:elseif>
                       <g:else>
-                          <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail || project.citrusEmail}">
+                            
+                            
+                          <g:if test="${project.paypalEmail || project.charitableId || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
                               <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
                                   <div class="show-A-fund"> </div>
                                   <button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri" id="btnFundDesktop">DONATE NOW</button>
                               </g:form>
                           </g:if>
+                          <g:elseif test="${(project.payuEmail || project.citrusEmail) && !('in'.equalsIgnoreCase(country_code))}">
+                            	<button name="inactiveContributeButton" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri">DONATE NOW</button>
+                          </g:elseif>
                           <g:else>
                               <div class="show-A-fund"> </div>
                               <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri">DONATE NOW</button>

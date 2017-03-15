@@ -396,7 +396,7 @@ environments {
         
         
         /*Citrus Credentials*/
-        crowdera.CITRUS.SPLITPAY_URL = "https://splitpaysbox.Citruspay.com"
+        crowdera.CITRUS.SPLITPAY_URL = "https://splitpay.citruspay.com"
         crowdera.CITRUS.BASE_URL = "https://splitpay.citruspay.com"
         crowdera.CITRUS.ACCESS_KEY = "0OPFFQDNQ9WEZM9UVIMZ"
         crowdera.CITRUS.SECRETE_KEY = "54912af376b8c3463b59a188551a1236fb2fb5c1"
@@ -509,7 +509,7 @@ environments {
         
         
         /*Citrus Credentials*/
-        crowdera.CITRUS.SPLITPAY_URL = "https://splitpaysbox.Citruspay.com"
+        crowdera.CITRUS.SPLITPAY_URL = "https://splitpay.citruspay.com"
         crowdera.CITRUS.BASE_URL = "https://splitpay.citruspay.com"
         crowdera.CITRUS.ACCESS_KEY = "0OPFFQDNQ9WEZM9UVIMZ"
         crowdera.CITRUS.SECRETE_KEY = "54912af376b8c3463b59a188551a1236fb2fb5c1"

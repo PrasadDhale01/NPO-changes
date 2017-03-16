@@ -1,6 +1,7 @@
 <%
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
     def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+    def base_url1 = base_url.substring(0, (base_url.length() - 1))
     def projectId = project.id
 %>
 <html>
@@ -9,6 +10,7 @@
 	<r:require modules="projecteditjs"/>
 </head>
 <body>
+<input type="hidden" id="b_url" value="<%=base_url1%>"/>
 <div class="bg-color">
     <div class="feducontent">
         <div class="container editUpdateForm campaignUpdateContainer">

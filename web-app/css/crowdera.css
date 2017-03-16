@@ -20705,7 +20705,7 @@ img.imageNine{
 	position: relative; 
 	color: #005f84; 
 	bottom: -75px; 
-	left: 137px; 
+	left: 195px; 
 	z-index: 100;
 }
 
@@ -20718,6 +20718,10 @@ img.imageNine{
 
 a.npoCreate-btn{
 	font-weight: 600 !important;
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
+	transition: all 0.2s ease;
 }
 
 a.npoCreate-btn:hover{
@@ -20742,6 +20746,10 @@ div.successfullcampaignLogos div{
     font-size: 17px;
     font-weight: 600;
     font-family: "Assistant",sans-serif;
+    -webkit-transition: background-color 0.4s ease;
+	-moz-transition: background-color 0.4s ease;
+	-o-transition: background-color 0.4s ease;
+	transition: background-color 0.4s ease;
 }  
 
 .multiple-reason-btn2{
@@ -20758,14 +20766,18 @@ div.successfullcampaignLogos div{
     font-size: 17px;
     font-weight: 600;
     font-family: "Assistant",sans-serif;
+    -webkit-transition: background-color 0.4s ease;
+	-moz-transition: background-color 0.4s ease;
+	-o-transition: background-color 0.4s ease;
+	transition: background-color 0.4s ease;
 }  
 
 .multiple-reason-btn1 a:hover,
 .multiple-reason-btn1 a:focus,
 .multiple-reason-btn2 a:hover,
 .multiple-reason-btn2 a:focus{
-	background-color: #5f676f;
-	border: thick solid #5f676f;
+	background-color: #005f84;
+	border: thick solid #005f84;
 	color: #ffffff;
 }
 

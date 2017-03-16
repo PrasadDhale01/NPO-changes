@@ -2701,6 +2701,7 @@ $(function() {
         	  var grid = $('.pieChart');
         	  $.ajax({
               	  cache: true,
+              	  async: true,
                   type:'post',
                   url:$("#b_url").val()+'/project/saveSpendMatrix',
                   data:'amount='+amount+'&cause='+cause+'&savingCount='+savingCount+'&projectId='+projectId,
@@ -2732,6 +2733,7 @@ $(function() {
         	  var grid = $('.pieChart');
         	  $.ajax({
               	  cache: true,
+              	  async: true,
                   type:'post',
                   url:$("#b_url").val()+'/project/deleteSpendMatrix',
                   data:'amount='+amount+'&cause='+cause+'&deleteCount='+deleteCount+'&projectId='+projectId,

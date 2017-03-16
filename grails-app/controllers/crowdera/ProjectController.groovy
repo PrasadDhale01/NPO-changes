@@ -1681,6 +1681,20 @@ class ProjectController {
 		flash.saveEditUpdateSuccessMsg = "Campaign Update Edited Successfully!"
 		redirect(controller: 'project', action: 'manageproject', params:['projectTitle':title], fragment: 'projectupdates')
 	}
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def deleteCampaignUpdate(){
+		def title = projectService.getVanityTitleFromId(params.projectId)
+		def project = projectService.getProjectFromVanityTitle(title)
+		boolean deleteStatus = projectService.deleteCampaignUpdates(params,project)
+		System.out.println(" delete Status = "+deleteStatus)
+		if(deleteStatus){
+		 flash.deleteUpdateSuccessMsg = "Campaign Update Deleted Successfully!"
+		redirect(controller: 'project', action: 'manageproject', params:['projectTitle':title], fragment: 'projectupdates')
+		}else{
+		 render(view: '/404error', model: [message: 'Campaign Update not Deleted Successfully.'])
+	    }
+	}
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def deleteProjectUpdateImage() {

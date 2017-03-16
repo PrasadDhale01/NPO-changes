@@ -14,6 +14,11 @@
 </div>
 <g:if test="${manageProject}">
     <div class="col-md-6 col-sm-6 col-xs-12">
+        <g:form controller="project" action="deleteCampaignUpdate" method="post"  id="${projectUpdate.id}" params="['projectId': projectId]">
+            <button class="projectedit close"  aria-label="Delete project">
+                <i class="glyphicon glyphicon-trash" ></i>
+            </button>
+        </g:form>
         <g:form controller="project" action="editCampaignUpdate" method="post"  id="${projectUpdate.id}" params="['projectId': projectId]">
             <button class="projectedit close"  aria-label="Edit project">
                 <i class="glyphicon glyphicon-edit" ></i>

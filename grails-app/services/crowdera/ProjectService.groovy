@@ -3344,6 +3344,22 @@ class ProjectService {
         }
     }
 	
+	
+	def deleteCampaignUpdates(def params, def project) {
+		boolean deleteStatus = true
+		try{
+		ProjectUpdate selectedprojectUpdate = getProjectUpdateById(params.long('id'))
+		System.out.println("selectprojectUpdate = "+ selectedprojectUpdate.toString())
+		List projectUpdates = project.projectUpdates
+		 projectUpdates.remove( selectedprojectUpdate )
+	   selectedprojectUpdate.delete()
+	   
+		}catch(Exception e){
+		deleteStatus=false
+		}
+	   return deleteStatus
+    }
+		
     def getProjectVanityTitle(Project project) {
         def projectTitle = project?.title.trim()
         def title = projectTitle.replaceAll("[^a-zA-Z0-9]", "-")

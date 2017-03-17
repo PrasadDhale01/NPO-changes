@@ -212,6 +212,11 @@
 							${flash.add_campaign_supporter}
 						</div>
 					</g:if>
+					<g:if test="${flash.deleteUpdateSuccessMsg}">
+                       <div class="alert alert-success show-msz show-alertMsz" align="center">
+                          ${flash.deleteUpdateSuccessMsg}
+                       </div>
+                    </g:if>
 					<div class="col-xs-12 col-md-4 mobileview-top sh-mobiles-top campaign-tile-xs">
 
 						<div class="visible-xs loadmobileCampaignTile">

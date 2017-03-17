@@ -1904,3 +1904,8 @@ a.manage-campaigndetails-font{
 span.donation-font{
 	font-size: 15px !important;
 }
+
+.new-manage-updateshare {
+    padding-left: 115px;
+    top: 6px !important;
+}

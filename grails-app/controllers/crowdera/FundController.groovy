@@ -66,40 +66,40 @@ class FundController {
             def request_url = request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
             def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
 
-            if (project.payuStatus){
+            if ("in".equalsIgnoreCase(project?.country?.countryCode)) {
                 
                 boolean isTaxReceipt = campaignService.isTaxReceiptExist(project.id);
 
-                if (project.payuEmail) {
+                if (project.payuEmail && 'in'.equalsIgnoreCase(country_code) ) {
                     def key = grailsApplication.config.crowdera.PAYU.KEY
                     def salt = grailsApplication.config.crowdera.PAYU.SALT
                     def service_provider = "payu_paisa"
-
 
                     render view: 'fund/index', model: [team:team, project: project, state:state, country:country,
                         perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
                         vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, key:key, salt:salt,
                         service_provider:service_provider, isTaxReceipt: isTaxReceipt,country_code:country_code]
                     
-				} else if (project.paypalEmail && project.citrusEmail && ('us'.equalsIgnoreCase(country_code))) {
+				} else if (project.citrusEmail && 'in'.equalsIgnoreCase(country_code)) {
+				
+					def cardTypes = projectService.getcardtypes()
+					def title = projectService.getTitle()
+					def month = contributionService.getMonth()
+					def year = contributionService.getYear()
+					Calendar calendar = Calendar.getInstance();
+					def currentMonth = (calendar.get(Calendar.MONTH )+1)
+					def currentMonthByWeek =(currentMonth > 9)?currentMonth:("0"+ (calendar.get(Calendar.MONTH )+1))
+					def currentYearByWeek = calendar.getWeekYear()
+					def defaultCountry = 'India'
+					def indiaStates = projectService.getIndianState()
+	
+					render view: 'fund/citruscheckout', model: [team:team, project: project, state:indiaStates, country:country,
+						perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
+						vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, cardTypes: cardTypes, title: title,currentMonthByWeek:currentMonthByWeek,
+						month: month, year: year, defaultCountry: defaultCountry, isTaxReceipt: isTaxReceipt, currentYearByWeek:currentYearByWeek,country_code:country_code]
+					
+				} else if (project.paypalEmail && (project.citrusEmail || project.payuEmail)) {
 					render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo,country_code:country_code]
-				} else if (project.citrusEmail) {
-
-                    def cardTypes = projectService.getcardtypes()
-                    def title = projectService.getTitle()
-                    def month = contributionService.getMonth()
-                    def year = contributionService.getYear()
-                    Calendar calendar = Calendar.getInstance();
-                    def currentMonth = (calendar.get(Calendar.MONTH )+1)
-                    def currentMonthByWeek =(currentMonth > 9)?currentMonth:("0"+ (calendar.get(Calendar.MONTH )+1))
-                    def currentYearByWeek = calendar.getWeekYear()
-                    def defaultCountry = 'India'
-                    def indiaStates = projectService.getIndianState()
-
-                    render view: 'fund/citruscheckout', model: [team:team, project: project, state:indiaStates, country:country,
-                        perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
-                        vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, cardTypes: cardTypes, title: title,currentMonthByWeek:currentMonthByWeek,
-                        month: month, year: year, defaultCountry: defaultCountry, isTaxReceipt: isTaxReceipt, currentYearByWeek:currentYearByWeek,country_code:country_code]
                 }
             } else {
                 render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo,country_code:country_code]
@@ -1252,16 +1252,11 @@ class FundController {
     }
     
     
-    def getTokenofWePay() {
+    def getTokenofWePay(String email, String firstName, String lastName) {
         def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
         def clientId = grailsApplication.config.crowdera.wepay.CLIENT_ID
         def clientSecrete = grailsApplication.config.crowdera.wepay.CLIENT_SECRET
-        def email = params.email
-        println"email == " +email
-        def firstName = params.firstName
-        println"email == " +firstName
-        def lastName  = params.lastName
-        println"email == " +lastName
+		
         def originalId= "192.168.1.1"
         def device = "Mozilla/5.0"
         def acceptanceTime = "1209600"
@@ -1286,56 +1281,58 @@ class FundController {
                 def slurper = new JsonSlurper()
                 def json = slurper.parseText(jsonString)
                 accessToken =json.access_token
-                println "result  ===== "+ accessToken
-//              accessToken = json.access_token
             }
         }
-        println"status==" +status
+        println"access token status == " +status
+		println "access token result  == "+ accessToken
         
-        if (accessToken != null) {
-            return confirmUser(accessToken)
-        } else {
-            return -99;
-        }
-        
+        return accessToken;
     }
     
     
-    def confirmUser(def access_token) {
+   def confirmUser() {
+		def email = params.email
+		def firstName = params.firstName
+		def lastName  = params.lastNam
+		
+		def access_token = getTokenofWePay(email, firstName, lastName)
         
-        def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
-        def emailMsg = "Welcome, to my test app."
-        def emailSubject = "We Pay Confirmation"
-        def emailButton  = "Confirm Account"
-        
-        def url = wepayBaseUrl+"/user/send_confirmation"
-        HttpClient httpclient = new DefaultHttpClient()
-        HttpPost httppost = new HttpPost(url)
-        
-        httppost.setHeader("Authorization","Bearer ${access_token}");
-        StringEntity input = new StringEntity("{\"email_message\": \"${emailMsg}\",\"email_subject\": \"${emailSubject}\" ,\"email_button_text\": \"${emailSubject}\"}")
-        
-        input.setContentType("application/json")
-        httppost.setEntity(input)
-        HttpResponse httpres = httpclient.execute(httppost)
-        
-        def json
-        int status = httpres.getStatusLine().getStatusCode()
-        println "status  == "+ status
-        
-        if (status == 200) {
-            println "status preview"
-            HttpEntity entity = httpres.getEntity();
-            if (entity != null){
-                def jsonString = EntityUtils.toString(entity)
-                def slurper = new JsonSlurper()
-                json = slurper.parseText(jsonString)
-                
-                
+		if (access_token != null) {
+			def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
+	        
+			def emailMsg = "Welcome, to my test app."
+	        def emailSubject = "We Pay Confirmation"
+	        def emailButton  = "Confirm Account"
+	        
+	        def url = wepayBaseUrl+"/user/send_confirmation"
+	        HttpClient httpclient = new DefaultHttpClient()
+	        HttpPost httppost = new HttpPost(url)
+	        
+	        httppost.setHeader("Authorization","Bearer ${access_token}");
+	        StringEntity input = new StringEntity("{\"email_message\": \"${emailMsg}\",\"email_subject\": \"${emailSubject}\" ,\"email_button_text\": \"${emailSubject}\"}")
+	        input.setContentType("application/json")
+	        httppost.setEntity(input)
+	        HttpResponse httpres = httpclient.execute(httppost)
+	        
+	        def json
+	        int status = httpres.getStatusLine().getStatusCode()
+	        println "status  == "+ status
+	        
+	        if (status == 200) {
+				
+	            HttpEntity entity = httpres.getEntity();
+	            if (entity != null){
+	                def jsonString = EntityUtils.toString(entity)
+	                def slurper = new JsonSlurper()
+	                json = slurper.parseText(jsonString)
                 println "result  ===== "+ json
-            }
-        }
-        render json
+	            }
+	        }
+	        render json
+		
+		} else {
+			render -99;
+		}
     }
     
     

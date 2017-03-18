@@ -1,3 +1,7 @@
+<g:set var="projectService" bean="projectService"/>
+<%
+def country_code = projectService.getCountryCodeForCurrentEnv(request)
+ %>
 <input type="hidden" id="b_url" value="${base_url}" />
 <div id="footermarker"></div>
 <footer>
@@ -31,7 +35,7 @@
                             <div class="col-xs-6 footer-mid-section-menu-mobile footer-menu-align">
                                 <div class="campaigning-menu-div">
                                     <ul class="campaigning-menu">
-                                        <li><g:link controller="project" action="create">Start Your Campaign</g:link></li>
+                                        <li><g:link mapping="createCampaign" params="[country_code: country_code]">Start Your Campaign</g:link></li>
                                         <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
                                         <li><a href="${resource(dir: '/crowdfunding-ebook')}">Crowdfunding Ebook</a></li>
                                         <g:if test="${isTestEnv}">

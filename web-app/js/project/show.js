@@ -1247,6 +1247,15 @@ $(function() {
     .focus(showPopover)
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
+    
+    $("button[name='inactiveContributeButton']").popover({
+        content: 'Currently this campaign does not accept foreign funding.',
+        trigger: 'manual',
+        placement: 'top'
+    })
+    .focus(showPopover)
+    .blur(hidePopover)
+    .hover(showPopover, hidePopover);
 
     $('.show-like').popover({
         content: 'Follow this Campaign',

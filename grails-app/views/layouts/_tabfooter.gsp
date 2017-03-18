@@ -29,7 +29,7 @@
            </div>
            <div class="col-sm-6 footer-mid-section-menu tab-menu-padding">
             <ul>
-                <li><g:link controller="project" action="create">Start Your Campaign</g:link></li>
+                <li><g:link mapping="createCampaign" params="[country_code: country_code]">Start Your Campaign</g:link></li>
                 <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
                 <li><a href="${resource(dir: '/crowdfunding-ebook')}">Crowdfunding Ebook</a></li>
                 <g:if test="${isTestEnv}">

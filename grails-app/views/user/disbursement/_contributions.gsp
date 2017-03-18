@@ -43,7 +43,15 @@
                             <g:link action="paymentDisburse" controller="user" class="btn btn-primary btn-xs disburseContribution" data-contributionid="${contribution.id}" data-splitid="${contribution.splitId}">Disburse</g:link>
                         </g:if>
                         <g:else>
-                            <g:link action="paymentDisburse" controller="user" class="btn btn-default btn-xs contributionSettlement" data-contributionid="${contribution.id}" data-splitid="${contribution.splitId}">Settlement</g:link>
+                        	<g:if env="production">
+                            	<button type="button" class="btn btn-info btn-xs" data-contributionid="${contribution.id}" data-splitid="${contribution.splitId}">Settled Pending</button>
+                            </g:if>
+                            <g:elseif env="staging">
+                            	<button type="button" class="btn btn-info btn-xs" data-contributionid="${contribution.id}" data-splitid="${contribution.splitId}">Settled Pending</button>
+                            </g:elseif>
+                            <g:else>
+                            	<g:link action="paymentDisburse" controller="user" class="btn btn-default btn-xs contributionSettlement" data-contributionid="${contribution.id}" data-splitid="${contribution.splitId}">Settlement</g:link>
+                            </g:else>
                         </g:else>
                     </g:else>
                 </td>

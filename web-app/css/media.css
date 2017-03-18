@@ -152,6 +152,12 @@
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	div.multiple-reason-btn2{
+	    margin-top: -35px !important;
+	}
+	div.multiple-reason-btn1 {
+        margin-top: -7px !important;
+	}
 	.whycrowderacol-sm .col-sm-6 ,.whycrowderacol-sm .col-sm-12{
 	    padding-left: 0px !important;
         padding-right: 0px !important;
@@ -169,7 +175,7 @@
 	    margin-top: -5px !important;
     }
     .whycrowderacol-md-12 .whycrowderadiv6 {
-	    margin-top: -25px !important;
+	    margin-top: 0px !important;
     }
     .whycrowderacol-md-12 .whycrowderadiv7 {
 	    margin-top: -25px !important;
@@ -217,7 +223,10 @@
     div.col-sm-input-group{
        width: 21% !important;
     }
-	   .whycrowderacol-sm .col-sm-6 ,.whycrowderacol-sm .col-sm-12{
+    div.whycrowderadiv{
+        margin-bottom: 0px !important;
+    }
+	.whycrowderacol-sm .col-sm-6 ,.whycrowderacol-sm .col-sm-12{
         padding-left: 0px !important;
         padding-right: 0px !important;
     }
@@ -231,16 +240,16 @@
 	    margin-top: 10px !important;
     }
     .whycrowderacol-sm .whycdradivpadding6 {
-	    margin-top: -15px !important;
+	    margin-top: 0px !important;
     }
     .whycrowderacol-sm .whycdradivpadding7 {
-	    margin-top: -15px !important;
+	    margin-top: -7px !important;
     }
     .whycrowderacol-sm .whycdradivpadding8 {
-	    margin-top: -10px !important;
+	    margin-top: 5px !important;
     }
     .subheadingtext {
-        font-weight: 600;
+        font-weight: lighter;
         padding-top: 5px !important;
     }
 }

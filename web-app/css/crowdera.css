@@ -2970,7 +2970,7 @@ span.tile-day-num{
     font-size: 24px;
 	font-weight: lighter;
 	padding-top: 12px;
-	font-family: assistant,sans-serif;
+	font-family: "Assistant",sans-serif !important;
 }
 .crowderacontent1 {
 	color: #5f676f;
@@ -5656,6 +5656,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.new-media-mobile{
+	    width: 90% !important;
+	}
 	div.deletedCamp {
         margin-left: 0px !important;
     }
@@ -6180,7 +6183,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 100%;
     }
     div.hm-media-stript-width {
-        width: 320px !important;
+        width: 320px;
     }	
     button.show-mob-mobile{
        background-color: #01bbd3 !important;
@@ -7485,7 +7488,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.subheadingtext {
 		color: #5f676f;
 		font-size: 20px !important;
-		font-weight: 600;
+		font-weight: lighter;
 		padding-top: 12px;
 	}
 	.success-story-title span {
@@ -8174,6 +8177,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-right: 0;
     }
 	/*Image collage styles ended*/
+	div.multiple-reason-btn2{
+	    margin-top: 38px !important;
+	}
 	a.newCreatebtn{
  	    width: 105px !important;
  	}
@@ -8708,8 +8714,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	width: 50px !important;
 	}
 	div.homepageusCampaigns {
-        max-height: 1535px;
-        min-height: 1400px;
+        min-height: 1120px;
     }
 	div.successfullcampaignLogos div.logolist-2 a {
         padding: 10px 6px 0 0 !important;
@@ -8729,6 +8734,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    height: 200px !important;
 	}
 	/*Image collage styles ended*/
+	input.signup-lg {
+	    margin-left: -20px !important;
+	    width: 100px !important;
+	}
+	.whycrowderacontainer.many-reasons{
+		min-height: 720px !important;
+	}
 	div.discoverBannerText {
     	bottom: 222px !important;
     	position: relative !important;
@@ -10348,7 +10360,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.subheadingtext {
 		color: #5f676f;
 		font-size: 21px !important;
-		font-weight: 600;
+		font-weight: lighter;
 		padding-top: 12px;
 	}
 	.container.whycrowderatemplate.how-it-work-container{
@@ -10440,7 +10452,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-bottom: 14px;
     }
 	.amount-centering {
-    	    display: block;
+        display: block;
 	    margin-left: auto;
 	    margin-right: auto;
 	    width:248px !important;
@@ -10597,10 +10609,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     .footer-mid-section p {
         color: #ffffff;
-	font-family: "OPEN SANS";
-	font-size: 10px !important;
-	text-align: center;
-	margin-left:-31px !important;
+	    font-family: "OPEN SANS";
+	    font-size: 10px !important;
+	    text-align: end;
+	    margin-left:-31px !important;
     }
    footer input.subscriberEmail {
 	font-size: 13px;
@@ -12027,6 +12039,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         bottom: 112px !important;
     }
 	/*Image collage styles ended*/
+	div.tab-margin-btn2{
+	    margin-top: 50px !important;
+	}
 	img.tabImage {
         height: 145%;
     }
@@ -12573,6 +12588,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	div.multiple-reason-btn2{
+	    margin-top: 21px !important;
+	}
 	div.tab-center{
 	    float: none;
 	    margin: 0 auto;
@@ -14138,6 +14156,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /*Screen resolution 644 x 767 */
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	input.button-signup{
+	    margin-left: -20px !important;
+	    width: 100px !important;
+	}
 	div.show-alertMsz {
        margin-left: 0.5%;
        width: 94%;
@@ -15724,6 +15746,13 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	input.button-signup{
+	    margin-left: -20px !important;
+	    width: 100px !important;
+	}
+	div.new-media-mobile{
+	    width: 90% !important;
+	}
 	div.deletedCamp {
     	margin-left: 0px !important;
 	}
@@ -16379,7 +16408,7 @@ textarea.textarea-embed-video {
         width: 100%;
     }
     div.hm-media-stript-width {
-        width: 320px !important;
+        width: 320px ;
     }
     button.show-mob-mobile{
        background-color: #01bbd3 !important;
@@ -17821,7 +17850,7 @@ textarea.textarea-embed-video {
 	.subheadingtext {
 		color: #5f676f;
 		font-size: 20px !important;
-		font-weight: 600;
+		font-weight: lighter;
 		padding-top: 12px;
 	}
 	.success-story-title span {

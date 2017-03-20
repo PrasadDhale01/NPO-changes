@@ -1,5 +1,8 @@
 <div class="successfullcampaignLogos">
    <div class="container whycrowderacontainer">
+      <div class="hm-partners-title text-center">
+         <b>CROWDERA PARTNERS</b>
+      </div>
        <div class="hm-partners-title text-center"><b>CROWDERA PARTNERS</b></div>
 	         <div class="row">
 		         <div class="col-sm-12 logolist-1">

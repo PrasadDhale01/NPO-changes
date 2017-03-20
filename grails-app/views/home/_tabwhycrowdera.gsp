@@ -5,7 +5,7 @@
 </div>
 <div class="container whycrowderatemplate how-it-work-container">
     
-    <div class="hidden-md hidden-lg whycrowderacol-sm">
+    <div class="hidden-lg whycrowderacol-sm">
         <div class="col-sm-6 col-xs-12">
             <div class="col-sm-12 col-xs-12 whycrowderadiv">
                 <div class="col-sm-3 col-xs-3">
@@ -49,9 +49,14 @@
                     </div>
                 </div>
             </g:if>
+            <div class="col-md-12 col-sm-12 whycrowderadiv whycrowderadiv4 whycrowderacol-md">
+	            <div class="multiple-reason-btn1">
+		           <a href="${resource(dir: '/'+"${country_code}"+'/campaign/create')}" class="btn btn-default btn-block ">START A CAMPAIGN</a>
+		        </div>
+	        </div>
         </div>
         <div class="col-sm-6 col-xs-12">
-            <div class="col-sm-12 col-xs-12 whycrowderadiv">
+            <div class="col-sm-12 col-xs-12">
                 <div class="col-sm-3 col-xs-3">
                     <img src="//s3.amazonaws.com/crowdera/assets/teams-to-multiply-results-icon.png" alt="Instant-Fundraising">
                 </div>
@@ -61,7 +66,7 @@
                     <p class="pull-left crowderacontent1">Your team can share their individuals stories, define their own goals, and even their own perks (coming soon)</p>
                 </div>
             </div>
-            <div class="col-sm-12 col-xs-12 whycrowderadiv whycdradivpadding6">
+            <div class="col-sm-12 col-xs-12 whycdradivpadding6">
                 <div class="col-sm-3 col-xs-3">
                     <img src="//s3.amazonaws.com/crowdera/assets/mobile-friendly-funding-icon.png" alt="Mobile-Friendly-Funding-Page">
                 </div>
@@ -93,6 +98,11 @@
                     <p class="pull-left crowderacontent1">Step by step guidelines for crowdfunding.</p>
                 </div>
             </div>
+            <div class="col-md-12 col-sm-12 whycrowderadiv whycrowderadiv4 whycrowderacol-md  tab-margin-btn2">
+	            <div class="multiple-reason-btn2">
+		           <a href="${resource(dir: '/'+"${country_code}"+'/campaigns')}" class="btn btn-default btn-block ">EXPLORE CAMPAIGNS</a>
+		        </div>
+	        </div>
         </div>
     </div>
 </div>

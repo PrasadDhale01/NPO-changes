@@ -104,12 +104,12 @@ grails.plugin.springsecurity.facebook.domain.classname = 'crowdera.FacebookUser'
 grails.plugin.springsecurity.facebook.domain.appUserConnectionPropertyName = 'user'
 grails.plugin.springsecurity.facebook.filter.redirect.failureHandler='facebookRedirectFailureHandler'
 grails.plugin.springsecurity.facebook.filter.redirect.successHandler='facebookRedirectSuccessHandler'
-grails.facebook.api.url = "https://graph.facebook.com/me"
+grails.facebook.api.url = "https://graph.facebook.com/me?fields=id,name,verified,age_range,email"
 
 environments {
 	development {
-		crowdera.facebook.appId = '333909376820194'
-		crowdera.facebook.secret = '0965e3232aafa265ff319903efa4c6a5'
+		crowdera.facebook.appId = '1327912437266577'//'333909376820194'
+		crowdera.facebook.secret = 'feeebd852cc9b6dbe374cb4a2d413532'//'0965e3232aafa265ff319903efa4c6a5'
 
 		grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
 		grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
@@ -217,6 +217,7 @@ environments {
 				}
 				 facebook {
 					 api = org.scribe.builder.api.FacebookApi
+					 scope = 'email'
 					 key = '1023231227691905'
 					 secret = '62799ed033c94866b84d718053ebaff2'
 					 successUri = '/login/facebookSuccess'
@@ -452,6 +453,7 @@ environments {
 				}
 				facebook {
 					api = org.scribe.builder.api.FacebookApi
+					scope = 'email'
 					key = '554475128028127'
 					secret = 'f1991f7bf85d445a346821967e2b1251'
 					successUri = '/login/facebookSuccess'

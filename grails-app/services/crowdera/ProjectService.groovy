@@ -231,14 +231,14 @@ class ProjectService {
         return [mostSelectedCategory: mostSelectedCategory, mostSelectedCategoryCount: mostSelectedCategoryCount]
     }
 
-    def getProjectUpdateDetails(def params, def project,def country_code){
+    def getProjectUpdateDetails(def params, Project project,def country_code){
         def vanitytitle
         User currentUser = userService.getCurrentUser()
         def fullName = currentUser?.firstName + ' ' + currentUser?.lastName
         def currentEnv = Environment.current.getName()
         project.story = params?.story
         
-        if (project?.draft) {
+        if (!project.validated) {
             project.paypalEmail = params.paypalEmail
             project.charitableId = params.charitableId
             project.organizationName = params.organizationName

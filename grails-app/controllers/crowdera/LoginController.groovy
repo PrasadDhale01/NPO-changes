@@ -360,7 +360,8 @@ class LoginController {
 		User user = User.findByEmail(email)
 		log.info("user=="+user)
 		
-		String userName = facebookResponse['name']
+		String userName = facebookResponse['username']
+		log.info("userName=="+ userName)
 		if(userName==null){
 			userName = user.username;
 		}

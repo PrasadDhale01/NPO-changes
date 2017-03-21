@@ -355,9 +355,12 @@ class LoginController {
 		def result = oauthService.getFacebookResource(token, apiUrl)?.getBody()
 		def jsonSlurper = new JsonSlurper()
 		def facebookResponse = jsonSlurper.parseText(result)
+		log.info("facebookResponse=="+facebookResponse)
 		String email = facebookResponse['email']
 		User user = User.findByEmail(email)
-		String userName = facebookResponse['username']
+		log.info("user=="+user)
+		
+		String userName = facebookResponse['name']
 		if(userName==null){
 			userName = user.username;
 		}

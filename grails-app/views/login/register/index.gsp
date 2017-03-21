@@ -19,9 +19,9 @@
 
         <g:form class="form-signin regForm" controller="login" action="create" id="regForm">
             <h2 class="form-signin-heading register register-logo">Please sign up</h2>
-                <a class="btn btn-block btn-social btn-facebook" href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
-                    <i class="fa fa-facebook fa-facebook-styles"></i> Register with Facebook
-                </a><br>
+                <oauth:connect class="btn btn-block btn-social btn-facebook" provider="facebook" id="facebook-connect-link">
+                        <i class="fa fa-facebook fa-facebook-styles"></i> Register with Facebook
+               </oauth:connect>  <hr/> 
             
             <oauth:connect class="btn btn-block btn-social btn-google-plus" provider="google" id="google-connect-link">
                 <i class="fa fa-google-plus fa-facebook-styles"></i> Register with Google +

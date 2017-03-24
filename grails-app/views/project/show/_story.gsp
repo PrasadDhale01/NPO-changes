@@ -8,7 +8,7 @@
 <div class="col-md-12">
     <div class="row">
         <div class="blacknwhite campaignupdatedimages" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
-            <g:if test="${userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)}">
+            <g:if test="${userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)|| isAdmin}">
                 <g:render template="/project/manageproject/projectimagescarousel" model="['images': projectimages]"/>
             </g:if>
             <g:else>

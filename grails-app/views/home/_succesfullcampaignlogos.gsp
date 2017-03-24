@@ -3,7 +3,6 @@
       <div class="hm-partners-title text-center">
          <b>CROWDERA PARTNERS</b>
       </div>
-       <div class="hm-partners-title text-center"><b>CROWDERA PARTNERS</b></div>
 	         <div class="row">
 		         <div class="col-sm-12 logolist-1">
 		            <a><img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/25d23a53-3ef9-4548-ae80-86f1968dcd21.png" alt="Logo-1.png"></a>

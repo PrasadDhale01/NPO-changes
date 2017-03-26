@@ -29,9 +29,16 @@
                     def returnURL = baseUrl + '/fund/wepayreturn'
                     
                     def clientId = grailsApplication.config.crowdera.wepay.CLIENT_ID
+					def endPoint;
+					if ('production'.equals(currentEnv)) {
+						endPoint = 'production'
+					} else {
+					    endPoint = 'stage'
+					}
+					
                 %>
                 <div id="myWizard">
-                    <g:form action="charge" method="POST" class="payment-form" id="payment-form" name="payment-form">
+                    <g:form action="wepayReturn" controller="fund" method="POST" class="payment-form" id="payment-form" name="payment-form">
                         
                         <div class="step" data-step-title="Transaction Amount">
                             <div class="col-md-5">
@@ -333,10 +340,23 @@
         var $jq = jQuery.noConflict();
     </script>
 	
-	<script type="text/javascript" src="https://static.wepay.com/min/js/tokenization.v2.js"></script>
+	<g:if env="development">
+	    <script type="text/javascript" src="https://static.wepay.com/min/js/tokenization.v2.js"></script>
+    </g:if>
+    <g:elseif env="staging">
+    	<script type="text/javascript" src="https://static.wepay.com/min/js/tokenization.v2.js"></script>
+    </g:elseif>
+    <g:elseif env="production">
+    <%--
+        Need to replace script for production env
+    --%>
+    	<script type="text/javascript" src="https://static.wepay.com/min/js/tokenization.v2.js"></script>
+    </g:elseif>
+    
+	
 	<script type="text/javascript">
 		(function() {
-		    WePay.set_endpoint("stage"); // change to "production" when live
+		    WePay.set_endpoint(${endPoint}); // change to "production" when live
 			
 		    // Shortcuts
 		    var d = document;
@@ -385,7 +405,7 @@
 				            	var jsonObj = JSON.parse(response);
 				            	
 				                if (jsonObj.status === 1) {
-					                
+					                $("#payment-form").submit();
 				                } else {
 					                // Replace it with Notify dialogue
 									alert()
@@ -396,10 +416,9 @@
 				        }).error(function() {
 				        	 $('#loading-gif').hide();
 				        })
-		                // call your own app's API to save the token inside the data;
-		                // show a success page
 		            }
 		        });
+			    
 			    
 		    });
 		

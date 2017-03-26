@@ -1115,14 +1115,11 @@ class FundController {
             Date date = new Date();
 
             def settlementDate = date.format("yyyy-MM-dd HH:mm:ss") /*"2016-06-18 17:18:00"*/
-            println "settlementDate ===== "+ settlementDate
             def merchantTxId = Integer.parseInt(contribution?.merchantTxId)
             def settlementRef = contribution?.splitRef
             def settlementAmount = (contribution?.amount * 0.955).round(2)
             def feeAmount = (contribution?.amount - settlementAmount).round(2)
             
-            println "settlementAmount =====  "+ settlementAmount+ "   feeAmount ====== "+ feeAmount
-
             // Ref#CIT615829206695 Ref#CIT61153280367
             StringEntity input = new StringEntity("{\"trans_id\": ${merchantTxId},\"settlement_ref\": \"${settlementRef}\" ,\"trans_source\": \"CITRUS\",\"settlement_amount\": ${settlementAmount},\"fee_amount\": ${feeAmount},\"settlement_date_time\":\"${settlementDate}\"}")
             input.setContentType("application/json")
@@ -1236,6 +1233,7 @@ class FundController {
         println "Mandrill response handler " + params
     }
 	
+	
 	def chargeWepayCard() {
 		Project project = projectService.getProjectById(params.projectId)
 		JSONObject json = new JSONObject();
@@ -1247,6 +1245,7 @@ class FundController {
 			def checkoutId = campaignService.chargeWepayCard(project, creditCardId, amount);
 			
 			session['checkoutId'] = checkoutId;
+			session['contributionAmount'] = amount;
 			json.put("status", 1)
 			
 		} else {
@@ -1254,6 +1253,30 @@ class FundController {
 		}
 		
 		return json;
+	}
+	
+	
+	def wepayReturn() {
+		def fr = session.getAttribute('fr');
+		User fundraiser  = userService.getUserFromVanityName(fr)
+		def projectTitle = session.getAttribute('projectTitle')
+
+		String transactionId = session.getAttribute("checkoutId");
+		
+		Transaction transaction = contributionService.getTransactionByTransactionId(transactionId)
+		if (transaction) {
+			conId = transaction.contribution.id
+			frId = fundraiser?.id
+			redirect(controller: 'fund', action: 'acknowledge' , params: [cb: transaction.contribution.id, fr:fundraiser.id, projectTitle: projectTitle])
+		
+		} else {
+			def contributionId = campaignService.getWepayTransactionDetails(transactionId, request, session, fundraiser)
+			if (contributionId && fundraiser) {
+				redirect(controller: 'fund', action: 'acknowledge' , params: [cb: contributionId, fr:fundraiser.id, projectTitle: projectTitle])
+			} else {
+				render view: 'error', model: [message: 'There was an error charging. Don\'t worry, your card was not charged. Please try again.']
+			}
+		}
 	}
 
 }

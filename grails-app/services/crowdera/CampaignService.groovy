@@ -20,6 +20,9 @@ class CampaignService {
 
 	def contributionService
 	def projectService
+	def userService
+	def mandrillService
+	def rewardService
 
 	SessionFactory sessionFactory;
 	def grailsApplication
@@ -603,6 +606,112 @@ class CampaignService {
 		}
 	    
 		return json
+	}
+	
+	
+	def getWepayTransactionDetails(def transactionId, def request, def session, def fundraiser) {
+		def amount    = session.getAttribute('contributionAmount')
+		
+		def emailId   = session.getAttribute('shippingEmail')
+		def twitter   = session.getAttribute('twitterHandle')
+		def custom    = session.getAttribute('shippingCustom')
+		def userId    = session.getAttribute('tempValue')
+		def anonymous = session.getAttribute('anonymous')
+		def address   = session.getAttribute('address')
+		def fr        = session.getAttribute('fr')
+		def panNumber = session.getAttribute('panNumber')
+		
+		Project project  = Project.get(session.getAttribute('campaignId'))
+		Reward reward    = rewardService.getRewardById(session.getAttribute('rewardId'));
+		User contributor = userService.getUserForContributors(request.getParameter('email') , session.getAttribute('userId'))
+		
+		if (contributor == null) {
+			contributor = userService.getUserByUsername('anonymous@example.com')
+		}
+		
+		def shippingDetail = projectService.checkShippingDetail(emailId,twitter,address, custom)
+		def name
+		def username
+
+		if (userId == null || userId == 'null' || userId.isAllWhitespace()) {
+			name = request.getParameter("firstName") +" "+ request.getParameter("lastName");
+			username = request.getParameter('email')
+		} else {
+			def orgUser = User.get(userId)
+			name = orgUser.firstName + " " + orgUser.lastName
+			username = orgUser.email
+		}
+		
+		Contribution contribution = new Contribution(
+			date             : new Date(),
+			user             : contributor,
+			reward           : reward,
+			amount           : amount,
+			email            : shippingDetail.emailid,
+			twitterHandle    : shippingDetail.twitter,
+			custom           : shippingDetail.custom,
+			contributorName  : name,
+			contributorEmail : username,
+			physicalAddress  : shippingDetail.address,
+			currency         : 'INR',
+			panNumber        : panNumber
+		)
+		
+		project.addToContributions(contribution).save(failOnError: true)
+		 
+		Team team = Team.findByUserAndProject(fundraiser,project)
+		if (team) {
+			contribution.fundRaiser = fundraiser.username
+			team.addToContributions(contribution).save(failOnError: true)
+		}
+		def country_code = project.country.countryCode
+		contribution.isAnonymous = anonymous.toBoolean()
+		
+		if (project.payuStatus && project.contributions.size() == 1) {
+			mandrillService.sendEmailToCampaignOwner(project, contribution,country_code) //Send Email to Campaign Owner when first contribution is done for INR
+		}
+		 
+		userService.contributionEmailToOwnerOrTeam(fundraiser, project, contribution)
+		
+		def totalContribution = contributionService.getTotalContributionForProject(project)
+		
+		if (totalContribution >= project.amount) {
+			
+			if(project.send_mail == false) {
+				List contributorEmails = []
+				def contributors = contributionService.getTotalContributors(project)
+				contributors.each {
+					def user = User.get(it)
+					if (user.email != 'anonymous@example.com' && !contributorEmails.contains(user.email)) {
+						contributorEmails.add(user.email)
+						mandrillService.sendContributorEmail(user, project)
+					}
+				}
+				
+				def beneficiaryId = projectService.getBeneficiaryId(project)
+				def beneficiary = Beneficiary.get(beneficiaryId)
+				def user = User.findByEmail(beneficiary.email)
+				
+				if (user) {
+					mandrillService.sendBeneficiaryEmail(user, projectService.getCountryCodeForCurrentEnv(request))
+				}
+				project.send_mail = true
+			}
+			
+		}
+		
+		
+		// In case of Wepay unique checkout Id will saved as transaction Id
+		Transaction transaction = new Transaction(
+			transactionId: transactionId,
+			user         : contributor,
+			project      : project,
+			contribution : contribution,
+			currency     : 'INR'
+		)
+		
+		transaction.save(failOnError: true)
+		return contribution.id
 	}
 	
 }

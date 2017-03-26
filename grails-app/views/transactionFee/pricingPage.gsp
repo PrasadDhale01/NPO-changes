@@ -70,8 +70,7 @@
 </div>
 <div class="feducontent visible-xs">
    <div class="mobTransac container">
-      <img class="img-responsive" src="https://s3.amazonaws.com/crowdera/project-images/054a6d99-378e-46ac-a226-e1bbb55cb6e8.png" alt="Fee and pricing on crowdera"/>
+      <img class="img-responsive" src="https://s3.amazonaws.com/crowdera/project-images/9f0cf84c-56c2-44d2-bf28-f603547be4dc.png" alt="Fee and pricing on crowdera"/>   </div>
    </div>
-</div>
 </body>
 </html>

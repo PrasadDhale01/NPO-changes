@@ -7,7 +7,7 @@
 body {
     margin-top: 50px;
     /* padding-bottom: 40px; */
-    color: #0e0e0e;
+    color: #44505d;
     /* background-image: url('https://www.candiedphotography.co.uk/wp-content/uploads/paper_background.jpg'); */
 }
 
@@ -22,9 +22,10 @@ h1.headingtext.how-it-works-title {
 }
 h1.headingtext {
 	color:#005f84;
-	font-size:42px;
-	font-weight: 900;
+	font-size:38px;
+	font-weight: lighter;
     padding: 30px 0 20px;
+    font-family: assistant,sans-serif;
 }
 span.headingtext{
 	font-size: 20px;
@@ -528,6 +529,8 @@ footer {
 	font-size:12px;
     line-height: 11px;
     width: 75px;
+    color: #666666;
+    padding-left: 10px;
 }
 .footer-newsletter .help-block{
 	color:#f04124;
@@ -552,12 +555,13 @@ hr.footer-hr{
     color: #666666;
     background-color: #666666;
     border-left-width: 25px;
-    margin-left: 11px;
+    margin-left: 28px;
     height: 1px;
     border: #666666;
     float:left;
-    margin-top:0px !important;
-    width: 98%;
+    margin-top:25px !important;
+    width: 96%;
+    margin-bottom: 30px !important;
 }
 .footer-first-section p{
     color:#ffffff;
@@ -614,6 +618,7 @@ p.egle {
 .footer-mid-section-menu ul li{
     list-style-type:none;
     margin-left:-39px;
+    line-height: 1.5;
 }
 input.text-email{
     width:130%;
@@ -627,7 +632,7 @@ input.text-email{
 	display:inline-flex;
 }
 input.button-signup{
-    background-image: url(https://s3.amazonaws.com/crowdera/assets/signup-footer.jpg); 
+    background-image: url(https://s3.amazonaws.com/crowdera/project-images/0f9da321-6cbf-4a6c-9456-0cca2354c103.png); 
     background-color: transparent;
     background-repeat: no-repeat;  
     border: none;                   
@@ -636,9 +641,9 @@ input.button-signup{
     width: 75px;
 }
 input.signup-lg{
-	margin-left:-34px;
+	margin-left:-60px;
 	height: 30px;
-	width: 75px;
+	width: 100px;
 }
 .footer-mid-section-img a{
     margin-left:-20px;
@@ -2954,16 +2959,18 @@ span.tile-day-num{
 }
 .headingtext1 {
 	color:#005f84;
-	font-size:42px;
-	font-weight: 900;
-	margin-bottom: 20px;
-	margin-top: 20px;
+	font-size: 38px;
+	font-weight: lighter;
+	margin-bottom: 30px;
+	margin-top: 50px;
+	font-family: assistant,sans-serif;
 }
 .subheadingtext {
 	color: #5f676f;
     font-size: 24px;
-	font-weight: 600;
+	font-weight: lighter;
 	padding-top: 12px;
+	font-family: "Assistant",sans-serif !important;
 }
 .crowderacontent1 {
 	color: #5f676f;
@@ -3128,6 +3135,7 @@ ul.menu{
 }
 .thomas-owens-testimonial-div{
 	padding-left:45px;
+	padding-top: 50px;
 }
 .thomas-owens-testimonial{
 	margin-top:15px;
@@ -4244,6 +4252,7 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 	margin-left:32px;
 }
 .footer-disclaimer{
+	color: #666666;
 	font-size:10px;
 	font-weight:normal;
 }
@@ -5578,7 +5587,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-top: 14px;
     }
     #chart-container #graph{
-        margin-left: -100px;
+        margin-left: -220px;
     }
 
     .cr-panel-spendMatrix-height{
@@ -5647,6 +5656,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.new-media-mobile{
+	    width: 90% !important;
+	}
 	div.deletedCamp {
         margin-left: 0px !important;
     }
@@ -6158,6 +6170,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         text-align: center;
         font-size: 15px;    
     }
+    span.hm-partners-title h3 {
+        text-align: center;
+        font-size: 15px;    
+    }
     div.hm-log-width {
         padding-left: none;
         padding-top: none;
@@ -6171,7 +6187,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 100%;
     }
     div.hm-media-stript-width {
-        width: 320px !important;
+        width: 320px;
     }	
     button.show-mob-mobile{
        background-color: #01bbd3 !important;
@@ -7476,7 +7492,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.subheadingtext {
 		color: #5f676f;
 		font-size: 20px !important;
-		font-weight: 600;
+		font-weight: lighter;
 		padding-top: 12px;
 	}
 	.success-story-title span {
@@ -8165,6 +8181,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-right: 0;
     }
 	/*Image collage styles ended*/
+	div.multiple-reason-btn2{
+	    margin-top: 38px !important;
+	}
 	a.newCreatebtn{
  	    width: 105px !important;
  	}
@@ -8699,8 +8718,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	width: 50px !important;
 	}
 	div.homepageusCampaigns {
-        max-height: 1535px;
-        min-height: 1400px;
+        min-height: 1120px;
     }
 	div.successfullcampaignLogos div.logolist-2 a {
         padding: 10px 6px 0 0 !important;
@@ -8720,6 +8738,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    height: 200px !important;
 	}
 	/*Image collage styles ended*/
+	input.signup-lg {
+	    margin-left: -20px !important;
+	    width: 100px !important;
+	}
+	.whycrowderacontainer.many-reasons{
+		min-height: 720px !important;
+	}
 	div.discoverBannerText {
     	bottom: 222px !important;
     	position: relative !important;
@@ -10339,7 +10364,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.subheadingtext {
 		color: #5f676f;
 		font-size: 21px !important;
-		font-weight: 600;
+		font-weight: lighter;
 		padding-top: 12px;
 	}
 	.container.whycrowderatemplate.how-it-work-container{
@@ -10431,7 +10456,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-bottom: 14px;
     }
 	.amount-centering {
-    	    display: block;
+        display: block;
 	    margin-left: auto;
 	    margin-right: auto;
 	    width:248px !important;
@@ -10588,10 +10613,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     .footer-mid-section p {
         color: #ffffff;
-	font-family: "OPEN SANS";
-	font-size: 10px !important;
-	text-align: center;
-	margin-left:-31px !important;
+	    font-family: "OPEN SANS";
+	    font-size: 10px !important;
+	    text-align: end;
+	    margin-left:-31px !important;
     }
    footer input.subscriberEmail {
 	font-size: 13px;
@@ -11058,6 +11083,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-right: 9px;
 	} 
 	.payment-method-footer{
+	    color: #666666;
 		font-size:12px;
 		font-weight:normal;
 		margin-left: -2px !important;
@@ -11946,8 +11972,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	color: #e3e3e3;
 	font-family: "OPEN SANS";
 	font-size: 12px !important;
-	margin-left: 18px !important;
-	text-align: center;
+	margin-left: 12px !important;
+	text-align: end;
+	margin-right: 6px !important;
     }
 }
 @media only screen and (min-width: 1921px) and (max-width: 2560px){
@@ -12016,6 +12043,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         bottom: 112px !important;
     }
 	/*Image collage styles ended*/
+	div.tab-margin-btn2{
+	    margin-top: 50px !important;
+	}
 	img.tabImage {
         height: 145%;
     }
@@ -12562,6 +12592,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	div.multiple-reason-btn2{
+	    margin-top: 21px !important;
+	}
 	div.tab-center{
 	    float: none;
 	    margin: 0 auto;
@@ -14127,6 +14160,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /*Screen resolution 644 x 767 */
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	input.button-signup{
+	    margin-left: -20px !important;
+	    width: 100px !important;
+	}
 	div.show-alertMsz {
        margin-left: 0.5%;
        width: 94%;
@@ -15713,6 +15750,13 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	input.button-signup{
+	    margin-left: -20px !important;
+	    width: 100px !important;
+	}
+	div.new-media-mobile{
+	    width: 90% !important;
+	}
 	div.deletedCamp {
     	margin-left: 0px !important;
 	}
@@ -16368,7 +16412,7 @@ textarea.textarea-embed-video {
         width: 100%;
     }
     div.hm-media-stript-width {
-        width: 320px !important;
+        width: 320px ;
     }
     button.show-mob-mobile{
        background-color: #01bbd3 !important;
@@ -17810,7 +17854,7 @@ textarea.textarea-embed-video {
 	.subheadingtext {
 		color: #5f676f;
 		font-size: 20px !important;
-		font-weight: 600;
+		font-weight: lighter;
 		padding-top: 12px;
 	}
 	.success-story-title span {
@@ -19119,6 +19163,7 @@ span.abt-founderCo{
 }
 .col-md-6.footer-mid-section-menu {
     padding-left: 11px;
+    padding-top: 23px;
 }
 .dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.open .user-cl-caret::before {
     content: "";
@@ -20533,7 +20578,7 @@ tr.payTransacrow td{
 											/*Image-collage-new*/
 											
 .homepageusCampaigns{
-	min-height: 1535px;
+	min-height: 1200px;
 }
 
 .imageCollage{
@@ -20545,18 +20590,18 @@ tr.payTransacrow td{
 
 .homepageusCampaigns h1{
 	margin-bottom: -10px;
-	font-family: "Assistant";
-	font-weight: 200;
-	font-size: 36px;
-	color: #44505d;
+	font-family: "Assistant",sans-serif;
+	font-weight: lighter;
+	font-size: 33px;
+	color: #005f84;
 	text-align: center;
 }
 
-.homepageusCampaigns b{
-	font-family: "Assistant";
+.homepageusCampaigns h4{
+	font-family: "Assistant",sans-serif;
 	font-weight: normal;
 	font-size: 16px;
-	color: #7c848d;
+	color: #1d1717;
 	text-align: center;
 	display: block;
 }
@@ -20632,7 +20677,7 @@ a.hm-howtoCreatecampaign-btn:focus{
 
 .successfullcampaignLogos{
 	background-color: #f0f0f0;
-	padding: 30px 0 30px 0;
+	padding:  0 30px 0;
 }
 
 .colrowHeight{
@@ -20644,10 +20689,11 @@ b.successfullcampaignBottomline{
 	font-family: "Assistant";
 	font-weight: normal;
 	font-size: 16px;
-	color: #7d7d7d;
+	color: #1d1717;
 	font-style: italic;
 	text-align: center;
 	display: block;
+	padding-top: 30px;
 }
 
 .hoverButton,
@@ -20686,4 +20732,88 @@ img.imageNine{
 
 .successfullcampaignLogos div.row {
     margin: 0 auto;
+}
+
+.how-it-work-text{
+	position: relative; 
+	color: #005f84; 
+	bottom: -75px; 
+	left: 195px; 
+	z-index: 100;
+}
+
+.how-it-work-text h2{
+	font-family: assistant,sans-serif !important; 
+	font-size: 38px; 
+	font-weight: lighter; 
+}
+
+
+a.npoCreate-btn{
+	font-weight: 600 !important;
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
+	transition: all 0.2s ease;
+}
+
+a.npoCreate-btn:hover{
+	background-color: #ffbf08 !important;
+}
+
+div.successfullcampaignLogos div{
+	padding-top: 15px;
+}
+
+.multiple-reason-btn1{
+	position: absolute;
+    right: 22.2%;
+    margin-top: 15px;
+}
+
+.multiple-reason-btn1 a{
+	background-color: #fff;
+    border: thick solid #5f676f;
+    border-color: thin;
+    color: #5f676f;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: "Assistant",sans-serif;
+    -webkit-transition: background-color 0.4s ease;
+	-moz-transition: background-color 0.4s ease;
+	-o-transition: background-color 0.4s ease;
+	transition: background-color 0.4s ease;
+}  
+
+.multiple-reason-btn2{
+	position: absolute;
+    left: 22.2%;
+    margin-top: 15px;
+}
+
+.multiple-reason-btn2 a{
+	background-color: #fff;
+    border: thick solid #5f676f;
+    border-color: thin;
+    color: #5f676f;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: "Assistant",sans-serif;
+    -webkit-transition: background-color 0.4s ease;
+	-moz-transition: background-color 0.4s ease;
+	-o-transition: background-color 0.4s ease;
+	transition: background-color 0.4s ease;
+}  
+
+.multiple-reason-btn1 a:hover,
+.multiple-reason-btn1 a:focus,
+.multiple-reason-btn2 a:hover,
+.multiple-reason-btn2 a:focus{
+	background-color: #005f84;
+	border: thick solid #005f84;
+	color: #ffffff;
+}
+
+.many-reasons{
+	min-height: 650px;
 }

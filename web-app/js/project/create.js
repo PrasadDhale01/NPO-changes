@@ -525,11 +525,11 @@ $(function() {
               $(this).rules("add", {
                   required: true,
                   minlength: 3,
-                  maxlength:55,
+                  maxlength:48,
                   messages: {
                   	required: 'Required',
                   	minlength: 'min 3 characters',
-                    maxlength: 'max 55 characters'
+                    maxlength: 'max 48 characters'
                   }
               });
           });
@@ -885,11 +885,11 @@ $(function() {
 			$(this).rules("add", {
 				required: true,
 				minlength: 3,
-				maxlength: 55,
+				maxlength: 48,
 				messages: {
 					required: 'Required',
 					minlength: 'min 3 characters',
-					maxlength: 'max 55 characters'
+					maxlength: 'max 48 characters'
 				}
 			});
 		});
@@ -2607,7 +2607,7 @@ $(function() {
 						'</div>&nbsp;&nbsp;&nbsp;'+
 						'<span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>'+
 						'<div class="form-group col-sm-5 col-xs-7 col-input-for">'+
-						'	<input type="text" class="form-control form-control-input-for spendCause" maxlength="64" id="spendCause'+nextCount+'" name="spendCause'+nextCount+'">'+
+						'	<input type="text" class="form-control form-control-input-for spendCause" maxlength="48" id="spendCause'+nextCount+'" name="spendCause'+nextCount+'">'+
 						'</div>'+
 						'<div class="clear visible-xs"></div>'+
 						'<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">'+
@@ -2677,11 +2677,11 @@ $(function() {
                   $(this).rules("add", {
                       required: true,
                       minlength:3,
-                      maxlength:55,
+                      maxlength:48,
                       messages: {
                       	required: 'Required',
                       	minlength: 'min 3 characters',
-                      	maxlength: 'max 55 characters'
+                      	maxlength: 'max 48 characters'
                       }
                   });
               });
@@ -2702,6 +2702,7 @@ $(function() {
         	  var grid = $('.pieChart');
         	  $.ajax({
               	  cache: true,
+              	  async: true,
                   type:'post',
                   url:$("#b_url").val()+'/project/saveSpendMatrix',
                   data:'amount='+amount+'&cause='+cause+'&savingCount='+savingCount+'&projectId='+projectId,
@@ -2733,6 +2734,7 @@ $(function() {
         	  var grid = $('.pieChart');
         	  $.ajax({
               	  cache: true,
+              	  async: true,
                   type:'post',
                   url:$("#b_url").val()+'/project/deleteSpendMatrix',
                   data:'amount='+amount+'&cause='+cause+'&deleteCount='+deleteCount+'&projectId='+projectId,

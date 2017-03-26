@@ -1,3 +1,7 @@
+<g:set var="projectService" bean="projectService"/>
+<%
+def country_code = projectService.getCountryCodeForCurrentEnv(request)
+ %>
 <input type="hidden" id="b_url" value="${base_url}" />
 <div id="footermarker"></div>
 <footer>

@@ -525,7 +525,7 @@ $(function() {
          var teamId=$(checkstat).val();
          $.ajax({
                  type:'post',
-                 url:$("#b_url").val()+'/project/enableOrDisableTeam',
+                 url:$("#b_url").val()+'project/enableOrDisableTeam',
                  data:'teamId='+teamId,
                  success: function(data){
                  $('#test').html(data);

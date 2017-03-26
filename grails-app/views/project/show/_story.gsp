@@ -8,7 +8,7 @@
 <div class="col-md-12">
     <div class="row">
         <div class="blacknwhite campaignupdatedimages" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
-            <g:if test="${userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)}">
+            <g:if test="${userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)|| isAdmin}">
                 <g:render template="/project/manageproject/projectimagescarousel" model="['images': projectimages]"/>
             </g:if>
             <g:else>
@@ -166,6 +166,7 @@
             <g:if test="${spendCauseList && spendAmountPerList}">
                 <b class="show-spend-matrix-title">Campaign money will be used as</b>
                 <div id="chart-container">
+                <g:hiddenField name="payuStatus" value="${project.payuStatus}"   id="payuStatus"/>
                     <g:hiddenField name="spendCauseList" value="${spendCauseList}" id="spendCauseList"/>
                     <g:hiddenField name="spendAmountPerList" value="${spendAmountPerList}" id="spendAmountPerList"/>
                     <div id="graph"></div>
@@ -178,6 +179,7 @@
             
             	<b class="show-spend-matrix-title">Campaign money will be used as</b>
                 <div id="chart-container">
+                <g:hiddenField name="payuStatus" value="${project.payuStatus}"   id="payuStatus"/>
                 	<g:hiddenField name="spendCauseList" value="0" id="spendCauseList"/>
                     <g:hiddenField name="spendAmountPerList" value="0" id="spendAmountPerList"/>
                     <div id="graph"></div>

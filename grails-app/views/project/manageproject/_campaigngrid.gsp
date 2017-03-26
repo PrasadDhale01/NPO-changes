@@ -14,6 +14,11 @@
 </div>
 <g:if test="${manageProject}">
     <div class="col-md-6 col-sm-6 col-xs-12">
+        <g:form controller="project" action="deleteCampaignUpdate" method="post"  id="${projectUpdate.id}" params="['projectId': projectId]">
+            <button class="projectedit close"  aria-label="Delete project">
+                <i class="glyphicon glyphicon-trash" ></i>
+            </button>
+        </g:form>
         <g:form controller="project" action="editCampaignUpdate" method="post"  id="${projectUpdate.id}" params="['projectId': projectId]">
             <button class="projectedit close"  aria-label="Edit project">
                 <i class="glyphicon glyphicon-edit" ></i>
@@ -31,7 +36,7 @@
     </g:if>
 </div>
 
-<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 manage-updateshare">
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 new-manage-updateshare">
     <a target="_self" class="fb-like pull-left social fbShareForLargeDevices fbshare-headermangepage" href="#">
         <img class="update-share-fbimg" src="//s3.amazonaws.com/crowdera/assets/87908047-8496-40ee-9f44-7af06f2df03d.png" alt="Facebook Share">
     </a>

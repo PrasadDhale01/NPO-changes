@@ -427,7 +427,7 @@
                                             </div>
                                             <span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>
                                             <div class="col-sm-5 col-xs-7 col-input-for form-group">
-                                                <input type="text" class="form-control form-control-input-for spendCause" maxlength="64" id="spendCause${spend.numberAvailable}" name="spendCause${spend.numberAvailable}" value="${spend.cause}">
+                                                <input type="text" class="form-control form-control-input-for spendCause" maxlength="48" id="spendCause${spend.numberAvailable}" name="spendCause${spend.numberAvailable}" value="${spend.cause}">
                                             </div>&nbsp;&nbsp;
                                             <div class="clear visible-xs"></div>
                                             <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">

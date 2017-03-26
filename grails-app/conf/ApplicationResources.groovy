@@ -177,6 +177,11 @@ modules = {
         dependsOn 'underscorejs', 'crowderajs', 'easywizardjs' , 'jqueryPaymentjs'
     }
     
+	wepayfundjs {
+		resource url: 'js/fund/wepayfund.js'
+		dependsOn 'underscorejs', 'crowderajs', 'easywizardjs', 'jqueryPaymentjs'
+	}
+	
     userlistjs {
         resource url: 'js/userlist.js'
         dependsOn 'crowderajs','datatablejs'

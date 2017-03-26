@@ -58,14 +58,12 @@ $(function() {
         return $('.list-group-item.active').attr('id');
     }
 
+    
     function getSelectedRewardPrice() {
         return $('.list-group-item.active').data('rewardprice');
     }
     
     var optionChosen = 'visa';
-    $('#citrusScheme').change(function() {
-        optionChosen = $(this).val();
-    });
     
     $('#myWizard').easyWizard({
         showButtons: false,
@@ -179,14 +177,14 @@ $(function() {
             	email:true,
             	maxlength: 30
             },
-            citrusNumber: {
+            wepayccNumber: {
                 required: true,
                 minlength: 12
             },
             citrusCardType: {
                 required: true
             },
-            citrusCvv: {
+           /* wepayCVV: {
             	required: true,
                 maxlength: function(){
                     if (optionChosen != 'amex') {
@@ -202,49 +200,54 @@ $(function() {
                     	return 4;
                     }
                 }
-            },
-            citrusCardHolder: {
+            },*/
+            wepayContributorName: {
                 required: true,
                 checkCardHolderName: true,
                 minlength: 3,
                 maxlength: 30
             },
-            citrusFirstName: {
+            wepayContributorEmail: {
+                required: true,
+                minlength: 3,
+                maxlength: 30
+            },
+            contributorFirstName: {
                 required: true,
                 checkFirstName: true,
                 maxlength: 20
             },
-            citrusLastName: {
+            contributorLastName: {
                 required: true,
                 checkLastName: true,
                 maxlength: 20
             },
-            citrusEmail: {
+            contributorEmail: {
                 required: true,
                 email: true,
                 maxlength: 30
             },
-            citrusMobile: {
+            contributorMobile: {
             	required: true,
                 number: true,
                 maxlength: 14,
                 minlength: 10
             },
-            citrusStreet1: {
+            contributorStreet1: {
                 required: true,
                 checkAddress:true,
                 maxlength: 50
             },
-            citrusStreet2: {
+            contributorStreet2: {
                 maxlength: 50
             },
-            citrusCity: {
+            contributorCity: {
                 required: true,
                 checkCity:true,
                 minlength:3,
                 maxlength: 15
             },
-            citrusZip: {
+            contributorZip: {
             	required: true,
             	number: true,
             	minlength: 6,
@@ -264,8 +267,9 @@ $(function() {
             }
         }
     });
-
-    $.validator.addMethod('isFullName', function(value){
+    
+    
+    $.validator.addMethod('isFullName', function(value) {
         if(value && value.length !== 0){
             var fullname =$('#receiptName').val();
             var space= fullname.split(" ");
@@ -329,8 +333,16 @@ $(function() {
             }
         });
         
+        
         $('#btnShippingContinue').click(function() {
+        	
+        	
         	if (validateshippingInfo()) {
+        		
+        		$('#myWizard').easyWizard('goToStep', 3);
+    			$('#citrusCardDetails').show();
+    			
+    			/*
         		$.ajax({
         			type : 'post',
         			url  : $('#url').val()+'/fund/getCitrusSignature',
@@ -354,7 +366,7 @@ $(function() {
         				$('#citrusCardDetails').show();
         			}
         		}).error(function(){
-        		});
+        		});*/
         		
         	}
         });
@@ -614,15 +626,20 @@ $(function() {
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
         
-
+        
         $('form').submit(function(event) {
+        	
+        	/*if($(".payment-form").valid(event)) {
+            	
+                event.preventDefault();
+                needToConfirm = false;
+                $('#cc-submit').click();
+        	}*/
+        	
             if($(".payment-form").valid(event)) {
             	
                 event.preventDefault();
                 needToConfirm = false;
-
-                var formData;
-                
                 var formDataObj = new FormData();
                 
                 if ($('input[name= anonymous]').length > 0 && $('input[name= anonymous]').val() != undefined) {
@@ -692,7 +709,7 @@ $(function() {
                     contentType: false,
                     async: false,
                     success : function(){
-                    	$('#citrusCardPayButton').click();
+                    	$('#cc-submit').click();
                     }
                 }).error(function(){
                 });
@@ -700,26 +717,26 @@ $(function() {
             }
         });
 
-        $('.citruscheckoutsubmitbtn').click(function() {
+        $('.wepaycheckoutsubmitbtn').click(function() {
             if(validator.form()) {
             	needToConfirm = false;
             }
         });
 
-        $('#ccExpDateMonth').change(function() {
+        $('#cc-month').change(function() {
             var month = $(this).val();
-            var year = $('#ccExpDateYear').val();
+            var year = $('#cc-year').val();
             var expiry = month + '/' + year;
-            $('#citrusExpiry').val(expiry);
+            $('#cardExpiry').val(expiry);
             var isValidDate = dateValidator(expiry);
             $('#isValidDate').val(isValidDate);
         });
 
-        $('#ccExpDateYear').change(function() {
+        $('#cc-year').change(function() {
             var year = $(this).val();
-            var month = $('#ccExpDateMonth').val();
+            var month = $('#cc-month').val();
             var expiry = month + '/' + year;
-            $('#citrusExpiry').val(expiry);
+            $('#cardExpiry').val(expiry);
             var isValidDate = dateValidator(expiry);
             $('#isValidDate').val(isValidDate);
         });
@@ -731,13 +748,13 @@ $(function() {
             } else {
             	$('#otherState').hide();
             	$('#otherState').val('');
-            	$('#citrusState').val(state);
+            	$('#contributorState').val(state);
             }
         });
 
-        $('#os').blur(function() {
+        $('#otherStateName').blur(function() {
         	var state = $(this).val();
-        	$('#citrusState').val(state);
+        	$('#contributorState').val(state);
         });
 
         var showPopover = function () {
@@ -759,25 +776,23 @@ $(function() {
 //        .hover(showPopover, hidePopover);
         
      // setup card inputs;       
-        $('#citrusExpiry').payment('formatCardExpiry');
-        $('#citrusCvv').payment('formatCardCVC');
         
-        $('#citrusNumber').keyup(function() {
+        $('#wepayccNumber').keyup(function() {
             
-	        var cardNum = $('#citrusNumber').val().replace(/\s+/g, '');        
+	        var cardNum = $('#wepayccNumber').val().replace(/\s+/g, '');        
 	        var type = $.payment.cardType(cardNum);
 	        
 	       /* console.log(type);*/
-	        if(type != 'amex')
-	        	$("#citrusCvv").attr("maxlength","3");
-	        else
-	        	$("#citrusCvv").attr("maxlength","4");
+	        if(type != 'amex') {
+	        	$("#wepayCVV").attr("maxlength","3");
+	        } else {
+	        	$("#wepayCVV").attr("maxlength","4");
+	        }
 	        
-	        $('#citrusNumber').payment('formatCardNumber');                                            
-	        $("#citrusScheme").val(type);
+	        $('#wepayccNumber').payment('formatCardNumber');                                            
 	        
 	        $("#payment-form").validate();
-	        $("#citrusNumber").rules("add","checkCard");
+	        $("#wepayccNumber").rules("add","checkCard");
 	        
 	        $.validator.addMethod("checkCard", function() {
 	            if(type === "visa" || type === "mastercard" || type === "amex" || type === "maestro" || type === "rupay") {
@@ -788,22 +803,16 @@ $(function() {
 	        }, "Please specify the correct card number.");
 		
 	        if (type === "visa") {
-	            $("#citrusScheme").val("visa").change();
 	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/954456ca-1012-4d8d-86e8-f4979ff4b330.png");
 	        } else if(type === "maestro") {
-	            $("#citrusScheme").val("maestro").change();
 	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/f0cf3a78-60b5-4224-9b93-092b4046c690.png");
 	        } else if(type === "mastercard") {
-	            $("#citrusScheme").val("mastercard").change();
 	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/34bfdb13-f40a-4e3f-bcf0-3a83625bda5c.png");
 	        }  else if(type === "rupay") {
-	            $("#citrusScheme").val("rupay").change();
 	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/b79da825-40e6-4175-b0a5-5eba978854eb.png");
 	        }  else if(type === "amex") {
-	            $("#citrusScheme").val("amex").change();
 	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/785a4a0d-1c99-4425-82dc-1451d35727fa.png");
 	        } else {
-	            $("#citrusScheme").val("");
 	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/4479bc5f-f890-4cf4-8429-567ed2a1b58e.png");
 	        }
             
@@ -842,10 +851,10 @@ function reloadjs() {
 	
 	$('#checkAddress').click(function(){
     	if($(this).prop("checked") === true){
-    		var addressLine1 = $('#citrusStreet1').val();
-    		var addressLine2 = $('#citrusStreet2').val();
-    		var city = $('#citrusCity').val();
-    		var zip = $('#citrusZip').val();
+    		var addressLine1 = $('#contributorStreet1').val();
+    		var addressLine2 = $('#contributorStreet2').val();
+    		var city = $('#contributorCity').val();
+    		var zip = $('#contributorZip').val();
     		var state = $("#billToState").val();
     		var country = $("#citrusCountry option:selected").val();
     		$('#addressLine1').val(addressLine1);
@@ -858,7 +867,7 @@ function reloadjs() {
     		$("#country").selectpicker('refresh');
     		if (state === 'other'){
     			$("#other").show();
-    			var otherState = $('#os').val();
+    			var otherState = $('#otherStateName').val();
     			$("#otherstate").val(otherState);
     		}
     	} else if($(this).prop("checked") === false){
@@ -903,29 +912,29 @@ function validateshippingInfo() {
 	if ($('#shippingCustom').length) {
 		$('#shippingCustom').valid() ? ' ' : status= false;
 	}
-	if ($('#citrusFirstName').length) {
-		$('#citrusFirstName	').valid() ? '' : status= false;
+	if ($('#contributorFirstName').length) {
+		$('#contributorFirstName	').valid() ? '' : status= false;
 	}
-	if ($('#citrusLastName').length) {
-		$('#citrusLastName').valid() ? ' ': status= false;
+	if ($('#contributorLastName').length) {
+		$('#contributorLastName').valid() ? ' ': status= false;
 	}
-	if ($('#citrusEmail').length) {
-		$('#citrusEmail').valid() ? ' ': status= false;
+	if ($('#contributorEmail').length) {
+		$('#contributorEmail').valid() ? ' ': status= false;
 	}
 	if ($('#shippingEmail').length) {
 		$('#shippingEmail').valid() ? ' ': status= false;
 	}
-	if ($('#citrusMobile').length) {
-		$('#citrusMobile').valid() ? ' ': status= false;
+	if ($('#contributorMobile').length) {
+		$('#contributorMobile').valid() ? ' ': status= false;
 	}
-	if ($('#citrusCity').length) {
-		$('#citrusCity').valid() ? ' ': status= false;
+	if ($('#contributorCity').length) {
+		$('#contributorCity').valid() ? ' ': status= false;
 	}
-	if ($('#citrusStreet1').length) {
-		$('#citrusStreet1').valid() ? ' ': status= false;
+	if ($('#contributorStreet1').length) {
+		$('#contributorStreet1').valid() ? ' ': status= false;
 	}
-	if ($('#citrusZip').length) {
-		$('#citrusZip').valid() ? ' ': status= false;
+	if ($('#contributorZip').length) {
+		$('#contributorZip').valid() ? ' ': status= false;
 	}
 	return status;
 }

@@ -1896,3 +1896,6 @@ a.manage-campaigndetails-font{
 span.donation-font{
 	font-size: 15px !important;
 }
+#wepayDiv {
+	display: none;
+}

@@ -1205,7 +1205,7 @@ class ProjectService {
     def getPayment(){
         def currentEnv = getCurrentEnvironment();
         def payment;
-        if (currentEnv == "test" && currentEnv == "development") {
+        if (currentEnv == "test" || currentEnv == "development") {
             payment = [
                 PAY:'Paypal',
                 FIR:'FirstGiving',
@@ -3765,6 +3765,7 @@ class ProjectService {
 				if (!project.validated) {
 	                project.paypalEmail = varValue;
 	                project.charitableId = null;
+					project.wepayEmail = null;
 	                isValueChanged = true;
 				}
                 break;
@@ -3783,6 +3784,29 @@ class ProjectService {
 				}
                 break;
 				
+			case 'wepayEmail':
+				if (!project.validated) {
+					project.wepayEmail = varValue;
+					project.paypalEmail = null;
+					project.charitableId = null;
+					isValueChanged = true;
+				}
+				break;
+				
+			case 'wepayFirstName':
+				if (!project.validated) {
+					project.wepayFirstName = varValue;
+					isValueChanged = true;
+				}
+				break;
+				
+			case 'wepayLastName':
+				if (!project.validated) {
+					project.wepayLastName = varValue;
+					isValueChanged = true;
+				}
+				break;
+
             case 'story':
                 if (project.story != varValue) {
                     project.story = varValue;
@@ -6921,7 +6945,7 @@ class ProjectService {
 		/**Change the country to 'in' if you want to test the India flow on development ENV*/
 		def currentEnv = getCurrentEnvironment();
 		if( currentEnv == 'development'|| currentEnv == 'test'){
-			country_code  = "in"
+			country_code  = "us"
 		}else if (currentEnv == 'testIndia' || currentEnv==''){
 			country_code = "in"
 		}else if(currentEnv == 'staging') {

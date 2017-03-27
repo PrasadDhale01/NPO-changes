@@ -593,6 +593,7 @@ class CampaignService {
 		
 		def json
 		int status = httpres.getStatusLine().getStatusCode()
+		int checkoutId;
 		
 		if (status == 200) {
 		    HttpEntity entity = httpres.getEntity();
@@ -602,10 +603,11 @@ class CampaignService {
 		       
 				json = slurper.parseText(jsonString)
 		        println "result  ===== "+ json
+				checkoutId = json.checkout_id
 		    }
 		}
 	    
-		return json
+		return checkoutId
 	}
 	
 	
@@ -619,7 +621,6 @@ class CampaignService {
 		def anonymous = session.getAttribute('anonymous')
 		def address   = session.getAttribute('address')
 		def fr        = session.getAttribute('fr')
-		def panNumber = session.getAttribute('panNumber')
 		
 		Project project  = Project.get(session.getAttribute('campaignId'))
 		Reward reward    = rewardService.getRewardById(session.getAttribute('rewardId'));
@@ -653,8 +654,7 @@ class CampaignService {
 			contributorName  : name,
 			contributorEmail : username,
 			physicalAddress  : shippingDetail.address,
-			currency         : 'INR',
-			panNumber        : panNumber
+			currency         : 'USD'
 		)
 		
 		project.addToContributions(contribution).save(failOnError: true)
@@ -707,7 +707,7 @@ class CampaignService {
 			user         : contributor,
 			project      : project,
 			contribution : contribution,
-			currency     : 'INR'
+			currency     : 'USD'
 		)
 		
 		transaction.save(failOnError: true)

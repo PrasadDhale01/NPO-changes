@@ -87,14 +87,7 @@
                                     </div>
                                     </div>
                                 </div>
-                                <g:if test="${isTaxReceipt}">
-	                                <label class="checkbox control-label">
-	                                    <input type="checkbox" name="isTaxreceipt" id="isTaxreceipt" > Do you want donation receipt?
-	                                </label>
-	                                <div class="form-group fund-inr pannumberdiv">
-	                                    <input class="form-control" id="panNumber" name="panNumber" type="text" placeholder="Enter PAN Number" maxlength="10"/>
-	                                </div>
-                                </g:if>
+                                
                                 <label class="checkbox control-label">
                                     <input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
                                 </label>
@@ -314,7 +307,7 @@
 	                                        
 	                                        <div class="center-fund">
 	                                            <button type="submit" class="btn btn-info btn-block btn-lg wepaycheckoutsubmitbtn" name="fund-button" id="submitButton">Fund this Campaign</button>
-	                                            <button type="submit" class="btn btn-info hidden btn-block btn-lg wepaycheckoutsubmitbtn" name="Submit" value="Submit" id="cc-submit"></button>
+	                                            <button type="button" class="btn btn-info hidden btn-block btn-lg wepaycheckoutsubmitbtn" name="Submit" value="Submit" id="cc-submit"></button>
 	                                            <br>
 	                                            <h4><b>Powered by WePay</b></h4>
 	                                        </div>
@@ -336,6 +329,10 @@
         
     </div>
     
+    <div class="loadinggif text-center" id="loading-gif">
+        <img src="//s3.amazonaws.com/crowdera/documents/loading.gif" alt="'loadingImage'" id="loading-gif-img">
+    </div>
+    
     <script type="text/javascript">
         var $jq = jQuery.noConflict();
     </script>
@@ -349,14 +346,13 @@
     <g:elseif env="production">
     <%--
         Need to replace script for production env
-    --%>
+    	--%>
     	<script type="text/javascript" src="https://static.wepay.com/min/js/tokenization.v2.js"></script>
     </g:elseif>
     
-	
 	<script type="text/javascript">
 		(function() {
-		    WePay.set_endpoint(${endPoint}); // change to "production" when live
+		    WePay.set_endpoint("${endPoint}"); // change to "production" when live
 			
 		    // Shortcuts
 		    var d = document;
@@ -374,8 +370,6 @@
 		    // Attach the event to the DOM
 		    addEvent(d.id('cc-submit'), 'click', function() {
 
-		    	$('#loading-gif').show();
-		    	
 		        var userName = [valueById('wepayContributorName')].join(' ');
 		            response = WePay.credit_card.create({
 		            "client_id":        ${clientId},
@@ -418,7 +412,6 @@
 				        })
 		            }
 		        });
-			    
 			    
 		    });
 		

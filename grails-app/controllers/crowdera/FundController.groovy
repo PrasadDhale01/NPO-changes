@@ -1252,7 +1252,7 @@ class FundController {
 			json.put("status", -99)
 		}
 		
-		return json;
+		render json;
 	}
 	
 	

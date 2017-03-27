@@ -84,20 +84,6 @@ $(function() {
     	}
     });
     
-    $("#isTaxreceipt").change(function() {
-    	if ($(this).is(':checked')) {
-    		$(".pannumberdiv").slideDown();
-    		
-    		$('[name="panNumber"]').rules( "add", {
-                required: true,
-                minlength: 10,
-                maxlength: 10
-            });
-    	} else {
-    		$(".pannumberdiv").slideUp();
-    		$('[name="panNumber"]').rules('remove');
-    	}
-    });
     
     var validator = $('#fundindex').find('form').validate({
         rules: {
@@ -149,7 +135,7 @@ $(function() {
             zip: {
             	required: true,
             	maxlength: 8,
-            	minlength: 6
+            	minlength: 5
             },
             shippingEmail: {
             	required: true,
@@ -250,7 +236,7 @@ $(function() {
             contributorZip: {
             	required: true,
             	number: true,
-            	minlength: 6,
+            	minlength: 5,
                 maxlength: 8
             }
         },
@@ -297,15 +283,8 @@ $(function() {
         $('#btnCheckoutContinue').click(function() {
         	
             var amountStatus = checkAmount();
-            var validatePanNumber = false;
              
-            if ($('input[name= panNumber]').length > 0) {
-           	    validatePanNumber = $("#panNumber").valid();
-            } else {
-                validatePanNumber = true;
-            }
-        	
-            if(amountStatus == true && validatePanNumber) {
+            if(amountStatus == true) {
             	var rewardId = getSelectedRewardId();
             	if (rewardId === undefined) {
                 	rewardId = 1;
@@ -627,7 +606,7 @@ $(function() {
         .hover(showPopover, hidePopover);
         
         
-        $('form').submit(function(event) {
+        $('#submitButton').click(function(event) {
         	
         	/*if($(".payment-form").valid(event)) {
             	
@@ -635,10 +614,10 @@ $(function() {
                 needToConfirm = false;
                 $('#cc-submit').click();
         	}*/
-        	
+        	event.preventDefault();
             if($(".payment-form").valid(event)) {
+            	$('#loading-gif').show();
             	
-                event.preventDefault();
                 needToConfirm = false;
                 var formDataObj = new FormData();
                 
@@ -697,10 +676,6 @@ $(function() {
                 	formDataObj.append("projectTitle", $('input[name= projectTitle]').val());
                 }
                 
-                if ($('input[name= panNumber]').length > 0) {
-                	formDataObj.append("panNumber", $('input[name= panNumber]').val());
-                }
-                
                 $.ajax({
                     type    :'post',
                     url     : $('#url').val()+'/fund/setCitrusInfo',
@@ -712,6 +687,7 @@ $(function() {
                     	$('#cc-submit').click();
                     }
                 }).error(function(){
+                	$('#loading-gif').hide();
                 });
 
             }

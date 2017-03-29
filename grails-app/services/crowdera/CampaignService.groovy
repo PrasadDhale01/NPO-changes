@@ -435,7 +435,7 @@ class CampaignService {
 				
 				wepayUserId = json.user_id
 				accessToken = json.access_token
-				println "result  ===== "+ json
+				/*println "result  ===== "+ json*/
 			}
 		}
 		println "status  == "+ status
@@ -466,7 +466,7 @@ class CampaignService {
         println "status  == "+ status
 
         if (status == 200) {
-            println "status preview"
+            /*println "status preview"*/
             HttpEntity entity = httpres.getEntity();
             if (entity != null){
                 def jsonString = EntityUtils.toString(entity)
@@ -474,7 +474,7 @@ class CampaignService {
                 json = slurper.parseText(jsonString)
 				
 				accountId = json.account_id
-                println "result  ===== "+ json
+               /* println "result  ===== "+ json*/
             }
         }
 		
@@ -513,8 +513,8 @@ class CampaignService {
 				accessToken =json.access_token
 			}
 		}
-		println"access token status == " +status
-		println "access token result  == "+ accessToken
+		/*println"access token status == " +status
+		println "access token result  == "+ accessToken*/
 		
 		return accessToken;
 	}
@@ -553,7 +553,7 @@ class CampaignService {
 					def jsonString = EntityUtils.toString(entity)
 					def slurper = new JsonSlurper()
 					json = slurper.parseText(jsonString)
-				println "result  ===== "+ json
+				/*println "result  ===== "+ json*/
 				}
 			}
 			return [state: json?.state, userId: json?.user_id]
@@ -602,7 +602,7 @@ class CampaignService {
 		        def slurper = new JsonSlurper()
 		       
 				json = slurper.parseText(jsonString)
-		        println "result  ===== "+ json
+		        /*println "result  ===== "+ json*/
 				checkoutId = json.checkout_id
 		    }
 		}

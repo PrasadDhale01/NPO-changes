@@ -202,16 +202,17 @@
                                         <input class="form-control all-place" type="hidden" placeholder="Country" name="contributorCountry" id="contributorCountry" value="${defaultCountry}" readonly>
                                         
 
-                                        <div class="form-group">
+                                        <%--<div class="form-group">
                                             <div class="input-group col-md-12 citrusStateDiv">
                                                 <g:select class="selectpicker" name="billToState" id="billToState" from="${state}" optionKey="key" optionValue="value"/>
                                             </div>
                                         </div>
+                                        --%>
                                         <input type="hidden" name="contributorState" id="contributorState" value="">
                                         
                                         <div class="form-group" id="otherState">
                                             <div class="input-group col-md-12">
-                                                <input class="form-control all-place" type="text" placeholder="Other State" name="otherState" id="otherStateName">
+                                                <input class="form-control all-place" type="text" placeholder="State" name="otherState" id="otherStateName">
                                             </div>
                                         </div>
                                         
@@ -380,11 +381,17 @@
 		            "expiration_month": valueById('cc-month'),
 		            "expiration_year":  valueById('cc-year'),
 		            "address": {
-		                "postal_code": valueById('postal_code')
+		                "postal_code": valueById('contributorZip')
 		            }
 		        }, function(data) {
 		            if (data.error) {
-		                console.log(data);
+		                $('#loading-gif').hide();
+		                var errorCode = data.error_code
+		                if (errorCode == 1003) {
+							alert("Please provide valid postal code");
+			            } else {
+							alert(data.error_description)
+				        }
 		                // handle error response
 		            } else {
 			            
@@ -397,15 +404,15 @@
 				            data:'creditCardId='+creditCardId+'&amount='+$("#amount").val()+'&projectId='+$('#projectId').val(),
 				            success: function(response) {
 				            	var jsonObj = JSON.parse(response);
+				            	$('#loading-gif').hide();
 				            	
 				                if (jsonObj.status === 1) {
 					                $("#payment-form").submit();
 				                } else {
 					                // Replace it with Notify dialogue
-									alert()
+									alert("Something went wrong while processing payment. Please try again");
 					            }
 				                
-				                $('#loading-gif').hide();
 				            }
 				        }).error(function() {
 				        	 $('#loading-gif').hide();

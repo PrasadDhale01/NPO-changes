@@ -1,5 +1,6 @@
 $(function() {
 
+	
 	$.validator.addMethod("checkCity", function(value,element){
 		var cityRegex= /^(?:[a-zA-Z]\s?)+$/;
 		
@@ -194,6 +195,7 @@ $(function() {
                 maxlength: 30
             },
             wepayContributorEmail: {
+            	email: true,
                 required: true,
                 minlength: 3,
                 maxlength: 30
@@ -231,13 +233,19 @@ $(function() {
                 required: true,
                 checkCity:true,
                 minlength:3,
-                maxlength: 15
+                maxlength: 30
             },
             contributorZip: {
             	required: true,
             	number: true,
             	minlength: 5,
                 maxlength: 8
+            },
+            otherState: {
+                required: true,
+                checkCity:true,
+                minlength:3,
+                maxlength: 30
             }
         },
         messages:{
@@ -305,6 +313,7 @@ $(function() {
         				$(grid).html(data);
         				$('#myWizard').easyWizard('goToStep', 2);
         				$('#billingInformation').show();
+        				$("#otherState").show();
         			}
         		}).error(function(){
         		});
@@ -314,39 +323,10 @@ $(function() {
         
         
         $('#btnShippingContinue').click(function() {
-        	
-        	
         	if (validateshippingInfo()) {
         		
         		$('#myWizard').easyWizard('goToStep', 3);
     			$('#citrusCardDetails').show();
-    			
-    			/*
-        		$.ajax({
-        			type : 'post',
-        			url  : $('#url').val()+'/fund/getCitrusSignature',
-        			data : 'amount=' + $('#amount').val(), 
-        			async: false,
-        			success: function(response){
-        				var data;
-                        data = response.replace(/^\[/, '');
-                        data = response.replace(/\]$/, '');
-
-                        var json;
-                        try {
-                            json = (typeof data === 'string' ? $.parseJSON(data) : data);
-                        } catch(err) {
-                            json = { error: true };
-                        }
-        				$('#citrusMerchantTxnId').val(json.txnID);
-        				$('#citrusSignature').val(json.securitySignature);
-        				$('#citrusAmount').val($('#amount').val());
-        				$('#myWizard').easyWizard('goToStep', 3);
-        				$('#citrusCardDetails').show();
-        			}
-        		}).error(function(){
-        		});*/
-        		
         	}
         });
         
@@ -753,22 +733,22 @@ $(function() {
         
      // setup card inputs;       
         
-        $('#wepayccNumber').keyup(function() {
+        $('#cc-number').keyup(function() {
             
-	        var cardNum = $('#wepayccNumber').val().replace(/\s+/g, '');        
+	        var cardNum = $('#cc-number').val().replace(/\s+/g, '');        
 	        var type = $.payment.cardType(cardNum);
 	        
-	       /* console.log(type);*/
+	        console.log(type);
 	        if(type != 'amex') {
-	        	$("#wepayCVV").attr("maxlength","3");
+	        	$("#cc-cvv").attr("maxlength","3");
 	        } else {
-	        	$("#wepayCVV").attr("maxlength","4");
+	        	$("#cc-cvv").attr("maxlength","4");
 	        }
 	        
-	        $('#wepayccNumber').payment('formatCardNumber');                                            
+	        $('#cc-number').payment('formatCardNumber');                                            
 	        
 	        $("#payment-form").validate();
-	        $("#wepayccNumber").rules("add","checkCard");
+	        $("#cc-number").rules("add","checkCard");
 	        
 	        $.validator.addMethod("checkCard", function() {
 	            if(type === "visa" || type === "mastercard" || type === "amex" || type === "maestro" || type === "rupay") {
@@ -911,6 +891,9 @@ function validateshippingInfo() {
 	}
 	if ($('#contributorZip').length) {
 		$('#contributorZip').valid() ? ' ': status= false;
+	}
+	if ($('#otherStateName').length) {
+		$('#otherStateName').valid() ? ' ': status= false;
 	}
 	return status;
 }

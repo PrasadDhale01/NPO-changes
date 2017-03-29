@@ -683,6 +683,20 @@ $(function() {
         	$( '[name="charitableId"]' ).rules( "add", {
                 required: true
             });
+        	
+        	$( '[name="wepayFirstName"]' ).rules( "add", {
+                required: true,
+                maxlength: 32
+            });
+        	$( '[name="wepayLastName"]' ).rules( "add", {
+                required: true,
+                maxlength: 32
+            });
+        	$( '[name="wepayEmail"]' ).rules( "add", {
+                required: true,
+                email:true,
+                maxlength: 50
+            });
         }
 
     	$('[name="impactNumber"]').rules( "add", {
@@ -810,12 +824,17 @@ $(function() {
         }
 
         if (validator.form() && !storyEmpty) {
-            if ($("#paymentOpt option:selected").val() == "CITRUS") {
+            if ($("#paymentOpt option:selected").val() == "CITRUS" && !validated) {
             	event.preventDefault();
             	generateSellerId(false);
-            } else if ($("#paymentOpt option:selected").val() == "WEPAY") {
-            	event.preventDefault();
-            	authenticateWepayUser(false);
+            } else if ($("#paymentOpt option:selected").val() == "WEPAY" && !validated) {
+            	if (p_wepayAccountId == undefined || (p_wepayAccountId != undefined && p_wepayEmail != $("#wepayEmail").val() ) ) {
+	            	event.preventDefault();
+	            	authenticateWepayUser(false);
+            	} else {
+            		$('#saveButton, #saveButtonXS').attr('disabled','disabled');
+                	$('#campaigncreate').find('form').submit();
+            	}
             } else {
             	$('#saveButton, #saveButtonXS').attr('disabled','disabled');
             	$('#campaigncreate').find('form').submit();
@@ -1011,6 +1030,7 @@ $(function() {
                 maxlength: 50
             });
         } else {
+        	
         	$('.rewardPrice').each(function () {
                 $(this).rules("add", {
                     required: true,
@@ -1032,6 +1052,20 @@ $(function() {
 
         	$( '[name="charitableId"]' ).rules( "add", {
                 required: true
+            });
+        	
+        	$( '[name="wepayFirstName"]' ).rules( "add", {
+                required: true,
+                maxlength: 32
+            });
+        	$( '[name="wepayLastName"]' ).rules( "add", {
+                required: true,
+                maxlength: 32
+            });
+        	$( '[name="wepayEmail"]' ).rules( "add", {
+                required: true,
+                email:true,
+                maxlength: 50
             });
 
         }
@@ -1171,21 +1205,22 @@ $(function() {
         } else {
         	removeSellersValidation();
         }
-
+        
         if (validator.form() && !storyEmpty) {
-            if ($("#paymentOpt option:selected").val() == "CITRUS") {
+            if ($("#paymentOpt option:selected").val() == "CITRUS" && !validated) {
             	event.preventDefault();
             	generateSellerId(true);
-            } else if ($("#paymentOpt option:selected").val() == "WEPAY") {
-            	event.preventDefault();
-            	authenticateWepayUser(true);
-            } else {
-            	$('#campaigncreate').find('form').submit();
+            } else if ($("#paymentOpt option:selected").val() == "WEPAY" && !validated) {
             	
-            	$('#submitProject').attr('disabled','disabled');
-                $('#previewButton').attr('disabled','disabled');
-                $('#submitProjectXS').attr('disabled','disabled');
-                $('#previewButtonXS').attr('disabled','disabled');
+            	if (p_wepayAccountId == 0 || (p_wepayAccountId != 0 && p_wepayEmail != $("#wepayEmail").val() ) ) {
+            		event.preventDefault();
+                	authenticateWepayUser(true);
+            	} else {
+            		submitCampaignCreateForm();
+            	}
+            	
+            } else {
+            	submitCampaignCreateForm();
             }
             
     	}
@@ -1195,6 +1230,15 @@ $(function() {
     	}
     	  
     });
+    
+    function submitCampaignCreateForm() {
+    	$('#campaigncreate').find('form').submit();
+    	
+    	$('#submitProject').attr('disabled','disabled');
+        $('#previewButton').attr('disabled','disabled');
+        $('#submitProjectXS').attr('disabled','disabled');
+        $('#previewButtonXS').attr('disabled','disabled');
+    }
     
     
     function requiredFieldMessages(){
@@ -1557,11 +1601,7 @@ $(function() {
     	
     });
     
-    /*$("input[name='pay']").change(function(){
-     	alert($(this).val())
-   	    
-    });
-*/
+    
 	$('#countryList').change(function(){
 	    var c = $('#countryList').val();
 	    if(c === 'IN'){
@@ -3645,12 +3685,11 @@ $(function() {
 	             $(this).closest('.form-group').removeClass('has-error');
 	        });
       	} else {
-      		$('[name="pay"], [name="digitalSign"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
+      		$('[name="pay"], [name="digitalSign"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"], [name="wepayFirstName"],[name="wepayLastName"], [name="wepayEmail"]').each(function () {
 	             $(this).rules('remove');
 	             $(this).closest('.form-group').removeClass('has-error');
 	        });
       	}
-
 
         $('.spendAmount').each(function () {
             $(this).rules("remove");

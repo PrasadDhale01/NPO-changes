@@ -1020,7 +1020,7 @@
 	                        <div class="col-sm-6">
 	                            <div class="form-group">
 	                                <g:if test="${project.wepayLastName}">
-	                                    <input id="wepayLastName" type="text" maxlength="64" class="form-control form-control-no-border cr-placeholder cr-chrome-place" value="${project.wepayEmail}" name="wepayLastName" placeholder="Wepay User LastName">
+	                                    <input id="wepayLastName" type="text" maxlength="64" class="form-control form-control-no-border cr-placeholder cr-chrome-place" value="${project.wepayLastName}" name="wepayLastName" placeholder="Wepay User LastName">
 	                                </g:if>
 	                                <g:else>
 	                                    <input id="wepayLastName" type="text" maxlength="64" class="form-control form-control-no-border cr-placeholder cr-chrome-place" name="wepayLastName" placeholder="Wepay User LastName">
@@ -1229,12 +1229,20 @@
           return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
          }
      }
+     
         function removeLogo(){
             $('#delIcon').removeAttr('src');
             $('#imgIcon').removeAttr('src');
             $('#icondiv').hide();
             $('#iconfile').val(''); 
         }
+        
+    var p_wepayFirstName = "${project?.wepayFirstName}"
+    var p_wepayLastName = "${project?.wepayLastName}"
+    var p_wepayAccountId = "${project?.wepayAccountId}" 
+    var p_wepayEmail = "${project?.wepayEmail}"
+    var validated = ${project?.validated}
+    
         var j = jQuery.noConflict();
         j(function(){
             j('.datepicker-reg').datepicker({          

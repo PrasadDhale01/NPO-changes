@@ -248,7 +248,7 @@
                         </div>
                         
                         <div class="submitForApprovalSection">
-                            <g:if test="${project?.organizationIconUrl && project?.webAddress && (project?.charitableId || project?.paypalEmail || project?.payuEmail || (project?.citrusEmail && project?.sellerId) ) && (!project?.imageUrl?.isEmpty()) && project?.organizationName && project?.beneficiary?.country && (projectService?.getRemainingDay(project) > 0)}">
+                            <g:if test="${project?.organizationIconUrl && project?.webAddress && (project?.charitableId || project?.paypalEmail || project?.payuEmail || (project?.citrusEmail && project?.sellerId) || (project?.wepayEmail && project?.wepayAccountId != 0) ) && (!project?.imageUrl?.isEmpty()) && project?.organizationName && project?.beneficiary?.country && (projectService?.getRemainingDay(project) > 0)}">
                                 <g:form controller="project" action="saveasdraft" id="${project.id}">
                                     <g:if test="${!project.touAccepted}">
                                         <div class="form-group hidden">
@@ -408,7 +408,7 @@
                         <ul class="nav navbar-nav navbar-right col-lg-6 col-sm-6 col-md-6 show-paddingsbtn-submitapprov">
                             <li class="show-margin-right">
                                 <div class="submitForApprovalSectionbtn show-headerApproval-tooltip show-submit-tabs">
-                                     <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail || (project.citrusEmail && project?.sellerId)) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                                     <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail || (project.citrusEmail && project?.sellerId) || (project?.wepayEmail && project?.wepayAccountId != 0)) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                                         <g:form controller="project" action="saveasdraft" id="${project.id}">
                                             <g:if test="${!project.touAccepted}">
                                                 <div class="form-group hidden">
@@ -805,7 +805,7 @@
                  
                       <g:if test="${isPreview && !project?.validated}">
                           <div class="submitForApprovalSectionbtn" id="submitForApprovalSectionbtn">
-                              <g:if test="${project?.organizationIconUrl && project?.webAddress && (project?.charitableId || project?.paypalEmail || project?.payuEmail || (project?.citrusEmail && project?.sellerId)) && (!project?.imageUrl?.isEmpty()) && project?.organizationName && project?.beneficiary?.country && (projectService?.getRemainingDay(project) > 0)}">
+                              <g:if test="${project?.organizationIconUrl && project?.webAddress && (project?.charitableId || project?.paypalEmail || project?.payuEmail || (project?.citrusEmail && project?.sellerId) || (project?.wepayEmail && project?.wepayAccountId != 0)) && (!project?.imageUrl?.isEmpty()) && project?.organizationName && project?.beneficiary?.country && (projectService?.getRemainingDay(project) > 0)}">
                                   <g:form controller="project" action="saveasdraft" id="${project.id}">
                                       <g:if test="${!project?.touAccepted}">
                                           <div class="form-group show-submit-margin hidden-xs">

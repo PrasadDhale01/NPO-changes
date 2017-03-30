@@ -3127,7 +3127,6 @@ class ProjectController {
 		
 		if (project != null && !project.validated) {
 			boolean statusFlag = userService.setBankInfoDetails(params, project)
-			
 			if (statusFlag && project.citrusEmail != null && project.payuStatus) {
 				def sellerObj = contributionService.setSellerId(project)
 				
@@ -3144,11 +3143,46 @@ class ProjectController {
 					json.put("errorCode", sellerObj.errorCode)
 				}
 			}
-		} else if (project.validated) {
+		} else if (project != null && project.validated) {
 			json.put("status", "SUCCESS")
 		}
 		
 		json.put("status", status)
+		render json;
+	}
+	
+	
+	def authenticateWePayEmail() {
+		
+		JSONObject json = new JSONObject();
+		Project project = projectService.getProjectById(params.projectId)
+		if (project && params.email && params.firstName && params.lastName) {
+			
+			if (!project.validated) {
+				def wePayObj = campaignService.registerUser(params.email, params.firstName, params.lastName)
+				
+				if (wePayObj.status == 200) {
+					def accountId = campaignService.getWePayAccountId(wePayObj.accessToken, params.firstName, project.title)
+					
+					def jsonObj = campaignService.confirmUser(params.email, params.firstName, params.lastName, wePayObj.accessToken)
+					json.put("status", 1);
+					json.put("userState", json.state)
+					
+					project.wepayAccountId = accountId
+					project.wepayAccessToken = wePayObj.accessToken
+					project.save();
+					
+				} else {
+					json.put("status", -99)
+				}
+			
+			} else {
+				json.put("status", 1);
+			}
+		} else {
+			json.put("status", -99);
+		}
+		
 		render json;
 	}
     

@@ -226,3 +226,7 @@ div.citrusfundbody .btn.btn-info {
 #billingInformation{display:none;}
 #citrusCardDetails{display:none;}
 .citrusStateDiv .btn:first-child{margin-left:0px !important;}
+
+#wepayContributorEmail {
+	width: 80% !important;
+}

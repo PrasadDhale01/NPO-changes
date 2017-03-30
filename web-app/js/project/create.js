@@ -133,6 +133,10 @@ $(function() {
     if ($('#payfir').val()) {
     	$("#paypalemail").hide();
     	$("#charitableId").show();
+    	
+    } else if ($("#wepayEmailId").val()) {
+    	$("#wepayDiv").show();
+    	$("#paypalemail").hide();
     }
     
     /* Apply selectpicker to selects. */
@@ -679,6 +683,20 @@ $(function() {
         	$( '[name="charitableId"]' ).rules( "add", {
                 required: true
             });
+        	
+        	$( '[name="wepayFirstName"]' ).rules( "add", {
+                required: true,
+                maxlength: 32
+            });
+        	$( '[name="wepayLastName"]' ).rules( "add", {
+                required: true,
+                maxlength: 32
+            });
+        	$( '[name="wepayEmail"]' ).rules( "add", {
+                required: true,
+                email:true,
+                maxlength: 50
+            });
         }
 
     	$('[name="impactNumber"]').rules( "add", {
@@ -806,10 +824,17 @@ $(function() {
         }
 
         if (validator.form() && !storyEmpty) {
-            
-            if ($("#paymentOpt option:selected").val() == "CITRUS") {
+            if ($("#paymentOpt option:selected").val() == "CITRUS" && !validated) {
             	event.preventDefault();
             	generateSellerId(false);
+            } else if ($("#paymentOpt option:selected").val() == "WEPAY" && !validated) {
+            	if (p_wepayAccountId == undefined || (p_wepayAccountId != undefined && p_wepayEmail != $("#wepayEmail").val() ) ) {
+	            	event.preventDefault();
+	            	authenticateWepayUser(false);
+            	} else {
+            		$('#saveButton, #saveButtonXS').attr('disabled','disabled');
+                	$('#campaigncreate').find('form').submit();
+            	}
             } else {
             	$('#saveButton, #saveButtonXS').attr('disabled','disabled');
             	$('#campaigncreate').find('form').submit();
@@ -1005,6 +1030,7 @@ $(function() {
                 maxlength: 50
             });
         } else {
+        	
         	$('.rewardPrice').each(function () {
                 $(this).rules("add", {
                     required: true,
@@ -1026,6 +1052,20 @@ $(function() {
 
         	$( '[name="charitableId"]' ).rules( "add", {
                 required: true
+            });
+        	
+        	$( '[name="wepayFirstName"]' ).rules( "add", {
+                required: true,
+                maxlength: 32
+            });
+        	$( '[name="wepayLastName"]' ).rules( "add", {
+                required: true,
+                maxlength: 32
+            });
+        	$( '[name="wepayEmail"]' ).rules( "add", {
+                required: true,
+                email:true,
+                maxlength: 50
             });
 
         }
@@ -1165,28 +1205,41 @@ $(function() {
         } else {
         	removeSellersValidation();
         }
-
+        
         if (validator.form() && !storyEmpty) {
-    		
-            if ($("#paymentOpt option:selected").val() == "CITRUS") {
+            if ($("#paymentOpt option:selected").val() == "CITRUS" && !validated) {
             	event.preventDefault();
             	generateSellerId(true);
-            } else {
-            	$('#campaigncreate').find('form').submit();
+            } else if ($("#paymentOpt option:selected").val() == "WEPAY" && !validated) {
             	
-            	$('#submitProject').attr('disabled','disabled');
-                $('#previewButton').attr('disabled','disabled');
-                $('#submitProjectXS').attr('disabled','disabled');
-                $('#previewButtonXS').attr('disabled','disabled');
+            	if (p_wepayAccountId == 0 || (p_wepayAccountId != 0 && p_wepayEmail != $("#wepayEmail").val() ) ) {
+            		event.preventDefault();
+                	authenticateWepayUser(true);
+            	} else {
+            		submitCampaignCreateForm();
+            	}
+            	
+            } else {
+            	submitCampaignCreateForm();
             }
             
     	}
 	    
-    	if(!validator.form()){
+    	if(!validator.form()) {
     	    requiredFieldMessages();
     	}
     	  
     });
+    
+    function submitCampaignCreateForm() {
+    	$('#campaigncreate').find('form').submit();
+    	
+    	$('#submitProject').attr('disabled','disabled');
+        $('#previewButton').attr('disabled','disabled');
+        $('#submitProjectXS').attr('disabled','disabled');
+        $('#previewButtonXS').attr('disabled','disabled');
+    }
+    
     
     function requiredFieldMessages(){
 	      var str="{";
@@ -1457,22 +1510,6 @@ $(function() {
         $('#addNewRewards').find('.rewardsTemplate').find('#customcheckbox1').val('');
     }
 
-     $("input[name='pay']").change(function(){
-  	    if($(this).val() === "paypal") {
-  	        $('#organizationName').find('input').val('');
-  	       	$("#paypalemail").show();
-  	        $("#charitableId").hide();
-  	        $('#charitable').find('input').val('');
-  	        $("#paypalcheckbox").show();
-  	     } else if($(this).val() === "firstgiving") {
-   	         $('#organizationName').find('input').val('');
-  	       	 $("#charitableId").show();
-  	         $("#paypalemail").hide();
-  	         $("#paypalcheckbox").hide();
-   	         $('#paypalemail').find('input').val('');
-  	      }
-  	 });
-
      $('#val3').change(function(){
         var c = $('#val3').val();
         if(c === 'US'){
@@ -1521,46 +1558,50 @@ $(function() {
            $('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/launch-Icon--White.png");
        });
 
-     $('.cr-img-save-icon').hover(function(){
-        	$('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/hdr-save-white.png");
-        	}).mouseleave(function(){
-            $('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/hdr-save-white.png");
-        });
+    $('.cr-img-save-icon').hover(function() {
+    	$('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/hdr-save-white.png");
+    	}).mouseleave(function(){
+        $('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/hdr-save-white.png");
+    });
 
-     $('#paymentOpt').change(function(){
-    	 var pay = $('#paymentOpt').val();
-    	 if(pay === 'FIR'){
-    		 $('#paypalemail').hide();
-    		 $('#charitableId').show();
-
-    	 }else if(pay === 'PAY'){
-    		 $('#charitableId').hide();
-    		 $('#paypalemail').show();
-    	 }else if(pay === 'PMT'){
-    		 if(pay === 'selected'){
-    			 $('#paypalemail').show();
-    		 }
-    		 $('#paypalemail').hide();
-    		 $('#charitableId').hide();
-    	 }
-     });
-
-     $('#paymentOpt').change(function(){
-    	 var payind = $('#paymentOpt').val();
+     
+    $('#paymentOpt').change(function() {
+    	 var paymentOpt = $('#paymentOpt').val();
     	 /*if (currentEnv == "testIndia") {*/
-    	 if(payind === 'PAYU'){
+    	 if(paymentOpt === 'PAYU') {
     		 autoSave('payuEmail', $('#payuemail').val());
     		 $('#PayUMoney').show();
     		 $('#CitrusPay').hide();
-    	 } else if (payind === 'CITRUS') {
+    	 
+    	 } else if (paymentOpt === 'CITRUS') {
     		 $('#CitrusPay').show();
     		 $('#PayUMoney').hide();
-    		 
-    		 resetCitrusDetails();
-    	 }
-    	
-     });
 
+    		 resetCitrusDetails();
+    	 } else if (paymentOpt === "PAY") {
+	         $('#organizationName').find('input').val('');
+   	         $("#charitableId, #wepayDiv").hide();
+   	         $('#charitable').find('input').val('');
+   	         $("#paypalcheckbox, #paypalemail").show();
+   	         $('#wepayDiv').find('input').val('');
+   	      
+   	     } else if(paymentOpt === "FIR") {
+    	     $('#organizationName').find('input').val('');
+   	       	 $("#charitableId").show();
+   	         $("#paypalcheckbox, #wepayDiv, #paypalemail").hide();
+   	         $('#paypalemail').find('input').val('');
+    	     $('#wepayDiv').find('input').val('');
+    	     
+   	     } else if (paymentOpt === "WEPAY") {
+   	    	 $('#organizationName').find('input').val('');
+  	         $("#charitableId, #paypalemail, #paypalcheckbox").hide();
+   	         $('#paypalemail').find('input').val('');
+   	         $('#wepayDiv').show();
+   	     }
+    	
+    });
+    
+    
 	$('#countryList').change(function(){
 	    var c = $('#countryList').val();
 	    if(c === 'IN'){
@@ -3222,6 +3263,37 @@ $(function() {
         autoSave('paypalEmailId', paypalEmail);
     });
 
+    $('#wepayEmail').blur(function(){
+    	/*var wepayEmail = $('#wepayEmail').val();
+    	
+        $.ajax({
+            type:'post',
+            url:$("#b_url").val()+'/project/authenticateWePayEmail',
+            data:'projectId='+projectId+'&wepayEmail='+wepayEmail,
+            success: function(data) {
+                if (data !== 'null'){
+                    $('#taxRecieptId').val(data);
+                }
+            }
+        }).error(function() {
+        });*/
+        var wepayEmail = $('#wepayEmail').val();
+    	$('#charitable').find('input').val('');
+    	$('#fgSearchForm').find('#fgNameStart').val('');
+    	$('#paypalEmailId').val('');
+        autoSave('wepayEmail', wepayEmail);
+    });
+    
+    $('#wepayLastName').blur(function(){
+    	var wepayLastName = $('#wepayLastName').val();
+        autoSave('wepayLastName', wepayLastName);
+    });
+    
+    $('#wepayFirstName').blur(function(){
+    	var wepayFirstName = $('#wepayFirstName').val();
+        autoSave('wepayFirstName', wepayFirstName);
+    });
+    
     $('#campaignTitle1').blur(function (){
         var title = $(this).val();
         autoSave('campaignTitle', title);
@@ -3565,6 +3637,45 @@ $(function() {
 		$("#citrusCity").val('');
 		$("#citrusZip").val('');
 	}
+	
+	function authenticateWepayUser(isCreate) {
+		$('#loading-gif').show();
+		
+		var wepayEmail = $('#wepayEmail').val();
+    	var wepayLastName = $('#wepayLastName').val();
+    	var wepayFirstName = $('#wepayFirstName').val();
+    	var projectId = $('#projectId').val()
+    	
+    	$.ajax({
+            type:'post',
+            url:$("#b_url").val()+'/project/authenticateWePayEmail',
+            data:'email='+wepayEmail+'&firstName='+wepayFirstName+'&lastName='+wepayLastName+'&projectId='+projectId,
+            success: function(response) {
+            	var jsonObj = JSON.parse(response);
+            	
+                if (jsonObj.status === 1) {
+                	if (isCreate) {
+	        			$('#submitProject').attr('disabled','disabled');
+		                $('#previewButton').attr('disabled','disabled');
+		                $('#submitProjectXS').attr('disabled','disabled');
+		                $('#previewButtonXS').attr('disabled','disabled');
+	        		} else {
+	        			$('#saveButton, #saveButtonXS').attr('disabled','disabled');
+	        		}
+	        		
+	        		$('#campaigncreate').find('form').submit();
+	        		
+                } else {
+                	$('#requiredFieldMessage').html(jsonObj.errorDescription);
+	  	  		  	$('#requiredField').modal("show");
+                }
+                
+                $('#loading-gif').hide();
+            }
+        }).error(function() {
+        	 $('#loading-gif').hide();
+        })
+	}
 
      $('#previewButton, #previewButtonXS').on('click', function(){
       	$('#isSubmitButton').val(false);
@@ -3574,12 +3685,11 @@ $(function() {
 	             $(this).closest('.form-group').removeClass('has-error');
 	        });
       	} else {
-      		$('[name="pay"], [name="digitalSign"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"]').each(function () {
+      		$('[name="pay"], [name="digitalSign"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impactNumber"],[name="ein"],[name="tax-reciept-holder-city"],[name="tax-reciept-holder-name"],[name="tax-reciept-holder-state"],[name="tax-reciept-holder-country"],[name="tax-reciept-deductible-status"],[name="reg-date"],[name="addressLine1"],[name="zip"],[name="tax-reciept-registration-num"],[name="expiry-date"],[name="tax-reciept-holder-pan-card"],[name="tax-reciept-holder-phone"],[name="fcra-reg-no"],[name="fcra-reg-date"], [name="wepayFirstName"],[name="wepayLastName"], [name="wepayEmail"]').each(function () {
 	             $(this).rules('remove');
 	             $(this).closest('.form-group').removeClass('has-error');
 	        });
       	}
-
 
         $('.spendAmount').each(function () {
             $(this).rules("remove");
@@ -3715,5 +3825,5 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-
+        
 });

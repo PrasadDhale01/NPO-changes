@@ -14,7 +14,9 @@ import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.util.EntityUtils
+
 import grails.util.Environment
+
 import org.codehaus.groovy.grails.web.json.JSONObject
 
 class FundController {
@@ -40,6 +42,7 @@ class FundController {
         def currentEnv = Environment.current.getName()
         def state = projectService.getState()
         def country = projectService.getCountry()
+		
 		def country_code = projectService.getCountryCodeForCurrentEnv(request);
 		
         def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
@@ -102,7 +105,33 @@ class FundController {
 					render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo,country_code:country_code]
                 }
             } else {
-                render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo,country_code:country_code]
+			
+				if (project?.wepayEmail) {
+					
+					boolean isTaxReceipt = campaignService.isTaxReceiptExist(project.id);
+					
+					def cardTypes = projectService.getcardtypes()
+					
+					def title = projectService.getTitle()
+					def month = contributionService.getMonth()
+					def year = contributionService.getYear()
+					Calendar calendar = Calendar.getInstance();
+					def currentMonth = (calendar.get(Calendar.MONTH ) + 1)
+					def currentMonthByWeek =(currentMonth > 9)?currentMonth:("0"+ (calendar.get(Calendar.MONTH )+1))
+					def currentYearByWeek = calendar.getWeekYear()
+					def defaultCountry = 'India'
+					
+					def indiaStates = projectService.getIndianState()
+					
+					render view: 'fund/wepayCheckout', model: [team:team, project: project, state:indiaStates, country:country,
+						perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
+						vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, citrusCardTypes: cardTypes, title: title,currentMonthByWeek:currentMonthByWeek,
+						month: month, year: year, defaultCountry: defaultCountry, isTaxReceipt: isTaxReceipt, currentYearByWeek:currentYearByWeek,country_code:country_code]
+					
+				} else {
+					render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo,country_code:country_code]
+				}
+                
             }
         }
     }
@@ -974,7 +1003,8 @@ class FundController {
         render ''
     }
 
-    def getBillingInfo() {
+    
+	def getBillingInfo() {
 
         def anonymous = request.getParameter('anonymous')
         def reward = rewardService.getRewardById(params.long('rewardId'));
@@ -986,7 +1016,8 @@ class FundController {
             render(template: "fund/shippinginfo", model:[shippingInfo:shippingInfo, anonymous:anonymous, state:state, country:country])
         }
     }
-
+	
+	
     def getCitrusSignature() {
         String txnID = String.valueOf(System.currentTimeMillis());
         String secret_key = grailsApplication.config.crowdera.CITRUS.SECRETE_KEY
@@ -1084,14 +1115,11 @@ class FundController {
             Date date = new Date();
 
             def settlementDate = date.format("yyyy-MM-dd HH:mm:ss") /*"2016-06-18 17:18:00"*/
-            println "settlementDate ===== "+ settlementDate
             def merchantTxId = Integer.parseInt(contribution?.merchantTxId)
             def settlementRef = contribution?.splitRef
             def settlementAmount = (contribution?.amount * 0.955).round(2)
             def feeAmount = (contribution?.amount - settlementAmount).round(2)
             
-            println "settlementAmount =====  "+ settlementAmount+ "   feeAmount ====== "+ feeAmount
-
             // Ref#CIT615829206695 Ref#CIT61153280367
             StringEntity input = new StringEntity("{\"trans_id\": ${merchantTxId},\"settlement_ref\": \"${settlementRef}\" ,\"trans_source\": \"CITRUS\",\"settlement_amount\": ${settlementAmount},\"fee_amount\": ${feeAmount},\"settlement_date_time\":\"${settlementDate}\"}")
             input.setContentType("application/json")
@@ -1191,287 +1219,64 @@ class FundController {
         }else{
             render 'Campaign tile is not rendered. Please, refresh to load again.'
         }
-        
     }
 
 
     def ipnHandler(){
-
-        println "paypal ipn response data : - " + params
-
         if("verified".equalsIgnoreCase(params.payer_status)){
             contributionService.setPaypalIPNData(params)
         }
     }
 
-    def mandrillHandler(){
-
+    def mandrillHandler() {
         //For debugging purpose as Mandrill callback url not work in localhost
         println "Mandrill response handler " + params
     }
-    
-    
-    def registerUser() {
-    
-        def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
-        def clientId = 181922;
-        def clientSecrete = "d6f70985bc";
-        def email = "gwankar5@gmail.com"
-        def firstName = "krishna"
-        def lastName  = "Sahu"
-        def originalId= "192.168.1.1"
-        def device = "Mozilla/5.0"
-        def acceptanceTime = "1209600"
-        def scope = "manage_accounts,collect_payments,view_user,send_money,preapprove_payments";
-        def url = wepayBaseUrl+"/user/register"
-        HttpClient httpclient = new DefaultHttpClient()
-        HttpPost httppost = new HttpPost(url)
-        
-        // Ref#CIT615829206695 Ref#CIT61153280367
-        StringEntity input = new StringEntity("{\"client_id\": ${clientId},\"client_secret\": \"${clientSecrete}\" ,\"email\": \"${email}\", \"scope\": \"${scope}\", \"first_name\" : \"${firstName}\",\"last_name\" : \"${lastName}\", \"original_ip\" : \"${originalId}\" , \"original_device\": \"${device}\", \"tos_acceptance_time\" : \"${acceptanceTime}\" }")
-        input.setContentType("application/json")
-        httppost.setEntity(input)
-        
-        HttpResponse httpres = httpclient.execute(httppost)
-        
-        def json
-        int status = httpres.getStatusLine().getStatusCode()
-        
-        if (status == 200) {
-            HttpEntity entity = httpres.getEntity();
-            if (entity != null){
-                def jsonString = EntityUtils.toString(entity)
-                def slurper = new JsonSlurper()
-                json = slurper.parseText(jsonString)
-                println "result  ===== "+ json
-            }
-        }
-        println "status  == "+ status
-    
-        render json
-    }
-    
-    
-    def getTokenofWePay(String email, String firstName, String lastName) {
-        def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
-        def clientId = grailsApplication.config.crowdera.wepay.CLIENT_ID
-        def clientSecrete = grailsApplication.config.crowdera.wepay.CLIENT_SECRET
+	
+	
+	def chargeWepayCard() {
+		Project project = projectService.getProjectById(params.projectId)
+		JSONObject json = new JSONObject();
 		
-        def originalId= "192.168.1.1"
-        def device = "Mozilla/5.0"
-        def acceptanceTime = "1209600"
-        def scope = "manage_accounts,collect_payments,view_user,send_money,preapprove_payments";
-        
-        def url = wepayBaseUrl+"/user/register"
-        HttpClient httpclient = new DefaultHttpClient()
-        HttpPost httppost = new HttpPost(url)
-        
-        StringEntity input = new StringEntity("{\"client_id\": \"${clientId}\",\"client_secret\": \"${clientSecrete}\" ,\"email\": \"${email}\", \"scope\": \"${scope}\", \"first_name\" : \"${firstName}\",\"last_name\" : \"${lastName}\", \"original_ip\" : \"${originalId}\" , \"original_device\": \"${device}\", \"tos_acceptance_time\" : \"${acceptanceTime}\" }")
-        input.setContentType("application/json")
-        httppost.setEntity(input)
+		if (project) {
+			def creditCardId = params.creditCardId
+			def amount = params.amount
+			
+			def checkoutId = campaignService.chargeWepayCard(project, creditCardId, amount);
+			
+			session['checkoutId'] = checkoutId;
+			session['contributionAmount'] = amount;
+			json.put("status", 1)
+			
+		} else {
+			json.put("status", -99)
+		}
+		
+		render json;
+	}
+	
+	
+	def wepayReturn() {
+		def fr = session.getAttribute('fr');
+		User fundraiser  = userService.getUserFromVanityName(fr)
+		def projectTitle = session.getAttribute('projectTitle')
 
-        HttpResponse httpres = httpclient.execute(httppost)
-        def accessToken
-        
-        int status = httpres.getStatusLine().getStatusCode()
-        if (status == 200){
-            HttpEntity entity = httpres.getEntity()
-            if (entity != null){
-                def jsonString = EntityUtils.toString(entity)
-                def slurper = new JsonSlurper()
-                def json = slurper.parseText(jsonString)
-                accessToken =json.access_token
-            }
-        }
-        println"access token status == " +status
-		println "access token result  == "+ accessToken
-        
-        return accessToken;
-    }
-    
-    
-   def confirmUser() {
-		def email = params.email
-		def firstName = params.firstName
-		def lastName  = params.lastNam
+		String transactionId = session.getAttribute("checkoutId");
 		
-		def access_token = getTokenofWePay(email, firstName, lastName)
-        
-		if (access_token != null) {
-			def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
-	        
-			def emailMsg = "Welcome, to my test app."
-	        def emailSubject = "We Pay Confirmation"
-	        def emailButton  = "Confirm Account"
-	        
-	        def url = wepayBaseUrl+"/user/send_confirmation"
-	        HttpClient httpclient = new DefaultHttpClient()
-	        HttpPost httppost = new HttpPost(url)
-	        
-	        httppost.setHeader("Authorization","Bearer ${access_token}");
-	        StringEntity input = new StringEntity("{\"email_message\": \"${emailMsg}\",\"email_subject\": \"${emailSubject}\" ,\"email_button_text\": \"${emailSubject}\"}")
-	        input.setContentType("application/json")
-	        httppost.setEntity(input)
-	        HttpResponse httpres = httpclient.execute(httppost)
-	        
-	        def json
-	        int status = httpres.getStatusLine().getStatusCode()
-	        println "status  == "+ status
-	        
-	        if (status == 200) {
-				
-	            HttpEntity entity = httpres.getEntity();
-	            if (entity != null){
-	                def jsonString = EntityUtils.toString(entity)
-	                def slurper = new JsonSlurper()
-	                json = slurper.parseText(jsonString)
-                println "result  ===== "+ json
-	            }
-	        }
-	        render json
+		Transaction transaction = contributionService.getTransactionByTransactionId(transactionId)
+		if (transaction) {
+			conId = transaction.contribution.id
+			frId = fundraiser?.id
+			redirect(controller: 'fund', action: 'acknowledge' , params: [cb: transaction.contribution.id, fr:fundraiser.id, projectTitle: projectTitle])
 		
 		} else {
-			render -99;
+			def contributionId = campaignService.getWepayTransactionDetails(transactionId, request, session, fundraiser)
+			if (contributionId && fundraiser) {
+				redirect(controller: 'fund', action: 'acknowledge' , params: [cb: contributionId, fr:fundraiser.id, projectTitle: projectTitle])
+			} else {
+				render view: 'error', model: [message: 'There was an error charging. Don\'t worry, your card was not charged. Please try again.']
+			}
 		}
-    }
-    
-    
-    def getWePayCreditInfo() {
-        def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
-        def clientId = grailsApplication.config.crowdera.wepay.CLIENT_ID
-        def clientSecrete = grailsApplication.config.crowdera.wepay.CLIENT_SECRET
-        def email = params.email
-        def user_name = params.firstName
-        def cc_number  = params.lastName
-        def cvv= "192.168.1.1"
-        def expiration_month = "Mozilla/5.0"
-        def expiration_year = "1209600"
-        def address = "manage_accounts,collect_payments,view_user,send_money,preapprove_payments";
-        def country = "US"
-        def postal_code = "94025"
-        def url = wepayBaseUrl+"/credit_card/create "
-        HttpClient httpclient = new DefaultHttpClient()
-        HttpPost httppost = new HttpPost(url)
-        
-        StringEntity input = new StringEntity("{\"client_id\": \"${clientId}\",\"client_secret\": \"${clientSecrete}\" ,\"email\": \"${email}\", \"scope\": \"${scope}\", \"first_name\" : \"${firstName}\",\"last_name\" : \"${lastName}\", \"original_ip\" : \"${originalId}\" , \"original_device\": \"${device}\", \"tos_acceptance_time\" : \"${acceptanceTime}\" }")
-        input.setContentType("application/json")
-        httppost.setEntity(input)
-
-        HttpResponse httpres = httpclient.execute(httppost)
-        def accessToken
-        
-        int status = httpres.getStatusLine().getStatusCode()
-        if (status == 200){
-            HttpEntity entity = httpres.getEntity()
-            if (entity != null){
-                def jsonString = EntityUtils.toString(entity)
-                def slurper = new JsonSlurper()
-                def json = slurper.parseText(jsonString)
-                accessToken =json.access_token
-                println "result  ===== "+ accessToken
-//              accessToken = json.access_token
-            }
-        }
-        println"status==" +status
-        
-        if (accessToken != null) {
-            return confirmUser(accessToken)
-        } else {
-            return -99;
-        }
-        
-    }
-        
-//      def createWepayUser() {
-//
-//          def nameMsg = "crowdfunding";
-//          def descriptionMsg = "this is a test app";
-//
-//          def url = "https://stage.wepayapi.com/v2/account/create"
-//          HttpClient httpclient = new DefaultHttpClient()
-//          HttpPost httppost = new HttpPost(url)
-//
-//          // Ref#CIT615829206695 Ref#CIT61153280367
-////            httppost.setHeader("token_type", "Bearer");
-////            httppost.setHeader("access_token","STAGE_5fe2214cb89aecdb2c567d5fd58080d048cc0c5afad52a65738101beab47d94c");
-//          httppost.setHeader("Authorization","Bearer STAGE_5fe2214cb89aecdb2c567d5fd58080d048cc0c5afad52a65738101beab47d94c");
-//          StringEntity input = new StringEntity("{\"name\": \"${nameMsg}\",\"description\": \"${descriptionMsg}\"}")
-////            StringEntity input = new StringEntity("{\"client_id\": ${clientId},\"client_secret\": \"${clientSecrete}\" ,\"email\": \"${email}\", \"scope\": \"${scope}\", \"first_name\" : \"${firstName}\",\"last_name\" : \"${lastName}\", \"original_ip\" : \"${originalId}\" , \"original_device\": \"${device}\", \"tos_acceptance_time\" : \"${acceptanceTime}\" }")
-//
-//          input.setContentType("application/json")
-//          httppost.setEntity(input)
-//
-////            def access_token = "STAGE_5fe2214cb89aecdb2c567d5fd58080d048cc0c5afad52a65738101beab47d94c";
-////            def token_type = "BEARER";
-//
-//          HttpResponse httpres = httpclient.execute(httppost)
-//
-//          def json
-//          int status = httpres.getStatusLine().getStatusCode()
-//          println "status  == "+ status
-//
-//          if (status == 200) {
-//              println "status preview"
-//              HttpEntity entity = httpres.getEntity();
-//              if (entity != null){
-//                  def jsonString = EntityUtils.toString(entity)
-//                  def slurper = new JsonSlurper()
-//                  json = slurper.parseText(jsonString)
-//                  println "result  ===== "+ json
-//              }
-//          }
-//          render json
-//      }
-//
-//  def checkWepayUser() {
-//      "name": "Example Account",
-//      "description": "This is just an example WePay account.",
-//      "reference_id": "abc123",
-//      "country": "US",
-//      "currencies": [
-//        "USD"
-//      ]
-//
-//      def clientId = 173981;
-//      def clientSecrete = "c574a4254d";
-//      def email = "gwankar5@gmail.com"
-//      def accName = "krishna"
-//      def descrip  = "Sahu"
-//      def originalId= "192.168.1.1"
-//      def device = "Mozilla/5.0 "
-//      def acceptanceTime = "1209600"
-//      def emailMessage = "Welcome to my app."
-//      def scope = "manage_accounts,collect_payments,view_user,send_money,preapprove_payments";
-//
-//      def url = "https://stage.wepayapi.com/v2/account/create"
-//      HttpClient httpclient = new DefaultHttpClient()
-//      HttpPost httppost = new HttpPost(url)
-//
-//      // Ref#CIT615829206695 Ref#CIT61153280367
-//      StringEntity input = new StringEntity("{\"client_id\": ${clientId},\"client_secret\": \"${clientSecrete}\" ,\"email\": \"${email}\", \"scope\": \"${scope}\", \"first_name\" : \"${firstName}\",\"last_name\" : \"${lastName}\", \"original_ip\" : \"${originalId}\" , \"original_device\": \"${device}\", \"tos_acceptance_time\" : \"${acceptanceTime}\",\"email_message\" : \"${emailMessage}\" }")
-//      input.setContentType("application/json")
-//      httppost.setEntity(input)
-//
-//      def accessToken = "STAGE_8b6df695ca708a53c2858f66816e0f2839f6388d6c573e35968e97252f45085a";
-//      httppost.setHeader("access_token", "${accessToken}")
-//      HttpResponse httpres = httpclient.execute(httppost)
-//
-//
-//      def json
-//      int status = httpres.getStatusLine().getStatusCode()
-//
-//      if (status == 200) {
-//          HttpEntity entity = httpres.getEntity();
-//          if (entity != null){
-//              def jsonString = EntityUtils.toString(entity)
-//              def slurper = new JsonSlurper()
-//              json = slurper.parseText(jsonString)
-//              println "result  ===== "+ json
-//          }
-//      }
-//      println "status  == "+ status
-//
-//      render json
-//  }
+	}
 
 }

@@ -1905,6 +1905,10 @@ span.donation-font{
 	font-size: 15px !important;
 }
 
+#wepayDiv {
+	display: none;
+}
+
 .new-manage-updateshare {
     padding-left: 115px;
     top: 6px !important;

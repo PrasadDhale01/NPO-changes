@@ -60,6 +60,12 @@ class Project {
     String payuEmail
     String paypalEmail
     String citrusEmail
+	String wepayEmail
+	
+	String wepayFirstName
+	String wepayLastName
+	String wepayAccessToken
+	int wepayAccountId
     
     /* For India Platform payuStatus is true*/
     boolean payuStatus=false
@@ -104,6 +110,11 @@ class Project {
         hashtags(nullable:true)
         citrusEmail (nullable: true)
         sellerId (nullable: true)
+		wepayEmail (nullable: true)
+		wepayFirstName (nullable: true)
+		wepayLastName (nullable: true)
+		wepayAccessToken(nullable: true)
+		wepayAccountId(nullable: true)
     }
     
     def beforeInsert() {

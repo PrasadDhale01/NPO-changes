@@ -3782,6 +3782,9 @@ class ProjectService {
 	                project.paypalEmail = varValue;
 	                project.charitableId = null;
 					project.wepayEmail = null;
+					project.wepayFirstName = null;
+					project.wepayLastName = null;
+					
 	                isValueChanged = true;
 				}
                 break;

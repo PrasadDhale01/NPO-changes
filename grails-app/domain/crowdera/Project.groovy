@@ -114,7 +114,6 @@ class Project {
 		wepayFirstName (nullable: true)
 		wepayLastName (nullable: true)
 		wepayAccessToken(nullable: true)
-		wepayAccountId(nullable: true)
     }
     
     def beforeInsert() {

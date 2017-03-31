@@ -535,6 +535,42 @@
 									model="['team':currentTeam]" />
 							</div>
 						</div>
+						<div class="row"> 
+                    <%-- Modal --%>
+                        <div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
+                            <g:form action="sendemail" id="${project.id}" params="['fr': username]"  class="sendMailForm">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title">Recipient Email ID's</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <g:hiddenField name="amount" value="${project?.amount}" id="campaign-amount"/>
+                                            <g:hiddenField name="vanityTitle" value="${vanityTitle}" id="campaign-vanityTitle"/>
+                                            <g:hiddenField name="vanityUsername" value="${vanityUsername}" id="campaign-vanityUsername"/>
+                                            <div class="form-group">
+                                                <label>Your Name</label>
+                                                <input type="text" class="form-control all-place" name="name" placeholder="Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Email ID's (separated by comma)</label>
+                                                <textarea class="form-control all-place" name="emails" rows="4" placeholder="Email ID's"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Message (Optional)</label>
+                                                <textarea class="form-control all-place" name="message" rows="4" placeholder="Message"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary btn-block" id="btnSendMail">Send Email</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </g:form>
+                        </div>
+                    </div>
+						
 					</div>
 				<div class="col-xs-12 col-md-4 col-sm-4 show-desk-org-tile show-tops-corsal  new-show-gau-width show-tab-org">
 					<div class="show-A-fund"></div>

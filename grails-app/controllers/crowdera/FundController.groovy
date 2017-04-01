@@ -1243,7 +1243,7 @@ class FundController {
 			def amount = params.amount
 			
 			def checkoutId = campaignService.chargeWepayCard(project, creditCardId, amount);
-			
+			log.info("WePay checkoutId (TransactionId) = "+checkoutId);
 			session['checkoutId'] = checkoutId;
 			session['contributionAmount'] = amount;
 			json.put("status", 1)
@@ -1265,6 +1265,8 @@ class FundController {
 		
 		Transaction transaction = contributionService.getTransactionByTransactionId(transactionId)
 		if (transaction) {
+			
+			log.info("WePay checkoutId (TransactionId) Already Exist = "+transactionId);
 			conId = transaction.contribution.id
 			frId = fundraiser?.id
 			redirect(controller: 'fund', action: 'acknowledge' , params: [cb: transaction.contribution.id, fr:fundraiser.id, projectTitle: projectTitle])
@@ -1272,8 +1274,11 @@ class FundController {
 		} else {
 			def contributionId = campaignService.getWepayTransactionDetails(transactionId, request, session, fundraiser)
 			if (contributionId && fundraiser) {
+				
+				log.info("WePay Transaction Successful = "+transactionId);
 				redirect(controller: 'fund', action: 'acknowledge' , params: [cb: contributionId, fr:fundraiser.id, projectTitle: projectTitle])
 			} else {
+				log.info("WePay Transaction Failed");
 				render view: 'error', model: [message: 'There was an error charging. Don\'t worry, your card was not charged. Please try again.']
 			}
 		}

@@ -3164,9 +3164,13 @@ class ProjectController {
 				if (wePayObj.status == 200) {
 					def accountId = campaignService.getWePayAccountId(wePayObj.accessToken, params.firstName, project.title)
 					
+					log.info("WePay User AccountId = "+accountId);
+					
 					def jsonObj = campaignService.confirmUser(params.email, params.firstName, params.lastName, wePayObj.accessToken)
 					json.put("status", 1);
-					json.put("userState", json.state)
+					json.put("userState", jsonObj.state)
+					
+					log.info("WePay User userState = "+jsonObj.state);
 					
 					project.wepayAccountId = accountId
 					project.wepayAccessToken = wePayObj.accessToken
@@ -3174,6 +3178,7 @@ class ProjectController {
 					
 				} else {
 					json.put("status", -99)
+					log.info("WePay User registration Failed");
 				}
 			
 			} else {
@@ -3181,6 +3186,7 @@ class ProjectController {
 			}
 		} else {
 			json.put("status", -99);
+			log.info("Invalid Parameters for WepayAuthentication");
 		}
 		
 		render json;

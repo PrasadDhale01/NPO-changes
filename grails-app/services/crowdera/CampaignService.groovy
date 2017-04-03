@@ -624,7 +624,7 @@ class CampaignService {
 		
 		Project project  = Project.get(session.getAttribute('campaignId'))
 		Reward reward    = rewardService.getRewardById(session.getAttribute('rewardId'));
-		User contributor = userService.getUserForContributors(request.getParameter('email') , session.getAttribute('userId'))
+		User contributor = userService.getUserForContributors(request.getParameter('contributorEmail') , session.getAttribute('userId'))
 		
 		if (contributor == null) {
 			contributor = userService.getUserByUsername('anonymous@example.com')
@@ -635,8 +635,8 @@ class CampaignService {
 		def username
 
 		if (userId == null || userId == 'null' || userId.isAllWhitespace()) {
-			name = request.getParameter("firstName") +" "+ request.getParameter("lastName");
-			username = request.getParameter('email')
+			name = request.getParameter("contributorFirstName") +" "+ request.getParameter("contributorLastName");
+			username = request.getParameter('contributorEmail')
 		} else {
 			def orgUser = User.get(userId)
 			name = orgUser.firstName + " " + orgUser.lastName

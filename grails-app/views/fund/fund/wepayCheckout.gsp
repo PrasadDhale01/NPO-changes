@@ -397,10 +397,13 @@
 					                $("#payment-form").submit();
 				                } else {
 					                // Replace it with Notify dialogue
+					                $('.paymentErrorMsg').text("Something went wrong while processing payment. Please try again");
+									// alert("");
 					            }
-				                
 				            }
 				        }).error(function() {
+				        	$('.paymentErrorMsg').text("");
+				        	$('#loading-gif').hide();
 				        })
 		            }
 		        });

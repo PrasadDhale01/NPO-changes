@@ -447,8 +447,10 @@ class CampaignService {
 	def getWePayAccountId(String accessToken, String name, String description) {
 		/*def name = "crowdfunding";
         def description = "this is a test app";*/
-
-        def url = "https://stage.wepayapi.com/v2/account/create"
+		
+		def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
+        def url = wepayBaseUrl +"/account/create"
+		
         HttpClient httpclient = new DefaultHttpClient()
         HttpPost httppost = new HttpPost(url)
 		/*STAGE_5fe2214cb89aecdb2c567d5fd58080d048cc0c5afad52a65738101beab47d94c*/
@@ -604,10 +606,12 @@ class CampaignService {
 				json = slurper.parseText(jsonString)
 		        /*println "result  ===== "+ json*/
 				checkoutId = json.checkout_id
+				/*log.info("Transaction status = "+json)*/
 		    }
 		}
 	    
-		return checkoutId
+		log.info("Transaction status = "+status)
+		return [checkoutId : checkoutId, status : status]
 	}
 	
 	

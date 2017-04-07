@@ -230,3 +230,6 @@ div.citrusfundbody .btn.btn-info {
 #wepayContributorEmail {
 	width: 80% !important;
 }
+.paymentErrorMsg {
+	color: #f04124;
+}

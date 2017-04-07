@@ -1241,12 +1241,18 @@ class FundController {
 		if (project) {
 			def creditCardId = params.creditCardId
 			def amount = params.amount
+			def checkoutObj = campaignService.chargeWepayCard(project, creditCardId, amount);
 			
-			def checkoutId = campaignService.chargeWepayCard(project, creditCardId, amount);
-			log.info("WePay checkoutId (TransactionId) = "+checkoutId);
-			session['checkoutId'] = checkoutId;
-			session['contributionAmount'] = amount;
-			json.put("status", 1)
+			if (checkoutObj.checkoutId != 0 && checkoutObj.status == 200) {
+				
+				log.info("WePay checkoutId (TransactionId) = " +checkoutObj.checkoutId);
+				session['checkoutId'] = checkoutObj.checkoutId;
+				session['contributionAmount'] = amount;
+				json.put("status", 1)
+				
+			} else {
+				json.put("status", -99);
+			}
 			
 		} else {
 			json.put("status", -99)

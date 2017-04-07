@@ -30,7 +30,7 @@
                     
                     def clientId = grailsApplication.config.crowdera.wepay.CLIENT_ID
 					def endPoint;
-					if ('production'.equals(currentEnv)) {
+					if ('production'.equals(currentEnv) || 'staging'.equals(currentEnv)) {
 						endPoint = 'production'
 					} else {
 					    endPoint = 'stage'
@@ -159,12 +159,12 @@
                                         
                                         <div class="form-group">
                                             <div class="input-group col-md-12">
-                                                <input class="form-control all-place" type="text" placeholder="Phone Number" name="contributorMobile" id="contributorMobile">
+                                                <input class="form-control all-place" type="text" placeholder="Phone Number" name="contributorMobile" id="contributorMobile" maxlength="14">
                                             </div>
                                         </div>
                                         <div class="clear"></div>
                                     </div>
-            
+            						
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <div class="input-group col-md-12">
@@ -187,20 +187,19 @@
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <input class="form-control all-place" type="text" placeholder="Zip" name="contributorZip" id="contributorZip">
+                                                            <input class="form-control all-place" type="text" placeholder="Zip" name="contributorZip" id="contributorZip" maxlength="8">
                                                         </div> 
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-            
+            							
                                         <div class="form-group">
                                             <div class="input-group col-md-12 wepayCountryDiv">
                                                 <g:select class="selectpicker" name="wepayCountry" id="wepayCountry" from="${country}" optionKey="key" optionValue="value" value="${defaultCountry}"/>
                                             </div>
                                         </div>
                                         <input class="form-control all-place" type="hidden" placeholder="Country" name="contributorCountry" id="contributorCountry" value="${defaultCountry}" readonly>
-                                        
 
                                         <%--<div class="form-group">
                                             <div class="input-group col-md-12 citrusStateDiv">
@@ -291,12 +290,11 @@
 					                            <div class="clear"></div>
 					                        </div>
 					                        <div class="clear"></div>
-					                        <div class="dateErrorMsg">Please select valid expiry date.</div>
+					                        <div class="paymentErrorMsg"></div>
 					                        <input type="hidden" id="isValidDate" value="true"/>
 					                        
 					                        <input type="hidden" name="postal_code" id="postal_code" value="94025">
 					                    </div>
-					                    
 					                    
 					                    <div class="col-xsl-0 col-md-4 col-xs-12 box fund-campaign-tile-center-align eazywizard-bottom-margin">
 					                    
@@ -338,19 +336,7 @@
         var $jq = jQuery.noConflict();
     </script>
 	
-	<g:if env="development">
-	    <script type="text/javascript" src="https://static.wepay.com/min/js/tokenization.v2.js"></script>
-    </g:if>
-    <g:elseif env="staging">
-    	<script type="text/javascript" src="https://static.wepay.com/min/js/tokenization.v2.js"></script>
-    </g:elseif>
-    <g:elseif env="production">
-    <%--
-        Need to replace script for production env
-    	--%>
-    	<script type="text/javascript" src="https://static.wepay.com/min/js/tokenization.v2.js"></script>
-    </g:elseif>
-    
+	<script type="text/javascript" src="https://static.wepay.com/min/js/tokenization.v2.js"></script>
 	<script type="text/javascript">
 		(function() {
 		    WePay.set_endpoint("${endPoint}"); // change to "production" when live
@@ -388,9 +374,9 @@
 		                $('#loading-gif').hide();
 		                var errorCode = data.error_code
 		                if (errorCode == 1003) {
-							alert("Please provide valid postal code");
+		                	$('.paymentErrorMsg').text("Please provide valid postal code.");
 			            } else {
-							alert(data.error_description)
+			            	$('.paymentErrorMsg').text(data.error_description);
 				        }
 		                // handle error response
 		            } else {
@@ -407,15 +393,14 @@
 				            	$('#loading-gif').hide();
 				            	
 				                if (jsonObj.status === 1) {
+				                	$('.paymentErrorMsg').text("");
 					                $("#payment-form").submit();
 				                } else {
 					                // Replace it with Notify dialogue
-									alert("Something went wrong while processing payment. Please try again");
 					            }
 				                
 				            }
 				        }).error(function() {
-				        	 $('#loading-gif').hide();
 				        })
 		            }
 		        });

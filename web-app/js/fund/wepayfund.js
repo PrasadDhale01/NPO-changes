@@ -1,6 +1,7 @@
+var isValidDate = true;
+
 $(function() {
 
-	
 	$.validator.addMethod("checkCity", function(value,element){
 		var cityRegex= /^(?:[a-zA-Z]\s?)+$/;
 		
@@ -595,7 +596,7 @@ $(function() {
                 $('#cc-submit').click();
         	}*/
         	event.preventDefault();
-            if($(".payment-form").valid(event)) {
+            if($(".payment-form").valid(event) && isValidDate == true) {
             	$('#loading-gif').show();
             	
                 needToConfirm = false;
@@ -668,6 +669,7 @@ $(function() {
                     }
                 }).error(function(){
                 	$('#loading-gif').hide();
+                	$('.paymentErrorMsg').text("");
                 });
 
             }
@@ -839,6 +841,11 @@ function reloadjs() {
     		$("#otherstate").val("");
     	}
     });
+	
+	
+	$('#contributorZip').blur(function() {
+		$('.paymentErrorMsg').text("");
+	})
 }
 
 function validateshippingInfo() {
@@ -912,14 +919,17 @@ function dateValidator(value) {
 	
 	 if (len == 6) {
 		 if (!(((inputMonth < month && inputYear > year) || (inputMonth >= month && inputYear >= year)) && inputMonth <= 12 && inputYear<=(parseInt(year)+50).toString())) {            
-			 $('.dateErrorMsg').show();
+			 $('.paymentErrorMsg').html("Please select valid expiry date.");
+			 isValidDate = false;
 			 return false;
 		 } else {
-			 $('.dateErrorMsg').hide();
+			 isValidDate = true;
+			 $('.paymentErrorMsg').html("");
 			 return true;
 		 }
 	 } else {
-		 $('.dateErrorMsg').show();
+		 isValidDate = false;
+		 $('.paymentErrorMsg').html("Please select valid expiry date.");
 	 	 return false;
 	 }
 }

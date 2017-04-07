@@ -404,11 +404,11 @@ environments {
         crowdera.CITRUS.VANITYURL = "c5vrgwoucm"
 		
 		/* Wepay Details */
-		crowdera.wepay.BASE_URL= 'https://stage.wepayapi.com/v2'
-		crowdera.wepay.CLIENT_ID= '181922'
-		crowdera.wepay.CLIENT_SECRET= 'd6f70985bc'
-		crowdera.wepay.ACCESS_TOKEN = 'STAGE_5fe2214cb89aecdb2c567d5fd58080d048cc0c5afad52a65738101beab47d94c'
-		crowdera.wepay.account_id = '1456620204'
+		crowdera.wepay.BASE_URL= 'https://wepayapi.com/v2'
+		crowdera.wepay.CLIENT_ID= '90022'
+		crowdera.wepay.CLIENT_SECRET= '0ddf8eed29'
+		crowdera.wepay.ACCESS_TOKEN = 'PRODUCTION_d775cee394530216fe3bdaf33c45548e12834e6c2c33fd6f0071230b4643c168'
+		crowdera.wepay.account_id = '400367523'
 		
 		/* FreshDesk Details */
 		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
@@ -525,11 +525,11 @@ environments {
         crowdera.CITRUS.VANITYURL = "c5vrgwoucm"
 		
 		/* Wepay Details */
-		crowdera.wepay.BASE_URL= 'https://stage.wepayapi.com/v2'
-		crowdera.wepay.CLIENT_ID= '181922'
-		crowdera.wepay.CLIENT_SECRET= 'd6f70985bc'
-		crowdera.wepay.ACCESS_TOKEN = 'STAGE_5fe2214cb89aecdb2c567d5fd58080d048cc0c5afad52a65738101beab47d94c'
-		crowdera.wepay.account_id = '1456620204'
+		crowdera.wepay.BASE_URL= 'https://wepayapi.com/v2'
+		crowdera.wepay.CLIENT_ID= '90022'
+		crowdera.wepay.CLIENT_SECRET= '0ddf8eed29'
+		crowdera.wepay.ACCESS_TOKEN = 'PRODUCTION_d775cee394530216fe3bdaf33c45548e12834e6c2c33fd6f0071230b4643c168'
+		crowdera.wepay.account_id = '400367523'
 		
 		/* FreshDesk Details */
 		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'

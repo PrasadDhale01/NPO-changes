@@ -5656,6 +5656,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	#homepage-carousel img{
+        padding: 45px 0 0 0 !important;
+	}
 	div.new-media-mobile{
 	    width: 90% !important;
 	}
@@ -8713,9 +8716,24 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	div.homepageTextdiv {
+        top: -165px !important; 
+	}
+	a.newCreatebtnn {
+	   padding: 14px 0 0 0;
+	   height: 50px;
+	   width: 170px;
+    }
+    h1.bannerBigtext{
+       font-size: 28px;
+       left: 128px;
+    }
+    div.homepagecarouselButton {
+    	padding-left: 128px;
+	}
 	/*Image collage styles*/
 	img.tab-logo{
-	width: 50px !important;
+	   width: 50px !important;
 	}
 	div.homepageusCampaigns {
         min-height: 1120px;
@@ -11182,13 +11200,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	span.btnSpann {
+	    font-size: 14px;
+	}
 	div.show-tabs {
         padding: 0;
     }
 	.icon-bar-xs {
 	    background-color: #000 !important;
 	}
-	
 	.icon-bar-xs, .icon-bar-home {
         display: block;
         width: 22px;
@@ -11861,6 +11881,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1920px){
+	div.homepageTextdiv {
+        top: -200px !important; 
+	}
 	.discover-inner-container {
 	   padding: 15px !important;
 	   width: 96% !important;
@@ -13163,6 +13186,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
+	img.new-homeBnner-padding{
+	    padding: 77px 0 0 0;
+	}
 	.col-input-for {
 	    width: 57%;
 	}
@@ -14365,7 +14391,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }
 @media only screen and (max-width: 767px){
-	
+	span.btnSpann {
+        font-size: 14px important;
+	}
 	.billing-panel.panel-primary > .panel-heading {
         height: 60px;
 	}
@@ -14697,6 +14725,29 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (min-width: 481px) and (max-width:600px){
+	div.homepageTextdiv {
+        top: -112px !important; 
+	}
+	#homepage-carousel img {
+        padding: 75px 0 0 0 !important;
+    }
+    h1.bannerBigtext{
+	    font-size: 18px;
+	    left: 60px;
+	}
+	div.homepagecarouselButton{
+	    padding-left: 60px;
+	    position: absolute;
+	    top: 55px;
+	}
+	a.newCreatebtnn{
+        height: 40px;
+        width: 130px;
+        padding: 10px 0 0 0;
+	}
+	span.btnSpann {
+        font-size: 13px !important;
+	}
 	.offlineContributionModal .modal-content{
 		width: 445px;
 		margin-left: auto;
@@ -14734,9 +14785,29 @@ textarea.textarea-embed-video {
         padding-left: 85px !important;
         padding-right: 85px !important;
     }
+    #homepage-carousel img{
+        padding: 75px 0 0 0 !important;
+	}
 }
 
 @media only screen and (min-width: 601px) and (max-width:767px){
+	div.homepageTextdiv {
+        top: -140px !important; 
+	}
+	h1.bannerBigtext{
+	    font-size: 18px;
+	    left: 60px;
+	}
+	div.homepagecarouselButton{
+	    padding-left: 60px;
+	    position: absolute;
+	    top: 55px;
+	}
+	a.newCreatebtnn{
+        height: 50px;
+        width: 150px;
+        padding: 14px 0 0 0;
+	}
 	.offlineContributionModal .modal-content{
 		width: 445px;
 		margin-left: auto;
@@ -15631,6 +15702,29 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){
+	div.homepageTextdiv {
+        top: -75px !important; 
+	}
+	#homepage-carousel img {
+        padding: 75px 0 0 0 !important;
+    }
+    h1.bannerBigtext{
+	    font-size: 12px;
+	    left: 40px;
+	}
+	div.homepagecarouselButton{
+	    padding-left: 40px;
+	    position: absolute;
+	    top: 32px;
+	}
+	a.newCreatebtnn{
+        height: 30px;
+        width: 110px;
+        padding: 4px 0 0 0;
+	}
+	span.btnSpann {
+        font-size: 11px !important;
+	}
     div.partner-gallery h3 {
         font-size: 16px;
     }
@@ -20816,4 +20910,57 @@ div.successfullcampaignLogos div{
 
 .many-reasons{
 	min-height: 650px;
+}
+
+.homepageTextdiv{
+	top: -175px;
+	position: relative;
+	height: 0;
+}
+
+.bannerBigtext{
+	color: #ffffff;
+	font-family: "Roboto Condensed";
+	font-size: 36px;
+	position: relative; 
+	left: 150px; 
+	width: 100%;
+}
+
+.homepagecarouselButton{
+	padding-left: 150px;
+    position: relative;
+}
+
+.hm-start-campaignn-btn, .hm-start-campaignn-btn:hover, .hm-start-campaignn-btn:focus {
+	background-color: #ffbf08;
+	color: #fff;
+	font-size: 14px;
+	border-color: #ffbf08;
+	font-weight: 900;
+}
+
+.new-span-hmpg{
+	position: relative;
+    top: 6px;
+}
+
+.newCreatebtnn{
+	padding: 20px 0 0 0;
+	height: 64px;
+    margin: 0 !important;
+    width: 210px;
+    font-family: assistant !important;
+}
+
+.btnSpann {
+    margin-top: 10px !important;
+    font-size: 16px;
+    color: #fff !important;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+#homepage-carousel img {
+    height: 100% !important;
 }

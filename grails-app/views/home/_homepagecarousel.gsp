@@ -41,12 +41,22 @@
     </g:elseif>
     <g:else>
     	<g:if test="${userAgent?.contains('iPad')}">
-    		     <img class="img-responsive home-img-large-size" src="//s3.amazonaws.com/crowdera/project-images/e505a7d9-686d-44e2-b503-4cfcbee2f967.jpg" title="homepage banner for Tablet">
+    		     <img class="img-responsive home-img-large-size" src="https://s3.amazonaws.com/crowdera/project-images/c345270a-0b44-4f1b-9c50-4068357e07bb.jpg" title="homepage banner for Tablet">
     	</g:if>
     	<g:elseif test="${userAgent?.contains('Mobile')|| userAgent?.contains('Android')}">
-                  <img class="img-responsive home-img-large-size" src="//s3.amazonaws.com/crowdera/project-images/85068622-3e90-4e44-9ad9-60fe73147a3a.jpg" title="homepage banner for Mobile.jpg">
+                  <img class="img-responsive home-img-large-size" src="https://s3.amazonaws.com/crowdera/project-images/c345270a-0b44-4f1b-9c50-4068357e07bb.jpg" title="homepage banner for Mobile.jpg">
       	</g:elseif>
       	<g:else>
-    		     <img class="img-responsive home-img-large-size" src="//s3.amazonaws.com/crowdera/project-images/27a95f1e-d5de-423a-b60a-1ecddbe14ce2.jpg" alt="US-slide">
+      		<img class="img-responsive home-img-large-size" src="https://s3.amazonaws.com/crowdera/project-images/c345270a-0b44-4f1b-9c50-4068357e07bb.jpg" alt="US-slide">
     	</g:else>
+    	<div class="homepageTextdiv">
+			        <h1 class="bannerBigtext">World's #1 Truly Free Online Fundraising Platform For <br>
+			        Nonprofits and Individuals</h1>
+			        <br>
+			        <div class="homepagecarouselButton">
+			 	        <a href="${resource(dir: '/'+"${country_code}"+'/campaign/create')}" class="btn btn-default btn-block newCreatebtnn hm-start-campaignn-btn">
+			 	           <span class="btnSpann">CREATE A CAMPAIGN</span>
+			 	        </a>
+			 	    </div>
+			</div>
     </g:else>

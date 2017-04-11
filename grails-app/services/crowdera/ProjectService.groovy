@@ -1205,18 +1205,12 @@ class ProjectService {
     def getPayment(){
         def currentEnv = getCurrentEnvironment();
         def payment;
-        if (currentEnv == "production") {
-            payment = [
-                PAY:'Paypal',
-                FIR:'FirstGiving',
-            ]
-        } else {
-			payment = [
-				PAY:'Paypal',
-				FIR:'FirstGiving',
-				WEPAY:'WePay'
-			]
-        }
+        
+		payment = [
+			PAY:'Paypal',
+			FIR:'FirstGiving',
+			WEPAY:'WePay'
+		]
         return payment
     }
 	

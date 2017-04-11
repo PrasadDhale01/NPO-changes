@@ -530,16 +530,16 @@ class CampaignService {
 		if (accessToken != null) {
 			def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
 			
-			def emailMsg = "Welcome, to my test app."
-			def emailSubject = "We Pay Confirmation"
-			def emailButton  = "Confirm Account"
+			def emailMsg = "Thank you for selecting WePay as your preferred payment method. Please confirm your account to start receiving funds!"
+			def emailSubject = "WePay Account Confirmation"
+			def emailButton  = "Confirm WePay Account "
 			
 			def url = wepayBaseUrl+"/user/send_confirmation"
 			HttpClient httpclient = new DefaultHttpClient()
 			HttpPost httppost = new HttpPost(url)
 			
 			httppost.setHeader("Authorization","Bearer ${accessToken}");
-			StringEntity input = new StringEntity("{\"email_message\": \"${emailMsg}\",\"email_subject\": \"${emailSubject}\" ,\"email_button_text\": \"${emailSubject}\"}")
+			StringEntity input = new StringEntity("{\"email_message\": \"${emailMsg}\",\"email_subject\": \"${emailSubject}\" ,\"email_button_text\": \"${emailButton}\"}")
 			input.setContentType("application/json")
 			httppost.setEntity(input)
 			HttpResponse httpres = httpclient.execute(httppost)

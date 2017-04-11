@@ -8739,7 +8739,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         min-height: 1120px;
     }
 	div.successfullcampaignLogos div.logolist-2 a {
-        padding: 10px 6px 0 0 !important;
+        padding: 10px 0 0 9px;
         width: 11%;
     }
     div.logolist-2 a img {
@@ -20812,11 +20812,10 @@ img.imageNine{
 .successfullcampaignLogos div a {
     float: left;
     display: inline;
-    padding-right: 22px;
 }
 
 .successfullcampaignLogos div.logolist-2 a {
-    padding: 10px 6px 0 0 !important;
+    padding: 10px 5px 0 6px !important;
 }
 
 .imageNine,
@@ -20861,7 +20860,7 @@ div.successfullcampaignLogos div{
 
 .multiple-reason-btn1{
 	position: absolute;
-    right: 22.2%;
+    right: 1%;
     margin-top: 15px;
 }
 
@@ -20881,8 +20880,8 @@ div.successfullcampaignLogos div{
 
 .multiple-reason-btn2{
 	position: absolute;
-    left: 22.2%;
-    margin-top: 15px;
+    left: 1%;
+    margin-top: 17px;
 }
 
 .multiple-reason-btn2 a{
@@ -20963,4 +20962,31 @@ div.successfullcampaignLogos div{
 
 #homepage-carousel img {
     height: 100% !important;
+}
+
+a.succsfl-a-nopadding{
+	padding-left: 0 !important;
+}
+
+a.succsfl-a-nopaddding{
+	padding-right: 0 !important;
+}
+
+.logolist-1 a{
+	padding-left: 20px;
+    padding-right: 8px;
+}
+
+.logolist-2 a{
+	padding-left: 28px;
+}
+
+.img-top-paddng{
+	padding-top: 7px;
+}
+
+.logolist-1,
+.logolist-2{
+	padding-left: 0;
+	padding-right: 0;
 }

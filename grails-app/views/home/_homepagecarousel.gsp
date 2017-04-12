@@ -49,14 +49,15 @@
       	<g:else>
       		<img class="img-responsive home-img-large-size" src="https://s3.amazonaws.com/crowdera/project-images/c345270a-0b44-4f1b-9c50-4068357e07bb.jpg" alt="US-slide">
     	</g:else>
-    	<div class="homepageTextdiv">
-			        <h1 class="bannerBigtext">World's #1 Truly Free Online Fundraising Platform For <br>
-			        Nonprofits and Individuals</h1>
-			        <br>
-			        <div class="homepagecarouselButton">
-			 	        <a href="${resource(dir: '/'+"${country_code}"+'/campaign/create')}" class="btn btn-default btn-block newCreatebtnn hm-start-campaignn-btn">
-			 	           <span class="btnSpann">CREATE A CAMPAIGN</span>
-			 	        </a>
-			 	    </div>
-			</div>
     </g:else>
+    <div class="homepageTextdiv">
+		<h1 class="bannerBigtext">World's #1 Truly Free Online Fundraising Platform For <br>
+			 Nonprofits and Individuals</h1>
+		 <br>
+		<div class="homepagecarouselButton">
+			 <a href="${resource(dir: '/'+"${country_code}"+'/campaign/create')}" class="btn btn-default btn-block newCreatebtnn hm-start-campaignn-btn">
+				 <span class="btnSpann">CREATE A CAMPAIGN</span>
+			 </a>
+		 </div>
+	</div>
+   

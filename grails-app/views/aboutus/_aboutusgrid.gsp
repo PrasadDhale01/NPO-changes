@@ -271,7 +271,10 @@
            </div> 
     </div>
     
-    <div class="abt-padding-thots">
+</div>
+
+<div class="container crewpage mentor-container mentor-centering">
+	<div class="abt-padding-thots">
 	    <h1 class="text-center">Fostering Giving Economy</h1>
 	    <p class="abt-thots-font">Crowdera crew has gone to great lengths to create and foster an intentional community
 	       of like-minded people dedicated to celebrating youth and those who educate and inspire
@@ -280,7 +283,6 @@
 	       viral fundraising campaigns that raise awareness and funding for your organizational
 	       needs and dreams.</p>
     </div>
-    
 </div>
 
 <div class="bg-color"> 

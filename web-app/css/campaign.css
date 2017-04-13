@@ -1913,3 +1913,18 @@ span.donation-font{
     padding-left: 115px;
     top: 6px !important;
 }
+
+.show-tbs-left-borders{
+    border-left: 1px solid #d4d4d4;
+    padding-left: 8px;
+    padding-right: 10px;
+}
+
+.pr-icon-div-margin{
+	margin-left: 26px;
+	margin-top: -5px;
+}
+
+.donation-head-padding{
+	padding: 4px !important;
+} 

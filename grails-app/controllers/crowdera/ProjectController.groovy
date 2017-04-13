@@ -420,7 +420,6 @@ class ProjectController {
 			def wepayAccountStatus;
 			if (project.wepayEmail && project.wepayAccessToken != 0) {
 				wepayAccountStatus = campaignService.getWepayAccountStatus(project.wepayAccountId, project.wepayAccessToken);
-				wepayAccountStatus = "disabled"
 				log.info("Wepay Account Status = "+ wepayAccountStatus)
 			}
             

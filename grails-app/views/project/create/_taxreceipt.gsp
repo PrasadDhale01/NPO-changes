@@ -1,11 +1,13 @@
 <%@ page import="java.text.SimpleDateFormat" %>
+<g:set var="userService" bean="userService" />
 <%
     SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 	def currentDate = new Date();
+	def isAdmin = userService.isAdmin();
 %>
 <div class="col-sm-12 padding-tax-reciept-xs col-tax-reciept-panel <g:if test="${!project.offeringTaxReciept}">col-reciept-display-none</g:if>">
    <div class="cr-spend-matrix">
-        <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font donation-font">Donation Receipts</span></label>
+        <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix <g:if test="${isAdmin}">donation-head-padding</g:if>"><span class="cr-spend-matrix-font donation-font">Donation Receipts</span></label>
         <label class="col-md-10 col-sm-9 hidden-xs cr-panel-spend-matrix-guide">
         </label>
    </div>
@@ -87,7 +89,7 @@
 	                        </div>
 	                        <div class="signature_img_seperator"></div>
 	                        <g:if test="${taxReciept.signatureUrl}">
-	                            <div class="pr-icon-thumbnail-div edit-image-mobile col-sm-12 col-md-5 col-xs-3">
+	                            <div class="pr-icon-thumbnail-div edit-image-mobile col-sm-12 col-md-5 col-xs-3 <g:if test="${isAdmin}">pr-icon-div-margin</g:if>">
 	                                <img id="editsignatureIcon" alt="cross" class="pr-icon-thumbnail" src="${taxReciept.signatureUrl}">
 	                                <div class="deleteicon orgicon-css-styles">
 	                                    <img alt="cross" id="deleditsignature" src="//s3.amazonaws.com/crowdera/assets/delete.ico">

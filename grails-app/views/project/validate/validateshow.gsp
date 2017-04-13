@@ -9,7 +9,11 @@
     }
     def currentTeamAmount = currentTeam.amount
     boolean isvalidateShow = true
-    
+	def donationReceipt=taxReceipt;
+	def deductibleStatusList = projectService.getDeductibleStatusList()
+	def country = projectService.getCountry()
+	def country_code = project.country.countryCode
+	def stateInd =projectService.getIndianState()
     SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM, YYYY");
 %>
 <html>
@@ -333,6 +337,16 @@
                                         </a>
                                     </span>
                                 </li>
+                                <g:if test="${project.offeringTaxReciept}">
+                
+                                <li class="hidden-xs">
+                                    <span class="show-tbs-left-borders hidden-xs">
+                                        <a href="#taxreceipt" data-toggle="tab"  class="show-tabs-text ">
+                                           <span class="tab-text hidden-xs"> DONATION RECEIPT</span>
+                                        </a>
+                                    </span>
+                                </li>
+                                </g:if>
                             </ul>
                         </div>
                     </div>
@@ -356,6 +370,9 @@
                             <div class="tab-pane" id="comments">
                                 <g:render template="show/comments"/>
                             </div>
+                            <div class="tab-pane" id="taxreceipt">
+                                <g:render template ="create/taxreceipt" model="['taxReciept':donationReceipt,'deductibleStatusList':deductibleStatusList,'country':country,'country_code':country_code,'stateInd':stateInd]"/> 
+                           </div>
                         </div>
                     </div>
                 </div>
@@ -413,3 +430,4 @@
     
 </body>
 </html>
+       

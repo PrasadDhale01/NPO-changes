@@ -285,7 +285,7 @@
                     </g:elseif>
                     <g:else>
                         <div class="show-mobile-button">
-                            <g:if test="${project.paypalEmail || project.charitableId || (project?.wepayEmail && project?.wepayAccountId != 0) || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
+                            <g:if test="${project.paypalEmail || project.charitableId || (project?.wepayEmail && project?.wepayAccountId != 0 && (wepayAccountStatus == 'active' || wepayAccountStatus == 'pending')) || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
                                 <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
                                     <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund sh-fund-donate-contri"  id="btnFundMobile">DONATE NOW</button>
                                 </g:form>
@@ -336,7 +336,7 @@
                    
                    <div class="hidden-xs">
                        <g:if test="${(project?.rewards?.size()>1 && !isPreview) || (project?.rewards?.size()>1 && project?.validated) }">
-                           <g:if test="${project.paypalEmail || project.charitableId || (project?.wepayEmail && project?.wepayAccountId != 0) || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
+                           <g:if test="${project.paypalEmail || project.charitableId || (project?.wepayEmail && project?.wepayAccountId != 0 && (wepayAccountStatus == 'active' || wepayAccountStatus == 'pending')) || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
                                <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
                            </g:if>
                        </g:if>
@@ -408,7 +408,7 @@
                         <ul class="nav navbar-nav navbar-right col-lg-6 col-sm-6 col-md-6 show-paddingsbtn-submitapprov">
                             <li class="show-margin-right">
                                 <div class="submitForApprovalSectionbtn show-headerApproval-tooltip show-submit-tabs">
-                                     <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail || (project.citrusEmail && project?.sellerId) || (project?.wepayEmail && project?.wepayAccountId != 0)) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                                     <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail || (project.citrusEmail && project?.sellerId) || (project?.wepayEmail && project?.wepayAccountId != 0) ) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                                         <g:form controller="project" action="saveasdraft" id="${project.id}">
                                             <g:if test="${!project.touAccepted}">
                                                 <div class="form-group hidden">
@@ -435,14 +435,14 @@
                         <g:if test="${percentage!=999 && !ended}">
                             <ul class="nav navbar-nav navbar-right col-lg-6 col-sm-6 col-md-6 show-paddingsbtn">
                                 <li class="show-margin-right">
-                                     <g:if test="${project?.paypalEmail || project?.charitableId || (project?.wepayEmail && project?.wepayAccountId != 0) || project?.payuEmail || project?.citrusEmail}">
+                                     <g:if test="${project?.paypalEmail || project?.charitableId || (project?.wepayEmail && project?.wepayAccountId != 0 && (wepayAccountStatus == 'active' || wepayAccountStatus == 'pending')) || project?.payuEmail || project?.citrusEmail}">
                                         <g:if test="${!'in'.equalsIgnoreCase(project.country?.countryCode) && 'in'.equalsIgnoreCase(country_code)}">
                                             <div class="redirectCampaign">
                                                 <g:link class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js sh-fund-donate-contri" controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="btnFundDesktop">DONATE NOW</g:link>
                                             </div>
                                         </g:if>
                                         <g:else>
-                                        	<g:if test="${project.paypalEmail || project.charitableId || (project?.wepayEmail && project?.wepayAccountId != 0) || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
+                                        	<g:if test="${project.paypalEmail || project.charitableId || (project?.wepayEmail && project?.wepayAccountId != 0 && (wepayAccountStatus == 'active' || wepayAccountStatus == 'pending')) || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
 	                                            <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
 	                                                <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js sh-fund-donate-contri">DONATE NOW</button>
 	                                            </g:form>
@@ -861,7 +861,7 @@
                       </g:elseif>
                       <g:else>
                             
-                          <g:if test="${project.paypalEmail || project.charitableId || (project?.wepayEmail && project?.wepayAccountId != 0) || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
+                          <g:if test="${project.paypalEmail || project.charitableId || (project?.wepayEmail && project?.wepayAccountId != 0 && (wepayAccountStatus == 'active' || wepayAccountStatus == 'pending')) || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
                               <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
                                   <div class="show-A-fund"> </div>
                                   <button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs sh-fund-donate-contri" id="btnFundDesktop">DONATE NOW</button>
@@ -1061,7 +1061,7 @@
                     
                       <div class="sh-mobperks new-mob-perk">    
                           <g:if test="${(project?.rewards?.size()>1 && !isPreview) || (project?.rewards?.size()>1 && project?.validated) }">
-                              <g:if test="${project.paypalEmail || project.charitableId || (project?.wepayEmail && project?.wepayAccountId != 0) || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
+                              <g:if test="${project.paypalEmail || project.charitableId || (project?.wepayEmail && project?.wepayAccountId != 0 && (wepayAccountStatus == 'active' || wepayAccountStatus == 'pending')) || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
                                   <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
                               </g:if>
                           </g:if>
@@ -1090,11 +1090,13 @@
 	        $('#returnTotop').fadeOut(200);   
 	    }
 	});
+	
 	$('#returnTotop').click(function() {      
 	    $('body,html').animate({
 	        scrollTop : 0                       
 	    }, 500);
 	});
+	
 </script>
 </body>
 </html>

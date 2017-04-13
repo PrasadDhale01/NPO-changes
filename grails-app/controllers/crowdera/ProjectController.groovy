@@ -416,6 +416,13 @@ class ProjectController {
             def isDeviceMobileOrTab = isDeviceMobileOrTab();
             
             boolean isTaxReceipt = campaignService.isTaxReceiptExist(project.id);
+			
+			def wepayAccountStatus;
+			if (project.wepayEmail && project.wepayAccessToken != 0) {
+				wepayAccountStatus = campaignService.getWepayAccountStatus(project.wepayAccountId, project.wepayAccessToken);
+				wepayAccountStatus = "disabled"
+				log.info("Wepay Account Status = "+ wepayAccountStatus)
+			}
             
             if((currentUser == project.user) && (project.draft || project.validated==false)){
                 render (view: 'show/preview',
@@ -448,7 +455,9 @@ class ProjectController {
                                spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, reasons:reasons,
                                isDeviceMobileOrTab:isDeviceMobileOrTab, currentEnv: currentEnv, firstFiveHashtag: hasTags.firstFiveHashtag, firstThreeHashtag: hasTags.firstThreeHashtag,
                                remainingHashTags: hasTags.remainingHashTags, remainingHashTagsTab: hasTags.remainingHashTagsTab, hashtagsList: hasTags.hashtagsList, projectimages: projectimages,
-                               facebookShare: facebookShare, isTaxReceipt: isTaxReceipt,country_code:country_code,fr:username,projectTitle:params?.projectTitle,'category':project.fundsRecievedBy.toLowerCase()])
+                               facebookShare: facebookShare, isTaxReceipt: isTaxReceipt,country_code:country_code,fr:username,projectTitle:params?.projectTitle,
+							   'category':project.fundsRecievedBy.toLowerCase(), 'wepayAccountStatus' : wepayAccountStatus])
+				   
                }else{
                   render(view: '/404error', model: [message: 'This campaign is under process.'])
                }
@@ -3191,5 +3200,5 @@ class ProjectController {
 		
 		render json;
 	}
-    
+	
 }

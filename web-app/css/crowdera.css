@@ -7831,6 +7831,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 768px) {
+	div.you-mob-padd{
+	    padding-left: 0 !important;
+	}
     .perk-padding {
         padding-top: 7%;
     }
@@ -8716,6 +8719,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	div.sohna-hover{
+	    left: 132px !important;
+	}
 	div.homepageTextdiv {
         top: -165px !important; 
 	}
@@ -12540,6 +12546,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /* 	.backToTiles{ */
 /*         width:56%; */
 /* 	} */
+    .abt-positions-you{
+	    left: 385px;
+    }
     li.sh-button-fund-secandaryheader{
         left: 19.8% !important;
     }
@@ -12615,6 +12624,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	div.sohna-hover{
+	    left: 202px !important;
+	}
 	div.multiple-reason-btn2{
 	    margin-top: 21px !important;
 	}

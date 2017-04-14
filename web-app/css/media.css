@@ -1,4 +1,7 @@
 @media only screen and (min-width: 1281px){
+	.abt-positions-you{
+	    left: 385px;
+    }
     .sendEmailToContributors{
         left:75px;
     }

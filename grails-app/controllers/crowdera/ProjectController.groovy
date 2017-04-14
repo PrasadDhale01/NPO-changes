@@ -862,7 +862,7 @@ class ProjectController {
         CommonsMultipartFile projectcomment = params.attachedFileForProject
         def fileUrl = projectService.setAttachedFileForProject(projectcomment)
         
-        def reqUrl= base_url+"project/savecomment?comment=${params.comment}&id=${params.id}&fr=${params.fr}&fileComment=${fileUrl}"
+        def reqUrl= base_url+"project/savecomment?comment=${params.comment}&id=${params.id}&fr=${params.fr}&fileComment=${fileUrl}&managecomments=${params.managecomments}&campaign_country_code=${params.campaign_country_code}"
             Cookie cookie = new Cookie("requestUrl", reqUrl)
             cookie.path = '/'
             cookie.maxAge= 600
@@ -898,7 +898,11 @@ class ProjectController {
 		} else {
 			flash.sentmessage = "Something went wrong saving comment. Please try again later."
 		}
-		redirect (action: 'show', params:['projectTitle':title,'fr':name], fragment: 'comments')
+		if (params.managecomments.equals("manageCampaign")) {
+		    redirect(controller: 'project', action: 'manageCampaign',fragment: 'comments', id: params.id,params:[country_code:params.campaign_country_code])
+		} else {
+		    redirect (action: 'show', params:['projectTitle':title,'fr':name], fragment: 'comments')
+		}
 	}
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
@@ -1980,13 +1984,15 @@ class ProjectController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def commentdelete() {
 		projectService.getCommentDeletedDetails(params)
-		if (params.manageCampaign) {
-			redirect(controller: 'project', action: 'manageCampaign',fragment: 'comments', id: params.projectId,params:[country_code:params.country_code])
+		
+		if (params.managecomments.equals("manageCampaign")) {
+			println"projectciomment  exit====="
+		    redirect (controller: 'project', action: 'manageCampaign',fragment: 'comments', id: params.projectId,params:[fr: params.fr,country_code:params.campaign_country_code])
 		} else {
-			redirect (controller: 'project', action: 'showCampaign',fragment: 'comments', id: params.projectId, params:[fr: params.fr,country_code:params.country_code])
-		}
+		    redirect (controller: 'project', action: 'showCampaign',fragment: 'comments', id: params.projectId, params:[fr: params.fr,country_code:params.campaign_country_code])
+	    }
 	}
-
+	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def contributionedit() {
 		projectService.getContributionEditedDetails(params)

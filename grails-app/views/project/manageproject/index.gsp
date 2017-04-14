@@ -11,7 +11,10 @@
 	def country_code = projectService.getCountryCodeForCurrentEnv(request)
 	def beneficiary = project?.user
     def beneficiaryUserName = beneficiary?.username
+	def campaign_country_code = params.country_code
 	def isTeamAdmin = projectService.isTeamAdmin(project)
+	def managecomments = "manageCampaign"
+	
 	
     def fundRaiserName
     if(currentFundraiser.email == project.beneficiary.email){
@@ -448,7 +451,8 @@
 									</span>
 							</li>
 							<g:if test="${project.validated}">
-								<li><span class="show-tbs-right-borders hidden-xs">
+								<li>
+								    <span class="show-tbs-right-borders hidden-xs">
 											<a href="#projectupdates" data-toggle="tab"
 											class="show-tabs-text projectupdates showUpdateTemplate show-campaigndetails-font">
 												<span class="tab-text hidden-xs"> Updates</span>
@@ -457,9 +461,8 @@
 											 <g:if test="${project?.projectUpdates?.size() > 0}">
 														${project?.projectUpdates?.size()}
 											</g:if>
-											</span>
-												 <span class="show-ids-header">
-											</span>
+									</span>
+									<span class="show-ids-header"></span>
 								</li>
 							</g:if>
 							<li>
@@ -477,47 +480,51 @@
 								</a> <span class="show-ids-header"></span>
 							</span></li>
 							<g:if test="${project.payuStatus}">
-								<li><span class="show-tbs-right-borders hidden-xs"> <a
-										href="#payments" data-toggle="tab"
-										class="show-tabs-text show-js-fileB payments ss show-campaigndetails-font">
-											<span class="tab-text">Payments</span>
-									</a> <span class="show-ids-header"></span>
-								</span></li>
+								
+							<li>
+							<span class="show-tbs-right-borders hidden-xs"> 
+							    <a href="#payments" data-toggle="tab" class="show-tabs-text show-js-fileB payments ss show-campaigndetails-font">
+									<span class="tab-text">Payments</span>
+								</a> 
+								    <span class="show-ids-header"></span>
+							</span>
+							</li>
 							</g:if>	
 							
-							<li><span class="show-tbs-right-borders hidden-xs"> <a
-									href="#contributions" data-toggle="tab"
-									class="show-tabs-text show-js-fileC contributions showContributionTemplate show-campaigndetails-font">
+							<li>
+								<span class="show-tbs-right-borders hidden-xs"> 
+								   <a href="#contributions" data-toggle="tab" class="show-tabs-text show-js-fileC contributions showContributionTemplate show-campaigndetails-font">
 										<span class="tab-text"> Contributions</span>
-								</a> <span class="show-tabs-count hidden-xs"> <g:if
-											test="${totalContributions?.size() > 0 && screen == 'false'}">
-											${totalContributions?.size()}
+								   </a> 
+									<span class="show-tabs-count hidden-xs"> 
+										<g:if test="${totalContributions?.size() > 0 && screen == 'false'}">
+													${totalContributions?.size()}
 										</g:if>
-								</span> <span class="show-ids-header"></span>
-							</span></li>
-							<li><span class="show-comit-lft hidden-xs"> <a
-									href="#essentials" data-toggle="tab"
-									class="show-tabs-text comments scrollToComment showCommentTemplate show-campaigndetails-font">
-										<span class="tab-text hidden-xs"> Comments</span>
-								</a> <span class="show-ids-header"></span>
-							</span></li>
+									</span> 
+									<span class="show-ids-header"></span>
+								</span>
+							</li>
+							
+							<li>
+								<span class="show-comit-lft hidden-xs"> 
+								    <a href="#essentials" data-toggle="tab"	class="show-tabs-text comments scrollToComment showCommentTemplate show-campaigndetails-font">
+										 <span class="tab-text hidden-xs"> Comments</span>
+									</a> <span class="show-ids-header"></span>
+								</span>
+							</li>
 						</ul>
 					</div>
 
 					<div class="col-xs-12 col-md-8 col-sm-8 Top-tabs-mobile show-tops-corsal mob-x-corsal new-gau-width-details new-tab-carousel">
 						<%-- Tab panes --%>
 						<div class="tab-content">
-							<div class="tab-pane active tab-pane-active active hidden-xs"
-								id="essentials">
-								<g:render template="show/story" />
+							<div class="tab-pane active tab-pane-active active hidden-xs" id="essentials">
+								<g:render template="show/story" model="['managecomments':managecomments,'campaign_country_code':campaign_country_code ]"/>
 							</div>
-							<div class="tab-pane tab-pane-active hidden-xs"
-								id="projectupdates">
+							<div class="tab-pane tab-pane-active hidden-xs"	id="projectupdates">
 								<g:render template="/project/manageproject/projectupdates" />
 							</div>
-							<div
-								class="tab-pane tab-pane-active show-teamspage mob-team-tabz new-nav-width new-tem-tab-width"
-								id="manageTeam">
+							<div class="tab-pane tab-pane-active show-teamspage mob-team-tabz new-nav-width new-tem-tab-width" id="manageTeam">
 								<g:render template="/project/manageproject/manageteam" />
 							</div>
 							<div class="tab-pane mange-pane-active manage-mobile-margine" id="rewards">
@@ -528,11 +535,8 @@
                                     <g:render template="/project/manageproject/payments"/>
                                 </div>
                             </g:if>
-							<div
-								class="tab-pane tab-pane-active new-nav-width mob-contributions-modal"
-								id="contributions">
-								<g:render template="/project/manageproject/contributions"
-									model="['team':currentTeam]" />
+							<div class="tab-pane tab-pane-active new-nav-width mob-contributions-modal"	id="contributions">
+								<g:render template="/project/manageproject/contributions" model="['team':currentTeam]" />
 							</div>
 						</div>
 						<div class="row"> 

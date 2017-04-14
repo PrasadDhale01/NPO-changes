@@ -195,7 +195,7 @@
         <br/>
         <g:if test="${!isvalidateShow}">
             <div id="scrollToComment" class="show-comments-section">
-                <g:render template="show/comments"/>
+                <g:render template="show/comments" model="['managecomments': managecomments,'campaign_country_code':campaign_country_code]"/>
             </div>
         </g:if>
     </div>

@@ -484,6 +484,45 @@ class CampaignService {
 	}
 	
 	
+	def getWepayAccountStatus(def wepayAccountId, def accessToken) {
+		
+		try {
+			def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
+			def httpUrl = wepayBaseUrl +"/account"
+			
+			HttpClient httpclient = new DefaultHttpClient()
+			
+			HttpClient httpClient = new DefaultHttpClient()
+			HttpPost httppost = new HttpPost(httpUrl)
+			
+			httppost.setHeader("Authorization","Bearer "+accessToken);
+			
+			StringEntity input = new StringEntity("{\"account_id\": ${wepayAccountId}}")
+			input.setContentType("application/json")
+			httppost.setEntity(input)
+			HttpResponse httpResponse = httpClient.execute(httppost)
+			
+			def status = httpResponse.getStatusLine().getStatusCode()
+			def json; def state;
+			
+			if (status == 200) {
+				HttpEntity entity = httpResponse.getEntity();
+
+				if (entity != null){
+					def jsonString = EntityUtils.toString(entity)
+					def slurper = new JsonSlurper()
+					
+					json = slurper.parseText(jsonString)
+					state = json.state
+				}
+			}
+			
+			return state;
+		} catch(Exception e) {
+		}
+	}
+	
+	
 	def getWePayAuthToken(String email, String firstName, String lastName) {
 		def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
 		def clientId = grailsApplication.config.crowdera.wepay.CLIENT_ID
@@ -530,7 +569,7 @@ class CampaignService {
 		if (accessToken != null) {
 			def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
 			
-			def emailMsg = "Thank you for selecting WePay as your preferred payment method. Please confirm your account to start receiving funds!"
+			def emailMsg = "Thank you for selecting WePay as your preferred payment method. Please confirm your account to start receiving funds and to ensure all the funds are promptly transferred to your bank account, we recommend completing the wepay account setup right away."
 			def emailSubject = "WePay Account Confirmation"
 			def emailButton  = "Confirm WePay Account "
 			

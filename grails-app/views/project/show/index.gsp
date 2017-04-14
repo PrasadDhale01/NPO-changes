@@ -10,6 +10,7 @@
 	def country_code = projectService.getCountryCodeForCurrentEnv(request)
 	def beneficiary = project?.user
     def beneficiaryUserName = beneficiary?.username
+	def managecomments = "show"
     def fundRaiserName
     if(currentFundraiser.email == project.beneficiary.email){
         if (project.beneficiary?.lastName)
@@ -654,7 +655,7 @@
                     <%-- Tab panes --%>
                     <div class="tab-content">
                         <div class="tab-pane tab-pane-active active hidden-xs" id="essentials">
-                            <g:render template="show/story"/>
+                            <g:render template="show/story" model="['managecomments':managecomments]"/>
                         </div>
                         <div class="tab-pane tab-pane-active hidden-xs" id="projectupdates">
                             <g:render template="show/projectupdates"/>

@@ -2,9 +2,41 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
-    def projectId=project.id
     def manageCampaign = "manageCampaign"
+	def fundRaiser
+	def team
+	def beneficiary = project?.user
+	if (user) {
+		fundRaiser = user?.username
+		team = userService.getTeamByUser(user, project)
+	} else {
+		fundRaiser = beneficiary?.username
+		team = userService.getTeamByUser(beneficiary, project)
+	}
+	def isAdmin=userService.isAdmin()
+	List listcomment=[]
+	if(project?.user==team?.user || userService.isAdmin()){
+		listcomment= projectComments
+	}else{
+		listcomment= teamComments
+	}
+	
+	def projectId=project.id
+	def teamCommentId
+	def commentId
+	if(projectComment) {
+		commentval = projectComment.comment
+		commentId = projectComment?.id
+	}
+	if(teamcomment) {
+		commentval = teamcomment.comment
+		teamCommentId = teamcomment?.id
+	}
+	
+	def userObj = userService.getCurrentUser()
+
 %>
+
 <div class="<g:if test="${project.comments.empty}">col-md-12</g:if><g:else>col-md-offset-1 col-md-10</g:else> col-sm-12 col-xs-12 mange-comments-bottom">
 	<g:if test="${!project.comments.empty}">
         <br>
@@ -27,11 +59,12 @@
                         <input type="checkbox" name="link" id="${i}" value="${comment.id}" 
                             <g:if test="${comment.status }">checked="checked"</g:if>><span id="check${i}"> Hide</span>
                         <% i++ %>
+                        
                         <div class="editAndDeleteBtn deleteComment">
 	                       <div class="pull-right">
-                               <g:form controller="project" action="commentdelete" method="post" params="['projectId':projectId]">
-                   	                <input type="hidden" name="manageCampaign" value="${manageCampaign}" id="comments${comment.id}"/>
-                   	                <input type="hidden" name='commentId' value="${comment.id}" id="commentId${comment.id}"/>
+                               <g:form controller="project" action="commentdelete" method="post" params="['projectId':projectId, 'fr': fundRaiser,'managecomments': managecomments ,'campaign_country_code':campaign_country_code]">
+                   	                <input type="hidden" name="manageCampaign" value="${manageCampaign}"/>
+                   	                <input type="hidden" name='commentId' value="${comment.id}" />
                        	            <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this comment?&#39;);">
                                  	   <i class="glyphicon glyphicon-trash"></i>
                        	            </button>

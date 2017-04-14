@@ -13,14 +13,16 @@
         fundRaiser = beneficiary?.username
         team = userService.getTeamByUser(beneficiary, project)
     }
-
+	
+	def isAdmin=userService.isAdmin()
     List listcomment=[]
-    if(project?.user==team?.user){
+    if(project?.user==team?.user || userService.isAdmin()){
         listcomment= projectComments
     }else{
         listcomment= teamComments
     }
-    def projectId=project.id
+    
+	def projectId=project.id
     def teamCommentId
     def commentId
     if(projectComment) {
@@ -165,7 +167,7 @@
 	             </g:uploadForm>
 	        </g:if>
 	        <g:else>
-	            <g:uploadForm controller="project" action="comment"  id="${project.id}" params="['fr':fundRaiser]">
+	            <g:uploadForm controller="project" action="comment"  id="${project.id}" params="['fr':fundRaiser,'managecomments': managecomments ,'campaign_country_code':campaign_country_code]">
 	                <div class="form-group show-padding-commentsbox col-lg-12 col-sm-12 col-md-12  col-xs-12">
 	                    <div class="col-lg-1 col-sm-1 col-md-1 col-xs-2 show-comment-profile-padding">
                           <g:if test="${userService.isFacebookUser()}">
@@ -253,15 +255,16 @@
 	                                 	</div>
 		                     		</g:if>
 	                     		</g:else>
-                                <g:if test="${comment?.user == currentUser || project?.user == currentUser}">
+                                <g:if test="${comment?.user == currentUser || isCampaignOwnerOrAdmin || isAdmin || project?.user == currentUser || isCampaignOwnerOrAdmin || isAdmin}">
                                     <div class="editAndDeleteBtn deleteComment">
-                                        <g:form controller="project" action="commentdelete" method="post" params="['projectId':projectId, 'fr': fundRaiser]">
+                                        <g:form controller="project" action="commentdelete" method="post" params="['projectId':projectId, 'fr': fundRaiser,'managecomments': managecomments ,'campaign_country_code':campaign_country_code]">
+                                            <input type="hidden" name='fr' value="${fundRaiser}"/>
                                             <input type="hidden" name='commentId' value="${comment.id}"/>
                                             <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this comment?&#39;);">
                                            <i class="glyphicon glyphicon-trash"></i>
                                             </button>
                                         </g:form>
-                                        <g:if test="${comment?.user == currentUser}">
+                                        <g:if test="${comment?.user == currentUser|| isCampaignOwnerOrAdmin || isAdmin}">
                                             <form name="editComment" action="/project/editComment" method="post"  >
                                                 <input type="hidden" name='projectTitle' value="${vanityTitle}"/>
                                                 <input type="hidden" name='fr' value="${fundRaiser}"/>
@@ -286,7 +289,7 @@
                             </g:else>
                             <span class="dd">${comment.comment}</span>
                             <div class="clear"></div>
-                            <g:if test="${team?.user == project?.user}">
+                            <g:if test="${team?.user == project?.user || isAdmin}">
 	                            <g:if test="${comment?.attachFile != null && comment?.attachFile != 'null'}">
 		                             <div class="${currentUser?'col-sm-6':''} comment-attach-img">
 	                                        <img alt="image" class='img-thumbnail comment-thumbnail' src='${comment?.attachFile}'>
@@ -300,16 +303,17 @@
 	                                 </div>
 		                     	</g:if>
 	                     	</g:else>
-                            <g:if test="${team?.user!=project?.user || comment?.user == currentUser}">
-                                <g:if test="${team?.user == currentUser || comment?.user == currentUser}">
+                            <g:if test="${team?.user!=project?.user || comment?.user == currentUser || isAdmin || isCampaignOwnerOrAdmin}">
+                                <g:if test="${team?.user == currentUser || isAdmin || comment?.user == currentUser || isAdmin}">
                                     <div class="editAndDeleteBtn deleteComment">
-                                        <g:form controller="project" action="commentdelete" method="post" params="['projectId':projectId, 'fr': fundRaiser]">
+                                        <g:form controller="project" action="commentdelete" method="post" params="['projectId':projectId, 'fr': fundRaiser,'managecomments': managecomments ,'campaign_country_code':campaign_country_code]">
                                             <input type="hidden" name='teamCommentId' value="${comment.id}"/>
+                                            <input type="hidden" name='fr' value="${fundRaiser}"/>
                                             <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this comment?&#39;);">
                                             <i class="glyphicon glyphicon-trash"></i>
                                             </button>
                                         </g:form>
-                                        <g:if test="${comment?.user == currentUser}">
+                                        <g:if test="${comment?.user == currentUser || isAdmin}">
                                             <form  name="editcomment" action="/project/editComment" method="post">
                                                 <input type="hidden" name='projectTitle' value="${vanityTitle}"/>
                                                 <input type="hidden" name='fr' value="${fundRaiser}"/>

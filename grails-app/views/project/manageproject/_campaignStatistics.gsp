@@ -26,7 +26,38 @@
         <g:else>Achieved</g:else>
     </td>
     <td class="teamStatusButton">
-        <input type="checkbox" name="link" id="${team.id}" value="${team.id}" 
+        <input type="checkbox" class="disableTeam" name="link" id="${team.id}" value="${team.id}" 
         <% if(!team.enable) { %> checked="checked" <% } %> <% if(team.user == project.user) { %> disabled <% } %>><span id="checkteam${team.id}"> Disable</span>
     </td>
 </tr>
+
+<script type="text/javascript">
+	$('.disableTeam').change(function(){
+	    if($(this).prop('checked') == true)
+	    {
+	        var confirmMsg = window.confirm("Are you sure, you want to disable current team ?");
+	        if(confirmMsg == true)
+	        {
+	            $(this).prop('checked', true);
+	            alert("Team disabled successfully...!");
+	        }
+	        else
+	        {
+	            $(this).prop('checked', false);
+	        }
+	    }
+	    else if($(this).prop('checked') == false)
+	    {
+	        var confirmMsg = window.confirm("Are you sure, you want to enable current team ?");
+	        if(confirmMsg == true)
+	        {
+	            $(this).prop('checked', false);
+	            alert("Team enabled successfully...!");
+	        }
+	        else
+	        {
+	            $(this).prop('checked', true);
+	        }
+	    }
+	});
+</script>

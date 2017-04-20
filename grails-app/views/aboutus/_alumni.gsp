@@ -1,4 +1,4 @@
-<div class="container crewpage mentor-container mentor-centering">
+<div class="container crewpage mentor-container mentor-centering abt-overflow">
    
     <h1 class="text-center crew-title-centering">Alumni Members</h1>
     <div class="row tabs about">
@@ -74,7 +74,7 @@
 
 </div>
 
-<div class="container crewpage mentor-container mentor-centering abt-bottom-createdis">
+<div class="container crewpage mentor-container mentor-centering abt-bottom-createdis abt-overflow">
     <div class="row text-center explorebtn col-lg-12 abt-create-discover">
         <a href="${resource(dir: '/'+"${country_code}"+'/campaign/create')}" class="btn btn-default abt-btn-backcolor">Create a Campaign</a>
         <a href="${resource(dir:'/'+"${country_code}"+'/campaigns')}" class="btn btn-default abt-discover">Discover</a>

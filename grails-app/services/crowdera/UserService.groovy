@@ -509,6 +509,17 @@ class UserService {
             user.delete();
         }
     }
+	
+	def deleteVerifiedUser(User user){
+		if(user){
+			def userRoles = UserRole.findAllWhere(user: user);
+			
+			userRoles.each { userRole ->
+				userRole.delete();
+			}
+			user.delete();
+		}
+	}
 
     def getUsersMails(){
         List nonVerifiedUsers = getNonVerifiedUserList()

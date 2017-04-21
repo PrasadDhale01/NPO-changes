@@ -8,6 +8,13 @@
         <td class="col-sm-2">${userService.getUserRole(users)}</td>
         <td class="col-sm-2">${users.dateCreated}</td>
         <td class="col-sm-2">${users.lastUpdated}</td>
+        <td class="text-center ul-ad-thrash-center">
+            <g:form controller="user" action="deleteVerifiedUsers" method="post"  id="${users.id}">
+                <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to delete this user?&#39;);">
+                    <i class="glyphicon glyphicon-trash" ></i>
+                </button>
+            </g:form>
+        </td>
     </tr>
 </g:if>
 <g:else>

@@ -312,6 +312,15 @@ class UserController {
         redirect (action: 'list')
     }
 	
+	@Secured(['ROLE_ADMIN'])
+	def deleteVerifiedUsers() {
+		def user = userService.getUserById(params.long('id'))
+		userService.deleteVerifiedUser(user)
+		
+		flash.deleteusermsg = "Verified User Deleted Successfully"
+		redirect (action: 'list')
+	}
+	
 	//@Secured(['IS_AUTHENTICATED_FULLY'])
 	def subscribeNewsLetter(){
 	    def subscribeURL=grailsApplication.config.crowdera.MAILCHIMP.SUBSCRIBE_URL

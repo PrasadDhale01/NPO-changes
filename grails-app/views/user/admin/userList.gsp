@@ -39,7 +39,8 @@
                    	    <th class="col-sm-2 text-center">Last Name</th>
                    	    <th class="col-sm-2 text-center">Role</th>
                    	    <th class="col-sm-2 text-center">Date Created</th>
-                   	    <th class="col-sm-2 text-center">Last Updated</th>            
+                   	    <th class="col-sm-2 text-center">Last Updated</th>
+                   	    <th class="col-sm-2 text-center">Delete</th>            
                 	</tr>
             	    </thead>
             	    <tbody>

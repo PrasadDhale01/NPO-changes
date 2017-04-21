@@ -287,7 +287,7 @@
     </div>
 </div>
 
-<div class="bg-color"> 
+<div class="bg-color abt-overflow"> 
 	<div class="container crewpage mentor-container mentor-centering">
 		<h1 class="text-center abt-mobile-pad">Mentors, Advisors, <br> Investors & Supporters</h1>
 		  <div class="row tabs lft about">

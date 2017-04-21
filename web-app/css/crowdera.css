@@ -21002,6 +21002,12 @@ a.succsfl-a-nopaddding{
 	padding-left: 0;
 	padding-right: 0;
 }
+
 .ul-ad-thrash-center {
     padding-right: 29px !important;
 }
+
+.abt-overflow{
+	overflow-x: hidden;
+}
+

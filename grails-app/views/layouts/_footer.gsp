@@ -22,6 +22,7 @@
                 <li><a href="${country_code}/campaigns" >Explore Campaigns</a></li>
                 <li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
                 <li><a href="https://blog.gocrowdera.com" target="_blank">Blog</a></li>
+                <li><a href="http://support.gocrowdera.com/#/" target="_blank">Support</a></li>
                 
             </ul>
             </div>
@@ -35,6 +36,7 @@
                 </g:if>
                 <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
                 <li><a href="${resource(dir: '/Fee-and-Pricing-Information')}">Fee and Pricing</a></li>
+                
 <%--                <li><a href="${resource(dir: '/Learning-Center')}">Learn More</a></li>--%>
             </ul>
         

@@ -21002,3 +21002,7 @@ a.succsfl-a-nopaddding{
 	padding-left: 0;
 	padding-right: 0;
 }
+
+.abt-overflow{
+	overflow-x: hidden;
+}

@@ -25,6 +25,7 @@
                 <li><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></li>
                 <li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
                 <li><a href="https://blog.gocrowdera.com" target="_blank">Blog</a></li>
+                <li><a href="http://support.gocrowdera.com/#/" target="_blank">Support</a></li>
             </ul>
            </div>
            <div class="col-sm-6 footer-mid-section-menu tab-menu-padding">

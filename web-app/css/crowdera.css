@@ -10783,7 +10783,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
-	
+	 span.donation-font{
+	     font-size: 14px !important;
+	 }
      .chooseHomePageCampaign .dropdown-menu.open {
          margin-left: -3px;
      }
@@ -11888,7 +11890,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 @media only screen and (min-width: 1025px) and (max-width: 1920px){
 	div.homepageTextdiv {
-        top: -200px !important; 
+        top: -260px !important; 
 	}
 	.discover-inner-container {
 	   padding: 15px !important;
@@ -21010,4 +21012,3 @@ a.succsfl-a-nopaddding{
 .abt-overflow{
 	overflow-x: hidden;
 }
-

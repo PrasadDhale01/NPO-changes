@@ -15,7 +15,7 @@
 				<th>Joining Date</th>
 				<th>Contribution Deadline</th>
 				<th>Amount Authorized</th>
-				<th>$ Achieved</th>
+				<th><g:if test="${'in'.equalsIgnoreCase(country_code)}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>Achieved</th>
 				<th>Need to hit minimum</th>
 				<th>Team Status</th>
 			</tr>

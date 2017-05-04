@@ -123,10 +123,14 @@ class FundController {
 					
 					def indiaStates = projectService.getIndianState()
 					
+					def percentageCharge = 0.0275  // Percentage Wepay Charge (2.31 %) + Percentage APP charge (0.44%)
+					def fixedWepayCharge = 0.3     // Fixed 30 cents charge by wepay
+					
 					render view: 'fund/wepayCheckout', model: [team:team, project: project, state:indiaStates, country:country,
 						perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
 						vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, citrusCardTypes: cardTypes, title: title,currentMonthByWeek:currentMonthByWeek,
-						month: month, year: year, defaultCountry: defaultCountry, isTaxReceipt: isTaxReceipt, currentYearByWeek:currentYearByWeek,country_code:country_code]
+						month: month, year: year, defaultCountry: defaultCountry, isTaxReceipt: isTaxReceipt, currentYearByWeek:currentYearByWeek,country_code:country_code,
+						percentageCharge: percentageCharge, fixedWepayCharge: fixedWepayCharge]
 					
 				} else {
 					render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo,country_code:country_code]
@@ -754,7 +758,7 @@ class FundController {
         render json;
     }
 
-    def payByPayUmoney(){
+    def payByPayUmoney() {
         def project= Project.get(params.projectId)
         def user = User.get(params.userId)
         def reward = Reward.get(params.rewardId)
@@ -1240,14 +1244,30 @@ class FundController {
 		
 		if (project) {
 			def creditCardId = params.creditCardId
-			def amount = params.amount
-			def checkoutObj = campaignService.chargeWepayCard(project, creditCardId, amount);
+			
+			def feePayer;
+			def appFee;
+			def wepayAmount;
+			def percentageCharge = 0.0231  // Percentage Wepay Charge (2.31 %) + Percentage APP charge (0.44%)
+			def fixedWepayCharge = 0.3     // Fixed 30 cents charge by wepay
+			def percentageAppCharge = 0.0044
+			
+			appFee = Double.parseDouble(params.amount) * fixedWepayCharge
+			if (params.payer == true || params.payer == "true") {
+				feePayer = "payer"
+				wepayAmount = Double.parseDouble(params.amount) + appFee + (Double.parseDouble(params.amount) * percentageCharge) + fixedWepayCharge
+			} else {
+				wepayAmount = Double.parseDouble(params.amount)
+				feePayer = "payee"
+			}
+			
+			def checkoutObj = campaignService.chargeWepayCard(project, creditCardId, wepayAmount, feePayer, appFee);
 			
 			if (checkoutObj.checkoutId != 0 && checkoutObj.status == 200) {
 				
 				log.info("WePay checkoutId (TransactionId) = " +checkoutObj.checkoutId);
 				session['checkoutId'] = checkoutObj.checkoutId;
-				session['contributionAmount'] = amount;
+				session['contributionAmount'] = params.amount;
 				json.put("status", 1)
 				
 			} else {

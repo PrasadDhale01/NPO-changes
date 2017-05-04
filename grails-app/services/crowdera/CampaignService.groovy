@@ -604,7 +604,7 @@ class CampaignService {
 	}
 	
 	
-	def chargeWepayCard(Project project, def creditCardId, def amount) {
+	def chargeWepayCard(Project project, def creditCardId, def amount, def feePayer, def appFee) {
 		
 		def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
 		def account_id = project.wepayAccountId;
@@ -615,6 +615,8 @@ class CampaignService {
 		def creditCard = "{\"id\": ${creditCardId}}"
 		def payment_method = "{\"type\" : \"credit_card\", \"credit_card\": ${creditCard}}"
 		
+		def feeStructure = "{\"app_fee\": ${appFee}, \"fee_payer\" : \"${feePayer}\"}"
+		
 		def url = wepayBaseUrl+"/checkout/create"
 		HttpClient httpclient = new DefaultHttpClient()
 		HttpPost httppost = new HttpPost(url)
@@ -622,8 +624,8 @@ class CampaignService {
 		// npo_information -- Information Structure  If the payee is a non profit entity, 
 		// the structure contains information about non profit organization. Otherwise, this is null
 		
-		String stringEntity = "{\"account_id\": ${account_id},\"short_description\": \"${short_description}\" ,\"type\": \"${type}\", \"amount\": \"${amount}\", \"currency\" : \"${currency}\", \"auto_release\" : true, \"payment_method\" : ${payment_method}}"
-		
+		String stringEntity = "{\"account_id\": ${account_id},\"short_description\": \"${short_description}\" ,\"type\": \"${type}\", \"amount\": \"${amount}\", \"currency\" : \"${currency}\", \"auto_release\" : true, \"payment_method\" : ${payment_method}, \"fee\": ${feeStructure}}"
+ 		
 		httppost.setHeader("Authorization","Bearer "+ project.wepayAccessToken);
 		StringEntity input = new StringEntity(stringEntity)
 		

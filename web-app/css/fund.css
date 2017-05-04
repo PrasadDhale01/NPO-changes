@@ -223,13 +223,22 @@ div.citrusfundbody .btn.btn-info {
 .pannumberdiv {
 	display: none;
 }
-#billingInformation{display:none;}
-#citrusCardDetails{display:none;}
-.citrusStateDiv .btn:first-child{margin-left:0px !important;}
 
-#wepayContributorEmail {
-	width: 80% !important;
+#billingInformation{
+	display:none;
 }
+#citrusCardDetails { 
+	display:none;
+}
+.citrusStateDiv .btn:first-child {
+	margin-left:0px !important;
+}
+
 .paymentErrorMsg {
 	color: #f04124;
+}
+
+label.payer-label {
+	margin-top: 0px;
+	margin-bottom: 0px;
 }

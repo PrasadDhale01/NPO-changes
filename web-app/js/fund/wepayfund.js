@@ -315,12 +315,29 @@ $(function() {
         				$('#myWizard').easyWizard('goToStep', 2);
         				$('#billingInformation').show();
         				$("#otherState").show();
+        				
+        				var amount = $("#amount").val();
+        				if ($("#payer").is(":checked")) {
+        					$("#wepayAmount").val((parseFloat(amount) * window.percentageCharge) + parseFloat(amount));
+        				} else {
+        					$("#wepayAmount").val(amount);
+        				}
+        				
         			}
         		}).error(function(){
         		});
             	
             }
         });
+        
+        $("#payer").change(function() {
+        	var amount = $("#amount").val();
+        	if ($(this).is(":checked")) {
+        		$("#wepayAmount").val(((parseFloat(amount) * parseFloat(window.percentageCharge)) + parseFloat(amount)) + window.fixedWepayCharge);
+        	} else {
+        		$("#wepayAmount").val(amount);
+        	}
+        })
         
         
         $('#btnShippingContinue').click(function() {

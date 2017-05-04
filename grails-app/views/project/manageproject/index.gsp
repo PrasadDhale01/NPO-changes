@@ -137,20 +137,6 @@
             });
        });
     </g:javascript>
-<script>
-	function submitCampaignShowForm(key, projectId, fr,country_code) {
-		$.ajax({
-			type : 'post',
-			url : $("#b_url").val() + 'project/urlBuilder',
-			data : "projectId=" + projectId + "&fr=" + fr + "&pkey=" + key + "&country_code=" + country_code,
-			success : function(response) {
-				$(location).attr('href', response);
-			}
-		}).error(function() {
-			console.log("Error in redirecting");
-		});
-	}
-</script>
 
 </head>
 <body>

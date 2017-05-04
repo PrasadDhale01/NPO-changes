@@ -149,8 +149,11 @@ $(function() {
         nonSelectedText: 'Choose multiple rewards'
     });
 
-    /* Validate form on submit. */
+    /* Validate form on submit. */ 
+    
+  
     var validator = $('#campaigncreate').find('form').validate({
+    	ignore: ':hidden:not(".personalTelephone")',
         rules: {
             firstName: {
                 minlength: 2,
@@ -729,7 +732,7 @@ $(function() {
         $( '[name="tax-reciept-holder-name"]' ).rules( "add", {
             required: true,
             minlength:2,
-            isFullName: true
+            isFullName: false
         });
 
         if (isIndianCampaign){
@@ -1113,7 +1116,7 @@ $(function() {
         $( '[name="tax-reciept-holder-name"]' ).rules( "add", {
             required: true,
             minlength:2,
-            isFullName: true
+            isFullName: false
         });
 
         if (isIndianCampaign){
@@ -1230,6 +1233,7 @@ $(function() {
     	}
     	  
     });
+    
     
     function submitCampaignCreateForm() {
     	$('#campaigncreate').find('form').submit();

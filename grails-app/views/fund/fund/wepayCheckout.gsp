@@ -246,7 +246,7 @@
 				                    <h3 class="panel-title">Card Details</h3>
 				                </div>
 				                <div class="panel-body">
-					                <div class="col-md-offset-1 col-md-10 col-sm-offset-0 col-sm-12 col-xs-12 col-xs-offset-0">
+					                <div class="col-md-offset-1 col-md-10 col-sm-offset-0 col-sm-12 col-xs-12 col-xs-offset-0" id="wepay-payment-details">
 					                    <div class="form-group">
 					                        <div class="leftcard-column-one">
 					                            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
@@ -307,7 +307,7 @@
 					                        <input type="hidden" name="postal_code" id="postal_code" value="94025">
 					                    </div>
 					                    
-					                    <div class="col-xsl-0 col-md-4 col-xs-12 box fund-campaign-tile-center-align eazywizard-bottom-margin">
+					                    <div class="col-xsl-0 col-md-4 col-xs-12 col-sm-4 box fund-campaign-tile-center-align eazywizard-bottom-margin">
 					                    	
 					                    	<div class="term-of-use-center-alignment ">
 	                                            <label class="checkbox control-label payer-label">

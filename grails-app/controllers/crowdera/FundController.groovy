@@ -1252,7 +1252,7 @@ class FundController {
 			def fixedWepayCharge = 0.3     // Fixed 30 cents charge by wepay
 			def percentageAppCharge = 0.0044
 			
-			appFee = Double.parseDouble(params.amount) * fixedWepayCharge
+			appFee = Double.parseDouble(params.amount) * percentageAppCharge
 			if (params.payer == true || params.payer == "true") {
 				feePayer = "payer"
 				wepayAmount = Double.parseDouble(params.amount) + appFee + (Double.parseDouble(params.amount) * percentageCharge) + fixedWepayCharge
@@ -1260,6 +1260,9 @@ class FundController {
 				wepayAmount = Double.parseDouble(params.amount)
 				feePayer = "payee"
 			}
+			println "appFee == "+ appFee
+			println "wepayAmount =="+ wepayAmount
+			println "wepay charge == "+ (Double.parseDouble(params.amount) * percentageCharge) 
 			
 			def checkoutObj = campaignService.chargeWepayCard(project, creditCardId, wepayAmount, feePayer, appFee);
 			

@@ -8719,6 +8719,35 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	
+	/* Start of CSS for Wepay Checkout page */
+	
+	#wepay-payment-details .wepay-rightcard-email .form-control {
+	    float: left;
+	    height: 36px;
+	    width: 85%;
+	}
+	#wepay-payment-details img#cardType {
+	    width: 265px;
+	}
+	#wepay-payment-details .leftcard-column-amount .form-control {
+	    float: left;
+	    height: 36px;
+	    width: 70%;
+	}
+	#wepay-payment-details .leftcard-column-cardnumber .form-control {
+	    float: left;
+	    height: 36px;
+	    width: 85%;
+	}
+	#wepay-payment-details .leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn), .leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	    width: 72% !important;
+	    float: left;
+	}
+	
+	/* End of CSS for Wepay Checkout page */
+
+	
 	div.sohna-hover{
 	    left: 132px !important;
 	}
@@ -10783,6 +10812,37 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	
+	/* Start of CSS for Wepay Checkout page */
+	#wepay-payment-details #wepayContributorName {
+	    float: left;
+	    height: 36px;
+	    width: 89%;
+	}
+	#wepay-payment-details .wepay-rightcard-email .form-control {
+	    float: left;
+	    height: 36px;
+	    width: 87%;
+	}
+	#wepay-payment-details img#cardType {
+	    width: 300px;
+	}
+	#wepay-payment-details .leftcard-column-amount .form-control {
+	    float: left;
+	    height: 36px;
+	    width: 70%;
+	}
+	#wepay-payment-details .leftcard-column-cardnumber .form-control {
+	    float: left;
+	    height: 36px;
+	    width: 85%;
+	}
+	#wepay-payment-details .leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn), .leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	    width: 72% !important;
+	    float: left;
+	}
+	
+	/* End of CSS for Wepay Checkout page */
 	
      .chooseHomePageCampaign .dropdown-menu.open {
          margin-left: -3px;

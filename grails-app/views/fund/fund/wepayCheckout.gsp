@@ -404,7 +404,7 @@
 			            $.ajax({
 				            type:'post',
 				            url: $('#url').val()+'/fund/chargeWepayCard',
-				            data:'creditCardId='+creditCardId+'&amount='+$("#wepayAmount").val()+'&projectId='+$('#projectId').val()+'&wepayAmount='+$("#wepayAmount").val()+'&payer='+$("#payer").is(":checked"),
+				            data:'creditCardId='+creditCardId+'&amount='+$("#amount").val()+'&projectId='+$('#projectId').val()+'&wepayAmount='+$("#wepayAmount").val()+'&payer='+$("#payer").is(":checked"),
 				            success: function(response) {
 				            	var jsonObj = JSON.parse(response);
 				            	$('#loading-gif').hide();

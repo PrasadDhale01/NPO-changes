@@ -8730,6 +8730,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	#wepay-payment-details img#cardType {
 	    width: 265px;
 	}
+	#wepay-payment-details img#cardType.choosenCardType {
+	    width: auto;
+	}
 	#wepay-payment-details .leftcard-column-amount .form-control {
 	    float: left;
 	    height: 36px;
@@ -10826,6 +10829,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 	#wepay-payment-details img#cardType {
 	    width: 300px;
+	}
+	#wepay-payment-details img#cardType.choosenCardType {
+	    width: auto;
 	}
 	#wepay-payment-details .leftcard-column-amount .form-control {
 	    float: left;

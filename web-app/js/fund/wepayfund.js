@@ -333,7 +333,7 @@ $(function() {
         $("#payer").change(function() {
         	var amount = $("#amount").val();
         	if ($(this).is(":checked")) {
-        		$("#wepayAmount").val(((parseFloat(amount) * parseFloat(window.percentageCharge)) + parseFloat(amount)) + window.fixedWepayCharge);
+        		$("#wepayAmount").val(((parseFloat(amount) * parseFloat(window.percentageCharge)) + parseFloat(amount)) + parseFloat(window.fixedWepayCharge));
         	} else {
         		$("#wepayAmount").val(amount);
         	}
@@ -777,6 +777,7 @@ $(function() {
 	            }
 	        }, "Please specify the correct card number.");
 		
+	        $("#cardType").addClass("choosenCardType");
 	        if (type === "visa") {
 	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/954456ca-1012-4d8d-86e8-f4979ff4b330.png");
 	        } else if(type === "maestro") {
@@ -789,6 +790,7 @@ $(function() {
 	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/785a4a0d-1c99-4425-82dc-1451d35727fa.png");
 	        } else {
 	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/4479bc5f-f890-4cf4-8429-567ed2a1b58e.png");
+	            $("#cardType").removeClass("choosenCardType");
 	        }
             
         });

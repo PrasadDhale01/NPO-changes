@@ -283,7 +283,7 @@ label.payer-label {
 }
 #wepay-payment-details .leftcard-column-three {
     display: flex;
-    width: 25% !important;
+    width: 24% !important;
 }
 #wepay-payment-details .leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn), .leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
     width: 72% !important;

@@ -1994,7 +1994,6 @@ class ProjectController {
 		projectService.getCommentDeletedDetails(params)
 		
 		if (params.managecomments.equals("manageCampaign")) {
-			println"projectciomment  exit====="
 		    redirect (controller: 'project', action: 'manageCampaign',fragment: 'comments', id: params.projectId,params:[fr: params.fr,country_code:params.campaign_country_code])
 		} else {
 		    redirect (controller: 'project', action: 'showCampaign',fragment: 'comments', id: params.projectId, params:[fr: params.fr,country_code:params.campaign_country_code])
@@ -3204,6 +3203,29 @@ class ProjectController {
 		}
 		
 		render json;
+	}
+	
+	@Secured(['ROLE_ADMIN'])
+	def ownershiptransfer()	{
+		def message
+		String username = params.username
+		String projectId = params.projectid
+		def user = userService.getUserByUsername(username)
+		
+		if(user){
+			Project project = projectService.getProjectById(projectId)
+			Team team = Team.findByProjectAndUser(project,project.user )
+			team.user = user
+			team.save()
+			project.user = user
+			project.save()
+			
+			message = 'Username exists in database'
+			render message
+		} else{
+			message = 'Username does not exist in database '
+			render message
+		}
 	}
 	
 }

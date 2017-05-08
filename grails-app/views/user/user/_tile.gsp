@@ -212,6 +212,11 @@
     
     <div class="modal-footer tile-footer user-goal user-footer-icon">
         <div class="row">
+            <g:if test="${isAdmin}">
+                <button class="projectedit close pull-right ownershipTransfer" data-projectid="${project.id}" data-toggle="modal" data-target="#myModal">
+                        <i class="glyphicon glyphicon-transfer" ></i>
+                </button>
+            </g:if>
             <g:if test="${!project.validated || username.equals('campaignadmin@crowdera.co') || isAdmin}">
                 <g:form controller="project" action="projectdelete" method="post" params="[country_code: project.country.countryCode,id: project.id]" id="${project.id}">
                     <button class="projectedit close pull-right" id="projectdelete"

@@ -21,7 +21,7 @@
                 <div class="col-sm-12">
                 
                     <div class="pull-right dashboard-sortByOptions" id="dashboard-sortByOptions">
-                        <g:select class="selectpicker text-center" name="sortByOptions" id="sortByOptions" from="${sortByOptions}" optionKey="value" optionValue="value" value="" onchange="getcampaignsort()"/>
+                        <g:select class="selectpicker text-center" name="sortByOptions" id="sortByOptions" from="${sortByOptions}" optionKey="value" optionValue="value" value="Pending" onchange="getcampaignsort()"/>
                     </div>
                     <div class="pull-right dashboard-sortByOptions">
                         <g:if test="${environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'}">
@@ -42,7 +42,7 @@
                 <div class="clear"></div>
                 <div class="col-md-12">
                     <div id="adminCampaignGrid">
-<%--                        <g:render template="validate/validategrid" model="['projects': projects]"></g:render>--%>
+                        <g:render template="validate/validategrid" model="['projects': projects]"></g:render>
                     </div>
                 </div>
                 
@@ -53,10 +53,5 @@
     <div class="loadinggif text-center" id="loading-gif">
         <img src="//s3.amazonaws.com/crowdera/documents/loading.gif" alt="'loadingImage'" id="loading-gif-img">
     </div>
-    <script type="text/javascript">
-    $(document).ready(function(){
-        $('#sortByOptions, #countryOpts').change();
-    });
-    </script>
 </body>
 </html>

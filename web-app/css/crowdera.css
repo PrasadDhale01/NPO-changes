@@ -11271,7 +11271,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 
-@media only screen and (max-width: 767px){
+@media only screen and (max-width: 767px) {
+	
 	span.btnSpann {
 	    font-size: 14px;
 	}
@@ -13264,6 +13265,41 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
+	
+	#wepay-payment-details .leftcard-column-one,
+	#wepay-payment-details .wepay-rightcard-email,
+	#wepay-payment-details .leftcard-column-amount,
+	#wepay-payment-details .leftcard-column-cardnumber,
+	#wepay-payment-details .wepay-rightcard-column  {
+	    width: 100% !important;
+	}
+	#wepay-payment-details .leftcard-column-one .form-control,
+	#wepay-payment-details .wepay-rightcard-email .form-control,
+	#wepay-payment-details .leftcard-column-amount .form-control,
+	#wepay-payment-details .leftcard-column-cardnumber .form-control {
+	    width: 82%;
+	}
+	#wepay-payment-details .leftcard-column-cardnumber {
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+	#wepay-payment-details #cardType {
+		width: 255px;
+	}
+	#wepay-payment-details #cardType.choosenCardType {
+		width: auto;
+	}
+	#wepay-payment-details .leftcard-column-two,
+	#wepay-payment-details .leftcard-column-three {
+		display: flex;
+		width: 50% !important;
+	}
+	
+	#wepay-payment-details .leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn), .leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	    width: 72% !important;
+	    float: left;
+	}
+	
 	img.new-homeBnner-padding{
 	    padding: 77px 0 0 0;
 	}

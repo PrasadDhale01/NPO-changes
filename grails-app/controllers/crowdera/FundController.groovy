@@ -644,12 +644,17 @@ class FundController {
             conId = transaction.contribution.id
             frId = fundraiser?.id
             redirect(controller: 'fund', action: 'acknowledge' , params: [cb: transaction.contribution.id, fr:fundraiser.id, projectTitle: projectTitle])
-        } else {
+        
+		} else if (transactionId != null) {
             def contributionId = projectService.getUserContributionDetails(project, reward, amount, transactionId, users, fundraiser, params,  address, request)
             conId = contributionId
             frId = fundraiser?.id
             redirect(controller: 'fund', action: 'acknowledge' , params: [cb: contributionId, fr:fundraiser.id, projectTitle: projectTitle])
-        }
+        
+		} else {
+			log.info("Transaction Failed");
+			render view: 'error', model: [message: 'There was an error charging. Don\'t worry, your card was not charged.']
+		}
     }
 
     def paypalurl(def params, User fundraiser, User user){
@@ -1260,9 +1265,7 @@ class FundController {
 				wepayAmount = Double.parseDouble(params.amount)
 				feePayer = "payee"
 			}
-			println "appFee == "+ appFee
-			println "wepayAmount =="+ wepayAmount
-			println "wepay charge == "+ (Double.parseDouble(params.amount) * percentageCharge) 
+			// println "wepay charge == "+ ((Double.parseDouble(params.amount) * percentageCharge) + fixedWepayCharge) 
 			
 			def checkoutObj = campaignService.chargeWepayCard(project, creditCardId, wepayAmount, feePayer, appFee);
 			
@@ -1300,7 +1303,7 @@ class FundController {
 			frId = fundraiser?.id
 			redirect(controller: 'fund', action: 'acknowledge' , params: [cb: transaction.contribution.id, fr:fundraiser.id, projectTitle: projectTitle])
 		
-		} else {
+		} else if (transactionId != null) {
 			def contributionId = campaignService.getWepayTransactionDetails(transactionId, request, session, fundraiser)
 			if (contributionId && fundraiser) {
 				
@@ -1310,6 +1313,9 @@ class FundController {
 				log.info("WePay Transaction Failed");
 				render view: 'error', model: [message: 'There was an error charging. Don\'t worry, your card was not charged. Please try again.']
 			}
+		} else {
+			log.info("WePay Transaction Failed");
+			render view: 'error', model: [message: 'There was an error charging. Don\'t worry, your card was not charged. Please try again.']
 		}
 	}
 

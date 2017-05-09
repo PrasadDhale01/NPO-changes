@@ -1561,9 +1561,9 @@ $(function() {
     		
     		$.ajax({
                 type        :'post',
-                url         :$("#b_url").val()+'/project/ContributorNames',
+                url         :$("#b_url").val()+'project/ContributorNames',
                 data        :formData,
-                processData : false,  
+                processData : false,
                 contentType : false ,
                 success     : function(data) {
                 	var jsonData = jQuery.parseJSON(JSON.stringify(data)).data;

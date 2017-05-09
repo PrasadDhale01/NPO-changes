@@ -53,7 +53,6 @@
 		$("#transferProject").click(function(){
 			var username= $("#designeemail").val();
 			var projectid =$("#modalprojectId").val();
-			alert(username + "2"+ projectid);
 			$.ajax({
 			     url: $("#b_url").val()+'project/ownershiptransfer',
 			     type: 'POST',

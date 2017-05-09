@@ -777,10 +777,10 @@
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <g:if test="${project.beneficiary.telephone}">
-                                            <input type="tel" id="telephone" maxlength="16" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone" value="${project.beneficiary.telephone}">
+                                            <input type="tel" id="telephone" maxlength="16" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile personalTelephone" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone" value="${project.beneficiary.telephone}">
                                         </g:if>
                                         <g:else>
-                                            <input type="tel" id="telephone" maxlength="16" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone">
+                                            <input type="tel" id="telephone" maxlength="16" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile personalTelephone" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone">
                                         </g:else>
                                     </div>
                                 </div>

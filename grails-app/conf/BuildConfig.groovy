@@ -27,6 +27,8 @@ grails.project.dependency.resolution = {
     inherits("global") {
         // specify dependency exclusions here; for example, uncomment this to disable ehcache:
         // excludes 'ehcache'
+		excludes 'org.apache.httpcomponents:httpclient:4.2.1'
+		excludes 'org.apache.httpcomponents:httpcore:4.2.1'
     }
     log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
@@ -53,6 +55,9 @@ grails.project.dependency.resolution = {
         runtime 'mysql:mysql-connector-java:5.1.27'
         runtime 'org.springframework:spring-test:3.1.0.RELEASE'
 		runtime 'ar.com.fdvs:DynamicJasper-core-fonts:1.0'
+		
+		build 'org.apache.httpcomponents:httpclient:4.5.3'
+		runtime 'org.apache.httpcomponents:httpclient:4.5.3'
 		
     }
 

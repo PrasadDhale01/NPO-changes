@@ -125,7 +125,7 @@
     <div class="blacknwhite tile">
         <g:if test="${iscampaignAdmin || isAdmin}">
 <%--            <g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">--%>
-            <g:link mapping="managecampaign" params="[country_code: project.country.countryCode,category : project.fundsRecievedBy, id: project.id, title:project.title]">
+            <g:link target="_blank" mapping="managecampaign" params="[country_code: project.country.countryCode,category : project.fundsRecievedBy, id: project.id, title:project.title]">
                 <div class="imageWithTag">
                     <div class="under">
                         <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
@@ -134,7 +134,7 @@
             </g:link>
         </g:if>
         <g:else>
-             <g:link controller="project" action="showCampaign" params="[country_code: project.country.countryCode,title:project.title,id: project.id,fr:username,category:project.fundsRecievedBy.toLowerCase()]">
+             <g:link target="_blank" controller="project" action="showCampaign" params="[country_code: project.country.countryCode,title:project.title,id: project.id,fr:username,category:project.fundsRecievedBy.toLowerCase()]">
                 <div class="imageWithTag">
                     <div class="under">
                         <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
@@ -146,12 +146,12 @@
 
     <div class="caption project-title project-story-span tile-min-height">
         <g:if test="${iscampaignAdmin || isAdmin}">
-            <g:link mapping="managecampaign" params="[country_code: project.country.countryCode,category : project.fundsRecievedBy, id: project.id, title:project.title]">
+            <g:link target="_blank" mapping="managecampaign" params="[country_code: project.country.countryCode,category : project.fundsRecievedBy, id: project.id, title:project.title]">
                 ${project.title.toUpperCase()}
             </g:link>
         </g:if>
         <g:else>
-            <g:link controller="project" action="showCampaign" params="[country_code: project.country.countryCode,title:project.title,id: project.id,fr:username,category:project.fundsRecievedBy.toLowerCase()]">
+            <g:link target="_blank" controller="project" action="showCampaign" params="[country_code: project.country.countryCode,title:project.title,id: project.id,fr:username,category:project.fundsRecievedBy.toLowerCase()]">
                 ${project.title.toUpperCase()}
             </g:link>
         </g:else>
@@ -212,6 +212,11 @@
     
     <div class="modal-footer tile-footer user-goal user-footer-icon">
         <div class="row">
+            <g:if test="${isAdmin}">
+                <button class="projectedit close pull-right ownershipTransfer" data-projectid="${project.id}" data-toggle="modal" data-target="#myModal">
+                        <i class="glyphicon glyphicon-transfer" ></i>
+                </button>
+            </g:if>
             <g:if test="${!project.validated || username.equals('campaignadmin@crowdera.co') || isAdmin}">
                 <g:form controller="project" action="projectdelete" method="post" params="[country_code: project.country.countryCode,id: project.id]" id="${project.id}">
                     <button class="projectedit close pull-right" id="projectdelete"

@@ -31,12 +31,12 @@
 
         
         <div class="blacknwhite">
-            <g:link controller="project" action="validateShowCampaign" id="${project.id}" title="${project.title}">
+            <g:link target="_blank" controller="project" action="validateShowCampaign" id="${project.id}" title="${project.title}">
                 <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
             </g:link>
         </div>
 	<div class="caption project-title project-story-span tile-min-height">
-        <g:link controller="project" action="validateShowCampaign" id="${project.id}" title="${project.title}">
+        <g:link target="_blank" controller="project" action="validateShowCampaign" id="${project.id}" title="${project.title}">
               ${project.title.toUpperCase()}
         </g:link>
         <div class="campaign-title-margin-bottom"></div>

@@ -24,7 +24,7 @@
                         <g:select class="selectpicker text-center" name="sortByOptions" id="sortByOptions" from="${sortByOptions}" optionKey="value" optionValue="value" value="" onchange="getcampaignsort()"/>
                     </div>
                     <div class="pull-right dashboard-sortByOptions">
-                        <g:if test="${environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'}">
+                        <g:if test="${'in'.equalsIgnoreCase(country_code)}">
                             <g:select class="selectpicker text-center" name="countryOpts" id="countryOpts" from="${countryOpts}" optionKey="value" optionValue="value" value="India" onchange="getcampaignsortByCountry()"/>
                         </g:if>
                         <g:else>
@@ -53,5 +53,11 @@
     <div class="loadinggif text-center" id="loading-gif">
         <img src="//s3.amazonaws.com/crowdera/documents/loading.gif" alt="'loadingImage'" id="loading-gif-img">
     </div>
+    
+    <script type="text/javascript">
+		$(document).ready(function(){
+			$('#sortByOptions, #countryOpts').change();
+		});
+    </script>
 </body>
 </html>

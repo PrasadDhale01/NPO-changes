@@ -1167,7 +1167,7 @@ $(function() {
         }else{
             $.ajax({
                  type:'post',
-                 url:$("#b_url").val()+'/project/importSocialContacts',
+                 url:$("#b_url").val()+'project/importSocialContacts',
                  data:'socialProvider='+socialProvider+'&socialContact='+socialContact,
                  success: function(data){
 	                 if(data){

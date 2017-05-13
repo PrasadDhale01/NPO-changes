@@ -304,7 +304,7 @@
 					                        <div class="paymentErrorMsg"></div>
 					                        <input type="hidden" id="isValidDate" value="true"/>
 					                        
-					                        <input type="hidden" name="postal_code" id="postal_code" value="94025">
+					                        <input type="hidden" name="uniqueId" id="uniqueId" value="${uniqueId}"/>
 					                    </div>
 					                    
 					                    <div class="col-xsl-0 col-md-4 col-xs-12 col-sm-4 box fund-campaign-tile-center-align eazywizard-bottom-margin">
@@ -400,11 +400,28 @@
 			            
 			            var creditCardId = data.credit_card_id;
 			            var creditCardState = data.state;
-			            
+			            var formData = {
+			            		'creditCardId' : creditCardId,
+			            		'amount' : $("#amount").val(),
+			            		'projectId' : $('#projectId').val(),
+			            		'wepayAmount': $("#wepayAmount").val(),
+			            		'payer': $("#payer").is(":checked"),
+			            		'mobileNumber' : $("#contributorMobile").val(),
+			            		'address1' : $("#contributorStreet1").val(),
+			            		'address2' : $("#contributorStreet2").val(),
+			            		'city' : $("#contributorCity").val(),
+			            		'zip' : $("#contributorZip").val(),
+			            		'state': $("#otherStateName").val(),
+			            		'country' : $("#wepayCountry").val(),
+			            		'contributorName' : $("#wepayContributorName").val(),
+			            		'contributorEmail' : $("#wepayContributorEmail").val(),
+			            		'uniqueId' : $("#uniqueId").val()
+			            	}
+		            	
 			            $.ajax({
 				            type:'post',
 				            url: $('#url').val()+'/fund/chargeWepayCard',
-				            data:'creditCardId='+creditCardId+'&amount='+$("#amount").val()+'&projectId='+$('#projectId').val()+'&wepayAmount='+$("#wepayAmount").val()+'&payer='+$("#payer").is(":checked"),
+				            data: formData,
 				            success: function(response) {
 				            	var jsonObj = JSON.parse(response);
 				            	$('#loading-gif').hide();

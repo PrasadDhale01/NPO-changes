@@ -126,11 +126,14 @@ class FundController {
 					def percentageCharge = 0.0275  // Percentage Wepay Charge (2.31 %) + Percentage APP charge (0.44%)
 					def fixedWepayCharge = 0.3     // Fixed 30 cents charge by wepay
 					
+					def uniqueId = UUID.randomUUID().toString()
+					log.info("wepay checkout unique Id === "+ uniqueId)
+					
 					render view: 'fund/wepayCheckout', model: [team:team, project: project, state:indiaStates, country:country,
 						perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
 						vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, citrusCardTypes: cardTypes, title: title,currentMonthByWeek:currentMonthByWeek,
 						month: month, year: year, defaultCountry: defaultCountry, isTaxReceipt: isTaxReceipt, currentYearByWeek:currentYearByWeek,country_code:country_code,
-						percentageCharge: percentageCharge, fixedWepayCharge: fixedWepayCharge]
+						percentageCharge: percentageCharge, fixedWepayCharge: fixedWepayCharge, uniqueId : uniqueId]
 					
 				} else {
 					render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo,country_code:country_code]
@@ -645,16 +648,13 @@ class FundController {
             frId = fundraiser?.id
             redirect(controller: 'fund', action: 'acknowledge' , params: [cb: transaction.contribution.id, fr:fundraiser.id, projectTitle: projectTitle])
         
-		} else if (transactionId != null) {
+		} else {
             def contributionId = projectService.getUserContributionDetails(project, reward, amount, transactionId, users, fundraiser, params,  address, request)
             conId = contributionId
             frId = fundraiser?.id
             redirect(controller: 'fund', action: 'acknowledge' , params: [cb: contributionId, fr:fundraiser.id, projectTitle: projectTitle])
         
-		} else {
-			log.info("Transaction Failed");
-			render view: 'error', model: [message: 'There was an error charging. Don\'t worry, your card was not charged.']
-		}
+		} 
     }
 
     def paypalurl(def params, User fundraiser, User user){
@@ -1267,7 +1267,7 @@ class FundController {
 			}
 			// println "wepay charge == "+ ((Double.parseDouble(params.amount) * percentageCharge) + fixedWepayCharge) 
 			
-			def checkoutObj = campaignService.chargeWepayCard(project, creditCardId, wepayAmount, feePayer, appFee);
+			def checkoutObj = campaignService.chargeWepayCard(project, creditCardId, wepayAmount, feePayer, appFee, params);
 			
 			if (checkoutObj.checkoutId != 0 && checkoutObj.status == 200) {
 				
@@ -1303,7 +1303,7 @@ class FundController {
 			frId = fundraiser?.id
 			redirect(controller: 'fund', action: 'acknowledge' , params: [cb: transaction.contribution.id, fr:fundraiser.id, projectTitle: projectTitle])
 		
-		} else if (transactionId != null) {
+		} else {
 			def contributionId = campaignService.getWepayTransactionDetails(transactionId, request, session, fundraiser)
 			if (contributionId && fundraiser) {
 				
@@ -1313,10 +1313,7 @@ class FundController {
 				log.info("WePay Transaction Failed");
 				render view: 'error', model: [message: 'There was an error charging. Don\'t worry, your card was not charged. Please try again.']
 			}
-		} else {
-			log.info("WePay Transaction Failed");
-			render view: 'error', model: [message: 'There was an error charging. Don\'t worry, your card was not charged. Please try again.']
-		}
+		} 
 	}
 
 }

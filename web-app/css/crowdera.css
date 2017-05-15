@@ -8719,6 +8719,38 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	
+	/* Start of CSS for Wepay Checkout page */
+	
+	#wepay-payment-details .wepay-rightcard-email .form-control {
+	    float: left;
+	    height: 36px;
+	    width: 85%;
+	}
+	#wepay-payment-details img#cardType {
+	    width: 265px;
+	}
+	#wepay-payment-details img#cardType.choosenCardType {
+	    width: auto;
+	}
+	#wepay-payment-details .leftcard-column-amount .form-control {
+	    float: left;
+	    height: 36px;
+	    width: 70%;
+	}
+	#wepay-payment-details .leftcard-column-cardnumber .form-control {
+	    float: left;
+	    height: 36px;
+	    width: 85%;
+	}
+	#wepay-payment-details .leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn), .leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	    width: 72% !important;
+	    float: left;
+	}
+	
+	/* End of CSS for Wepay Checkout page */
+
+	
 	div.sohna-hover{
 	    left: 132px !important;
 	}
@@ -10783,6 +10815,40 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	
+	/* Start of CSS for Wepay Checkout page */
+	#wepay-payment-details #wepayContributorName {
+	    float: left;
+	    height: 36px;
+	    width: 89%;
+	}
+	#wepay-payment-details .wepay-rightcard-email .form-control {
+	    float: left;
+	    height: 36px;
+	    width: 87%;
+	}
+	#wepay-payment-details img#cardType {
+	    width: 300px;
+	}
+	#wepay-payment-details img#cardType.choosenCardType {
+	    width: auto;
+	}
+	#wepay-payment-details .leftcard-column-amount .form-control {
+	    float: left;
+	    height: 36px;
+	    width: 70%;
+	}
+	#wepay-payment-details .leftcard-column-cardnumber .form-control {
+	    float: left;
+	    height: 36px;
+	    width: 85%;
+	}
+	#wepay-payment-details .leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn), .leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	    width: 72% !important;
+	    float: left;
+	}
+	
+	/* End of CSS for Wepay Checkout page */
 	 span.donation-font{
 	     font-size: 14px !important;
 	 }
@@ -11207,7 +11273,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 
-@media only screen and (max-width: 767px){
+@media only screen and (max-width: 767px) {
+	
 	span.btnSpann {
 	    font-size: 14px;
 	}
@@ -13200,6 +13267,41 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
+	
+	#wepay-payment-details .leftcard-column-one,
+	#wepay-payment-details .wepay-rightcard-email,
+	#wepay-payment-details .leftcard-column-amount,
+	#wepay-payment-details .leftcard-column-cardnumber,
+	#wepay-payment-details .wepay-rightcard-column  {
+	    width: 100% !important;
+	}
+	#wepay-payment-details .leftcard-column-one .form-control,
+	#wepay-payment-details .wepay-rightcard-email .form-control,
+	#wepay-payment-details .leftcard-column-amount .form-control,
+	#wepay-payment-details .leftcard-column-cardnumber .form-control {
+	    width: 82%;
+	}
+	#wepay-payment-details .leftcard-column-cardnumber {
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+	#wepay-payment-details #cardType {
+		width: 255px;
+	}
+	#wepay-payment-details #cardType.choosenCardType {
+		width: auto;
+	}
+	#wepay-payment-details .leftcard-column-two,
+	#wepay-payment-details .leftcard-column-three {
+		display: flex;
+		width: 50% !important;
+	}
+	
+	#wepay-payment-details .leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn), .leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	    width: 72% !important;
+	    float: left;
+	}
+	
 	img.new-homeBnner-padding{
 	    padding: 77px 0 0 0;
 	}

@@ -8,6 +8,11 @@
     <r:require modules="fundcss" />
     <title>Crowdera- Contribute</title>
     
+    <script>
+    	window.percentageCharge = "${percentageCharge}"
+        window.fixedWepayCharge = "${fixedWepayCharge}"
+    </script>
+    
 </head>
 <body>
     <div class="feducontent">
@@ -241,14 +246,14 @@
 				                    <h3 class="panel-title">Card Details</h3>
 				                </div>
 				                <div class="panel-body">
-					                <div class="col-md-offset-1 col-md-10 col-sm-offset-0 col-sm-12 col-xs-12 col-xs-offset-0">
+					                <div class="col-md-offset-1 col-md-10 col-sm-offset-0 col-sm-12 col-xs-12 col-xs-offset-0" id="wepay-payment-details">
 					                    <div class="form-group">
-					                        <div class="leftcard-column">
+					                        <div class="leftcard-column-one">
 					                            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
 					                            <input type="text" class="card-number form-control all-place" placeholder="Card Holder Name" name="wepayContributorName" id="wepayContributorName" maxlength="30" required>
 					                            <div class="clear-both"></div>
 					                        </div>
-					                        <div class="rightcard-column">
+					                        <div class="wepay-rightcard-email">
 					                            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
 					                            <input type="text" class="form-control all-place" placeholder="Card Holder Email" name="wepayContributorEmail" id="wepayContributorEmail" maxlength="30" required>
 					                            <div class="clear-both"></div>
@@ -259,12 +264,18 @@
 					                    <div class="clear"></div>
 					                    
 					                    <div class="form-group">
-					                        <div class="leftcard-column">
+					                        <div class="leftcard-column-amount">
+					                            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
+					                            <input type="text" class="wepayAmount form-control all-place" placeholder="Amount" name="wepayAmount" id="wepayAmount" data-stripe="number" readonly required>
+					                            <div class="clear-both"></div>
+					                        </div>
+					                        
+					                        <div class="leftcard-column-cardnumber">
 					                            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
 					                            <input type="text" class="card-number form-control all-place" placeholder="Card Number" name="wepayccNumber" id="cc-number" data-stripe="number" required>
 					                            <div class="clear-both"></div>
 					                        </div>
-					                        <div class="rightcard-column">
+					                        <div class="wepay-rightcard-column">
 					                            <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/4479bc5f-f890-4cf4-8429-567ed2a1b58e.png" alt="card" id="cardType">
 					                            <div class="clear-both"></div>
 					                        </div>
@@ -284,7 +295,7 @@
 					                                <g:select class="selectpicker card-number-width" name="cc-month" id="cc-month" from="${month}"  value="${currentMonthByWeek}" optionKey="key" data-stripe="exp-month" optionValue="value"/>
 					                            <div class="clear"></div>   
 					                        </div>
-					                        <div class="leftcard-column-three">
+					                        <div class="leftcard-column-three card-year-width">
 					                        <span class="input-group-addon card-details"><span class="glyphicon glyphicon-calendar"></span> </span>
 					                                <g:select class="selectpicker card-number-width" name="cc-year" id="cc-year" from="${year}" value="${currentYearByWeek}" optionKey="key" data-stripe="exp-year" optionValue="value"/>
 					                            <div class="clear"></div>
@@ -293,11 +304,17 @@
 					                        <div class="paymentErrorMsg"></div>
 					                        <input type="hidden" id="isValidDate" value="true"/>
 					                        
-					                        <input type="hidden" name="postal_code" id="postal_code" value="94025">
+					                        <input type="hidden" name="uniqueId" id="uniqueId" value="${uniqueId}"/>
 					                    </div>
 					                    
-					                    <div class="col-xsl-0 col-md-4 col-xs-12 box fund-campaign-tile-center-align eazywizard-bottom-margin">
-					                    
+					                    <div class="col-xsl-0 col-md-4 col-xs-12 col-sm-4 box fund-campaign-tile-center-align eazywizard-bottom-margin">
+					                    	
+					                    	<div class="term-of-use-center-alignment ">
+	                                            <label class="checkbox control-label payer-label">
+	                                                <input type="checkbox" name="payer" id="payer">Pay App Fee
+	                                            </label>
+	                                        </div>
+
 	                                        <div class="form-group term-of-use-center-alignment">
 	                                            <label class="checkbox control-label">
 	                                                <input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse">By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
@@ -383,11 +400,28 @@
 			            
 			            var creditCardId = data.credit_card_id;
 			            var creditCardState = data.state;
-			            
+			            var formData = {
+			            		'creditCardId' : creditCardId,
+			            		'amount' : $("#amount").val(),
+			            		'projectId' : $('#projectId').val(),
+			            		'wepayAmount': $("#wepayAmount").val(),
+			            		'payer': $("#payer").is(":checked"),
+			            		'mobileNumber' : $("#contributorMobile").val(),
+			            		'address1' : $("#contributorStreet1").val(),
+			            		'address2' : $("#contributorStreet2").val(),
+			            		'city' : $("#contributorCity").val(),
+			            		'zip' : $("#contributorZip").val(),
+			            		'state': $("#otherStateName").val(),
+			            		'country' : $("#wepayCountry").val(),
+			            		'contributorName' : $("#wepayContributorName").val(),
+			            		'contributorEmail' : $("#wepayContributorEmail").val(),
+			            		'uniqueId' : $("#uniqueId").val()
+			            	}
+		            	
 			            $.ajax({
 				            type:'post',
 				            url: $('#url').val()+'/fund/chargeWepayCard',
-				            data:'creditCardId='+creditCardId+'&amount='+$("#amount").val()+'&projectId='+$('#projectId').val(),
+				            data: formData,
 				            success: function(response) {
 				            	var jsonObj = JSON.parse(response);
 				            	$('#loading-gif').hide();

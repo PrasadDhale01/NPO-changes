@@ -297,15 +297,7 @@
                            </div>
                         </div>
                     </div>
-                    <%--<div class="col-sm-12">
-                        <div class="form-group">
-                            <label class="text col-sm-3 moveContribution">Contribution(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
-                            <div class="col-sm-9">
-                                <g:select from="" class="form-control contributionAmount" name="contributionAmount" id="contributionAmt" noSelection="['':'Contribution']"/><br>
-                            </div>
-                        </div>
-                    </div>
-                    --%>
+                    
                     <div class="clear"></div>
                 </div>
                 <div class="modal-footer">

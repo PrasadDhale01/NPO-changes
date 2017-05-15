@@ -444,19 +444,24 @@ class CampaignService {
 	}
 	
 	
-	def getWePayAccountId(String accessToken, String name, String description) {
+	def getWePayAccountId(String accessToken, String name, String email, Project project) {
 		/*def name = "crowdfunding";
         def description = "this is a test app";*/
 		
 		def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
         def url = wepayBaseUrl +"/account/create"
+		String projectTitle = project.title;
 		
         HttpClient httpclient = new DefaultHttpClient()
         HttpPost httppost = new HttpPost(url)
 		/*STAGE_5fe2214cb89aecdb2c567d5fd58080d048cc0c5afad52a65738101beab47d94c*/
         httppost.setHeader("Authorization","Bearer "+accessToken);
-        StringEntity input = new StringEntity("{\"name\": \"${name}\",\"description\": \"${description}\"}")
-
+		
+		def receiveTime = 1367958263;
+		
+		def rbits = "[{\"receive_time\": ${receiveTime}, \"type\": \"person\", \"source\": \"user\", \"properties\": {\"name\": \"${name}\"}},{\"receive_time\": ${receiveTime}, \"type\": \"email\", \"source\": \"user\", \"properties\": {\"email\": \"${email}\"}}, {\"receive_time\": ${receiveTime}, \"type\": \"phone\", \"source\": \"user\", \"properties\": {\"phone\": \"${project.beneficiary.telephone}\", \"phone_type\" : \"mobile\"}}, {\"receive_time\": ${receiveTime}, \"type\": \"fundraising_campaign\", \"source\": \"user\", \"properties\": {\"description\": \"${projectTitle}\"}}, {\"receive_time\": ${receiveTime}, \"type\": \"business_description\", \"source\": \"user\", \"properties\": {\"business_description\": \"${project.description}\"}}]";
+		
+        StringEntity input = new StringEntity("{\"name\": \"${name}\",\"description\": \"${projectTitle}\", \"rbits\": ${rbits}}")
         input.setContentType("application/json")
         httppost.setEntity(input)
 
@@ -604,7 +609,7 @@ class CampaignService {
 	}
 	
 	
-	def chargeWepayCard(Project project, def creditCardId, def amount) {
+	def chargeWepayCard(Project project, def creditCardId, def amount, def feePayer, def appFee, def params) {
 		
 		def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
 		def account_id = project.wepayAccountId;
@@ -614,6 +619,7 @@ class CampaignService {
 		
 		def creditCard = "{\"id\": ${creditCardId}}"
 		def payment_method = "{\"type\" : \"credit_card\", \"credit_card\": ${creditCard}}"
+		def feeStructure = "{\"app_fee\": ${appFee}, \"fee_payer\" : \"${feePayer}\"}"
 		
 		def url = wepayBaseUrl+"/checkout/create"
 		HttpClient httpclient = new DefaultHttpClient()
@@ -621,12 +627,13 @@ class CampaignService {
 		
 		// npo_information -- Information Structure  If the payee is a non profit entity, 
 		// the structure contains information about non profit organization. Otherwise, this is null
+		def receiveTime = 1367958263;
+		def payerRbits = "[{\"receive_time\": ${receiveTime}, \"type\": \"phone\", \"source\": \"user\", \"properties\": {\"phone\": \"${params.mobileNumber}\"}}, {\"receive_time\": ${receiveTime}, \"type\": \"email\",\"source\": \"user\",\"properties\": {\"email\": \"${params.contributorEmail}\"}}, {\"receive_time\":${receiveTime},\"type\":\"person\",\"source\":\"user\",\"properties\":{\"name\":\"${params.contributorName}\"}}, {\"receive_time\": ${receiveTime},\"type\": \"address\",\"source\": \"user\",\"properties\": {\"address\": {\"address1\": \"${params.address1}\",\"address2\": \"${params.address2}\",\"city\": \"${params.city}\",\"state\": \"${params.state}\",\"zip\": \"${params.zip}\",\"country\": \"${params.country}\"} }}]"
 		
-		String stringEntity = "{\"account_id\": ${account_id},\"short_description\": \"${short_description}\" ,\"type\": \"${type}\", \"amount\": \"${amount}\", \"currency\" : \"${currency}\", \"auto_release\" : true, \"payment_method\" : ${payment_method}}"
-		
+		String stringEntity = "{\"account_id\": ${account_id},\"short_description\": \"${short_description}\" ,\"type\": \"${type}\", \"amount\": \"${amount}\", \"currency\" : \"${currency}\", \"auto_release\" : true, \"payment_method\" : ${payment_method}, \"unique_id\" : \"${params.uniqueId}\", \"fee\": ${feeStructure}, \"payer_rbits\" : ${payerRbits}}"
+ 		
 		httppost.setHeader("Authorization","Bearer "+ project.wepayAccessToken);
 		StringEntity input = new StringEntity(stringEntity)
-		
 		input.setContentType("application/json")
 		httppost.setEntity(input)
 		
@@ -643,9 +650,7 @@ class CampaignService {
 		        def slurper = new JsonSlurper()
 		       
 				json = slurper.parseText(jsonString)
-		        /*println "result  ===== "+ json*/
 				checkoutId = json.checkout_id
-				/*log.info("Transaction status = "+json)*/
 		    }
 		}
 	    

@@ -223,13 +223,69 @@ div.citrusfundbody .btn.btn-info {
 .pannumberdiv {
 	display: none;
 }
-#billingInformation{display:none;}
-#citrusCardDetails{display:none;}
-.citrusStateDiv .btn:first-child{margin-left:0px !important;}
 
-#wepayContributorEmail {
-	width: 80% !important;
+#billingInformation{
+	display:none;
 }
+#citrusCardDetails { 
+	display:none;
+}
+.citrusStateDiv .btn:first-child {
+	margin-left:0px !important;
+}
+
 .paymentErrorMsg {
 	color: #f04124;
+}
+
+label.payer-label {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.wepay-rightcard-email .input-group-addon, 
+.leftcard-column-amount .input-group-addon, 
+.leftcard-column-cardnumber .input-group-addon {
+    width: 40px;
+    height: 36px;
+    float: left;
+}
+#wepay-payment-details .leftcard-column-one,
+#wepay-payment-details .wepay-rightcard-email {
+    width: 50% !important;
+    float: left;
+}
+#wepay-payment-details .wepay-rightcard-email .form-control {
+    float: left;
+    height: 36px;
+    width: 89%;
+}
+#wepay-payment-details .leftcard-column-amount {
+	width: 20%;
+	float: left;
+}
+#wepay-payment-details .leftcard-column-amount .form-control {
+    float: left;
+    height: 36px;
+    width: 72%;
+}
+#wepay-payment-details .leftcard-column-cardnumber, .wepay-rightcard-column {
+	width: 40%;
+	float: left;
+}
+#wepay-payment-details .leftcard-column-cardnumber .form-control {
+    float: left;
+    height: 36px;
+    width: 85%;
+}
+#wepay-payment-details .leftcard-column-two {
+	display: flex;
+	width: 25% !important;
+}
+#wepay-payment-details .leftcard-column-three {
+    display: flex;
+    width: 24% !important;
+}
+#wepay-payment-details .leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn), .leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 72% !important;
+    float: left;
 }

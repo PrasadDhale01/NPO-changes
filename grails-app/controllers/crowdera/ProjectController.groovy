@@ -3175,7 +3175,7 @@ class ProjectController {
 				def wePayObj = campaignService.registerUser(params.email, params.firstName, params.lastName)
 				
 				if (wePayObj.status == 200) {
-					def accountId = campaignService.getWePayAccountId(wePayObj.accessToken, params.firstName, project.title)
+					def accountId = campaignService.getWePayAccountId(wePayObj.accessToken, params.firstName, params.email, project)
 					
 					log.info("WePay User AccountId = "+accountId);
 					

@@ -123,10 +123,17 @@ class FundController {
 					
 					def indiaStates = projectService.getIndianState()
 					
+					def percentageCharge = 0.0275  // Percentage Wepay Charge (2.31 %) + Percentage APP charge (0.44%)
+					def fixedWepayCharge = 0.3     // Fixed 30 cents charge by wepay
+					
+					def uniqueId = UUID.randomUUID().toString()
+					log.info("wepay checkout unique Id === "+ uniqueId)
+					
 					render view: 'fund/wepayCheckout', model: [team:team, project: project, state:indiaStates, country:country,
 						perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
 						vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo, citrusCardTypes: cardTypes, title: title,currentMonthByWeek:currentMonthByWeek,
-						month: month, year: year, defaultCountry: defaultCountry, isTaxReceipt: isTaxReceipt, currentYearByWeek:currentYearByWeek,country_code:country_code]
+						month: month, year: year, defaultCountry: defaultCountry, isTaxReceipt: isTaxReceipt, currentYearByWeek:currentYearByWeek,country_code:country_code,
+						percentageCharge: percentageCharge, fixedWepayCharge: fixedWepayCharge, uniqueId : uniqueId]
 					
 				} else {
 					render view: 'fund/index', model: [team:team, project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo,country_code:country_code]
@@ -640,12 +647,14 @@ class FundController {
             conId = transaction.contribution.id
             frId = fundraiser?.id
             redirect(controller: 'fund', action: 'acknowledge' , params: [cb: transaction.contribution.id, fr:fundraiser.id, projectTitle: projectTitle])
-        } else {
+        
+		} else {
             def contributionId = projectService.getUserContributionDetails(project, reward, amount, transactionId, users, fundraiser, params,  address, request)
             conId = contributionId
             frId = fundraiser?.id
             redirect(controller: 'fund', action: 'acknowledge' , params: [cb: contributionId, fr:fundraiser.id, projectTitle: projectTitle])
-        }
+        
+		} 
     }
 
     def paypalurl(def params, User fundraiser, User user){
@@ -754,7 +763,7 @@ class FundController {
         render json;
     }
 
-    def payByPayUmoney(){
+    def payByPayUmoney() {
         def project= Project.get(params.projectId)
         def user = User.get(params.userId)
         def reward = Reward.get(params.rewardId)
@@ -1240,14 +1249,31 @@ class FundController {
 		
 		if (project) {
 			def creditCardId = params.creditCardId
-			def amount = params.amount
-			def checkoutObj = campaignService.chargeWepayCard(project, creditCardId, amount);
+			
+			def feePayer;
+			def appFee;
+			def wepayAmount;
+			def percentageCharge = 0.0231  // Percentage Wepay Charge (2.31 %) + Percentage APP charge (0.44%)
+			def fixedWepayCharge = 0.3     // Fixed 30 cents charge by wepay
+			def percentageAppCharge = 0.0044
+			
+			appFee = Double.parseDouble(params.amount) * percentageAppCharge
+			if (params.payer == true || params.payer == "true") {
+				feePayer = "payer"
+				wepayAmount = Double.parseDouble(params.amount) + appFee + (Double.parseDouble(params.amount) * percentageCharge) + fixedWepayCharge
+			} else {
+				wepayAmount = Double.parseDouble(params.amount)
+				feePayer = "payee"
+			}
+			// println "wepay charge == "+ ((Double.parseDouble(params.amount) * percentageCharge) + fixedWepayCharge) 
+			
+			def checkoutObj = campaignService.chargeWepayCard(project, creditCardId, wepayAmount, feePayer, appFee, params);
 			
 			if (checkoutObj.checkoutId != 0 && checkoutObj.status == 200) {
 				
 				log.info("WePay checkoutId (TransactionId) = " +checkoutObj.checkoutId);
 				session['checkoutId'] = checkoutObj.checkoutId;
-				session['contributionAmount'] = amount;
+				session['contributionAmount'] = params.amount;
 				json.put("status", 1)
 				
 			} else {
@@ -1287,7 +1313,7 @@ class FundController {
 				log.info("WePay Transaction Failed");
 				render view: 'error', model: [message: 'There was an error charging. Don\'t worry, your card was not charged. Please try again.']
 			}
-		}
+		} 
 	}
 
 }

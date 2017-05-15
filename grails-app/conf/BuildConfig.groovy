@@ -29,7 +29,7 @@ grails.project.dependency.resolution = {
         // excludes 'ehcache'
 		excludes 'org.apache.httpcomponents:httpclient:4.2.1'
 		excludes 'org.apache.httpcomponents:httpcore:4.2.1'
-		excludes "bouncycastle:bcprov-jdk14:138"
+		//excludes "bouncycastle:bcprov-jdk14:138"
     }
     log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
@@ -60,8 +60,8 @@ grails.project.dependency.resolution = {
 		build 'org.apache.httpcomponents:httpclient:4.5.3'
 		runtime 'org.apache.httpcomponents:httpclient:4.5.3'
 		
-		compile ("org.bouncycastle:bcprov-ext-jdk15on:1.54") { transitive = false }
-		compile ("org.bouncycastle:bcprov-jdk15on:1.54") { transitive = false }
+		//compile ("org.bouncycastle:bcprov-ext-jdk15on:1.54") { transitive = false }
+		//compile ("org.bouncycastle:bcprov-jdk15on:1.54") { transitive = false }
 		
     }
 

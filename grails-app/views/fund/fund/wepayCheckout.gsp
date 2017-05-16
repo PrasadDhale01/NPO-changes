@@ -106,7 +106,7 @@
                                         <h4><b>Powered by WePay</b></h4>
                                     </div>
                                     <div class="col-sm-12 eazywizard-bottom-margin">
-                                        <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/4479bc5f-f890-4cf4-8429-567ed2a1b58e.png" alt="wepay">
+                                        <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/726acbac-26f8-46b2-af69-e811a2a32297.png" alt="wepay">
                                     </div>
                                 </div>
                             
@@ -232,7 +232,7 @@
                             <div class="col-xs-12 eazywizard-bottom-margin">
                                 <div class="col-sm-6">
                                     <h4><b>Powered by WePay</b></h4>
-                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/4479bc5f-f890-4cf4-8429-567ed2a1b58e.png" alt="citrus">
+                                    <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/726acbac-26f8-46b2-af69-e811a2a32297.png" alt="citrus">
                                 </div>
                                 <div class="col-sm-4 pull-right col-xs-offset-0 col-xs-12">
                                     <div class="amount-button"><button type="button" class="btn btn-info btn-lg btn-block" id="btnShippingContinue">Continue</button></div>
@@ -276,7 +276,7 @@
 					                            <div class="clear-both"></div>
 					                        </div>
 					                        <div class="wepay-rightcard-column">
-					                            <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/4479bc5f-f890-4cf4-8429-567ed2a1b58e.png" alt="card" id="cardType">
+					                            <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/726acbac-26f8-46b2-af69-e811a2a32297.png" alt="card" id="cardType">
 					                            <div class="clear-both"></div>
 					                        </div>
 					                        <div class="clear-both"></div>

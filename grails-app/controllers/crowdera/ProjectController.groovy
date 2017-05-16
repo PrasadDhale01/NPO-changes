@@ -418,7 +418,7 @@ class ProjectController {
             boolean isTaxReceipt = campaignService.isTaxReceiptExist(project.id);
 			
 			def wepayAccountStatus;
-			if (project.wepayEmail && project.wepayAccessToken != 0) {
+			if (project.wepayEmail && project.wepayAccountId != 0) {
 				wepayAccountStatus = campaignService.getWepayAccountStatus(project.wepayAccountId, project.wepayAccessToken);
 				log.info("Wepay Account Status = "+ wepayAccountStatus)
 			}
@@ -3172,14 +3172,14 @@ class ProjectController {
 		if (project && params.email && params.firstName && params.lastName) {
 			
 			if (!project.validated) {
-				def wePayObj = campaignService.registerUser(params.email, params.firstName, params.lastName)
+				def wePayObj = campaignService.registerUser(params.email, params.firstName, params.lastName, request)
 				
 				if (wePayObj.status == 200) {
 					def accountId = campaignService.getWePayAccountId(wePayObj.accessToken, params.firstName, params.email, project)
 					
 					log.info("WePay User AccountId = "+accountId);
 					
-					def jsonObj = campaignService.confirmUser(params.email, params.firstName, params.lastName, wePayObj.accessToken)
+					def jsonObj = campaignService.confirmUser(params.email, params.firstName, params.lastName, wePayObj.accessToken, request)
 					json.put("status", 1);
 					json.put("userState", jsonObj.state)
 					

@@ -116,7 +116,7 @@
       <ol class="IN-TW-terms-use-ol-circle">
       	<li>PayPal: https://www.paypal.com/ga/webapps/mpp/ua/useragreement-full</li>
       	<li>PayU: https://www.payumoney.com/termsandconditions.html</li>
-      	<li>WePay: https://go.wepay.com/terms-of-service-us</li>
+      	<li>WePay: https://go.wepay.com/terms-of-service-us; https://go.wepay.com/privacy-policy-us</li>
       	<li>Citrus:</li>
      </ol>
       <li>All donations are at your own risk. Please make sure that when you donate to a given individual, Event, Fundraiser or Nonprofit, you understand how your money will be used. When donating, only donate to those people or entities that you feel comfortable donating to or otherwise know and trust. Crowdera does not warrant that funds will be used for any particular purpose and is not responsible for any misuse of the funds by the Fundraiser.</li>
@@ -127,7 +127,7 @@
       <li>The manner in which transactions are processed is explained below. </li>
     	<ol class="IN-TW-terms-use-ol-circle">
       	<li><b>FirstGiving</b> is a "donor advised fund," a 501(c)(3) organization that collects donations from donors and distributes such donations to 501(c)(3) organizations in good standing with the IRS as recommended by you. Donations made through FirstGiving are governed by the FirstGiving privacy notice and FirstGiving user agreement. All donations made through FirstGiving's credit card processing go directly from the donor to FirstGiving, and then to the Nonprofit of your choice, but FirstGiving will appear on your credit card statement. FirstGiving can be only used as payment processor by American 501(c)(3) registered nonprofits.</li>
-      	<li><b>WePay.</b> When WePay processes a donation through the Platform, the donation will go directly from the donor to the nonprofit's WePay merchant account. Donations will appear on the donor's credit card statement under the name of the nonprofit to whom they donated.</li>
+      	<li><b>WePay.</b> When WePay processes a donation through the Platform, the donation will go directly from the donor to the nonprofit's WePay merchant account. Donations will appear on the donor's credit card statement under the name of the nonprofit to whom they donated https://go.wepay.com/privacy-policy-us.</li>
       	<li><b>Citrus.</b> When you make a donation through Citrus, Crowdera does not collect or store your credit card information. All donations processed through Citrus are disbursed via Citrus or Crowdera as agreed upon with the fundraisers and will be governed by the Citrus User Agreement and Citrus Privacy Notice.</li>
       	<li><b>PayU.</b> When you make a donation through PayU, Crowdera does not collect or store your credit card information. All donations processed through PayU are disbursed via Crowdera as agreed upon with the fundraisers and will be governed by the PayU User Agreement and PayU Privacy Notice.</li>
       </ol>

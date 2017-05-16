@@ -400,15 +400,32 @@ class CampaignService {
 	
 	/*WePay APIS CALL*/
 	
-	def registerUser(String email, String firstName, String lastName) {
+	def getIpAddress(def request) {
+		def currentEnv = projectService.getCurrentEnvironment();
+		if ("staging".equalsIgnoreCase(currentEnv) || "production".equalsIgnoreCase(currentEnv)) {
+			def ipAddress = request.getHeader("HTTP_CF_CONNECTING_IP");
+			log.info("ipAddress == "+ ipAddress)
+			return ipAddress;
+		} else {
+			return "127.0.0.1"
+		}
+	}
+	
+	def getDeviceFromRequestHeader(def request) {
+		def device = request.getHeader("User-Agent");
+		return device;
+	}
+	
+	def registerUser(String email, String firstName, String lastName, def request) {
 		
 		def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
 		def clientId = grailsApplication.config.crowdera.wepay.CLIENT_ID;
 		def clientSecrete = grailsApplication.config.crowdera.wepay.CLIENT_SECRET;
 		
-		def originalId= "192.168.1.1"
-		def device = "Mozilla/5.0"
-		def acceptanceTime = "1209600"
+		def originalId= getIpAddress(request)
+		def device = getDeviceFromRequestHeader(request);
+		
+		def acceptanceTime = System.currentTimeMillis();
 		def scope = "manage_accounts,collect_payments,view_user,send_money,preapprove_payments";
 		def url = wepayBaseUrl+"/user/register"
 		HttpClient httpclient = new DefaultHttpClient()
@@ -470,7 +487,6 @@ class CampaignService {
         def json;
         int status = httpres.getStatusLine().getStatusCode();
 		int accountId;
-        println "status  == "+ status
 
         if (status == 200) {
             /*println "status preview"*/
@@ -528,14 +544,15 @@ class CampaignService {
 	}
 	
 	
-	def getWePayAuthToken(String email, String firstName, String lastName) {
+	def getWePayAuthToken(String email, String firstName, String lastName, def request) {
 		def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
 		def clientId = grailsApplication.config.crowdera.wepay.CLIENT_ID
 		def clientSecrete = grailsApplication.config.crowdera.wepay.CLIENT_SECRET
 		
-		def originalId= "192.168.1.1"
-		def device = "Mozilla/5.0"
-		def acceptanceTime = "1209600"
+		def originalId= getIpAddress(request)
+		def device = getDeviceFromRequestHeader(request);
+		def acceptanceTime = System.currentTimeMillis();
+		
 		def scope = "manage_accounts,collect_payments,view_user,send_money,preapprove_payments";
 		
 		def url = wepayBaseUrl+"/user/register"
@@ -565,10 +582,10 @@ class CampaignService {
 		return accessToken;
 	}
 	
-	def confirmUser(String email, String firstName, String lastName, String accessToken) {
+	def confirmUser(String email, String firstName, String lastName, String accessToken, def request) {
 		
 		if (accessToken == null) {
-			accessToken = getWePayAuthToken(email, firstName, lastName)
+			accessToken = getWePayAuthToken(email, firstName, lastName, request)
 		}
 		
 		if (accessToken != null) {
@@ -590,7 +607,6 @@ class CampaignService {
 			
 			def json
 			int status = httpres.getStatusLine().getStatusCode()
-			println "status  == "+ status
 			
 			if (status == 200) {
 				
@@ -627,7 +643,7 @@ class CampaignService {
 		
 		// npo_information -- Information Structure  If the payee is a non profit entity, 
 		// the structure contains information about non profit organization. Otherwise, this is null
-		def receiveTime = 1367958263;
+		def receiveTime = System.currentTimeMillis();
 		def payerRbits = "[{\"receive_time\": ${receiveTime}, \"type\": \"phone\", \"source\": \"user\", \"properties\": {\"phone\": \"${params.mobileNumber}\"}}, {\"receive_time\": ${receiveTime}, \"type\": \"email\",\"source\": \"user\",\"properties\": {\"email\": \"${params.contributorEmail}\"}}, {\"receive_time\":${receiveTime},\"type\":\"person\",\"source\":\"user\",\"properties\":{\"name\":\"${params.contributorName}\"}}, {\"receive_time\": ${receiveTime},\"type\": \"address\",\"source\": \"user\",\"properties\": {\"address\": {\"address1\": \"${params.address1}\",\"address2\": \"${params.address2}\",\"city\": \"${params.city}\",\"state\": \"${params.state}\",\"zip\": \"${params.zip}\",\"country\": \"${params.country}\"} }}]"
 		
 		String stringEntity = "{\"account_id\": ${account_id},\"short_description\": \"${short_description}\" ,\"type\": \"${type}\", \"amount\": \"${amount}\", \"currency\" : \"${currency}\", \"auto_release\" : true, \"payment_method\" : ${payment_method}, \"unique_id\" : \"${params.uniqueId}\", \"fee\": ${feeStructure}, \"payer_rbits\" : ${payerRbits}}"

@@ -770,26 +770,23 @@ $(function() {
 	        $("#cc-number").rules("add","checkCard");
 	        
 	        $.validator.addMethod("checkCard", function() {
-	            if(type === "visa" || type === "mastercard" || type === "amex" || type === "maestro" || type === "rupay") {
+	            if(type === "visa" || type === "mastercard" || type === "discover") {
 	                return true;
 	            } else {
 	                return false;
 	            }
 	        }, "Please specify the correct card number.");
-		
+	        
+	        
 	        $("#cardType").addClass("choosenCardType");
 	        if (type === "visa") {
 	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/954456ca-1012-4d8d-86e8-f4979ff4b330.png");
-	        } else if(type === "maestro") {
-	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/f0cf3a78-60b5-4224-9b93-092b4046c690.png");
 	        } else if(type === "mastercard") {
 	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/34bfdb13-f40a-4e3f-bcf0-3a83625bda5c.png");
-	        }  else if(type === "rupay") {
-	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/b79da825-40e6-4175-b0a5-5eba978854eb.png");
-	        }  else if(type === "amex") {
-	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/785a4a0d-1c99-4425-82dc-1451d35727fa.png");
+	        } else if(type === "discover") {
+	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/17587dde-d08b-4050-83f4-f925e796d1a8.png");
 	        } else {
-	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/4479bc5f-f890-4cf4-8429-567ed2a1b58e.png");
+	            $("#cardType").attr("src","//s3.amazonaws.com/crowdera/assets/726acbac-26f8-46b2-af69-e811a2a32297.png");
 	            $("#cardType").removeClass("choosenCardType");
 	        }
             

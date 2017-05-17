@@ -403,7 +403,7 @@ class CampaignService {
 	def getIpAddress(def request) {
 		def currentEnv = projectService.getCurrentEnvironment();
 		if ("staging".equalsIgnoreCase(currentEnv) || "production".equalsIgnoreCase(currentEnv)) {
-			def ipAddress = request.getHeader("HTTP_CF_CONNECTING_IP");
+			def ipAddress = request.getHeader("CF-Connecting-IP");
 			log.info("ipAddress == "+ ipAddress)
 			return ipAddress;
 		} else {

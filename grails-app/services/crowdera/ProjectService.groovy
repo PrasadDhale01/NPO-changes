@@ -6958,7 +6958,7 @@ class ProjectService {
 		/**Change the country to 'in' if you want to test the India flow on development ENV*/
 		def currentEnv = getCurrentEnvironment();
 		if( currentEnv == 'development'|| currentEnv == 'test'){
-			country_code  = "us"
+			country_code  = "in"
 		}else if (currentEnv == 'testIndia' || currentEnv==''){
 			country_code = "in"
 		}else if(currentEnv == 'staging') {
@@ -6970,6 +6970,14 @@ class ProjectService {
 		
 	}
 	
+	// ownership transfer
+	def transferownership(project,team,user){
+		team.user = user
+		team.save()
+		project.user = user
+		project.save()
+		
+	}
 	
 	def getTeamList(Project project,def type){
 		

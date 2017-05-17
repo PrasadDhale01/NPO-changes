@@ -265,7 +265,7 @@
 					                    
 					                    <div class="form-group">
 					                        <div class="leftcard-column-amount">
-					                            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
+					                            <span class="input-group-addon"><span class="glyphicon glyphicon-usd"></span> </span>
 					                            <input type="text" class="wepayAmount form-control all-place" placeholder="Amount" name="wepayAmount" id="wepayAmount" data-stripe="number" readonly required>
 					                            <div class="clear-both"></div>
 					                        </div>

@@ -127,7 +127,6 @@ class FundController {
 					def fixedWepayCharge = 0.3     // Fixed 30 cents charge by wepay
 					
 					def uniqueId = UUID.randomUUID().toString()
-					log.info("wepay checkout unique Id === "+ uniqueId)
 					
 					render view: 'fund/wepayCheckout', model: [team:team, project: project, state:indiaStates, country:country,
 						perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,

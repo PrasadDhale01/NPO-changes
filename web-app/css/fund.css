@@ -241,6 +241,7 @@ div.citrusfundbody .btn.btn-info {
 label.payer-label {
 	margin-top: 0px;
 	margin-bottom: 0px;
+	padding-left: 0px;
 }
 .wepay-rightcard-email .input-group-addon, 
 .leftcard-column-amount .input-group-addon, 
@@ -283,9 +284,33 @@ label.payer-label {
 }
 #wepay-payment-details .leftcard-column-three {
     display: flex;
-    width: 24% !important;
+    width: 22% !important;
 }
 #wepay-payment-details .leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn), .leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
     width: 72% !important;
     float: left;
+}
+
+#appChargeDetailsModal .modal-body {
+	overflow: auto;
+} 
+.payeepayer-div #payerPayee {
+	padding: 5px;
+} 
+.col-xs-lr-0 {
+	padding-left : 0px !important;
+	padding-right : 0px !important;
+}
+.col-xs-l-0 {
+	padding-left : 0px !important;
+}
+.payeepayer-text {
+	font-size: 12px;
+	color: #01bbd2;
+}
+.payeepayer-div {
+	margin-bottom: 5px;
+}
+.payerpayee_parent {
+	width: 51% !important;
 }

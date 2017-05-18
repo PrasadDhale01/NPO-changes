@@ -265,7 +265,7 @@
 					                    
 					                    <div class="form-group">
 					                        <div class="leftcard-column-amount">
-					                            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
+					                            <span class="input-group-addon"><span class="glyphicon glyphicon-usd"></span> </span>
 					                            <input type="text" class="wepayAmount form-control all-place" placeholder="Amount" name="wepayAmount" id="wepayAmount" data-stripe="number" readonly required>
 					                            <div class="clear-both"></div>
 					                        </div>
@@ -307,14 +307,27 @@
 					                        <input type="hidden" name="uniqueId" id="uniqueId" value="${uniqueId}"/>
 					                    </div>
 					                    
+					                    <div class="col-sm-6 col-xs-l-0 payerpayee_parent">
+					                    	<div class="form-group payeepayer-div">
+						                    	<select name="payerPayee" class="form-control" id="payerPayee">
+						                    	</select>
+					                    	</div>
+					                    </div>
+					                    <div class="clear"></div>
+					                    <div class="col-sm-12 col-xs-lr-0 payeepayer-text">
+					                    	You can choose to cover the service fees that come with 
+					                 		online donating to ensure that this charity receives 100% of the value of your contribution.
+					                    </div>
+					                    
 					                    <div class="col-xsl-0 col-md-4 col-xs-12 col-sm-4 box fund-campaign-tile-center-align eazywizard-bottom-margin">
 					                    	
-					                    	<div class="term-of-use-center-alignment ">
+					                    	<%--<div class="term-of-use-center-alignment ">
 	                                            <label class="checkbox control-label payer-label">
-	                                                <input type="checkbox" name="payer" id="payer">Pay App Fee
+	                                                <input type="checkbox" name="payer" id="payer"> 
+	                                                So 100% of your donation goes to the Charity
+	                                                <a href="javascript:void(0)" id="editAppChargeDetails"> Edit</a>
 	                                            </label>
-	                                        </div>
-
+	                                        </div> --%>
 	                                        <div class="form-group term-of-use-center-alignment">
 	                                            <label class="checkbox control-label">
 	                                                <input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse">By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
@@ -344,6 +357,39 @@
         </div>
         
     </div>
+    
+    <!-- Required field modal -->
+    <!--<div class="modal fade" id="appChargeDetailsModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xs">
+             <div class="modal-content">
+                 <div class="modal-header video-modal">
+                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                     <h3 class="modal-title text-center"><b>100% of Your Donation to Charity</b></h3>
+                 </div>
+                 <div class="modal-body">
+                 	<div class="col-sm-12">
+                    	You can choose to cover the service fees that come with 
+                 		online donating to ensure that this charity receives 100% of the value of your contribution.
+                    </div>
+                    <div class="col-sm-12">
+                    	<div class="form-group">
+	                    	<select name="payerPayee" class="form-control" id="payerPayee">
+	                    		<option value="0">$0 I don't want to cover the charity's fees</option>
+	                    		<option value="1">$9.20 so 100% of my donation goes to charity</option>
+	                    	</select>
+                    	</div>
+                    </div>
+                 </div>
+                 
+                 <div class="modal-footer">
+                 	 <div class="col-sm-12">
+	                    <button class="btn btn-default btn-sm">Cancel</button>
+	                    <button class="btn btn-primary btn-sm">Save and Close</button>
+                    </div>
+                 </div>
+             </div>
+        </div>
+    </div>-->
     
     <div class="loadinggif text-center" id="loading-gif">
         <img src="//s3.amazonaws.com/crowdera/documents/loading.gif" alt="'loadingImage'" id="loading-gif-img">
@@ -400,12 +446,17 @@
 			            
 			            var creditCardId = data.credit_card_id;
 			            var creditCardState = data.state;
+
+			            var isPayer = false;
+			            if ($("#payerPayee").find("option:selected").data("payer") == "payer") {
+			            	isPayer = true;
+				        } 
 			            var formData = {
 			            		'creditCardId' : creditCardId,
 			            		'amount' : $("#amount").val(),
 			            		'projectId' : $('#projectId').val(),
 			            		'wepayAmount': $("#wepayAmount").val(),
-			            		'payer': $("#payer").is(":checked"),
+			            		'payer': isPayer,
 			            		'mobileNumber' : $("#contributorMobile").val(),
 			            		'address1' : $("#contributorStreet1").val(),
 			            		'address2' : $("#contributorStreet2").val(),

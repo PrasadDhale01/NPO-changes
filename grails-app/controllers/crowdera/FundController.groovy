@@ -127,7 +127,6 @@ class FundController {
 					def fixedWepayCharge = 0.3     // Fixed 30 cents charge by wepay
 					
 					def uniqueId = UUID.randomUUID().toString()
-					log.info("wepay checkout unique Id === "+ uniqueId)
 					
 					render view: 'fund/wepayCheckout', model: [team:team, project: project, state:indiaStates, country:country,
 						perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle,
@@ -1260,11 +1259,11 @@ class FundController {
 			appFee = Double.parseDouble(params.amount) * percentageAppCharge
 			if (params.payer == true || params.payer == "true") {
 				feePayer = "payer"
-				wepayAmount = Double.parseDouble(params.amount) + appFee + (Double.parseDouble(params.amount) * percentageCharge) + fixedWepayCharge
+				/*wepayAmount = Double.parseDouble(params.amount) + appFee + (Double.parseDouble(params.amount) * percentageCharge) + fixedWepayCharge*/
 			} else {
-				wepayAmount = Double.parseDouble(params.amount)
 				feePayer = "payee"
 			}
+			wepayAmount = Double.parseDouble(params.amount)
 			// println "wepay charge == "+ ((Double.parseDouble(params.amount) * percentageCharge) + fixedWepayCharge) 
 			
 			def checkoutObj = campaignService.chargeWepayCard(project, creditCardId, wepayAmount, feePayer, appFee, params);

@@ -5656,6 +5656,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.payerpayee_parent {
+		width: 100% !important;
+	}
 	#homepage-carousel img{
         padding: 45px 0 0 0 !important;
 	}
@@ -15960,6 +15963,9 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.payerpayee_parent {
+		width: 100% !important;
+	}
 	input.button-signup{
 	    margin-left: -20px !important;
 	    width: 100px !important;

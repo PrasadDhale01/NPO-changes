@@ -1,4 +1,5 @@
 var isValidDate = true;
+var isAmountChanged = false;
 
 $(function() {
 
@@ -289,6 +290,31 @@ $(function() {
         });
         
         
+        /*$("#editAppChargeDetails").click(function(e) {
+        	$('#appChargeDetailsModal').modal({
+        	    backdrop: 'static',
+        	    keyboard: false
+        	})
+        	var amount = $("#amount").val();
+        	
+        	var appCharge = (parseFloat(amount) * parseFloat(window.percentageCharge)) + parseFloat(window.fixedWepayCharge);
+        	var text = "<option value='0'>$0  I don't want to cover the charity's fees</option>"
+    				   + "<option value='1'>$" +appCharge.toFixed(2) + "  so 100% of my donation goes to charity</option>"
+        	
+    		$("#payerPayee").empty().append(text);
+        })*/
+        
+        
+        $("#payerPayee").change(function(e) {
+        	var amount = $("#amount").val();
+        	$("#wepayAmount").val(parseFloat(amount) + parseFloat($(this).val()));
+        });
+        
+        $("#amount").change(function(e) {
+        	isAmountChanged = true;
+        });
+        
+        
         $('#btnCheckoutContinue').click(function() {
         	
             var amountStatus = checkAmount();
@@ -316,28 +342,28 @@ $(function() {
         				$('#billingInformation').show();
         				$("#otherState").show();
         				
-        				var amount = $("#amount").val();
-        				if ($("#payer").is(":checked")) {
+        				/*if ($("#payer").is(":checked")) {
         					$("#wepayAmount").val((parseFloat(amount) * window.percentageCharge) + parseFloat(amount));
         				} else {
         					$("#wepayAmount").val(amount);
+        				}*/
+        				if (isAmountChanged) {
+        					var amount = $("#amount").val();
+        					$("#wepayAmount").val(amount);
+        					
+	        	        	var appCharge = (parseFloat(amount) * parseFloat(window.percentageCharge)) + parseFloat(window.fixedWepayCharge);
+	        	        	var text = "<option value='0' data-payer='payee' selected>$0  I don't want to cover the charity's fees</option>"
+	        	    				   + "<option value='"+appCharge.toFixed(2)+"' data-payer='payer'>$" +appCharge.toFixed(2) + "  so 100% of my donation goes to charity</option>"
+	        	        	
+	        	    		$("#payerPayee").empty().append(text);
+	        	        	isAmountChanged = false;
         				}
-        				
         			}
         		}).error(function(){
         		});
             	
             }
         });
-        
-        $("#payer").change(function() {
-        	var amount = $("#amount").val();
-        	if ($(this).is(":checked")) {
-        		$("#wepayAmount").val(((parseFloat(amount) * parseFloat(window.percentageCharge)) + parseFloat(amount)) + parseFloat(window.fixedWepayCharge));
-        	} else {
-        		$("#wepayAmount").val(amount);
-        	}
-        })
         
         
         $('#btnShippingContinue').click(function() {

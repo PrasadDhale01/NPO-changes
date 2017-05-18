@@ -1259,11 +1259,11 @@ class FundController {
 			appFee = Double.parseDouble(params.amount) * percentageAppCharge
 			if (params.payer == true || params.payer == "true") {
 				feePayer = "payer"
-				wepayAmount = Double.parseDouble(params.amount) + appFee + (Double.parseDouble(params.amount) * percentageCharge) + fixedWepayCharge
+				/*wepayAmount = Double.parseDouble(params.amount) + appFee + (Double.parseDouble(params.amount) * percentageCharge) + fixedWepayCharge*/
 			} else {
-				wepayAmount = Double.parseDouble(params.amount)
 				feePayer = "payee"
 			}
+			wepayAmount = Double.parseDouble(params.amount)
 			// println "wepay charge == "+ ((Double.parseDouble(params.amount) * percentageCharge) + fixedWepayCharge) 
 			
 			def checkoutObj = campaignService.chargeWepayCard(project, creditCardId, wepayAmount, feePayer, appFee, params);

@@ -5222,10 +5222,11 @@ class ProjectService {
         if (condition == 'Live' || condition == 'Ended' || condition=="Homepage" || condition=='Deadline') {
             if (country == 'INDIA') {
                 
-                totalProjects = Project.findAllWhere(payuStatus: true, validated: true, inactive: false)
-            } else if(country == 'USA') {
+                totalProjects = Project.findAllWhere(validated: true, inactive: false)
+            } 
+			else if(country == 'USA') {
                 
-                totalProjects = Project.findAllWhere(payuStatus: false, validated: true, inactive: false)
+                totalProjects = Project.findAllWhere(validated: true, inactive: false)
             }
 //            totalProjects.each { project->
 //                if (isProjectDeadlineCrossed(project)) {

@@ -5656,6 +5656,17 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	 /*contact-us-css*/
+    div.ct-container-wid {
+        width: 320px;
+    } 
+    div.ct-width {
+       width: auto;
+    } 
+    div.ct-padding {
+	    margin-top: 60px;
+	    margin-bottom: 80px;
+    }
 	#homepage-carousel img{
         padding: 45px 0 0 0 !important;
 	}
@@ -8719,6 +8730,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    /*contact-us-css*/
+	div.ct-container-wid {
+        width: 768px;
+    }
 	
 	/* Start of CSS for Wepay Checkout page */
 	
@@ -15960,6 +15975,18 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    /*contact-us-css*/
+    div.ct-container-wid {
+        width: 320px;
+    }
+    div.ct-width {
+       width: auto;
+    } 
+    div.ct-padding {
+	    margin-top: 60px;
+	    margin-bottom: 80px;
+    }
+      
 	input.button-signup{
 	    margin-left: -20px !important;
 	    width: 100px !important;

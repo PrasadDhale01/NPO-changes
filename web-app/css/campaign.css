@@ -1927,4 +1927,60 @@ span.donation-font{
 
 .donation-head-padding{
 	padding: 4px !important;
-} 
+}
+
+ /*contact-us-css*/
+.ct-container-wid {
+    width: 1000px;
+}
+.ct-hr-sizes {
+    width: 100px;
+    margin-top: 10px;
+}
+.ct-padding {
+    padding-top: 150px;
+    padding-bottom: 150px;
+}
+.ct-text-desp {
+    padding-top: 3px;
+    font-family: 'Assistant', sans-serif;
+    color: #494f67;
+    font-size: 12pt;
+}
+.ct-width {
+    width: 20%;
+}
+.ct-color {
+    color: #005f84;
+    font-family: 'Assistant', sans-serif;
+    font-size: 30pt;
+}
+.ct-subtitle {
+    color: #5a6771;
+    font-family: 'Assistant', sans-serif;
+    font-size: 15pt;
+}
+.ct-menus-font {
+    color: #01bbd3;
+    font-family: 'Assistant', sans-serif;
+    font-size: 22px;
+}
+.ct-contact-font {
+    font-family: 'Assistant', sans-serif;
+    color: #5a6771;
+    font-size: 14px;
+    margin: 0;
+    line-height: 0;
+}
+.ct-color-contact{
+	color: #59666f;
+    font-family: 'Assistant', sans-serif;
+    letter-spacing: 2px;
+    font-weight: 900;
+}
+.ct-contact-font span {
+    font-size: 20px;
+}
+.ct-contDetail-bottom {
+    padding-bottom: 80px;
+}

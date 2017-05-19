@@ -75,6 +75,7 @@ class UrlMappings {
 
 		/* Contact Us */
 		"/customer-service"(view:'/contactus/index')
+		"/customer-service-new"(view:'/contactus/index2')
 		"/customer-support"(controller:'project', action:'customerSupport')
 
 		/* Blogs */

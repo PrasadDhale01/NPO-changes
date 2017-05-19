@@ -20,7 +20,7 @@
                 <li><a href="${resource(dir: '/aboutus')}">About Us</a></li>
                 <li><a href="${resource(dir: '/careers')}" >Careers</a></li>
                 <li><a href="${country_code}/campaigns" >Explore Campaigns</a></li>
-                <li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
+                <li><a href="${resource(dir: '/customer-service-new')}">Contact Us</a></li>
                 <li><a href="https://blog.gocrowdera.com" target="_blank">Blog</a></li>
                 <li><a href="http://support.gocrowdera.com/#/" target="_blank">Support</a></li>
                 

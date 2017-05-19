@@ -3215,15 +3215,11 @@ class ProjectController {
 		if(user){
 			Project project = projectService.getProjectById(projectId)
 			Team team = Team.findByProjectAndUser(project,project.user )
-			team.user = user
-			team.save()
-			project.user = user
-			project.save()
-			
-			message = 'Username exists in database'
+			projectService.transferownership(project,team,user)
+			message = 'Cheers...! Campaign transferred successfully...!'
 			render message
 		} else{
-			message = 'Username does not exist in database '
+			message = 'Oops...! Please, enter the valid username. '
 			render message
 		}
 	}

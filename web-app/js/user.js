@@ -423,6 +423,12 @@ function campaignsortByCountry(){
 function getcampaignsort(){
 	var selectedSortValue = $('#sortByOptions').val();
 	var selectedCountry = $('#countryOpts').val();
+	
+    if(selectedSortValue == 'Homepage'){
+        $('.sup-dropdown-hide').css('display','none');
+	}else{
+		$('.sup-dropdown-hide').css('display','block');
+	}
 	var grid = $('#adminCampaignGrid');
 	$('#loading-gif').show();
 

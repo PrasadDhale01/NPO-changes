@@ -23,7 +23,7 @@
                     <div class="pull-right dashboard-sortByOptions" id="dashboard-sortByOptions">
                         <g:select class="selectpicker text-center" name="sortByOptions" id="sortByOptions" from="${sortByOptions}" optionKey="value" optionValue="value" value="" onchange="getcampaignsort()"/>
                     </div>
-                    <div class="pull-right dashboard-sortByOptions">
+                    <div class="pull-right dashboard-sortByOptions sup-dropdown-hide">
                         <g:if test="${'in'.equalsIgnoreCase(country_code)}">
                             <g:select class="selectpicker text-center" name="countryOpts" id="countryOpts" from="${countryOpts}" optionKey="value" optionValue="value" value="India" onchange="getcampaignsortByCountry()"/>
                         </g:if>

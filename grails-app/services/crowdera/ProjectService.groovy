@@ -5221,7 +5221,7 @@ class ProjectService {
         List projects = []
         List totalProjects = []
         List activeCampaigns = []
-        if (condition == 'Live' || condition == 'Ended' || condition=="Homepage" || condition=='Deadline') {
+        if (condition == 'Live' || condition == 'Ended' || condition=='Deadline') {
             if (country == 'INDIA') {
                 
                 totalProjects = Project.findAllWhere(payuStatus: true, validated: true, inactive: false)
@@ -5236,6 +5236,8 @@ class ProjectService {
 //                    activeCampaigns.add(project)
 //                }
 //            }
+        }else if(condition=="Homepage" ) {
+		    totalProjects = Project.findAllWhere(validated: true, inactive: false)
         }
         
         switch (condition) {

@@ -86,7 +86,8 @@
                                                     <th class="col-sm-2 text-center">SHIPPING DETAILS</th>
                                                 </g:if>
 
-                                                <th class="text-center">AMOUNT(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</th>
+                                                <th class="text-center">AMOUNT</th>
+                                                <th class="text-center">CURRENCY</th>
                                                 <th class="text-center">MODE</th>                                
                                             </tr>
                                         </thead>
@@ -132,6 +133,8 @@
                                                 </g:if>
                                         
                                                 <td class="text-center">${amount}</td>
+                                                
+                                                <td class="text-center">${currency}</td>
                                         
                                                 <g:if test="${pay_mode}">
                                                     <td class="text-center">Offline</td>
@@ -203,14 +206,32 @@
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label class="text col-sm-3">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+                                <label class="text col-sm-3">Amount</label>
                                 <div class="col-sm-9"> 
                                 <input type="text" class="form-control contributioninput" name="amount1" id="offlineAmount1"><br>
                                 </div>
                             </div>
                             <div id="errormsg1"></div>
                         </div>
-                        
+                        <g:if test="${ (project.paypalEmail && project.citrusEmail) || (project.paypalEmail && project.payuEmail)}">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="text col-sm-3">Currency</label>
+                                <div class="col-sm-3"> 
+                                    <select name="currency" class="selectpicker form-control" >
+                                        <option value="INR">INR</option>
+                                        <option value="USD">USD</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        </g:if>
+                        <g:elseif test="${'us'.equalsIgnoreCase(country_code)}">
+                            <input type="text" class="form-control" name="currency" value="USD" style="display: none;">
+                        </g:elseif>
+                        <g:else>
+                            <input type="text" class="form-control" name="currency" value="INR" style="display: none;">
+                        </g:else>
                         <g:if test="${isTaxReceipt}">
                             <div class="col-sm-12">
                                 <div class="form-group">

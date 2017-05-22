@@ -311,78 +311,81 @@ class ProjectService {
         return vanitytitle
     }
 
-    def getCSVDetails(def params, def response){
-        List contributions=[]
+	def getCSVDetails(def params, def response){
+		List contributions=[]
 
 		def projectId= params.projectId
-        def project = Project.get(projectId)
+		def project = Project.get(projectId)
 
-        def teamId = params.teamId
-        def team = Team.get(teamId)
+		def teamId = params.teamId
+		def team = Team.get(teamId)
 
-        if(team!=null) {
-            if(project.user==team.user){
-                contributions = project.contributions.reverse()
-            } else {
-                contributions = team.contributions.reverse()
-            }
-        } else {
-            contributions = project.contributions.reverse()
-        }
+		if(team!=null) {
+			if(project.user==team.user){
+				contributions = project.contributions.reverse()
+			} else {
+				contributions = team.contributions.reverse()
+			}
+		} else {
+			contributions = project.contributions.reverse()
+		}
 
-        response.setHeader("Content-disposition", "attachment; filename= Crowdera_report-"+project.title.replaceAll("[,;\\s]",'_')+".csv")
-        def results=[]
-        def  contributorName
-        def payMode
-        def shippingDetails=""
-        def contributorEmail
-        contributions.each {
-            if(it.isContributionOffline){
-                payMode="offline"
-                contributorName= it.contributorName
-                contributorEmail= it.contributorEmail?it.contributorEmail:'-'
-                shippingDetails="No Perk Selected"
-            }else{
-                payMode="Online"
-                contributorName= it.contributorName
-                contributorEmail=it.contributorEmail
-                shippingDetails = getShippingDetails(it)
-            }
-            def fundRaiserName = contributionService.getFundRaiserName(it, project)
-            if(project.rewards.size()>1){
-                def rows = [it.project.title.replaceAll("[,;]",' '), fundRaiserName, it.date.format('YYYY:MM:dd HH:mm:ss'), contributorName, contributorEmail, it.reward.title.replaceAll("[,;]",' '), shippingDetails.replaceAll("[,]",' '), it.amount, payMode]
-                results << rows
-                shippingDetails=""
-            } else {
-                def rows = [it.project.title.replaceAll("[,;]",' '), fundRaiserName, it.date.format('YYYY:MM:dd HH:mm:ss'), contributorName, contributorEmail, it.amount, payMode]
-                results << rows
-                shippingDetails=""
-            }
-        }
-        
-        def result
-        if(project.rewards.size()>1){
-            result='CAMPAIGN, FUNDRAISER, DATE AND TIME, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, PERK , SHIPPING DETAILS, AMOUNT, MODE, \n'
-            results.each{ row->
-                row.each{
-                    col -> result+=col +','
-                }
-                result = result[0..-2]
-                result+="\n"
-            }
-        }else{
-            result='CAMPAIGN, FUNDRAISER, DATE AND TIME, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, AMOUNT, MODE, \n'
-            results.each{ row->
-                row.each{
-                    col -> result+=col +','
-                }
-                result = result[0..-2]
-                result+="\n"
-            }
-        }
-        return result
-    }
-
+		response.setHeader("Content-disposition", "attachment; filename= Crowdera_report-"+project.title.replaceAll("[,;\\s]",'_')+".csv")
+		def results=[]
+		def  contributorName
+		def payMode
+		def shippingDetails=""
+		def contributorEmail
+		def currency
+		contributions.each {
+			if(it.isContributionOffline){
+				payMode="offline"
+				contributorName= it.contributorName
+				contributorEmail= it.contributorEmail?it.contributorEmail:'-'
+				shippingDetails="No Perk Selected"
+				currency= it.currency
+			}else{
+				payMode="Online"
+				contributorName= it.contributorName
+				contributorEmail=it.contributorEmail
+				shippingDetails= getShippingDetails(it)
+				currency= it.currency
+			}
+			def fundRaiserName = contributionService.getFundRaiserName(it, project)
+			if(project.rewards.size()>1){
+				def rows = [it.project.title.replaceAll("[,;]",' '), fundRaiserName, it.date.format('YYYY:MM:dd HH:mm:ss'), contributorName, contributorEmail, it.reward.title.replaceAll("[,;]",' '), shippingDetails.replaceAll("[,]",' '), it.amount, it.currency, payMode]
+				results << rows
+				shippingDetails=""
+			} else {
+				def rows = [it.project.title.replaceAll("[,;]",' '), fundRaiserName, it.date.format('YYYY:MM:dd HH:mm:ss'), contributorName, contributorEmail, it.amount, it.currency, payMode]
+				results << rows
+				shippingDetails=""
+			}
+		}
+		
+		def result
+		if(project.rewards.size()>1){
+			result='CAMPAIGN, FUNDRAISER, DATE AND TIME, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, PERK , SHIPPING DETAILS, AMOUNT, CURRENCY, MODE \n'
+			results.each{ row->
+				row.each{
+					col -> result+=col +','
+				}
+				result = result[0..-2]
+				result+="\n"
+			}
+		}else{
+			result='CAMPAIGN, FUNDRAISER, DATE AND TIME, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, AMOUNT, CURRENCY, MODE \n'
+			results.each{ row->
+				row.each{
+					col -> result+=col +','
+				}
+				result = result[0..-2]
+				result+="\n"
+			}
+		}
+		return result
+	}
+	
     def getUpdateValidationDetails(def params){
         def project = Project.get(params.id)
 		def country_code = project.country.countryCode
@@ -670,90 +673,89 @@ class ProjectService {
      }
 	 
 	 def generateCSV(def response, def params){
-             SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY:MM:dd hh:mm:ss");
-			 def userIdentity
-			 def mode
-             def contributions
-             if (params.currency == 'INR'){
-                 contributions = contributionService.getINRContributions()
-             } else {
-                 contributions = contributionService.getUSDContributions()
-             }
-             List results=[]
-	     
-		 response.setHeader("Content-disposition", "attachment; filename=Crowdera_Transaction_Report.csv")
-		 contributions.each{
-			if (it.isAnonymous) {
-				userIdentity = "Anonymous"
-			} else {
-				userIdentity = "Non Anonymous"
-			}
-
-            if(it.isContributionOffline){
-                mode = 'Offline'
-            } else {
-                mode = 'Online'
-            }
-
-			def rows = [dateFormat.format(it.date), it.project.title.replaceAll('[,;] ',' '), it.contributorName, userIdentity, it.amount, it.contributorEmail, mode]
-			results << rows
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY:MM:dd hh:mm:ss");
+		 def userIdentity
+		 def mode
+		 def contributions
+		 if (params.currency == 'INR'){
+			 contributions = contributionService.getINRContributions()
+		 } else {
+			 contributions = contributionService.getUSDContributions()
 		 }
-		 
-		 def result='Contribution Date & Time, Campaign, Contributor Name, Identity, Contributed Amount, Contributor Email, Mode \n'
-		 results.each{ row->
-			row.each{
-			col -> result+=col +','
-			}
-			result = result[0..-2]
-			result+="\n"
-		 }
-		 
-		 return result
+		 List results=[]
+	 
+	 response.setHeader("Content-disposition", "attachment; filename=Crowdera_Transaction_Report.csv")
+	 contributions.each{
+		if (it.isAnonymous) {
+			userIdentity = "Anonymous"
+		} else {
+			userIdentity = "Non Anonymous"
+		}
+
+		if(it.isContributionOffline){
+			mode = 'Offline'
+		} else {
+			mode = 'Online'
+		}
+
+		def rows = [dateFormat.format(it.date), it.project.title.replaceAll('[,;] ',' '), it.contributorName, userIdentity, it.amount, it.contributorEmail, mode]
+		results << rows
+	 }
+	 
+	 def result='Contribution Date & Time, Campaign, Contributor Name, Identity, Contributed Amount, Contributor Email, Mode \n'
+	 results.each{ row->
+		row.each{
+		col -> result+=col +','
+		}
+		result = result[0..-2]
+		result+="\n"
+	 }
+	 
+	 	return result
 	 }
 
 	 def getOfflineDetails(def params) {
 		 def project = Project.get(params.id)
-         boolean userExist =false
-         def contributorEmail1 = params.contributorEmail1
-         def contributorFirstName = params.contributorName1
-         def amount = params.amount1
-         def contributorLastName = params.contributorLastName
-         
-         User contributor = User.findByEmail(contributorEmail1.trim())
-         def user;
-         
-         if(contributor != null){
-             userExist =true
-         } else {
-             user = createUserForNonRegisteredContributors(contributorFirstName, contributorEmail1, contributorLastName)
-         }
-         
+		 boolean userExist =false
+		 def contributorEmail1 = params.contributorEmail1
+		 def contributorFirstName = params.contributorName1
+		 def amount = params.amount1
+		 def contributorLastName = params.contributorLastName
+		 
+		 User contributor = User.findByEmail(contributorEmail1.trim())
+		 def user;
+		 
+		 if(contributor != null){
+			 userExist =true
+		 } else {
+			 user = createUserForNonRegisteredContributors(contributorFirstName, contributorEmail1, contributorLastName)
+		 }
+		 
 		 def reward = rewardService.getNoReward()
 		 
-         User fundRaiser = userService.getCurrentUser()
+		 User fundRaiser = userService.getCurrentUser()
 		 def username = fundRaiser.username
 		 
-         def currency
-         if (project.payuEmail) {
-             currency = 'INR'
-         } else {
-             currency = 'USD'
-         }
-         
+		 def currency = params.currency
+		 def contributorFullname = contributorFirstName +" "  + contributorLastName
+		 def contributorName = ""
+		 	contributorFullname.split(" ").each { word ->
+			contributorName += word[0].toUpperCase() + word[1..(word.size()-1)].toLowerCase()+" "
+		 }
 		 if (amount && contributorFirstName && contributorEmail1 && contributorLastName) {
 			 Contribution contribution = new Contribution(
-                    date: new Date(),
-                    user: (userExist) ? contributor : user.user,
-                    reward: reward,
-                    amount: amount,
-                    contributorFirstName: contributorFirstName,
-                    contributorLastName: contributorLastName,
-                    contributorName: contributorFirstName +" "  + contributorLastName,
-                    contributorEmail: contributorEmail1,
-                    panNumber: params.panNumber,
-                    isContributionOffline: true,
-                    fundRaiser: username,
-                    currency:currency
+					date: new Date(),
+					user: (userExist) ? contributor : user.user,
+					reward: reward,
+					amount: amount,
+					contributorFirstName: contributorFirstName,
+					contributorLastName: contributorLastName,
+					contributorName: contributorName,
+					contributorEmail: contributorEmail1,
+					panNumber: params.panNumber,
+					isContributionOffline: true,
+					fundRaiser: username,
+					currency:currency
 			 )
 			 project.addToContributions(contribution).save(failOnError: true)
  
@@ -761,18 +763,18 @@ class ProjectService {
 			 if (team) {
 				 team.addToContributions(contribution).save(failOnError: true)
 			 } else {
-                 
-                 if (userService.isAdmin() || userService.isCampaignAdmin(project, username)) {
-                     team = Team.findByUserAndProject(project.user , project);
-                     team.addToContributions(contribution).save(failOnError: true)
-                 }
-             }
-             
-             if(userExist==false){
-                 mandrillService.sendEmailToContributors(contribution, user.password)
-             }
+				 
+				 if (userService.isAdmin() || userService.isCampaignAdmin(project, username)) {
+					 team = Team.findByUserAndProject(project.user , project);
+					 team.addToContributions(contribution).save(failOnError: true)
+				 }
+			 }
+			 
+			 if(userExist==false){
+				 mandrillService.sendEmailToContributors(contribution, user.password)
+			 }
 		 }
-         
+		 
 	 }
 
      def getCommentDeletedDetails(def params){
@@ -6958,7 +6960,7 @@ class ProjectService {
 		/**Change the country to 'in' if you want to test the India flow on development ENV*/
 		def currentEnv = getCurrentEnvironment();
 		if( currentEnv == 'development'|| currentEnv == 'test'){
-			country_code  = "in"
+			country_code  = "us"
 		}else if (currentEnv == 'testIndia' || currentEnv==''){
 			country_code = "in"
 		}else if(currentEnv == 'staging') {

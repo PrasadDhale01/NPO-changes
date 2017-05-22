@@ -3,117 +3,90 @@
 	def currentEnv = projectService.getCurrentEnvironment()
 	def country_code = projectService.getCountryCodeForCurrentEnv(request);
 %>
+<html>
 <head>
 <meta name="layout" content="main" />
 <title>Crowdera- Contact us</title>
-<style type="text/css" media="screen">
-    @import url(https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.css); 
-</style> 
-<script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
+
 </head>
 <body>
     <div class="feducontent">
-    <g:if test="${country_code=='in'}">
-        <div class="container contactUs" id="contactUs">
-        <div class="hidden-md hidden-lg hidden-sm col-xs-12 contact-details contact-details-bottom">
-            <div class="contact-details-heading"><b>Contact Details</b></div>
-            <div class="contact-details-body">
-                <label class="col-xs-5"><b>Phone number</b></label> <span class="col-xs-7">+91 721 970 2234</span>
-                <div class="clear"></div>
-                <label class="col-xs-5"><b>Contact</b></label><span class="col-xs-7">206, Sankalp Nagar,<br>Wathoda Layout,<br>Nagpur - 440009</span>
+        <div class="container ct-container-wid">
+            <div class="row">
+	            <div class="text-center">
+		            <h3 class="ct-color">Contact Crowdera</h3>
+		            <hr class="ct-hr-sizes">
+		            <small class="ct-subtitle">We are here to help you</small>
+	            </div>
             </div>
-        </div>
-        <div class="helpdesk col-md-8 col-sm-8 col-xs-12">
-		<%--
-            <g:if test="${flash.contactmessage}">
-			    <div class="alert alert-success" align="center">
-		                ${flash.contactmessage}
-			    </div>
-			</g:if>
-			<g:uploadForm action="crowderacustomerhelp" controller="Home" role="form">
-				<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-10 col-md-offset-2">
-					<h3 class="crowderasupport"><img src="//s3.amazonaws.com/crowdera/assets/questionorcomment.png" alt="Question or Comment">&nbsp;&nbsp;<b>Submit a question or comment</b></h3>
-				</div>
-				<div class=" col-xs-12 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-					<div class="form-group">
-						<label for="customerType" class="control-label"><b>Customer Type</b></label>
-						<div class="clear"></div>
-						<% def customertypes = ['Campaign Owner', 'Contributor', 'Other'] %>
-						<g:select class="selectpicker" name="customerType" from="${customertypes}" value="${customertypes[0]}"/>
-					</div>
-					<div class="form-group">
-						<label for="Subject"><b>Subject</b></label>
-						<input type="text" class="form-control" id="Subject" name="subject"/>
-						<p class="contactparagraph">Please use a few words to summarize your question.</p>
-					</div>
-					<div class="form-group">
-						<label for="description"><b>Description</b></label>
-						<textarea class="form-control" id="description" name="helpDescription" rows="4"></textarea>
-						<div class="clear"></div>
-						<p class="contactparagraph">We love hearing from you and would like to respond to your request timely and accurately. To help us do so, please include as many specific details as possible.</p>
-					</div>
-					<div class="form-group">
-						<label for="firstAndLastName"><b>First and Last Name</b></label>
-						<input type="text" id="firstAndLastName" class="form-control" name="firstAndLastName"/>
-					</div>
-					<div class="form-group">
-						<label for="emailAddress"><b>Your Email Address</b></label>
-						<input type="text" id="emailAddress" class="form-control" name="emailAddress"/>
-					</div>
-					<div class="form-group attachment-group">
-						<label for="attachments"><b>Attachments</b></label>
-						<div class="clear"></div>
-						<div class="col-xs-12 col-sm-4 col-md-4">
-						    <div class="fileUpload btn btn-primary btn-sm">
- 						        <span>Choose File</span>
- 						        <input type="file" class="upload" id="attachments" name="files" multiple/>
-       					    </div>
-       					    <label class="docfile-orglogo-css" id="attachmentfilesize"></label>
-       					</div>
-       					<div class="col-xs-12 col-sm-8 col-md-8">
-    						<output id="result"></output>
-  						</div>
-			        </div>
-			        <div class="clear"></div>
-			        <hr/>
-					<div class="contactUsSubmitButton">
-						<button type="submit" id="contactsubmitbutton" class="btn btn-primary">Submit</button>
-					</div>
-				</div>
-			</g:uploadForm>
-            --%>
-            <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://crowdera.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=Crowdera+Customer+Help+&submitThanks=Your+Query+has+been+submitted.+We+will+get+back+to+you+soon.&screenshot=no" scrolling="no" height="550px" width="100%" frameborder="0" >
-            </iframe>
-        </div>
-        <div class="col-sm-4 col-md-4 hidden-xs contact-details">
-            <div class="contact-details-heading"><b>Contact Details</b></div>
-            <div class="contact-details-body">
-                <label class="col-sm-4"><b>Phone number</b></label> <span class="col-sm-8">+91 721 970 2234</span>
-                <div class="clear"></div>
-                <label class="col-sm-4"><b>Contact</b></label><span class="col-sm-8">206, Sankalp Nagar,<br>Wathoda Layout,<br>Nagpur - 440009</span>
+            <div class="row ct-padding">
+                <div class="col-md-2 col-sm-2 text-center ct-width">
+		            <div class="img-view-first">
+		                <img alt="Chat" src="//s3.amazonaws.com/crowdera/project-images/1b51df47-1735-4eff-8fbb-03b49af909e1.png">
+		            </div>
+		            <hr class="ct-hr-sizes">
+		            <b class="ct-menus-font">CHAT</b>
+		            <p class="ct-text-desp">Need to chat? Our team<br> will be happy to anser<br> all your questions</p>
+		        </div>
+		        
+		        <div class="col-md-2 col-sm-2 text-center ct-width">
+		            <div class="img-view-secand">
+		                <img alt="Mail" src="//s3.amazonaws.com/crowdera/project-images/2e6fe2a4-9d03-47e2-a717-e09562ac0939.png">
+		            </div>
+		            <hr class="ct-hr-sizes">
+		            <b class="ct-menus-font">EMAIL</b>
+		            <p class="ct-text-desp">Drop us a detailed email.<br> We typically respond <br> in 1 to 12 hours</p>
+		        </div>
+		        
+		        <div class="col-md-2 col-sm-2 text-center ct-width">
+		            <div class="img-view-secand">
+		                <img alt="Self Help" src="//s3.amazonaws.com/crowdera/project-images/f3f251b8-6bed-4bd1-9e9b-b50a266ca5b2.png">
+		            </div>
+		            <hr class="ct-hr-sizes">
+		            <b class="ct-menus-font">SELF HELP</b>
+		            <p class="ct-text-desp">Got a question?<br> Check out our FAQs<br> and Helpdesk</p>
+		        </div>
+		        
+		         <div class="col-md-2 col-sm-2 text-center ct-width">
+		             <div class="img-view-secand">
+		                 <img alt="Call" src="//s3.amazonaws.com/crowdera/project-images/edbf7f90-dd5c-46cc-a832-9ad7a3f2cb70.png">
+		             </div>
+		             <hr class="ct-hr-sizes">
+		             <b class="ct-menus-font">CALL</b>
+		             <p class="ct-text-desp">If it's urgent.<br> We're available on call<br> from 9am - 7pm</p>
+		        </div>
+		        
+		         <div class="col-md-2 col-sm-2 text-center ct-width">
+		             <div class="img-view-secand">
+		                  <img alt="Call" src="//s3.amazonaws.com/crowdera/project-images/0df5a972-7e4d-4c64-a563-6b258c1184e3.png">
+		             </div>
+		             <hr class="ct-hr-sizes">
+		             <b class="ct-menus-font">REQUEST A DEMO</b>
+		             <p class="ct-text-desp">Got a Demo?<br> Check out our Request<br> a Demo</p>
+		        </div>
             </div>
-        </div>
-        </div>
-    </g:if>
-    <g:else>
-        <div class="container contactUs contact-us-top" id="contactUs">
-            <div class="helpdesk col-md-12 col-sm-12 col-xs-12 helpdeskpadding">
-                <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://crowdera.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=Crowdera+Customer+Help+&submitThanks=Your+Query+has+been+submitted.+We+will+get+back+to+you+soon.&screenshot=no" scrolling="no" height="550px" width="100%" frameborder="0" >
-                </iframe>
+            
+            <div class="row ct-contDetail-bottom ">
+	            <div class="text-center">
+		            <h4 class="ct-color-contact">Contact Details</h4>
+		            <g:if test="${'in'.equalsIgnoreCase(country_code)}">
+		                <label class="ct-contact-font">Phone number :</label>
+		                <label class="ct-contact-font"><span>+91 721 970 2234</span></label><br>
+		                <label class="ct-contact-font">Address :</label>
+		                <label class="ct-contact-font">206, Sankalp Nagar, Wathoda Layout,</label><br>
+		                <label class="ct-contact-font">Nagpur - 440009</label>
+		             </g:if>
+		             <g:else>
+		                <label class="ct-contact-font">Phone number :</label>
+		                <label class="ct-contact-font"><span>+1 (650) 690 2234</span></label><br>
+		                <label class="ct-contact-font">Address :</label>
+		                <label class="ct-contact-font">228 Hamilton Avenue, Floor 3, Palo Alto</label><br>
+		                <label class="ct-contact-font">CA 94301</label><br>
+		             </g:else>
+	            </div>
             </div>
+            
         </div>
-    </g:else>
     </div>
-    
-    <r:require modules="homejs"/>
-    <script type="text/javascript">
-        var needToConfirm = true;
-        window.onbeforeunload = confirmExit;
-        function confirmExit() {
-            if(needToConfirm){
-                return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
-            }
-        }
-    </script>
-    
 </body>
+</html>

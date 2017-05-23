@@ -22,12 +22,23 @@
             <div class="row ct-padding">
                 <div class="col-md-2 col-sm-2 text-center ct-width">
 		            <div class="img-view-first">
-		                <img alt="Chat" src="//s3.amazonaws.com/crowdera/project-images/1b51df47-1735-4eff-8fbb-03b49af909e1.png">
+		            		<a href="javascript: interaktchat();"><img alt="Chat" src="//s3.amazonaws.com/crowdera/project-images/1b51df47-1735-4eff-8fbb-03b49af909e1.png"></a>
+<%--		                <img alt="Chat" src="//s3.amazonaws.com/crowdera/project-images/1b51df47-1735-4eff-8fbb-03b49af909e1.png">--%>
 		            </div>
 		            <hr class="ct-hr-sizes">
-		            <b class="ct-menus-font">CHAT</b>
-		            <p class="ct-text-desp">Need to chat? Our team<br> will be happy to anser<br> all your questions</p>
-		        </div>
+<%--		            <b class="ct-menus-font">CHAT</b>--%>
+						<a href="javascript: interaktchat();"><b class="ct-menus-font">CHAT</b></a> 
+		            <p class="ct-text-desp">Need to chat? Our team<br> will be happy to answer<br> all your questions</p>
+		        	<script>
+					  (function() {
+					  var interakt = document.createElement('script');
+					  interakt.type = 'text/javascript'; interakt.async = true;
+					  interakt.src = "//cdn.interakt.co/interakt/0d5f42147e9211929adc0170a61e129b.js";
+					  var scrpt = document.getElementsByTagName('script')[0];
+					  scrpt.parentNode.insertBefore(interakt, scrpt);
+					  })()
+					</script>
+		    </div>
 		        
 		        <div class="col-md-2 col-sm-2 text-center ct-width">
 		            <div class="img-view-secand">

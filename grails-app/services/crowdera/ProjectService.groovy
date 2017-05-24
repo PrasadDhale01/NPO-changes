@@ -7104,6 +7104,14 @@ class ProjectService {
 		}else{
 			return allSortedTeams
 		}
-			
+	}
+	
+	def isDeviceMobileOrTab(HttpServletRequest request){
+		String userAgent = request.getHeader("User-Agent");
+		if (userAgent?.contains('Mobile') || userAgent?.contains('Android') || userAgent?.contains('iPod')){
+			return true
+		} else {
+			return false
+		}
 	}
 }

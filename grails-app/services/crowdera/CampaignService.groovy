@@ -475,10 +475,12 @@ class CampaignService {
         httppost.setHeader("Authorization","Bearer "+accessToken);
 		
 		def receiveTime = 1367958263;
+		String callBackUri = grailsApplication.config.crowdera.BASE_URL + "project/wepayAccountCreateCallBack"
+		log.info("callBackUri = "+ callBackUri)
 		
 		def rbits = "[{\"receive_time\": ${receiveTime}, \"type\": \"person\", \"source\": \"user\", \"properties\": {\"name\": \"${name}\"}},{\"receive_time\": ${receiveTime}, \"type\": \"email\", \"source\": \"user\", \"properties\": {\"email\": \"${email}\"}}, {\"receive_time\": ${receiveTime}, \"type\": \"phone\", \"source\": \"user\", \"properties\": {\"phone\": \"${project.beneficiary.telephone}\", \"phone_type\" : \"mobile\"}}, {\"receive_time\": ${receiveTime}, \"type\": \"fundraising_campaign\", \"source\": \"user\", \"properties\": {\"description\": \"${projectTitle}\"}}, {\"receive_time\": ${receiveTime}, \"type\": \"business_description\", \"source\": \"user\", \"properties\": {\"business_description\": \"${project.description}\"}}]";
 		
-        StringEntity input = new StringEntity("{\"name\": \"${name}\",\"description\": \"${projectTitle}\", \"rbits\": ${rbits}}")
+        StringEntity input = new StringEntity("{\"name\": \"${name}\", \"callback_uri\" : \"${callBackUri}\", \"description\": \"${projectTitle}\", \"rbits\": ${rbits}}")
         input.setContentType("application/json")
         httppost.setEntity(input)
 
@@ -633,6 +635,9 @@ class CampaignService {
 		def type = "donation"
 		def currency = "USD"
 		
+		String callBackUri = grailsApplication.config.crowdera.BASE_URL + "fund/wepayCheckoutCallBack"
+		log.info("callBackUri = "+ callBackUri)
+		
 		def creditCard = "{\"id\": ${creditCardId}}"
 		def payment_method = "{\"type\" : \"credit_card\", \"credit_card\": ${creditCard}}"
 		def feeStructure = "{\"app_fee\": ${appFee}, \"fee_payer\" : \"${feePayer}\"}"
@@ -646,7 +651,7 @@ class CampaignService {
 		def receiveTime = System.currentTimeMillis();
 		def payerRbits = "[{\"receive_time\": ${receiveTime}, \"type\": \"phone\", \"source\": \"user\", \"properties\": {\"phone\": \"${params.mobileNumber}\"}}, {\"receive_time\": ${receiveTime}, \"type\": \"email\",\"source\": \"user\",\"properties\": {\"email\": \"${params.contributorEmail}\"}}, {\"receive_time\":${receiveTime},\"type\":\"person\",\"source\":\"user\",\"properties\":{\"name\":\"${params.contributorName}\"}}, {\"receive_time\": ${receiveTime},\"type\": \"address\",\"source\": \"user\",\"properties\": {\"address\": {\"address1\": \"${params.address1}\",\"address2\": \"${params.address2}\",\"city\": \"${params.city}\",\"state\": \"${params.state}\",\"zip\": \"${params.zip}\",\"country\": \"${params.country}\"} }}]"
 		
-		String stringEntity = "{\"account_id\": ${account_id},\"short_description\": \"${short_description}\" ,\"type\": \"${type}\", \"amount\": \"${amount}\", \"currency\" : \"${currency}\", \"auto_release\" : true, \"payment_method\" : ${payment_method}, \"unique_id\" : \"${params.uniqueId}\", \"fee\": ${feeStructure}, \"payer_rbits\" : ${payerRbits}}"
+		String stringEntity = "{\"account_id\": ${account_id},\"callback_uri\" : \"${callBackUri}\",\"short_description\": \"${short_description}\" ,\"type\": \"${type}\", \"amount\": \"${amount}\", \"currency\" : \"${currency}\", \"auto_release\" : true, \"payment_method\" : ${payment_method}, \"unique_id\" : \"${params.uniqueId}\", \"fee\": ${feeStructure}, \"payer_rbits\" : ${payerRbits}}"
  		
 		httppost.setHeader("Authorization","Bearer "+ project.wepayAccessToken);
 		StringEntity input = new StringEntity(stringEntity)
@@ -666,6 +671,7 @@ class CampaignService {
 		        def slurper = new JsonSlurper()
 		       
 				json = slurper.parseText(jsonString)
+				println "json == "+ json
 				checkoutId = json.checkout_id
 		    }
 		}

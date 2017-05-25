@@ -3205,6 +3205,12 @@ class ProjectController {
 		render json;
 	}
 	
+	def wepayAccountCreateCallBack() {
+		
+		log.info("WEPAY ACCOUNT CALLBACK FUNCTION GETS CALLED");
+		log.info("ACCOUNT ID == "+ request.getParameter("account_id"))
+	}
+	
 	@Secured(['ROLE_ADMIN'])
 	def ownershiptransfer()	{
 		def message

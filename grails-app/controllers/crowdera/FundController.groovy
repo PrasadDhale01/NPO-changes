@@ -1287,6 +1287,13 @@ class FundController {
 	}
 	
 	
+	def wepayCheckoutCallBack() {
+		
+		log.info("WEPAY CHECKOUT CALLBACK FUNCTION GETS CALLED");
+		log.info("CHECKOUT ID == "+ request.getParameter("checkout_id"))
+	}
+	
+	
 	def wepayReturn() {
 		def fr = session.getAttribute('fr');
 		User fundraiser  = userService.getUserFromVanityName(fr)

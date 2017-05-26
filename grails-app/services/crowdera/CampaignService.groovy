@@ -475,6 +475,7 @@ class CampaignService {
         httppost.setHeader("Authorization","Bearer "+accessToken);
 		
 		def receiveTime = 1367958263;
+		String callBackUri = grailsApplication.config.crowdera.BASE_URL+"project/wepayAccountCreateCallBack";
 		log.info("callBackUri = "+ callBackUri)
 		
 		def rbits = "[{\"receive_time\": ${receiveTime}, \"type\": \"person\", \"source\": \"user\", \"properties\": {\"name\": \"${name}\"}},{\"receive_time\": ${receiveTime}, \"type\": \"email\", \"source\": \"user\", \"properties\": {\"email\": \"${email}\"}}, {\"receive_time\": ${receiveTime}, \"type\": \"phone\", \"source\": \"user\", \"properties\": {\"phone\": \"${project.beneficiary.telephone}\", \"phone_type\" : \"mobile\"}}, {\"receive_time\": ${receiveTime}, \"type\": \"fundraising_campaign\", \"source\": \"user\", \"properties\": {\"description\": \"${projectTitle}\"}}, {\"receive_time\": ${receiveTime}, \"type\": \"business_description\", \"source\": \"user\", \"properties\": {\"business_description\": \"${project.description}\"}}]";
@@ -641,6 +642,7 @@ class CampaignService {
 		HttpClient httpclient = new DefaultHttpClient()
 		HttpPost httppost = new HttpPost(url)
 		
+		String callBackUri = grailsApplication.config.crowdera.BASE_URL+"fund/wepayCheckoutCallBack"
 		log.info("Checkout callBackUri = "+ callBackUri)
 		
 		// npo_information -- Information Structure  If the payee is a non profit entity, 

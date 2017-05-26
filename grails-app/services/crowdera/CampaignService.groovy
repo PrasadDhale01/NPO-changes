@@ -670,7 +670,6 @@ class CampaignService {
 		        def slurper = new JsonSlurper()
 		       
 				json = slurper.parseText(jsonString)
-				println "json == "+ json
 				checkoutId = json.checkout_id
 		    }
 		}

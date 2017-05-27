@@ -5705,7 +5705,7 @@ class ProjectService {
         User user, anonymousUser
         def password
         anonymousUser = User.findByUsername('anonymous@example.com')
-        List contributions = Contribution.findAllWhere(user:anonymousUser);
+        List contributions = Contribution.findAllWhere(user:anonymousUser, active: true);
         contributions.each{ contribution->
             if (contribution.contributorEmail && contribution.contributorName){
                 user = User.findByEmail(contribution.contributorEmail)
@@ -6962,7 +6962,7 @@ class ProjectService {
 		/**Change the country to 'in' if you want to test the India flow on development ENV*/
 		def currentEnv = getCurrentEnvironment();
 		if( currentEnv == 'development'|| currentEnv == 'test'){
-			country_code  = "us"
+			country_code  = "in"
 		}else if (currentEnv == 'testIndia' || currentEnv==''){
 			country_code = "in"
 		}else if(currentEnv == 'staging') {

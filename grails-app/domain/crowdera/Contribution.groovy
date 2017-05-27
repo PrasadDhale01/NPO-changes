@@ -41,6 +41,9 @@ class Contribution {
     
     // payout = true means fund has been release to campaign owners
     boolean payout = false
+	
+	//to check contribution list
+	boolean active = true
 
     static constraints = {
         credit nullable: true

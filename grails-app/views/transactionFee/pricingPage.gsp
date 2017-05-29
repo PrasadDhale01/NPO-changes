@@ -55,7 +55,7 @@
           </table>
       </div>
       <div class="payTransacterms">
-         <p><span>**International Donations:</span>All international fundraisers raising in US$ using Crowdera’s Donation Acceptance and Disbursement Services will be charged at 5% standard payment transaction fee + Bank Disbursement International Wire charges as actuals charged by $35 one time. We use paypal for all our international fundraisers using our services. This does not apply to campaigns in US, Canada, & UK with direct payment facility.</p>
+         <p><span>**International Donations:</span>All international fundraisers raising in US$ using Crowdera’s Donation Acceptance and Disbursement Services will be charged at 5% standard payment transaction fee + Bank Disbursement International Wire charges as actuals charged by $45 one time. We use paypal for all our international fundraisers using our services. This does not apply to campaigns in US, Canada, & UK with direct payment facility.</p>
       </div>
       <br>
          <b>Let's build abundance of good together!</b>

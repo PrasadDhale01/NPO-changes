@@ -404,7 +404,7 @@ class ContributionService {
     }
     
     def getUSDContributions(def params){
-        List totalContributions = Contribution.findAllWhere(currency: 'USD').reverse()
+        List totalContributions = Contribution.findAllWhere(currency: 'USD', active: true).reverse()
         List contributions = []
         if (!totalContributions.isEmpty()) {
             def offset = params.offset ? params.int('offset') : 0
@@ -423,7 +423,7 @@ class ContributionService {
     }
 
     def getINRContributions(def params){
-        List totalContributions = Contribution.findAllWhere(currency: 'INR').reverse()
+        List totalContributions = Contribution.findAllWhere(currency: 'INR', active: true).reverse()
         List contributions = []
         if (!totalContributions.isEmpty()) {
             def offset = params.offset ? params.int('offset') : 0
@@ -442,11 +442,11 @@ class ContributionService {
     }
     
     def getINRContributions() {
-        return Contribution.findAllWhere(currency: 'INR').reverse()
+        return Contribution.findAllWhere(currency: 'INR',active: true).reverse()
     }
     
     def getUSDContributions() {
-        return Contribution.findAllWhere(currency: 'USD').reverse()
+        return Contribution.findAllWhere(currency: 'USD',active: true).reverse()
     }
 	
     def transactionSort(){
@@ -464,26 +464,26 @@ class ContributionService {
         def contributions
         switch (query) {
             case 'Name':
-                contributions = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR') : Contribution.findAllWhere(currency: 'USD');
+                contributions = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR', active: true) : Contribution.findAllWhere(currency: 'USD');
                 result = contributions?.sort{it.contributorName.toUpperCase()};
                 break;
 
             case 'Offline':
-                result = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR', isContributionOffline:true) : Contribution.findAllWhere(currency: 'USD', isContributionOffline:true);
+                result = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR', isContributionOffline:true,active: true) : Contribution.findAllWhere(currency: 'USD', isContributionOffline:true);
                 break;
 
             case 'Online':
-                result = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR', isContributionOffline:false) : Contribution.findAllWhere(currency: 'USD', isContributionOffline:false);
+                result = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR', isContributionOffline:false, active: true) : Contribution.findAllWhere(currency: 'USD', isContributionOffline:false);
                 break;
 
             case 'Date':
-                contributions = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR') : Contribution.findAllWhere(currency: 'USD');
+                contributions = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR',active: true) : Contribution.findAllWhere(currency: 'USD');
                 def sortedByDate = contributions?.sort{it.date};
                 result = sortedByDate.reverse();
                 break;
 
             default :
-                contributions = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR') : Contribution.findAllWhere(currency: 'USD');
+                contributions = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR', active: true) : Contribution.findAllWhere(currency: 'USD');
                 def sortedByDate = contributions?.sort{it.date};
                 result = sortedByDate.reverse();
         }
@@ -634,7 +634,7 @@ class ContributionService {
     def getContributorsForProject(def id, def params, String country_code){
         Project project = Project.get(id)
         
-        List<Contribution> totalContributions =  Contribution.findAllWhere(project:project)
+        List<Contribution> totalContributions =  Contribution.findAllWhere(project:project,active: true)
         List<Contribution> contributionList = new ArrayList<>();
         
         if ('in'.equalsIgnoreCase(project?.country?.countryCode)) {

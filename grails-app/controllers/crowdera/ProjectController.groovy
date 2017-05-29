@@ -2673,7 +2673,7 @@ class ProjectController {
                     def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
                     def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
                     def scope = grailsApplication.config.crowdera.gmail.SCOPE
-                    def redirectUri=base_url+'/project/getSocialContactsCode'
+                    def redirectUri=base_url+'project/getSocialContactsCode'
                     render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
                 }else if(provider.equals("constant")){
                     def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
@@ -2692,7 +2692,7 @@ class ProjectController {
                     def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
                     def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
                     def scope = grailsApplication.config.crowdera.gmail.SCOPE
-                    def redirectUri=base_url+'/project/getSocialContactsCode'
+                    def redirectUri=base_url+'project/getSocialContactsCode'
                     render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
                 }else if(provider.equals("constant")){
                     def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
@@ -2702,7 +2702,7 @@ class ProjectController {
                 }else if(provider.equals('mailchimp')){
                     def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
                     def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
-                    def redirectUri=base_url+'/project/getSocialContactsCode'
+                    def redirectUri=base_url+'project/getSocialContactsCode'
                     render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
                 }
             break;
@@ -2711,7 +2711,7 @@ class ProjectController {
 				def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
 				def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
 				def scope = grailsApplication.config.crowdera.gmail.SCOPE
-				def redirectUri=base_url+'/project/getSocialContactsCode'
+				def redirectUri=base_url+'project/getSocialContactsCode'
 				render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
 			}else if(provider.equals("constant")){
 				def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
@@ -2721,7 +2721,7 @@ class ProjectController {
 			}else if(provider.equals('mailchimp')){
 				def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
 				def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
-				def redirectUri=base_url+'/project/getSocialContactsCode'
+				def redirectUri=base_url+'project/getSocialContactsCode'
 				render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
 			}
 		    break;
@@ -2730,7 +2730,7 @@ class ProjectController {
                     def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
                     def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
                     def scope = grailsApplication.config.crowdera.gmail.SCOPE
-                    def redirectUri=base_url+'/project/getSocialContactsCode'
+                    def redirectUri=base_url+'project/getSocialContactsCode'
                     render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
                 }else if(provider.equals("constant")){
                     def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
@@ -2740,7 +2740,7 @@ class ProjectController {
                 }else if(provider.equals('mailchimp')){
                     def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
                     def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
-                    def redirectUri=base_url+'/project/getSocialContactsCode'
+                    def redirectUri=base_url+'project/getSocialContactsCode'
                     render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
                 }
             break;
@@ -2749,7 +2749,7 @@ class ProjectController {
                    def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
                    def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
                    def scope = grailsApplication.config.crowdera.gmail.SCOPE
-                   def redirectUri=base_url+'/project/getSocialContactsCode'
+                   def redirectUri=base_url+'project/getSocialContactsCode'
                    render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
                }else if(provider.equals("constant")){
                    def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
@@ -2759,7 +2759,7 @@ class ProjectController {
                }else if(provider.equals('mailchimp')){
                    def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
                    def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
-                   def redirectUri=base_url+'/project/getSocialContactsCode'
+                   def redirectUri=base_url+'project/getSocialContactsCode'
                    render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
                }
            break;
@@ -2768,7 +2768,7 @@ class ProjectController {
                    def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
                    def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
                    def scope = grailsApplication.config.crowdera.gmail.SCOPE
-                   def redirectUri=base_url+'/project/getSocialContactsCode'
+                   def redirectUri=base_url+'project/getSocialContactsCode'
                    render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
                }else if(provider.equals("constant")){
                    def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
@@ -2778,7 +2778,7 @@ class ProjectController {
                }else if(provider.equals('mailchimp')){
                    def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
                    def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
-                   def redirectUri=base_url+'/project/getSocialContactsCode'
+                   def redirectUri=base_url+'project/getSocialContactsCode'
                    render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
                }
            break;
@@ -2802,7 +2802,7 @@ class ProjectController {
                 def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
                 def clientSecret= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_SECRET
                 def dcUrl = grailsApplication.config.crowdea.MAILCHIMP.DC_URL
-                def redirectUri =base_url +'/project/getSocialContactsCode'
+                def redirectUri =base_url +'project/getSocialContactsCode'
                 def tokenJson = socialAuthService.getAccessToken(code, endpoint, clientSecret, redirectUri, clientId, provider)
                 def json = socialAuthService.getJsonStringObject(tokenJson)
                 def accessToken= json.access_token
@@ -2843,7 +2843,7 @@ class ProjectController {
                 def apiKey = grailsApplication.config.crowdera.cc.CLIENT_KEY
                 def clientSecret= grailsApplication.config.crowdera.cc.CLIENT_SECRET
                 def contactsUrl = grailsApplication.config.crowdera.cc.CONTACT_URL + apiKey
-                def redirectUri =base_url +'/project/getSocialContactsCode'
+                def redirectUri =base_url +'project/getSocialContactsCode'
                 def tokenJson = socialAuthService.getAccessToken(code,token_endpoint, clientSecret, redirectUri, apiKey, provider)
                 def json = socialAuthService.getJsonStringObject(tokenJson)
                 def accessToken= json.access_token
@@ -2885,7 +2885,7 @@ class ProjectController {
                 def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
                 def clientSecret=grailsApplication.config.crowdera.gmail.CLIENT_SECRET
                 def contactUrl= grailsApplication.config.crowdera.gmail.CONTACT_URL+ email +'/full?alt=json'
-                def redirectUri =base_url +'/project/getSocialContactsCode'
+                def redirectUri =base_url +'project/getSocialContactsCode'
                 def tokenJson = socialAuthService.getAccessToken(code,tokenEndpoint, clientSecret, redirectUri, clientId, provider)
                 def json = socialAuthService.getJsonStringObject(tokenJson)
                 def accessToken= json.access_token
@@ -3238,15 +3238,11 @@ class ProjectController {
 		if(user){
 			Project project = projectService.getProjectById(projectId)
 			Team team = Team.findByProjectAndUser(project,project.user )
-			team.user = user
-			team.save()
-			project.user = user
-			project.save()
-			
-			message = 'Username exists in database'
+			projectService.transferownership(project,team,user)
+			message = 'Cheers...! Campaign transferred successfully...!'
 			render message
 		} else{
-			message = 'Username does not exist in database '
+			message = 'Oops...! Please, enter the valid username. '
 			render message
 		}
 	}

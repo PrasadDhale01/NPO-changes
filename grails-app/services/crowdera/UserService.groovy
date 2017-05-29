@@ -928,12 +928,12 @@ class UserService {
     }
     
     def getNumberOfCampaignsContributedTo(User user) {
-        List contributions = Contribution.findAllWhere(user: user)
+        List contributions = Contribution.findAllWhere(user: user, active: true)
         return contributions.size()
     }
     
     def getAvgMinMaxContributionForUser(User user) {
-        List contributions = Contribution.findAllWhere(user: user)
+        List contributions = Contribution.findAllWhere(user: user, active: true)
         int minAmount = 0
         int maxAmount = 0
         int totalAmount = 0
@@ -961,7 +961,7 @@ class UserService {
     
     def getCategorySupportedTo(User user) {
         def category
-        List contributions = Contribution.findAllWhere(user: user)
+        List contributions = Contribution.findAllWhere(user: user, active: true)
         contributions.each {contribution->
             Project project = contribution.project
             if (category) {
@@ -1520,7 +1520,7 @@ class UserService {
         List<Contribution> contributions = [];
         boolean result = false;
 		
-        contributions = Contribution.findAllWhere(user:user, receiptSent: true);
+        contributions = Contribution.findAllWhere(user:user, receiptSent: true, active: true);
         if (contributions) {
 			
             for (Contribution contribution : contributions) {
@@ -1541,7 +1541,7 @@ class UserService {
 	
 	
     def getContributionsForWhichTaxReceiptreceived(User user, def params) {
-        List<Contribution> contributions = Contribution.findAllWhere(user:user, receiptSent: true)
+        List<Contribution> contributions = Contribution.findAllWhere(user:user, receiptSent: true, active: true)
         List contributionList = []
         def contributionsOffset
         
@@ -1624,23 +1624,23 @@ class UserService {
                 break;
                 
             case 'Anonymous':
-                contributions = Contribution.findAllWhere(project:project, isAnonymous:true)
+                contributions = Contribution.findAllWhere(project:project, isAnonymous:true, active: true)
                 break;
 
             case 'Non-Anonymous':
-                contributions = Contribution.findAllWhere(project:project, isAnonymous:false)
+                contributions = Contribution.findAllWhere(project:project, isAnonymous:false, active: true)
                 break;
 
             case '4':
-                contributions = Contribution.findAllWhere(project:project, receiptSent:true)
+                contributions = Contribution.findAllWhere(project:project, receiptSent:true, active: true)
                 break;
 
             case '5' :
-                contributions = Contribution.findAllWhere(project:project, receiptSent:false)
+                contributions = Contribution.findAllWhere(project:project, receiptSent:false, active: true)
                 break;
 
             case 'Perk Selected':
-                def contributionList = Contribution.findAllWhere(project:project)
+                def contributionList = Contribution.findAllWhere(project:project, active: true)
                 contributionList.each{
                     if (it.reward.id != 1){
                         contributions.add(it)
@@ -1649,7 +1649,7 @@ class UserService {
                 break;
 
             case 'No Perk Selected':
-                def contributionList = Contribution.findAllWhere(project:project)
+                def contributionList = Contribution.findAllWhere(project:project, active: true)
                 contributionList.each{
                     if (it.reward.id == 1){
                         contributions.add(it)
@@ -1658,15 +1658,15 @@ class UserService {
                 break;
 
             case 'Online':
-                contributions = Contribution.findAllWhere(project:project, isContributionOffline:false)
+                contributions = Contribution.findAllWhere(project:project, isContributionOffline:false, active: true)
                 break;
 
             case 'Offline':
-                contributions = Contribution.findAllWhere(project:project, isContributionOffline:true)
+                contributions = Contribution.findAllWhere(project:project, isContributionOffline:true, active: true)
                 break;
 
             default:
-                contributions = Contribution.findAllWhere(project:project)
+                contributions = Contribution.findAllWhere(project:project, active: true)
         }
         
         List<Contribution> contributionList = new ArrayList<>();
@@ -1698,7 +1698,7 @@ class UserService {
     }
     
     def getContributorsListSearchedByName(def params, Project project){
-        List contributionList = Contribution.findAllWhere(project:project)
+        List contributionList = Contribution.findAllWhere(project:project, active: true)
         List contributions = []
         def contributionsOffset
         if (params.query && params.query != " "){

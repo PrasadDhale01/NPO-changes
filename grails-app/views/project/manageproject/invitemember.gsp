@@ -35,7 +35,7 @@
                                 <a href="#"><img class="gmailContact <g:if test='${provider=="google"}'> highlightIcon </g:if> img-responsive" alt="Gmail" src="//s3.amazonaws.com/crowdera/assets/show-original-google-color.png"></a>
                                 <a href="#"><img class="mailchimpContact <g:if test='${provider=="mailchimp"}'> highlightIcon </g:if> img-responsive" alt="MailChimp" src="//s3.amazonaws.com/crowdera/assets/mailchimp.png"></a>
                                 <g:if test="${ currentEnv=='test' || currentEnv=='development'}">
-                                    <a href="#"><img class="facebookContact <g:if test='${provider=="facebook"}'> highlightIcon </g:if> img-responsive" alt="Facebook" src="//s3.amazonaws.com/crowdera/assets/contribution-fb-share.png"></a>
+<%--                                    <a href="#"><img class="facebookContact <g:if test='${provider=="facebook"}'> highlightIcon </g:if> img-responsive" alt="Facebook" src="//s3.amazonaws.com/crowdera/assets/contribution-fb-share.png"></a>--%>
                                     <a href="#"><img class="csvContact  img-responsive" alt="CSV" src="//s3.amazonaws.com/crowdera/assets/csv-icon.png"></a>
                                 </g:if>
                             </div>

@@ -409,7 +409,6 @@ class ProjectController {
           //  def multiplier = projectService.getCurrencyConverter();
             
             def pieList = projectService.getPieList(project);
-
             def hasTags = projectService.getHashTagsForCampaign(project.hashtags)
             
             def reasons = projectService.getReasonsToFundFromProject(project)
@@ -417,9 +416,9 @@ class ProjectController {
             
             boolean isTaxReceipt = campaignService.isTaxReceiptExist(project.id);
 			
-			def wepayAccountStatus;
+			def wepayAccountStatus = project.wepayAccountStatus
 			if (project.wepayEmail && project.wepayAccountId != 0) {
-				wepayAccountStatus = campaignService.getWepayAccountStatus(project.wepayAccountId, project.wepayAccessToken);
+				// wepayAccountStatus = campaignService.getWepayAccountStatus(project.wepayAccountId, project.wepayAccessToken);
 				log.info("Wepay Account Status = "+ wepayAccountStatus)
 			}
             
@@ -3187,6 +3186,7 @@ class ProjectController {
 					
 					project.wepayAccountId = accountId
 					project.wepayAccessToken = wePayObj.accessToken
+					project.wepayAccountStatus = jsonObj.state
 					project.save();
 					
 				} else {
@@ -3208,8 +3208,25 @@ class ProjectController {
 	def wepayAccountCreateCallBack() {
 		
 		log.info("WEPAY ACCOUNT CALLBACK FUNCTION GETS CALLED");
-		log.info("ACCOUNT ID == "+ request.getParameter("account_id"))
+		String accountId = request.getParameter("account_id")
+		log.info("CALL BACK URI -- ACCOUNT ID == "+ accountId)
+		
+		if (accountId != null) {
+			
+			Project project = projectService.getProjectByWepayAccountId(accountId)
+			if (project != null) {
+				def wepayAccountStatus;
+				if (project.wepayEmail && project.wepayAccountId != 0) {
+					wepayAccountStatus = campaignService.getWepayAccountStatus(project.wepayAccountId, project.wepayAccessToken);
+					
+					project.wepayAccountStatus = wepayAccountStatus;
+					project.save();
+					log.info("WEPAY ACCOUNT Call back URI : Wepay Account Status = "+ wepayAccountStatus)
+				}
+			}
+		}
 	}
+	
 	
 	@Secured(['ROLE_ADMIN'])
 	def ownershiptransfer()	{

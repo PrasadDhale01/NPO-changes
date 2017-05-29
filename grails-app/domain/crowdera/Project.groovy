@@ -65,6 +65,7 @@ class Project {
 	String wepayFirstName
 	String wepayLastName
 	String wepayAccessToken
+	String wepayAccountStatus;
 	int wepayAccountId
     
     /* For India Platform payuStatus is true*/
@@ -114,6 +115,7 @@ class Project {
 		wepayFirstName (nullable: true)
 		wepayLastName (nullable: true)
 		wepayAccessToken(nullable: true)
+		wepayAccountStatus(nullable: true)
     }
     
     def beforeInsert() {

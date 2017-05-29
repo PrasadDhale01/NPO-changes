@@ -1289,8 +1289,37 @@ class FundController {
 	
 	def wepayCheckoutCallBack() {
 		
-		log.info("WEPAY CHECKOUT CALLBACK FUNCTION GETS CALLED");
-		log.info("CHECKOUT ID == "+ request.getParameter("checkout_id"))
+		String transactionId = request.getParameter("checkout_id") //"1569792023";
+		log.info("WEPAY CHECKOUT CALLBACK FUNCTION GETS CALLED ------ CHECKOUT ID == "+ transactionId)
+		
+		if (transactionId != null) {
+			Transaction transaction = contributionService.getTransactionByTransactionId(transactionId)
+			
+			if (transaction != null) {
+				
+				String checkoutIdState = campaignService.getWepayCheckoutDetails(Integer.parseInt(transactionId), transaction?.project?.wepayAccessToken);
+				
+				log.info("WEPAY CHECKOUT STATUS  == "+ checkoutIdState)
+				if (checkoutIdState != null) {
+					
+					Contribution contribution = transaction?.contribution;
+					if (contribution != null) {
+						if (checkoutIdState == "cancelled" || checkoutIdState == "refunded" || checkoutIdState == "charged back" ||
+							checkoutIdState == "expired" || checkoutIdState == "failed") {
+							contribution.active = false;
+							
+							log.info("WEPAY CHECKOUT STATE (Inside InActive block) = "+ checkoutIdState)
+						} else if (checkoutIdState == "authorized" || checkoutIdState == "captured" || checkoutIdState == "released") {
+							contribution.active = true;
+							log.info("WEPAY CHECKOUT STATE (Inside Active block) = "+ checkoutIdState)
+						}
+						contribution.save();
+					}
+				}
+				
+			}
+		}
+		
 	}
 	
 	

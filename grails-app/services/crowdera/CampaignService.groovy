@@ -718,7 +718,8 @@ class CampaignService {
 			contributorName  : name,
 			contributorEmail : username,
 			physicalAddress  : shippingDetail.address,
-			currency         : 'USD'
+			currency         : 'USD',
+			active           : true 
 		)
 		
 		project.addToContributions(contribution).save(failOnError: true)

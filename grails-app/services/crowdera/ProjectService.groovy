@@ -614,7 +614,8 @@ class ProjectService {
             contributorEmail:username,
             physicalAddress: shippingDetail.address,
             currency : currency,
-            panNumber : panNumber
+            panNumber : panNumber,
+			active   : true
         )
         project.addToContributions(contribution).save(failOnError: true)
 		 
@@ -755,7 +756,8 @@ class ProjectService {
 					panNumber: params.panNumber,
 					isContributionOffline: true,
 					fundRaiser: username,
-					currency:currency
+					currency:currency,
+					active: true
 			 )
 			 project.addToContributions(contribution).save(failOnError: true)
  
@@ -6066,7 +6068,8 @@ class ProjectService {
             panNumber        : panNumber,
             merchantTxId     : marketplaceTxId,
             splitRef         : issuerRefNo,
-            splitId          : splitId
+            splitId          : splitId,
+			active           : true
         )
         
         project.addToContributions(contribution).save(failOnError: true)

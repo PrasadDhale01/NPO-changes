@@ -409,7 +409,6 @@ class ProjectController {
           //  def multiplier = projectService.getCurrencyConverter();
             
             def pieList = projectService.getPieList(project);
-
             def hasTags = projectService.getHashTagsForCampaign(project.hashtags)
             
             def reasons = projectService.getReasonsToFundFromProject(project)
@@ -3187,6 +3186,7 @@ class ProjectController {
 					
 					project.wepayAccountId = accountId
 					project.wepayAccessToken = wePayObj.accessToken
+					project.wepayAccountStatus = jsonObj.state
 					project.save();
 					
 				} else {

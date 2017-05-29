@@ -474,7 +474,7 @@ class CampaignService {
 		/*STAGE_5fe2214cb89aecdb2c567d5fd58080d048cc0c5afad52a65738101beab47d94c*/
         httppost.setHeader("Authorization","Bearer "+accessToken);
 		
-		def receiveTime = 1367958263;
+		def receiveTime = System.currentTimeMillis();
 		String callBackUri = grailsApplication.config.crowdera.BASE_URL+"project/wepayAccountCreateCallBack";
 		log.info("callBackUri = "+ callBackUri)
 		
@@ -511,8 +511,6 @@ class CampaignService {
 		try {
 			def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
 			def httpUrl = wepayBaseUrl +"/account"
-			
-			HttpClient httpclient = new DefaultHttpClient()
 			
 			HttpClient httpClient = new DefaultHttpClient()
 			HttpPost httppost = new HttpPost(httpUrl)
@@ -676,6 +674,41 @@ class CampaignService {
 	    
 		log.info("Transaction status = "+status)
 		return [checkoutId : checkoutId, status : status]
+	}
+	
+	
+	def getWepayCheckoutDetails(def wepayCheckoutId, def accessToken) {
+		
+		try {
+			def wepayBaseUrl = grailsApplication.config.crowdera.wepay.BASE_URL
+			def httpUrl = wepayBaseUrl +"/checkout"
+			
+			HttpClient httpClient = new DefaultHttpClient()
+			HttpPost httppost = new HttpPost(httpUrl)
+			
+			httppost.setHeader("Authorization","Bearer "+accessToken);
+			
+			StringEntity input = new StringEntity("{\"checkout_id\": ${wepayCheckoutId}}")
+			input.setContentType("application/json")
+			httppost.setEntity(input)
+			HttpResponse httpResponse = httpClient.execute(httppost)
+			
+			def status = httpResponse.getStatusLine().getStatusCode()
+			def json; def state;
+			if (status == 200) {
+				HttpEntity entity = httpResponse.getEntity();
+
+				if (entity != null){
+					def jsonString = EntityUtils.toString(entity)
+					def slurper = new JsonSlurper()
+					
+					json = slurper.parseText(jsonString)
+					state = json.state
+				}
+			}
+			return state;
+		} catch(Exception e) {
+		}
 	}
 	
 	

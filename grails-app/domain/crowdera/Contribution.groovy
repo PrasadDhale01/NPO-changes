@@ -41,6 +41,9 @@ class Contribution {
     
     // payout = true means fund has been release to campaign owners
     boolean payout = false
+	
+	// false if record is inactive or transaction is failed
+	boolean active = true
 
     static constraints = {
         credit nullable: true

@@ -68,6 +68,11 @@ class ProjectService {
         }
         
     }
+	
+	Project getProjectByWepayAccountId(String accountId) {
+		int wepayAccountId = Integer.parseInt(accountId)
+		return Project.findByWepayAccountId(wepayAccountId)
+	}
 
     def getTaxRecieptById(def taxRecieptId){
         if (taxRecieptId){

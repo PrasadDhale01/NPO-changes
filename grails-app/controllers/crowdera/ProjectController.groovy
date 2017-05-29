@@ -417,9 +417,9 @@ class ProjectController {
             
             boolean isTaxReceipt = campaignService.isTaxReceiptExist(project.id);
 			
-			def wepayAccountStatus;
+			def wepayAccountStatus = project.wepayAccountStatus
 			if (project.wepayEmail && project.wepayAccountId != 0) {
-				wepayAccountStatus = campaignService.getWepayAccountStatus(project.wepayAccountId, project.wepayAccessToken);
+				// wepayAccountStatus = campaignService.getWepayAccountStatus(project.wepayAccountId, project.wepayAccessToken);
 				log.info("Wepay Account Status = "+ wepayAccountStatus)
 			}
             
@@ -3208,8 +3208,25 @@ class ProjectController {
 	def wepayAccountCreateCallBack() {
 		
 		log.info("WEPAY ACCOUNT CALLBACK FUNCTION GETS CALLED");
-		log.info("ACCOUNT ID == "+ request.getParameter("account_id"))
+		String accountId = request.getParameter("account_id")
+		log.info("CALL BACK URI -- ACCOUNT ID == "+ accountId)
+		
+		if (accountId != null) {
+			
+			Project project = projectService.getProjectByWepayAccountId(accountId)
+			if (project != null) {
+				def wepayAccountStatus;
+				if (project.wepayEmail && project.wepayAccountId != 0) {
+					wepayAccountStatus = campaignService.getWepayAccountStatus(project.wepayAccountId, project.wepayAccessToken);
+					
+					project.wepayAccountStatus = wepayAccountStatus;
+					project.save();
+					log.info("WEPAY ACCOUNT Call back URI : Wepay Account Status = "+ wepayAccountStatus)
+				}
+			}
+		}
 	}
+	
 	
 	@Secured(['ROLE_ADMIN'])
 	def ownershiptransfer()	{

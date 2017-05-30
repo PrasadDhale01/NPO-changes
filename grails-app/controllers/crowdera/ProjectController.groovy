@@ -3186,7 +3186,7 @@ class ProjectController {
 					
 					project.wepayAccountId = accountId
 					project.wepayAccessToken = wePayObj.accessToken
-					project.wepayAccountStatus = jsonObj.state
+					project.wepayAccountStatus = "pending"
 					project.save();
 					
 				} else {

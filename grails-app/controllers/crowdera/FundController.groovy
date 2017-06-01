@@ -289,8 +289,9 @@ class FundController {
 		
         String request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         String base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-
-        mandrillService.sendThankYouMailToContributors(contribution, project, contribution.amount, fundraiser,country_code)
+		
+		boolean isTaxReceipt = campaignService.isTaxReceiptExist(project.id);
+        mandrillService.sendThankYouMailToContributors(contribution, project, contribution.amount, fundraiser,country_code, isTaxReceipt)
         
         if (userService.getCurrentUser()) {
             

@@ -971,7 +971,7 @@ class MandrillService {
         sendTemplate(user, 'userRequestToRegister', globalMergeVars, tags)
     }
     
-    public def sendThankYouMailToContributors(Contribution contribution, Project project, def amount, User fundraiser,def country_code) {
+    public def sendThankYouMailToContributors(Contribution contribution, Project project, def amount, User fundraiser,def country_code, boolean isTaxReceipt) {
         def fundRaiserUserName = fundraiser.username
         def beneficiary = project.user
         def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:fundRaiserUserName,country_code:country_code], absolute: true)
@@ -979,6 +979,8 @@ class MandrillService {
         def cdraDomain = getCdraDomain(currentEnv)
         def fblink = "https://www.facebook.com"
         def naamFoundationCampaign
+		def taxReceipt
+		def download = grailsLinkGenerator.link(controller: 'user', action: 'exportTaxReceiptPdf', id: contribution.id, absolute: true);
         
         def countryCode = project?.country?.countryCode?.toLowerCase();
 		def currency = contribution.currency
@@ -991,7 +993,11 @@ class MandrillService {
         if (project.id == '2c9f8f3b4feeeee0014fefed7fae0001'){
             naamFoundationCampaign = 'yes'
         }
-
+		
+		if (isTaxReceipt){
+			taxReceipt = 'yes'
+		}
+		
         def globalMergeVars = [[
             'name': 'LINK',
             'content': link
@@ -1022,12 +1028,18 @@ class MandrillService {
         ], [
             'name' : 'CDRADOMAIN',
             'content': cdraDomain
-        ]
+        ], [
+ 			'name' : 'TAX_RECEIPT',
+ 			'content': taxReceipt
+ 		], [
+ 			'name' : 'DOWNLOAD',
+ 			'content': download
+ 		]
 	]
 
-        def tags = ['thankYouEmailToContributor']
+        def tags = ['testEmailToContributor']
 
-        sendThankYouTemplate(contribution, 'thankYouEmailToContributor', globalMergeVars, tags)
+        sendThankYouTemplate(contribution, 'testEmailToContributor', globalMergeVars, tags)
     }
     
     public def inviteMembersToCommunity(def invite, def community, def user) {

@@ -1,5 +1,7 @@
+<g:set var="projectService" bean="projectService"/>
 <%
 	String userAgent = request.getHeader("User-Agent");
+	def country_code = projectService.getCountryCodeForCurrentEnv(request)
  %>
 <g:if test="${imageUrl.size() == 1 }">
     <div id="singleSlide">

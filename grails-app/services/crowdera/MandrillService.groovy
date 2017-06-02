@@ -1037,9 +1037,9 @@ class MandrillService {
  		]
 	]
 
-        def tags = ['testEmailToContributor']
+        def tags = ['thankYouEmailToContributor-new']
 
-        sendThankYouTemplate(contribution, 'testEmailToContributor', globalMergeVars, tags)
+        sendThankYouTemplate(contribution, 'thankYouEmailToContributor-new', globalMergeVars, tags)
     }
     
     public def inviteMembersToCommunity(def invite, def community, def user) {

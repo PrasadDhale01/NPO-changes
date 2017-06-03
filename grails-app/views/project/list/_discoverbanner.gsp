@@ -22,7 +22,7 @@
 <div class="TW-discover-banner-decoration TW-discover-testimonial-container hidden-xs" >
 	<div class="TW-discover-header-testimonial">
 		<div  class="TW-discover-header-img">
-			<img class="img-responsive tabImage" src="//s3.amazonaws.com/crowdera/project-images/dad700dc-f63f-4d24-a340-0aef1e144ae2.png" alt="Discover-Page-Banner-for-Testimonial(1).png">
+			<img class="img-responsive tabImage" src="//s3.amazonaws.com/crowdera/project-images/dad700dc-f63f-4d24-a340-0aef1e144ae2.png" alt="Chet Jain's thought on creating a giving economy where abundance starts with giving.">
 		</div>
 	</div>
 	<div class="discoverBannerText container">

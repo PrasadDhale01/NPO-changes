@@ -7,33 +7,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
 <meta name="layout" content="main" />
-<meta name="description" content="Crowdera is a FREE crowdfunding platform that helps individuals, non-profits & independent filmmakers to raise money online. Create your fundraiser." />
-<meta name="keywords" content="Crowdera, crowdfunding, contribute online, raise funds free, film crowdfunding, raise money online, fundraising site, fundraising website, fundraising project, online fundraising, raise money for a cause, global crowdfunding" />
+	<!-------------- Open Graph Data  -------------->
+	
+	<g:if test="${'in'.equalsIgnoreCase(country_code)}">
+		<meta name="google-site-verification" content="TXxVJF5ILRgRnuB5n2ZSRTCWI1v1hQVu1Jb9kZQeLyI" />
+	</g:if>
+	<g:else>
+	    <meta name="google-site-verification" content="1pvQXdD4EfbP-qcUAfTfXFKDngMT3LA5GuAX6Xkoxu4" />
+	</g:else>
+	<meta property="og:site_name" content="GoCrowdera" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Crowdera: Future of funding for things that matter" />
+	<meta property="og:url" content="${base_url}" />
+	<meta property="og:image" content="//s3.amazonaws.com/crowdera/project-images/3288f33c-aed0-498b-8107-2e7e01029da4.jpg" />
+	<meta name="description" content="Crowdera is a free crowdfunding platform that helps individuals, non-profits & independent filmmakers to raise money online. We offer flexible goals, deadlines and our teams tool helps multiply crowdfunding results."/>
+	<meta name="keywords" content="Crowdera, crowdfunding, raise funds free, film crowdfunding, raise money online, fundraising site, fundraising website, fundraising project, online fundraising, raise funds for a cause, global crowdfunding, free fundraising,  nonprofit crowdfunding " />
+	
+	<!-------------- Twitter Card Data  -------------->
+	
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@gocrowdera" />
+	<meta property="twitter:title" content="Crowdera: Future of funding for things that matter" />
+	<meta name="twitter:domain" content="${base_url}" />
+	<meta property="twitter:description" content="Crowdera is a free crowdfunding platform that helps individuals, non-profits & independent filmmakers to raise money online. We offer flexible goals, deadlines and our teams tool helps multiply crowdfunding results." />
+	<meta property="twitter:image" content="//s3.amazonaws.com/crowdera/project-images/3288f33c-aed0-498b-8107-2e7e01029da4.jpg" />
+	<meta property="twitter:url" content="${base_url}" />
 
-<meta property="og:type" content="website" />
-<g:if test="${currentEnv == 'production' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'development'}">
-    <meta property="og:site_name" content="Crowdera" />
-</g:if>
-<g:else>
-    <meta property="og:site_name" content="Crowdera- First free crowdfunding platform in India" />
-</g:else>
-<meta property="og:title" content="Crowdera: Future of funding for things that matter" />
-<meta property="og:description" content="Crowdera is a free crowdfunding platform that helps individuals, non-profits & independent filmmakers to raise money online. We offer flexible goals, deadlines and our teams tool helps multiply crowdfunding results." />
-<meta property="og:image" content="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png" />
-<meta property="og:url" content="${base_url}" />
-
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@gocrowdera" />
-<meta name="twitter:domain" content="${base_url}" />
-<meta name="twitter:title" content="Crowdera- The Free Global Crowdfunding & Fundraising Website" />
-<meta name="twitter:description" content="Crowdera is a free global crowdfunding platform for you to make an impact, innovate for social good, follow your passion or fulfil personal needs." />
-<g:if test="${currentEnv == 'production'}"><%--
-    <meta name="google-site-verification" content="JHphWifUPH5pLuIpLDBo0qa_czJdqETbDP2x40wJBUM" />
-    --%><meta name="google-site-verification" content="1pvQXdD4EfbP-qcUAfTfXFKDngMT3LA5GuAX6Xkoxu4" />
-</g:if>
-<g:elseif test="${currentEnv == 'prodIndia'}">
-    <meta name="google-site-verification" content="TXxVJF5ILRgRnuB5n2ZSRTCWI1v1hQVu1Jb9kZQeLyI" />
-</g:elseif>
+<%--<meta name="google-site-verification" content="JHphWifUPH5pLuIpLDBo0qa_czJdqETbDP2x40wJBUM" />--%>
 <r:require modules="homejs"/>
 
 <style type="text/css" media="screen">

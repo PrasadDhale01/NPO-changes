@@ -6,7 +6,7 @@
 <div class="container hm-media-stript-width new-media-mobile">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 hm-allimg-padding">
-           <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/3d15acf2-ef6c-45ae-a036-6f2d78b22156.png" alt="In-News-Logo.png">
+           <img class="img-responsive" src="//s3.amazonaws.com/crowdera/project-images/3d15acf2-ef6c-45ae-a036-6f2d78b22156.png" alt="Crowdera's News coverage">
         </div>    
     </div>
 </div>

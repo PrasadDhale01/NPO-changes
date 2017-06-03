@@ -34,10 +34,10 @@
 	    <h1 class="text-center visible-xs how-it-title1">It's Simple, Secure and Free to Fundraise on Crowdera</h1>
 	 </div>
 	 <div class="hm-howitworks-mobile-image">
-	    <img class="img-responsive home-img-large-size visible-xs" src="//s3.amazonaws.com/crowdera/project-images/01eb46a8-e556-45bc-b429-33b60f3b0339.jpg" alt="How-it-work">
+	    <img class="img-responsive home-img-large-size visible-xs" src="//s3.amazonaws.com/crowdera/project-images/01eb46a8-e556-45bc-b429-33b60f3b0339.jpg" alt="How the crowdfunding process works from creating a campaign to achieving your goal.">
 	 </div>
 	 
-	 <img class="img-responsive home-img-large-size hidden-xs hidden-lg visible-sm visible-md" src="//s3.amazonaws.com/crowdera/project-images/b1f45ce3-0bb5-4e04-952a-a0108b10b366.jpg" alt="How-it-work">
+	 <img class="img-responsive home-img-large-size hidden-xs hidden-lg visible-sm visible-md" src="//s3.amazonaws.com/crowdera/project-images/b1f45ce3-0bb5-4e04-952a-a0108b10b366.jpg" alt="How the crowdfunding process works from creating a campaign to achieving your goal.">
 	 
 	 <div class="learn-how-it-work-img">
 	     <a href="${resource(dir: '/'+"${country_code}"+'/campaign/create')}" class="btn btn-default btn-block hm-start-campaign-btn learn-startcampaign-btn">Start Your Campaign</a>

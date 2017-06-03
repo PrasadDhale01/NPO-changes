@@ -75,42 +75,60 @@
     <title>Crowdera- ${project.title}</title>
     <link rel="canonical" href="${base_url}/campaigns"/>
     <meta name="title" content="${project.title} - Crowdera" />
-    <g:if test="${project.description}">
-        <meta name="description" content="${project.description}" />
-    </g:if>
     <meta name="keywords" content="Crowdera, crowdfunding, contribute online, raise funds free, film crowdfunding, raise money online, fundraising site, fundraising website, fundraising project, online fundraising, raise money for a cause, global crowdfunding, (${project.organizationName}, ${project.beneficiary.country}, ${project.category} ,${project.usedFor})" />
     
-    <meta property="og:site_name" content="Crowdera" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="${project.title} by ${project?.beneficiary?.firstName}" />
-    <g:if test="${project.description}">
-        <meta property="og:description" content="${project.description} Crowdfunding is a practical and inspiring way to support the fundraising needs of a cause or community. Do some good. Make a Contribution Today!" />
-    </g:if>
-    <g:if test="${project.organizationIconUrl}">
+
+    
+    <!-------------- Open Graph Data  -------------->
+	<meta property="og:site_name" content="GoCrowdera" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="${project.title} by ${project?.beneficiary?.firstName}" />
+	<meta property="og:url" content="${fbShareUrl}" />
+	<meta name="keywords" content="Simple, secure and easy online fundraising website for all things that matter for individuals and non-profits. Get started for free now! " />
+	<g:if test="${project.organizationIconUrl}">
         <meta property="og:image:url" content="${project.organizationIconUrl}" />
     </g:if>
     <g:elseif test="${imageUrl}">
         <meta property="og:image:url" content="${imageUrl}" />
     </g:elseif>
-    <meta property="og:url" content="${fbShareUrl}" />
-    
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@gocrowdera" />
-    <meta name="twitter:domain" content="${base_url}" />
-    <meta name="twitter:title" content="${project.title}" />
-    <g:if test="${project.description}">
-       <meta name="twitter:description" content="${project.description}" />
+	<g:if test="${project.organizationIconUrl}">
+        <meta property="og:image:url" content="${project.organizationIconUrl}" />
     </g:if>
+    <g:elseif test="${imageUrl}">
+        <meta property="og:image:url" content="${imageUrl}" />
+    </g:elseif>
+    <g:else>
+        <meta property="og:image" content="//s3.amazonaws.com/crowdera/project-images/3288f33c-aed0-498b-8107-2e7e01029da4.jpg" />
+    </g:else>
+    <g:if test="${project.description}">
+        <meta property="og:description" content="${project.description} Crowdera is a free crowdfunding platform. It is a practical and inspiring way to support the fundraising needs of a cause or community. Make a Contribution Today! " />
+    </g:if>
+
     
+	<!-------------- Twitter Card Data  -------------->
+	
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@gocrowdera" />
+	<meta property="twitter:title" content="${project.title} by ${project?.beneficiary?.firstName}" />
+	<meta name="twitter:domain" content="${fbShareUrl}"/>
+	<meta property="twitter:url" content="${fbShareUrl}" />
     <g:if test="${project.organizationIconUrl}">
         <meta property="twitter:image" content="${project.organizationIconUrl}" />
     </g:if>
     <g:elseif test="${imageUrl}">
         <meta property="twitter:image" content="${imageUrl}" />
     </g:elseif>
+    <g:else>
+        <meta property="twitter:image" content="//s3.amazonaws.com/crowdera/project-images/3288f33c-aed0-498b-8107-2e7e01029da4.jpg" />
+    </g:else>
+    <g:if test="${project.description}">
+       <meta name="twitter:description" content="${project.description} Crowdera is a free crowdfunding platform. It is a practical and inspiring way to support the fundraising needs of a cause or community. Make a Contribution Today! " />
+    </g:if>
+    <g:else>
+    	<meta name="twitter:description" content="Crowdera is a free crowdfunding platform. It is a practical and inspiring way to support the fundraising needs of a cause or community. Make a Contribution Today! " />
+    </g:else>
     
     <meta name="layout" content="main" />
-    
     
     <r:require modules="projectshowjs"/>
     <g:javascript>

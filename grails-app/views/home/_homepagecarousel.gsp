@@ -43,13 +43,13 @@
     </g:elseif>
     <g:else>
     	<g:if test="${userAgent?.contains('iPad')}">
-    		     <img class="img-responsive home-img-large-size" src="https://s3.amazonaws.com/crowdera/project-images/c345270a-0b44-4f1b-9c50-4068357e07bb.jpg" title="homepage banner for Tablet">
+    		     <img class="img-responsive home-img-large-size" src="https://s3.amazonaws.com/crowdera/project-images/c345270a-0b44-4f1b-9c50-4068357e07bb.jpg" alt="Collage depicting all diverse campaigns run on Crowdera ">
     	</g:if>
     	<g:elseif test="${userAgent?.contains('Mobile')|| userAgent?.contains('Android')}">
-                  <img class="img-responsive home-img-large-size" src="https://s3.amazonaws.com/crowdera/project-images/c345270a-0b44-4f1b-9c50-4068357e07bb.jpg" title="homepage banner for Mobile.jpg">
+                  <img class="img-responsive home-img-large-size" src="https://s3.amazonaws.com/crowdera/project-images/c345270a-0b44-4f1b-9c50-4068357e07bb.jpg" alt="Collage depicting all diverse campaigns run on Crowdera ">
       	</g:elseif>
       	<g:else>
-      		<img class="img-responsive home-img-large-size" src="https://s3.amazonaws.com/crowdera/project-images/c345270a-0b44-4f1b-9c50-4068357e07bb.jpg" alt="US-slide">
+      		<img class="img-responsive home-img-large-size" src="https://s3.amazonaws.com/crowdera/project-images/c345270a-0b44-4f1b-9c50-4068357e07bb.jpg" alt="Collage depicting all diverse campaigns run on Crowdera ">
     	</g:else>
     </g:else>
     <div class="homepageTextdiv">

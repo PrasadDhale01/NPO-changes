@@ -1,5 +1,6 @@
 <g:set var="projectService" bean="projectService"/>
 <% 
+    def country_code = projectService.getCountryCodeForCurrentEnv(request)
 	def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
     def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
 	def base = "/campaign?"
@@ -9,6 +10,24 @@
     <meta name="layout" content="main" />
     <r:require module="projectlistjs"/>
     <title>Crowdera- Fundraising Campaigns</title>
+        	<!-------------- Open Graph Data  -------------->
+	<meta property="og:site_name" content="GoCrowdera" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Crowdera: Explore Causes " />
+	<meta property="og:url" content="${base_url+country_code}/campaigns" />
+	<meta property="og:image" content="//s3.amazonaws.com/crowdera/project-images/3288f33c-aed0-498b-8107-2e7e01029da4.jpg" />
+	<meta name="description" content="Crowdera is a free crowdfunding platform that helps individuals, non-profits & independent filmmakers to raise money online. Explore the various causes we support!"/>
+	<meta name="keywords" content="Simple, secure and easy online fundraising website for all things that matter for individuals and non-profits. Get started for free now! " />
+	
+	<!-------------- Twitter Card Data  -------------->
+	
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@gocrowdera" />
+	<meta property="twitter:title" content="Crowdera: Explore Causes " />
+	<meta name="twitter:domain" content="${base_url+country_code}/campaigns" />
+	<meta property="twitter:description" content="Crowdera is a free crowdfunding platform that helps individuals, non-profits & independent filmmakers to raise money online. Explore the various causes we support!" />
+	<meta property="twitter:image" content="//s3.amazonaws.com/crowdera/project-images/3288f33c-aed0-498b-8107-2e7e01029da4.jpg" />
+	<meta property="twitter:url" content="${base_url+country_code}/campaigns" />
     <g:hiddenField name="query" id="query" value="${query}"/>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -66,7 +85,7 @@
         	<div class="row" >
         		<g:render template="list/discoverbanner"></g:render>
         		 <div class="container visible-xs">
-                    <img class="img-responsive mob-discoverBanner" src="//s3.amazonaws.com/crowdera/project-images/178e8473-1d94-46e6-a321-dfab845039d6.jpg" alt="Discover banner for Mobile.jpg">
+                    <img class="img-responsive mob-discoverBanner" src="//s3.amazonaws.com/crowdera/project-images/178e8473-1d94-46e6-a321-dfab845039d6.jpg" alt="Chet Jain's thought on creating a giving economy where abundance starts with giving.">
                  </div>
         	</div>
         </div>

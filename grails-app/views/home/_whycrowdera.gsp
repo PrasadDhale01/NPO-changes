@@ -16,7 +16,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                     <img class="whycrowderaimg" src="//s3.amazonaws.com/crowdera/assets/crowdera-is-free-icon.png" alt="crowdera-is-free">
                 </div>
                 <div class="col-md-10 col-sm-10">
-                    <h4 class="pull-left subheadingtext">Crowdera is FREE*</h4>
+                    <h3 class="pull-left subheadingtext">Crowdera is FREE*</h3>
                     <div class="clear"></div>
                     <p class="pull-left crowderacontent1">We don't dip into your donor dollars - No Fee at all.</p>
                 </div>
@@ -26,7 +26,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                     <img class="whycrowderaimg" src="//s3.amazonaws.com/crowdera/assets/flexible-funding-icon.png" alt="Flexible-Deadline">
                 </div>
                 <div class="col-md-10 col-sm-10">
-                    <h4 class="pull-left subheadingtext">Flexible Funding</h4>
+                    <h3 class="pull-left subheadingtext">Flexible Funding</h3>
                     <div class="clear"></div>
                     <p class="pull-left crowderacontent1">You keep the money you raise, even if it is just 1% of the goal.</p>
                 </div>
@@ -36,7 +36,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                     <img src="//s3.amazonaws.com/crowdera/assets/flexible-deadline-icon.png" alt="Flexible-Fundin">
                 </div>
                 <div class="col-md-10 col-sm-10">
-                    <h4 class="pull-left subheadingtext">Flexible Deadline</h4>
+                    <h3 class="pull-left subheadingtext">Flexible Deadline</h3>
                     <div class="clear"></div>
                     <p class="pull-left crowderacontent1">You can extend your deadline if needed</p>
                 </div>
@@ -47,7 +47,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                         <img src="//s3.amazonaws.com/crowdera/assets/multiple-secure-payment-gateways-icon.png" alt="Free-Crowdfunding">
                     </div>
                     <div class="col-md-10 col-sm-10">
-                        <h4 class="pull-left subheadingtext">Multiple Secure Payment Gateways</h4>
+                        <h3 class="pull-left subheadingtext">Multiple Secure Payment Gateways</h3>
                         <div class="clear"></div>
                         <p class="pull-left crowderacontent1">You select between PayPal, PayU or FirstGiving</p>
                     </div>
@@ -65,7 +65,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                     <img src="//s3.amazonaws.com/crowdera/assets/teams-to-multiply-results-icon.png" alt="Instant-Fundraising">
                 </div>
                 <div class="col-md-10 col-sm-10">
-                    <h4 class="pull-left subheadingtext">Teams to Multiply Results</h4>
+                    <h3 class="pull-left subheadingtext">Teams to Multiply Results</h3>
                     <div class="clear"></div>   
                     <p class="pull-left crowderacontent1">Your team can share their individuals stories, define their own goals, and even their own perks (coming soon)</p>
                 </div>
@@ -75,7 +75,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                     <img src="//s3.amazonaws.com/crowdera/assets/mobile-friendly-funding-icon.png" alt="Mobile-Friendly-Funding-Page">
                 </div>
                 <div class="col-md-10 col-sm-10">
-                    <h4 class="pull-left subheadingtext">Mobile Friendly Funding Page</h4>
+                    <h3 class="pull-left subheadingtext">Mobile Friendly Funding Page</h3>
                     <div class="clear"></div>
                     <p class="pull-left crowderacontent1">Your fundraising page can be accessed from any phone.</p>
                 </div>
@@ -86,7 +86,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                         <img src="//s3.amazonaws.com/crowdera/assets/instant-fundraising-icon.png" alt="Multiple-Secure-Payment-Gateways">
                     </div>
                     <div class="col-md-10 col-sm-10">
-                        <h4 class="pull-left subheadingtext">Instant Fundraising</h4>
+                        <h3 class="pull-left subheadingtext">Instant Fundraising</h3>
                         <div class="clear"></div>
                         <p class="pull-left crowderacontent1">Donor funds are instantly transferred to your account</p>
                     </div>
@@ -97,7 +97,7 @@ def country_code = projectService.getCountryCodeForCurrentEnv(request)
                     <img src="//s3.amazonaws.com/crowdera/assets/free-crowdfunding-icon.png" alt="Teams-to-Multiply-Results">
                 </div>
                 <div class="col-md-10 col-sm-10">
-                    <h4 class="pull-left subheadingtext">Free Crowdfunding Ebook</h4>
+                    <h3 class="pull-left subheadingtext">Free Crowdfunding Ebook</h3>
                     <div class="clear"></div>
                     <p class="pull-left crowderacontent1">Step by step guidelines for crowdfunding.</p>
                 </div>

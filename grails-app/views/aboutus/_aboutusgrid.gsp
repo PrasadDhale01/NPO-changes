@@ -3,7 +3,7 @@
  
 %>
   <div class="about-banner-img hidden-xs">
-    <img class="abt-us-banner-widd" src="//s3.amazonaws.com/crowdera/assets/about-us-banner-imgs.jpg" alt="about-us-banner">
+    <img class="abt-us-banner-widd" src="//s3.amazonaws.com/crowdera/assets/about-us-banner-imgs.jpg" alt="Crowdera Mission's mission to build a 'Giving Economy' empowering individuals and organizations">
   </div>
   
 <div class="container crewpage mentor-container mentor-centering">

@@ -13,11 +13,29 @@
 	<meta name="layout" content="main"/>
 	<r:require modules="ebookjs"/>
 	<title>Crowdera- Crowdfunding ebook</title>
+    	<!-------------- Open Graph Data  -------------->
+	<meta property="og:site_name" content="GoCrowdera" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Resource Guides " />
+	<meta property="og:url" content="${base_url}crowdfunding-ebook" />
+	<meta property="og:image" content="//s3.amazonaws.com/crowdera/project-images/9dd48f64-4cf0-4550-8519-ed06166eff09.jpg" />
+	<meta name="description" content="Free ebooks to help you with best practices, fundraising trends and more. "/>
+	<meta name="keywords" content="Successful crowdfunding, free crowdfunding tips, free fundraising tips " />
+	
+	<!-------------- Twitter Card Data  -------------->
+	
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@gocrowdera" />
+	<meta property="twitter:title" content="Resource Guides " />
+	<meta name="twitter:domain" content="${base_url}crowdfunding-ebook" />
+	<meta property="twitter:description" content="Free ebooks to help you with best practices, fundraising trends and more. " />
+	<meta property="twitter:image" content="//s3.amazonaws.com/crowdera/project-images/9dd48f64-4cf0-4550-8519-ed06166eff09.jpg" />
+	<meta property="twitter:url" content="${base_url}crowdfunding-ebook" />
 </head>
 <body>
 	<div class="TW-ebook-body">
 		<div class="TW-ebook-header-image">
-	 		<img alt="Ebook Image" src="//s3.amazonaws.com/crowdera/assets/ebook-header-full.jpg">
+	 		<img alt="The crowdfunding ebook for success " src="//s3.amazonaws.com/crowdera/assets/ebook-header-full.jpg">
 		</div>
 		<div id="sticky-header"></div>
 		<div class="TW-ebook-header">

@@ -438,10 +438,10 @@ environments {
 		crowdera.gmail.OAUTH_URL='https://accounts.google.com/o/oauth2/auth?'
 		crowdera.gmail.TOKEN_URL='https://accounts.google.com/o/oauth2/token?'
 		crowdera.gmail.CONTACT_URL='https://www.google.com/m8/feeds/contacts/'
-		//crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
-		crowdera.gmail.CLIENT_KEY='1049378830663-cr6s49lmtiuo29b0rkpj015irpls5rsf.apps.googleusercontent.com'
-		//crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
-		crowdera.gmail.CLIENT_SECRET='zbanKIejo4qofwXdtyaOnaq-'
+		crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
+		//crowdera.gmail.CLIENT_KEY='1049378830663-cr6s49lmtiuo29b0rkpj015irpls5rsf.apps.googleusercontent.com'
+		crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
+		//crowdera.gmail.CLIENT_SECRET='zbanKIejo4qofwXdtyaOnaq-'
 		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
 		 
 		mandrill {
@@ -458,7 +458,8 @@ environments {
 					successUri = '/login/googleSuccess'
 					failureUri = '/login/googleFailure'
 					callback = "https://staging.gocrowdera.com/oauth/google/callback"
-					scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+					scope = 'profile https://www.google.com/m8/feeds https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+					//scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
 				}
 				facebook {
 					api = org.scribe.builder.api.FacebookApi

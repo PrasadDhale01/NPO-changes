@@ -1941,10 +1941,12 @@ class ProjectController {
           def projectByTeam = projectService.getProjectByteam(team)
           def projectAdmin
           def projectUser
-          if(projectByTeam && team){
+		  boolean isAdmin = userService.isAdmin();
+		  
+          if(projectByTeam && team) {
              projectAdmin = userService.isCampaignBeneficiaryOrAdmin(projectByTeam, currentUser)
              projectUser = projectByTeam.user.email.toString().replace('[','').replace(']','')
-             if(projectUser.equals(currentUser.username) || projectAdmin){
+             if(isAdmin || projectUser.equals(currentUser.username) || projectAdmin){
                  if(!projectUser.equals(team.user.username)){
                      if(team.enable){
                          team.enable = false

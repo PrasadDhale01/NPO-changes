@@ -442,7 +442,7 @@ environments {
 		//crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
 		crowdera.gmail.CLIENT_KEY='481175145484-4sd4fn0pj9kgc7rap0poh4uq8i8j8irb.apps.googleusercontent.com'
 		crowdera.gmail.CLIENT_SECRET='Lsh29YP-_fWfwBH6AUmZnzAW'
-		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds https://www.googleapis.com/auth/contacts.readonly'
+		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
 		 
 		mandrill {
 			apiKey = "R28ZHu6_5IkJWLFunpsJbw"

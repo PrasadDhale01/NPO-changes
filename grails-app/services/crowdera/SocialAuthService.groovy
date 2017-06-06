@@ -23,6 +23,7 @@ class SocialAuthService {
         }else{
             requestBody = "code="+code+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri+"&client_id="+clientId+"&grant_type=authorization_code";
         }
+		log.info("requestBody=="+requestBody)
         httprequest.setEntity(new StringEntity(requestBody))
         HttpResponse httpresponse = client.execute(httprequest)
         def token = EntityUtils.toString(httpresponse.getEntity())

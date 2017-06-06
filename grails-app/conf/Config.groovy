@@ -438,8 +438,10 @@ environments {
 		crowdera.gmail.OAUTH_URL='https://accounts.google.com/o/oauth2/auth?'
 		crowdera.gmail.TOKEN_URL='https://accounts.google.com/o/oauth2/token?'
 		crowdera.gmail.CONTACT_URL='https://www.google.com/m8/feeds/contacts/'
-		crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
-		crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
+		//crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
+		//crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
+		crowdera.gmail.CLIENT_KEY='481175145484-4sd4fn0pj9kgc7rap0poh4uq8i8j8irb.apps.googleusercontent.com'
+		crowdera.gmail.CLIENT_SECRET='Lsh29YP-_fWfwBH6AUmZnzAW'
 		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
 		 
 		mandrill {
@@ -453,8 +455,8 @@ environments {
 					api = org.grails.plugin.springsecurity.oauth.GoogleApi20
 					//key = '1049378830663-cr6s49lmtiuo29b0rkpj015irpls5rsf.apps.googleusercontent.com'
 					//secret = '_8Zx6cP4s8Iv4_4VyiRifxUw'
-					key = '1049378830663-hp0h3f8ev4flh414mqr6r579trtt089o.apps.googleusercontent.com'
-					secret = '5g_8VrA3x_pakGUe1iiMH6yl'
+					key = '481175145484-4sd4fn0pj9kgc7rap0poh4uq8i8j8irb.apps.googleusercontent.com'
+					secret = 'Lsh29YP-_fWfwBH6AUmZnzAW'
 					successUri = '/login/googleSuccess'
 					failureUri = '/login/googleFailure'
 					callback = "https://staging.gocrowdera.com/oauth/google/callback"

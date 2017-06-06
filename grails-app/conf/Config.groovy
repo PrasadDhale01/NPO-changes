@@ -442,7 +442,7 @@ environments {
 		//crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
 		crowdera.gmail.CLIENT_KEY='481175145484-4sd4fn0pj9kgc7rap0poh4uq8i8j8irb.apps.googleusercontent.com'
 		crowdera.gmail.CLIENT_SECRET='Lsh29YP-_fWfwBH6AUmZnzAW'
-		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
+		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds https://www.googleapis.com/auth/contacts'
 		 
 		mandrill {
 			apiKey = "R28ZHu6_5IkJWLFunpsJbw"
@@ -460,7 +460,7 @@ environments {
 					successUri = '/login/googleSuccess'
 					failureUri = '/login/googleFailure'
 					callback = "https://staging.gocrowdera.com/oauth/google/callback"
-					scope = 'profile https://www.google.com/m8/feeds https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.login'
+					scope = 'profile https://www.google.com/m8/feeds https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/contacts'
 					//scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
 				}
 				facebook {

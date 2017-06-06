@@ -501,22 +501,43 @@ $(function() {
         });
     });
 
+    
     /***********************Enable or Disable a Team********************************/
 
-    $(".teamStatusButton input[type='checkbox']").click(function(){
+    $(".teamStatusButton input[type='checkbox']").change(function(){
 
-        if($(this).prop("checked") === true || $(this).prop("checked") === false){
-             enableOrDisableTeam(this);
-             changeTeamStatus();
-         }
-     });
-
-     function changeTeamStatus() {
+    	var confirmMsg;
+        if($(this).is(':checked')) {
+		    
+	        confirmMsg = window.confirm("Are you sure, you want to disable current team ?");
+	        if(confirmMsg) {
+	        	enableOrDisableTeam(this);
+	        	changeTeamStatus();
+	        } else {
+	        	$(this).prop('checked', false);
+	        }
+	        
+	    } else {
+	    	
+	        /*confirmMsg = window.confirm("Are you sure, you want to enable current team ?");
+	        if(confirmMsg) {*/
+        	enableOrDisableTeam(this);
+        	changeTeamStatus();
+	        /*} else {
+	        	$(this).prop('checked', true);
+	        }*/
+	    }
+        
+    });
+    
+    
+    function changeTeamStatus() {
          $('.teamStatusButton input[type="checkbox"]').each(function(index) {
-             if ($(this).prop("checked") === true) {
-                 $('#checkteam'+(index+1)).text(' Enable');
+        	 
+             if ($(this).is(":checked")) {
+                 $('#checkteam'+($(this).val())).text(' Enable');
              } else {
-                 $('#checkteam'+(index+1)).text(' Disable');
+                 $('#checkteam'+($(this).val())).text(' Disable');
              }
          });
      }

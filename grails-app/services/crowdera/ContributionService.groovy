@@ -465,7 +465,7 @@ class ContributionService {
         switch (query) {
             case 'Name':
                 contributions = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR', active: true) : Contribution.findAllWhere(currency: 'USD');
-                result = contributions?.sort{it.contributorName.toUpperCase()};
+                result = contributions?.sort{it.contributorName?.toUpperCase()};
                 break;
 
             case 'Offline':

@@ -451,8 +451,10 @@ environments {
 			providers {
 				google {
 					api = org.grails.plugin.springsecurity.oauth.GoogleApi20
-					key = '1049378830663-cr6s49lmtiuo29b0rkpj015irpls5rsf.apps.googleusercontent.com'
-					secret = '_8Zx6cP4s8Iv4_4VyiRifxUw'
+					//key = '1049378830663-cr6s49lmtiuo29b0rkpj015irpls5rsf.apps.googleusercontent.com'
+					//secret = '_8Zx6cP4s8Iv4_4VyiRifxUw'
+					key = '1049378830663-hp0h3f8ev4flh414mqr6r579trtt089o.apps.googleusercontent.com'
+					secret = '5g_8VrA3x_pakGUe1iiMH6yl'
 					successUri = '/login/googleSuccess'
 					failureUri = '/login/googleFailure'
 					callback = "https://staging.gocrowdera.com/oauth/google/callback"

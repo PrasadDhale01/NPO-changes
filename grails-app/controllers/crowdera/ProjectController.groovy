@@ -1495,8 +1495,8 @@ class ProjectController {
 			def validatedTeam = teamObj.teamList
 			def totalteams = teamObj.teams
             
-            def enableTeamNamesList = projectService.getEnableTeamFirstNameAndLastName(validatedTeam)
-            def teamNameList = projectService.getTeamFirstNameAndLastName(validatedTeam)
+            def enableTeamNamesList = projectService.getEnableTeamFirstNameAndLastName(totalteams)
+            def teamNameList = projectService.getTeamFirstNameAndLastName(totalteams)
 
 			def unValidatedTeam = projectService.getTeamToBeValidated(project)
 			def discardedTeam = projectService.getDiscardedTeams(project)

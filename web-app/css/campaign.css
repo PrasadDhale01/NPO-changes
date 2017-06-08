@@ -335,7 +335,7 @@ textarea.textarea-embed-tile{
 }
 
 .modal-tile{
-    width:415px;
+    width:475px;
 }
 
 .fedu.thumbnail.c-thumbnail{
@@ -1983,4 +1983,85 @@ span.donation-font{
 }
 .ct-contDetail-bottom {
     padding-bottom: 80px;
+}
+.wid-inline-font {
+	display: -webkit-inline-box;
+	padding-top: 15px;
+    margin-bottom: 0;
+    padding-bottom: 10px;
+}
+.wid-goal-rs {
+    padding-top: 0;
+    padding-left: 6px;
+    color: #000;
+    font-weight: 900;
+    font-size: 22pt;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+.wid-space {
+    left: 10px;
+    margin-left: -7px;
+}
+.wid-goal-padding {
+    padding-right: 6px;
+}
+.wid-diplay-inl {
+    display: -webkit-inline-box;
+    padding: 0;
+}
+.wid-progress {
+    margin-bottom: 0;
+    border-radius: 0;
+    height: 26px;
+   
+/*     width: 205px; */
+}
+.wid-inline-days {
+	display: -webkit-inline-box;
+	background-color: #f8b900;
+	padding: 4px 6px;
+	height: 26px;
+	width: 67px;
+}
+.wid-days-lbl {
+    font-size: 10px;
+    line-height: 9px;
+/*     padding-left: 15px; */
+    color: #000;
+    font-weight: 900;
+}
+.wid-days {
+    font-size: 24px;
+    margin-top: -8px;
+    color: #000;
+}
+.wid-descrip-height{
+	height: 45px;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+.wid-bottom {
+    margin: 0;
+}
+.wid-btn {
+	width:100%;
+}
+.wid-btn-video-off {
+    width: 72%;
+}
+.wid-percen-spacing {
+    float: left;
+    padding-left: 25px;
+}
+/* .wid-progress-break div { */
+/*     width: 80% !important; */
+/* } */
+.wid-progresbar {
+    width: 78%;
+    border: none;
+    background-color: #ededed;
+}
+.wid-inr {
+    font-size: 27px;
 }

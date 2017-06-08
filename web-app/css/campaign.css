@@ -335,7 +335,7 @@ textarea.textarea-embed-tile{
 }
 
 .modal-tile{
-    width:415px;
+    width:475px;
 }
 
 .fedu.thumbnail.c-thumbnail{
@@ -2019,11 +2019,10 @@ span.donation-font{
 }
 .wid-inline-days {
 	display: -webkit-inline-box;
-	background-color: yellow;
-	padding: 4px;
+	background-color: #f8b900;
+	padding: 4px 6px;
 	height: 26px;
-	margin-right: -4px;
-    margin-bottom: -4px;
+	width: 67px;
 }
 .wid-days-lbl {
     font-size: 10px;
@@ -2050,4 +2049,19 @@ span.donation-font{
 }
 .wid-btn-video-off {
     width: 72%;
+}
+.wid-percen-spacing {
+    float: left;
+    padding-left: 25px;
+}
+/* .wid-progress-break div { */
+/*     width: 80% !important; */
+/* } */
+.wid-progresbar {
+    width: 78%;
+    border: none;
+    background-color: #ededed;
+}
+.wid-inr {
+    font-size: 27px;
 }

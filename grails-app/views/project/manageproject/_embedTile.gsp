@@ -76,7 +76,15 @@
           ${goal}
       </span>
       
-      <div class="wid-inline-days pull-right">
+      
+     </div>
+ </div>
+	 <div class="progress progress-striped active wid-progress-break col-sm-9 wid-progresbar">
+	  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage}%;">
+	     <div class="wid-percen-spacing"> ${percentage}%</div>
+	  </div>
+	 </div>
+	 <div class="wid-inline-days pull-right col-sm-3">
 	      <div class="wid-days-lbl">DAYS<br>LEFT</div> 
 	      <div class="wid-days">
 			  <g:if test="${projectService.getRemainingDay(project) > 0 && projectService.getRemainingDay(project) < 10}">
@@ -87,16 +95,6 @@
 		      </g:else>
 	      </div>
       </div>
-     </div>
- </div>
- 
-	 <div class="progress progress-striped active">
-	  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage}%;">
-	      ${percentage}%
-	  </div>
-	 </div>
-	 
- 
  <div class="text-center">
     <div class="form-group wid-inline-font">
         <div class="wid-goal-padding">
@@ -105,7 +103,7 @@
         <div class="wid-goal-rs ">
           
           <g:if test="${project.payuStatus}">
-              <span class="fa fa-inr "></span>
+              <span class="fa fa-inr wid-inr"></span>
           </g:if>
           <g:else>$</g:else>
           <span class="wid-space">${goal}</span>

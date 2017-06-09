@@ -3872,7 +3872,13 @@ class ProjectService {
 				break;
 				
 			case 'amount':
-				project.amount = Double.parseDouble(varValue);
+				project.amount = Double.parseDouble(varValue); 
+				
+				Team team = Team.findByProjectAndUser(project, project?.user);
+				if (team) {
+					team.amount = Double.parseDouble(varValue);
+					team.save();
+				}
 				isValueChanged = true;
 				break;
 	
@@ -6970,7 +6976,7 @@ class ProjectService {
 		/**Change the country to 'in' if you want to test the India flow on development ENV*/
 		def currentEnv = getCurrentEnvironment();
 		if( currentEnv == 'development'|| currentEnv == 'test'){
-			country_code  = "in"
+			country_code  = "us"
 		}else if (currentEnv == 'testIndia' || currentEnv==''){
 			country_code = "in"
 		}else if(currentEnv == 'staging') {

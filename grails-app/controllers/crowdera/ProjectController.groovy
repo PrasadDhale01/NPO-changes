@@ -2603,6 +2603,25 @@ class ProjectController {
 		def currentFundraiser = userService.getUserFromVanityName(params.fr)
 		render(view:'/project/manageproject/embedTile', model:[project:project, currentFundraiser:currentFundraiser])
 	}
+	
+	def embedDonationButton() {
+        def project = projectService.getProjectFromVanityTitle(params.projectTitle)
+		def currentFundraiser = userService.getUserFromVanityName(params.fr)
+	    
+		render(view:'/project/manageproject/embedDonationButton', model:[project:project, currentFundraiser:currentFundraiser, projectTitle:params.projectTitle, fr: params.fr , country_code: params.country_code])
+	}
+	def embedDonationButton2() {
+		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
+		def currentFundraiser = userService.getUserFromVanityName(params.fr)
+		
+		render(view:'/project/manageproject/embedDonationButton2', model:[project:project, currentFundraiser:currentFundraiser, projectTitle:params.projectTitle, fr: params.fr , country_code: params.country_code])
+	}
+	def embedDonationButton3() {
+		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
+		def currentFundraiser = userService.getUserFromVanityName(params.fr)
+		
+		render(view:'/project/manageproject/embedDonationButton3', model:[project:project, currentFundraiser:currentFundraiser, projectTitle:params.projectTitle, fr: params.fr , country_code: params.country_code])
+	}
 
 	def getFeedBackCSV(){
 		Project project = projectService.getProjectById(params.projectId)

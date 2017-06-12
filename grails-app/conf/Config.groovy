@@ -230,8 +230,8 @@ environments {
 	}
 	test {
 		/*  */
-		crowdera.facebook.appId = '554475128028127'
-		crowdera.facebook.secret = 'f1991f7bf85d445a346821967e2b1251'
+		crowdera.facebook.appId = '1984579665110362'
+		crowdera.facebook.secret = 'd616d5adc8dd3f2b290252b2b7fd15f6'
 
 		grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
 		grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
@@ -336,6 +336,16 @@ environments {
 					callback = "http://test.gocrowdera.com/oauth/google/callback"
 					scope = 'profile https://www.google.com/m8/feeds https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/contacts'
 				}
+				
+				facebook {
+					api = org.scribe.builder.api.FacebookApi
+					key = '1984579665110362'
+					secret = 'd616d5adc8dd3f2b290252b2b7fd15f6'
+					successUri = '/login/facebookSuccess'
+					failureUri = '/login/facebookFailure'
+					callback = "http://test-gocrowdera.com/oauth/facebook/callback"
+					scopes = "['public_profile','email','name','user']"
+				  }
 			}
 		}
 		

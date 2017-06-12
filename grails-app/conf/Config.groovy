@@ -343,7 +343,7 @@ environments {
 					secret = 'd616d5adc8dd3f2b290252b2b7fd15f6'
 					successUri = '/login/facebookSuccess'
 					failureUri = '/login/facebookFailure'
-					callback = "http://test-gocrowdera.com/oauth/facebook/callback"
+					callback = "http://test.gocrowdera.com/oauth/facebook/callback"
 					scopes = "['public_profile','email','name','user']"
 				  }
 			}

@@ -2087,10 +2087,11 @@ button.embed-donate-btn-size3 {
     margin-left: 33px !important;
 }
 .btn-right {
-    margin-left: 72px;
+    margin-left: 28px;
 }
 .btn-top-spaceing {
     padding-top: 15px;
+    display: -webkit-inline-box;
 }
 .textarea-embed-tile-button,
 .textarea-embed-tile-button2,
@@ -2099,4 +2100,11 @@ button.embed-donate-btn-size3 {
 }
 .btn-sm-left {
     margin-left: 49px;
+}
+.margin-sm-left-donate{
+    margin-left: 28px;
+}
+.wid-top-padd {
+    padding-top: 15px;
+    margin: 0;
 }

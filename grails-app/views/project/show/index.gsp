@@ -69,13 +69,13 @@
     def embedVideoCode = '<iframe width="480" height="360" frameborder="0" src="'+campaignVideoUrl+'" scrolling="no"></iframe>'
     
 	 def embedDonationUrl = base_url+'/campaign/'+vanityTitle+'/'+vanityUsername+'/embed/donatetile'
-	 def embedDonationCode = '<iframe width="480" height="360" frameborder="0" src="'+embedDonationUrl+'" scrolling="no"></iframe>'
+	 def embedDonationCode = '<iframe width="480" height="360" frameborder="0" src="'+embedDonationUrl+'" scrolling="no"  class="embedTitleUrl"></iframe>'
 	 
 	 def embedDonationUrl2 = base_url+'/campaign/'+vanityTitle+'/'+vanityUsername+'/embed/donatetilemd'
-	 def embedDonationCode2 = '<iframe width="480" height="360" frameborder="0" src="'+embedDonationUrl2+'" scrolling="no"></iframe>'
+	 def embedDonationCode2 = '<iframe width="480" height="360" frameborder="0" src="'+embedDonationUrl2+'" scrolling="no"  class="embedTitleUrl"></iframe>'
 	 
 	 def embedDonationUrl3 = base_url+'/campaign/'+vanityTitle+'/'+vanityUsername+'/embed/donatetilelg'
-	 def embedDonationCode3 = '<iframe width="480" height="360" frameborder="0" src="'+embedDonationUrl3+'" scrolling="no"></iframe>'
+	 def embedDonationCode3 = '<iframe width="480" height="360" frameborder="0" src="'+embedDonationUrl3+'" scrolling="no"  class="embedTitleUrl"></iframe>'
 	 
 	def ss = '/layouts/show_teamtileInfo'
 %>
@@ -804,6 +804,7 @@
                                                 <p>Widget preview</p>
                                                 <textarea class="textarea-embed-tile form-control" onclick="this.select()">${embedCode}</textarea><br><br>
                                                 <g:render template="manageproject/embedTile"/>
+                                                
                                                 <g:if test="${percentage == 999}">
 												    <button type="button" class="btn btn-success show-campaign-sucessbtn wid-btn mob-show-sucessend" disabled>SUCCESSFULLY FUNDED!</button>
 												</g:if>
@@ -840,52 +841,52 @@
 <%--                                                <g:link controller="project" action="embedDonationButton" params="['projectTitle':vanityTitle, 'fr': vanityUsername , 'country_code': country_code]" >--%>
 <%--                                                   <button class="btn btn-primary">Click</button>--%>
 <%--                                                </g:link>--%>
-                                                <g:if test="${percentage == 999}">
-												    <button type="button" class="btn btn-success show-campaign-sucessbtn wid-btn mob-show-sucessend" disabled>SUCCESSFULLY FUNDED!</button>
-												</g:if>
-												<g:elseif test="${ended}">
-												    <div class="show-A-fund"> </div>
-												    <button type="button" class="btn btn-warning show-campaign-sucess-endedbtn wid-btn mob-show-sucessend  show-campaign-ended-funded" disabled>CAMPAIGN ENDED!</button>
-												</g:elseif>
-												<g:else>
-												      
-												    <g:if test="${project.paypalEmail || project.charitableId || (project?.wepayEmail && project?.wepayAccountId != 0 && (wepayAccountStatus == 'active' || wepayAccountStatus == 'pending')) || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
-												        <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
-												            <div class="show-A-fund"> </div>
-												            <button name="submit" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn sh-fund-donate-contri sss" id="btnFundDesktop">DONATE NOW</button>
-												        </g:form>
-												    </g:if>
-												    <g:elseif test="${(project.payuEmail || project.citrusEmail) && !('in'.equalsIgnoreCase(country_code))}">
-												      	<button name="inactiveContributeButton" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn sh-fund-donate-contri">DONATE NOW</button>
-												    </g:elseif>
-												    <g:else>
-												        <div class="show-A-fund"> </div>
-												        <button name="contributeButton" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn sh-fund-donate-contri">DONATE NOW</button>
-												    </g:else>
-												    After choosing a button size, copy and paste the embed code above.
-												    <div class="clear"></div>
-												     <div class="row btn-top-spaceing">
-                                                    <div class="col-sm-2 margin-sm-left button-click-size video-play-sm-3 text-center">
-                                                        <button class="btn btn-primary btn-sm btn-sm-margin">105 x 50</button>
-                                                    </div>
-                                                    <div class="col-sm-2 margin-md-left button-click-size-md text-center">
-                                                        <button class="btn btn-primary btn-sm btn-sm-center">210 x 60 </button>
-                                                    </div>
-                                                    <div class="col-sm-2 margin-lg-left button-click-size-lg text-center">
-                                                        <button class="btn btn-primary btn-sm btn-right">240 x 70</button>
-                                                    </div>
-                                               
-                                                </div>
-												</g:else>
-												
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                      </g:if>
-                      <g:else>
+                                                    <div class="text-center">
+		                                                <g:if test="${percentage == 999}">
+														    <button type="button" class="btn btn-success show-campaign-sucessbtn wid-btn mob-show-sucessend" disabled>SUCCESSFULLY FUNDED!</button>
+														</g:if>
+														<g:elseif test="${ended}">
+														    <div class="show-A-fund"> </div>
+														    <button type="button" class="btn btn-warning show-campaign-sucess-endedbtn wid-btn mob-show-sucessend  show-campaign-ended-funded" disabled>CAMPAIGN ENDED!</button>
+														</g:elseif>
+														<g:else>
+													      
+													    <g:if test="${project.paypalEmail || project.charitableId || (project?.wepayEmail && project?.wepayAccountId != 0 && (wepayAccountStatus == 'active' || wepayAccountStatus == 'pending')) || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
+													        <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
+													            <div class="show-A-fund"> </div>
+													            <button name="submit" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn sh-fund-donate-contri donate-btn-change2" id="btnFundDesktop">DONATE NOW</button>
+	<%--												            <button name="submit" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn sh-fund-donate-contri " id="btnFundDesktop">DONATE NOW</button>--%>
+													        </g:form>
+													    </g:if>
+													    <g:elseif test="${(project.payuEmail || project.citrusEmail) && !('in'.equalsIgnoreCase(country_code))}">
+													      	<button name="inactiveContributeButton" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn sh-fund-donate-contri donate-btn-change2">DONATE NOW</button>
+													    </g:elseif>
+													    <g:else>
+													        <div class="show-A-fund"> </div>
+													        <button name="contributeButton" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn sh-fund-donate-contri donate-btn-change2">DONATE NOW</button>
+													    </g:else>
+												    </div>
+													    <p class="wid-top-padd">After choosing a button size, copy and paste the embed code above.</p>
+													    <div class="clear"></div>
+													    <div class="row btn-top-spaceing">
+		                                                    <div class="margin-sm-left-donate button-click-size video-play-sm-3 text-center">
+		                                                        <button class="btn btn-primary btn-sm btn-sm-margin">105 x 50</button>
+		                                                    </div>
+		                                                    <div class="button-click-size-md text-center">
+		                                                        <button class="btn btn-primary btn-sm btn-sm-center">210 x 60 </button>
+		                                                    </div>
+		                                                    <div class="button-click-size-lg text-center">
+		                                                        <button class="btn btn-primary btn-sm btn-right">240 x 70</button>
+		                                                    </div>
+	                                                	 </div>
+												     </g:else>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+	                      </g:if>
+	                      <g:else>
                           <div class="modal-dialog modal-tile">
                               <div class="modal-content">
                                   <div class="modal-header">
@@ -900,29 +901,31 @@
 	                                      <p>Widget preview</p>
 	                                      <textarea class="textarea-of-embed-tile form-control" onclick="this.select()">${embedCode}</textarea><br><br>
 	                                      <g:render template="manageproject/embedTile"/>
-	                                      <g:if test="${percentage == 999}">
-										    <button type="button" class="btn btn-success show-campaign-sucessbtn wid-btn-video-off mob-show-sucessend" disabled>SUCCESSFULLY FUNDED!</button>
-										</g:if>
-										<g:elseif test="${ended}">
-										    <div class="show-A-fund"> </div>
-										    <button type="button" class="btn btn-warning show-campaign-sucess-endedbtn wid-btn-video-off mob-show-sucessend show-campaign-ended-funded" disabled>CAMPAIGN ENDED!</button>
-										</g:elseif>
-										<g:else>
-										      
-										    <g:if test="${project.paypalEmail || project.charitableId || (project?.wepayEmail && project?.wepayAccountId != 0 && (wepayAccountStatus == 'active' || wepayAccountStatus == 'pending')) || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
-										        <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
-										            <div class="show-A-fund"> </div>
-										            <button name="submit" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn-video-off sh-fund-donate-contri" id="btnFundDesktop">DONATE NOW</button>
-										        </g:form>
-										    </g:if>
-										    <g:elseif test="${(project.payuEmail || project.citrusEmail) && !('in'.equalsIgnoreCase(country_code))}">
-										      	<button name="inactiveContributeButton" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn-video-off sh-fund-donate-contri">DONATE NOW</button>
-										    </g:elseif>
-										    <g:else>
-										        <div class="show-A-fund"> </div>
-										        <button name="contributeButton" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn-video-off sh-fund-donate-contri">DONATE NOW</button>
-										    </g:else>
-										</g:else>
+	                                    <div class="text-center">  
+		                                    <g:if test="${percentage == 999}">
+											    <button type="button" class="btn btn-success show-campaign-sucessbtn wid-btn-video-off mob-show-sucessend" disabled>SUCCESSFULLY FUNDED!</button>
+											</g:if>
+											<g:elseif test="${ended}">
+											    <div class="show-A-fund"> </div>
+											    <button type="button" class="btn btn-warning show-campaign-sucess-endedbtn wid-btn-video-off mob-show-sucessend show-campaign-ended-funded" disabled>CAMPAIGN ENDED!</button>
+											</g:elseif>
+											<g:else>
+											      
+											    <g:if test="${project.paypalEmail || project.charitableId || (project?.wepayEmail && project?.wepayAccountId != 0 && (wepayAccountStatus == 'active' || wepayAccountStatus == 'pending')) || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
+											        <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
+											            <div class="show-A-fund"> </div>
+											            <button name="submit" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn-video-off sh-fund-donate-contri donate-btn-change2" id="btnFundDesktop">DONATE NOW</button>
+											        </g:form>
+											    </g:if>
+											    <g:elseif test="${(project.payuEmail || project.citrusEmail) && !('in'.equalsIgnoreCase(country_code))}">
+											      	<button name="inactiveContributeButton" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn-video-off sh-fund-donate-contri donate-btn-change2">DONATE NOW</button>
+											    </g:elseif>
+											    <g:else>
+											        <div class="show-A-fund"> </div>
+											        <button name="contributeButton" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn-video-off sh-fund-donate-contri donate-btn-change2">DONATE NOW</button>
+											    </g:else>
+											</g:else>
+										 </div>
 	                                  </div>
 	                                  <div class="col-sm-6">
                                                 <p>Widget preview</p>
@@ -947,25 +950,26 @@
 												    <g:if test="${project.paypalEmail || project.charitableId || (project?.wepayEmail && project?.wepayAccountId != 0 && (wepayAccountStatus == 'active' || wepayAccountStatus == 'pending')) || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
 												        <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
 												            <div class="show-A-fund"> </div>
-												            <button name="submit" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn sh-fund-donate-contri sss" id="btnFundDesktop">DONATE NOW</button>
+												            <button name="submit" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn sh-fund-donate-contri donate-btn-change2" id="btnFundDesktop">DONATE NOW</button>
 												        </g:form>
 												    </g:if>
 												    <g:elseif test="${(project.payuEmail || project.citrusEmail) && !('in'.equalsIgnoreCase(country_code))}">
-												      	<button name="inactiveContributeButton" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn sh-fund-donate-contri">DONATE NOW</button>
+												      	<button name="inactiveContributeButton" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn sh-fund-donate-contri donate-btn-change2">DONATE NOW</button>
 												    </g:elseif>
 												    <g:else>
 												        <div class="show-A-fund"> </div>
-												        <button name="contributeButton" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn sh-fund-donate-contri">DONATE NOW</button>
+												        <button name="contributeButton" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn sh-fund-donate-contri donate-btn-change2">DONATE NOW</button>
 												    </g:else>
+												    <p class="wid-top-padd">After choosing a button size, copy and paste the embed code above.</p>
 												    <div class="clear"></div>
-												     <div class="row btn-top-spaceing">
-                                                    <div class="col-sm-2 margin-sm-left button-click-size video-play-sm-3 text-center btn-sm-left">
+												    <div class="row btn-top-spaceing">
+                                                    <div class="margin-sm-left-donate button-click-size video-play-sm-3 text-center">
                                                         <button class="btn btn-primary btn-sm btn-sm-margin">105 x 50</button>
                                                     </div>
-                                                    <div class="col-sm-2 margin-md-left button-click-size-md text-center">
+                                                    <div class="button-click-size-md text-center">
                                                         <button class="btn btn-primary btn-sm btn-sm-center">210 x 60 </button>
                                                     </div>
-                                                    <div class="col-sm-2 margin-lg-left button-click-size-lg text-center">
+                                                    <div class="button-click-size-lg text-center">
                                                         <button class="btn btn-primary btn-sm btn-right">240 x 70</button>
                                                     </div>
                                                
@@ -987,10 +991,11 @@
                                                     	  var embedDonationUrl = $('#embedDonationUrl').val();
                                                         	 var embedCodeDonate = '<iframe src="'+embedDonationUrl+'" width="480px" height="360px" frameborder="0" scrolling="no"></iframe>';
                                                        	 
-                                                             $(".donate-btn-change2").css({"padding":"0","font-size":"16px","width":"105px","height":"50px"});
+                                                             
                                                              if($(".textarea-embed-tile-button")){
-                                                            	 $(".textarea-embed-tile-button").show();
-                                                            	 $(".textarea-embed-tile-button2").hide();
+                                                            	 $(".donate-btn-change2").css({"padding":"0","font-size": "16px","width":"105px","height":"50px"});
+                                                                 $(".textarea-embed-tile-button").show();
+                                                                 $(".textarea-embed-tile-button2").hide();
                                                             	 $(".textarea-embed-tile-button3").hide();
                                                             	 $(".textarea-embed-tile-button").val(embedCodeDonate);
                                                              }else{
@@ -1000,15 +1005,15 @@
                                                       $(".button-click-size-md").click(function(){
                                                     	  var embedDonationUrl2 = $('#embedDonationUrl2').val();
                                                          	 var embedCodeDonate2 = '<iframe src="'+embedDonationUrl2+'" width="480" frameborder="0" scrolling="no"></iframe>';
-<%--                                                            	 $(".donate-btn-change2").css({"padding":"0","font-size":"16px","width":"105px","height":"50px"});--%>
                                                                   	 
                                                                   	if($(".textarea-embed-tile-button")){
-                                                                   	 $(".textarea-embed-tile-button").hide();
-                                                                   	 $(".textarea-embed-tile-button2").show();
-                                                                   	 $(".textarea-embed-tile-button3").hide();
-                                                                   	$(".textarea-embed-tile-button2").val(embedCodeDonate2);
+	                                                                     $(".donate-btn-change2").css({"padding":"0","font-size": "22px","width":"210px","height":"60px"});
+	                                                                   	 $(".textarea-embed-tile-button").hide();
+	                                                                   	 $(".textarea-embed-tile-button2").show();
+	                                                                   	 $(".textarea-embed-tile-button3").hide();
+	                                                                   	 $(".textarea-embed-tile-button2").val(embedCodeDonate2);
                                                                     }else{
-                                                                   	 $(".textarea-embed-tile-button2").hide();
+                                                                   	    $(".textarea-embed-tile-button2").hide();
                                                                     }
                                                       });
                                                       $(".button-click-size-lg").click(function(){
@@ -1016,6 +1021,7 @@
                                                          	 var embedCodeDonate3 = '<iframe src="'+embedDonationUrl3+'" width="480" frameborder="0" scrolling="no"></iframe>';
 <%--                                                            	 $(".donate-btn-change2").css({"padding":"0","font-size":"16px","width":"105px","height":"50px"});--%>
                                                                   	 if($(".textarea-embed-tile-button")){
+	                                                                     $(".donate-btn-change2").css({"padding":"0","font-size":"25px","width":"240px","height":"70px"});
                                                                      	 $(".textarea-embed-tile-button").hide();
                                                                      	 $(".textarea-embed-tile-button2").hide();
                                                                      	 $(".textarea-embed-tile-button3").show();

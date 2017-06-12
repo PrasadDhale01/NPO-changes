@@ -5666,10 +5666,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 320px;
     }
 	button.btn-sm-center {
-        margin-left: -37px !important;
+        margin-left: 4px !important;
     }
     button.btn-right {
-        margin-left: -9px;
+        margin-left: 5px;
     }
 	div.wid-progresbar {
 	    width: 75%;
@@ -8777,10 +8777,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    background-color: #ededed;
 	}
 	button.btn-sm-center {
-    	margin-left: 12px !important;
+    	margin-left: 2px !important;
     }
     button.btn-right {
-        margin-left: 36px;
+        margin-left: 2px;
     }
 	#embedTilemodal .modal-dialog.modal-embed-with-video {
        width: 800px;
@@ -10896,10 +10896,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    background-color: #ededed;
 	}
 	button.btn-sm-center {
-    	margin-left: 12px !important;
+    	margin-left: 2px !important;
     }
     button.btn-right {
-        margin-left: 36px;
+        margin-left: 2px;
     }
 	#embedTilemodal .modal-dialog.modal-embed-with-video {
        width: 820px;
@@ -16071,10 +16071,10 @@ textarea.textarea-embed-video {
         width: 320px;
     }
 	button.btn-sm-center {
-        margin-left: -37px !important;
+        margin-left: 4px !important;
     }
     button.btn-right {
-        margin-left: -9px;
+        margin-left: 5px;
     }
     div.wid-progresbar {
 	    width: 75%;

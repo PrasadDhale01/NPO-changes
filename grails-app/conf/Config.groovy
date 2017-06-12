@@ -307,9 +307,11 @@ environments {
 		crowdera.gmail.OAUTH_URL='https://accounts.google.com/o/oauth2/auth?'
 		crowdera.gmail.TOKEN_URL='https://accounts.google.com/o/oauth2/token?'
 		crowdera.gmail.CONTACT_URL='https://www.google.com/m8/feeds/contacts/'
-		crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
-		crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
-		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
+		//crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
+		//crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
+		crowdera.gmail.CLIENT_KEY='481175145484-09jo1l0n1g655suod0d1656m2fdl6965.apps.googleusercontent.com'
+		crowdera.gmail.CLIENT_SECRET='MglGUHRlBGREPZ2lH8QfEL9T'
+		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds https://www.googleapis.com/auth/contacts'
 		
 		/*Google client details*/
 		crowdera.Client_Id = '837867811198'
@@ -325,12 +327,14 @@ environments {
 			providers {
 				google {
 					api = org.grails.plugin.springsecurity.oauth.GoogleApi20
-					key = '837867811198-t23m00r907r9o4ubsdr3dlsse38gooqd.apps.googleusercontent.com'
-					secret = '0fE42pditvlL8Yzgw9Jw1PhL'
+					//key = '837867811198-t23m00r907r9o4ubsdr3dlsse38gooqd.apps.googleusercontent.com'
+					//secret = '0fE42pditvlL8Yzgw9Jw1PhL'
+					key = '481175145484-09jo1l0n1g655suod0d1656m2fdl6965.apps.googleusercontent.com'
+					secret = 'MglGUHRlBGREPZ2lH8QfEL9T'
 					successUri = '/login/googleSuccess'
 					failureUri = '/login/googleFailure'
 					callback = "http://test.gocrowdera.com/oauth/google/callback"
-					scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+					scope = 'profile https://www.google.com/m8/feeds https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/contacts'
 				}
 			}
 		}

@@ -12,7 +12,7 @@
 <head>
 	<meta name="layout" content="main"/>
 	<r:require modules="ebookjs"/>
-	<title>Crowdera- Crowdfunding ebook</title>
+	<title>The best crowdfunding success ebook - Crowdera </title>
     	<!-------------- Open Graph Data  -------------->
 	<meta property="og:site_name" content="GoCrowdera" />
 	<meta property="og:type" content="website" />

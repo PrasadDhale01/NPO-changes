@@ -6,7 +6,9 @@
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-<meta name="layout" content="main" />
+    <title>Crowdera - The Free Global Crowdfunding & Fundraising Website </title>
+    
+    <meta name="layout" content="main" />
 	<!-------------- Open Graph Data  -------------->
 	
 	<g:if test="${'in'.equalsIgnoreCase(country_code)}">

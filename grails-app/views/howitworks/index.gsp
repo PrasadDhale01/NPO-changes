@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta name="layout" content="main" />
-    <title>Crowdera- How it works</title>
+    <title>How free crowdfunding works? - Crowdera </title>
     	<!-------------- Open Graph Data  -------------->
 	<meta property="og:site_name" content="GoCrowdera" />
 	<meta property="og:type" content="website" />

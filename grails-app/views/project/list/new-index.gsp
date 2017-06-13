@@ -9,7 +9,7 @@
 <head>
     <meta name="layout" content="main" />
     <r:require module="projectlistjs"/>
-    <title>Crowdera- Fundraising Campaigns</title>
+    <title>Explore crowdfunding campaigns - Crowdera </title>
         	<!-------------- Open Graph Data  -------------->
 	<meta property="og:site_name" content="GoCrowdera" />
 	<meta property="og:type" content="website" />

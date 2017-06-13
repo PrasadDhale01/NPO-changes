@@ -8,7 +8,8 @@
 <html>
 <head>
 <meta name="layout" content="main" />
-<title>Crowdera- Contact us</title>
+<title>Crowdera Customer Help</title>
+
     <!-------------- Open Graph Data  -------------->
 	<meta property="og:site_name" content="GoCrowdera" />
 	<meta property="og:type" content="website" />

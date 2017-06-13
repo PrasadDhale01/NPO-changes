@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta name="layout" content="main" />
-    <title>Crowdera- FAQ</title>
+    <title>Crowdfunding FAQs and Tips </title>
     <!-------------- Open Graph Data  -------------->
 	<meta property="og:site_name" content="GoCrowdera" />
 	<meta property="og:type" content="website" />

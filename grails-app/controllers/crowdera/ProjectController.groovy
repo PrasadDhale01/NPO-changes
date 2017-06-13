@@ -32,6 +32,7 @@ class ProjectController {
 	def mandrillService
 	def contributionService
 	def socialAuthService
+	def adminService
     CampaignService campaignService;
 	def country_code 
 
@@ -3247,6 +3248,28 @@ class ProjectController {
 			message = 'Oops...! Please, enter the valid username. '
 			render message
 		}
+	}
+	
+	@Secured(['ROLE_ADMIN'])
+	def campaignData() {
+		def projects = Project.findAllWhere(validated: true, inactive: false)
+		render(view: "/user/admin/campaignData/index", model: [projects: projects])
+	}
+	
+	@Secured(['ROLE_ADMIN'])
+	def sortcampaignsforadmin(){
+		def sortval = params.selectedSortValue
+		def projectlist = adminService.getsortedcampaignsforstatistics(sortval);
+		
+		render(template: "/user/admin/campaignData/campaingrid",  model: [projectlist: projectlist, sortval: sortval])
+		session['projectlist'] = projectlist;
+	}
+	
+	@Secured(['ROLE_ADMIN'])
+	def generateCampaignCSVforAdmin(){
+		List projectlist = session.getAttribute('projectlist');
+		def result = adminService.generateCSVofcampaignstatistics(projectlist, response)
+		render (contentType:"text/csv", text:result)
 	}
 	
 }

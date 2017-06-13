@@ -8,7 +8,7 @@
 <head>
     <meta name="layout" content="main" />
     <r:require modules="crowderajs"/>
-    <title>Crowdera- About Us</title>
+    <title>Crowdera - About Us </title>
     <!-------------- Open Graph Data  -------------->
 	<meta property="og:site_name" content="GoCrowdera" />
 	<meta property="og:type" content="website" />

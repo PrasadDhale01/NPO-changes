@@ -72,7 +72,7 @@
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Crowdera- ${project.title}</title>
+    <title>${project.title} by ${project?.beneficiary?.firstName} - Crowdera</title>
     <link rel="canonical" href="${base_url}/campaigns"/>
     <meta name="title" content="${project.title} - Crowdera" />
     <meta name="keywords" content="Crowdera, crowdfunding, contribute online, raise funds free, film crowdfunding, raise money online, fundraising site, fundraising website, fundraising project, online fundraising, raise money for a cause, global crowdfunding, (${project.organizationName}, ${project.beneficiary.country}, ${project.category} ,${project.usedFor})" />

@@ -170,8 +170,7 @@
                     </div>
                 </div>
             </div>
-            <g:if test="${environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'}">
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="panel panel-default">
                         <div class="panel-body text-center">
                             <i class="glyphicon glyphicon-tint"></i> Payment Details for Campaign.
@@ -182,8 +181,8 @@
                             </g:link>
                         </div>
                     </div>
-                </div>
-            </g:if>
+            </div>
+                
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-body text-center">
@@ -220,6 +219,19 @@
                      </div>
                  </div>
             </div> 
+            
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                 <div class="panel panel-default">
+                     <div class="panel-body text-center">
+                         <i class="glyphicon glyphicon glyphicon-list-alt"></i> Campaign Statistics For Admin
+                     </div>
+                     <div class="panel-footer">
+                         <g:link controller="project" action="campaignData" class="TW-text-decoration">
+                             <div class="btn btn-block btn-primary"><i class="glyphicon glyphicon glyphicon-list-alt"></i> Campaign Statistics</div>
+                         </g:link>
+                     </div>
+                 </div>
+            </div>
             
             
         </div>

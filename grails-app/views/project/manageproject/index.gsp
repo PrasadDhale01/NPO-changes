@@ -258,7 +258,7 @@
                                     <span class="tab-text"> Teams</span>
                                 </a>
                                 <span class="show-tabs-count hidden-xs">
-                                    <g:if test="${project?.teams?.size() > 0}">${project?.teams?.size()}</g:if>
+                                    <g:if test="${totalteams?.size() > 0}">${totalteams?.size()}</g:if>
                                 </span>
                             </span>
                         </li>

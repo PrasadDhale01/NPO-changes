@@ -115,11 +115,11 @@
                             </div>
                         </div>
                         </g:if>
-                        <g:elseif test="${'us'.equalsIgnoreCase(country_code)}">
-                            <input type="text" class="form-control" name="currency" value="USD" style="display: none;">
-                        </g:elseif>
+<%--                        <g:elseif test="${project.payuStatus == true}">--%>
+<%--                            <input type="text" class="form-control" name="currency" value="INR" style="display: none;">--%>
+<%--                        </g:elseif>--%>
                         <g:else>
-                            <input type="text" class="form-control" name="currency" value="INR" style="display: none;">
+                            <input type="text" class="form-control" name="currency" value="${project.country.currency.currency_code}" style="display: none;">
                         </g:else>
                         <g:if test="${isTaxReceipt}">
                             <div class="col-sm-12">

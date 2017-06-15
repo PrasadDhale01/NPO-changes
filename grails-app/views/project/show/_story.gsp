@@ -99,9 +99,9 @@
 				    <g:each in="${firstFiveHashtag}" var="hashtag">
 	                    <g:link class="searchablehastag" controller="project" action="search" params="['q': hashtag]">${hashtag}</g:link>
 	                </g:each>
-	                <g:each in="${firstThreeHashtag}" var="hashtag">
-	                    <g:link class="searchablehastag" controller="project" action="search" params="['q': hashtag]">${hashtag}</g:link>
-	                </g:each>
+<%--	                <g:each in="${firstThreeHashtag}" var="hashtag">--%>
+<%--	                    <g:link class="searchablehastag" controller="project" action="search" params="['q': hashtag]">${hashtag}</g:link>--%>
+<%--	                </g:each>--%>
 	            </span>
 				<span class="showing-hashtags showing-hashtags-tabs hashtags-padding-left">
 	                
@@ -162,6 +162,7 @@
 	      </g:if>  
         </div>
         
+        <div class="clear"></div>
         <div class="show-matrix-bg">
             <g:if test="${spendCauseList && spendAmountPerList}">
                 <b class="show-spend-matrix-title">Campaign money will be used as</b>

@@ -3272,4 +3272,10 @@ class ProjectController {
 		render (contentType:"text/csv", text:result)
 	}
 	
+	def embedDonationButton() {
+		def vanityTitle = params.vanityTitle
+	    def btnparam = params.btnParam
+		def project = projectService.getProjectFromVanityTitle(params.vanityTitle)
+		render(view:'/project/manageproject/embedDonationButton', model:['project':project, 'fr': params.fr,'country_code': params.country_code, 'btnparam': params.btnparam, 'projectTitle':params.vanityTitle])
+	}
 }

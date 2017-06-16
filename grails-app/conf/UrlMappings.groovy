@@ -139,6 +139,8 @@ class UrlMappings {
 		"/campaign/$projectTitle/update/edit/$id"(controller:'project', action:'editUpdate')
 		"/campaign/supporter/$projectId/$fundRaiser"(controller:'project', action:'addcampaignsupporter')
 		"/campaign/$projectTitle/$fr/embed/tile"(controller:'project', action:'embedTile')
+		"/campaign/$btnparam/$vanityTitle/$fr/embed/donatetile"(controller:'project', action:'embedDonationButton')
+		
 		"/campaign/inviteMember/$projectId/$page?"(controller:'project', action:'inviteMember')
 		
 		"/campaigns/updateShare"(controller:'project', action:'updateShare')

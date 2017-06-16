@@ -5659,6 +5659,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	button.btn-sm-center {
+        margin-left: 15px !important;
+    }
+    button.btn-right {
+        margin-left: 15px;
+    }
+	div.modal-tile {
+        width: 320px;
+    }
 	div.wid-progresbar {
 	    width: 75%;
 	    border: none;
@@ -8756,6 +8765,26 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    button.btn-sm-center {
+        margin-left: 2px !important;
+    }
+    button.btn-right {
+	    margin-left: 2px;
+    }
+    button.btn-primary {
+        font-size: 10px;
+    }
+	div.wid-progresbar {
+	    width: 69%;
+	    border: none;
+	    background-color: #ededed;
+    }
+	.modal-dialog.modal-embed-with-video {
+	    width: 768px !important;
+	}
+    div.modal-tile {
+        width: 768px;
+    }
 	div.only-tile-embed-modal .fedu.thumbnail.c-thumbnail {
 	    width: 72%;
 	    margin-left: auto;
@@ -14954,17 +14983,22 @@ textarea.textarea-embed-video {
 /****************Not use other css this is use by Widgets only********************/
 @media only screen and (min-width: 769px) and (max-width:850px){
 	div.wid-progresbar {
-	    width: 72%;
+	    width: 69%;
 	    border: none;
 	    background-color: #ededed;
     }
     div.only-tile-embed-modal .fedu.thumbnail.c-thumbnail {
-	    width: 57%;
+/* 	    width: 57%; */
 	    margin-left: auto;
 	    margin-right: auto;
     }
     button.wid-btn-video-off {
-        width: 57%;
+        width: 72%;
+    }
+    div.tile-width {
+        width: 70% !important;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 @media only screen and (min-width: 601px) and (max-width:767px){
@@ -16021,6 +16055,15 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	button.btn-sm-center {
+        margin-left: 15px !important;
+    }
+    button.btn-right {
+        margin-left: 15px;
+    }
+	div.modal-tile {
+        width: 320px;
+    }
     div.wid-progresbar {
 	    width: 75%;
 	    border: none;
@@ -19358,7 +19401,7 @@ a#downloadEbook{
     width: 0%;
 }
 iframe.embedTitleUrl{
-	   width: 310px !important;
+	   width: 320px !important;
 }
 img.abt-us-banner-wid {
     margin-left: -9.2%;

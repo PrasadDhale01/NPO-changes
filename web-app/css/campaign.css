@@ -2129,3 +2129,9 @@ button.embdlgBtn{
     width: 240px;
     height: 70px;
 }
+.wid-embed-btn {
+    width: 100%;
+}
+.wid-marigin-btn {
+    margin-bottom: 0;
+}

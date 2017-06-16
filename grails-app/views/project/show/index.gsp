@@ -69,7 +69,7 @@
 	def largeBtn = "large"
     
     def embedTileUrl = base_url+'/campaign/'+vanityTitle+'/'+vanityUsername+'/embed/tile'
-    def embedCode = '<iframe width="310px" height="451px" src="'+embedTileUrl+'" scrolling="no" frameborder="0"  class="embedTitleUrl"></iframe>'
+    def embedCode = '<iframe width="320px" height="451px" src="'+embedTileUrl+'" scrolling="no" frameborder="0"  class="embedTitleUrl"></iframe>'
     def embedVideoCode = '<iframe width="480" height="360" frameborder="0" src="'+campaignVideoUrl+'" scrolling="no"></iframe>'
     
 	 def embedDonationUrl = base_url+'/campaign/'+smallBtn +'/'+vanityTitle+'/'+vanityUsername+'/embed/donatetile'
@@ -926,15 +926,15 @@
 											    <g:if test="${project.paypalEmail || project.charitableId || (project?.wepayEmail && project?.wepayAccountId != 0 && (wepayAccountStatus == 'active' || wepayAccountStatus == 'pending')) || (project.payuEmail && 'in'.equalsIgnoreCase(country_code)) || (project.citrusEmail && 'in'.equalsIgnoreCase(country_code))}">
 											        <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
 											            <div class="show-A-fund"> </div>
-											            <button name="submit" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn-video-off sh-fund-donate-contri donate-btn-change2" id="btnFundDesktop">DONATE NOW</button>
+											            <button name="submit" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn-video-off sh-fund-donate-contri" id="btnFundDesktop">DONATE NOW</button>
 											        </g:form>
 											    </g:if>
 											    <g:elseif test="${(project.payuEmail || project.citrusEmail) && !('in'.equalsIgnoreCase(country_code))}">
-											      	<button name="inactiveContributeButton" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn-video-off sh-fund-donate-contri donate-btn-change2">DONATE NOW</button>
+											      	<button name="inactiveContributeButton" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn-video-off sh-fund-donate-contri">DONATE NOW</button>
 											    </g:elseif>
 											    <g:else>
 											        <div class="show-A-fund"> </div>
-											        <button name="contributeButton" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn-video-off sh-fund-donate-contri donate-btn-change2">DONATE NOW</button>
+											        <button name="contributeButton" class="btn btn-show-fund show-fund-size mob-show-fund wid-btn-video-off sh-fund-donate-contri">DONATE NOW</button>
 											    </g:else>
 											</g:else>
 										 </div>

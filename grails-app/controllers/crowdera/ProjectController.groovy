@@ -2602,7 +2602,7 @@ class ProjectController {
 	def embedTile(){
 		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
 		def currentFundraiser = userService.getUserFromVanityName(params.fr)
-		render(view:'/project/manageproject/embedTile', model:[project:project, currentFundraiser:currentFundraiser])
+		render(view:'/project/manageproject/embedTile', model:[currentFundraiser:currentFundraiser,'country_code': params.country_code,'project':project, 'fr': params.fr,'country_code': params.country_code, 'projectTitle':params.projectTitle])
 	}
 
 	def getFeedBackCSV(){
